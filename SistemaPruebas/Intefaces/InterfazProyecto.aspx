@@ -63,15 +63,9 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" Text="Iniciar sesión" CssClass="btn btn-default" />
-                        </div>
-                    </div>
                 </div>
                 <p>
+
                     <h4>Oficina Usuaria</h4>
          <div class="col-md-4">
             
@@ -102,12 +96,34 @@
 </div>
                     </div>
              </div>
-                </p>
-            </section>
-        </div>
+    <h4>Miembros del equipo</h4>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Lider del proyecto</asp:Label>
+                        <div class="col-md-3">
+                                    <asp:DropDownList runat="server" ID="DropDownList2"  CssClass="form-control">
+                                    </asp:DropDownList>
 
-        <div class="col-md-4">
+                            </div>
+                        </div>
+        <asp:gridview id="EnProyectoGridView" autogeneratecolumns="true" emptydatatext="No data available." runat="server">
 
-        </div>
-    </div>
+        <columns>
+          <asp:boundfield datafield="Nombre" headertext="Nombre" Visible="true"/>
+          <asp:boundfield datafield="Rol" headertext="Rol" Visible="true"/>
+          <asp:boundfield datafield="Telefono" headertext="Teléfono" Visible="true"/>
+          <asp:boundfield datafield="email" headertext="Email" Visible="true"/>
+        </columns>
+
+      </asp:gridview>
+
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-8">
+                 <asp:ImageButton class="signup" ID="ImageBtnDerecha" ImageUrl="http://megaicons.net/static/img/icons_sizes/46/122/512/arrow-back-4-icon.png" Width="65px" Height="65px" runat="server" />
+
+                            <asp:ImageButton class="signup" ID="ImageBtnIzq" ImageUrl="http://icons.iconarchive.com/icons/rafiqul-hassan/blogger/512/Arrow-Next-4-icon.png" Width="65px" Height="65px" runat="server" />
+
+                        </div>
+                    </div>
+
+
 </asp:Content>
