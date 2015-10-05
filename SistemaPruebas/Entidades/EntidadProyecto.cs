@@ -12,6 +12,7 @@ namespace SistemaPruebas.Controladoras
 {
     public class EntidadProyecto
     {
+
         String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
 
         public SqlDataReader ejecutarConsulta(String consulta)
