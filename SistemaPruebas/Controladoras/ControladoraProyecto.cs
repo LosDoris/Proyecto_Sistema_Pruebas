@@ -17,7 +17,8 @@ namespace SistemaPruebas.Controladoras
 
         public void IngresaProyecto(string id_proyecto, string nombre_sistema, string objetivo_general, string fecha_asignacion, string estado, string nombre_resp, string telefono_resp, string oficina_resp)
         {
-            EntidadProyecto objProyecto = new EntidadProyecto();
+            EntidadProyecto objProyecto = new EntidadProyecto(id_proyecto,  nombre_sistema,  objetivo_general,  fecha_asignacion,  estado,  nombre_resp,  telefono_resp,  oficina_resp);
+
 
         }
     }
