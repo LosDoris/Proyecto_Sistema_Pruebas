@@ -8,11 +8,21 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraBDProyecto
     {
 
-        public int InsertarProyecto(string msg)
+        public int InsertarProyecto(EntidadProyecto datos)
         {
 
 
             return 0;
+        }
+
+        public List<string> ConsultarProyectoUsuario(string msg)
+        {
+            return null;
+        }
+
+        public List<string> ConsultarProyectoAdm(string msg)
+        {
+            return null;
         }
 
         public List<string> ConsultarProyecto(string msg)

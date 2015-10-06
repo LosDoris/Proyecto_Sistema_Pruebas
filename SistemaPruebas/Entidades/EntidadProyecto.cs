@@ -24,17 +24,7 @@ namespace SistemaPruebas.Controladoras
         private String telefono_representante;
         private String oficina_representante;
 
-        public EntidadProyecto(string id, string nombre, string obj, string fecha, string est, string nomb_rep, string tel_rep, string of_rep)
-        {
-            id_proyecto = id;
-            Nombre_sistema = nombre;
-            objetivo_general = obj;
-            fecha_asignacion = fecha;
-            estado = est;
-            Nombre_representante = nomb_rep;
-            telefono_representante = tel_rep;
-            oficina_representante = of_rep;
-        }
+        
 
         public EntidadProyecto(Object[] datos)
         { // Constructor donde se inicializan las variables de la clase
