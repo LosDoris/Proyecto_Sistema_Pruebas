@@ -1,267 +1,65 @@
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.dll.config
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.pdb
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Antlr3.Runtime.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\AspNet.ScriptManager.bootstrap.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\AspNet.ScriptManager.jQuery.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\EntityFramework.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\EntityFramework.SqlServer.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.ScriptManager.MSAjax.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.ScriptManager.WebForms.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Web.Infrastructure.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Newtonsoft.Json.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Owin.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\System.Web.Optimization.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\System.Web.Providers.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\WebGrease.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\System.Web.Optimization.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Antlr3.Runtime.pdb
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Newtonsoft.Json.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\EntityFramework.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\EntityFramework.SqlServer.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.xml
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\System.Web.Optimization.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\EntityFramework.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\EntityFramework.SqlServer.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\System.Web.Providers.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
-c:\users\b32896\documents\visual studio 2013\Projects\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.dll.config
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\SistemaPruebas.pdb
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Antlr3.Runtime.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\AspNet.ScriptManager.jQuery.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\EntityFramework.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\EntityFramework.SqlServer.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.ScriptManager.MSAjax.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.ScriptManager.WebForms.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Newtonsoft.Json.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Owin.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\System.Web.Optimization.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\System.Web.Providers.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\WebGrease.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\System.Web.Optimization.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Antlr3.Runtime.pdb
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Newtonsoft.Json.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\EntityFramework.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\EntityFramework.SqlServer.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\System.Web.Optimization.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\EntityFramework.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\EntityFramework.SqlServer.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\System.Web.Providers.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
-C:\Users\b30721\Documents\SistemaPruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
-<<<<<<< HEAD
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll.config
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.pdb
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.jQuery.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.MSAjax.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.WebForms.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Owin.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Providers.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\WebGrease.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.pdb
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Optimization.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.SqlServer.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Providers.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
-C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
-=======
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll.config
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.pdb
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.bootstrap.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.jQuery.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.MSAjax.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.WebForms.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Owin.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Providers.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\WebGrease.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.pdb
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Optimization.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.SqlServer.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Providers.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
-C:\Users\b30721\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
->>>>>>> origin/master
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll.config
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\SistemaPruebas.pdb
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.bootstrap.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Owin.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Providers.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\WebGrease.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\System.Web.Optimization.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Antlr3.Runtime.pdb
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Newtonsoft.Json.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\EntityFramework.SqlServer.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Optimization.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\System.Web.Providers.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
+C:\Users\b32176\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
