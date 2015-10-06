@@ -224,3 +224,14 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+*.suo
+SistemaPruebas.v12.suo
+*.suo
+*.suo
+*.pdb
+*.suo
+*.dll
+*.suo
+SistemaPruebas.v12.suo
+SistemaPruebas/obj/Debug/SistemaPruebas.csproj.FileListAbsolute.txt
+SistemaPruebas/obj/Debug/SistemaPruebas.csproj.FileListAbsolute.txt
