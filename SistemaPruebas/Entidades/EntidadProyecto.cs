@@ -13,6 +13,7 @@ namespace SistemaPruebas.Controladoras
     public class EntidadProyecto
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Variables correspondientes a la entidad cliente
         private String id_proyecto;
         private String nombre_sistema;
@@ -89,6 +90,9 @@ namespace SistemaPruebas.Controladoras
             get { return oficina_representante; }
             set { oficina_representante = value; }
 =======
+=======
+
+>>>>>>> origin/master
         String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
 
         public SqlDataReader ejecutarConsulta(String consulta)

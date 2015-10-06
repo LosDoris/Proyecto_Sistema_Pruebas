@@ -7,5 +7,18 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraProyecto
     {
+       
+        public List<string> ConsultarRHSinProyecto()
+        {
+            List<String> listaNombre = new List<string>();
+
+            return null;
+        }
+
+        public void IngresaProyecto(string id_proyecto, string nombre_sistema, string objetivo_general, string fecha_asignacion, string estado, string nombre_resp, string telefono_resp, string oficina_resp)
+        {
+            EntidadProyecto objProyecto = new EntidadProyecto();
+
+        }
     }
 }
