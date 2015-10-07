@@ -240,3 +240,10 @@ SistemaPruebas.v12.suo
 SistemaPruebas/obj/Debug/SistemaPruebas.dll
 SistemaPruebas.v12.suo
 *.suo
+*.cache
+SistemaPruebas/obj/Debug/SistemaPruebas.csprojResolveAssemblyReference.cache
+*.pdb
+SistemaPruebas/obj/Debug/SistemaPruebas.dll
+*.cache
+SistemaPruebas/bin/SistemaPruebas.pdb
+SistemaPruebas/bin/SistemaPruebas.dll

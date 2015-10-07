@@ -25,5 +25,13 @@ namespace SistemaPruebas.Controladoras
             int resultado = controlBD.InsertarProyecto(objProyecto);
 
         }
+
+        public List<string> ConsultarIdProyecto()
+        {
+            List<string> retorno = controlBD.ConsultaIdProyecto();
+            return retorno;
+        }
+
+
     }
 }
