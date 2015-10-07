@@ -145,13 +145,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
 >>>>>>> origin/master
+=======
+    <Content Include="Account\Manage.aspx" />
+>>>>>>> parent of 842070e... Cambios Interfaz General pt.1
     <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -220,7 +226,10 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 842070e... Cambios Interfaz General pt.1
     <Compile Include="Account\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -228,6 +237,7 @@
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Account\OpenAuthProviders.ascx.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,6 +246,8 @@
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
     </Compile>
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 842070e... Cambios Interfaz General pt.1
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -243,7 +255,21 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Contact.aspx.cs">
