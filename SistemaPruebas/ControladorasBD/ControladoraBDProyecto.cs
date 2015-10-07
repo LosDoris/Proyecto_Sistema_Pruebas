@@ -25,6 +25,11 @@ namespace SistemaPruebas.Controladoras
             return null;
         }
 
+        public List<string> ConsultaIdProyecto()
+        {
+            List<string> retorno = new List<string>();
+            return retorno;
+        }
         public List<string> ConsultarProyecto(string msg)
         {
             return null;
@@ -33,6 +38,7 @@ namespace SistemaPruebas.Controladoras
 
         public int EliminarProyecto(string msg)
         {
+
             return 0;
         }
 
