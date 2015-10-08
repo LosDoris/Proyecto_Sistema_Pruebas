@@ -46,8 +46,7 @@ namespace SistemaPruebas.Account {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
-<<<<<<< HEAD
-=======
+
         
         /// <summary>
         /// Control RememberMe.
@@ -75,6 +74,6 @@ namespace SistemaPruebas.Account {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::SistemaPruebas.Account.OpenAuthProviders OpenAuthLogin;
->>>>>>> origin/master
+
     }
 }

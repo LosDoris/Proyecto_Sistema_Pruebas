@@ -14,11 +14,10 @@ namespace SistemaPruebas.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-=======
+
             RegisterHyperLink.NavigateUrl = "Register";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
->>>>>>> origin/master
+
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
         }
 
