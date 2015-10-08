@@ -51,11 +51,11 @@
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                     <div class="col-md-4">
                         <asp:DropDownList runat="server" ID="estado" CssClass="form-control">
-                            <asp:ListItem Selected="True">Pendiente</asp:ListItem>
-                            <asp:ListItem>Asignado</asp:ListItem>
-                            <asp:ListItem>En Ejecución</asp:ListItem>
-                            <asp:ListItem>Finalizado</asp:ListItem>
-                            <asp:ListItem>Cerrado</asp:ListItem>
+                            <asp:ListItem Selected="True" Value="1">Pendiente</asp:ListItem>
+                            <asp:ListItem Value="2">Asignado</asp:ListItem>
+                            <asp:ListItem Value="3">En Ejecución</asp:ListItem>
+                            <asp:ListItem Value="4">Finalizado</asp:ListItem>
+                            <asp:ListItem Value="5">Cerrado</asp:ListItem>
                         </asp:DropDownList>
 
                     </div>
