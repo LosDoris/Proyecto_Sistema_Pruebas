@@ -129,7 +129,7 @@
         </div>
         <div id="Botones_aceptar_cancelar" class="form-horizontal">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" OnClick="aceptar_Click"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" OnClick="cancelar_Click"/>
             </div>
     </div>
 

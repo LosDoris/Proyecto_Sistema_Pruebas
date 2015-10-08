@@ -31,6 +31,11 @@ namespace SistemaPruebas.Controladoras
             List<string> retorno = controlBD.ConsultaIdProyecto();
             return retorno;
         }
+        public int EliminarProyecto(string id)
+        {
+            int retorno = controlBD.EliminarProyecto(id);
+            return retorno;
+        }
 
 
     }
