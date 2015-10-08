@@ -17,7 +17,11 @@ namespace SistemaPruebas.Intefaces
             estado.Enabled = false;
             nombre_rep.Enabled = false;
             tel_rep.Enabled = false;
-                of_rep.Enabled = false;
+            of_rep.Enabled = false;  
+        }
+        protected void Page_request(object sender, EventArgs e)
+        {
+           
         }
 
         protected void Insertar_button(object sender, EventArgs e)
@@ -30,7 +34,16 @@ namespace SistemaPruebas.Intefaces
             of_rep.Enabled = true;
         }
 
+        protected void aceptar_Click(object sender, EventArgs e)
+        {
+            if (nombre_proyecto.Text != "" && obj_general.Text != "" && estado.SelectedIndex != -1 && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
+            {
  
+            }
+        }
+
+        // <asp:RequiredFieldValidator runat="server" ControlToValidate="nombre_proyecto"
+        //                      CssClass="text-danger" ErrorMessage="El campo de Nombre del Proyecto es obligatorio." />*/
 
     }
 }
