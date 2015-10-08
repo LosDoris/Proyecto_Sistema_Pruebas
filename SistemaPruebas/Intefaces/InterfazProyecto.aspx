@@ -12,7 +12,7 @@
 
                              <div class="form-group">
                         <div class="col-md-offset-10 col-md-12">
-                            <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" />
+                            <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
 
                             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" />
 
@@ -35,8 +35,8 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                            <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="nombre_proyecto"
                                 CssClass="text-danger" ErrorMessage="El campo de Nombre del Proyecto es obligatorio." />
                         </div>
                     </div>
@@ -44,14 +44,14 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="obj_general" CssClass="form-control" />
                             </div>
                         </div>
 
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Estado</asp:Label>
                         <div class="col-md-4">
-                                    <asp:DropDownList runat="server" ID="DropDownList1"  CssClass="form-control">
+                                    <asp:DropDownList runat="server" ID="estado_combo"  CssClass="form-control">
                                     </asp:DropDownList>
 
                             </div>
@@ -103,21 +103,21 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBox3" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" />
                             </div>
                         </div>
 
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" />
                             </div>
                         </div>
 
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Representante</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBox5" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" />
                             </div>
                         </div>
 
