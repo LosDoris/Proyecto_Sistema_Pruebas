@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Estado</asp:Label>
                         <div class="col-md-4">
-                                    <asp:DropDownList runat="server" ID="estado_combo"  CssClass="form-control">
+                                    <asp:DropDownList runat="server" ID="estado"  CssClass="form-control">
                                     </asp:DropDownList>
 
                             </div>
@@ -103,7 +103,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" OnTextChanged="nombre_rep_TextChanged" />
                             </div>
                         </div>
 

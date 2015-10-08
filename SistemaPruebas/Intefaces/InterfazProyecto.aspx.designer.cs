@@ -49,13 +49,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.TextBox obj_general;
         
         /// <summary>
-        /// Control estado_combo.
+        /// Control estado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList estado_combo;
+        protected global::System.Web.UI.WebControls.DropDownList estado;
         
         /// <summary>
         /// Control nombre_rep.
