@@ -127,10 +127,13 @@
 
             </div>
         </div>
-        <div id="Botones_aceptar_cancelar" class="form-horizontal">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" OnClick="aceptar_Click"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" OnClick="cancelar_Click"/>
+          </div>
+    <div class="form-group">
+        <div id="Botones_aceptar_cancelar"  class="col-md-offset-10 col-md-12">
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar"  CssClass="btn btn-default" OnClick="aceptar_Click"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar"  CssClass="btn btn-default" OnClick="cancelar_Click"/>
             </div>
-    </div>
-
+        </div>
+  
 </asp:Content>
+
