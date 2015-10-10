@@ -12,6 +12,34 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraBDProyecto
     {
 
+        public SqlCommand InsertarProyecto(EntidadProyecto datos)
+        {
+            SqlCommand comando = null;
+            comando.CommandText = "Insertar_Proyecto";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.Add(new SqlParameter("@id_proyecto", datos.id_proyecto));
+
+            comando.Parameters.Add(new SqlParameter("@nombre_sistema", datos.nombre_sistema));
+
+            comando.Parameters.Add(new SqlParameter("@objetivo_general", datos.objetivo_general));
+
+            comando.Parameters.Add(new SqlParameter("@fecha_asignacion", datos.fecha_asignacion));
+
+            comando.Parameters.Add(new SqlParameter("@estado", datos.estado));
+
+            comando.Parameters.Add(new SqlParameter("@nombre_rep", datos.nombre_representante));
+
+
+            comando.Parameters.Add(new SqlParameter("@telefono_rep", datos.telefono_representante));
+
+
+            comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.oficina_representante));
+
+            return comando;
+
+        }
+
         /*    public int InsertarProyecto(EntidadProyecto datos)
             {
           /*     sqlconnection sqlconnection = new sqlconnection(conexion);
