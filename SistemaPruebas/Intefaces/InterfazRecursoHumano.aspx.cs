@@ -144,9 +144,9 @@ namespace SistemaPruebas.Intefaces
             datosNuevos[4] = this.TextBoxEmail.Text;
             datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
             datosNuevos[6] = this.TextBoxClave.Text;
-            datosNuevos[7] = this.PerfilAccesoComboBox.SelectedValue.ToString();
+            //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedValue.ToString();
             //datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-            datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+            //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
             if (modo == 1)
             {
                 controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos);
