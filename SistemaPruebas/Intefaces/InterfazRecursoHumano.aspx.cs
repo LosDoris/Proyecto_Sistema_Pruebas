@@ -135,7 +135,8 @@ namespace SistemaPruebas.Intefaces
             deshabilitarCampos();
             BotonRHInsertar.Enabled = true;
             //habilitar consulta
-
+            BotonRHCancelar.Enabled = false;
+            BotonRHAceptar.Enabled = false;
             Object[] datosNuevos = new Object[7];
             datosNuevos[0] = this.UserName.Text;//cedula
             datosNuevos[1] = this.Password.Text;//nombre
