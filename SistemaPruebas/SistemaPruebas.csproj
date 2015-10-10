@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,6 +160,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Intefaces\IntefazRecursosHumanos.aspx" />
     <Content Include="Intefaces\InterfazProyecto.aspx" />
+    <Content Include="Intefaces\InterfazRecursoHumano.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -303,6 +305,13 @@
     </Compile>
     <Compile Include="Intefaces\InterfazProyecto.aspx.designer.cs">
       <DependentUpon>InterfazProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Intefaces\InterfazRecursoHumano.aspx.cs">
+      <DependentUpon>InterfazRecursoHumano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Intefaces\InterfazRecursoHumano.aspx.designer.cs">
+      <DependentUpon>InterfazRecursoHumano.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
