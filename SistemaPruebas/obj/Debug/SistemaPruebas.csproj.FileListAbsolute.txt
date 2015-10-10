@@ -397,3 +397,6 @@ C:\Users\b04740\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\
 C:\Users\b04740\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\b04740\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\b04740\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\andre_000\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
+C:\Users\andre_000\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
+C:\Users\andre_000\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
