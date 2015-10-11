@@ -13,7 +13,7 @@ namespace SistemaPruebas.Account
         public string g;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void cambiarContrasena(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace SistemaPruebas.Account
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Contraseña y usuario no coinciden" + "');", true);
                 }
-            }    
+            }
         }
     }
 }

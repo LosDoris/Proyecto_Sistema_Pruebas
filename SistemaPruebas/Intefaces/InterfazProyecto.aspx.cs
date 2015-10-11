@@ -37,7 +37,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
-            datetimepicker('disable');
+            //datetimepicker('disable');
 
 
         }
