@@ -78,12 +78,29 @@ namespace SistemaPruebas.Controladoras
             return regresa;
 
         }
-		/**/
-		
-		
-		
-		
-		
+
+        public bool estadoLoggeado(string nombre, string estado)
+        {
+            bool regresa = false;
+            if (a.Insertar("update persona set loggeado = '" + estado +
+                        "' where nombre = '" + nombre + "'") == 1)
+            {
+                regresa = true;
+            }
+            else
+            {
+                regresa = false;
+            }
+
+            return regresa;
+
+        }
+        /**/
+
+
+
+
+
         public void insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
             //conexion y la inserta

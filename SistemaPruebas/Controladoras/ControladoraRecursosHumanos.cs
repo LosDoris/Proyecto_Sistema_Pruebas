@@ -35,6 +35,11 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDrh.loggeado(nombre);
         }
 
+        public bool estadoLoggeado(string nombre, string estado)
+        {
+            return controladoraBDrh.estadoLoggeado(nombre, estado);
+        }
+
         public int insertarRecursoHumano(Object[] datos)
         {
             //datos[0];

@@ -11,6 +11,7 @@ namespace SistemaPruebas
 {
     public partial class SiteMaster : MasterPage
     {
+        Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -68,12 +69,19 @@ namespace SistemaPruebas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Account.Login.el_logeado == "")
+            {
 
+            }
+            else if (controladoraRH.loggeado(Account.Login.el_logeado) == false)
+            {
+                controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+            }
         }
 
-        protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
+        protected void LogOut(object sender, EventArgs e)
         {
-            Context.GetOwinContext().Authentication.SignOut();
+            
         }
     }
 

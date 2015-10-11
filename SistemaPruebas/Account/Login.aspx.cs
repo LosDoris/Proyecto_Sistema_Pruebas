@@ -13,7 +13,7 @@ namespace SistemaPruebas.Account
 {
     public partial class Login : Page
     {
-        static public bool logeado = false;
+        static public string el_logeado = "";
         Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,14 +31,16 @@ namespace SistemaPruebas.Account
                 if (controladoraRH.usuarioMiembroEquipo(datos))
                 {
                     //regreso true
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "TRU" + "');", true);
-                    logeado = true;
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Logeo correcto" + "');", true);
+                    el_logeado = datos[0].ToString();
+
+                    controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
 
                 }
                 else
                 {
                     //regreso false
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "FALSE" + "');", true);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Usuario no coincide con contraseña" + "');", true);
                 }
             }
             
