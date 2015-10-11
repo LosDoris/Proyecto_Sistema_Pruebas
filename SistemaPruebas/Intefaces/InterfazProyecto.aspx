@@ -12,11 +12,10 @@
 
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
+            <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
+            <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" />
 
-            <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" />
-
-            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" />
+            <asp:Button runat="server" ID="Eliminar" Text="   Eliminar" CssClass="btn btn-default" />
         </div>
     </div>
 
@@ -35,8 +34,17 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" />
-
+                        <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" onkeypress="return solo_letras(event)"/>
+                      <script type = "text/javascript">
+                            function solo_letras(evt)
+         {
+                                if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241))
+                  {
+                    alert("Sólo se permite letras");
+                    return false;
+                  }
+          }
+     </script>
                     </div>
                 </div>
 
@@ -83,11 +91,14 @@
                             </script>
                             <script type="text/javascript">
                                 $('#datetimepicker').datetimepicker({
-                                    format: 'dd/MM/yyyy',
+                                    format: 'yyyy/MM/dd',
                                     language: "es",
                                     todayHighlight: true,
                                     pickTime: false
                                 });
+                             <%--   $('#datetimepicker').datetimepicker('disable'); --%>
+
+
                             </script>
 
                         </div>
@@ -105,21 +116,32 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
+
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" onkeypress="return solo_numeros(event)"/>
+                        <script type = "text/javascript">
+         function solo_numeros(evt) 
+         {
+            if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57))
+                  {
+                    alert("Sólo se permite números");
+                    return false;
+                  }
+          }
+     </script>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" onkeypress="return solo_letras(event)"/>
                     </div>
                 </div>
 
@@ -130,8 +152,6 @@
         <div id="Botones_aceptar_cancelar"  class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar"  CssClass="btn btn-default" OnClick="aceptar_Click"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar"  CssClass="btn btn-default" OnClick="cancelar_Click"/>
-
-            <asp:Panel ID="ExitoMessage" runat="server" Visible="False">Se ha insertado un Proyecto exitosamente</asp:Panel>
 
             </div>
         </div>

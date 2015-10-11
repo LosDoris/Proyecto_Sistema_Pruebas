@@ -37,6 +37,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
+            datetimepicker('disable');
 
 
         }
@@ -83,8 +84,13 @@ namespace SistemaPruebas.Intefaces
                             int a= controladoraProyecto.IngresaProyecto(datos);
                 if (a == 1)
                 {
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(),"err_msg","alert('El proyecto ha sido insertado con éxito');", true);
 
-                    ExitoMessage.Visible = true;
+                }
+
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
 
                 }
 
