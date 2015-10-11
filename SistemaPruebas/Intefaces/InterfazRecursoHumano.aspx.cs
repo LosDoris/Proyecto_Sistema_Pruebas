@@ -194,7 +194,7 @@ namespace SistemaPruebas.Intefaces
             {
 
 
-                Object[] datosNuevos = new Object[7];
+                Object[] datosNuevos = new Object[10];
                 datosNuevos[0] = this.UserName.Text;//cedula
                 datosNuevos[1] = this.Password.Text;//nombre
                 datosNuevos[2] = this.TextBoxTel1.Text;
@@ -202,9 +202,9 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[4] = this.TextBoxEmail.Text;
                 datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
                 datosNuevos[6] = this.TextBoxClave.Text;
-                //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedValue.ToString();
-                //datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
+                datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
+                datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
 
                 if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) != -1)
                 {
