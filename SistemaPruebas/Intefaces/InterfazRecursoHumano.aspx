@@ -84,6 +84,13 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" />
+                            <asp:requiredfieldvalidator id="Requiredfieldvalidator2"
+                                    controltovalidate="TextBoxUsuario"
+                                    validationgroup="CamposNoVacios"
+                                    CssClass="text-danger" 
+                                    errormessage="El campo de Nombre de Usuario es obligatorio."
+                                    runat="Server">
+                                </asp:requiredfieldvalidator>
                             </div>
                         </div>
 
@@ -91,6 +98,13 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" />
+                               <asp:requiredfieldvalidator
+                                    controltovalidate="TextBoxClave"
+                                    validationgroup="CamposNoVacios"
+                                    CssClass="text-danger" 
+                                    errormessage="El campo de Contraseña es obligatorio."
+                                    runat="Server">
+                                </asp:requiredfieldvalidator>
                             </div>
                         </div>
 
