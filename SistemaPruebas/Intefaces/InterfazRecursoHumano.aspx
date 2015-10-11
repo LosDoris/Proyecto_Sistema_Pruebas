@@ -8,7 +8,7 @@
                         <div class="col-md-offset-10 col-md-12">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonRHInsertar" OnClick="BotonRHInsertar_Click"  />
 
-                            <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonRHModificar" />
+                            <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonRHModificar" OnClick="BotonRHModificar_Click" />
 
                             <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonRHEliminar" />
                         </div>
@@ -92,7 +92,7 @@
                                 causesvalidation="true" 
                                 validationgroup="CamposNoVacios"
                                 CssClass="btn btn-default" 
-                                ID="BotonRHAceptarModificar" 
+                                ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
                                 />
                             <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
                         </div>
