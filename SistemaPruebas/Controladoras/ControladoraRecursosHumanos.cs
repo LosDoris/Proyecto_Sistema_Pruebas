@@ -9,6 +9,31 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraRecursosHumanos
     {
         ControladoraBDRecursosHumanos controladoraBDRecursosHumanos = new ControladoraBDRecursosHumanos();
+		ControladoraBDRecursosHumanos controladoraBDrh = new ControladoraBDRecursosHumanos();
+        public bool usuarioMiembroEquipo(Object[] datos)
+        {
+            string[] nombresYContrasenas= controladoraBDrh.nombresContrasenas();
+            if (nombresYContrasenas != null) {
+                string nombreIngresado = datos[0].ToString();
+                string contrasenaIngresada = datos[1].ToString();
+
+                if (nombresYContrasenas[0].Contains(nombreIngresado)
+                    && nombresYContrasenas[1].Contains(contrasenaIngresada))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+		public bool modificaContrasena(Object[] datos)
+        {
+            return controladoraBDrh.modificaContrasena(datos[0].ToString(), datos[1].ToString()); 
+        }
+
+        public bool loggeado(string nombre)
+        {
+            return controladoraBDrh.loggeado(nombre);
+        }
 
         public int insertarRecursoHumano(Object[] datos)
         {

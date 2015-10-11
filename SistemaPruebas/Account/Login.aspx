@@ -29,17 +29,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div class="col-md-10">
+                            <a href="CambiarContrasena">Cambiar Contraseña</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>
     </div>

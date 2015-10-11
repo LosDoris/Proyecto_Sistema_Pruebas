@@ -8,36 +8,40 @@ using System.Web;
 using System.Web.UI;
 using SistemaPruebas.Models;
 
+
 namespace SistemaPruebas.Account
 {
     public partial class Login : Page
     {
+        static public bool logeado = false;
+        Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            RegisterHyperLink.NavigateUrl = "Register";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if (IsValid)
+            Object[] datos = new Object[2];
+            datos[0] = this.UserName.Text;
+            datos[1] = this.Password.Text;
+            if (controladoraRH.loggeado(datos[0].ToString()) == false)
             {
-                // Validar la contraseña del usuario
-                var manager = new UserManager();
-                ApplicationUser user = manager.Find(UserName.Text, Password.Text);
-                if (user != null)
+                if (controladoraRH.usuarioMiembroEquipo(datos))
                 {
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    //regreso true
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "TRU" + "');", true);
+                    logeado = true;
+
                 }
                 else
                 {
-                    FailureText.Text = "Invalid username or password.";
-                    ErrorMessage.Visible = true;
+                    //regreso false
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "FALSE" + "');", true);
                 }
             }
+            
         }
     }
 }
