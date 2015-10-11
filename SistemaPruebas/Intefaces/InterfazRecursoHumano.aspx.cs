@@ -246,8 +246,15 @@ namespace SistemaPruebas.Intefaces
                 todosValidos = false;
                 //poner mensaje de no valido
             }
-            Regex emailRE = new Regex("(([a-zA-z,.-_#%]*@[a-zA-z,.-_#%]*.[a-zA-z,.-_#%]*)?)");
+            Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
             if (!emailRE.IsMatch(TextBoxEmail.Text))
+            {
+                todosValidos = false;
+                //poner mensaje de no valido
+            }
+            Regex user = new Regex("([a-zA-z0-9,.-_]+){0,29}");
+            Regex clave = new Regex("([a-zA-z0-9,.-_]+){0,12}");
+            if ((!user.IsMatch(TextBoxUsuario.Text)) || (!clave.IsMatch(TextBoxClave.Text)))
             {
                 todosValidos = false;
                 //poner mensaje de no valido
