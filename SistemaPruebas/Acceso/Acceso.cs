@@ -146,5 +146,39 @@ namespace SistemaPruebas.Acceso
             return datos;
         }
 
+        public string Consultar_Proced_Almacenado(SqlCommand comando)
+        {
+            SqlConnection sqlConnection = new SqlConnection(conexion);
+            sqlConnection.Open();
+            comando.Connection = sqlConnection;
+            string retorno = "";
+            
+            try
+            {
+                SqlDataReader DR2 = comando.ExecuteReader();
+                while (DR2.Read())
+                {
+                    if (retorno != "")
+                        retorno += ";";
+                    retorno += DR2[0].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                string mensajeError = ex.ToString();
+                throw new Exception("Error al consultar. " + ex.Message);
+            }
+
+            try
+            {
+                sqlConnection.Close();
+            }
+            catch (SqlException e)
+            {
+                string mensajeError = e.ToString();
+                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+            }
+            return retorno;
+        }
     }
 }

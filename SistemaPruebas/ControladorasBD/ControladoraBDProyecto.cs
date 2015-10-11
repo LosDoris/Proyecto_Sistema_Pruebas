@@ -42,87 +42,23 @@ namespace SistemaPruebas.Controladoras
                 comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
 
                return acceso_BD.Insertar_Proced_Almacenado(comando);
-                // return comando;
-
 
             }
         }
 
-        /*    public int InsertarProyecto(EntidadProyecto datos)
+        public string Consultar_ID_Nombre_Proyecto()
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Consultar_ID_Nombre_Proyecto"))
             {
-          /*     sqlconnection sqlconnection = new sqlconnection(conexion);
-                                sqlconnection.open();
+                //  comando.CommandText = "Insertar_Proyecto";
+                comando.CommandType = CommandType.StoredProcedure;
 
-                string consulta = "insert into proyecto values(@id_proyecto, @nombre_sistema, @objetivo_general,  @fecha_asignacion, @estado, @nombre_rep, @telefono_rep, @oficina_rep)";
-                sqlcommand comando = null;
-                int a = 0;
+                //  comando.Parameters.Add(new SqlParameter("@id_proyecto", datos.Id_proyecto));
 
-                            string consulta = "insert into proyecto values('"+datos.id+"', '" @nombre_sistema, @objetivo_general,  @fecha_asignacion, @estado, @nombre_rep, @telefono_rep, @oficina_rep)";
+                return acceso_BD.Consultar_Proced_Almacenado(comando);
 
-
-                sqlparameter id_proyecto = new sqlparameter("@id_proyecto", sqldbtype.varchar);
-                id_proyecto.value = datos.id_proyecto;
-
-                sqlparameter nombre_sistema = new sqlparameter("@nombre_sistema", sqldbtype.varchar);
-                nombre_sistema.value = datos.nombre_sistema;
-
-                sqlparameter objetivo_general = new sqlparameter("@objetivo_general", sqldbtype.varchar);
-                objetivo_general.value = datos.objetivo_general;
-
-
-                sqlparameter fecha_asignacion = new sqlparameter("@fecha_asignacion", sqldbtype.date);
-                fecha_asignacion.value = datos.fecha_asignacion;
-
-                sqlparameter estado = new sqlparameter("@estado", sqldbtype.tinyint,1);
-                estado.value = datos.estado;
-
-                sqlparameter nombre_rep = new sqlparameter("@nombre_rep", sqldbtype.varchar);
-                nombre_rep.value = datos.nombre_representante;
-
-
-                sqlparameter telefono_rep = new sqlparameter("@telefono_rep", sqldbtype.varchar);
-                telefono_rep.value = datos.telefono_representante;
-
-
-                sqlparameter oficina_rep = new sqlparameter("@oficina_rep", sqldbtype.varchar);
-                oficina_rep.value = datos.oficina_representante;
-          try
-                {
-                    comando = new sqlcommand(consulta, sqlconnection);
-
-
-                    comando.parameters.add(id_proyecto);
-                    comando.parameters.add(nombre_sistema);
-                    comando.parameters.add(objetivo_general);
-                    comando.parameters.add(fecha_asignacion);
-                    comando.parameters.add(estado);
-                    comando.parameters.add(nombre_rep);
-                    comando.parameters.add(telefono_rep);
-                    comando.parameters.add(oficina_rep);
-
-                    a = comando.executenonquery();
-          }
-            
-                catch (sqlexception ex)
-                {
-                    string mensajeerror = ex.tostring();
-                    system.web.httpcontext.current.response.write("<script language=""javascript"">alert("error de conexion con la ")</script>")
-                }
-
-                try
-                {
-                    sqlconnection.close();
-                }
-                catch (sqlexception e)
-                {
-                    string mensajeerror = e.tostring();
-                    messagebox.show(mensajeerror);
-                }
-                return a;
-
-         
             }
-       */
+        }
         public List<string> ConsultarProyectoUsuario(string msg)
         {
             return null;
