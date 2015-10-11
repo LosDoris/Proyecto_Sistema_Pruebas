@@ -7,13 +7,38 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SistemaPruebas.Intefaces
-{
-
-
-    public partial class InterfazRecursoHumano
-    {
-
+namespace SistemaPruebas.Intefaces {
+    
+    
+    public partial class InterfazRecursoHumano {
+        
+        /// <summary>
+        /// Control EtiqErrorInsertar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EtiqErrorInsertar;
+        
+        /// <summary>
+        /// Control EtiqErrorModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EtiqErrorModificar;
+        
+        /// <summary>
+        /// Control EtiqErrorEliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EtiqErrorEliminar;
+        
         /// <summary>
         /// Control BotonRHInsertar.
         /// </summary>
@@ -22,7 +47,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonRHInsertar;
-
+        
         /// <summary>
         /// Control BotonRHModificar.
         /// </summary>
@@ -31,7 +56,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonRHModificar;
-
+        
         /// <summary>
         /// Control BotonRHEliminar.
         /// </summary>
@@ -40,7 +65,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonRHEliminar;
-
+        
         /// <summary>
         /// Control ErrorMessage.
         /// </summary>
@@ -49,7 +74,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
-
+        
         /// <summary>
         /// Control FailureText.
         /// </summary>
@@ -58,7 +83,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal FailureText;
-
+        
+        /// <summary>
+        /// Control Etiqueta1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Etiqueta1;
+        
         /// <summary>
         /// Control UserName.
         /// </summary>
@@ -67,7 +101,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserName;
-
+        
+        /// <summary>
+        /// Control CedVal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CedVal;
+        
         /// <summary>
         /// Control ValidaCampos.
         /// </summary>
@@ -76,7 +119,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidaCampos;
-
+        
         /// <summary>
         /// Control Password.
         /// </summary>
@@ -85,7 +128,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
-
+        
+        /// <summary>
+        /// Control NombVal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NombVal;
+        
         /// <summary>
         /// Control Requiredfieldvalidator1.
         /// </summary>
@@ -94,7 +146,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator1;
-
+        
         /// <summary>
         /// Control TextBoxTel1.
         /// </summary>
@@ -103,7 +155,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxTel1;
-
+        
+        /// <summary>
+        /// Control TelVal1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TelVal1;
+        
         /// <summary>
         /// Control TextBoxTel2.
         /// </summary>
@@ -112,7 +173,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxTel2;
-
+        
+        /// <summary>
+        /// Control TelVal2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TelVal2;
+        
         /// <summary>
         /// Control TextBoxEmail.
         /// </summary>
@@ -121,7 +191,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
-
+        
+        /// <summary>
+        /// Control EmailVal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EmailVal;
+        
         /// <summary>
         /// Control BotonRHAceptar.
         /// </summary>
@@ -130,7 +209,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonRHAceptar;
-
+        
+        /// <summary>
+        /// Control BotonRHAceptarModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BotonRHAceptarModificar;
+        
         /// <summary>
         /// Control BotonRHCancelar.
         /// </summary>
@@ -139,7 +227,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonRHCancelar;
-
+        
         /// <summary>
         /// Control TextBoxUsuario.
         /// </summary>
@@ -148,7 +236,25 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxUsuario;
-
+        
+        /// <summary>
+        /// Control UserVal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UserVal;
+        
+        /// <summary>
+        /// Control Requiredfieldvalidator2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator2;
+        
         /// <summary>
         /// Control TextBoxClave.
         /// </summary>
@@ -157,7 +263,16 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxClave;
-
+        
+        /// <summary>
+        /// Control ClaveVal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ClaveVal;
+        
         /// <summary>
         /// Control PerfilAccesoComboBox.
         /// </summary>
@@ -166,7 +281,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList PerfilAccesoComboBox;
-
+        
         /// <summary>
         /// Control RolComboBox.
         /// </summary>
@@ -175,7 +290,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList RolComboBox;
-
+        
         /// <summary>
         /// Control ProyectoAsociado.
         /// </summary>
@@ -184,7 +299,7 @@ namespace SistemaPruebas.Intefaces
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ProyectoAsociado;
-
+        
         /// <summary>
         /// Control RH.
         /// </summary>
@@ -195,4 +310,3 @@ namespace SistemaPruebas.Intefaces
         protected global::System.Web.UI.WebControls.GridView RH;
     }
 }
-

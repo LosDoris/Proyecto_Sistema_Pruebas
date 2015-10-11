@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-                <h2><%: Title %>.</h2>
+    </b>
+    <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
+    <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
+        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
                     <div class="form-group">
                         <div class="col-md-offset-10 col-md-12">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonRHInsertar" OnClick="BotonRHInsertar_Click"  />
@@ -23,9 +26,11 @@
                     </asp:PlaceHolder>
 
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Cédula:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
                         <div class="col-md-10">
+                            
                             <asp:TextBox runat="server" ID="UserName" CssClass="form-control" >.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="UserName"
                                     validationgroup="CamposNoVacios"
@@ -39,6 +44,7 @@
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Password" CssClass="form-control" >.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="NombVal" >*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="Password"
                                     validationgroup="CamposNoVacios"
@@ -52,6 +58,7 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" />
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
 
@@ -59,19 +66,34 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" />
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
 
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Email:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxEmail" TextMode ="Email" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxEmail" CssClass="form-control" />
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
                             </div>
                         </div>         
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-default" ID="BotonRHAceptar" OnClick="BotonRHAceptar_Click" />
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptar" 
+                                OnClick="BotonRHAceptar_Click" />
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptarModificar" 
+                                />
                             <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
                         </div>
                     </div>
@@ -84,6 +106,14 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" />
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
+                            <asp:requiredfieldvalidator id="Requiredfieldvalidator2"
+                                    controltovalidate="TextBoxUsuario"
+                                    validationgroup="CamposNoVacios"
+                                    CssClass="text-danger" 
+                                    errormessage="El campo de Nombre de Usuario es obligatorio."
+                                    runat="Server">
+                                </asp:requiredfieldvalidator>
                             </div>
                         </div>
 
@@ -91,6 +121,14 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" />
+                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
+                               <asp:requiredfieldvalidator
+                                    controltovalidate="TextBoxClave"
+                                    validationgroup="CamposNoVacios"
+                                    CssClass="text-danger" 
+                                    errormessage="El campo de Contraseña es obligatorio."
+                                    runat="Server">
+                                </asp:requiredfieldvalidator>
                             </div>
                         </div>
 
