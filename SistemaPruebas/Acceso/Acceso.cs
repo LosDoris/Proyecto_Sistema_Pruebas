@@ -11,7 +11,10 @@ namespace SistemaPruebas.Acceso
 {
     public class Acceso
     {
-        String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
+
+
+        //  String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
+        string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
 
 
         public int Insertar(string consulta)

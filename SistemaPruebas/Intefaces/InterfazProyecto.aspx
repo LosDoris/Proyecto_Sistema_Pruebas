@@ -34,15 +34,15 @@
 
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
-                    <div class="col-md-10">
+                    <div class="col-md-4">
                         <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" />
 
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
-                    <div class="col-md-10">
+                    <asp:Label runat="server" TextMode="multiline" columns="3" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
+                    <div class="col-md-4">
                         <asp:TextBox runat="server" ID="obj_general" CssClass="form-control" />
                     </div>
                 </div>
@@ -60,13 +60,11 @@
 
                     </div>
                 </div>
-                <div class="row">
                     <div class="form-group">
-                        <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
-                        <div class="col-md-10">
-
+                        <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Asignación</asp:Label>
+                        <div class="col-md-8">
                             <div id="datetimepicker" class="col-md-10">
-                                <input type="text"></input>
+                                 <input id="datepickernm" type="text" name="datepickernm"/> 
                                 <span class="add-on">
                                     <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                                 </span>
@@ -85,16 +83,16 @@
                             </script>
                             <script type="text/javascript">
                                 $('#datetimepicker').datetimepicker({
-                                    format: 'dd/MM/yyyy hh:mm:ss',
+                                    format: 'dd/MM/yyyy',
                                     language: "es",
-                                    todayHighlight: true
+                                    todayHighlight: true,
+                                    pickTime: false
                                 });
                             </script>
 
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
 
@@ -106,21 +104,21 @@
 
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre</asp:Label>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Representante</asp:Label>
-                    <div class="col-md-8">
+                    <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Oficina</asp:Label>
+                    <div class="col-md-6">
                         <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" />
                     </div>
                 </div>
@@ -132,6 +130,9 @@
         <div id="Botones_aceptar_cancelar"  class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar"  CssClass="btn btn-default" OnClick="aceptar_Click"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar"  CssClass="btn btn-default" OnClick="cancelar_Click"/>
+
+            <asp:Panel ID="ExitoMessage" runat="server" Visible="False">Se ha insertado un Proyecto exitosamente</asp:Panel>
+
             </div>
         </div>
   

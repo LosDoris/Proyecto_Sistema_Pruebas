@@ -13,12 +13,22 @@ namespace SistemaPruebas.Intefaces
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Restricciones_Campos();
             Deshabilitar_Campos();
             aceptar.Enabled = false;
             cancelar.Enabled = false;
         }
+        protected void Restricciones_Campos()
+        {
+            
+            nombre_proyecto.MaxLength = 10;
+            obj_general.MaxLength = 50;
+            nombre_rep.MaxLength = 30;
+            tel_rep.MaxLength = 17;
+            of_rep.MaxLength = 17;
+            obj_general.Rows = 5;
 
+        }
         protected void Habilitar_Campos()
         {
             nombre_proyecto.Enabled = true;
@@ -27,6 +37,8 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
+
+
         }
         protected void Deshabilitar_Campos()
         {
@@ -61,18 +73,26 @@ namespace SistemaPruebas.Intefaces
         {
             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
             {
-               // switch (button)
+                // switch (button)
                 //{
-                  //  case 1://Insertar
-                    //    {
-                            object[] datos = new object[6]{nombre_proyecto.Text, obj_general.Text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text};
+                //  case 1://Insertar
+                //    {
+                            string text = Page.Request.Form["datepickernm"];
+                            object[] datos = new object[7]{nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text};
                             
-                            controladoraProyecto.IngresaProyecto(datos);
-                            Limpiar_Campos();
-                      //  }
-                        //break;
-                        //case 2:
-                        //{
+                            int a= controladoraProyecto.IngresaProyecto(datos);
+                if (a == 1)
+                {
+
+                    ExitoMessage.Visible = true;
+
+                }
+
+                //    Limpiar_Campos();
+                //  }
+                //break;
+                //case 2:
+                //{
 
                 //        }
                 //        break;

@@ -19,10 +19,13 @@ namespace SistemaPruebas.Controladoras
             return null;
         }
 
-        public void IngresaProyecto(object[] datos)
+        public int IngresaProyecto(object[] datos)
         {
             EntidadProyecto objProyecto = new EntidadProyecto(datos);
-            int resultado = controlBD.InsertarProyecto(objProyecto);
+            int a= controlBD.InsertarProyecto(objProyecto);
+            
+                return a;
+            
 
         }
 
