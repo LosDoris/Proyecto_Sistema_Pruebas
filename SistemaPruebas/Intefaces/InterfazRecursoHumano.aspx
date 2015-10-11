@@ -71,7 +71,13 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-default" ID="BotonRHAceptar" OnClick="BotonRHAceptar_Click" />
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="Button1" 
+                                OnClick="BotonRHAceptar_Click" />
                             <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
                         </div>
                     </div>
