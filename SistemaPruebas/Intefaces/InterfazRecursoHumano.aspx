@@ -29,7 +29,7 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
                         <div class="col-md-10">
                             
-                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" >.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" MaxLength="10" OnTextChanged="UserName_TextChanged" >.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="UserName"
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" CssClass="form-control" >.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="Password" CssClass="form-control" MaxLength="49" >.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="NombVal" >*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="Password"
@@ -57,7 +57,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Email:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxEmail" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxEmail" CssClass="form-control" MaxLength="30" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
                             </div>
                         </div>         
@@ -105,7 +105,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
                             <asp:requiredfieldvalidator id="Requiredfieldvalidator2"
                                     controltovalidate="TextBoxUsuario"
@@ -120,7 +120,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"

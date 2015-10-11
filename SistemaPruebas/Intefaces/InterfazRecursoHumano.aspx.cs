@@ -330,11 +330,16 @@ namespace SistemaPruebas.Intefaces
                 NombVal.Visible = true;
                 //poner mensaje de no valido
             }
-            /*  Regex tel = new Regex("(([0-9][0-9][0-9][0-9]-?[0-9][0-9][0-9][0-9])?){0,9}");
-              if ((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
+            // Regex tel = new Regex("^[0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9]$");
+            //bool telef1 = (!Regex.IsMatch(TextBoxTel1.Text, "\b[0 - 9.,-] +{8,20}\b", RegexOptions.IgnoreCase));
+            //bool telf2 = (!Regex.IsMatch(TextBoxTel1.Text, @"\A((?:[0-9,-]?){0,29})\Z", RegexOptions.IgnoreCase));
+            Regex tel = new Regex(@"\d[0-9]{8,11}");
+            bool telef1 = tel.IsMatch(TextBoxTel1.Text);
+            bool telef2 = tel.IsMatch(TextBoxTel2.Text);
+            if ((TextBoxTel1.Text != "") && (TextBoxTel2.Text != "")&&(!telef1||!telef2))//((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
               {
                   todosValidos = false;
-                  if (!tel.IsMatch(TextBoxTel1.Text))
+                  if (telef1)
                   {
                       TelVal1.Visible = true;
                   }
@@ -342,7 +347,7 @@ namespace SistemaPruebas.Intefaces
                       TelVal2.Visible = true;
                   }
                   //poner mensaje de no valido
-              }*/
+              }
             Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
             if ((TextBoxEmail.Text != "") &&
                 (!Regex.IsMatch(TextBoxEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))//emailRE.IsMatch(TextBoxEmail.Text))
@@ -391,5 +396,9 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorModificar.Visible = false;
         }
 
+        protected void UserName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
