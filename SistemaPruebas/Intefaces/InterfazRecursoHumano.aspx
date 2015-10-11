@@ -76,7 +76,7 @@
                                 causesvalidation="true" 
                                 validationgroup="CamposNoVacios"
                                 CssClass="btn btn-default" 
-                                ID="Button1" 
+                                ID="BotonRHAceptar" 
                                 OnClick="BotonRHAceptar_Click" />
                             <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
                         </div>
