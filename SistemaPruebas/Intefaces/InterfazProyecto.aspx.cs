@@ -220,9 +220,9 @@ namespace SistemaPruebas.Intefaces
             this.gridProyecto.DataBind();
         }
 
-        public void Llenar_Datos_Conultados(int idVenta)
+        public void Llenar_Datos_Conultados(int idProyecto)
         {
-            DataTable datosFila = controladoraProyecto.ConsultarProyecto(idVenta);
+            DataTable datosFila = controladoraProyecto.ConsultarProyecto(idProyecto);
             if (datosFila.Rows.Count == 1)
             {
                 this.nombre_proyecto.Text = datosFila.Rows[0][1].ToString();
@@ -242,12 +242,14 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void gridProyecto_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
         {
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
             Insertar.Enabled = false;
-            //string id = gridProyecto.Rows[e.RowIndex].Cells[0].Value.ToString();
+            GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+            id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
+            Llenar_Datos_Conultados(id_Proyecto);
 
         }
 
