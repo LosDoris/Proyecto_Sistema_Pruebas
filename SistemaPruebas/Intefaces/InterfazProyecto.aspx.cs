@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazProyecto : System.Web.UI.Page
     {
         private int button;
+        private static int id_Proyecto = -1;
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +19,8 @@ namespace SistemaPruebas.Intefaces
             Deshabilitar_Campos();
             aceptar.Enabled = false;
             cancelar.Enabled = false;
+            llenarGrid();
+
         }
         protected void Restricciones_Campos()
         {
@@ -50,7 +54,6 @@ namespace SistemaPruebas.Intefaces
             tel_rep.Enabled = false;
             of_rep.Enabled = false; 
         }
-
         protected void Limpiar_Campos()
         {
             nombre_proyecto.Text = "";
@@ -59,8 +62,6 @@ namespace SistemaPruebas.Intefaces
             tel_rep.Text = "";
             of_rep.Text = ""; 
         }
-
-
         protected void Insertar_button(object sender, EventArgs e)
         {
             button = 1;
@@ -69,7 +70,6 @@ namespace SistemaPruebas.Intefaces
             Habilitar_Campos();
             
         }
-
         protected void aceptar_Click(object sender, EventArgs e)
         {
             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
@@ -110,7 +110,6 @@ namespace SistemaPruebas.Intefaces
                 //}
             }
         }
-
         protected void cancelar_Click(object sender, EventArgs e)
         {
             Limpiar_Campos();
@@ -118,9 +117,132 @@ namespace SistemaPruebas.Intefaces
             aceptar.Enabled = false;
             cancelar.Enabled = false;
         }
+        protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "seleccionarProyecto":
+                    {
+                        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+                        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
+                        Llenar_Datos_Conultados(id_Proyecto);
+                    };
+                    break;
+            }
 
-        // <asp:RequiredFieldValidator runat="server" ControlToValidate="nombre_proyecto"
-        //                      CssClass="text-danger" ErrorMessage="El campo de Nombre del Proyecto es obligatorio." />*/
+        }
+        protected void gridProyecto_PageIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        protected DataTable crearTablaProyecto()
+        {
+            DataTable dt = new DataTable();
+            DataColumn columna;
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "ID_Proyecto";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Nombre";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Objetivo";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Fecha Asignación";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Estado";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Nombre Representante";
+            dt.Columns.Add(columna);
+/*
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Tel Representante";
+            dt.Columns.Add(columna);
+
+            columna = new DataColumn();
+            columna.DataType = System.Type.GetType("System.String");
+            columna.ColumnName = "Oficina Representante";
+            dt.Columns.Add(columna);
+*/
+            return dt;
+        }
+
+        protected void llenarGrid()
+        {
+            DataTable dt = crearTablaProyecto();
+            DataTable ventas = controladoraProyecto.ConsultarProyecto();
+            Object[] datos = new Object[5];
+            if (ventas.Rows.Count > 0)
+            {
+                foreach (DataRow fila in ventas.Rows)
+                {
+                    datos[0] = fila[0].ToString();
+                    datos[1] = fila[1].ToString();
+                    datos[2] = fila[2].ToString();
+                    datos[3] = fila[3].ToString();
+                    datos[4] = fila[4].ToString();
+                    datos[5] = fila[5].ToString();
+               /*   datos[6] = fila[6].ToString();
+                    datos[7] = fila[7].ToString();
+                    */
+                    dt.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                datos[4] = "-";
+                datos[5] = "-";
+        /*        datos[6] = "-";
+                datos[7] = "-";
+
+    */
+                dt.Rows.Add(datos);
+            }
+            this.gridProyecto.DataSource = dt;
+            this.gridProyecto.DataBind();
+        }
+
+        public void Llenar_Datos_Conultados(int idVenta)
+        {
+            DataTable datosFila = controladoraProyecto.ConsultarProyecto(idVenta);
+            if (datosFila.Rows.Count == 1)
+            {
+                this.nombre_proyecto.Text = datosFila.Rows[0][1].ToString();
+                this.obj_general.Text = datosFila.Rows[0][2].ToString();
+            //    this.Text = datosFila.Rows[0][3].ToString();
+               
+                if (this.estado.Items.FindByText(datosFila.Rows[0][4].ToString()) != null)
+                {
+                    ListItem aux = this.estado.Items.FindByText(datosFila.Rows[0][4].ToString());
+                    this.estado.SelectedValue = aux.Value;
+                }
+
+                this.nombre_rep.Text = datosFila.Rows[0][5].ToString();
+                this.tel_rep.Text = datosFila.Rows[0][6].ToString();
+                this.of_rep.Text = datosFila.Rows[0][7].ToString();
+
+            }
+        }
     }
 }

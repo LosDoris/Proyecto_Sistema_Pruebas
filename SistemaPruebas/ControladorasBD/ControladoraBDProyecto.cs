@@ -74,6 +74,21 @@ namespace SistemaPruebas.Controladoras
             List<string> retorno = new List<string>();
             return retorno;
         }
+
+        public DataTable ConsultarProyecto(int id_Proyecto)
+        {
+            string id= id_Proyecto.ToString();
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select * from Proyecto where id_proyecto= "+id);
+            return dt;
+        }
+
+        public DataTable ConsultarProyecto()
+        {
+            DataTable dt = new DataTable();
+            dt= acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema, fecha_asignacion, estado, nombre_rep from Proyecto");
+            return dt;
+        }
         public List<string> ConsultarProyecto(string msg)
         {
             return null;

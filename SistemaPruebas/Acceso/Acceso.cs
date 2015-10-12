@@ -29,7 +29,15 @@ namespace SistemaPruebas.Acceso
             DataTable table = new DataTable();
 
             dataAdapter.Fill(table);
-
+            try
+            {
+                sqlConnection.Close();
+            }
+            catch (SqlException e)
+            {
+                string mensajeError = e.ToString();
+                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+            }
             return table;
         }
 

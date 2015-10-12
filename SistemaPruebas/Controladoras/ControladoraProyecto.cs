@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace SistemaPruebas.Controladoras
 {
@@ -28,7 +29,18 @@ namespace SistemaPruebas.Controladoras
         
         public string Consultar_ID_Nombre_Proyecto()
         {
+
             return controlBD.Consultar_ID_Nombre_Proyecto();
+        }
+        public DataTable ConsultarProyecto(int id_Proyecto)
+        {
+            return controlBD.ConsultarProyecto(id_Proyecto);
+        }
+
+        public DataTable ConsultarProyecto()
+        {
+            return controlBD.ConsultarProyecto();
+
         }
 
         public List<string> ConsultarIdProyecto()

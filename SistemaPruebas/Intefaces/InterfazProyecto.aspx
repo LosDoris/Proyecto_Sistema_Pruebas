@@ -151,10 +151,17 @@
     <div class="form-group">
         <div id="Botones_aceptar_cancelar"  class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar"  CssClass="btn btn-default" OnClick="aceptar_Click"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar"  CssClass="btn btn-default" OnClick="cancelar_Click"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar"  CssClass="btn btn-default" OnClick="cancelar_Click" OnClientClick="return confirm('¿Está seguro que desea cancelar?')"/>
 
             </div>
         </div>
   
+            <div id="tablaProyectos">
+            <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand" OnPageIndexChanged="gridProyecto_PageIndexChanged">
+                <Columns>
+                    <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />
+                </Columns> 
+            </asp:GridView>  
+        </div>
 </asp:Content>
 
