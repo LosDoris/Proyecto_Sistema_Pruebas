@@ -37,17 +37,17 @@ namespace SistemaPruebas.Controladoras
             return controlBD.ConsultarProyecto(id_Proyecto);
         }
 
-        public DataTable ConsultarProyecto()
+        public DataTable ConsultarProyectoIdNombre()
         {
-            return controlBD.ConsultarProyecto();
+            return controlBD.ConsultarProyectoIdNombre();
 
         }
 
-        public List<string> ConsultarIdProyecto()
-        {
-            List<string> retorno = controlBD.ConsultaIdProyecto();
-            return retorno;
-        }
+        //public List<string> ConsultarIdProyecto()
+        //{
+        //    List<string> retorno = controlBD.ConsultaIdProyecto();
+        //    return retorno;
+        //}
         public int EliminarProyecto(string id)
         {
             int retorno = controlBD.EliminarProyecto(id);

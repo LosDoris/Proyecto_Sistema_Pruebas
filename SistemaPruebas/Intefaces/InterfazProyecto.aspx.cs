@@ -11,7 +11,7 @@ namespace SistemaPruebas.Intefaces
     public partial class InterfazProyecto : System.Web.UI.Page
     {
         private int button;
-        private static int id_Proyecto = -1;
+        private static int id_Proyecto = -1;  
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +21,7 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
-           // llenarGrid();
+            llenarGrid();
 
         }
         protected void Restricciones_Campos()
@@ -184,18 +184,18 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGrid()
         {
             DataTable dt = crearTablaProyecto();
-            DataTable ventas = controladoraProyecto.ConsultarProyecto();
+            DataTable proyecto = controladoraProyecto.ConsultarProyectoIdNombre();
             Object[] datos = new Object[5];
-            if (ventas.Rows.Count > 0)
+            if (proyecto.Rows.Count > 0)
             {
-                foreach (DataRow fila in ventas.Rows)
+                foreach (DataRow fila in proyecto.Rows)
                 {
                     datos[0] = fila[0].ToString();
                     datos[1] = fila[1].ToString();
-                    datos[2] = fila[2].ToString();
-                    datos[3] = fila[3].ToString();
-                    datos[4] = fila[4].ToString();
-                    datos[5] = fila[5].ToString();
+                    //datos[2] = fila[2].ToString();
+                    //datos[3] = fila[3].ToString();
+                    //datos[4] = fila[4].ToString();
+                    //datos[5] = fila[5].ToString();
                /*   datos[6] = fila[6].ToString();
                     datos[7] = fila[7].ToString();
                     */
@@ -206,10 +206,10 @@ namespace SistemaPruebas.Intefaces
             {
                 datos[0] = "-";
                 datos[1] = "-";
-                datos[2] = "-";
-                datos[3] = "-";
-                datos[4] = "-";
-                datos[5] = "-";
+                //datos[2] = "-";
+                //datos[3] = "-";
+                //datos[4] = "-";
+                //datos[5] = "-";
         /*        datos[6] = "-";
                 datos[7] = "-";
 
@@ -246,6 +246,8 @@ namespace SistemaPruebas.Intefaces
         {
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
+            Insertar.Enabled = false;
+            //string id = gridProyecto.Rows[e.RowIndex].Cells[0].Value.ToString();
 
         }
 
