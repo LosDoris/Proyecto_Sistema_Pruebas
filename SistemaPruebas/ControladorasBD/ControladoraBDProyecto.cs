@@ -11,7 +11,7 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraBDProyecto
     {
-        Acceso.Acceso acceso_BD;//= new Acceso.Acceso();
+        Acceso.Acceso acceso_BD = new Acceso.Acceso();
 
         public ControladoraBDProyecto()
         {
@@ -87,6 +87,12 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = new DataTable();
             dt= acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema, fecha_asignacion, estado, nombre_rep from Proyecto");
+            return dt;
+        }
+        public DataTable ConsultarProyectoIdNombre()
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto");
             return dt;
         }
         public List<string> ConsultarProyecto(string msg)
