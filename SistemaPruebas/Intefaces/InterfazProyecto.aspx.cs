@@ -244,5 +244,10 @@ namespace SistemaPruebas.Intefaces
 
             }
         }
+
+        protected void gridProyecto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

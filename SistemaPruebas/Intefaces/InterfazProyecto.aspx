@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                     <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="estado" CssClass="form-control">
+                        <asp:DropDownList runat="server" ID="estado" CssClass="form-control" >
                             <asp:ListItem Selected="True" Value="1">Pendiente</asp:ListItem>
                             <asp:ListItem Value="2">Asignado</asp:ListItem>
                             <asp:ListItem Value="3">En Ejecución</asp:ListItem>
@@ -160,6 +160,8 @@
             <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand" OnPageIndexChanged="gridProyecto_PageIndexChanged">
                 <Columns>
                     <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />
+                     <asp:BoundField datafield="id_proyecto" HeaderText="Proyecto Id" ReadOnly="True" SortExpression="Proyecto Id" /> 
+                     <asp:BoundField DataField="nombre_sistema" HeaderText="Nombre del sistema" SortExpression="Nombre del sistema" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg"/>
                 </Columns> 
             </asp:GridView>  
         </div>
