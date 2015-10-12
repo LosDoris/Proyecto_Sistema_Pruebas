@@ -11,10 +11,10 @@ namespace SistemaPruebas.Acceso
 {
     public class Acceso
     {
+          String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
+        //String conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
+       // String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
 
-
-        //  String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
-        string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
         public DataTable ejecutarConsultaTabla(String consulta)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
@@ -36,8 +36,6 @@ namespace SistemaPruebas.Acceso
         public int Insertar(string consulta)
 
         {
-
-
             SqlConnection sqlConnection = new SqlConnection(conexion);
             sqlConnection.Open();
             int a = 0;
@@ -53,19 +51,16 @@ namespace SistemaPruebas.Acceso
             {
                 string mensajeError = ex.ToString();
                 throw new Exception("Error al insertar. " + ex.Message);
-
                 // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
             }
-
             try
-                        {
-                            sqlConnection.Close();
-                        }
-                        catch (SqlException e)
-                        {
-                            string mensajeError = e.ToString();
+            {
+                sqlConnection.Close();
+            }
+            catch (SqlException e)
+            {
+                string mensajeError = e.ToString();
                 throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
                 //    MessageBox.Show(mensajeError);
             }
 

@@ -16,7 +16,7 @@ namespace SistemaPruebas.Intefaces
 
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
-        int modo;  //Numero para identificar accion del boton Aceptar
+        int modo = 0;  //Numero para identificar accion del boton Aceptar
                    //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
 
         protected void Page_Load(object sender, EventArgs e)
@@ -57,6 +57,7 @@ namespace SistemaPruebas.Intefaces
             habilitarCampos();
             llenarDDPerfil();
             llenarDDRol();
+            llenarDDProyecto();
             desactivarErrores();
             //deshabilitarCampos();
             //botonesInicio();
@@ -101,6 +102,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxClave.Text = "";
             llenarDDPerfil();
             llenarDDRol();
+            llenarDDProyecto();
             BotonRHAceptarModificar.Visible = false;
 
         }
@@ -204,9 +206,10 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[6] = this.TextBoxClave.Text;
                 datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
                 datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                datosNuevos[9] = this.RolComboBox.SelectedItem.Text;
 
-                if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) != -1)
+                int mes = controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos);
+                if (mes == 1)
                 {
                     deshabilitarCampos();
                     BotonRHInsertar.Enabled = true;
@@ -215,6 +218,7 @@ namespace SistemaPruebas.Intefaces
                     //habilitar consulta
                     BotonRHCancelar.Enabled = false;
                     BotonRHAceptar.Enabled = false;
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                 }
                 else
                 {
@@ -234,7 +238,20 @@ namespace SistemaPruebas.Intefaces
 
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Write("lkjlkjl");
+            //Response.Write("lkjlkjl");
+        }
+
+        protected void llenarDDProyecto()
+        {
+            this.ProyectoAsociado.Items.Clear();
+            String mes = controladoraRecursosHumanos.solicitarProyectos();
+            string[] proyectos = mes.Split(';');
+            foreach(string p in proyectos)
+            {
+                string[] d = p.Split(' ');
+                this.ProyectoAsociado.Items.Add(new ListItem(d[0], d[1]));
+            }
+
         }
 
         protected void llenarDDPerfil()
@@ -276,6 +293,7 @@ namespace SistemaPruebas.Intefaces
             UserName.Enabled = true;
             Password.Enabled = true;
             RolComboBox.Enabled = true;
+            ProyectoAsociado.Enabled = true;
             PerfilAccesoComboBox.Enabled = true;
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
@@ -291,6 +309,7 @@ namespace SistemaPruebas.Intefaces
             UserName.Enabled = false;
             Password.Enabled = false;
             RolComboBox.Enabled = false;
+            ProyectoAsociado.Enabled = false;
             PerfilAccesoComboBox.Enabled = false;
             BotonRHAceptar.Enabled = false;
             BotonRHCancelar.Enabled = false;
@@ -333,17 +352,19 @@ namespace SistemaPruebas.Intefaces
             // Regex tel = new Regex("^[0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9]$");
             //bool telef1 = (!Regex.IsMatch(TextBoxTel1.Text, "\b[0 - 9.,-] +{8,20}\b", RegexOptions.IgnoreCase));
             //bool telf2 = (!Regex.IsMatch(TextBoxTel1.Text, @"\A((?:[0-9,-]?){0,29})\Z", RegexOptions.IgnoreCase));
-            Regex tel = new Regex(@"\d[0-9]{8,11}");
+            Regex tel = new Regex(@"[0-9]{8,11}");
             bool telef1 = tel.IsMatch(TextBoxTel1.Text);
             bool telef2 = tel.IsMatch(TextBoxTel2.Text);
             if ((TextBoxTel1.Text != "") && (TextBoxTel2.Text != "")&&(!telef1||!telef2))//((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
               {
                   todosValidos = false;
-                  if (telef1)
+                  if (!telef1)
                   {
                       TelVal1.Visible = true;
                   }
-                  else {
+
+                  if(!telef2)
+                  {
                       TelVal2.Visible = true;
                   }
                   //poner mensaje de no valido
@@ -408,8 +429,6 @@ namespace SistemaPruebas.Intefaces
                 //desactivarErrores();
                 if (validarCampos())
                 {
-
-
                     Object[] datosNuevos = new Object[10];
                     datosNuevos[0] = this.UserName.Text;//cedula
                     datosNuevos[1] = this.Password.Text;//nombre
@@ -419,8 +438,8 @@ namespace SistemaPruebas.Intefaces
                     datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
                     datosNuevos[6] = this.TextBoxClave.Text;
                     datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
-                    datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                    datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                    datosNuevos[8] = this.ProyectoAsociado.SelectedValue;
+                    datosNuevos[9] = this.RolComboBox.SelectedItem.Text;
 
                     if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) != -1)
                     {

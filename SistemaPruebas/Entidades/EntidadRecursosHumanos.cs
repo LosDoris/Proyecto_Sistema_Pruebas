@@ -37,8 +37,8 @@ namespace SistemaPruebas.Controladoras
 
         public int Cedula
         {
-            get { return Cedula; }
-            set { Cedula = value; }
+            get { return cedula; }
+            set { cedula = value; }
         }
 
 
