@@ -132,14 +132,9 @@ namespace SistemaPruebas.Intefaces
                     break;
             }
 
-        }
-        protected void gridProyecto_PageIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        }     
         protected DataTable crearTablaProyecto()
-        {
+        {//Sólo se carga la info del ID y el nombre del sistema
             DataTable dt = new DataTable();
             DataColumn columna;
 
@@ -153,25 +148,25 @@ namespace SistemaPruebas.Intefaces
             columna.ColumnName = "Nombre";
             dt.Columns.Add(columna);
 
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Objetivo";
-            dt.Columns.Add(columna);
+            //columna = new DataColumn();
+            //columna.DataType = System.Type.GetType("System.String");
+            //columna.ColumnName = "Objetivo";
+            //dt.Columns.Add(columna);
 
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Fecha Asignación";
-            dt.Columns.Add(columna);
+            //columna = new DataColumn();
+            //columna.DataType = System.Type.GetType("System.String");
+            //columna.ColumnName = "Fecha Asignación";
+            //dt.Columns.Add(columna);
 
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Estado";
-            dt.Columns.Add(columna);
+            //columna = new DataColumn();
+            //columna.DataType = System.Type.GetType("System.String");
+            //columna.ColumnName = "Estado";
+            //dt.Columns.Add(columna);
 
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Nombre Representante";
-            dt.Columns.Add(columna);
+            //columna = new DataColumn();
+            //columna.DataType = System.Type.GetType("System.String");
+            //columna.ColumnName = "Nombre Representante";
+            //dt.Columns.Add(columna);
 /*
             columna = new DataColumn();
             columna.DataType = System.Type.GetType("System.String");
@@ -249,7 +244,10 @@ namespace SistemaPruebas.Intefaces
 
         protected void gridProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Modificar.Enabled = true;
+            Eliminar.Enabled = true;
 
         }
+
     }
 }
