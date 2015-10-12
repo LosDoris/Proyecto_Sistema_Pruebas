@@ -124,7 +124,8 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRecursoHumanoBD(int tipo, int cedula)
         {
-            DataTable dt = new DataTable();
+            String consulta = "SELECT cedula, nombre_completo, usuario FROM Recurso_Humano";
+            DataTable dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
 
         }

@@ -60,8 +60,7 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRecursoHumano(int tipo, int cedula)
         {
-            DataTable dt;//dummy       
-            dt = controladoraBDRecursosHumanos.consultarRecursoHumanoBD(tipo, cedula);
+            DataTable dt = controladoraBDRecursosHumanos.consultarRecursoHumanoBD(tipo, cedula);
             return dt;
 
         }
