@@ -8,18 +8,18 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraBDRecursosHumanos
     {
-		Acceso.Acceso a = new Acceso.Acceso();
+		Acceso.Acceso acceso = new Acceso.Acceso();
 
         public bool loggeado(string nombre)
         {
             bool regresa = false;
-            DataTable DR = a.ejecutarConsultaTabla("select nombre, loggeado from persona");
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo, esta_loggeado FROM Recurso_Humano");
             try
             {
                 foreach (DataRow row in DR.Rows)
                 {
-                    if (row["nombre"].ToString() == nombre
-                        && (int)row["loggeado"]==1) {
+                    if (row["nombre_completo"].ToString() == nombre
+                        && (int)row["esta_loggeado"]==1) {
                         regresa = true;
                     }
                         
@@ -36,7 +36,7 @@ namespace SistemaPruebas.Controladoras
 
         public string[] nombresContrasenas()
         {
-            DataTable DR = a.ejecutarConsultaTabla("select * from persona");
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT * FROM Recurso_Humano");
             string[] regresa = new string[2];
             string nombres = "";
             string contrasenas = "";
@@ -46,11 +46,11 @@ namespace SistemaPruebas.Controladoras
                 {
                     if (nombres != "")
                         nombres += ";";
-                    nombres += row["nombre"].ToString();
+                    nombres += row["nombre_completo"].ToString();
 
                     if (contrasenas != "")
                         contrasenas += ";";
-                    contrasenas += row["contrasena"].ToString();
+                    contrasenas += row["contrasenna"].ToString();
 
                 }
                 regresa[0] = nombres;
@@ -66,8 +66,8 @@ namespace SistemaPruebas.Controladoras
 
         public bool modificaContrasena(string nombre, string nuevaContrasena) {
             bool regresa = false;
-            if (a.Insertar("update persona set contrasena = '" + nuevaContrasena +
-                        "' where nombre = '" + nombre + "'") == 1)
+            if (acceso.Insertar("UPDATE Recurso_Humano SET contrasenna = '" + nuevaContrasena +
+                        "' WHERE nombre_completo = '" + nombre + "'") == 1)
             {
                 regresa = true;
             }
@@ -82,8 +82,8 @@ namespace SistemaPruebas.Controladoras
         public bool estadoLoggeado(string nombre, string estado)
         {
             bool regresa = false;
-            if (a.Insertar("update persona set loggeado = '" + estado +
-                        "' where nombre = '" + nombre + "'") == 1)
+            if (acceso.Insertar("UPDATE Recurso_Humano SET esta_loggeado = '" + estado +
+                        "' WHERE nombre_completo = '" + nombre + "'") == 1)
             {
                 regresa = true;
             }
@@ -101,12 +101,14 @@ namespace SistemaPruebas.Controladoras
 
 
 
-        public void insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
+        public int insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
-            //conexion y la inserta
-
+            String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto) values(" + recursoHumano.Cedula + "','" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado+")";
+            int ret = acceso.Insertar(consulta);
+            return ret;
 
         }
+
         public void modificarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
 

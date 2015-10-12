@@ -57,6 +57,7 @@ namespace SistemaPruebas.Intefaces
             habilitarCampos();
             llenarDDPerfil();
             llenarDDRol();
+            llenarDDProyecto();
             desactivarErrores();
             //deshabilitarCampos();
             //botonesInicio();
@@ -101,6 +102,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxClave.Text = "";
             llenarDDPerfil();
             llenarDDRol();
+            llenarDDProyecto();
             BotonRHAceptarModificar.Visible = false;
 
         }
@@ -203,23 +205,23 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
                 datosNuevos[6] = this.TextBoxClave.Text;
                 datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
-                datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
+                datosNuevos[8] = this.ProyectoAsociado.SelectedValue;
                 datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
 
-                if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) != -1)
+                if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) == 1)
                 {
                     deshabilitarCampos();
                     BotonRHInsertar.Enabled = true;
                     BotonRHModificar.Enabled = true;
                     BotonRHEliminar.Enabled = true;
-                    //habilitar consulta
                     BotonRHCancelar.Enabled = false;
                     BotonRHAceptar.Enabled = false;
+
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                 }
                 else
                 {
                     EtiqErrorInsertar.Visible = true;
-                    //mensaje de error
                 }
             }
             //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
@@ -229,12 +231,27 @@ namespace SistemaPruebas.Intefaces
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //jlkjlkjlkj
         }
 
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Response.Write("lkjlkjl");
+        }
+
+
+        protected void llenarDDProyecto()
+        {
+            String proyectos = controladoraRecursosHumanos.solicitarProyectos();
+
+            String[] pr = proyectos.Split(';');
+
+            foreach(String p1 in pr)
+            {
+                String[] p2 = p1.Split(' ');
+                this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+            }
+
         }
 
         protected void llenarDDPerfil()

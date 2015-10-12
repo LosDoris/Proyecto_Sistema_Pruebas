@@ -9,10 +9,12 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraRecursosHumanos
     {
         ControladoraBDRecursosHumanos controladoraBDRecursosHumanos = new ControladoraBDRecursosHumanos();
-		ControladoraBDRecursosHumanos controladoraBDrh = new ControladoraBDRecursosHumanos();
+
+        ControladoraProyecto controladoraProyecto = new ControladoraProyecto();
+
         public bool usuarioMiembroEquipo(Object[] datos)
         {
-            string[] nombresYContrasenas= controladoraBDrh.nombresContrasenas();
+            string[] nombresYContrasenas= controladoraBDRecursosHumanos.nombresContrasenas();
             if (nombresYContrasenas != null) {
                 string nombreIngresado = datos[0].ToString();
                 string contrasenaIngresada = datos[1].ToString();
@@ -27,34 +29,26 @@ namespace SistemaPruebas.Controladoras
         }
 		public bool modificaContrasena(Object[] datos)
         {
-            return controladoraBDrh.modificaContrasena(datos[0].ToString(), datos[1].ToString()); 
+            return controladoraBDRecursosHumanos.modificaContrasena(datos[0].ToString(), datos[1].ToString()); 
         }
 
         public bool loggeado(string nombre)
         {
-            return controladoraBDrh.loggeado(nombre);
+            return controladoraBDRecursosHumanos.loggeado(nombre);
         }
 
         public bool estadoLoggeado(string nombre, string estado)
         {
-            return controladoraBDrh.estadoLoggeado(nombre, estado);
+            return controladoraBDRecursosHumanos.estadoLoggeado(nombre, estado);
         }
 
         public int insertarRecursoHumano(Object[] datos)
         {
-            //datos[0];
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
-            controladoraBDRecursosHumanos.insertarRecursoHumanoBD(recursoHumano);
-
-            return 0;
+            int ret =controladoraBDRecursosHumanos.insertarRecursoHumanoBD(recursoHumano);
+            return ret;
         }
 
-        /* public int modificarRescursoHumano(Object[] nuevosDatos)
-         {
-             //EntidadRecursosHumanos 
-
-             return 0;
-         }*/
         public int modificarRecursoHumano(Object[] datos)
         {
             //datos[0];
@@ -78,6 +72,12 @@ namespace SistemaPruebas.Controladoras
             return 1;
         }
 
+        public String solicitarProyectos()
+        {
+            String proyectos = controladoraProyecto.Consultar_ID_Nombre_Proyecto();
+            return proyectos;
+
+        }
 
     }
 }
