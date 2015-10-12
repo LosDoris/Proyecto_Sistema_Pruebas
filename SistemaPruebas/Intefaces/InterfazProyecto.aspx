@@ -157,11 +157,9 @@
         </div>
   
             <div id="tablaProyectos">
-            <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand" OnPageIndexChanged="gridProyecto_PageIndexChanged">
+            <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand" >
                 <Columns>
-                    <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />
-                     <asp:BoundField datafield="id_proyecto" HeaderText="Proyecto Id" ReadOnly="True" SortExpression="Proyecto Id" /> 
-                     <asp:BoundField DataField="nombre_sistema" HeaderText="Nombre del sistema" SortExpression="Nombre del sistema" HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg"/>
+                    <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />                 
                 </Columns> 
             </asp:GridView>  
         </div>

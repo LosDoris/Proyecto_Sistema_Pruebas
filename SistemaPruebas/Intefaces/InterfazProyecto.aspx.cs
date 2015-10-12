@@ -19,7 +19,9 @@ namespace SistemaPruebas.Intefaces
             Deshabilitar_Campos();
             aceptar.Enabled = false;
             cancelar.Enabled = false;
-            llenarGrid();
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;
+           // llenarGrid();
 
         }
         protected void Restricciones_Campos()

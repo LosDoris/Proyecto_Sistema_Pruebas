@@ -11,7 +11,7 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraBDProyecto
     {
-        Acceso.Acceso acceso_BD= new Acceso.Acceso();
+        Acceso.Acceso acceso_BD;//= new Acceso.Acceso();
 
         public ControladoraBDProyecto()
         {
