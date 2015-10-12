@@ -222,24 +222,23 @@ namespace SistemaPruebas.Intefaces
 
         public void Llenar_Datos_Conultados(int idProyecto)
         {
-            DataTable datosFila = controladoraProyecto.ConsultarProyecto(idProyecto);
-            if (datosFila.Rows.Count == 1)
+            Controladoras.EntidadProyecto entidadP= controladoraProyecto.ConsultarProyecto(idProyecto);
+
+            this.nombre_proyecto.Text = entidadP.Nombre_sistema;
+            this.obj_general.Text = entidadP.Objetivo_general;
+            DateTime Text = Convert.ToDateTime(entidadP.Fecha_asignacion);
+
+            if (this.estado.Items.FindByText(entidadP.Estado) != null)
             {
-                this.nombre_proyecto.Text = datosFila.Rows[0][1].ToString();
-                this.obj_general.Text = datosFila.Rows[0][2].ToString();
-            //    this.Text = datosFila.Rows[0][3].ToString();
-               
-                if (this.estado.Items.FindByText(datosFila.Rows[0][4].ToString()) != null)
-                {
-                    ListItem aux = this.estado.Items.FindByText(datosFila.Rows[0][4].ToString());
-                    this.estado.SelectedValue = aux.Value;
-                }
-
-                this.nombre_rep.Text = datosFila.Rows[0][5].ToString();
-                this.tel_rep.Text = datosFila.Rows[0][6].ToString();
-                this.of_rep.Text = datosFila.Rows[0][7].ToString();
-
+                ListItem aux = this.estado.Items.FindByText(datosFila.Rows[0][4].ToString());
+                this.estado.SelectedValue = aux.Value;
             }
+
+            this.nombre_rep.Text = datosFila.Rows[0][5].ToString();
+            this.tel_rep.Text = datosFila.Rows[0][6].ToString();
+            this.of_rep.Text = datosFila.Rows[0][7].ToString();
+
+            //}
         }
 
         protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
