@@ -63,6 +63,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Text = "";
             tel_rep.Text = "";
             of_rep.Text = "";
+            llenarGrid();
             gridProyecto.Enabled = true;
             Insertar.Enabled = true;
             cancelar.Enabled = false;
@@ -117,7 +118,7 @@ namespace SistemaPruebas.Intefaces
                             int a = controladoraProyecto.ActualizarProyecto(datos);
                             if (a == 1)
                             {
-                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
 
                             }
 
@@ -283,11 +284,12 @@ namespace SistemaPruebas.Intefaces
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
             DateTime Text = Convert.ToDateTime(entidadP.Fecha_asignacion);
-            if (this.estado.Items.FindByText(entidadP.Estado) != null)
+            estado.ClearSelection();
+            ListItem selectedListItem = estado.Items.FindByValue(entidadP.Estado);
+            if (selectedListItem != null)
             {
-                this.estado.Items.FindByText(entidadP.Estado).Selected = true;
-                //this.estado.SelectedValue = aux.Value;
-            }
+                selectedListItem.Selected = true;
+            };
             this.nombre_rep.Text = entidadP.Nombre_representante;
             this.tel_rep.Text = entidadP.Telefono_representante;
             this.of_rep.Text = entidadP.Oficina_representante;
