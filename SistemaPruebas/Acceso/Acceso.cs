@@ -53,41 +53,45 @@ namespace SistemaPruebas.Acceso
         }
 
         public int Insertar(string consulta)
-
         {
-
-
+            int a = -1;
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-            int a = 0;
-
-            SqlCommand comando = null;
-
             try
             {
-                comando = new SqlCommand(consulta, sqlConnection);
-                a = comando.ExecuteNonQuery();
+                sqlConnection.Open();
+
+
+                SqlCommand comando = null;
+
+                try
+                {
+                    comando = new SqlCommand(consulta, sqlConnection);
+                    a = comando.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    string mensajeError = ex.ToString();
+                    throw new Exception("Error al insertar. " + ex.Message);
+
+                    // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+                }
+
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+
+                    //    MessageBox.Show(mensajeError);
+                }
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
-                string mensajeError = ex.ToString();
-                throw new Exception("Error al insertar. " + ex.Message);
-
-                // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+                Console.WriteLine(e);
             }
-
-            try
-                        {
-                            sqlConnection.Close();
-                        }
-                        catch (SqlException e)
-                        {
-                            string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
-                //    MessageBox.Show(mensajeError);
-            }
-
             return a;
         }
 
@@ -97,33 +101,41 @@ namespace SistemaPruebas.Acceso
         {
 
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-
-            int a = 0;
-
-            comando.Connection = sqlConnection;
-
+            int a = -1;
             try
             {
-                a = comando.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                string mensajeError = ex.ToString();
-                throw new Exception("Error al insertar. " + ex.Message);
-                // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
-            }
+                sqlConnection.Open();
 
-            try
-            {
-                sqlConnection.Close();
+
+
+                comando.Connection = sqlConnection;
+
+                try
+                {
+                    a = comando.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    string mensajeError = ex.ToString();
+                    throw new Exception("Error al insertar. " + ex.Message);
+                    // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+                }
+
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+
+                    //    MessageBox.Show(mensajeError);
+                }
             }
             catch (SqlException e)
             {
-                string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
-                //    MessageBox.Show(mensajeError);
+                Console.WriteLine(e);
             }
 
             return a;
@@ -133,34 +145,42 @@ namespace SistemaPruebas.Acceso
         public SqlDataReader Consultar(String consulta)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-
             SqlDataReader datos = null;
-            SqlCommand comando = null;
-
             try
             {
-                comando = new SqlCommand(consulta, sqlConnection);
-                datos = comando.ExecuteReader();
-            }
-            catch (SqlException ex)
-            {
-                string mensajeError = ex.ToString();
-                throw new Exception("Error al consultar. " + ex.Message);
+                sqlConnection.Open();
 
-                // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")                            
-            }
+                //SqlDataReader datos = null;
+                SqlCommand comando = null;
 
-            try
-            {
-                sqlConnection.Close();
+                try
+                {
+                    comando = new SqlCommand(consulta, sqlConnection);
+                    datos = comando.ExecuteReader();
+                }
+                catch (SqlException ex)
+                {
+                    string mensajeError = ex.ToString();
+                    throw new Exception("Error al consultar. " + ex.Message);
+
+                    // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")                            
+                }
+
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+
+                    //    MessageBox.Show(mensajeError);
+                }
             }
             catch (SqlException e)
             {
-                string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
-                //    MessageBox.Show(mensajeError);
+                Console.WriteLine(e);
             }
             return datos;
         }
@@ -168,100 +188,124 @@ namespace SistemaPruebas.Acceso
         public string Consultar_Proced_Almacenado(SqlCommand comando)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-            comando.Connection = sqlConnection;
             string retorno = "";
-            
-            try
-            {
-                SqlDataReader DR2 = comando.ExecuteReader();
-                while (DR2.Read())
-                {
-                    if (retorno != "")
-                        retorno += ";";
-                    retorno += DR2[0].ToString();
-                }
-            }
-            catch (SqlException ex)
-            {
-                string mensajeError = ex.ToString();
-                throw new Exception("Error al consultar. " + ex.Message);
-            }
 
             try
             {
-                sqlConnection.Close();
+                sqlConnection.Open();
+                comando.Connection = sqlConnection;
+
+
+                try
+                {
+                    SqlDataReader DR2 = comando.ExecuteReader();
+                    while (DR2.Read())
+                    {
+                        if (retorno != "")
+                            retorno += ";";
+                        retorno += DR2[0].ToString();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    string mensajeError = ex.ToString();
+                    throw new Exception("Error al consultar. " + ex.Message);
+                }
+
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+                }
             }
             catch (SqlException e)
             {
-                string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+                Console.WriteLine(e);
             }
             return retorno;
         }
         public int Update(string consulta)
         {
+            int a = -1;
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-            int a = 0;
-           
-            //try
-            //{
-            //    comando = new SqlCommand(consulta, sqlConnection);                
-            //    a = comando.ExecuteNonQuery();
-            //}
-            //catch (SqlException ex)
-            //{
-            //    string mensajeError = ex.ToString();
-            //    MessageBox.Show(mensajeError);
-            //}
+            try
+            {
+                sqlConnection.Open();
 
-            //try
-            //{
-            //    sqlConnection.Close();
-            //}
-            //catch (SqlException e)
-            //{
-            //    string mensajeError = e.ToString();
-            //    MessageBox.Show(mensajeError);
-            //}
+
+                //try
+                //{
+                //    comando = new SqlCommand(consulta, sqlConnection);                
+                //    a = comando.ExecuteNonQuery();
+                //}
+                //catch (SqlException ex)
+                //{
+                //    string mensajeError = ex.ToString();
+                //    MessageBox.Show(mensajeError);
+                //}
+
+                //try
+                //{
+                //    sqlConnection.Close();
+                //}
+                //catch (SqlException e)
+                //{
+                //    string mensajeError = e.ToString();
+                //    MessageBox.Show(mensajeError);
+                //}
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
             return a;
 
         }
 
         public int EliminarProyecto(string consulta)
         {
+            int a = -1;
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-            int a = 0;
-
-            SqlCommand comando = null;
-
             try
             {
-                comando = new SqlCommand(consulta, sqlConnection);
-                a = comando.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                string mensajeError = ex.ToString();
-                throw new Exception("Error al cancelar el proyecto. " + ex.Message);
+                sqlConnection.Open();
 
-                // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
-            }
 
-            try
-            {
-                sqlConnection.Close();
+                SqlCommand comando = null;
+
+                try
+                {
+                    comando = new SqlCommand(consulta, sqlConnection);
+                    a = comando.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    string mensajeError = ex.ToString();
+                    throw new Exception("Error al cancelar el proyecto. " + ex.Message);
+
+                    // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+                }
+
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+
+                    //    MessageBox.Show(mensajeError);
+                }
             }
             catch (SqlException e)
             {
-                string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
-                //    MessageBox.Show(mensajeError);
+                Console.WriteLine(e);
             }
-
             return a;
 
         }
