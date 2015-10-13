@@ -225,16 +225,19 @@ namespace SistemaPruebas.Intefaces
 
         protected void llenarGrid()
         {
-            DataTable dt = crearTablaProyecto();
+            DataTable dt = new DataTable();//crearTablaProyecto();
+            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("conteo"), new DataColumn("Id Proyecto"), new DataColumn("Nombre del Sistema") });
             DataTable proyecto = controladoraProyecto.ConsultarProyectoIdNombre();
             Object[] datos = new Object[5];
             if (proyecto.Rows.Count > 0)
             {
                 foreach (DataRow fila in proyecto.Rows)
                 {
-                    DataRow dr = dt.NewRow();
-                    dr[0] = fila[0].ToString();
-                    dr[1] = fila[1].ToString();
+                   // DataRow dr = dt.NewRow();
+                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString());
+                    //dr[0] = fila[0].ToString();
+                    //dr[1] = fila[0].ToString();
+                    //dr[2] = fila[1].ToString();
                     //datos[2] = fila[2].ToString();
                     //datos[3] = fila[3].ToString();
                     //datos[4] = fila[4].ToString();
@@ -242,15 +245,17 @@ namespace SistemaPruebas.Intefaces
                     /*   datos[6] = fila[6].ToString();
                          datos[7] = fila[7].ToString();
                          */
-                    dt.Rows.Add(dr);
+                    //dt.Rows.Add(dr);
                 }
             }
             else
             {
-                DataRow dr = dt.NewRow();
+                //DataRow dr = dt.NewRow();
                 //dt = new DataTable();
-                dr[0] = "-";
-                dr[1] = "-";
+                dt.Rows.Add("-", "-", "*");
+                //dr[0] = "3";
+                //dr[1] = "4";
+                //dr[2] = "-";
                 //datos[2] = "-";
                 //datos[3] = "-";
                 //datos[4] = "-";
@@ -259,7 +264,7 @@ namespace SistemaPruebas.Intefaces
                         datos[7] = "-";
 
             */
-                dt.Rows.Add(dr);
+               // dt.Rows.Add(dr);
             }
             this.gridProyecto.DataSource = dt;
             this.gridProyecto.DataBind();
@@ -308,6 +313,19 @@ namespace SistemaPruebas.Intefaces
             aceptar.Enabled = true;
             cancelar.Enabled = true;
         }
-    
+
+        protected void OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Accessing BoundField Column
+            try
+            {
+                id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
+                Llenar_Datos_Conultados(id_Proyecto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
 }
