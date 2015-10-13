@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title><%: Page.Title %> - Sistema de Pruebas</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -51,8 +51,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
-                        <li><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
+                        <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
+                        <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
 
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

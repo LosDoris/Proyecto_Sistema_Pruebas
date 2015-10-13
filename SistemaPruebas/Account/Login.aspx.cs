@@ -31,10 +31,10 @@ namespace SistemaPruebas.Account
                 if (controladoraRH.usuarioMiembroEquipo(datos))
                 {
                     //regreso true
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Logeo correcto" + "');", true);
                     el_logeado = datos[0].ToString();
 
                     controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
+                    Response.Redirect("~/");
 
                 }
                 else
@@ -43,7 +43,12 @@ namespace SistemaPruebas.Account
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Usuario no coincide con contraseña" + "');", true);
                 }
             }
-            
+            else
+            {
+                //esta loggeado en otro lado
+            }
+
         }
+
     }
 }

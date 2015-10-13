@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace SistemaPruebas
 {
     public partial class SiteMaster : MasterPage
@@ -71,17 +72,51 @@ namespace SistemaPruebas
         {
             if (Account.Login.el_logeado == "")
             {
-
+                makeInVisible();
             }
             else if (controladoraRH.loggeado(Account.Login.el_logeado) == false)
             {
+                //simulacion del LogOut
                 controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+                makeInVisible();
             }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Logeo correcto" + "');", true);
+                makeVisible();
+            }
+        }
+
+        public void makeVisible()
+        {
+            try
+            {
+                A1.Visible = true;
+                A2.Visible = true;
+            }
+            catch (NullReferenceException e)
+            {
+
+            }
+
+        }
+        public void makeInVisible()
+        {
+            try
+            {
+                A1.Visible = false;
+                A2.Visible = false;
+            }
+            catch (NullReferenceException e)
+            {
+
+            }
+
         }
 
         protected void LogOut(object sender, EventArgs e)
         {
-            
+
         }
     }
 
