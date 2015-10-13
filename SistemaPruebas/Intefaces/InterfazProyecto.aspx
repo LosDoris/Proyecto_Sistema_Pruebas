@@ -76,10 +76,12 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Asignación</asp:Label>
-                    <div class="form-horizontal" runat="server">
+                     
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
+                    <div class="col-md-4" runat="server">
                         <input id="txt_date" type="text" readonly="readonly" />
                     </div>
+                         
                 </div>
             </div>
         </div>

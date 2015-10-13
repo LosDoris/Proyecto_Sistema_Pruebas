@@ -31,7 +31,7 @@ namespace SistemaPruebas.Intefaces
             nombre_proyecto.MaxLength = 10;
             obj_general.MaxLength = 50;
             nombre_rep.MaxLength = 30;
-            tel_rep.MaxLength = 17;
+            tel_rep.MaxLength = 8;
             of_rep.MaxLength = 17;
             obj_general.Rows = 5;
 
@@ -241,10 +241,11 @@ namespace SistemaPruebas.Intefaces
         protected void Modificar_Click(object sender, EventArgs e)
         {
             button = 2;
+            Habilitar_Campos();
             gridProyecto.Enabled = false;
             aceptar.Enabled = true;
             cancelar.Enabled = true;
-            Habilitar_Campos();
+           
 
         }
 
