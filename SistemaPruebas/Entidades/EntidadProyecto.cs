@@ -25,14 +25,14 @@ namespace SistemaPruebas.Controladoras
 
         public EntidadProyecto(Object[] datos)
         { // Constructor donde se inicializan las variables de la clase
-       //     this.id_proyecto = datos[0].ToString();
-            this.nombre_sistema = datos[0].ToString();
-            this.objetivo_general = datos[1].ToString();
-            this.fecha_asignacion = datos[2].ToString();
-            this.estado = datos[3].ToString();
-            this.nombre_representante = datos[4].ToString();
-            this.telefono_representante = datos[5].ToString();
-            this.oficina_representante = datos[6].ToString();
+           this.id_proyecto = datos[0].ToString();
+            this.nombre_sistema = datos[1].ToString();
+            this.objetivo_general = datos[2].ToString();
+            this.fecha_asignacion = datos[3].ToString();
+            this.estado = datos[4].ToString();
+            this.nombre_representante = datos[5].ToString();
+            this.telefono_representante = datos[6].ToString();
+            this.oficina_representante = datos[7].ToString();
         }
 
         //Metodos set y get para la variable id_proyecto

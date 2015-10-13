@@ -63,6 +63,10 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Text = "";
             tel_rep.Text = "";
             of_rep.Text = "";
+            gridProyecto.Enabled = true;
+            Insertar.Enabled = true;
+            cancelar.Enabled = false;
+            Modificar.Enabled = false;
         }
         protected void Insertar_button(object sender, EventArgs e)
         {
@@ -75,30 +79,33 @@ namespace SistemaPruebas.Intefaces
         }
         protected void aceptar_Click(object sender, EventArgs e)
         {
-           // if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
-            //{
+           
+                llenarGrid();
                 switch (button)
                 {
                     case 1://Insertar
                         {
-                            Console.WriteLine("Insertar");
-                            string text = Page.Request.Form["datepickernm"];
-                            object[] datos = new object[7] { nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
-                            
-                            int a = controladoraProyecto.IngresaProyecto(datos);
-                            if (a == 1)
+                            if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
                             {
-                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+                                Console.WriteLine("Insertar");
+                                string text = Page.Request.Form["datepickernm"];
+                                object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
+                                int a = controladoraProyecto.IngresaProyecto(datos);
+                                if (a == 1)
+                                {
+                                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+
+                                }
+
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+
+                                }
+
+                                Limpiar_Campos();
                             }
-
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-
-                            }
-
-                            Limpiar_Campos();
                         }
                         break;
                     case 2:
@@ -143,7 +150,7 @@ namespace SistemaPruebas.Intefaces
                             Limpiar_Campos();
                         }
                         break;
-               // }
+              
             }
         }
         protected void cancelar_Click(object sender, EventArgs e)
@@ -154,27 +161,27 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             gridProyecto.Enabled = true;
         }
-        protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            switch (e.CommandName)
-            {
-                case "seleccionarProyecto":
-                    {
-                        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-                        try
-                        {
-                            id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
-                            Llenar_Datos_Conultados(id_Proyecto);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex);
-                        }
-                    };
-                    break;
-            }
+        //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    switch (e.CommandName)
+        //    {
+        //        case "seleccionarProyecto":
+        //            {
+        //                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+        //                try
+        //                {
+        //                    id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
+        //                    Llenar_Datos_Conultados(id_Proyecto);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    Console.WriteLine(ex);
+        //                }
+        //            };
+        //            break;
+        //    }
 
-        }
+        //}
         protected DataTable crearTablaProyecto()
         {//Sólo se carga la info del ID y el nombre del sistema
             DataTable dt = new DataTable();
@@ -321,6 +328,11 @@ namespace SistemaPruebas.Intefaces
             {
                 id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
                 Llenar_Datos_Conultados(id_Proyecto);
+                Modificar.Enabled = true;
+                Eliminar.Enabled = true;
+                aceptar.Enabled = true;
+                cancelar.Enabled = true;
+                Insertar.Enabled = false;
             }
             catch (Exception ex)
             {

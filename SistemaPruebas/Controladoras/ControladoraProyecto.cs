@@ -44,17 +44,17 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controlBD.ConsultarProyecto(id_Proyecto);
             if (dt.Rows.Count == 1)
             {
-                Object[] datos = new Object[7];
+                Object[] datos = new Object[8];
                 EntidadProyecto retorno;
 
-                datos[0] = dt.Rows[0].ToString();
-                datos[1] = dt.Rows[1].ToString();
-                datos[2] = dt.Rows[2].ToString();
-                datos[3] = dt.Rows[3].ToString();
-                datos[4] = dt.Rows[4].ToString();
-                datos[5] = dt.Rows[5].ToString();
-                datos[6] = dt.Rows[6].ToString();
-                datos[7] = dt.Rows[7].ToString();
+                datos[0] = dt.Rows[0][0].ToString();
+                datos[1] = dt.Rows[0][1].ToString();
+                datos[2] = dt.Rows[0][2].ToString();
+                datos[3] = dt.Rows[0][3].ToString();
+                datos[4] = dt.Rows[0][4].ToString();
+                datos[5] = dt.Rows[0][5].ToString();
+                datos[6] = dt.Rows[0][6].ToString();
+                datos[7] = dt.Rows[0][7].ToString();
                 retorno = new EntidadProyecto(datos);
                 return retorno;
             }
