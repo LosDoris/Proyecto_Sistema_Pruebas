@@ -1,5 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" %>
+﻿<%@ Page Title="Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+     <h2><%: Title %>.</h2>
     </b>
     <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
@@ -78,25 +80,6 @@
                             </div>
                         </div>         
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" 
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
-                                CssClass="btn btn-default" 
-                                ID="BotonRHAceptar" 
-                                OnClick="BotonRHAceptar_Click" />
-                            <asp:Button runat="server" 
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
-                                CssClass="btn btn-default" 
-                                ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
-                                />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
-                        </div>
-                    </div>
                 </div>
                 
                     <h4>Datos del Perfil</h4>
@@ -135,21 +118,21 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Tipo de perfil</asp:Label>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true">
+                            <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Rol</asp:Label>
                         <div class="col-md-8">
-                                <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged">
+                                <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" >
+                            <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
@@ -158,6 +141,26 @@
 </div>
                     </div>
              </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-10 col-md-12">
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptar" 
+                                OnClick="BotonRHAceptar_Click" />
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
+                                />
+                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
+                        </div>
+                    </div>
     <div class="row">
         <asp:GridView ID="RH" runat="server"  AutoGenerateColumns ="false"  >
             <Columns>
