@@ -19,6 +19,11 @@ namespace SistemaPruebas.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Account.CambiarContrasena.cambiado == 1)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Cambio de contraseña hecho." + "');", true);
+                Account.CambiarContrasena.cambiado = 0;
+            }
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
         }
 
@@ -49,7 +54,7 @@ namespace SistemaPruebas.Account
             else
             {
                 //esta loggeado en otro lado
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Esta loggeado en otro lado. Desloggeo se hará." + "');", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Está loggeado en otro lado. Será cerrará la sesión." + "');", true);
                 controladoraRH.estadoLoggeado(datos[0].ToString(), "0");
 
 

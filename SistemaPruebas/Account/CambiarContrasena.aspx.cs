@@ -10,7 +10,8 @@ namespace SistemaPruebas.Account
     public partial class CambiarContrasena : System.Web.UI.Page
     {
         Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
-        public string g;
+
+        public static int cambiado = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,7 +33,8 @@ namespace SistemaPruebas.Account
                     datos1[1] = this.PasswordNew.Text;
                     controladoraRH.modificaContrasena(datos1);
 
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Cambio de contraseña exitoso" + "');", true);
+                    cambiado = 1;
+                    Response.Redirect("~/Account/Login");
                 }
                 else
                 {
