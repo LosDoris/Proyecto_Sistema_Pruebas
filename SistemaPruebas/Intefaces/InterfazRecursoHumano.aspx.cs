@@ -466,5 +466,11 @@ namespace SistemaPruebas.Intefaces
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
         }
+
+        protected void BotonRHEliminar_Click(object sender, EventArgs e)
+        {
+            BotonRHEliminar.Visible = true;
+            BotonRHAceptar.Visible = false;
+        }
     }
 }

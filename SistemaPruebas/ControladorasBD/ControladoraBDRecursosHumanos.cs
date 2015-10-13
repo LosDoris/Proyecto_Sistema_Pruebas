@@ -116,9 +116,19 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public void eliminarRecursoHumano(int cedula)
+        public bool eliminarRecursoHumano(int cedula)
         {
+            bool regresa = false;
+            if (acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = '" + cedula + "'") == 1)
+            {
+                regresa = true;
+            }
+            else
+            {
+                regresa = false;
+            }
 
+            return regresa;
 
         }
 
@@ -129,6 +139,8 @@ namespace SistemaPruebas.Controladoras
             return dt;
 
         }
+
+        
 
 
 

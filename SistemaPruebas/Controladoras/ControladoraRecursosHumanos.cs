@@ -67,8 +67,16 @@ namespace SistemaPruebas.Controladoras
 
         public int eliminarRecursoHumano(int cedula)
         {
-            controladoraBDRecursosHumanos.eliminarRecursoHumano(cedula);
-            return 1;
+            int regresa = 0;
+            if (controladoraBDRecursosHumanos.eliminarRecursoHumano(cedula))
+            {
+                regresa = 0;
+            }
+            else
+            {
+                regresa = 1;
+            }
+            return regresa;
         }
 
         public String solicitarProyectos()
