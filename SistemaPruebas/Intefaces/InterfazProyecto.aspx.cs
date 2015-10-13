@@ -21,6 +21,7 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
+            datepickernm.Enabled = false;
             llenarGrid();
 
         }
@@ -43,7 +44,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
-            //datetimepicker('disable');
+            datepickernm.Enabled = true;
 
 
         }
@@ -55,6 +56,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = false;
             tel_rep.Enabled = false;
             of_rep.Enabled = false;
+            //datepicker.Enabled = false;
         }
         protected void Limpiar_Campos()
         {
@@ -89,7 +91,7 @@ namespace SistemaPruebas.Intefaces
                             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
                             {
                                 Console.WriteLine("Insertar");
-                                string text = Page.Request.Form["datepickernm"];
+                                string text = datepickernm.Text;
                                 object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
                                 int a = controladoraProyecto.IngresaProyecto(datos);
@@ -112,7 +114,7 @@ namespace SistemaPruebas.Intefaces
                     case 2:
                         {
                             Console.WriteLine("Modificar");
-                            string text = Page.Request.Form["datepickernm"];
+                            string text = datepickernm.Text;
                             object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
                             int a = controladoraProyecto.ActualizarProyecto(datos);
@@ -183,53 +185,7 @@ namespace SistemaPruebas.Intefaces
         //    }
 
         //}
-        protected DataTable crearTablaProyecto()
-        {//Sólo se carga la info del ID y el nombre del sistema
-            DataTable dt = new DataTable();
-            DataColumn columna;
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "ID_Proyecto";
-            dt.Columns.Add(columna);
-
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Nombre";
-            dt.Columns.Add(columna);
-
-            //columna = new DataColumn();
-            //columna.DataType = System.Type.GetType("System.String");
-            //columna.ColumnName = "Objetivo";
-            //dt.Columns.Add(columna);
-
-            //columna = new DataColumn();
-            //columna.DataType = System.Type.GetType("System.String");
-            //columna.ColumnName = "Fecha Asignación";
-            //dt.Columns.Add(columna);
-
-            //columna = new DataColumn();
-            //columna.DataType = System.Type.GetType("System.String");
-            //columna.ColumnName = "Estado";
-            //dt.Columns.Add(columna);
-
-            //columna = new DataColumn();
-            //columna.DataType = System.Type.GetType("System.String");
-            //columna.ColumnName = "Nombre Representante";
-            //dt.Columns.Add(columna);
-            /*
-                        columna = new DataColumn();
-                        columna.DataType = System.Type.GetType("System.String");
-                        columna.ColumnName = "Tel Representante";
-                        dt.Columns.Add(columna);
-
-                        columna = new DataColumn();
-                        columna.DataType = System.Type.GetType("System.String");
-                        columna.ColumnName = "Oficina Representante";
-                        dt.Columns.Add(columna);
-            */
-            return dt;
-        }
+       
 
         protected void llenarGrid()
         {
@@ -240,39 +196,15 @@ namespace SistemaPruebas.Intefaces
             if (proyecto.Rows.Count > 0)
             {
                 foreach (DataRow fila in proyecto.Rows)
-                {
-                   // DataRow dr = dt.NewRow();
-                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString());
-                    //dr[0] = fila[0].ToString();
-                    //dr[1] = fila[0].ToString();
-                    //dr[2] = fila[1].ToString();
-                    //datos[2] = fila[2].ToString();
-                    //datos[3] = fila[3].ToString();
-                    //datos[4] = fila[4].ToString();
-                    //datos[5] = fila[5].ToString();
-                    /*   datos[6] = fila[6].ToString();
-                         datos[7] = fila[7].ToString();
-                         */
-                    //dt.Rows.Add(dr);
+                {            
+                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString());              
                 }
             }
             else
             {
-                //DataRow dr = dt.NewRow();
-                //dt = new DataTable();
+     
                 dt.Rows.Add("-", "-", "*");
-                //dr[0] = "3";
-                //dr[1] = "4";
-                //dr[2] = "-";
-                //datos[2] = "-";
-                //datos[3] = "-";
-                //datos[4] = "-";
-                //datos[5] = "-";
-                /*        datos[6] = "-";
-                        datos[7] = "-";
 
-            */
-               // dt.Rows.Add(dr);
             }
             this.gridProyecto.DataSource = dt;
             this.gridProyecto.DataBind();
@@ -283,7 +215,7 @@ namespace SistemaPruebas.Intefaces
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
-            DateTime Text = Convert.ToDateTime(entidadP.Fecha_asignacion);
+            datepickernm.Text = entidadP.Fecha_asignacion;
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue(entidadP.Estado);
             if (selectedListItem != null)

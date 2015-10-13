@@ -8,6 +8,7 @@
         <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="screen"
             href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+       
     </head>
 
     <div class="form-group">
@@ -70,12 +71,11 @@
                     <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-8">
                         <div id="datetimepicker" class="col-md-10">
-                            <input id="datepickernm" type="text" name="datepickernm" />
+                            <asp:TextBox runat="server" data-format="MM/dd/yyyy" id="datepickernm" name="datepickernm" />
                             <span class="add-on">
-                                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                <i data-time-icon="icon-time" id="icon_date" data-date-icon="icon-calendar"></i>
                             </span>
-                        </div>
-                        <script type="text/javascript"
+                             <script type="text/javascript"
                             src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
                         </script>
                         <script type="text/javascript"
@@ -88,16 +88,16 @@
                             src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
                         </script>
                         <script type="text/javascript">
-                            $('#datetimepicker').datetimepicker({
+                            $('#datepickernm').datetimepicker({
                                 format: 'yyyy/MM/dd',
                                 language: "es",
                                 todayHighlight: true,
                                 pickTime: false
                             });
                             <%--   $('#datetimepicker').datetimepicker('disable'); --%>
-
-
                         </script>
+                        </div>
+                        
 
                     </div>
                 </div>
