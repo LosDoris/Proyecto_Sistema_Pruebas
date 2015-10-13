@@ -58,23 +58,7 @@ namespace SistemaPruebas.Controladoras
                 return acceso_BD.Consultar_Proced_Almacenado(comando);
 
             }
-        }
-        public List<string> ConsultarProyectoUsuario(string msg)
-        {
-            return null;
-        }
-
-        public List<string> ConsultarProyectoAdm(string msg)
-        {
-            return null;
-        }
-
-        public List<string> ConsultaIdProyecto()
-        {
-            List<string> retorno = new List<string>();
-            return retorno;
-        }
-
+        }        
         public DataTable ConsultarProyecto(int id_Proyecto)
         {
             string id= id_Proyecto.ToString();
@@ -94,22 +78,41 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = new DataTable();
             dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto");
             return dt;
-        }
-        public List<string> ConsultarProyecto(string msg)
+        }       
+
+        public int EliminarProyecto(string id)
         {
-            return null;
-        }
-
-
-        public int EliminarProyecto(string msg)
-        {
-
-            return 0;
+            return acceso_BD.EliminarProyecto("update Proyecto set estado = 5 where id_proyecto =" + id);
         }
 
-        public int ActualizarProycto(string msg)
+        public int ActualizarProyecto(EntidadProyecto datos)
         {
-            return 0;
+            using (SqlCommand comando = new SqlCommand("dbo.Modificar_Proyecto"))
+            {
+                //  comando.CommandText = "Insertar_Proyecto";
+                comando.CommandType = CommandType.StoredProcedure;
+
+                //  comando.Parameters.Add(new SqlParameter("@id_proyecto", datos.Id_proyecto));
+
+                comando.Parameters.Add(new SqlParameter("@id", datos.Id_proyecto));
+
+                comando.Parameters.Add(new SqlParameter("@nombre_sistema", datos.Nombre_sistema));
+
+                comando.Parameters.Add(new SqlParameter("@objetivo_general", datos.Objetivo_general));
+
+                comando.Parameters.Add(new SqlParameter("@fecha_asignacion", datos.Fecha_asignacion));
+
+                comando.Parameters.Add(new SqlParameter("@estado", datos.Estado));
+
+                comando.Parameters.Add(new SqlParameter("@nombre_rep", datos.Nombre_representante));
+
+                comando.Parameters.Add(new SqlParameter("@telefono_rep", datos.Telefono_representante));
+
+                comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
+
+                return acceso_BD.Insertar_Proced_Almacenado(comando);
+
+            }
         }
     }
 }

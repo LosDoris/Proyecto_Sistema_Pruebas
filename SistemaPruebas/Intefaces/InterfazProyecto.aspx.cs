@@ -10,8 +10,8 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazProyecto : System.Web.UI.Page
     {
-        private int button;
-        private static int id_Proyecto = -1;  
+        private static int id_Proyecto = -1;
+        private static int button = 0;
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +26,7 @@ namespace SistemaPruebas.Intefaces
         }
         protected void Restricciones_Campos()
         {
-            
+
             nombre_proyecto.MaxLength = 10;
             obj_general.MaxLength = 50;
             nombre_rep.MaxLength = 30;
@@ -54,15 +54,15 @@ namespace SistemaPruebas.Intefaces
             estado.Enabled = false;
             nombre_rep.Enabled = false;
             tel_rep.Enabled = false;
-            of_rep.Enabled = false; 
+            of_rep.Enabled = false;
         }
         protected void Limpiar_Campos()
         {
             nombre_proyecto.Text = "";
-            obj_general.Text = "";            
+            obj_general.Text = "";
             nombre_rep.Text = "";
             tel_rep.Text = "";
-            of_rep.Text = ""; 
+            of_rep.Text = "";
         }
         protected void Insertar_button(object sender, EventArgs e)
         {
@@ -70,46 +70,76 @@ namespace SistemaPruebas.Intefaces
             aceptar.Enabled = true;
             cancelar.Enabled = true;
             Habilitar_Campos();
-            
+
         }
         protected void aceptar_Click(object sender, EventArgs e)
         {
             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
             {
-                // switch (button)
-                //{
-                //  case 1://Insertar
-                //    {
+                switch (button)
+                {
+                    case 1://Insertar
+                        {
                             string text = Page.Request.Form["datepickernm"];
-                            object[] datos = new object[7]{nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text};
-                            
-                            int a= controladoraProyecto.IngresaProyecto(datos);
-                if (a == 1)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(),"err_msg","alert('El proyecto ha sido insertado con éxito');", true);
+                            object[] datos = new object[7] { nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
+                            int a = controladoraProyecto.IngresaProyecto(datos);
+                            if (a == 1)
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+
+                            }
+
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+
+                            }
+
+                            Limpiar_Campos();
+                        }
+                        break;
+                    case 2:
+                        {
+                            string text = Page.Request.Form["datepickernm"];
+                            object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
+
+                            int a = controladoraProyecto.ActualizarProyecto(datos);
+                            if (a == 1)
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+
+                            }
+
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+
+                            }
+
+                            Limpiar_Campos();
+
+                        }
+                        break;
+                    case 3:
+                        {
+                            int a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
+                            if (a == 1)
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+
+                            }
+
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+
+                            }
+
+                            Limpiar_Campos();
+                        }
+                        break;
                 }
-
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-
-                }
-
-                //    Limpiar_Campos();
-                //  }
-                //break;
-                //case 2:
-                //{
-
-                //        }
-                //        break;
-                //        case 3:
-                //        {
-
-                //        }
-                //        break;
-                //}
             }
         }
         protected void cancelar_Click(object sender, EventArgs e)
@@ -132,7 +162,7 @@ namespace SistemaPruebas.Intefaces
                     break;
             }
 
-        }     
+        }
         protected DataTable crearTablaProyecto()
         {//Sólo se carga la info del ID y el nombre del sistema
             DataTable dt = new DataTable();
@@ -167,17 +197,17 @@ namespace SistemaPruebas.Intefaces
             //columna.DataType = System.Type.GetType("System.String");
             //columna.ColumnName = "Nombre Representante";
             //dt.Columns.Add(columna);
-/*
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Tel Representante";
-            dt.Columns.Add(columna);
+            /*
+                        columna = new DataColumn();
+                        columna.DataType = System.Type.GetType("System.String");
+                        columna.ColumnName = "Tel Representante";
+                        dt.Columns.Add(columna);
 
-            columna = new DataColumn();
-            columna.DataType = System.Type.GetType("System.String");
-            columna.ColumnName = "Oficina Representante";
-            dt.Columns.Add(columna);
-*/
+                        columna = new DataColumn();
+                        columna.DataType = System.Type.GetType("System.String");
+                        columna.ColumnName = "Oficina Representante";
+                        dt.Columns.Add(columna);
+            */
             return dt;
         }
 
@@ -196,9 +226,9 @@ namespace SistemaPruebas.Intefaces
                     //datos[3] = fila[3].ToString();
                     //datos[4] = fila[4].ToString();
                     //datos[5] = fila[5].ToString();
-               /*   datos[6] = fila[6].ToString();
-                    datos[7] = fila[7].ToString();
-                    */
+                    /*   datos[6] = fila[6].ToString();
+                         datos[7] = fila[7].ToString();
+                         */
                     dt.Rows.Add(datos);
                 }
             }
@@ -210,10 +240,10 @@ namespace SistemaPruebas.Intefaces
                 //datos[3] = "-";
                 //datos[4] = "-";
                 //datos[5] = "-";
-        /*        datos[6] = "-";
-                datos[7] = "-";
+                /*        datos[6] = "-";
+                        datos[7] = "-";
 
-    */
+            */
                 dt.Rows.Add(datos);
             }
             this.gridProyecto.DataSource = dt;
@@ -222,23 +252,18 @@ namespace SistemaPruebas.Intefaces
 
         public void Llenar_Datos_Conultados(int idProyecto)
         {
-            Controladoras.EntidadProyecto entidadP= controladoraProyecto.ConsultarProyecto(idProyecto);
-
+            Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
             DateTime Text = Convert.ToDateTime(entidadP.Fecha_asignacion);
-
             if (this.estado.Items.FindByText(entidadP.Estado) != null)
             {
-                ListItem aux = this.estado.Items.FindByText(datosFila.Rows[0][4].ToString());
-                this.estado.SelectedValue = aux.Value;
+                this.estado.Items.FindByText(entidadP.Estado).Selected = true;
+                //this.estado.SelectedValue = aux.Value;
             }
-
-            this.nombre_rep.Text = datosFila.Rows[0][5].ToString();
-            this.tel_rep.Text = datosFila.Rows[0][6].ToString();
-            this.of_rep.Text = datosFila.Rows[0][7].ToString();
-
-            //}
+            this.nombre_rep.Text = entidadP.Nombre_representante;
+            this.tel_rep.Text = entidadP.Telefono_representante;
+            this.of_rep.Text = entidadP.Oficina_representante;
         }
 
         protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
@@ -252,5 +277,22 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        protected void Modificar_Click(object sender, EventArgs e)
+        {
+            button = 2;
+            gridProyecto.Enabled = false;
+            aceptar.Enabled = true;
+            cancelar.Enabled = true;
+            Habilitar_Campos();
+
+        }
+
+        protected void Eliminar_Click(object sender, EventArgs e)
+        {
+            button = 3;
+            aceptar.Enabled = true;
+            cancelar.Enabled = true;
+        }
+    
     }
 }

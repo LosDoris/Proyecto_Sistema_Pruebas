@@ -189,5 +189,71 @@ namespace SistemaPruebas.Acceso
             }
             return retorno;
         }
+        public int Update(string consulta)
+        {
+            SqlConnection sqlConnection = new SqlConnection(conexion);
+            sqlConnection.Open();
+            int a = 0;
+           
+            //try
+            //{
+            //    comando = new SqlCommand(consulta, sqlConnection);                
+            //    a = comando.ExecuteNonQuery();
+            //}
+            //catch (SqlException ex)
+            //{
+            //    string mensajeError = ex.ToString();
+            //    MessageBox.Show(mensajeError);
+            //}
+
+            //try
+            //{
+            //    sqlConnection.Close();
+            //}
+            //catch (SqlException e)
+            //{
+            //    string mensajeError = e.ToString();
+            //    MessageBox.Show(mensajeError);
+            //}
+            return a;
+
+        }
+
+        public int EliminarProyecto(string consulta)
+        {
+            SqlConnection sqlConnection = new SqlConnection(conexion);
+            sqlConnection.Open();
+            int a = 0;
+
+            SqlCommand comando = null;
+
+            try
+            {
+                comando = new SqlCommand(consulta, sqlConnection);
+                a = comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                string mensajeError = ex.ToString();
+                throw new Exception("Error al cancelar el proyecto. " + ex.Message);
+
+                // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+            }
+
+            try
+            {
+                sqlConnection.Close();
+            }
+            catch (SqlException e)
+            {
+                string mensajeError = e.ToString();
+                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+
+                //    MessageBox.Show(mensajeError);
+            }
+
+            return a;
+
+        }
     }
 }

@@ -26,6 +26,12 @@ namespace SistemaPruebas.Controladoras
             int a= controlBD.InsertarProyecto(objProyecto);
             return a;            
         }
+        public int ActualizarProyecto(object[] datos)
+        {
+            EntidadProyecto objProyecto = new EntidadProyecto(datos);
+            int a = controlBD.ActualizarProyecto(objProyecto);
+            return a;
+        }
         
         public string Consultar_ID_Nombre_Proyecto()
         {

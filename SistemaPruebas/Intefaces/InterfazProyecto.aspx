@@ -13,9 +13,9 @@
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
-            <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" />
+            <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="Modificar_Click" />
 
-            <asp:Button runat="server" ID="Eliminar" Text="   Eliminar" CssClass="btn btn-default" />
+            <asp:Button runat="server" ID="Eliminar" Text="   Eliminar" CssClass="btn btn-default" OnClick="Eliminar_Click" />
         </div>
     </div>
 
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                     <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="estado" CssClass="form-control" >
+                        <asp:DropDownList runat="server" ID="estado" CssClass="form-control"  >
                             <asp:ListItem Selected="True" Value="1">Pendiente</asp:ListItem>
                             <asp:ListItem Value="2">Asignado</asp:ListItem>
                             <asp:ListItem Value="3">En Ejecución</asp:ListItem>
