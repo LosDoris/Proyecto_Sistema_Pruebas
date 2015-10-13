@@ -43,6 +43,14 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRecursosHumanos.estadoLoggeado(nombre, estado);
         }
 
+        public int proyectosDelLoggeado()
+        {
+            return controladoraBDRecursosHumanos.proyectosDelLoggeado(Account.Login.el_logeado);
+        }
+
+        /**/
+
+
         public int insertarRecursoHumano(Object[] datos)
         {
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);

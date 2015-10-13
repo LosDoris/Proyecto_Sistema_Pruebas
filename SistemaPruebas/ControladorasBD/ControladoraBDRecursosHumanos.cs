@@ -100,6 +100,34 @@ namespace SistemaPruebas.Controladoras
             return regresa;
 
         }
+
+        public int proyectosDelLoggeado(string elLoggeado)
+        {
+            int regresa = -3;
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT id_proyecto FROM Recurso_Humano WHERE usuario = '" + elLoggeado + "'");
+            try
+            {
+                foreach (DataRow row in DR.Rows)
+                {
+                    if (row["id_proyecto"] == null)
+                    {
+                        regresa = 0;
+                    }
+                    else
+                    {
+                        regresa = (int)row["id_proyecto"];
+                    }
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                regresa = -3;
+            }
+
+
+            return regresa;
+        }
+
         /**/
 
 

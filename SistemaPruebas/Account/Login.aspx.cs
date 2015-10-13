@@ -42,6 +42,7 @@ namespace SistemaPruebas.Account
                     controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
                     loggeado = 1;
+                    int temp = controladoraRH.proyectosDelLoggeado();
                     Response.Redirect("~/Default");
 
                 }
