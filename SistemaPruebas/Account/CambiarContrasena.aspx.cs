@@ -33,6 +33,8 @@ namespace SistemaPruebas.Account
                     controladoraRH.modificaContrasena(datos1);
 
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Cambio de contraseña exitoso" + "');", true);
+
+
                 }
                 else
                 {

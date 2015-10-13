@@ -68,33 +68,22 @@ namespace SistemaPruebas
             }
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Account.Login.el_logeado == "")
             {
                 makeInVisible();
             }
-            else if (Account.Login.loggeado == 1)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
-                makeVisible();
-                Account.Login.loggeado = 0;
-            }
-            if (Account.Login.el_logeado == "")
-            {
-                LOGIN.Visible = true;
-                LOGOUT.Visible = false;
-            }
             else if (controladoraRH.loggeado(Account.Login.el_logeado) == false)
             {
-                LOGIN.Visible = true;
-                LOGOUT.Visible = false;
+                //simulacion del LogOut
+                controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+                makeInVisible();
             }
             else
             {
-                LOGIN.Visible = false;
-                LOGOUT.Visible = true;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Logeo correcto" + "');", true);
+                makeVisible();
             }
         }
 
@@ -127,10 +116,7 @@ namespace SistemaPruebas
 
         protected void LogOut(object sender, EventArgs e)
         {
-            controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
-            Account.Login.el_logeado = "";
-            makeInVisible();
-            Response.Redirect("~/Default");
+
         }
     }
 

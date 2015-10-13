@@ -36,17 +36,6 @@ summary {
   display: block;
 }
 
-.btn-LogOut {
-    color: #999;
-    background-color: #333;
-    border-color: #000;
-    margin-top: 15px;
-    border-radius: 1px;
-    border: none;
-
-}
-
-
 audio,
 canvas,
 video {
