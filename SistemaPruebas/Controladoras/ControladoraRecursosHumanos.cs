@@ -14,8 +14,9 @@ namespace SistemaPruebas.Controladoras
 
         public bool usuarioMiembroEquipo(Object[] datos)
         {
-            string[] nombresYContrasenas= controladoraBDRecursosHumanos.nombresContrasenas();
-            if (nombresYContrasenas != null) {
+            string[] nombresYContrasenas = controladoraBDRecursosHumanos.nombresContrasenas();
+            if (nombresYContrasenas != null)
+            {
                 string nombreIngresado = datos[0].ToString();
                 string contrasenaIngresada = datos[1].ToString();
 
@@ -27,9 +28,9 @@ namespace SistemaPruebas.Controladoras
             }
             return false;
         }
-		public bool modificaContrasena(Object[] datos)
+        public bool modificaContrasena(Object[] datos)
         {
-            return controladoraBDRecursosHumanos.modificaContrasena(datos[0].ToString(), datos[1].ToString()); 
+            return controladoraBDRecursosHumanos.modificaContrasena(datos[0].ToString(), datos[1].ToString());
         }
 
         public bool loggeado(string nombre)
@@ -45,7 +46,7 @@ namespace SistemaPruebas.Controladoras
         public int insertarRecursoHumano(Object[] datos)
         {
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
-            int ret =controladoraBDRecursosHumanos.insertarRecursoHumanoBD(recursoHumano);
+            int ret = controladoraBDRecursosHumanos.insertarRecursoHumanoBD(recursoHumano);
             return ret;
         }
 
