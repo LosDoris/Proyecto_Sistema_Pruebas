@@ -19,25 +19,35 @@ namespace SistemaPruebas.Acceso
         public DataTable ejecutarConsultaTabla(String consulta)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
-            sqlConnection.Open();
-
-            SqlCommand comando = new SqlCommand(consulta, sqlConnection);
-
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(comando);
-
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-
             DataTable table = new DataTable();
-
-            dataAdapter.Fill(table);
             try
             {
-                sqlConnection.Close();
+                sqlConnection.Open();
+
+                SqlCommand comando = new SqlCommand(consulta, sqlConnection);
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(comando);
+
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+
+                //DataTable table = new DataTable();
+
+                dataAdapter.Fill(table);
+                try
+                {
+                    sqlConnection.Close();
+                }
+                catch (SqlException e)
+                {
+                    string mensajeError = e.ToString();
+                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+                }
             }
             catch (SqlException e)
             {
                 string mensajeError = e.ToString();
-                throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
+                //throw new Exception("Error al conectarse a la base de datos. " + e.Message);
+                Console.WriteLine(e.Message);
             }
             return table;
         }

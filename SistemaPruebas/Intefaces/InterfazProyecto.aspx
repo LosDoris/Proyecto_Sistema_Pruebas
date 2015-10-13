@@ -157,7 +157,7 @@
         </div>
   
             <div id="tablaProyectos">
-            <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand" OnSelectedIndexChanged="gridProyecto_SelectedIndexChanged">
+            <asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand">
                 <Columns>
                     <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />                 
                 </Columns> 

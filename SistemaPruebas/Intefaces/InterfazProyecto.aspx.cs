@@ -69,20 +69,22 @@ namespace SistemaPruebas.Intefaces
             button = 1;
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+            gridProyecto.Enabled = false;
             Habilitar_Campos();
 
         }
         protected void aceptar_Click(object sender, EventArgs e)
         {
-            if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
-            {
+           // if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
+            //{
                 switch (button)
                 {
                     case 1://Insertar
                         {
+                            Console.WriteLine("Insertar");
                             string text = Page.Request.Form["datepickernm"];
                             object[] datos = new object[7] { nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
-
+                            
                             int a = controladoraProyecto.IngresaProyecto(datos);
                             if (a == 1)
                             {
@@ -101,6 +103,7 @@ namespace SistemaPruebas.Intefaces
                         break;
                     case 2:
                         {
+                            Console.WriteLine("Modificar");
                             string text = Page.Request.Form["datepickernm"];
                             object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
@@ -123,6 +126,7 @@ namespace SistemaPruebas.Intefaces
                         break;
                     case 3:
                         {
+                            Console.WriteLine("Eliminar");
                             int a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
                             if (a == 1)
                             {
@@ -139,7 +143,7 @@ namespace SistemaPruebas.Intefaces
                             Limpiar_Campos();
                         }
                         break;
-                }
+               // }
             }
         }
         protected void cancelar_Click(object sender, EventArgs e)
@@ -148,6 +152,7 @@ namespace SistemaPruebas.Intefaces
             Deshabilitar_Campos();
             aceptar.Enabled = false;
             cancelar.Enabled = false;
+            gridProyecto.Enabled = true;
         }
         protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -156,8 +161,15 @@ namespace SistemaPruebas.Intefaces
                 case "seleccionarProyecto":
                     {
                         GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-                        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
-                        Llenar_Datos_Conultados(id_Proyecto);
+                        try
+                        {
+                            id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
+                            Llenar_Datos_Conultados(id_Proyecto);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
                     };
                     break;
             }
@@ -220,8 +232,9 @@ namespace SistemaPruebas.Intefaces
             {
                 foreach (DataRow fila in proyecto.Rows)
                 {
-                    datos[0] = fila[0].ToString();
-                    datos[1] = fila[1].ToString();
+                    DataRow dr = dt.NewRow();
+                    dr[0] = fila[0].ToString();
+                    dr[1] = fila[1].ToString();
                     //datos[2] = fila[2].ToString();
                     //datos[3] = fila[3].ToString();
                     //datos[4] = fila[4].ToString();
@@ -229,13 +242,15 @@ namespace SistemaPruebas.Intefaces
                     /*   datos[6] = fila[6].ToString();
                          datos[7] = fila[7].ToString();
                          */
-                    dt.Rows.Add(datos);
+                    dt.Rows.Add(dr);
                 }
             }
             else
             {
-                datos[0] = "-";
-                datos[1] = "-";
+                DataRow dr = dt.NewRow();
+                //dt = new DataTable();
+                dr[0] = "-";
+                dr[1] = "-";
                 //datos[2] = "-";
                 //datos[3] = "-";
                 //datos[4] = "-";
@@ -244,7 +259,7 @@ namespace SistemaPruebas.Intefaces
                         datos[7] = "-";
 
             */
-                dt.Rows.Add(datos);
+                dt.Rows.Add(dr);
             }
             this.gridProyecto.DataSource = dt;
             this.gridProyecto.DataBind();
