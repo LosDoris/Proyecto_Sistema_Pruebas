@@ -4,11 +4,19 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
 
-    <head>
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" media="screen"
-            href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-    </head>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script type="text/javascript">
+        $(function () {
+            $("#txt_date").datepicker();
+        });
+    </script>
 
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
@@ -34,7 +42,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" onkeypress="return solo_letras(event)" />
+                        <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" />
                         <script type="text/javascript">
                             function solo_letras(evt) {
                                 if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
@@ -49,7 +57,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" TextMode="multiline" columns="3" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="obj_general" CssClass="form-control" MaxLength="50" />
                     </div>
                 </div>
 
@@ -66,39 +74,11 @@
 
                     </div>
                 </div>
+
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Asignación</asp:Label>
-                    <div class="col-md-8">
-                        <div id="datetimepicker" class="col-md-10">
-                            <input id="datepickernm" type="text" name="datepickernm" />
-                            <span class="add-on">
-                                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                            </span>
-                        </div>
-                        <script type="text/javascript"
-                            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-                        </script>
-                        <script type="text/javascript"
-                            src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-                        </script>
-                        <script type="text/javascript"
-                            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-                        </script>
-                        <script type="text/javascript"
-                            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-                        </script>
-                        <script type="text/javascript">
-                            $('#datetimepicker').datetimepicker({
-                                format: 'yyyy/MM/dd',
-                                language: "es",
-                                todayHighlight: true,
-                                pickTime: false
-                            });
-                            <%--   $('#datetimepicker').datetimepicker('disable'); --%>
-
-
-                        </script>
-
+                    <div class="form-horizontal" runat="server">
+                        <input id="txt_date" type="text" readonly="readonly" />
                     </div>
                 </div>
             </div>
@@ -114,7 +94,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" />
+                        <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
                     </div>
                 </div>
 
@@ -122,7 +102,8 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" onkeypress="return solo_numeros(event)" />
+                        <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" />
+                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^[\s\S]{8,8}$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
                             function solo_numeros(evt) {
                                 if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
@@ -137,7 +118,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" onkeypress="return solo_letras(event)" />
+                        <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
                     </div>
                 </div>
 

@@ -1,6 +1,27 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" %>
+﻿<%@ Page Title="Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+     <h2><%: Title %>.</h2>
     </b>
+
+                            <script type="text/javascript">
+                                function solo_numeros(evt) {
+                                    if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
+                                        alert("Sólo se permite números");
+                                        return false;
+                                    }
+                                }
+                        </script>
+
+                        <script type="text/javascript">
+                            function solo_letras(evt) {
+                                if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
+                                    alert("Sólo se permite letras");
+                                    return false;
+                                }
+                            }
+                        </script>
+
     <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
@@ -29,7 +50,7 @@
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
                         <div class="col-md-10">
                             
-                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" MaxLength="10" OnTextChanged="UserName_TextChanged" >.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" MaxLength="10" OnTextChanged="UserName_TextChanged" onkeypress="return solo_numeros(event)">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="UserName"
@@ -43,7 +64,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" CssClass="form-control" MaxLength="49" >.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="Password" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="NombVal" >*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="Password"
@@ -57,7 +78,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" />
+                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" onkeypress="return solo_numeros(event)"/>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -65,7 +86,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" />
+                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)"/>
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -77,25 +98,6 @@
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
                             </div>
                         </div>         
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" 
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
-                                CssClass="btn btn-default" 
-                                ID="BotonRHAceptar" 
-                                OnClick="BotonRHAceptar_Click" />
-                            <asp:Button runat="server" 
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
-                                CssClass="btn btn-default" 
-                                ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
-                                />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
-                        </div>
                     </div>
                 </div>
                 
@@ -135,21 +137,21 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Tipo de perfil</asp:Label>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true">
+                            <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Rol</asp:Label>
                         <div class="col-md-8">
-                                <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged">
+                                <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
                         <div class="col-md-8">
-                            <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" >
+                            <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
@@ -158,6 +160,26 @@
 </div>
                     </div>
              </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-10 col-md-12">
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptar" 
+                                OnClick="BotonRHAceptar_Click" />
+                            <asp:Button runat="server" 
+                                Text="Aceptar" 
+                                causesvalidation="true" 
+                                validationgroup="CamposNoVacios"
+                                CssClass="btn btn-default" 
+                                ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
+                                />
+                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
+                        </div>
+                    </div>
     <div class="row">
         <asp:GridView ID="RH" runat="server"  AutoGenerateColumns ="false"  >
             <Columns>

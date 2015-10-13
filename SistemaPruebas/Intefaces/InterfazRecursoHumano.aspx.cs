@@ -21,11 +21,26 @@ namespace SistemaPruebas.Intefaces
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Restricciones_Campos();
             if (!IsPostBack)
             {
                 volverAlOriginal();
                 //modo = 0;
             }
+        }
+
+        protected void Restricciones_Campos()
+        {
+            
+
+            UserName.MaxLength = 9;
+            Password.MaxLength = 50;
+            TextBoxEmail.MaxLength = 30;
+            TextBoxTel1.MaxLength = 8;
+            TextBoxTel2.MaxLength = 8;
+            TextBoxUsuario.MaxLength = 30;
+            TextBoxClave.MaxLength = 12;
+
         }
 
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
