@@ -136,6 +136,8 @@ namespace SistemaPruebas.Intefaces
                         break;
                     case 3:
                         {
+                            
+                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "confirm('¿Está seguro que desea eliminar?');", true);
                             Console.WriteLine("Eliminar");
                             int a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
                             if (a == 1)
