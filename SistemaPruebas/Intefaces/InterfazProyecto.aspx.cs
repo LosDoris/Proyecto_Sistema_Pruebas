@@ -21,7 +21,7 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
-            datepickernm.Enabled = false;
+            //datepicker.Disabled = true;
             llenarGrid();
 
         }
@@ -44,7 +44,7 @@ namespace SistemaPruebas.Intefaces
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
-            datepickernm.Enabled = true;
+            //datepicker.Disabled = false;
 
 
         }
@@ -91,7 +91,7 @@ namespace SistemaPruebas.Intefaces
                             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
                             {
                                 Console.WriteLine("Insertar");
-                                string text = datepickernm.Text;
+                                string text = "";//= txtDate.Text;
                                 object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
                                 int a = controladoraProyecto.IngresaProyecto(datos);
@@ -114,7 +114,7 @@ namespace SistemaPruebas.Intefaces
                     case 2:
                         {
                             Console.WriteLine("Modificar");
-                            string text = datepickernm.Text;
+                            string text = "";//= txtDate.Text;
                             object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
 
                             int a = controladoraProyecto.ActualizarProyecto(datos);
@@ -215,7 +215,7 @@ namespace SistemaPruebas.Intefaces
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
-            datepickernm.Text = entidadP.Fecha_asignacion;
+            //txtDate.Text = entidadP.Fecha_asignacion;
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue(entidadP.Estado);
             if (selectedListItem != null)

@@ -94,15 +94,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.DropDownList estado;
         
         /// <summary>
-        /// Control datepickernm.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datepickernm;
-        
-        /// <summary>
         /// Control nombre_rep.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tel_rep;
+        
+        /// <summary>
+        /// Control RegularExpressionValidator3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
         /// Control of_rep.
