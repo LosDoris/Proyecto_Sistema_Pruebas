@@ -55,14 +55,13 @@
                         <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
 
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/">Cerrar sesión</a></li>
-                                <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                    </asp:LoginView>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <button id="LOGOUT" runat="server" class="btn-LogOut"
+                                onserverclick="LogOut">Log Out</button>
+                        </li>
+                        <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

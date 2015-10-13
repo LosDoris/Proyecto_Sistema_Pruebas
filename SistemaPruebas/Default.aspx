@@ -4,8 +4,7 @@
 
     <div class="jumbotron">
         <h1>Sistema de Pruebas</h1>
-        <p class="lead">SIstema de Pruebas página de inicio.</p>
-        <p><a href="/Account/Login">Log In</a></p>
+        <p class="lead">Sistema de Pruebas página de inicio.</p>
 
         
     </div>
