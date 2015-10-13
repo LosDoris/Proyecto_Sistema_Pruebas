@@ -152,18 +152,18 @@
         </div>
     </div>
 
-    <div id="tablaProyectos">
+    <div id="tablaProyectos" class="col-md-offset-4">
 
-        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged">
+        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333"
+            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="15px">
             <Columns>
-                <asp:BoundField DataField="Id Proyecto" HeaderText="Id Proyecto" ItemStyle-Width="150" />
-                <asp:TemplateField HeaderText="Nombre del sistema" ItemStyle-Width="150">
+                <asp:BoundField DataField="Id Proyecto" HeaderText=" Id Proyecto" ItemStyle-Width="160" />
+                <asp:TemplateField HeaderText=" Nombre del sistema" ItemStyle-Width="160">
                     <ItemTemplate>
                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre del sistema") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:ButtonField Text="Seleccionar" CommandName="Select" ItemStyle-Width="150" />
+                <asp:ButtonField Text=" Seleccionar" CommandName="Select" ItemStyle-Width="160" />
             </Columns>
         </asp:GridView>
         <%--<asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand">
