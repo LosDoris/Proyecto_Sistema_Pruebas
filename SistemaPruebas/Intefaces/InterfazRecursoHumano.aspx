@@ -122,7 +122,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" />
+                            <asp:TextBox runat="server" ID="TextBoxClave" TextMode="Password" CssClass="form-control" MaxLength="12" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"
