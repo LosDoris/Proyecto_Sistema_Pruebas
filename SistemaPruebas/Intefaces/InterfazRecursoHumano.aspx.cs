@@ -146,14 +146,6 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel2.Text = "";
             TextBoxUsuario.Text = "";
             TextBoxClave.Text = "";
-            /*if (modo == 1)
-            {
-                EtiqErrorInsertar.Visible = true;
-            }
-            else
-            {
-                EtiqErrorModificar.Visible = true;
-            }*/
 
         }
 
@@ -188,88 +180,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        /* protected void BotonRHAceptar_Click(object sender, EventArgs e)
-         {
-             //desactivarErrores();
-             if (validarCampos())
-             {
-
-
-                 Object[] datosNuevos = new Object[7];
-                 datosNuevos[0] = this.UserName.Text;//cedula
-                 datosNuevos[1] = this.Password.Text;//nombre
-                 datosNuevos[2] = this.TextBoxTel1.Text;
-                 datosNuevos[3] = this.TextBoxTel2.Text;
-                 datosNuevos[4] = this.TextBoxEmail.Text;
-                 datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
-                 datosNuevos[6] = this.TextBoxClave.Text;
-                 //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedValue.ToString();
-                 //datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                 //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
-                 if (modo == 1)
-                 {
-                     EtiqErrorEliminar.Visible = true;
-                 }
-                 else
-                 {
-                     EtiqErrorModificar.Visible = true;
-                 }
-                 if (modo == 1)
-                 {
-                     deshabilitarCampos();
-                     if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) != -1)
-                     {
-                         deshabilitarCampos();
-                         BotonRHInsertar.Enabled = true;
-                         BotonRHModificar.Enabled = true;
-                         BotonRHEliminar.Enabled = true;
-                         //habilitar consulta
-                         BotonRHCancelar.Enabled = false;
-                         BotonRHAceptar.Enabled = false;
-                     }
-                     else
-                     {
-                         EtiqErrorInsertar.Visible = true;
-                         //mensaje de error
-                     }
-                 }
-                 else if (modo == 2)
-                 {
-                    // controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos);
-                     if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) != -1)
-                     {
-                         deshabilitarCampos();
-                         BotonRHInsertar.Enabled = true;
-                         BotonRHModificar.Enabled = true;
-                         BotonRHEliminar.Enabled = true;
-                         //habilitar consulta
-                         BotonRHCancelar.Enabled = false;
-                         BotonRHAceptar.Enabled = false;
-                     }
-                     else
-                     {
-                         EtiqErrorModificar.Visible = true;
-                         //mensaje de error
-                     }
-                 }
-                 else if (modo == 3)
-                 {
-                     //controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.UserName.Text.ToString()));
-                     if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.UserName.Text.ToString())) != -1)
-                     {
-                         volverAlOriginal();
-                     }
-                     else
-                     {
-                         EtiqErrorModificar.Visible = true;
-                         //mensaje de error
-                     }
-                 }
-             }
+        
              //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
              //enviar la info a la controladora
              //Ver el resultado. Si se realizo exitosamente
-         }*/
+         
         protected void BotonRHAceptar_Click(object sender, EventArgs e)
         {
             //desactivarErrores();
@@ -466,9 +381,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
-            //desactivarErrores();
             {
-                //desactivarErrores();
                 if (validarCampos())
                 {
                     Object[] datosNuevos = new Object[11];
@@ -521,8 +434,6 @@ namespace SistemaPruebas.Intefaces
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
             BotonRHEliminar.Enabled = false;
-            //DataTable dt = new DataTable();//hacer la cosulta de la persona
-            //llenarCampos(dt);
             habilitarCampos();
             PerfilAccesoComboBox.Enabled = false;
         }
