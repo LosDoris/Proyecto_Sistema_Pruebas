@@ -107,7 +107,7 @@ namespace SistemaPruebas
             }
             catch (NullReferenceException e)
             {
-
+                Console.WriteLine("IOException source: {0}", e.Source);
             }
 
         }
@@ -120,7 +120,7 @@ namespace SistemaPruebas
             }
             catch (NullReferenceException e)
             {
-
+                Console.WriteLine("IOException source: {0}", e.Source);
             }
 
         }
