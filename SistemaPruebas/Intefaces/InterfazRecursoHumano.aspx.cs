@@ -85,8 +85,10 @@ namespace SistemaPruebas.Intefaces
             TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
             TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
             TextBoxClave.Text = dt.Rows[0].ItemArray[6].ToString();
-            //PerfilAccesoComboBox.SelectedItem = FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
-            //RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
+            PerfilAccesoComboBox.ClearSelection();
+            PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
+            RolComboBox.ClearSelection();
+            RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
             // ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
 
 
