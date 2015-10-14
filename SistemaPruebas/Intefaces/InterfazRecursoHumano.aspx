@@ -122,7 +122,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxClave" TextMode="Password" CssClass="form-control" MaxLength="12" />
+                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" />
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"
@@ -183,10 +183,11 @@
         <div class="row">
         
         <asp:GridView ID="RH" runat ="server" margin-right ="auto" 
-            margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged"
+             margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged"
              OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
              AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
-             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" >
+             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
+            AutoPostBack ="true">
             
         </asp:GridView>
     </div>  

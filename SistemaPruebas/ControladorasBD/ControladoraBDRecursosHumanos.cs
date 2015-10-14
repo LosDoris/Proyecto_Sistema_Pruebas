@@ -172,7 +172,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT cedula, nombre_completo, usuario FROM Recurso_Humano";
+                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano";
             }
             else if (tipo == 2)
             {

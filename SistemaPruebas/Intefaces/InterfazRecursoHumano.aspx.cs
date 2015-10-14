@@ -28,6 +28,7 @@ namespace SistemaPruebas.Intefaces
                 volverAlOriginal();
             }
             llenarGrid();
+            
         }
 
         protected void Restricciones_Campos()
@@ -49,7 +50,7 @@ namespace SistemaPruebas.Intefaces
             DataTable recursosHumanos = crearTablaRH();
             DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(1, 0); // en consultas tipo 1, no se necesita la cédula
 
-            Object[] datos = new Object[3];
+            Object[] datos = new Object[4];
 
             if (dt.Rows.Count > 0)
             {
@@ -58,6 +59,7 @@ namespace SistemaPruebas.Intefaces
                     datos[0] = dr[0];
                     datos[1] = dr[1];
                     datos[2] = dr[2];
+                    datos[3] = dr[3];
                     recursosHumanos.Rows.Add(datos);
                 }
             }
@@ -66,6 +68,7 @@ namespace SistemaPruebas.Intefaces
                 datos[0] = "-";
                 datos[1] = "-";
                 datos[2] = "-";
+                datos[3] = "-";
                 recursosHumanos.Rows.Add(datos);
             }
             RH.DataSource = recursosHumanos;
@@ -130,10 +133,12 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             //deshabilitarCampos();
             //botonesInicio();
+            BotonRHAceptar.Visible = true;
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
             RH.Enabled = false;
+            // RH.SelectedIndex = -1;
             //RH.ReadOnly = true; 
             TextBoxCedulaRH.Text = "";
             TextBoxNombreRH.Text = "";
@@ -156,7 +161,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
             volverAlOriginal();
-            //modo = 0;
+           // botonesCancelar();
         }
 
         protected void volverAlOriginal()
@@ -175,6 +180,12 @@ namespace SistemaPruebas.Intefaces
             llenarDDRol();
             llenarDDProyecto();
             BotonRHAceptarModificar.Visible = false;
+            BotonRHAceptar.Visible = true;
+            BotonRHAceptarModificar.Enabled = false;
+            BotonRHEliminar.Enabled = false;
+
+
+
 
         }
 
@@ -288,6 +299,7 @@ namespace SistemaPruebas.Intefaces
                     BotonRHEliminar.Enabled = true;
                     BotonRHCancelar.Enabled = false;
                     BotonRHAceptar.Enabled = false;
+                    RH.Enabled = true;
 
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                 }
@@ -400,9 +412,16 @@ namespace SistemaPruebas.Intefaces
             BotonRHCancelar.Enabled = false;
             BotonRHInsertar.Enabled = true;
         }
-        protected void botonesCancelar() //Estado de los botones después de apretar cancelar, 
+        protected void botonesCancelar() //Estado de los botones después de apretar 
+             
         {
-
+            BotonRHInsertar.Enabled = true;
+            if(RH.Rows.Count > 0)
+            {
+                BotonRHModificar.Enabled = true;
+                BotonRHEliminar.Enabled = true;
+            }
+               // RH.Enabled = true;
 
         }
 
@@ -495,10 +514,6 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorModificar.Visible = false;
         }
 
-        /*  protected void _TextChanged(object sender, EventArgs e)
-          {
-
-          }*/
 
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
@@ -552,14 +567,11 @@ namespace SistemaPruebas.Intefaces
         }*/
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
-
+            RH.Enabled = true;
             cedulaConsulta = TextBoxCedulaRH.Text;
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
-
             desactivarErrores();
-
-
             BotonRHAceptarModificar.Enabled = true;
             BotonRHModificar.Enabled = false;
             BotonRHCancelar.Enabled = true;
@@ -569,7 +581,6 @@ namespace SistemaPruebas.Intefaces
             //llenarCampos(dt);
             habilitarCampos();
             PerfilAccesoComboBox.Enabled = false;
-            RH.Enabled = true;
         }
 
         protected DataTable crearTablaRH()
@@ -577,16 +588,17 @@ namespace SistemaPruebas.Intefaces
             DataTable dt = new DataTable();
             dt.Columns.Add("Cedula", typeof(int));
             dt.Columns.Add("Nombre Completo", typeof(String));
-            dt.Columns.Add("Usuario", typeof(String));
+            dt.Columns.Add("Rol", typeof(String));
+            dt.Columns.Add("Id Proyecto");
             return dt;
         }
 
         protected void RH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = RH.SelectedRow.RowIndex;
-            String ced = RH.SelectedRow.Cells[0].Text;
-            int cedula = Convert.ToInt32(ced);
-            llenarDatosRecursoHumano(cedula);
+                int index = RH.SelectedRow.RowIndex;
+                String ced = RH.SelectedRow.Cells[0].Text;
+                int cedula = Convert.ToInt32(ced);
+                llenarDatosRecursoHumano(cedula);
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
         }
 
@@ -594,13 +606,14 @@ namespace SistemaPruebas.Intefaces
         {
             GridView gr = (GridView)sender;
 
-            if (e.Row.RowType == DataControlRowType.DataRow && gr.Enabled == true)
+            if (e.Row.RowType == DataControlRowType.DataRow )
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
+           
         }
 
         protected void BotonRHEliminar_Click(object sender, EventArgs e)
