@@ -109,6 +109,27 @@ namespace SistemaPruebas.Intefaces
             if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
             {
                 RolComboBox.Enabled = false;
+                RolComboBox.Items.Clear();
+                RolComboBox.Items.Add(new ListItem("Administrador"));
+                ProyectoAsociado.Enabled = false;
+
+                //RolComboBox.Items.FindByText("No aplica").Selected = true;
+                //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
+            }
+            else
+            {
+                RolComboBox.Items.Clear();
+                llenarDDRol();
+                RolComboBox.Enabled = true;
+                ProyectoAsociado.Enabled = true;
+            }
+        }/*
+
+        protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            {
+                RolComboBox.Enabled = false;
                 ProyectoAsociado.Enabled = false;
                 //RolComboBox.Items.FindByText("No aplica").Selected = true;
                 //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
@@ -119,7 +140,7 @@ namespace SistemaPruebas.Intefaces
                 ProyectoAsociado.Enabled = true;
             }
         }
-
+        */
         //metodo para llenar dropdown list de los perfiles de acceso
 
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
