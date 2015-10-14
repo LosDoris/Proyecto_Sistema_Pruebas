@@ -18,6 +18,7 @@ namespace SistemaPruebas.Controladoras
         private String perfilAcceso;
         private String proyAsociado;
         private String rol;
+        private int cedulaConsulta;
 
 
 
@@ -33,6 +34,7 @@ namespace SistemaPruebas.Controladoras
             this.perfilAcceso = datos[7].ToString();
             this.proyAsociado = datos[8].ToString();
             this.rol = datos[9].ToString();
+            this.cedulaConsulta = Convert.ToInt32(datos[10].ToString());
         }
 
         public int Cedula
@@ -41,6 +43,12 @@ namespace SistemaPruebas.Controladoras
             set { cedula = value; }
         }
 
+        public int CedulaVieja
+        {
+            get { return cedulaConsulta; }
+            set { cedula = value; }
+
+        }
 
 
         public String Nombre_Completo

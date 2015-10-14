@@ -15,6 +15,7 @@ namespace SistemaPruebas.Controladoras
         public bool usuarioMiembroEquipo(Object[] datos)
         {
             string[] nombresYContrasenas = controladoraBDRecursosHumanos.nombresContrasenas();
+
             if (nombresYContrasenas != null)
             {
                 string nombreIngresado = datos[0].ToString();
@@ -63,8 +64,8 @@ namespace SistemaPruebas.Controladoras
             //datos[0];
 
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
-            controladoraBDRecursosHumanos.modificarRecursoHumanoBD(recursoHumano);
-            return 0;
+            int ret = controladoraBDRecursosHumanos.modificarRecursoHumanoBD(recursoHumano);
+            return ret;
         }
 
         public DataTable consultarRecursoHumano(int tipo, int cedula)

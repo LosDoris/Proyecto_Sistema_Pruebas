@@ -142,10 +142,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public void modificarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
+        public int modificarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
-
-
+            String consulta = "UPDATE Recurso_Humano SET cedula =" + recursoHumano.Cedula + ", nombre_completo = '" + recursoHumano.Nombre_Completo + "', telefono1 = '" + recursoHumano.Tel1 + "', telefono2 = '" + recursoHumano.Tel2 + "', correo_electronico = '" + recursoHumano.Correo + "', usuario = '" + recursoHumano.Usuario + "', contrasenna = '" + recursoHumano.Clave + "', perfil_acceso = '" + recursoHumano.PerfilAcceso + "', rol = '" + recursoHumano.Rol + "', id_proyecto = '" + recursoHumano.ProyAsociado + "' WHERE cedula = " + recursoHumano.CedulaVieja + ";";
+            int ret = acceso.Insertar(consulta);
+            return ret;
 
         }
 

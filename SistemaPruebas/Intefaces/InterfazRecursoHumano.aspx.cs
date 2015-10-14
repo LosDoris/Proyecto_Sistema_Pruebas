@@ -18,6 +18,7 @@ namespace SistemaPruebas.Intefaces
 
         int modo;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
+        static String cedulaConsulta = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,6 +78,8 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
 
+            BotonRHEliminar.Enabled = true;
+            BotonRHModificar.Enabled = true;
 
             TextBoxCedulaRH.Text = dt.Rows[0].ItemArray[0].ToString();
             TextBoxNombreRH.Text = dt.Rows[0].ItemArray[1].ToString();
@@ -89,7 +92,8 @@ namespace SistemaPruebas.Intefaces
             PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
             RolComboBox.ClearSelection();
             RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
-            // ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
+            ProyectoAsociado.ClearSelection();
+            ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
 
 
 
@@ -263,7 +267,7 @@ namespace SistemaPruebas.Intefaces
             {
 
 
-                Object[] datosNuevos = new Object[10];
+                Object[] datosNuevos = new Object[11];
                 datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
                 datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
                 datosNuevos[2] = this.TextBoxTel1.Text;
@@ -274,6 +278,7 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
                 datosNuevos[8] = this.ProyectoAsociado.SelectedValue;
                 datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                datosNuevos[10] = 1;
 
                 if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) == 1)
                 {
@@ -502,9 +507,7 @@ namespace SistemaPruebas.Intefaces
                 //desactivarErrores();
                 if (validarCampos())
                 {
-
-
-                    Object[] datosNuevos = new Object[10];
+                    Object[] datosNuevos = new Object[11];
                     datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
                     datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
                     datosNuevos[2] = this.TextBoxTel1.Text;
@@ -515,8 +518,9 @@ namespace SistemaPruebas.Intefaces
                     datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
                     datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
                     datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                    datosNuevos[10] = cedulaConsulta;
 
-                    if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) != -1)
+                    if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
                     {
                         RH.Enabled = true;
                         deshabilitarCampos();
@@ -526,6 +530,7 @@ namespace SistemaPruebas.Intefaces
                         //habilitar consulta
                         BotonRHCancelar.Enabled = false;
                         BotonRHAceptar.Enabled = false;
+                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     }
                     else
                     {
@@ -547,6 +552,8 @@ namespace SistemaPruebas.Intefaces
         }*/
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
+
+            cedulaConsulta = TextBoxCedulaRH.Text;
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
 
