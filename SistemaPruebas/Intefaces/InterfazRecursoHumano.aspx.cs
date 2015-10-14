@@ -565,6 +565,7 @@ namespace SistemaPruebas.Intefaces
             RH.Enabled = true;
             if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
             {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
                 volverAlOriginal();
             }
             else
