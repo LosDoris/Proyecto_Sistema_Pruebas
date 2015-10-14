@@ -31,7 +31,7 @@
 
                             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonRHModificar" OnClick="BotonRHModificar_Click" />
 
-                            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonRHEliminar" OnClick="BotonRHEliminar_Click" />
+                            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonRHEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"  OnClick="BotonRHEliminar_Click" />
                         </div>
                     </div>
 
@@ -177,7 +177,7 @@
                                 CssClass="btn btn-default" 
                                 ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
                                 />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
+                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
                         </div>
                     </div>
         <div class="row">

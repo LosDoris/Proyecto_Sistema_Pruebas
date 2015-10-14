@@ -150,10 +150,10 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public bool eliminarRecursoHumano(int cedula)
+        public int eliminarRecursoHumanoBD(int cedula)
         {
-            bool regresa = false;
-            if (acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = '" + cedula + "'") == 1)
+            //bool regresa = false;
+            /*if (acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = " + cedula + ";") == 1)
             {
                 regresa = true;
             }
@@ -162,7 +162,8 @@ namespace SistemaPruebas.Controladoras
                 regresa = false;
             }
 
-            return regresa;
+            return regresa;*/
+            return acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = " + cedula + ";");
 
         }
 

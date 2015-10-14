@@ -437,40 +437,6 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             bool todosValidos = true;
 
-            /*Regex cedula = new Regex("[0-9]{1,11}");
-            if (!cedula.IsMatch(TextBoxCedulaRH.Text))
-            {
-                todosValidos = false;
-                CedVal.Visible = true;
-                //poner mensaje de no valido
-            }
-            Regex nomb = new Regex("[a-zA-Z ]{1,49}");
-            if (!nomb.IsMatch(TextBoxNombreRH.Text))
-            {
-                todosValidos = false;
-                NombVal.Visible = true;
-                //poner mensaje de no valido
-            }
-            // Regex tel = new Regex("^[0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9][0 - 9]$");
-            //bool telef1 = (!Regex.IsMatch(TextBoxTel1.Text, "\b[0 - 9.,-] +{8,20}\b", RegexOptions.IgnoreCase));
-            //bool telf2 = (!Regex.IsMatch(TextBoxTel1.Text, @"\A((?:[0-9,-]?){0,29})\Z", RegexOptions.IgnoreCase));
-            Regex tel = new Regex(@"\d[0-9]{8,11}");
-            bool telef1 = cedula.IsMatch(TextBoxTel1.Text);
-            bool telef2 = cedula.IsMatch(TextBoxTel2.Text);
-            if ((TextBoxTel1.Text != "") && (TextBoxTel2.Text != "") && (!telef1 || !telef2))//((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
-            {
-                todosValidos = false;
-                
-                if ((!telef1) && (TextBoxTel1.Text != ""))
-                {
-                    TelVal1.Visible = true;
-                }
-                if ((!telef2) && (TextBoxTel2.Text != ""))
-                {
-                    TelVal2.Visible = true;
-                }
-                //poner mensaje de no valido
-            }*/
             Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
             if ((TextBoxEmail.Text != "") &&
                 (!Regex.IsMatch(TextBoxEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))//emailRE.IsMatch(TextBoxEmail.Text))
@@ -478,24 +444,7 @@ namespace SistemaPruebas.Intefaces
                 todosValidos = false;
                 EmailVal.Visible = true;
                 //poner mensaje de no valido
-            }/*
-            Regex user = new Regex("([a-zA-z0-9,.-_]*){0,29}");
-            Regex clave = new Regex("([a-zA-z0-9,.-_]*){0,12}");
-            if ((!user.IsMatch(TextBoxUsuario.Text)) || (!clave.IsMatch(TextBoxClave.Text)))
-            {
-                todosValidos = false;
-                
-                if ((!user.IsMatch(TextBoxUsuario.Text)))
-                {
-                    UserVal.Visible = true;
-                }
-                if (!clave.IsMatch(TextBoxClave.Text))
-                {
-                    ClaveVal.Visible = true;
-                }
-                //poner mensaje de no valido
             }
-            */
 
             return todosValidos;
         }
@@ -559,12 +508,7 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        /*protected void BotonRHModificar_Click(object sender, EventArgs e)
-        {
-            BotonRHAceptarModificar.Visible = true;
-            BotonRHAceptar.Visible = false;
-            RH.Enabled = true;
-        }*/
+
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
            // RH.Enabled = true;
@@ -619,6 +563,15 @@ namespace SistemaPruebas.Intefaces
         protected void BotonRHEliminar_Click(object sender, EventArgs e)
         {
             RH.Enabled = true;
+            if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
+            {
+                volverAlOriginal();
+            }
+            else
+            {
+                EtiqErrorEliminar.Visible = true;
+            }
+            //this.cedula = Convert.ToInt32(datos[0].ToString());
         }
 
 

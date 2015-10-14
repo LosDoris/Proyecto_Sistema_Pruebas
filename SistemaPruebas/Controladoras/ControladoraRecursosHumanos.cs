@@ -68,6 +68,14 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
+        public int eliminarRecursoHumano(int cedula)
+        {
+            //datos[0];
+            //EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
+            int ret = controladoraBDRecursosHumanos.eliminarRecursoHumanoBD(cedula);
+            return ret;
+        }
+
         public DataTable consultarRecursoHumano(int tipo, int cedula)
         {
             DataTable dt = controladoraBDRecursosHumanos.consultarRecursoHumanoBD(tipo, cedula);
@@ -75,7 +83,7 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public int eliminarRecursoHumano(int cedula)
+        /*public int eliminarRecursoHumano(int cedula)
         {
             int regresa = 0;
             if (controladoraBDRecursosHumanos.eliminarRecursoHumano(cedula))
@@ -87,7 +95,7 @@ namespace SistemaPruebas.Controladoras
                 regresa = 1;
             }
             return regresa;
-        }
+        }*/
 
         public String solicitarProyectos()
         {
