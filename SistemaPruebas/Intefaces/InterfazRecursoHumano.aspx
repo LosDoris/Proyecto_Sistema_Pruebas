@@ -1,8 +1,8 @@
-﻿<%@ Page Title="Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" %>
+﻿<%@ Page Title="Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <h2><%: Title %>.</h2>
-    </b>
+    
 
                        <script type="text/javascript">
                            function solo_numeros(evt) {
@@ -105,10 +105,10 @@
          <div class="col-md-4">
                 <div class="form-horizontal">
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" />
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
                             <asp:requiredfieldvalidator id="Requiredfieldvalidator3"
                                     controltovalidate="TextBoxUsuario"
                                     validationgroup="CamposNoVacios"
@@ -120,10 +120,10 @@
                         </div>
 
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Contraseña</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxClave" TextMode="Password" CssClass="form-control" MaxLength="12" />
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"
                                     validationgroup="CamposNoVacios"
@@ -135,21 +135,21 @@
                         </div>
 
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Tipo de perfil</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Tipo de perfil</asp:Label>
                         <div class="col-md-8">
                             <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Rol</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Rol</asp:Label>
                         <div class="col-md-8">
                                 <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
                         </div>
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
                         <div class="col-md-8">
                             <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control">
                               </asp:DropDownList>
@@ -181,14 +181,13 @@
                         </div>
                     </div>
         <div class="row">
-        <asp:GridView ID="RH" runat="server"  AutoGenerateColumns ="false"  >
-            <Columns>
-                <asp:BoundField DataField ="Nombre" HeaderText = "Nombre"    />
-                <asp:BoundField DataField ="Cedula" HeaderText = "Cedula"/>
-                <asp:BoundField DataField ="Perfil" HeaderText = "Perfil" />
-                <asp:BoundField DataField ="Rol"    HeaderText = "Rol" />
-            </Columns>
-
+        
+        <asp:GridView ID="RH" runat ="server" margin-right ="auto" 
+            margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged"
+             OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
+             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
+             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" >
+            
         </asp:GridView>
     </div>  
 </asp:Content>
