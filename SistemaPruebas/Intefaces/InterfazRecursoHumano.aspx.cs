@@ -137,6 +137,7 @@ namespace SistemaPruebas.Intefaces
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
+            
             // RH.SelectedIndex = -1;
             //RH.ReadOnly = true; 
             TextBoxCedulaRH.Text = "";
@@ -147,10 +148,16 @@ namespace SistemaPruebas.Intefaces
             TextBoxUsuario.Text = "";
             TextBoxClave.Text = "";
 
+            marcarInsertar();
+            
+
         }
+
+        
 
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
+            desmarcarInsertar();
             volverAlOriginal();
            // botonesCancelar();
         }
@@ -217,6 +224,7 @@ namespace SistemaPruebas.Intefaces
                     llenarGrid();
 
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
+                    desmarcarBotones();
                 }
                 else
                 {
@@ -330,6 +338,7 @@ namespace SistemaPruebas.Intefaces
         protected void botonesCancelar() //Estado de los botones después de apretar 
              
         {
+            desmarcarBotones();
             BotonRHInsertar.Enabled = true;
             if(RH.Rows.Count > 0)
             {
@@ -399,6 +408,7 @@ namespace SistemaPruebas.Intefaces
 
                     if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
                     {
+                        desmarcarBotones();
                         RH.Enabled = true;
                         deshabilitarCampos();
                         BotonRHInsertar.Enabled = true;
@@ -424,6 +434,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
+            marcarModificar();
            // RH.Enabled = true;
             cedulaConsulta = TextBoxCedulaRH.Text;
             BotonRHAceptarModificar.Visible = true;
@@ -476,6 +487,7 @@ namespace SistemaPruebas.Intefaces
             RH.Enabled = true;
             if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
             {
+                //marcarEliminar();
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
                 volverAlOriginal();
             }
@@ -509,6 +521,50 @@ namespace SistemaPruebas.Intefaces
 
             return ids;
 
+        }
+
+        protected void marcarInsertar()
+        {
+            BotonRHInsertar.BorderColor = System.Drawing.Color.Black;
+            BotonRHInsertar.BackColor = System.Drawing.Color.Black;
+            BotonRHInsertar.ForeColor = System.Drawing.Color.White;
+        }
+        protected void desmarcarInsertar()
+        {
+            BotonRHInsertar.BorderColor = System.Drawing.Color.LightGray;
+            BotonRHInsertar.BackColor = System.Drawing.Color.White;
+            BotonRHInsertar.ForeColor = System.Drawing.Color.Black;
+        }
+        protected void marcarModificar()
+        {
+
+            BotonRHModificar.BorderColor = System.Drawing.Color.Black;
+            BotonRHModificar.BackColor = System.Drawing.Color.Black;
+            BotonRHModificar.ForeColor = System.Drawing.Color.White;
+        }
+        protected void desmarcarModificar()
+        {
+            BotonRHModificar.BorderColor = System.Drawing.Color.LightGray;
+            BotonRHModificar.BackColor = System.Drawing.Color.White;
+            BotonRHModificar.ForeColor = System.Drawing.Color.Black;
+        }
+        protected void marcarEliminar()
+        {
+            BotonRHEliminar.BorderColor = System.Drawing.Color.Black;
+            BotonRHEliminar.BackColor = System.Drawing.Color.Black;
+            BotonRHEliminar.ForeColor = System.Drawing.Color.White;
+        }
+        protected void desmarcarEliminar()
+        {
+            BotonRHEliminar.BorderColor = System.Drawing.Color.LightGray;
+            BotonRHEliminar.BackColor = System.Drawing.Color.White;
+            BotonRHEliminar.ForeColor = System.Drawing.Color.Black;
+        }
+        protected void desmarcarBotones()
+        {
+            desmarcarInsertar();
+            desmarcarModificar();
+            desmarcarEliminar();
         }
     }
 }
