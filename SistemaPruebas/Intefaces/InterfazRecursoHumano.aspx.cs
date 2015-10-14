@@ -125,7 +125,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
         {
             //Etiqueta1.Visible = false;
-            modo = 1;
+            RH.Enabled = false;
             habilitarCampos();
             llenarDDPerfil();
             llenarDDRol();
@@ -137,7 +137,6 @@ namespace SistemaPruebas.Intefaces
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
-            RH.Enabled = false;
             // RH.SelectedIndex = -1;
             //RH.ReadOnly = true; 
             TextBoxCedulaRH.Text = "";
@@ -300,6 +299,7 @@ namespace SistemaPruebas.Intefaces
                     BotonRHCancelar.Enabled = false;
                     BotonRHAceptar.Enabled = false;
                     RH.Enabled = true;
+                    llenarGrid();
 
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                 }
@@ -567,7 +567,7 @@ namespace SistemaPruebas.Intefaces
         }*/
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
-            RH.Enabled = true;
+           // RH.Enabled = true;
             cedulaConsulta = TextBoxCedulaRH.Text;
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
@@ -606,7 +606,7 @@ namespace SistemaPruebas.Intefaces
         {
             GridView gr = (GridView)sender;
 
-            if (e.Row.RowType == DataControlRowType.DataRow )
+            if (e.Row.RowType == DataControlRowType.DataRow && RH.Enabled == true)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
@@ -628,5 +628,22 @@ namespace SistemaPruebas.Intefaces
             this.llenarGrid();
         }
 
+        protected Object[] nombresProyectoGrid()
+        {
+            String proyectos = controladoraRecursosHumanos.solicitarProyectos();
+            Object[] ids = null;
+            String [] p = proyectos.Split(';');
+
+            int i = 0;
+            foreach (String p1 in p)
+            {
+                i++;
+                String[] p2 = p1.Split(' ');
+                ids[i] = p2[1];
+            }
+
+            return ids;
+
+        }
     }
 }
