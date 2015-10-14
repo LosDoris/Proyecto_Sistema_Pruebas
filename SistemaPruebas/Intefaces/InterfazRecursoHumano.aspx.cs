@@ -17,7 +17,7 @@ namespace SistemaPruebas.Intefaces
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
         int modo;  //Numero para identificar accion del boton Aceptar
-                   //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
+        //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,16 +25,16 @@ namespace SistemaPruebas.Intefaces
             if (!IsPostBack)
             {
                 volverAlOriginal();
-                //modo = 0;
             }
+            llenarGrid();
         }
 
         protected void Restricciones_Campos()
         {
-            
 
-            UserName.MaxLength = 9;
-            Password.MaxLength = 50;
+
+            TextBoxCedulaRH.MaxLength = 9;
+            TextBoxNombreRH.MaxLength = 50;
             TextBoxEmail.MaxLength = 30;
             TextBoxTel1.MaxLength = 8;
             TextBoxTel2.MaxLength = 8;
@@ -45,9 +45,55 @@ namespace SistemaPruebas.Intefaces
 
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
-            // RH.SelectedRow.
+            DataTable recursosHumanos = crearTablaRH();
+            DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(1, 0); // en consultas tipo 1, no se necesita la cédula
+
+            Object[] datos = new Object[3];
+
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    recursosHumanos.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                recursosHumanos.Rows.Add(datos);
+            }
+            RH.DataSource = recursosHumanos;
+            RH.DataBind();
+
         }
 
+
+        void llenarDatosRecursoHumano(int cedula)
+        {
+            DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
+
+
+            TextBoxCedulaRH.Text = dt.Rows[0].ItemArray[0].ToString();
+            TextBoxNombreRH.Text = dt.Rows[0].ItemArray[1].ToString();
+            TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
+            TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
+            TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
+            TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
+            TextBoxClave.Text = dt.Rows[0].ItemArray[6].ToString();
+            //PerfilAccesoComboBox.SelectedItem = FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
+            //RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
+            // ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
+
+
+
+            //Response.Write(dt.Rows.Co)
+
+        }
 
         protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -55,6 +101,8 @@ namespace SistemaPruebas.Intefaces
             {
                 RolComboBox.Enabled = false;
                 ProyectoAsociado.Enabled = false;
+                //RolComboBox.Items.FindByText("No aplica").Selected = true;
+                //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
             }
             else
             {
@@ -79,8 +127,10 @@ namespace SistemaPruebas.Intefaces
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
-            UserName.Text = "";
-            Password.Text = "";
+            RH.Enabled = false;
+            //RH.ReadOnly = true; 
+            TextBoxCedulaRH.Text = "";
+            TextBoxNombreRH.Text = "";
             TextBoxEmail.Text = "";
             TextBoxTel1.Text = "";
             TextBoxTel2.Text = "";
@@ -108,8 +158,8 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            UserName.Text = ".";
-            Password.Text = ".";
+            TextBoxCedulaRH.Text = ".";
+            TextBoxNombreRH.Text = ".";
             TextBoxEmail.Text = "";
             TextBoxTel1.Text = "";
             TextBoxTel2.Text = "";
@@ -212,8 +262,8 @@ namespace SistemaPruebas.Intefaces
 
 
                 Object[] datosNuevos = new Object[10];
-                datosNuevos[0] = this.UserName.Text;//cedula
-                datosNuevos[1] = this.Password.Text;//nombre
+                datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
+                datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
                 datosNuevos[2] = this.TextBoxTel1.Text;
                 datosNuevos[3] = this.TextBoxTel2.Text;
                 datosNuevos[4] = this.TextBoxEmail.Text;
@@ -251,17 +301,20 @@ namespace SistemaPruebas.Intefaces
 
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Write("lkjlkjl");
+            // Response.Write("lkjlkjl");
         }
 
 
         protected void llenarDDProyecto()
         {
-            String proyectos = controladoraRecursosHumanos.solicitarProyectos();
 
+            this.ProyectoAsociado.Items.Clear();
+            this.ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
+
+            String proyectos = controladoraRecursosHumanos.solicitarProyectos();
             String[] pr = proyectos.Split(';');
 
-            foreach(String p1 in pr)
+            foreach (String p1 in pr)
             {
                 String[] p2 = p1.Split(' ');
                 this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
@@ -287,7 +340,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarDDRol()
         {
             this.RolComboBox.Items.Clear();
-            string[] tipos = new string[] { "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
+            string[] tipos = new string[] { "No aplica", "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
 
             // Object[] roles = new Object[tipos.Length];
 
@@ -305,10 +358,12 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel1.Enabled = true;
             TextBoxTel2.Enabled = true;
             TextBoxUsuario.Enabled = true;
-            UserName.Enabled = true;
-            Password.Enabled = true;
+            RH.Enabled = true;
+            TextBoxCedulaRH.Enabled = true;
+            TextBoxNombreRH.Enabled = true;
             RolComboBox.Enabled = true;
             PerfilAccesoComboBox.Enabled = true;
+            ProyectoAsociado.Enabled = true;
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
         }
@@ -320,12 +375,14 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel1.Enabled = false;
             TextBoxTel2.Enabled = false;
             TextBoxUsuario.Enabled = false;
-            UserName.Enabled = false;
-            Password.Enabled = false;
+            TextBoxCedulaRH.Enabled = false;
+            TextBoxNombreRH.Enabled = false;
             RolComboBox.Enabled = false;
             PerfilAccesoComboBox.Enabled = false;
+            ProyectoAsociado.Enabled = false;
             BotonRHAceptar.Enabled = false;
             BotonRHCancelar.Enabled = false;
+            //RH.Enabled = false;
         }
 
         protected void botonesInicio()
@@ -336,6 +393,12 @@ namespace SistemaPruebas.Intefaces
             BotonRHCancelar.Enabled = false;
             BotonRHInsertar.Enabled = true;
         }
+        protected void botonesCancelar() //Estado de los botones después de apretar cancelar, 
+        {
+
+
+        }
+
         protected void habilitarBotonesME()
         {
             BotonRHEliminar.Enabled = true;
@@ -348,15 +411,15 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             bool todosValidos = true;
 
-            Regex cedula = new Regex("[0-9]{1,11}");
-            if (!cedula.IsMatch(UserName.Text))
+            /*Regex cedula = new Regex("[0-9]{1,11}");
+            if (!cedula.IsMatch(TextBoxCedulaRH.Text))
             {
                 todosValidos = false;
                 CedVal.Visible = true;
                 //poner mensaje de no valido
             }
             Regex nomb = new Regex("[a-zA-Z ]{1,49}");
-            if (!nomb.IsMatch(Password.Text))
+            if (!nomb.IsMatch(TextBoxNombreRH.Text))
             {
                 todosValidos = false;
                 NombVal.Visible = true;
@@ -366,20 +429,22 @@ namespace SistemaPruebas.Intefaces
             //bool telef1 = (!Regex.IsMatch(TextBoxTel1.Text, "\b[0 - 9.,-] +{8,20}\b", RegexOptions.IgnoreCase));
             //bool telf2 = (!Regex.IsMatch(TextBoxTel1.Text, @"\A((?:[0-9,-]?){0,29})\Z", RegexOptions.IgnoreCase));
             Regex tel = new Regex(@"\d[0-9]{8,11}");
-            bool telef1 = tel.IsMatch(TextBoxTel1.Text);
-            bool telef2 = tel.IsMatch(TextBoxTel2.Text);
-            if ((TextBoxTel1.Text != "") && (TextBoxTel2.Text != "")&&(!telef1||!telef2))//((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
-              {
-                  todosValidos = false;
-                  if (telef1)
-                  {
-                      TelVal1.Visible = true;
-                  }
-                  else {
-                      TelVal2.Visible = true;
-                  }
-                  //poner mensaje de no valido
-              }
+            bool telef1 = cedula.IsMatch(TextBoxTel1.Text);
+            bool telef2 = cedula.IsMatch(TextBoxTel2.Text);
+            if ((TextBoxTel1.Text != "") && (TextBoxTel2.Text != "") && (!telef1 || !telef2))//((!tel.IsMatch(TextBoxTel1.Text)) || (!tel.IsMatch(TextBoxTel2.Text)))
+            {
+                todosValidos = false;
+                
+                if ((!telef1) && (TextBoxTel1.Text != ""))
+                {
+                    TelVal1.Visible = true;
+                }
+                if ((!telef2) && (TextBoxTel2.Text != ""))
+                {
+                    TelVal2.Visible = true;
+                }
+                //poner mensaje de no valido
+            }*/
             Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
             if ((TextBoxEmail.Text != "") &&
                 (!Regex.IsMatch(TextBoxEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))//emailRE.IsMatch(TextBoxEmail.Text))
@@ -387,29 +452,24 @@ namespace SistemaPruebas.Intefaces
                 todosValidos = false;
                 EmailVal.Visible = true;
                 //poner mensaje de no valido
-            }
+            }/*
             Regex user = new Regex("([a-zA-z0-9,.-_]*){0,29}");
             Regex clave = new Regex("([a-zA-z0-9,.-_]*){0,12}");
             if ((!user.IsMatch(TextBoxUsuario.Text)) || (!clave.IsMatch(TextBoxClave.Text)))
             {
                 todosValidos = false;
+                
                 if ((!user.IsMatch(TextBoxUsuario.Text)))
                 {
                     UserVal.Visible = true;
                 }
-                else
+                if (!clave.IsMatch(TextBoxClave.Text))
                 {
                     ClaveVal.Visible = true;
                 }
                 //poner mensaje de no valido
             }
-            /*    if (todosValidos == true)
-                {
-                    EtiqErrorInsertar.Visible = true;
-                }
-                else {
-                    EtiqErrorModificar.Visible = true;
-                }*/
+            */
 
             return todosValidos;
         }
@@ -428,10 +488,10 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorModificar.Visible = false;
         }
 
-        protected void UserName_TextChanged(object sender, EventArgs e)
-        {
+        /*  protected void _TextChanged(object sender, EventArgs e)
+          {
 
-        }
+          }*/
 
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
@@ -443,8 +503,8 @@ namespace SistemaPruebas.Intefaces
 
 
                     Object[] datosNuevos = new Object[10];
-                    datosNuevos[0] = this.UserName.Text;//cedula
-                    datosNuevos[1] = this.Password.Text;//nombre
+                    datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
+                    datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
                     datosNuevos[2] = this.TextBoxTel1.Text;
                     datosNuevos[3] = this.TextBoxTel2.Text;
                     datosNuevos[4] = this.TextBoxEmail.Text;
@@ -456,6 +516,7 @@ namespace SistemaPruebas.Intefaces
 
                     if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) != -1)
                     {
+                        RH.Enabled = true;
                         deshabilitarCampos();
                         BotonRHInsertar.Enabled = true;
                         BotonRHModificar.Enabled = true;
@@ -476,16 +537,74 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*protected void BotonRHModificar_Click(object sender, EventArgs e)
+        {
+            BotonRHAceptarModificar.Visible = true;
+            BotonRHAceptar.Visible = false;
+            RH.Enabled = true;
+        }*/
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
+
+            desactivarErrores();
+
+
+            BotonRHAceptarModificar.Enabled = true;
+            BotonRHModificar.Enabled = false;
+            BotonRHCancelar.Enabled = true;
+            BotonRHInsertar.Enabled = false;
+            BotonRHEliminar.Enabled = false;
+            //DataTable dt = new DataTable();//hacer la cosulta de la persona
+            //llenarCampos(dt);
+            habilitarCampos();
+            PerfilAccesoComboBox.Enabled = false;
+            RH.Enabled = true;
+        }
+
+        protected DataTable crearTablaRH()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Cedula", typeof(int));
+            dt.Columns.Add("Nombre Completo", typeof(String));
+            dt.Columns.Add("Usuario", typeof(String));
+            return dt;
+        }
+
+        protected void RH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = RH.SelectedRow.RowIndex;
+            String ced = RH.SelectedRow.Cells[0].Text;
+            int cedula = Convert.ToInt32(ced);
+            llenarDatosRecursoHumano(cedula);
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
+        }
+
+        protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            GridView gr = (GridView)sender;
+
+            if (e.Row.RowType == DataControlRowType.DataRow && gr.Enabled == true)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
         }
 
         protected void BotonRHEliminar_Click(object sender, EventArgs e)
         {
-            BotonRHEliminar.Visible = true;
-            BotonRHAceptar.Visible = false;
+            RH.Enabled = true;
         }
+
+
+        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            RH.PageIndex = e.NewPageIndex;
+            this.llenarGrid();
+        }
+
     }
 }

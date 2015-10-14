@@ -4,13 +4,13 @@
      <h2><%: Title %>.</h2>
     </b>
 
-                            <script type="text/javascript">
-                                function solo_numeros(evt) {
-                                    if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
-                                        alert("Sólo se permite números");
-                                        return false;
-                                    }
-                                }
+                       <script type="text/javascript">
+                           function solo_numeros(evt) {
+                               if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
+                                   alert("Sólo se permite números");
+                                   return false;
+                               }
+                           }
                         </script>
 
                         <script type="text/javascript">
@@ -22,9 +22,9 @@
                             }
                         </script>
 
-    <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
-    <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
-        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
+    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
+    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
+        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
                     <div class="form-group">
                         <div class="col-md-offset-10 col-md-12">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonRHInsertar" OnClick="BotonRHInsertar_Click"  />
@@ -47,13 +47,13 @@
                     </asp:PlaceHolder>
 
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
-                        <div class="col-md-10">
-                            
-                            <asp:TextBox runat="server" ID="UserName" CssClass="form-control" MaxLength="10" OnTextChanged="UserName_TextChanged" onkeypress="return solo_numeros(event)">.</asp:TextBox>
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
+                        <div class="col-md-10">                           
+  
+                            <asp:TextBox runat="server" ID="TextBoxCedulaRH" CssClass="form-control" MaxLength="10" onkeypress="return solo_numeros(event)">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
-                                    controltovalidate="UserName"
+                                    controltovalidate="TextBoxCedulaRH"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Cédula es obligatorio."
@@ -62,12 +62,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="NombVal" >*En este campo solo se permiten letras y espacios</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxNombreRH" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
-                                    controltovalidate="Password"
+                                    controltovalidate="TextBoxNombreRH"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Nombre es obligatorio."
@@ -76,30 +76,30 @@
                         </div>
                     </div>
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" onkeypress="return solo_numeros(event)"/>
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="return solo_numeros(event)" />
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
 
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)"/>
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)" />
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
 
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Email:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="TextBoxEmail" CssClass="form-control" MaxLength="30" />
-                            <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
                             </div>
                         </div>         
                     </div>
-                </div>
+                 </div>
                 
                     <h4>Datos del Perfil</h4>
          <div class="col-md-4">
@@ -109,7 +109,7 @@
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" />
                             <asp:Label runat="server" AssociatedControlID="UserName" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
-                            <asp:requiredfieldvalidator id="Requiredfieldvalidator2"
+                            <asp:requiredfieldvalidator id="Requiredfieldvalidator3"
                                     controltovalidate="TextBoxUsuario"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
@@ -180,7 +180,7 @@
                             <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" />
                         </div>
                     </div>
-    <div class="row">
+        <div class="row">
         <asp:GridView ID="RH" runat="server"  AutoGenerateColumns ="false"  >
             <Columns>
                 <asp:BoundField DataField ="Nombre" HeaderText = "Nombre"    />

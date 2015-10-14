@@ -136,7 +136,7 @@ namespace SistemaPruebas.Controladoras
 
         public int insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
-            String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto) values(" + recursoHumano.Cedula + "','" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado + ")";
+            String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto) values(" + recursoHumano.Cedula + ",'" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado + ")";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -167,8 +167,20 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRecursoHumanoBD(int tipo, int cedula)
         {
-            String consulta = "SELECT cedula, nombre_completo, usuario FROM Recurso_Humano";
-            DataTable dt = acceso.ejecutarConsultaTabla(consulta);
+            DataTable dt = null;
+            String consulta = "";
+            if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
+            {
+                consulta = "SELECT cedula, nombre_completo, usuario FROM Recurso_Humano";
+            }
+            else if (tipo == 2)
+            {
+                consulta = "SELECT cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto FROM Recurso_Humano WHERE cedula =" + cedula;
+                // dt = acceso.ejecutarConsultaTabla(consulta);
+            }
+
+            dt = acceso.ejecutarConsultaTabla(consulta);
+
             return dt;
 
         }
