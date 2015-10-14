@@ -178,7 +178,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
-            desmarcarInsertar();
+            desmarcarBotones();
             volverAlOriginal();
            // botonesCancelar();
         }
