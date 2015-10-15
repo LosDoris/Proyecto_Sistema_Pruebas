@@ -159,9 +159,8 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel2.Text = "";
             TextBoxUsuario.Text = "";
             TextBoxClave.Text = "";
-            RH.Enabled = false;
             marcarInsertar();
-            deshabilitarGrid();
+           // deshabilitarGrid();
         }
 
         
@@ -455,7 +454,6 @@ namespace SistemaPruebas.Intefaces
             BotonRHInsertar.Enabled = false;
             BotonRHEliminar.Enabled = false;
             habilitarCampos();
-            RH.Enabled = false;
             PerfilAccesoComboBox.Enabled = false;
             deshabilitarGrid();
         }
@@ -476,23 +474,25 @@ namespace SistemaPruebas.Intefaces
                 String ced = RH.SelectedRow.Cells[0].Text;
                 int cedula = Convert.ToInt32(ced);
                 llenarDatosRecursoHumano(cedula);
+                habilitarGrid();
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
         }
 
 
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {   
+            /*
             
-            if(RH.Enabled == true)
+            */
+           
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
-                    e.Row.Attributes["onmouseout"]  = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
-                    e.Row.Attributes["onclick"]     =  Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
-                    e.Row.Attributes["style"]       = "cursor:pointer";
-                }
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"]  = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                e.Row.Attributes["onclick"]     =  Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"]       = "cursor:pointer";
             }
+            
             
         }
 
@@ -583,16 +583,19 @@ namespace SistemaPruebas.Intefaces
 
         protected void deshabilitarGrid()
         {
+            RH.Enabled = false;
             foreach(GridViewRow row in RH.Rows)
             {
                 row.Attributes.Remove("onclick");
                 row.Attributes.Remove("onmouseover");
                 row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
             }
         }
 
         protected void habilitarGrid()
         {
+            RH.Enabled = true;
             foreach (GridViewRow row in RH.Rows)
             {
                 row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + row.RowIndex);
