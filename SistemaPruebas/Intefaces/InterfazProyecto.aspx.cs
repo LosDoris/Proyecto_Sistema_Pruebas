@@ -12,6 +12,7 @@ namespace SistemaPruebas.Intefaces
     {
         private static int id_Proyecto = -1;
         private static int button = 0;
+        private static bool adm = true;
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,8 +47,6 @@ namespace SistemaPruebas.Intefaces
             tel_rep.Enabled = true;
             of_rep.Enabled = true;
             //datepicker.Disabled = false;
-
-
         }
         protected void Deshabilitar_Campos()
         {
@@ -95,23 +94,20 @@ namespace SistemaPruebas.Intefaces
                             {
                                 Console.WriteLine("Insertar");
                                 string text = "";//= txtDate.Text;
-                                object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
-                                
+                                object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };                                
                                 int a = controladoraProyecto.IngresaProyecto(datos);
                                 if (a == 1)
                                 {
                                     id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text);
                                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
-
                                 }
 
                                 else
                                 {
                                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-
                                 }
-
                                 Deshabilitar_Campos();
+                                gridProyecto.Enabled = true;
                                 EnabledButtons();
                             }
                         }
@@ -121,21 +117,19 @@ namespace SistemaPruebas.Intefaces
                             Console.WriteLine("Modificar");
                             string text = "";//= txtDate.Text;
                             object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
-
                             int a = controladoraProyecto.ActualizarProyecto(datos);
                             if (a == 1)
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
-
                             }
 
                             else
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-
                             }
                             controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 0);
                             Deshabilitar_Campos();
+                            gridProyecto.Enabled = true;
                             EnabledButtons();
 
                         }
@@ -149,13 +143,11 @@ namespace SistemaPruebas.Intefaces
                             if (a == 1)
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
-
                             }
 
                             else
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-
                             }
 
                             Limpiar_Campos();
@@ -173,6 +165,7 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.Enabled = true;
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue("1");
+            controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 0);
         }
         //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         //{
@@ -237,36 +230,44 @@ namespace SistemaPruebas.Intefaces
             this.of_rep.Text = entidadP.Oficina_representante;
         }
 
-        protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
-        {
-            if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
-            {
-                Modificar.Enabled = true;
-                Eliminar.Enabled = true;
-                Insertar.Enabled = false;
-                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-                id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
-                Llenar_Datos_Conultados(id_Proyecto);
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
-                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-                id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
-                Llenar_Datos_Conultados(id_Proyecto);
-                cancelar.Enabled = true;                
-            }
-        }
+        //protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
+        //    {
+        //        Modificar.Enabled = true;
+        //        Eliminar.Enabled = true;
+        //        Insertar.Enabled = false;
+        //        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+        //        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
+        //        Llenar_Datos_Conultados(id_Proyecto);
+        //    }
+        //    else
+        //    {
+        //        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
+        //        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+        //        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
+        //        Llenar_Datos_Conultados(id_Proyecto);
+        //        cancelar.Enabled = true;                
+        //    }
+        //}
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
-            controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 1);
-            button = 2;
-            Habilitar_Campos();
-            UnenabledButtons();
-            gridProyecto.Enabled = false;
-            aceptar.Enabled = true;
-            cancelar.Enabled = true;      
+            if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
+            {
+                controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 1);
+                button = 2;
+                Habilitar_Campos();
+                UnenabledButtons();
+                gridProyecto.Enabled = false;
+                aceptar.Enabled = true;
+                cancelar.Enabled = true;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso');", true);
+
+            }
     
         }
 
