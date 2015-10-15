@@ -23,6 +23,7 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
             llenarGrid();
+           
 
         }
         protected void Restricciones_Campos()
@@ -275,6 +276,12 @@ namespace SistemaPruebas.Intefaces
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridProyecto.PageIndex = e.NewPageIndex;
+            this.llenarGrid();
         }
     }
 }

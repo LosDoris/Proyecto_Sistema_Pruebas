@@ -138,7 +138,7 @@
     <div id="tablaProyectos" class="col-md-offset-4">
 
         <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333"
-            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="15px">
+            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="15px" AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5" HorizontalAlign="Center" so>
             <Columns>
                 <asp:BoundField DataField="Id Proyecto" HeaderText=" Id Proyecto" ItemStyle-Width="160" />
                 <asp:TemplateField HeaderText=" Nombre del sistema" ItemStyle-Width="160">

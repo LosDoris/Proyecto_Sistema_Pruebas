@@ -76,7 +76,7 @@ namespace SistemaPruebas.Controladoras
         public DataTable ConsultarProyectoIdNombre()
         {
             DataTable dt = new DataTable();
-            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto");
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto ORDER BY id_proyecto");
             return dt;
         }       
 
