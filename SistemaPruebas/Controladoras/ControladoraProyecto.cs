@@ -9,10 +9,12 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraProyecto
     {
         ControladoraBDProyecto controlBD;
+        ControladoraRecursosHumanos controlRH;
         public ControladoraProyecto()
         {
             controlBD = new ControladoraBDProyecto();
         }
+      
         public List<string> ConsultarRHSinProyecto()
         {
             List<String> listaNombre = new List<string>();
@@ -63,8 +65,22 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable ConsultarProyectoIdNombre()
         {
-            return controlBD.ConsultarProyectoIdNombre();
-
+            controlRH = new ControladoraRecursosHumanos();
+            int id = controlRH.proyectosDelLoggeado();
+            if (id == 0)
+            {
+                return controlBD.ConsultarProyectoIdNombre();
+            }
+            else
+            {
+                return controlBD.ConsultarProyectoIdNombre(id);
+            }            
+        }
+        public int ConsultarIdProyectoPorNombre(string nombre)
+        {
+            int retorno = -1;
+            controlBD.ConsultarProyectoIdPorNombre(nombre);
+            return retorno;
         }
 
         //public List<string> ConsultarIdProyecto()
@@ -76,6 +92,15 @@ namespace SistemaPruebas.Controladoras
         {
             int retorno = controlBD.EliminarProyecto(id);
             return retorno;
+        }
+        public int ConsultarUsoProyecto(int id)
+        {
+            return controlBD.ConsultarUsoProyecto(id);
+        }
+
+        public void UpdateUsoProyecto(int id, int use)
+        {
+             controlBD.UpdateUsoProyecto(id, use);
         }
 
 

@@ -75,10 +75,12 @@ namespace SistemaPruebas.Intefaces
         protected void Insertar_button(object sender, EventArgs e)
         {
             button = 1;
+            Limpiar_Campos();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
             gridProyecto.Enabled = false;
             Habilitar_Campos();
+            UnenabledButtons();
 
         }
         protected void aceptar_Click(object sender, EventArgs e)
@@ -94,10 +96,11 @@ namespace SistemaPruebas.Intefaces
                                 Console.WriteLine("Insertar");
                                 string text = "";//= txtDate.Text;
                                 object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
-
+                                
                                 int a = controladoraProyecto.IngresaProyecto(datos);
                                 if (a == 1)
                                 {
+                                    id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text);
                                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
 
                                 }
@@ -108,7 +111,8 @@ namespace SistemaPruebas.Intefaces
 
                                 }
 
-                                Limpiar_Campos();
+                                Deshabilitar_Campos();
+                                EnabledButtons();
                             }
                         }
                         break;
@@ -130,8 +134,9 @@ namespace SistemaPruebas.Intefaces
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
 
                             }
-
-                            Limpiar_Campos();
+                            controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 0);
+                            Deshabilitar_Campos();
+                            EnabledButtons();
 
                         }
                         break;
@@ -166,6 +171,8 @@ namespace SistemaPruebas.Intefaces
             aceptar.Enabled = false;
             cancelar.Enabled = false;
             gridProyecto.Enabled = true;
+            estado.ClearSelection();
+            ListItem selectedListItem = estado.Items.FindByValue("1");
         }
         //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         //{
@@ -232,29 +239,41 @@ namespace SistemaPruebas.Intefaces
 
         protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
         {
-            Modificar.Enabled = true;
-            Eliminar.Enabled = true;
-            Insertar.Enabled = false;
-            GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-            id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
-            Llenar_Datos_Conultados(id_Proyecto);
-
+            if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
+            {
+                Modificar.Enabled = true;
+                Eliminar.Enabled = true;
+                Insertar.Enabled = false;
+                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+                id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
+                Llenar_Datos_Conultados(id_Proyecto);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
+                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
+                id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
+                Llenar_Datos_Conultados(id_Proyecto);
+                cancelar.Enabled = true;                
+            }
         }
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
+            controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 1);
             button = 2;
             Habilitar_Campos();
+            UnenabledButtons();
             gridProyecto.Enabled = false;
             aceptar.Enabled = true;
-            cancelar.Enabled = true;
-           
-
+            cancelar.Enabled = true;      
+    
         }
 
         protected void Eliminar_Click(object sender, EventArgs e)
         {
             button = 3;
+            UnenabledButtons();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
         }
@@ -262,6 +281,8 @@ namespace SistemaPruebas.Intefaces
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             //Accessing BoundField Column
+             if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
+            {
             try
             {
                 id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
@@ -276,6 +297,19 @@ namespace SistemaPruebas.Intefaces
             {
                 Console.WriteLine(ex);
             }
+            }
+             else
+             {
+                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
+                 id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
+                 Llenar_Datos_Conultados(id_Proyecto);
+                 //Modificar.Enabled = true;
+                 //Eliminar.Enabled = true;
+                 aceptar.Enabled = true;
+                 cancelar.Enabled = true;
+                 Insertar.Enabled = false;
+             }
+
         }
 
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -283,5 +317,18 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.PageIndex = e.NewPageIndex;
             this.llenarGrid();
         }
+        protected void EnabledButtons()
+        {
+            Modificar.Enabled = true;
+            Eliminar.Enabled = true;
+            Insertar.Enabled = true;
+        }
+        protected void UnenabledButtons()
+        {
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;
+            Insertar.Enabled = false;
+        }
+
     }
 }

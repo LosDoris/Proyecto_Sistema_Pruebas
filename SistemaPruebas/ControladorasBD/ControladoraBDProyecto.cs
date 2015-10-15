@@ -78,7 +78,20 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = new DataTable();
             dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto ORDER BY id_proyecto");
             return dt;
-        }       
+        }
+        public DataTable ConsultarProyectoIdNombre(int id_Proyecto)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto where id_proyecto = " + id_Proyecto + " ORDER BY id_proyecto");
+            return dt;
+        }
+        public int ConsultarProyectoIdPorNombre(string nombre)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto from proyecto where nombre_sistema = '"+nombre+"'");
+            return Int32.Parse(dt.Rows[0][0].ToString());
+        }
+
 
         public int EliminarProyecto(string id)
         {
@@ -113,6 +126,17 @@ namespace SistemaPruebas.Controladoras
                 return acceso_BD.Insertar_Proced_Almacenado(comando);
 
             }
+        }
+
+        public int ConsultarUsoProyecto(int id)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select Use from proyecto where id_proyecto =" + id);
+            return Int32.Parse(dt.Rows[0][0].ToString());
+        }
+        public int UpdateUsoProyecto(int id, int use)
+        {
+            return acceso_BD.EliminarProyecto("update Proyecto set Uso = "+use+" where id_proyecto =" + id);            
         }
     }
 }
