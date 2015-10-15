@@ -131,7 +131,7 @@ namespace SistemaPruebas.Controladoras
         public int ConsultarUsoProyecto(int id)
         {
             DataTable dt = new DataTable();
-            dt = acceso_BD.ejecutarConsultaTabla("select Use from proyecto where id_proyecto =" + id);
+            dt = acceso_BD.ejecutarConsultaTabla("select Uso from proyecto where id_proyecto =" + id);
             return Int32.Parse(dt.Rows[0][0].ToString());
         }
         public int UpdateUsoProyecto(int id, int use)

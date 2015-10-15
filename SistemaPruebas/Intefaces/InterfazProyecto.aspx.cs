@@ -305,7 +305,7 @@ namespace SistemaPruebas.Intefaces
                  Llenar_Datos_Conultados(id_Proyecto);
                  //Modificar.Enabled = true;
                  //Eliminar.Enabled = true;
-                 aceptar.Enabled = true;
+                 //aceptar.Enabled = true;
                  cancelar.Enabled = true;
                  Insertar.Enabled = false;
              }
