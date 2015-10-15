@@ -187,7 +187,7 @@
              OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
              AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
              HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
-            AutoPostBack ="true">
+            AutoPostBack ="true" >
             
         </asp:GridView>
     </div>  
