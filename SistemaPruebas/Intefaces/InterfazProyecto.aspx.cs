@@ -39,6 +39,12 @@ namespace SistemaPruebas.Intefaces
             obj_general.Rows = 5;
 
         }
+
+            //        Habilitar_Campos(); 
+            //Requiere: El usuario ha presionado el botón de Insertar dentro de la pestaña de Proyecto
+            //Modifica: Habilita  y despliega los campos de Nombre del Sistema, Objetivo General, Fecha de asignación, estado, Nombre de Oficina Usuaria, Teléfonos Oficina Usuaria, Representante, Líder de proyecto, botones de: asignar recurso, des-asignar recurso, aceptar, cancelar.
+            //Retorna: N/A.
+
         protected void Habilitar_Campos()
         {
             nombre_proyecto.Enabled = true;
