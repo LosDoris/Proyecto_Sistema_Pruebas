@@ -103,6 +103,11 @@ namespace SistemaPruebas.Controladoras
              controlBD.UpdateUsoProyecto(id, use);
         }
 
-
+        public string ConsultarNombreProyectoPorNombre(int id)
+        {
+            string retorno="";
+            controlBD.ConsultarNombreProyectoPorNombre(id);
+            return retorno;
+        }
     }
 }
