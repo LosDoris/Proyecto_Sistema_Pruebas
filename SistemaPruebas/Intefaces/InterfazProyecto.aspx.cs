@@ -24,7 +24,7 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
             llenarGrid();
-            controladoraProyecto.ConsultarNombreProyectoPorNombre(0);
+            
            
 
         }

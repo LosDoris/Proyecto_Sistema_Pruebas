@@ -139,7 +139,7 @@ namespace SistemaPruebas.Controladoras
             return acceso_BD.EliminarProyecto("update Proyecto set Uso = "+use+" where id_proyecto =" + id);            
         }
 
-        public string ConsultarNombreProyectoPorNombre(int id)
+        public string ConsultarNombreProyectoPorId(int id)
         {
             DataTable dt = new DataTable();
             dt = acceso_BD.ejecutarConsultaTabla("select nombre_sistema from proyecto where  id_proyecto=" + id);
