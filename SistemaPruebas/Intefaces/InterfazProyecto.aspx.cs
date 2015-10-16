@@ -16,18 +16,19 @@ namespace SistemaPruebas.Intefaces
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
+            adm = controladoraProyecto.PerfilDelLogeado();
             Restricciones_Campos();
             Deshabilitar_Campos();
+            if (!adm)
+                Insertar.Enabled = false;
             aceptar.Enabled = false;
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
-            llenarGrid();
-            
-           
-
+            llenarGrid();                      
         }
+
         protected void Restricciones_Campos()
         {
 
@@ -74,7 +75,8 @@ namespace SistemaPruebas.Intefaces
             of_rep.Text = "";
             llenarGrid();
             gridProyecto.Enabled = true;
-            Insertar.Enabled = true;
+            if (adm)
+                Insertar.Enabled = true;
             cancelar.Enabled = false;
             Modificar.Enabled = false;
         }
@@ -98,7 +100,7 @@ namespace SistemaPruebas.Intefaces
                 {
                     case 1://Insertar
                         {
-                            if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
+                            if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "" && adm)
                             {
                                 desmarcarBoton(ref Insertar);
                                 Console.WriteLine("Insertar");
@@ -149,7 +151,15 @@ namespace SistemaPruebas.Intefaces
                             desmarcarBoton(ref Eliminar);
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "confirm('¿Está seguro que desea eliminar?');", true);
                             Console.WriteLine("Eliminar");
-                            int a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
+                            int a = 0;
+                            if(adm)
+                            {
+                                a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
+                            }
+                            else
+                            {
+                                a = controladoraProyecto.CancelarProyecto(id_Proyecto.ToString());
+                            }
                             if (a == 1)
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
@@ -307,7 +317,8 @@ namespace SistemaPruebas.Intefaces
                 Eliminar.Enabled = true;
                 aceptar.Enabled = true;
                 cancelar.Enabled = true;
-                Insertar.Enabled = false;
+                if (!adm)
+                    Insertar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -323,7 +334,8 @@ namespace SistemaPruebas.Intefaces
                  //Eliminar.Enabled = true;
                  //aceptar.Enabled = true;
                  cancelar.Enabled = true;
-                 Insertar.Enabled = false;
+                 if (!adm)
+                    Insertar.Enabled = false;
              }
 
         }
@@ -337,13 +349,15 @@ namespace SistemaPruebas.Intefaces
         {
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
-            Insertar.Enabled = true;
+            if (adm)
+             Insertar.Enabled = true;
         }
         protected void UnenabledButtons()
         {
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
-            Insertar.Enabled = false;
+            if (adm)
+                Insertar.Enabled = false;
         }
 
                 protected void marcarBoton(ref Button b)

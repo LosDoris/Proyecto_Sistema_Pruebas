@@ -67,13 +67,16 @@ namespace SistemaPruebas.Controladoras
         {
             controlRH = new ControladoraRecursosHumanos();
             int id = controlRH.proyectosDelLoggeado();
-            if (id == 0)
+            if (controlRH.perfilDelLoggeado() == "Administrador")
             {
                 return controlBD.ConsultarProyectoIdNombre();
             }
             else
             {
-                return controlBD.ConsultarProyectoIdNombre(id);
+                if (id == -1)
+                    return new DataTable();
+                else
+                    return controlBD.ConsultarProyectoIdNombre(id);
             }            
         }
         public int ConsultarIdProyectoPorNombre(string nombre)
@@ -88,6 +91,11 @@ namespace SistemaPruebas.Controladoras
         //    List<string> retorno = controlBD.ConsultaIdProyecto();
         //    return retorno;
         //}
+        public int CancelarProyecto(string id)
+        {
+            int retorno = controlBD.CancelarProyecto(id);
+            return retorno;
+        }
         public int EliminarProyecto(string id)
         {
             int retorno = controlBD.EliminarProyecto(id);
@@ -104,10 +112,17 @@ namespace SistemaPruebas.Controladoras
         }
 
 
-        public string PerfilDelLogeado()
+        public bool PerfilDelLogeado()
         {
             controlRH = new ControladoraRecursosHumanos();
-            return controlRH.perfilDelLoggeado();
+            bool retorno;
+            string perfil = controlRH.perfilDelLoggeado();
+            if (perfil == "Administrador")
+                retorno = true;
+            else
+                retorno = false;
+            return retorno;
+
         }
 
 
