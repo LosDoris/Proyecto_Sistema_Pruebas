@@ -49,6 +49,16 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRecursosHumanos.proyectosDelLoggeado(Account.Login.el_logeado);
         }
 
+        public int idDelLoggeado()
+        {
+            return controladoraBDRecursosHumanos.idDelLoggeado(Account.Login.el_logeado);
+        }
+
+        public string perfilDelLoggeado()
+        {
+            return controladoraBDRecursosHumanos.perfilDelLoggeado(Account.Login.el_logeado);
+        }
+
         /**/
 
 

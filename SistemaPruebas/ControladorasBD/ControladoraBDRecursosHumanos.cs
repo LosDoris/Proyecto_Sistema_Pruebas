@@ -101,6 +101,8 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+
+        /**/
         public int proyectosDelLoggeado(string elLoggeado)
         {
             int regresa = -3;
@@ -128,6 +130,48 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        public int idDelLoggeado(string elLoggeado)
+        {
+            int regresa = -1;
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT cedula FROM Recurso_Humano WHERE usuario = '" + elLoggeado + "'");
+            try
+            {
+                foreach (DataRow row in DR.Rows)
+                {
+                    regresa = (int)row["cedula"];
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                regresa = -1;
+            }
+
+
+            return regresa;
+        }
+
+        public string perfilDelLoggeado(string elLoggeado)
+        {
+            string regresa = null;
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT perfil_acceso FROM Recurso_Humano WHERE usuario = '" + elLoggeado + "'");
+            try
+            {
+                foreach (DataRow row in DR.Rows)
+                {
+                    regresa = row["perfil_acceso"].ToString();
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                regresa = null;
+            }
+
+
+            return regresa;
+        }
+
+
+        
         /**/
 
 
