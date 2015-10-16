@@ -307,15 +307,22 @@ namespace SistemaPruebas.Intefaces
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             //Accessing BoundField Column
-             if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
-            {
+            if (id_Proyecto >= 0 && id_Proyecto != Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text))
+                controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 0);
             try
             {
                 id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
-                Llenar_Datos_Conultados(id_Proyecto);
-                Modificar.Enabled = true;
-                Eliminar.Enabled = true;
-                aceptar.Enabled = true;
+                if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
+                {
+                    Modificar.Enabled = true;
+                    Eliminar.Enabled = true;
+                    aceptar.Enabled = true;
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura');", true);
+                }
+                Llenar_Datos_Conultados(id_Proyecto);                
                 cancelar.Enabled = true;
                 if (!adm)
                     Insertar.Enabled = false;
@@ -323,20 +330,7 @@ namespace SistemaPruebas.Intefaces
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }
-            }
-             else
-             {
-                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
-                 id_Proyecto = Int32.Parse(gridProyecto.SelectedRow.Cells[0].Text);
-                 Llenar_Datos_Conultados(id_Proyecto);
-                 //Modificar.Enabled = true;
-                 //Eliminar.Enabled = true;
-                 //aceptar.Enabled = true;
-                 cancelar.Enabled = true;
-                 if (!adm)
-                    Insertar.Enabled = false;
-             }
+            }            
 
         }
 
@@ -374,6 +368,23 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.Black;
 
     }
+
+        protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            /*
+            
+            */
+
+            if (gridProyecto.Enabled && e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+
+
+        }
 }
 
 }
