@@ -42,13 +42,14 @@ namespace SistemaPruebas.Intefaces
             TextBoxUsuario.MaxLength = 30;
             TextBoxClave.MaxLength = 12;
         }
-
+        
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
             DataTable recursosHumanos = crearTablaRH();
             DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(1, 0); // en consultas tipo 1, no se necesita la cédula
 
             Object[] datos = new Object[4];
+        
 
             if (dt.Rows.Count > 0)
             {
@@ -92,6 +93,7 @@ namespace SistemaPruebas.Intefaces
             PerfilAccesoComboBox.ClearSelection();
             PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
             RolComboBox.ClearSelection();
+            seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
             RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
             ProyectoAsociado.ClearSelection();
             ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
@@ -121,25 +123,23 @@ namespace SistemaPruebas.Intefaces
                 RolComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
             }
-        }/*
-
-        protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        
+        protected void seleccionRolEnConsulta(String tipo)
         {
-            if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            if(tipo == "Administrador")
             {
+                RolComboBox.Items.Clear();
+                RolComboBox.Items.Add(new ListItem("Administrador"));
                 RolComboBox.Enabled = false;
-                ProyectoAsociado.Enabled = false;
-                //RolComboBox.Items.FindByText("No aplica").Selected = true;
-                //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
             }
             else
             {
-                RolComboBox.Enabled = true;
-                ProyectoAsociado.Enabled = true;
+                RolComboBox.Items.Clear();
+                llenarDDRol();
             }
         }
-        */
-        //metodo para llenar dropdown list de los perfiles de acceso
+        
 
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
         {
@@ -159,8 +159,9 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel2.Text = "";
             TextBoxUsuario.Text = "";
             TextBoxClave.Text = "";
-            marcarInsertar();
-           // deshabilitarGrid();
+            //marcarInsertar();
+            marcarBoton(ref BotonRHInsertar);
+            deshabilitarGrid();
         }
 
         
@@ -309,7 +310,6 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel1.Enabled = true;
             TextBoxTel2.Enabled = true;
             TextBoxUsuario.Enabled = true;
-            // ;
             TextBoxCedulaRH.Enabled = true;
             TextBoxNombreRH.Enabled = true;
             RolComboBox.Enabled = true;
@@ -443,7 +443,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
-            marcarModificar();
+            marcarBoton(ref BotonRHModificar);
             cedulaConsulta = TextBoxCedulaRH.Text;
             BotonRHAceptarModificar.Visible = true;
             BotonRHAceptar.Visible = false;
@@ -519,24 +519,23 @@ namespace SistemaPruebas.Intefaces
             this.llenarGrid();
         }
 
-        protected Object[] nombresProyectoGrid()
+
+        protected void marcarBoton(ref Button b)
         {
-            String proyectos = controladoraRecursosHumanos.solicitarProyectos();
-            Object[] ids = null;
-            String [] p = proyectos.Split(';');
+            b.BorderColor = System.Drawing.Color.Black;
+            b.BackColor = System.Drawing.Color.Black;
+            b.ForeColor = System.Drawing.Color.White;
+        }
 
-            int i = 0;
-            foreach (String p1 in p)
-            {
-                i++;
-                String[] p2 = p1.Split(' ');
-                ids[i] = p2[1];
-            }
-
-            return ids;
+        protected void desmarcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.LightGray;
+            b.BackColor = System.Drawing.Color.White;
+            b.ForeColor = System.Drawing.Color.Black;
 
         }
 
+        /*
         protected void marcarInsertar()
         {
             BotonRHInsertar.BorderColor = System.Drawing.Color.Black;
@@ -574,11 +573,12 @@ namespace SistemaPruebas.Intefaces
             BotonRHEliminar.BackColor = System.Drawing.Color.White;
             BotonRHEliminar.ForeColor = System.Drawing.Color.Black;
         }
+        */
         protected void desmarcarBotones()
         {
-            desmarcarInsertar();
-            desmarcarModificar();
-            desmarcarEliminar();
+            desmarcarBoton(ref BotonRHInsertar);
+            desmarcarBoton(ref BotonRHModificar);
+            desmarcarBoton(ref BotonRHEliminar);
         }
 
         protected void deshabilitarGrid()
