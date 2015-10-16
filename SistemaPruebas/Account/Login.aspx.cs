@@ -43,8 +43,8 @@ namespace SistemaPruebas.Account
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
                     loggeado = 1;
                     //int temp = controladoraRH.proyectosDelLoggeado();
-                    int temp2 = controladoraRH.idDelLoggeado();
-                    string temp3 = controladoraRH.perfilDelLoggeado();
+                    //int temp2 = controladoraRH.idDelLoggeado();
+                    //string temp3 = controladoraRH.perfilDelLoggeado();
                     Response.Redirect("~/Default");
 
                 }
