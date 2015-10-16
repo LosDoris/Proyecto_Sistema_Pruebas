@@ -17,6 +17,15 @@ namespace SistemaPruebas.Account
 
         }
 
+        /*
+         * Requiere: Nombre de Usuario ingresado en la caja de texto correspondiente
+         * y presión del botón de Aceptar, además de la contraseña ingresada.
+         * También debe estar la contraseña nueva, dos veces por confirmación.
+         * Modifica: Se realiza la validación de los datos ingresados, conforme a la información
+         * que se posee de la base de datos.
+         * Se cambiar la contraseña por la nueva si los datos ingresados son correctos.
+         * Retorna: N/A.
+         */
         protected void cambiarContrasena(object sender, EventArgs e)
         {
             Object[] datos = new Object[2];

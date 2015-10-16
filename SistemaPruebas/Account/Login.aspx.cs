@@ -27,6 +27,13 @@ namespace SistemaPruebas.Account
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
         }
 
+        /*
+         * Requiere: Nombre de Usuario ingresado en la caja de texto correspondiente
+         * y presión del botón de Aceptar, además de la contraseña ingresada.
+         * Modifica: Se realiza la validación de los datos ingresados, conforme a la información
+         * que se posee de la base de datos. Se hace la operación de loggear al usuario.
+         * Retorna: N/A.
+         */
         protected void LogIn(object sender, EventArgs e)
         {
             Object[] datos = new Object[2];

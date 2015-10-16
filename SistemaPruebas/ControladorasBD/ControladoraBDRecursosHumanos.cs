@@ -10,6 +10,12 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
+        /*
+         * Requiere: Nombre de Usuario.
+         * Modifica: Se hace el chequeo en la base de datos sobre si el usuario está loggeado
+           en algún servidor. Regresa el estado de loggeo del mismo, dentro del sistema.
+         * Retorna: booleano.
+         */
         public bool loggeado(string nombre)
         {
             bool regresa = false;
@@ -35,6 +41,12 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Se regresan todos los nombres y Contraseñas dentro de la base de datos,
+           para luego hacer la comparación con los datos ingresados por el usuario.
+         * Retorna: vector de hileras.
+         */
         public string[] nombresContrasenas()
         {
             DataTable DR = acceso.ejecutarConsultaTabla("SELECT * FROM Recurso_Humano");
@@ -67,6 +79,13 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        /*
+         * Requiere: Nombre de usuario y la contraseña nueva que se le va a asociar a este.
+         * Modifica: Se hace el cambio en la base de datos sobre un usuario,
+           para la contraseña nueva que haya puesto, tras haber hecho la validación
+           sobre la contraseña anterior.
+         * Retorna: booleano.
+         */
         public bool modificaContrasena(string nombre, string nuevaContrasena)
         {
             bool regresa = false;
@@ -84,6 +103,13 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: Nombre de un usuario
+         * Modifica: Hace chequeo para ver si un usuario está loggeado o con una sesión abierta
+           en algún lugar. Regresa el estado de sesión abierta de este, haciendo comparación
+           en la Base de Datos.
+         * Retorna: booleano.
+         */
         public bool estadoLoggeado(string nombre, string estado)
         {
             bool regresa = false;
@@ -103,6 +129,14 @@ namespace SistemaPruebas.Controladoras
 
 
         /**/
+
+        /*
+         * Requiere: Nombre de usuario loggeado
+         * Modifica: Accede a la base de datos y busca el proyecto al que pertenece
+           la persona que ha iniciado sesión. Regresa el número correspondiente
+           al identificador del proyecto.
+         * Retorna: número.
+         */
         public int proyectosDelLoggeado(string elLoggeado)
         {
             int regresa = -3;
@@ -130,6 +164,12 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        /*
+         * Requiere:  Nombre de usuario loggeado
+         * Modifica: Accede a la base de datos y busca la cédula 
+           de la persona que ha iniciado sesión. Regresa el número correspondiente a esta.
+         * Retorna: número
+         */
         public int idDelLoggeado(string elLoggeado)
         {
             int regresa = -1;
@@ -150,6 +190,12 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        /*
+         * Requiere:  Nombre de usuario loggeado
+         * Modifica: Accede a la base de datos y busca el perfil de la persona que ha iniciado sesión.
+           Regresa el nombre del perfil del usuario.
+         * Retorna: hilera.
+         */
         public string perfilDelLoggeado(string elLoggeado)
         {
             string regresa = null;
