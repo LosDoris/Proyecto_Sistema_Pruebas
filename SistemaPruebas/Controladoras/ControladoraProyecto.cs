@@ -103,6 +103,12 @@ namespace SistemaPruebas.Controladoras
              controlBD.UpdateUsoProyecto(id, use);
         }
 
+        public string PerfilDelLogeado()
+        {
+            controlRH = new ControladoraRecursosHumanos();
+            return controlRH.perfilDelLoggeado();
+        }
+
 
     }
 }
