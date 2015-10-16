@@ -24,6 +24,7 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
             llenarGrid();
+            controladoraProyecto.ConsultarNombreProyectoPorNombre(0);
            
 
         }
@@ -73,6 +74,7 @@ namespace SistemaPruebas.Intefaces
         }
         protected void Insertar_button(object sender, EventArgs e)
         {
+            marcarBoton(ref Insertar);
             button = 1;
             Limpiar_Campos();
             aceptar.Enabled = true;
@@ -92,6 +94,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             if (nombre_proyecto.Text != "" && obj_general.Text != "" && nombre_rep.Text != "" && tel_rep.Text != "" && of_rep.Text != "")
                             {
+                                desmarcarBoton(ref Insertar);
                                 Console.WriteLine("Insertar");
                                 string text = "";//= txtDate.Text;
                                 object[] datos = new object[8] { 0,nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };                                
@@ -114,6 +117,7 @@ namespace SistemaPruebas.Intefaces
                         break;
                     case 2:
                         {
+                            desmarcarBoton(ref Modificar);
                             Console.WriteLine("Modificar");
                             string text = "";//= txtDate.Text;
                             object[] datos = new object[8] {id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
@@ -136,7 +140,7 @@ namespace SistemaPruebas.Intefaces
                         break;
                     case 3:
                         {
-                            
+                            desmarcarBoton(ref Eliminar);
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "confirm('¿Está seguro que desea eliminar?');", true);
                             Console.WriteLine("Eliminar");
                             int a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
@@ -166,6 +170,9 @@ namespace SistemaPruebas.Intefaces
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue("1");
             controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 0);
+            desmarcarBoton(ref Insertar);
+            desmarcarBoton(ref Modificar);
+            desmarcarBoton(ref Eliminar);
         }
         //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         //{
@@ -255,6 +262,7 @@ namespace SistemaPruebas.Intefaces
         {
             if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
             {
+                marcarBoton(ref Modificar);
                 controladoraProyecto.UpdateUsoProyecto(id_Proyecto, 1);
                 button = 2;
                 Habilitar_Campos();
@@ -273,6 +281,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void Eliminar_Click(object sender, EventArgs e)
         {
+            marcarBoton(ref Eliminar);
             button = 3;
             UnenabledButtons();
             aceptar.Enabled = true;
@@ -331,5 +340,21 @@ namespace SistemaPruebas.Intefaces
             Insertar.Enabled = false;
         }
 
+                protected void marcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.Black;
+            b.BackColor = System.Drawing.Color.Black;
+            b.ForeColor = System.Drawing.Color.White;
+        }
+
+        protected void desmarcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.LightGray;
+            b.BackColor = System.Drawing.Color.White;
+            b.ForeColor = System.Drawing.Color.Black;
+
     }
 }
+
+}
+   

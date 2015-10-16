@@ -103,6 +103,7 @@ namespace SistemaPruebas.Controladoras
              controlBD.UpdateUsoProyecto(id, use);
         }
 
+<<<<<<< HEAD
         public string PerfilDelLogeado()
         {
             controlRH = new ControladoraRecursosHumanos();
@@ -110,5 +111,13 @@ namespace SistemaPruebas.Controladoras
         }
 
 
+=======
+        public string ConsultarNombreProyectoPorNombre(int id)
+        {
+            string retorno="";
+            controlBD.ConsultarNombreProyectoPorNombre(id);
+            return retorno;
+        }
+>>>>>>> origin/master
     }
 }
