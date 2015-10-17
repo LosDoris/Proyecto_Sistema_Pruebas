@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" />
+                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:31px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" />
                         <script type="text/javascript">
                             function solo_letras(evt) {
                                 if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
@@ -55,16 +55,16 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" TextMode="multiline" columns="3" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
+                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" CssClass="form-control" MaxLength="50" />
+                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                     <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="estado" CssClass="form-control">
+                        <asp:DropDownList runat="server" ID="estado" style="width:250px" CssClass="form-control">
                             <asp:ListItem Selected="True" Value="1">Pendiente</asp:ListItem>
                             <asp:ListItem Value="2">Asignado</asp:ListItem>
                             <asp:ListItem Value="3">En Ejecución</asp:ListItem>
@@ -79,7 +79,7 @@
                      
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <input id="txt_date" type="text" readonly="readonly"/>
+                        <input id="txt_date" style="width:250px;height:31px" type="text" readonly="readonly"/>
                     </div>
                          
                 </div>
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
+                        <asp:TextBox runat="server" style="width:218px;height:31px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="tel_rep" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" />
+                        <asp:TextBox runat="server" ID="tel_rep" style="width:218px;height:31px" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" />
                         <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^[\s\S]{8,8}$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
                             function solo_numeros(evt) {
@@ -120,7 +120,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
+                        <asp:TextBox runat="server" ID="of_rep" style="width:218px;height:31px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
                     </div>
                 </div>
 

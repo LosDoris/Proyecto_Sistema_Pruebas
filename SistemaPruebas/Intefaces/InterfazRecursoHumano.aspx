@@ -52,7 +52,7 @@
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
                         <div class="col-md-10">                           
   
-                            <asp:TextBox runat="server" ID="TextBoxCedulaRH" CssClass="form-control" MaxLength="10" onkeypress="return solo_numeros(event)">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxCedulaRH" style="width:250px" CssClass="form-control" MaxLength="10" onkeypress="return solo_numeros(event)">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="TextBoxCedulaRH"
@@ -67,7 +67,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxNombreRH" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxNombreRH" style="width:250px" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreRH"
@@ -82,7 +82,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" >Teléfono 1:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="return solo_numeros(event)" />
+                            <asp:TextBox runat="server" ID="TextBoxTel1" style="width:250px" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="return solo_numeros(event)" />
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxTel2" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)" />
+                            <asp:TextBox runat="server" ID="TextBoxTel2" style="width:250px" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)" />
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal2" >*Por favor ingrese un teléfono valido.</asp:Label>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxEmail" CssClass="form-control" MaxLength="30" />
+                            <asp:TextBox runat="server" ID="TextBoxEmail" style="width:250px" CssClass="form-control" MaxLength="30" />
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EmailVal" >*Por favor ingrese un email valido valido.</asp:Label>
                             </div>
                         </div>         
