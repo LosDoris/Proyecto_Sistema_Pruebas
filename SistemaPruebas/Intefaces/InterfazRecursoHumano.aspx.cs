@@ -248,6 +248,7 @@ namespace SistemaPruebas.Intefaces
                 BotonRHAceptar.Visible = true;
                 BotonRHAceptarModificar.Enabled = false;
                 BotonRHEliminar.Enabled = false;
+                habilitarGrid();
                 llenarGrid();
             }
             else
