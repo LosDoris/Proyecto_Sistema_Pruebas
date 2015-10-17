@@ -71,7 +71,13 @@ namespace SistemaPruebas.Acceso
                 catch (SqlException ex)
                 {
                     string mensajeError = ex.ToString();
-                    throw new Exception("Error al insertar. " + ex.Message);
+
+                    if (ex.Number == 2627)//Violación de llave primaria al insertar
+                    {
+                        a = ex.Number;
+                    }
+
+                    //throw new Exception("Error al insertar. " + ex.Message);
 
                     // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
                 }
