@@ -58,7 +58,9 @@ namespace SistemaPruebas.Intefaces
                     datos[0] = dr[0];
                     datos[1] = dr[1];
                     datos[2] = dr[2];
-                    datos[3] = dr[3];
+                    int id = Convert.ToInt32(dr[3]);
+                    String nomp = controladoraRecursosHumanos.solicitarNombreProyecto(id);
+                    datos[3] = nomp;
                     recursosHumanos.Rows.Add(datos);
                 }
             }
@@ -266,7 +268,7 @@ namespace SistemaPruebas.Intefaces
         {
 
             this.ProyectoAsociado.Items.Clear();
-            this.ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
+            //this.ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
 
             String proyectos = controladoraRecursosHumanos.solicitarProyectos();
             String[] pr = proyectos.Split(';');
@@ -274,7 +276,14 @@ namespace SistemaPruebas.Intefaces
             foreach (String p1 in pr)
             {
                 String[] p2 = p1.Split(' ');
-                this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                if(p2[0] == "No" && p2[1] == "aplica")//"Proyecto" No aplica
+                {
+                    this.ProyectoAsociado.Items.Add(new ListItem (p2[0]+" "+p2[1], p2[2]));
+                }
+                else
+                {
+                    this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                }
             }
 
         }
@@ -461,6 +470,11 @@ namespace SistemaPruebas.Intefaces
             BotonRHEliminar.Enabled = false;
             habilitarCampos();
             PerfilAccesoComboBox.Enabled = false;
+            if(PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            {
+                RolComboBox.Enabled = false;
+                ProyectoAsociado.Enabled = false;
+            }
             deshabilitarGrid();
         }
 
@@ -470,7 +484,7 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Cedula", typeof(int));
             dt.Columns.Add("Nombre Completo", typeof(String));
             dt.Columns.Add("Rol", typeof(String));
-            dt.Columns.Add("Id Proyecto");
+            dt.Columns.Add("Nombre Proyecto");
             return dt;
         }
 

@@ -125,13 +125,10 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-
-
         public string ConsultarNombreProyectoPorId(int id)
 
         {
-            string retorno="";
-            controlBD.ConsultarNombreProyectoPorId(id);
+            string retorno = controlBD.ConsultarNombreProyectoPorId(id);
             return retorno;
         }
 

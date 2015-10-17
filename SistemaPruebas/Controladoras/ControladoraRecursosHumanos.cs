@@ -163,5 +163,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public String solicitarNombreProyecto(int id)
+        {
+            String proyecto = controladoraProyecto.ConsultarNombreProyectoPorId(id);
+            return proyecto;
+        }
+
     }
 }
