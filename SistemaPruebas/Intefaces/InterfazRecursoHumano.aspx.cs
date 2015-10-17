@@ -19,16 +19,50 @@ namespace SistemaPruebas.Intefaces
         int modo;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         static String cedulaConsulta = "";
-
+        private static bool esAdmin = false;
+        private static int cedulaLoggeado;
+        //Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
+        /*protected void Page_Load(object sender, EventArgs e)
+        {
+            
+            controladoraRecursosHumanos.idDelLoggeado();
+            Restricciones_Campos();
+            //Deshabilitar_Campos();
+            if (!esAdmin)
+                Insertar.Enabled = false;
+            aceptar.Enabled = false;
+            cancelar.Enabled = false;
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;
+            //datepicker.Disabled = true;
+            llenarGrid();
+        }*/
         protected void Page_Load(object sender, EventArgs e)
         {
             Restricciones_Campos();
             if (!IsPostBack)
             {
+                esAdmin = controladoraRecursosHumanos.loggeadoEsAdmin();
+                cedulaLoggeado = controladoraRecursosHumanos.idDelLoggeado();
                 volverAlOriginal();
-               
+                if (!esAdmin)
+                {
+                    
+                }
+                else
+                {
+                    llenarGrid();
+                }
             }
-            llenarGrid();
+            if (!esAdmin)
+            {
+
+            }
+            else
+            {
+                llenarGrid();
+            }
+
            // RH.Enabled = false;
         }
 

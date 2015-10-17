@@ -108,6 +108,23 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRecursosHumanos.perfilDelLoggeado(Account.Login.el_logeado);
         }
 
+        public bool loggeadoEsAdmin()
+        {
+            //controlRH = new ControladoraRecursosHumanos();
+            bool retorno;
+            string perfil = this.perfilDelLoggeado();
+            if (perfil == "Administrador")
+            {
+                retorno = true;
+            }
+            else
+            {
+                retorno = false;
+            }
+            return retorno;
+
+        }
+
         /**/
 
 
