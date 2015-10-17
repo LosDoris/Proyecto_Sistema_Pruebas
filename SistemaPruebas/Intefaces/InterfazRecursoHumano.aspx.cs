@@ -530,11 +530,7 @@ namespace SistemaPruebas.Intefaces
                     {
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                     }
-
                     //habilitar consulta
-
-
-                    
                 }
                 else
                 {
@@ -552,23 +548,26 @@ namespace SistemaPruebas.Intefaces
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
             marcarBoton(ref BotonRHModificar);
-            cedulaConsulta = TextBoxCedulaRH.Text;
-            BotonRHAceptarModificar.Visible = true;
-            BotonRHAceptar.Visible = false;
-            desactivarErrores();
-            BotonRHAceptarModificar.Enabled = true;
             BotonRHModificar.Enabled = false;
+            desactivarErrores();
+            BotonRHAceptarModificar.Visible = true;
+            BotonRHAceptarModificar.Enabled = true;
+            cedulaConsulta = TextBoxCedulaRH.Text;
+            BotonRHAceptar.Visible = false;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
             BotonRHEliminar.Enabled = false;
-            habilitarCampos();
-            PerfilAccesoComboBox.Enabled = false;
-            if(PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            if (esAdmin)
             {
-                RolComboBox.Enabled = false;
-                ProyectoAsociado.Enabled = false;
+                deshabilitarGrid();
+                PerfilAccesoComboBox.Enabled = false;
+                if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+                {
+                    RolComboBox.Enabled = false;
+                    ProyectoAsociado.Enabled = false;
+                }
             }
-            deshabilitarGrid();
+            habilitarCampos();
         }
 
         protected DataTable crearTablaRH()
@@ -584,11 +583,11 @@ namespace SistemaPruebas.Intefaces
 
         protected void RH_SelectedIndexChanged(object sender, EventArgs e)
         {
-                int index = RH.SelectedRow.RowIndex;
-                String ced = RH.SelectedRow.Cells[0].Text;
-                int cedula = Convert.ToInt32(ced);
-                llenarDatosRecursoHumano(cedula);
-                habilitarGrid();
+            int index = RH.SelectedRow.RowIndex;
+            String ced = RH.SelectedRow.Cells[0].Text;
+            int cedula = Convert.ToInt32(ced);
+            llenarDatosRecursoHumano(cedula);
+            habilitarGrid();
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
         }
 
