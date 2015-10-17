@@ -368,57 +368,87 @@ namespace SistemaPruebas.Intefaces
 
         protected void habilitarCampos()
         {
-            TextBoxClave.Enabled = true;
             TextBoxEmail.Enabled = true;
             TextBoxTel1.Enabled = true;
             TextBoxTel2.Enabled = true;
-            TextBoxUsuario.Enabled = true;
-            TextBoxCedulaRH.Enabled = true;
-            TextBoxNombreRH.Enabled = true;
-            RolComboBox.Enabled = true;
-            PerfilAccesoComboBox.Enabled = true;
-            ProyectoAsociado.Enabled = true;
-            BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
+            if (esAdmin)
+            {
+                TextBoxClave.Enabled = true;
+                TextBoxUsuario.Enabled = true;
+                TextBoxCedulaRH.Enabled = true;
+                TextBoxNombreRH.Enabled = true;
+                RolComboBox.Enabled = true;
+                PerfilAccesoComboBox.Enabled = true;
+                ProyectoAsociado.Enabled = true;
+                BotonRHAceptar.Enabled = true;
+            } else
+            {
+                BotonRHAceptarModificar.Enabled = true;
+            }
+
         }
 
         protected void deshabilitarCampos()
         {
-            TextBoxClave.Enabled = false;
+
             TextBoxEmail.Enabled = false;
             TextBoxTel1.Enabled = false;
             TextBoxTel2.Enabled = false;
-            TextBoxUsuario.Enabled = false;
-            TextBoxCedulaRH.Enabled = false;
-            TextBoxNombreRH.Enabled = false;
-            RolComboBox.Enabled = false;
-            PerfilAccesoComboBox.Enabled = false;
-            ProyectoAsociado.Enabled = false;
-            BotonRHAceptar.Enabled = false;
             BotonRHCancelar.Enabled = false;
+            if (esAdmin)
+            {
+                TextBoxClave.Enabled = false;
+                TextBoxUsuario.Enabled = false;
+                TextBoxCedulaRH.Enabled = false;
+                TextBoxNombreRH.Enabled = false;
+                RolComboBox.Enabled = false;
+                PerfilAccesoComboBox.Enabled = false;
+                ProyectoAsociado.Enabled = false;
+                BotonRHAceptar.Enabled = false;
+
+            }
+            else
+            {
+                BotonRHAceptarModificar.Enabled = false;
+            }
             
         }
 
         protected void botonesInicio()
         {
-            BotonRHEliminar.Enabled = false;
-            BotonRHModificar.Enabled = false;
-            BotonRHAceptar.Enabled = false;
             BotonRHCancelar.Enabled = false;
-            BotonRHInsertar.Enabled = true;
+            if (esAdmin)
+            {
+                BotonRHEliminar.Enabled = false;
+                BotonRHModificar.Enabled = false;
+                BotonRHAceptar.Enabled = false;
+                BotonRHInsertar.Enabled = true;
+            }
+            else
+            {
+                BotonRHAceptarModificar.Enabled = false;
+                BotonRHModificar.Enabled = true;
+            }
         }
         protected void botonesCancelar() //Estado de los botones después de apretar 
              
         {
             desmarcarBotones();
-            BotonRHInsertar.Enabled = true;
-            if(RH.Rows.Count > 0)
+            if (esAdmin)
+            {
+                BotonRHInsertar.Enabled = true;
+                if (RH.Rows.Count > 0)
+                {
+                    BotonRHModificar.Enabled = true;
+                    BotonRHEliminar.Enabled = true;
+                }
+            }
+            else
             {
                 BotonRHModificar.Enabled = true;
-                BotonRHEliminar.Enabled = true;
             }
                // RH.Enabled = true;
-
         }
 
         protected void habilitarBotonesME()
@@ -463,7 +493,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
-            {
+            //{
                 if (validarCampos())
                 {
                     Object[] datosNuevos = new Object[11];
@@ -479,31 +509,43 @@ namespace SistemaPruebas.Intefaces
                     datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
                     datosNuevos[10] = cedulaConsulta;
 
-                    if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
+                if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
+                {
+                    desmarcarBotones();
+                    deshabilitarCampos();
+                    BotonRHModificar.Enabled = true;
+                    BotonRHCancelar.Enabled = false;
+                    BotonRHAceptar.Enabled = false;
+
+                    if (esAdmin)
                     {
-                        desmarcarBotones();
                         habilitarGrid();
-                        deshabilitarCampos();
                         BotonRHInsertar.Enabled = true;
-                        BotonRHModificar.Enabled = true;
                         BotonRHEliminar.Enabled = true;
-                        //habilitar consulta
-                        BotonRHCancelar.Enabled = false;
-                        BotonRHAceptar.Enabled = false;
                         llenarGrid();
                         llenarGrid();
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     }
                     else
                     {
-                        EtiqErrorModificar.Visible = true;
-                        //mensaje de error
+                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                     }
+
+                    //habilitar consulta
+
+
+                    
+                }
+                else
+                {
+                    EtiqErrorModificar.Visible = true;
+                    //mensaje de error
+                }
                 }
                 //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
                 //enviar la info a la controladora
                 //Ver el resultado. Si se realizo exitosamente
-            }
+            //}
         }
 
 
