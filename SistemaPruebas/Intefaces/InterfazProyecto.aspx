@@ -135,25 +135,21 @@
         </div>
     </div>
 
-    <div id="tablaProyectos" class="col-md-offset-4">
+    <div id="tablaProyectos" class="row">
 
-        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333"
+        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
             AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="15px" 
-            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5" HorizontalAlign="Center"  OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
             <Columns>
-                <asp:BoundField DataField="Id Proyecto" HeaderText=" Id Proyecto" ItemStyle-Width="160" />
-                <asp:TemplateField HeaderText=" Nombre del sistema" ItemStyle-Width="160">
+                <asp:BoundField DataField="Id Proyecto" HeaderText=" Id Proyecto"  />
+                <asp:TemplateField HeaderText=" Nombre del sistema">
                     <ItemTemplate>
                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre del sistema") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 </Columns>
-                <%-- %>asp:ButtonField Text=" Seleccionar" CommandName="Select" ItemStyle-Width="160" --%>           
-        <%--<asp:GridView ID="gridProyecto" runat="server" OnRowCommand="gridProyecto_RowCommand">
-                <Columns>
-                    <asp:ButtonField ButtonType="Button" Text="Consultar" CommandName="seleccionarProyecto" Visible="true" CausesValidation="false" />                 
-                </Columns--%> 
-            </asp:GridView>>
+ 
+            </asp:GridView>
     </div>
 </asp:Content>
 

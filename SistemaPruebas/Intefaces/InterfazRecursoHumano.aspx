@@ -55,6 +55,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="TextBoxCedulaRH"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Cédula es obligatorio."
@@ -69,6 +70,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreRH"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Nombre es obligatorio."
@@ -77,7 +79,7 @@
                         </div>
                     </div>
                     <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" >Teléfono 1:</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="TextBoxTel1" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="return solo_numeros(event)" />
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal1" >*Por favor ingrese un teléfono valido.</asp:Label>
@@ -112,6 +114,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
                             <asp:requiredfieldvalidator id="Requiredfieldvalidator3"
                                     controltovalidate="TextBoxUsuario"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Nombre de Usuario es obligatorio."
@@ -127,6 +130,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Contraseña es obligatorio."
@@ -184,6 +188,7 @@
         <div class="row">
         
         <asp:GridView ID="RH" runat ="server" margin-right ="auto" 
+             CellPadding="10" 
              margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged"
              OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
              AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 

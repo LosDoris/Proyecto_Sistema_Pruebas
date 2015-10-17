@@ -485,6 +485,7 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Nombre Completo", typeof(String));
             dt.Columns.Add("Rol", typeof(String));
             dt.Columns.Add("Nombre Proyecto");
+            dt.
             return dt;
         }
 

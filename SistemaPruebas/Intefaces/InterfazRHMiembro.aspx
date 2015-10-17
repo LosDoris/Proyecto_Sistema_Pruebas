@@ -49,6 +49,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="TextBoxCedulaRH"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Cédula es obligatorio."
@@ -63,6 +64,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreRH"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Nombre es obligatorio."
@@ -106,6 +108,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
                             <asp:requiredfieldvalidator id="Requiredfieldvalidator3"
                                     controltovalidate="TextBoxUsuario"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Nombre de Usuario es obligatorio."
@@ -121,6 +124,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal" >*Por favor ingrese una contraseña valida.</asp:Label>
                                <asp:requiredfieldvalidator
                                     controltovalidate="TextBoxClave"
+                                    Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
                                     errormessage="El campo de Contraseña es obligatorio."
