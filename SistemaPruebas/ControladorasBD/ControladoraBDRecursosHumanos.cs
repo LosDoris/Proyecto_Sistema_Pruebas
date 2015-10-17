@@ -47,12 +47,12 @@ namespace SistemaPruebas.Controladoras
            para luego hacer la comparación con los datos ingresados por el usuario.
          * Retorna: vector de hileras.
          */
-        public string[] nombresContrasenas()
+        public string nombresContrasenas()
         {
             DataTable DR = acceso.ejecutarConsultaTabla("SELECT * FROM Recurso_Humano");
-            string[] regresa = new string[2];
+            string regresa = "";
             string nombres = "";
-            string contrasenas = "";
+
 
             try
             {
@@ -62,13 +62,10 @@ namespace SistemaPruebas.Controladoras
                         nombres += ";";
                     nombres += row["usuario"].ToString();
 
-                    if (contrasenas != "")
-                        contrasenas += ";";
-                    contrasenas += row["contrasenna"].ToString();
 
                 }
-                regresa[0] = nombres;
-                regresa[1] = contrasenas;
+                regresa = nombres;
+
             }
             catch (System.InvalidOperationException)
             {
@@ -78,6 +75,15 @@ namespace SistemaPruebas.Controladoras
 
             return regresa;
         }
+
+        public string consultarContrasena(String username)
+        {
+            String consulta = "SELECT contrasenna FROM Recurso_Humano WHERE usuario = '" + username + "';";
+            DataTable dt = acceso.ejecutarConsultaTabla(consulta);
+            String cont = dt.Rows[0]["contrasenna"].ToString();
+            return cont;
+        }
+
 
         /*
          * Requiere: Nombre de usuario y la contraseña nueva que se le va a asociar a este.
@@ -252,7 +258,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano";
+                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano ORDER BY perfil_acceso";
             }
             else if (tipo == 2)
             {

@@ -20,17 +20,21 @@ namespace SistemaPruebas.Controladoras
          */
         public bool usuarioMiembroEquipo(Object[] datos)
         {
-            string[] nombresYContrasenas = controladoraBDRecursosHumanos.nombresContrasenas();
+            string nombres = controladoraBDRecursosHumanos.nombresContrasenas();
 
-            if (nombresYContrasenas != null)
+            if (nombres != null)
             {
                 string nombreIngresado = datos[0].ToString();
                 string contrasenaIngresada = datos[1].ToString();
 
-                if (nombresYContrasenas[0].Contains(nombreIngresado)
-                    && nombresYContrasenas[1].Contains(contrasenaIngresada))
+                if (nombres.Contains(nombreIngresado)) //en caso de que si sea un nombre de usuario válido. Ahora se verifica si la contraseña ingresada pertenece a ese nombre
                 {
-                    return true;
+                    String cont = controladoraBDRecursosHumanos.consultarContrasena(nombreIngresado);
+
+                    if (contrasenaIngresada == cont)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
