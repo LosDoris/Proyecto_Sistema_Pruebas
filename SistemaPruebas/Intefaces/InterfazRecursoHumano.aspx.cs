@@ -222,7 +222,8 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
                 datosNuevos[10] = 1;
 
-                if (controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos) == 1)
+                int insercion = controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos);
+                if (insercion == 1)
                 {
                     deshabilitarCampos();
                     BotonRHInsertar.Enabled = true;
@@ -235,6 +236,10 @@ namespace SistemaPruebas.Intefaces
 
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                     desmarcarBotones();
+                }
+                else if(insercion == 2627)
+                {
+                    EtiqErrorLlaves.Visible = true;
                 }
                 else
                 {
@@ -394,6 +399,7 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorEliminar.Visible = false;
             EtiqErrorInsertar.Visible = false;
             EtiqErrorModificar.Visible = false;
+            EtiqErrorLlaves.Visible = false;
         }
 
 
