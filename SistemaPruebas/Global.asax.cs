@@ -22,6 +22,7 @@ namespace SistemaPruebas
         {
             Console.WriteLine("Finish");
             Controladoras.ControladoraProyecto controlP = new Controladoras.ControladoraProyecto();
+            controlP.LimpiarModificaciones();
 
         }
     }

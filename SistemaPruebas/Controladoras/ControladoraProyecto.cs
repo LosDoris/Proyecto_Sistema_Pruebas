@@ -10,9 +10,10 @@ namespace SistemaPruebas.Controladoras
     {
         ControladoraBDProyecto controlBD;
         ControladoraRecursosHumanos controlRH;
+        
         public ControladoraProyecto()
         {
-            controlBD = new ControladoraBDProyecto();
+            controlBD = new ControladoraBDProyecto();            
         }
       
         public List<string> ConsultarRHSinProyecto()
@@ -91,7 +92,10 @@ namespace SistemaPruebas.Controladoras
         //    List<string> retorno = controlBD.ConsultaIdProyecto();
         //    return retorno;
         //}
-
+        public void EliminarUSo()
+        {
+            
+        }
         public int CancelarProyecto(string id)
         {
             int retorno = controlBD.CancelarProyecto(id);
@@ -131,6 +135,20 @@ namespace SistemaPruebas.Controladoras
         {
             string retorno = controlBD.ConsultarNombreProyectoPorId(id);
             return retorno;
+        }
+        public void AgregarModificacion(int i)
+        {
+            //enModificacion = i.ToString();
+        }
+        public void QuitarEliminacion(int i)
+        {
+            //string[] split = enModificacion.Split(',');
+
+        }
+        public void LimpiarModificaciones()
+        {
+            //int i = 4;
+            //enModificacion = i.ToString();
         }
 
     }

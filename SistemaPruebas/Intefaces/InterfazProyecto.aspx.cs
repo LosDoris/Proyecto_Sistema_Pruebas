@@ -213,6 +213,7 @@ namespace SistemaPruebas.Intefaces
                         gridProyecto.Enabled = true;
                         EnabledButtons();
 
+                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
                         int i = -1;
                         id_modificando = i.ToString();
                         modificando = false.ToString();
@@ -244,6 +245,7 @@ namespace SistemaPruebas.Intefaces
                         }
 
                         Limpiar_Campos();
+                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
                         int i = -1;
                         id_modificando = i.ToString();
                         modificando = false.ToString();
@@ -263,6 +265,7 @@ namespace SistemaPruebas.Intefaces
                     break;
                 case 2:
                     {
+                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
                         int i = -1;
                         id_modificando = i.ToString();
                         modificando = false.ToString();
@@ -272,6 +275,7 @@ namespace SistemaPruebas.Intefaces
                     break;
                 case 3:
                     {
+                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
                         int i = -1;
                         id_modificando = i.ToString();
                         modificando = false.ToString();
@@ -390,6 +394,7 @@ namespace SistemaPruebas.Intefaces
                 cancelar.Enabled = true;
                 modificando = true.ToString();
                 id_modificando = id_Proyecto;
+                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
 
             }
             else
@@ -410,9 +415,9 @@ namespace SistemaPruebas.Intefaces
                 UnenabledButtons();
                 aceptar.Enabled = true;
                 cancelar.Enabled = true;
-
                 modificando = true.ToString();
                 id_modificando = id_Proyecto;
+                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
             }
             else
             {
