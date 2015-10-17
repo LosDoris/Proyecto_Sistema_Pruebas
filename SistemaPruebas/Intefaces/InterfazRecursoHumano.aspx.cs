@@ -47,11 +47,11 @@ namespace SistemaPruebas.Intefaces
                 volverAlOriginal();
                 if (!esAdmin)
                 {
-                    
+                    RH.Visible = false;
                 }
                 else
                 {
-                    llenarGrid();
+
                 }
             }
             if (!esAdmin)
@@ -133,9 +133,6 @@ namespace SistemaPruebas.Intefaces
             RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
             ProyectoAsociado.ClearSelection();
             ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
-
-
-
             //Response.Write(dt.Rows.Co)
 
         }
@@ -215,20 +212,36 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            TextBoxCedulaRH.Text = ".";
-            TextBoxNombreRH.Text = ".";
-            TextBoxEmail.Text = "";
-            TextBoxTel1.Text = "";
-            TextBoxTel2.Text = "";
-            TextBoxUsuario.Text = "";
-            TextBoxClave.Text = "";
             llenarDDPerfil();
             llenarDDRol();
             llenarDDProyecto();
-            BotonRHAceptarModificar.Visible = false;
-            BotonRHAceptar.Visible = true;
-            BotonRHAceptarModificar.Enabled = false;
-            BotonRHEliminar.Enabled = false;
+            if (esAdmin) {
+                TextBoxCedulaRH.Text = ".";
+                TextBoxNombreRH.Text = ".";
+                TextBoxEmail.Text = "";
+                TextBoxTel1.Text = "";
+                TextBoxTel2.Text = "";
+                TextBoxUsuario.Text = "";
+                TextBoxClave.Text = "";
+                BotonRHAceptarModificar.Visible = false;
+                BotonRHAceptar.Visible = true;
+                BotonRHAceptarModificar.Enabled = false;
+                BotonRHEliminar.Enabled = false;
+                llenarGrid();
+            }
+            else
+            {
+                //consulta y cargar datos del usuario actual
+                BotonRHModificar.Enabled = true;
+                BotonRHAceptarModificar.Visible = true;
+                BotonRHAceptarModificar.Enabled = false;
+                BotonRHCancelar.Enabled = false;
+                BotonRHAceptar.Visible = false;
+                BotonRHEliminar.Enabled = false;
+                BotonRHEliminar.Visible = false;
+                BotonRHInsertar.Visible = false;
+                RH.Visible = false;
+            } 
 
 
 
@@ -268,6 +281,7 @@ namespace SistemaPruebas.Intefaces
                     BotonRHCancelar.Enabled = false;
                     BotonRHAceptar.Enabled = false;
                     habilitarGrid();
+                    llenarGrid();
                     llenarGrid();
 
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
@@ -475,6 +489,8 @@ namespace SistemaPruebas.Intefaces
                         //habilitar consulta
                         BotonRHCancelar.Enabled = false;
                         BotonRHAceptar.Enabled = false;
+                        llenarGrid();
+                        llenarGrid();
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     }
                     else
@@ -559,6 +575,8 @@ namespace SistemaPruebas.Intefaces
                 //marcarEliminar();
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
                 volverAlOriginal();
+                llenarGrid();
+                llenarGrid();
             }
             else
             {
@@ -590,45 +608,6 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        /*
-        protected void marcarInsertar()
-        {
-            BotonRHInsertar.BorderColor = System.Drawing.Color.Black;
-            BotonRHInsertar.BackColor = System.Drawing.Color.Black;
-            BotonRHInsertar.ForeColor = System.Drawing.Color.White;
-        }
-        protected void desmarcarInsertar()
-        {
-            BotonRHInsertar.BorderColor = System.Drawing.Color.LightGray;
-            BotonRHInsertar.BackColor = System.Drawing.Color.White;
-            BotonRHInsertar.ForeColor = System.Drawing.Color.Black;
-        }
-        protected void marcarModificar()
-        {
-
-            BotonRHModificar.BorderColor = System.Drawing.Color.Black;
-            BotonRHModificar.BackColor = System.Drawing.Color.Black;
-            BotonRHModificar.ForeColor = System.Drawing.Color.White;
-        }
-        protected void desmarcarModificar()
-        {
-            BotonRHModificar.BorderColor = System.Drawing.Color.LightGray;
-            BotonRHModificar.BackColor = System.Drawing.Color.White;
-            BotonRHModificar.ForeColor = System.Drawing.Color.Black;
-        }
-        protected void marcarEliminar()
-        {
-            BotonRHEliminar.BorderColor = System.Drawing.Color.Black;
-            BotonRHEliminar.BackColor = System.Drawing.Color.Black;
-            BotonRHEliminar.ForeColor = System.Drawing.Color.White;
-        }
-        protected void desmarcarEliminar()
-        {
-            BotonRHEliminar.BorderColor = System.Drawing.Color.LightGray;
-            BotonRHEliminar.BackColor = System.Drawing.Color.White;
-            BotonRHEliminar.ForeColor = System.Drawing.Color.Black;
-        }
-        */
         protected void desmarcarBotones()
         {
             desmarcarBoton(ref BotonRHInsertar);
