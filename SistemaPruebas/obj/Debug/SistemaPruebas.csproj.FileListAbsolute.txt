@@ -327,3 +327,4 @@ C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\e
 C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
 C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
 C:\Users\Carolina\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
+C:\Users\andre_000\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache
