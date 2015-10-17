@@ -260,7 +260,7 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 //consulta y cargar datos del usuario actual
-                //this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
+                this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
                 BotonRHModificar.Enabled = true;
                 BotonRHAceptarModificar.Visible = true;
                 BotonRHAceptarModificar.Enabled = false;
@@ -270,7 +270,7 @@ namespace SistemaPruebas.Intefaces
                 BotonRHEliminar.Visible = false;
                 BotonRHInsertar.Visible = false;
                 RH.Visible = false;
-                TextBoxCedulaRH.Text = controladoraRecursosHumanos.idDelLoggeado().ToString();
+                //TextBoxCedulaRH.Text = controladoraRecursosHumanos.idDelLoggeado().ToString();
             } 
 
 
@@ -427,8 +427,8 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel1.Enabled = false;
             TextBoxTel2.Enabled = false;
             BotonRHCancelar.Enabled = false;
-            if (esAdmin)
-            {
+            //if (esAdmin)
+            //{
                 TextBoxClave.Enabled = false;
                 TextBoxUsuario.Enabled = false;
                 TextBoxCedulaRH.Enabled = false;
@@ -438,11 +438,11 @@ namespace SistemaPruebas.Intefaces
                 ProyectoAsociado.Enabled = false;
                 BotonRHAceptar.Enabled = false;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 BotonRHAceptarModificar.Enabled = false;
-            }
+            //}
             
         }
 
