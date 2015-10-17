@@ -17,5 +17,12 @@ namespace SistemaPruebas
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_End(Object sender, EventArgs e)
+        {
+            Console.WriteLine("Finish");
+            Controladoras.ControladoraProyecto controlP = new Controladoras.ControladoraProyecto();
+
+        }
     }
 }

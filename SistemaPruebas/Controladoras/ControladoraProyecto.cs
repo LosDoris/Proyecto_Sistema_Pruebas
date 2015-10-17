@@ -91,6 +91,7 @@ namespace SistemaPruebas.Controladoras
         //    List<string> retorno = controlBD.ConsultaIdProyecto();
         //    return retorno;
         //}
+
         public int CancelarProyecto(string id)
         {
             int retorno = controlBD.CancelarProyecto(id);
