@@ -16,7 +16,7 @@ namespace SistemaPruebas.Intefaces
 
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
-        int modo;  //Numero para identificar accion del boton Aceptar
+        private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         static String cedulaConsulta = "";
         private static bool esAdmin = false;
@@ -176,6 +176,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
         {
+            modo = 1;
             habilitarCampos();
             llenarDDPerfil();
             llenarDDRol();
@@ -202,9 +203,29 @@ namespace SistemaPruebas.Intefaces
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
             desmarcarBotones();
-            volverAlOriginal();
-            habilitarGrid();
-           // botonesCancelar();
+            deshabilitarCampos();
+            if (modo==2)
+            {
+                if (esAdmin)
+                {
+                    volverAlOriginal();
+                    this.llenarDatosRecursoHumano(Convert.ToInt32(cedulaConsulta.ToString()));
+                    BotonRHEliminar.Enabled = true;
+                    BotonRHModificar.Enabled = true;
+
+                }
+                else
+                {
+                    volverAlOriginal();
+                    //this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
+                }
+            }
+            else if (modo==1)
+            {
+                volverAlOriginal();
+            }
+            modo=0;
+           //botonesCancelar();
         }
 
         protected void volverAlOriginal()
@@ -275,6 +296,8 @@ namespace SistemaPruebas.Intefaces
                 int insercion = controladoraRecursosHumanos.insertarRecursoHumano(datosNuevos);
                 if (insercion == 1)
                 {
+                    modo = 0;
+                    desmarcarBotones();
                     deshabilitarCampos();
                     BotonRHInsertar.Enabled = true;
                     BotonRHModificar.Enabled = true;
@@ -515,8 +538,8 @@ namespace SistemaPruebas.Intefaces
                     deshabilitarCampos();
                     BotonRHModificar.Enabled = true;
                     BotonRHCancelar.Enabled = false;
-                    BotonRHAceptar.Enabled = false;
-
+                    BotonRHAceptarModificar.Enabled = false;
+                    modo = 0;
                     if (esAdmin)
                     {
                         habilitarGrid();
@@ -525,6 +548,10 @@ namespace SistemaPruebas.Intefaces
                         llenarGrid();
                         llenarGrid();
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+
+
+
+                        
                     }
                     else
                     {
@@ -547,6 +574,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
+            modo = 2;
             marcarBoton(ref BotonRHModificar);
             BotonRHModificar.Enabled = false;
             desactivarErrores();
