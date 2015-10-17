@@ -90,12 +90,13 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.Enabled = false;
             Habilitar_Campos();
             UnenabledButtons();
-
+            deshabilitarGrid();
         }
         protected void aceptar_Click(object sender, EventArgs e)
         {
            
                 llenarGrid();
+                habilitarGrid();
                 switch (button)
                 {
                     case 1://Insertar
@@ -189,6 +190,8 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Insertar);
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
+            habilitarGrid();
+
         }
         //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         //{
@@ -276,6 +279,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
+            deshabilitarGrid();
             if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
             {
                 marcarBoton(ref Modificar);
@@ -286,6 +290,7 @@ namespace SistemaPruebas.Intefaces
                 gridProyecto.Enabled = false;
                 aceptar.Enabled = true;
                 cancelar.Enabled = true;
+                
             }
             else
             {
@@ -302,6 +307,7 @@ namespace SistemaPruebas.Intefaces
             UnenabledButtons();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+            deshabilitarGrid();
         }
 
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
@@ -371,9 +377,6 @@ namespace SistemaPruebas.Intefaces
 
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            /*
-            
-            */
 
             if (gridProyecto.Enabled && e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -382,10 +385,31 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
-
-
         }
-}
+        protected void deshabilitarGrid()
+        {
+            gridProyecto.Enabled = false;
+            foreach (GridViewRow row in gridProyecto.Rows)
+            {
+                row.Attributes.Remove("onclick");
+                row.Attributes.Remove("onmouseover");
+                row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
+            }
+        }
+
+        protected void habilitarGrid()
+        {
+            gridProyecto.Enabled = true;
+            foreach (GridViewRow row in gridProyecto.Rows)
+            {
+                row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + row.RowIndex);
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
+                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+    }
 
 }
    
