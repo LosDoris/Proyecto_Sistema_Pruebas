@@ -118,21 +118,27 @@ namespace SistemaPruebas.Intefaces
 
             BotonRHEliminar.Enabled = true;
             BotonRHModificar.Enabled = true;
-
-            TextBoxCedulaRH.Text = dt.Rows[0].ItemArray[0].ToString();
-            TextBoxNombreRH.Text = dt.Rows[0].ItemArray[1].ToString();
-            TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
-            TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
-            TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
-            TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
-            TextBoxClave.Text = dt.Rows[0].ItemArray[6].ToString();
-            PerfilAccesoComboBox.ClearSelection();
-            PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
-            RolComboBox.ClearSelection();
-            seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
-            RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
-            ProyectoAsociado.ClearSelection();
-            ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
+            try
+            {
+                TextBoxCedulaRH.Text = dt.Rows[0].ItemArray[0].ToString();
+                TextBoxNombreRH.Text = dt.Rows[0].ItemArray[1].ToString();
+                TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
+                TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
+                TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
+                TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
+                TextBoxClave.Text = dt.Rows[0].ItemArray[6].ToString();
+                PerfilAccesoComboBox.ClearSelection();
+                PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
+                RolComboBox.ClearSelection();
+                seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
+                RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
+            }
+            catch
+            {
+                EtiqErrorConsultar.Visible = true;
+            }
             //Response.Write(dt.Rows.Co)
 
         }
@@ -209,7 +215,7 @@ namespace SistemaPruebas.Intefaces
                 if (esAdmin)
                 {
                     volverAlOriginal();
-                    this.llenarDatosRecursoHumano(Convert.ToInt32(cedulaConsulta.ToString()));
+                    //this.llenarDatosRecursoHumano(Convert.ToInt32(cedulaConsulta.ToString()));
                     BotonRHEliminar.Enabled = true;
                     BotonRHModificar.Enabled = true;
 
@@ -254,7 +260,7 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 //consulta y cargar datos del usuario actual
-                this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
+                //this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
                 BotonRHModificar.Enabled = true;
                 BotonRHAceptarModificar.Visible = true;
                 BotonRHAceptarModificar.Enabled = false;
@@ -264,6 +270,7 @@ namespace SistemaPruebas.Intefaces
                 BotonRHEliminar.Visible = false;
                 BotonRHInsertar.Visible = false;
                 RH.Visible = false;
+                TextBoxCedulaRH.Text = controladoraRecursosHumanos.idDelLoggeado().ToString();
             } 
 
 
@@ -512,6 +519,7 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorInsertar.Visible = false;
             EtiqErrorModificar.Visible = false;
             EtiqErrorLlaves.Visible = false;
+            EtiqErrorConsultar.Visible = false;
         }
 
 
@@ -597,6 +605,7 @@ namespace SistemaPruebas.Intefaces
                 }
             }
             habilitarCampos();
+            PerfilAccesoComboBox.Enabled = false;
         }
 
         protected DataTable crearTablaRH()

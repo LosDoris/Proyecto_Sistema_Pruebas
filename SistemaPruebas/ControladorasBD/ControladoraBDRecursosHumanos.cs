@@ -178,7 +178,7 @@ namespace SistemaPruebas.Controladoras
             {
                 foreach (DataRow row in DR.Rows)
                 {
-                    regresa = (int)row["cedula"];
+                    regresa = Convert.ToInt32((int)row["cedula"]);
                 }
             }
             catch (System.InvalidOperationException)
