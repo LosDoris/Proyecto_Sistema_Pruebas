@@ -232,6 +232,7 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 //consulta y cargar datos del usuario actual
+                this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
                 BotonRHModificar.Enabled = true;
                 BotonRHAceptarModificar.Visible = true;
                 BotonRHAceptarModificar.Enabled = false;
