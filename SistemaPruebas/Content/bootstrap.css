@@ -2072,6 +2072,18 @@ fieldset[disabled] .btn {
   border-color: #cccccc;
 }
 
+.btn-cancelar {
+color: #fe5e3e;
+background-color: #ffffff;
+border-color: #fe5e3e;
+}
+
+.btn-aceptar {
+color: #33d275;
+background-color: #ffffff;
+border-color: #33d275;
+}
+
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,

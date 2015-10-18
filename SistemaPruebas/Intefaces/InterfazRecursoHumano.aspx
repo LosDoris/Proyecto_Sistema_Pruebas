@@ -176,14 +176,14 @@
                                 CssClass="btn btn-default" 
                                 ID="BotonRHAceptar" 
                                 OnClick="BotonRHAceptar_Click" />
-                            <asp:Button runat="server" 
+                            <asp:Button runat="server" style="border-color:#36df7c;color:#33d275"
                                 Text="Aceptar" 
                                 causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
+                                validationgroup="CamposNoVacios"                               
                                 CssClass="btn btn-default" 
                                 ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" 
                                 />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
+                            <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
                         </div>
                     </div>
         <div class="row">
