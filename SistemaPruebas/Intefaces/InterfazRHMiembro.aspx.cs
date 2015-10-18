@@ -166,6 +166,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
+			controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text), 0);//el recurso humano ya no está en uso
             desmarcarBotones();
             volverAlOriginal();
             //habilitarGrid();
@@ -233,6 +234,8 @@ namespace SistemaPruebas.Intefaces
                     //habilitarGrid();
                     //llenarGrid();
 
+					controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text), 0);//ya fue modificado el RH
+					
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                     desmarcarBotones();
                 }
@@ -393,7 +396,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
+		if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text)) == false)
             {
+                controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text), 1);//está siendo modificado el recurso humano
                 if (validarCampos())
                 {
                     Object[] datosNuevos = new Object[11];
@@ -427,11 +432,17 @@ namespace SistemaPruebas.Intefaces
                         EtiqErrorModificar.Visible = true;
                         //mensaje de error
                     }
-                }
                 //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
                 //enviar la info a la controladora
                 //Ver el resultado. Si se realizo exitosamente
-            }
+				}
+				
+			} else {
+				ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);
+			}
+		
+		
+            
         }
 
 

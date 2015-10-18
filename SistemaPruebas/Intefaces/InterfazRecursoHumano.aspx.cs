@@ -208,6 +208,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
+			controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);    //ya no está en uso
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
@@ -556,6 +557,7 @@ namespace SistemaPruebas.Intefaces
                         BotonRHEliminar.Enabled = true;
                         llenarGrid();
                         llenarGrid();
+						controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
 
 
@@ -564,6 +566,7 @@ namespace SistemaPruebas.Intefaces
                     }
                     else
                     {
+						controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                     }
                     //habilitar consulta
@@ -583,29 +586,37 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
-            modo = 2;
-            marcarBoton(ref BotonRHModificar);
-            BotonRHModificar.Enabled = false;
-            desactivarErrores();
-            BotonRHAceptarModificar.Visible = true;
-            BotonRHAceptarModificar.Enabled = true;
-            cedulaConsulta = TextBoxCedulaRH.Text;
-            BotonRHAceptar.Visible = false;
-            BotonRHCancelar.Enabled = true;
-            BotonRHInsertar.Enabled = false;
-            BotonRHEliminar.Enabled = false;
-            if (esAdmin)
-            {
-                deshabilitarGrid();
-                PerfilAccesoComboBox.Enabled = false;
-                if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
-                {
-                    RolComboBox.Enabled = false;
-                    ProyectoAsociado.Enabled = false;
-                }
-            }
-            habilitarCampos();
-            PerfilAccesoComboBox.Enabled = false;
+			if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false)
+			{
+				controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 1);//está siendo modificado el recurso humano
+				
+				modo = 2;
+				marcarBoton(ref BotonRHModificar);
+				BotonRHModificar.Enabled = false;
+				desactivarErrores();
+				BotonRHAceptarModificar.Visible = true;
+				BotonRHAceptarModificar.Enabled = true;
+				cedulaConsulta = TextBoxCedulaRH.Text;
+				BotonRHAceptar.Visible = false;
+				BotonRHCancelar.Enabled = true;
+				BotonRHInsertar.Enabled = false;
+				BotonRHEliminar.Enabled = false;
+				if (esAdmin)
+				{
+					deshabilitarGrid();
+					PerfilAccesoComboBox.Enabled = false;
+					if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+					{
+						RolComboBox.Enabled = false;
+						ProyectoAsociado.Enabled = false;
+					}
+				}
+				habilitarCampos();
+				PerfilAccesoComboBox.Enabled = false;
+				
+			} else {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            
+	        } 
         }
 
         protected DataTable crearTablaRH()
@@ -649,20 +660,23 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonRHEliminar_Click(object sender, EventArgs e)
         {
-            
-            if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
-            {
-                //marcarEliminar();
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
-                volverAlOriginal();
-                llenarGrid();
-                llenarGrid();
-            }
-            else
-            {
-                EtiqErrorEliminar.Visible = true;
-            }
-            //this.cedula = Convert.ToInt32(datos[0].ToString());
+            if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false){
+				if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
+				{
+					//marcarEliminar();
+					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
+					volverAlOriginal();
+					llenarGrid();
+					llenarGrid();
+				}
+				else
+				{
+					EtiqErrorEliminar.Visible = true;
+				}
+				//this.cedula = Convert.ToInt32(datos[0].ToString());
+			}  else {		
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		
+	        }
         }
 
 
