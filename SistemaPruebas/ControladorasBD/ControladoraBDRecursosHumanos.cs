@@ -277,12 +277,16 @@ namespace SistemaPruebas.Controladoras
             return acceso.Insertar("update Recurso_Humano set esta_en_Uso = " + use + " where cedula =" + id);		
         }		
         /**/
-		
 
 
 
 
 
+        /*
+         * Requiere: Entidad de Recursos Humanos
+         * Modifica: Inserta un nuevo recurso humano en el sistema.
+         * Retorna: int.
+         */
         public int insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
             String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto,fechaUltimo) values(" + recursoHumano.Cedula + ",'" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado + ", getDate()" + ")";
@@ -291,6 +295,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: Entidad de Recursos Humanos
+         * Modifica: Modifica un recurso humano previamente ingresado al sistema.
+         * Retorna: int.
+         */
         public int modificarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
             String consulta = "UPDATE Recurso_Humano SET cedula =" + recursoHumano.Cedula + ", nombre_completo = '" + recursoHumano.Nombre_Completo + "', telefono1 = '" + recursoHumano.Tel1 + "', telefono2 = '" + recursoHumano.Tel2 + "', correo_electronico = '" + recursoHumano.Correo + "', usuario = '" + recursoHumano.Usuario + "', contrasenna = '" + recursoHumano.Clave + "', perfil_acceso = '" + recursoHumano.PerfilAcceso + "', rol = '" + recursoHumano.Rol + "', id_proyecto = '" + recursoHumano.ProyAsociado + "', fechaUltimo=getDate()" + " WHERE cedula = " + recursoHumano.CedulaVieja + ";";
@@ -299,12 +308,22 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: Cédula
+         * Modifica: Elimina un recurso humano del sistema.
+         * Retorna: int.
+         */
         public int eliminarRecursoHumanoBD(int cedula)
         {
             return acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = " + cedula + ";");
 
         }
 
+        /*
+         * Requiere: tipo de consulta y cédula.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRecursoHumanoBD(int tipo, int cedula)
         {
             DataTable dt = null;
