@@ -3,9 +3,8 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>Sistema de Pruebas</h1>
-        <p class="lead">Sistema de Pruebas página de inicio.</p>
-
+        <h1>Bienvenido</h1>
+        <p class="lead">Sistema de Pruebas. Página de inicio</p>
         
     </div>
 

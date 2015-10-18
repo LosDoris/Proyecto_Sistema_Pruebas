@@ -475,8 +475,8 @@ namespace SistemaPruebas.Intefaces
 
         protected void marcarBoton(ref Button b)
         {
-            b.BorderColor = System.Drawing.Color.Black;
-            b.BackColor = System.Drawing.Color.Black;
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
             b.ForeColor = System.Drawing.Color.White;
         }
 

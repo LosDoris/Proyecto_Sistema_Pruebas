@@ -5,7 +5,7 @@
     <h2><%: Title %>.</h2>
 
 
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+   <%-- PRODUCIA ERRORES CON LA NAVEGACION %> <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> --%>
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="of_rep" CssClass="col-md-4 control-label">Oficina</asp:Label>
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Oficina</asp:Label>
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
                     </div>
@@ -138,11 +138,11 @@
     <div id="tablaProyectos" class="row">
 
         <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
-            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="15px" 
+            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="7px" 
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
             <Columns>
-                <asp:BoundField DataField="Id Proyecto" HeaderText=" Id Proyecto"  />
-                <asp:TemplateField HeaderText=" Nombre del sistema">
+                <asp:BoundField DataField="Id Proyecto" ItemStyle-Width="185px" HeaderText=" Id Proyecto"  />
+                <asp:TemplateField ItemStyle-Width="200px" HeaderText=" Nombre del sistema">
                     <ItemTemplate>
                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre del sistema") %>'></asp:Label>
                     </ItemTemplate>

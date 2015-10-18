@@ -649,8 +649,8 @@ namespace SistemaPruebas.Intefaces
            
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"]  = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"]  = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"]     =  Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"]       = "cursor:pointer";
             }
@@ -689,8 +689,8 @@ namespace SistemaPruebas.Intefaces
 
         protected void marcarBoton(ref Button b)
         {
-            b.BorderColor = System.Drawing.Color.Black;
-            b.BackColor = System.Drawing.Color.Black;
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
             b.ForeColor = System.Drawing.Color.White;
         }
 
@@ -727,8 +727,8 @@ namespace SistemaPruebas.Intefaces
             foreach (GridViewRow row in RH.Rows)
             {
                 row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + row.RowIndex);
-                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
-                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";           
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";           
                 row.Attributes["style"] = "cursor:pointer";
             }
         }

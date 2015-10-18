@@ -186,6 +186,7 @@ namespace SistemaPruebas.Intefaces
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
                             }
+                            llenarGrid();
                             Deshabilitar_Campos();
                             gridProyecto.Enabled = true;
                             EnabledButtons();
@@ -485,8 +486,8 @@ namespace SistemaPruebas.Intefaces
 
         protected void marcarBoton(ref Button b)
         {
-            b.BorderColor = System.Drawing.Color.Black;
-            b.BackColor = System.Drawing.Color.Black;
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
             b.ForeColor = System.Drawing.Color.White;
         }
 
@@ -503,8 +504,8 @@ namespace SistemaPruebas.Intefaces
 
             if (gridProyecto.Enabled && e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
@@ -527,8 +528,8 @@ namespace SistemaPruebas.Intefaces
             foreach (GridViewRow row in gridProyecto.Rows)
             {
                 row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + row.RowIndex);
-                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#3260a0';;this.style.color='white'";
-                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='black'";
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 row.Attributes["style"] = "cursor:pointer";
             }
         }
