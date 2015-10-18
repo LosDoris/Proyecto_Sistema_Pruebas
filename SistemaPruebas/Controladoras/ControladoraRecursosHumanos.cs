@@ -112,6 +112,12 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRecursosHumanos.perfilDelLoggeado(Account.Login.el_logeado);
         }
 
+        /*
+         *Requiere:  N/A.
+         *Modifica: Hace llamado a método que consulta si la persona loggeada
+          es un administrador, según el sistema y los datos dentro de él, o no.
+         *Retorna: booleano.
+        */
         public bool loggeadoEsAdmin()
         {
             //controlRH = new ControladoraRecursosHumanos();
@@ -128,13 +134,28 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
-		
-		
-		/**/		
+
+
+        /**/
+
+        /*
+         *Requiere:  Número de cédula.
+         *Modifica: Hace llamado al método que accede a la base de datos
+          para hacer confirmación del uso del Recurso Humano.
+          Regresa verdadero si está en uso o falso si no.
+         *Retorna: booleano.
+         */
         public bool ConsultarUsoRH(int id)		
         {		
             return controladoraBDRecursosHumanos.ConsultarUsoRH(id);		
-        }		
+        }
+
+        /*
+         *Requiere:  Número de cédula y el estado del Uso actual.
+         *Modifica: Se encarga de hacer el llamado al método que accede a la
+          base de datos para cambiar el uso asociado al número de cédula.
+         *Retorna: entero.
+         */
         public int UpdateUsoRH(int id, int use)		
         {		
             return controladoraBDRecursosHumanos.UpdateUsoRH(id, use);		
@@ -173,20 +194,6 @@ namespace SistemaPruebas.Controladoras
             return dt;
 
         }
-
-        /*public int eliminarRecursoHumano(int cedula)
-        {
-            int regresa = 0;
-            if (controladoraBDRecursosHumanos.eliminarRecursoHumano(cedula))
-            {
-                regresa = 0;
-            }
-            else
-            {
-                regresa = 1;
-            }
-            return regresa;
-        }*/
 
         public String solicitarProyectos()
         {

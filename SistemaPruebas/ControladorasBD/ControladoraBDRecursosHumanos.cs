@@ -76,6 +76,12 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        /*
+         *Requiere:  Nombre de usuario
+         *Modifica: Accede a la base de datos y busca la contraseña correspondiente
+          a la persona cuyo nombre de usuario recibe cómo parámetro.
+         *Retorna: hilera.
+        */
         public string consultarContrasena(String username)
         {
             String consulta = "SELECT contrasenna FROM Recurso_Humano WHERE usuario = '" + username + "';";
@@ -223,10 +229,16 @@ namespace SistemaPruebas.Controladoras
         }
 
 
-        
+
         /**/
-		
-		public bool ConsultarUsoRH(int id)		
+
+        /*
+         *Requiere:  Número de cédula del Recurso Humano
+         *Modifica: Hace acceso a base de datos para consultar el estado de
+          Uso del Recurso Humano, si está siendo  manipulado en algún otro lugar.
+         *Retorna: booleano.
+        */
+        public bool ConsultarUsoRH(int id)		
         {		
             bool regresa = false;		
             int el_uso = 0;		
@@ -252,6 +264,14 @@ namespace SistemaPruebas.Controladoras
             }		
             return regresa;		
         }		
+
+        /*
+         *Requiere:  Número de cédula de Recurso Humano y el estado de Uso actual.
+         *Modifica: Con el número de cédula que recibe, cambia en la base de datos
+          el estado del Uso asociado a este. Este indicará que el Recurso Humano
+          se encuentra o no en otro lado modificado.
+         *Retorna: entero.
+        */
         public int UpdateUsoRH(int id, int use)		
         {		
             return acceso.Insertar("update Recurso_Humano set esta_en_Uso = " + use + " where cedula =" + id);		
@@ -304,10 +324,6 @@ namespace SistemaPruebas.Controladoras
             return dt;
 
         }
-
-
-
-
 
     }
 }
