@@ -225,6 +225,39 @@ namespace SistemaPruebas.Controladoras
 
         
         /**/
+		
+		public bool ConsultarUsoRH(int id)		
+        {		
+            bool regresa = false;		
+            int el_uso = 0;		
+            DataTable DR = acceso.ejecutarConsultaTabla("select esta_en_Uso from Recurso_Humano where cedula =" + id);		
+            try		
+            {		
+                foreach (DataRow row in DR.Rows)		
+                {		
+                    el_uso = (int)row["esta_en_Uso"];		
+                }		
+            }		
+            catch (System.InvalidOperationException)		
+            {		
+                regresa = false;		
+            }		
+            if (el_uso==0)		
+            {		
+                regresa = false;		
+            }		
+            else		
+            {		
+                regresa = true;		
+            }		
+            return regresa;		
+        }		
+        public int UpdateUsoRH(int id, int use)		
+        {		
+            return acceso.Insertar("update Recurso_Humano set esta_en_Uso = " + use + " where cedula =" + id);		
+        }		
+        /**/
+		
 
 
 

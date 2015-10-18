@@ -128,6 +128,17 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
+		
+		
+		/**/		
+        public bool ConsultarUsoRH(int id)		
+        {		
+            return controladoraBDRecursosHumanos.ConsultarUsoRH(id);		
+        }		
+        public int UpdateUsoRH(int id, int use)		
+        {		
+            return controladoraBDRecursosHumanos.UpdateUsoRH(id, use);		
+        }
 
         /**/
 
