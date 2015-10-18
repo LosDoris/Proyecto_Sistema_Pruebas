@@ -163,7 +163,11 @@ namespace SistemaPruebas.Controladoras
 
         /**/
 
-
+        /*
+         * Requiere: Object[] datos
+         * Modifica: Inserta un nuevo recurso humano en el sistema.
+         * Retorna: int.
+         */
         public int insertarRecursoHumano(Object[] datos)
         {
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
@@ -171,6 +175,11 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
+        /*
+         * Requiere: Object[] datos
+         * Modifica: Modifica un recurso humano en el sistema.
+         * Retorna: int.
+         */
         public int modificarRecursoHumano(Object[] datos)
         {
             //datos[0];
@@ -179,7 +188,11 @@ namespace SistemaPruebas.Controladoras
             int ret = controladoraBDRecursosHumanos.modificarRecursoHumanoBD(recursoHumano);
             return ret;
         }
-
+        /*
+         * Requiere: Cédula
+         * Modifica: Elimina un recurso humano del sistema.
+         * Retorna: int.
+         */
         public int eliminarRecursoHumano(int cedula)
         {
             //datos[0];
@@ -188,6 +201,11 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
+        /*
+         * Requiere: tipo de consulta y cédula.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRecursoHumano(int tipo, int cedula)
         {
             DataTable dt = controladoraBDRecursosHumanos.consultarRecursoHumanoBD(tipo, cedula);
@@ -195,6 +213,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: N/A.
+         * Retorna: String.
+         */
         public String solicitarProyectos()
         {
             String proyectos = controladoraProyecto.Consultar_ID_Nombre_Proyecto();
@@ -202,6 +225,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: N/A.
+         * Retorna: String.
+         */
         public String solicitarNombreProyecto(int id)
         {
             String proyecto = controladoraProyecto.ConsultarNombreProyectoPorId(id);
