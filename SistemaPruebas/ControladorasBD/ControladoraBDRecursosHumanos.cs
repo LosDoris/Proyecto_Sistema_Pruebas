@@ -285,7 +285,7 @@ namespace SistemaPruebas.Controladoras
 
         public int insertarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
-            String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto) values(" + recursoHumano.Cedula + ",'" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado + ")";
+            String consulta = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto,fechaUltimo) values(" + recursoHumano.Cedula + ",'" + recursoHumano.Nombre_Completo + "','" + recursoHumano.Tel1 + "','" + recursoHumano.Tel2 + "','" + recursoHumano.Correo + "','" + recursoHumano.Usuario + "','" + recursoHumano.Clave + "','" + recursoHumano.PerfilAcceso + "','" + recursoHumano.Rol + "'," + recursoHumano.ProyAsociado + ", getDate()" + ")";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -293,7 +293,7 @@ namespace SistemaPruebas.Controladoras
 
         public int modificarRecursoHumanoBD(EntidadRecursosHumanos recursoHumano)
         {
-            String consulta = "UPDATE Recurso_Humano SET cedula =" + recursoHumano.Cedula + ", nombre_completo = '" + recursoHumano.Nombre_Completo + "', telefono1 = '" + recursoHumano.Tel1 + "', telefono2 = '" + recursoHumano.Tel2 + "', correo_electronico = '" + recursoHumano.Correo + "', usuario = '" + recursoHumano.Usuario + "', contrasenna = '" + recursoHumano.Clave + "', perfil_acceso = '" + recursoHumano.PerfilAcceso + "', rol = '" + recursoHumano.Rol + "', id_proyecto = '" + recursoHumano.ProyAsociado + "' WHERE cedula = " + recursoHumano.CedulaVieja + ";";
+            String consulta = "UPDATE Recurso_Humano SET cedula =" + recursoHumano.Cedula + ", nombre_completo = '" + recursoHumano.Nombre_Completo + "', telefono1 = '" + recursoHumano.Tel1 + "', telefono2 = '" + recursoHumano.Tel2 + "', correo_electronico = '" + recursoHumano.Correo + "', usuario = '" + recursoHumano.Usuario + "', contrasenna = '" + recursoHumano.Clave + "', perfil_acceso = '" + recursoHumano.PerfilAcceso + "', rol = '" + recursoHumano.Rol + "', id_proyecto = '" + recursoHumano.ProyAsociado + ", fechaUltimo=getDate()" + "' WHERE cedula = " + recursoHumano.CedulaVieja + ";";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -311,7 +311,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano ORDER BY perfil_acceso";
+                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano ORDER BY fechaUltimo desc;";//BY perfil_acceso";
             }
             else if (tipo == 2)
             {
