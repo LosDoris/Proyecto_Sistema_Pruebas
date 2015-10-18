@@ -22,21 +22,13 @@ namespace SistemaPruebas.Intefaces
         private static bool esAdmin = false;
         private static int cedulaLoggeado;
         //Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
-        /*protected void Page_Load(object sender, EventArgs e)
-        {
-            
-            controladoraRecursosHumanos.idDelLoggeado();
-            Restricciones_Campos();
-            //Deshabilitar_Campos();
-            if (!esAdmin)
-                Insertar.Enabled = false;
-            aceptar.Enabled = false;
-            cancelar.Enabled = false;
-            Modificar.Enabled = false;
-            Eliminar.Enabled = false;
-            //datepicker.Disabled = true;
-            llenarGrid();
-        }*/
+
+
+        /*
+         * Requiere: Que suceda el evento de refrescar la pagina
+         * Modifica: Refresca la pagina.
+         * Retorna: N/A.
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
             Restricciones_Campos();
@@ -66,6 +58,11 @@ namespace SistemaPruebas.Intefaces
            // RH.Enabled = false;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Designa un maximo de caracteres aceptados en los espacios.
+         * Retorna: N/A.
+         */
         protected void Restricciones_Campos()
         {
             TextBoxCedulaRH.MaxLength = 9;
@@ -76,7 +73,12 @@ namespace SistemaPruebas.Intefaces
             TextBoxUsuario.MaxLength = 30;
             TextBoxClave.MaxLength = 12;
         }
-        
+
+        /*
+         * Requiere: N/A
+         * Modifica: Carga el grid de consultar recursos humanos.
+         * Retorna: N/A.
+         */
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
             DataTable recursosHumanos = crearTablaRH();
@@ -111,7 +113,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-
+        /*
+         * Requiere: Cédula
+         * Modifica: Carga los datos del recurso humano consultado en sus respectivas posisiones en la pantalla.
+         * Retorna: N/A.
+         */
         void llenarDatosRecursoHumano(int cedula)
         {
             DataTable dt = controladoraRecursosHumanos.consultarRecursoHumano(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
@@ -143,6 +149,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: Evento de cambiar la opcion seleccionada
+         * Modifica: Bloqua el dropdownlist de rol.
+         * Retorna: N/A.
+         */
         protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
@@ -151,6 +162,7 @@ namespace SistemaPruebas.Intefaces
                 RolComboBox.Items.Clear();
                 RolComboBox.Items.Add(new ListItem("Administrador"));
                 ProyectoAsociado.Enabled = false;
+                //ProyectoAsociado.SelectedItem.Text=
 
                 //RolComboBox.Items.FindByText("No aplica").Selected = true;
                 //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
@@ -163,7 +175,12 @@ namespace SistemaPruebas.Intefaces
                 ProyectoAsociado.Enabled = true;
             }
         }
-        
+
+        /*
+         * Requiere: tipo.
+         * Modifica: Selecciona el rol en la consulta.
+         * Retorna: N/A.
+         */
         protected void seleccionRolEnConsulta(String tipo)
         {
             if(tipo == "Administrador")
@@ -178,8 +195,12 @@ namespace SistemaPruebas.Intefaces
                 llenarDDRol();
             }
         }
-        
 
+        /*
+         * Requiere: evento click en el boton insertar.
+         * Modifica: Intenta insertar una tupla y despliega el respectivo mensaje de exito u error
+         * Retorna: N/A.
+         */
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
         {
             modo = 1;
@@ -199,13 +220,15 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel2.Text = "";
             TextBoxUsuario.Text = "";
             TextBoxClave.Text = "";
-            //marcarInsertar();
             marcarBoton(ref BotonRHInsertar);
             deshabilitarGrid();
         }
 
-        
-
+        /*
+         * Requiere: Evento de click en boton cancelar.
+         * Modifica: Borra los cambios que el usuario hizo y vuelve a como estaba antes de que el usuario intentara insertar o modificar una tupla de recursos humanos
+         * Retorna: N/A.
+         */
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
 			controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);    //ya no está en uso
@@ -235,6 +258,11 @@ namespace SistemaPruebas.Intefaces
            //botonesCancelar();
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Vuelve al inicio de Recursos Humanos.
+         * Retorna: N/A.
+         */
         protected void volverAlOriginal()
         {
             botonesInicio();
@@ -279,11 +307,16 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        
-             //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
+        //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
              //enviar la info a la controladora
              //Ver el resultado. Si se realizo exitosamente
-         
+
+
+        /*
+         * Requiere: Evento click en boton aceptar de insertar.
+         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Retorna: N/A.
+         */
         protected void BotonRHAceptar_Click(object sender, EventArgs e)
         {
             //desactivarErrores();
@@ -336,15 +369,17 @@ namespace SistemaPruebas.Intefaces
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //jlkjlkjlkj
         }
 
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Response.Write("lkjlkjl");
         }
 
-
+        /*
+         * Requiere: N/A.
+         * Modifica: Llena el dropdownlist de proyecto.
+         * Retorna: N/A.
+         */
         protected void llenarDDProyecto()
         {
 
@@ -366,9 +401,13 @@ namespace SistemaPruebas.Intefaces
                     this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
                 }
             }
-
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Llena el dropdownlist de perfil de acceso.
+         * Retorna: N/A.
+         */
         protected void llenarDDPerfil()
         {
             this.PerfilAccesoComboBox.Items.Clear();
@@ -383,9 +422,14 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        //líder de pruebas, tester, líder de desarrollo, usuario,soporte
+        /*
+         * Requiere: N/A.
+         * Modifica: Llena el dropdownlist de Rol.
+         * Retorna: N/A.
+         */
         protected void llenarDDRol()
         {
+        //líder de pruebas, tester, líder de desarrollo, usuario,soporte
             this.RolComboBox.Items.Clear();
             string[] tipos = new string[] { "No aplica", "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
 
@@ -398,6 +442,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Habilita los campos para que el usuario pueda editar la informacion.
+         * Retorna: N/A.
+         */
         protected void habilitarCampos()
         {
             TextBoxEmail.Enabled = true;
@@ -421,6 +470,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Deshabilita los campos para que el usuario pueda no editar la informacion.
+         * Retorna: N/A.
+         */
         protected void deshabilitarCampos()
         {
 
@@ -447,6 +501,11 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Resetea los botones para que vuelvan a estar como al inicio de todo.
+         * Retorna: N/A.
+         */
         protected void botonesInicio()
         {
             BotonRHCancelar.Enabled = false;
@@ -463,6 +522,12 @@ namespace SistemaPruebas.Intefaces
                 BotonRHModificar.Enabled = true;
             }
         }
+
+        /*
+         * Requiere: N/A.
+         * Modifica: Activa y desactiva los botones al cancelar.
+         * Retorna: N/A.
+         */
         protected void botonesCancelar() //Estado de los botones después de apretar 
              
         {
@@ -483,13 +548,24 @@ namespace SistemaPruebas.Intefaces
                // RH.Enabled = true;
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Habilita los botones de Modificar y Eiminar.
+         * Retorna: N/A.
+         */
         protected void habilitarBotonesME()
         {
             BotonRHEliminar.Enabled = true;
             BotonRHModificar.Enabled = true;
-            BotonRHAceptar.Enabled = true;
-            BotonRHCancelar.Enabled = true;
+            BotonRHAceptar.Enabled = false;
+            BotonRHCancelar.Enabled = false;
         }
+
+        /*
+         * Requiere: N/A.
+         * Modifica: Valida el campo de email.
+         * Retorna: N/A.
+         */
         protected bool validarCampos()
         {
             desactivarErrores();
@@ -506,6 +582,12 @@ namespace SistemaPruebas.Intefaces
 
             return todosValidos;
         }
+
+        /*
+         * Requiere: N/A.
+         * Modifica: Desactiva todos los errores.
+         * Retorna: N/A.
+         */
         protected void desactivarErrores()
         {
 
@@ -523,7 +605,11 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorConsultar.Visible = false;
         }
 
-
+        /*
+         * Requiere: Evento click en boton aceptar de modificar.
+         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Retorna: N/A.
+         */
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
             //{
@@ -583,7 +669,11 @@ namespace SistemaPruebas.Intefaces
             //}
         }
 
-
+        /*
+         * Requiere: Evento click en boton eliminar.
+         * Modifica: Habilita y deshabilita los espacios y botones que se requieren para que el usuario sea capaz de modificar segun el tipo de perfil que tiene.
+         * Retorna: N/A.
+         */
         protected void BotonRHModificar_Click(object sender, EventArgs e)
         {
 			if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false)
@@ -619,6 +709,11 @@ namespace SistemaPruebas.Intefaces
 	        } 
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Inicializa y llena el grid de recursos humanos.
+         * Retorna: N/A.
+         */
         protected DataTable crearTablaRH()
         {
             DataTable dt = new DataTable();
@@ -630,6 +725,11 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
+        /*
+         * Requiere: Evento seleccionar un recurso humano.
+         * Modifica: Carga los datos del RH seleccionado en pantalla.
+         * Retorna: N/A.
+         */
         protected void RH_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = RH.SelectedRow.RowIndex;
@@ -640,7 +740,11 @@ namespace SistemaPruebas.Intefaces
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
         }
 
-
+        /*
+         * falta------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         */
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {   
             /*
@@ -658,6 +762,11 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+        /*
+         * Requiere: Evento click en boton aceptar de insertar.
+         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Retorna: N/A.
+         */
         protected void BotonRHEliminar_Click(object sender, EventArgs e)
         {
             if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false){
@@ -686,7 +795,11 @@ namespace SistemaPruebas.Intefaces
             this.llenarGrid();
         }
 
-
+        /*
+         * Requiere: ref Button.
+         * Modifica: Marca un boton.
+         * Retorna: N/A.
+         */
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -694,6 +807,11 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.White;
         }
 
+        /*
+         * Requiere: ref Button.
+         * Modifica: Desmarca un boton.
+         * Retorna: N/A.
+         */
         protected void desmarcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.Color.LightGray;
@@ -702,6 +820,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: N/A..
+         * Modifica: Desmarca todos los botones.
+         * Retorna: N/A.
+         */
         protected void desmarcarBotones()
         {
             desmarcarBoton(ref BotonRHInsertar);
@@ -709,6 +832,11 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref BotonRHEliminar);
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Deshabilita el grid de ser seleccionado.
+         * Retorna: N/A.
+         */
         protected void deshabilitarGrid()
         {
             RH.Enabled = false;
@@ -721,6 +849,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Habilita la seleccion del grid.
+         * Retorna: N/A.
+         */
         protected void habilitarGrid()
         {
             RH.Enabled = true;
