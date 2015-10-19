@@ -187,7 +187,8 @@ namespace SistemaPruebas.Intefaces
                         {
                             desmarcarBoton(ref Insertar);
                             Console.WriteLine("Insertar");
-                            string text = "";//= txtDate.Text;
+                          //  string text = "";//= txtDate.Text;
+                            string text = Page.Request.Form["txt_date"];
                             object[] datos = new object[8] { 0, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
                             int a = controladoraProyecto.IngresaProyecto(datos);
                             if (a == 1)
