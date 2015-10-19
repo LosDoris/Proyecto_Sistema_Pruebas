@@ -231,7 +231,8 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonRHCancelar_Click(object sender, EventArgs e)
         {
-			controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);    //ya no está en uso
+            if(modo == 2)
+                controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(cedulaConsulta), 0);    //ya no está en uso
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
@@ -348,10 +349,9 @@ namespace SistemaPruebas.Intefaces
                     BotonRHAceptar.Enabled = false;
                     habilitarGrid();
                     llenarGrid();
-                    llenarGrid();
-
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                     desmarcarBotones();
+                    resaltarNuevo(this.TextBoxCedulaRH.Text);
                 }
                 else if(insercion == 2627)
                 {
@@ -642,13 +642,10 @@ namespace SistemaPruebas.Intefaces
                         BotonRHInsertar.Enabled = true;
                         BotonRHEliminar.Enabled = true;
                         llenarGrid();
-                        llenarGrid();
 						controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
-
-
-
-                        
+                        resaltarNuevo(this.TextBoxCedulaRH.Text);
+     
                     }
                     else
                     {
@@ -747,10 +744,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {   
-            /*
-            
-            */
-           
+        
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
@@ -758,8 +752,7 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["onclick"]     =  Page.ClientScript.GetPostBackClientHyperlink(RH, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"]       = "cursor:pointer";
             }
-            
-            
+               
         }
 
         /*
@@ -788,7 +781,11 @@ namespace SistemaPruebas.Intefaces
 	        }
         }
 
-
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             RH.PageIndex = e.NewPageIndex;
@@ -864,6 +861,31 @@ namespace SistemaPruebas.Intefaces
                 row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";           
                 row.Attributes["style"] = "cursor:pointer";
             }
+        }
+
+        /*
+         * Requiere: Cedula del recurso humano más recientemente insertado o modificado.
+         * Modifica: Mueve el grid para que se seleccione inmediatamente la página donde está la tupla agregada o modificada.
+         * Retorna: N/A.      
+        */
+
+        protected void resaltarNuevo(String cedulaNuevo)
+        {
+            RH.AllowPaging = false;
+            RH.DataBind();
+            int i = 0;
+            foreach (GridViewRow row in RH.Rows)
+            {
+                if (row.Cells[0].Text == cedulaNuevo)
+                {
+                    int pos = i / RH.PageSize;
+                    RH.PageIndex = pos;
+                    row.BackColor = System.Drawing.Color.Crimson;
+                }
+                i++;
+            }
+            RH.AllowPaging = true;
+            RH.DataBind();
         }
     }
 }
