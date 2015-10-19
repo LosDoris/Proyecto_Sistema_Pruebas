@@ -4968,13 +4968,17 @@ a.list-group-item.active > .badge,
 }
 
 .jumbozRH {
-  padding: 30px;
-  margin-bottom: 30px;
+  padding: 20px;
+  margin-bottom: 20px;
   font-size: 14px;
   font-weight: 100;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #ead5b6;
+  background-color: #ffffff;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
 }
 
 .jumbotron h1 {
