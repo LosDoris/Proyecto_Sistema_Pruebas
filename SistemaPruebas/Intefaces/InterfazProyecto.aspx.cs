@@ -23,6 +23,18 @@ namespace SistemaPruebas.Intefaces
                 HttpContext.Current.Session["button"] = value;
             }
         }
+        public static string id_logeado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_logeado"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_logeado"] = value;
+            }
+        }
         public static string id_Proyecto
         {
             get
@@ -82,6 +94,7 @@ namespace SistemaPruebas.Intefaces
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
+            id_logeado = controladoraProyecto.IdLogeado();
             adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
             Deshabilitar_Campos();
@@ -395,7 +408,7 @@ namespace SistemaPruebas.Intefaces
                 cancelar.Enabled = true;
                 modificando = true.ToString();
                 id_modificando = id_Proyecto;
-                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
+                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando), id_logeado);
 
             }
             else
@@ -418,7 +431,7 @@ namespace SistemaPruebas.Intefaces
                 cancelar.Enabled = true;
                 modificando = true.ToString();
                 id_modificando = id_Proyecto;
-                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
+                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando), id_logeado);
             }
             else
             {

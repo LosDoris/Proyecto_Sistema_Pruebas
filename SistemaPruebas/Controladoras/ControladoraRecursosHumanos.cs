@@ -72,6 +72,8 @@ namespace SistemaPruebas.Controladoras
          */
         public bool estadoLoggeado(string nombre, string estado)
         {
+            if (estado == "0")
+                controladoraProyecto.LimpiarModificaciones();
             return controladoraBDRecursosHumanos.estadoLoggeado(nombre, estado);
         }
         

@@ -127,10 +127,12 @@ namespace SistemaPruebas
 
         protected void LogOut(object sender, EventArgs e)
         {
+            Session.Abandon();
             controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
             Account.Login.el_logeado = "";
-            makeInVisible();
+            makeInVisible();           
             Response.Redirect("~/Default");
+            
         }
     }
 

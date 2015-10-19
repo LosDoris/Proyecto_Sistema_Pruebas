@@ -10,6 +10,7 @@ namespace SistemaPruebas.Controladoras
     {
         ControladoraBDProyecto controlBD;
         ControladoraRecursosHumanos controlRH;
+        private static Dictionary<int, string> modificados = new Dictionary<int, string>();        
         
         public ControladoraProyecto()
         {
@@ -136,19 +137,32 @@ namespace SistemaPruebas.Controladoras
             string retorno = controlBD.ConsultarNombreProyectoPorId(id);
             return retorno;
         }
-        public void AgregarModificacion(int i)
+        public void AgregarModificacion(int i, string id)
         {
             //enModificacion = i.ToString();
+            modificados.Add(i, id);
+
         }
         public void QuitarEliminacion(int i)
         {
-            //string[] split = enModificacion.Split(',');
+            modificados.Remove(i);
 
+        }
+        public string IdLogeado()
+        {
+            controlRH = new ControladoraRecursosHumanos();
+            return controlRH.idDelLoggeado().ToString();
         }
         public void LimpiarModificaciones()
         {
-            //int i = 4;
-            //enModificacion = i.ToString();
+            modificados.ToString();
+            controlRH = new ControladoraRecursosHumanos();
+            string ff = controlRH.idDelLoggeado().ToString();
+            foreach (var item in modificados.Where(kvp => kvp.Value == ff).ToList())
+            {
+                modificados.Remove(item.Key);
+                UpdateUsoProyecto(item.Key, 0);
+            }
         }
 
     }
