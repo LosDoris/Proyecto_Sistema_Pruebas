@@ -162,10 +162,7 @@ namespace SistemaPruebas.Intefaces
                 RolComboBox.Items.Clear();
                 RolComboBox.Items.Add(new ListItem("Administrador"));
                 ProyectoAsociado.Enabled = false;
-                //ProyectoAsociado.SelectedItem.Text=
-
-                //RolComboBox.Items.FindByText("No aplica").Selected = true;
-                //ProyectoAsociado.Items.FindByValue("-1").Selected = true;
+                ProyectoAsociado.Items.FindByText("No aplica").Selected = true;
             }
             else
             {
@@ -243,7 +240,6 @@ namespace SistemaPruebas.Intefaces
                 if (esAdmin)
                 {
                     volverAlOriginal();
-                    //this.llenarDatosRecursoHumano(Convert.ToInt32(cedulaConsulta.ToString()));
                     BotonRHEliminar.Enabled = true;
                     BotonRHModificar.Enabled = true;
 
@@ -251,7 +247,6 @@ namespace SistemaPruebas.Intefaces
                 else
                 {
                     volverAlOriginal();
-                    //this.llenarDatosRecursoHumano(controladoraRecursosHumanos.idDelLoggeado());
                 }
             }
             else if (modo==1)
