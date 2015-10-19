@@ -93,7 +93,7 @@ namespace SistemaPruebas.Intefaces
         //private int id_modificando = -1;
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
             id_logeado = controladoraProyecto.IdLogeado();
             adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
@@ -203,23 +203,31 @@ namespace SistemaPruebas.Intefaces
                             else
                             {
                                 //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-                                if (a == 2627)
+                                switch (a)
                                 {
-                                    EtiqErrorLlaves.Text = "El nombre del sistema ya ha sido ingresado anteriormente, por favor ingrese un nombre nuevo";
-                                    nombre_proyecto.BorderColor = System.Drawing.Color.Red;
-                                    Habilitar_Campos();
-                                    button = "1";
-                                    aceptar.Enabled = true;
-                                    cancelar.Enabled = true;
-                                    marcarBoton(ref Insertar);
-                                    EtiqErrorLlaves.Visible = true;
-                                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
-                                }
-                                else
-                                {
-                                    EtiqErrorLlaves.Visible = false;
-                                }
-                            }                            
+                                    case 2627:
+                                        EtiqErrorLlaves.Text = "El nombre del sistema ya ha sido ingresado anteriormente, por favor ingrese un nombre nuevo";
+                                        nombre_proyecto.BorderColor = System.Drawing.Color.Red;
+
+                                        break;
+                                    case 547:
+                                        EtiqErrorLlaves.Text = "El nombre del sistema sólo puede tener letras, no acepta números ni caracteres especiales";
+                                        nombre_proyecto.BorderColor = System.Drawing.Color.Red;
+                                        break;
+                                    default:
+                                        EtiqErrorLlaves.Text = "Se produjo un error al momento de insertar el proyecto, por favor intente luego";
+                                        break;
+
+                                };
+                                Habilitar_Campos();
+                                button = "1";
+                                aceptar.Enabled = true;
+                                cancelar.Enabled = true;
+                                marcarBoton(ref Insertar);
+                                EtiqErrorLlaves.Visible = true;
+                                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+
+                            }
                         }
                     }
                     break;

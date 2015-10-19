@@ -65,9 +65,17 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label">Objetivo General</asp:Label>
+                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline" onkeypress="return solo_letrasYNumeros(event)"/>
+                        <script type="text/javascript">
+                            function solo_letrasYNumeros(evt) {
+                                if ((evt.charCode != 32) && (evt.charCode != 13) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
+                                    alert("Sólo se permite letras");
+                                    return false;
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
 
