@@ -4967,6 +4967,16 @@ a.list-group-item.active > .badge,
   background-color: #ead5b6;
 }
 
+.jumbozRH {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #ead5b6;
+}
+
 .jumbotron h1 {
   line-height: 1;
   color: #154b67;

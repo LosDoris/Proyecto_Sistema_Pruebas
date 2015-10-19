@@ -39,9 +39,12 @@
 
     <div class="row">
         <div class="col-md-8">
+            <div class="col-md-8">
                 <div class="form-horizontal">
                     
-                    <hr />
+                   
+                    <div class="jumbozRH">
+                        <h4>Datos Personales</h4>
                       <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
@@ -103,10 +106,13 @@
                             </div>
                         </div>         
                     </div>
+            </div>
                  </div>
+            </div>
                 
-                    <h4>Datos del Perfil</h4>
          <div class="col-md-4">
+             <div class="jumbozRH">
+                    <h4>Datos del Perfil</h4>
                 <div class="form-horizontal">
                     <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
@@ -154,22 +160,24 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                    <div class="form-group">      
+                    
+                    
+
+      </div>
+                  </div>
+             <div class="form-group">      
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
                         <div class="col-md-8">
                             <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control">
                               </asp:DropDownList>
                             </div>
                         </div>
-                    
-
-</div>
-                    </div>
+         
              </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-10 col-md-12">
-                            <asp:Button runat="server" 
+                            <asp:Button runat="server" style="border-color:#36df7c;color:#33d275" 
                                 Text="Aceptar" 
                                 causesvalidation="true" 
                                 validationgroup="CamposNoVacios"
