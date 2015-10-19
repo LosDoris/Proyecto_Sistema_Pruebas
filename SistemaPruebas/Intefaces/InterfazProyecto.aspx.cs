@@ -86,7 +86,7 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-       //private static int id_Proyecto = -1; 
+        //private static int id_Proyecto = -1; 
         //private static int button = 0;
         //private static bool adm = true;
         //private bool modificando = false;
@@ -94,6 +94,7 @@ namespace SistemaPruebas.Intefaces
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
         {
+            EtiqErrorLlaves.Visible = false;
             id_logeado = controladoraProyecto.IdLogeado();
             adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
@@ -193,16 +194,24 @@ namespace SistemaPruebas.Intefaces
                             {
                                 id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+                                llenarGrid();
+                                Deshabilitar_Campos();
+                                gridProyecto.Enabled = true;
+                                EnabledButtons();
                             }
 
                             else
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-                            }
-                            llenarGrid();
-                            Deshabilitar_Campos();
-                            gridProyecto.Enabled = true;
-                            EnabledButtons();
+                                if (a == 2627)
+                                {
+                                    EtiqErrorLlaves.Visible = true;
+                                }
+                                else
+                                {
+                                    EtiqErrorLlaves.Visible = true;
+                                }
+                            }                            
                         }
                     }
                     break;

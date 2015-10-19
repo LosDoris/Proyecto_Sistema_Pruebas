@@ -29,7 +29,10 @@
 
     <div class="row">
         <div class="col-md-8">
+            <div>
+                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" >*EL nombre del proyecto ya ha sido ingresado anteriormente. Por favor ingrese otro nombre para el proyecto.</asp:Label>
 
+            </div>
             <div class="form-horizontal">
 
                 <hr />
