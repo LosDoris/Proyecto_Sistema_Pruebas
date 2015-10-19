@@ -756,7 +756,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-         * Requiere: Evento click en boton aceptar de insertar.
+         * Requiere: Evento click en boton eliminar.
          * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
          * Retorna: N/A.
          */
