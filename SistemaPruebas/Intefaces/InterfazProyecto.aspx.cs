@@ -93,8 +93,7 @@ namespace SistemaPruebas.Intefaces
         //private int id_modificando = -1;
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
         protected void Page_Load(object sender, EventArgs e)
-        {
-            EtiqErrorLlaves.Visible = false;
+        {            
             id_logeado = controladoraProyecto.IdLogeado();
             adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
@@ -107,6 +106,7 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
             llenarGrid();
+            EtiqErrorLlaves.Visible = false;
         }
 
         protected void Restricciones_Campos()
@@ -202,14 +202,22 @@ namespace SistemaPruebas.Intefaces
 
                             else
                             {
-                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+                                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
                                 if (a == 2627)
                                 {
+                                    EtiqErrorLlaves.Text = "El nombre del sistema ya ha sido ingresado anteriormente, por favor ingrese un nombre nuevo";
+                                    nombre_proyecto.BorderColor = System.Drawing.Color.Red;
+                                    Habilitar_Campos();
+                                    button = "1";
+                                    aceptar.Enabled = true;
+                                    cancelar.Enabled = true;
+                                    marcarBoton(ref Insertar);
                                     EtiqErrorLlaves.Visible = true;
+                                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                                 }
                                 else
                                 {
-                                    EtiqErrorLlaves.Visible = true;
+                                    EtiqErrorLlaves.Visible = false;
                                 }
                             }                            
                         }
@@ -220,7 +228,7 @@ namespace SistemaPruebas.Intefaces
                         desmarcarBoton(ref Modificar);
                         Console.WriteLine("Modificar");
                         string text = "";//= txtDate.Text;
-                        object[] datos = new object[8] { id_Proyecto, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
+                        object[] datos = new object[8] { id_modificando, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
                         int a = controladoraProyecto.ActualizarProyecto(datos);
                         if (a == 1)
                         {
@@ -251,11 +259,11 @@ namespace SistemaPruebas.Intefaces
                         int a = 0;
                         if (Convert.ToBoolean(adm))
                         {
-                            a = controladoraProyecto.EliminarProyecto(id_Proyecto.ToString());
+                            a = controladoraProyecto.EliminarProyecto(id_modificando.ToString());
                         }
                         else
                         {
-                            a = controladoraProyecto.CancelarProyecto(id_Proyecto.ToString());
+                            a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
                         }
                         if (a == 1)
                         {
@@ -283,7 +291,7 @@ namespace SistemaPruebas.Intefaces
             {
                 case 1://Insertar
                     {
-
+                        EtiqErrorLlaves.Visible = false;
                     }
                     break;
                 case 2:
@@ -408,7 +416,7 @@ namespace SistemaPruebas.Intefaces
             if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0)
             {
                 marcarBoton(ref Modificar);
-                controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 1);
+                //controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 1);
                 button = "2";
                 Habilitar_Campos();
                 UnenabledButtons();
@@ -471,8 +479,12 @@ namespace SistemaPruebas.Intefaces
                 {
                     if (Convert.ToBoolean(modificando))
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Actualmente usted se encuentra modificando/elimiando otro proyecto');", true);
-                    if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0)
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura');", true);
+                    if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 1)
+                    {// ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);                        
+                        EtiqErrorLlaves.Text = "El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura";
+                        EtiqErrorLlaves.Visible = true;
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    }
                 }
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
@@ -554,6 +566,11 @@ namespace SistemaPruebas.Intefaces
                 row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 row.Attributes["style"] = "cursor:pointer";
             }
+        }
+
+        protected void nombre_proyecto_TextChanged(object sender, EventArgs e)
+        {
+            nombre_proyecto.BorderColor = System.Drawing.Color.LightGray;
         }
     }
 

@@ -17,7 +17,14 @@
             $("#txt_date").datepicker();
         });
     </script>
-
+    <script type="text/javascript">
+        function HideLabel() {
+            var seconds = 5;
+            setTimeout(function () {
+                document.getElementById("<%=EtiqErrorLlaves.ClientID %>").style.display = "none";
+        }, seconds * 1000);
+    };
+</script>   
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
@@ -30,7 +37,7 @@
     <div class="row">
         <div class="col-md-8">
             <div>
-                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" >*EL nombre del proyecto ya ha sido ingresado anteriormente. Por favor ingrese otro nombre para el proyecto.</asp:Label>
+                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves">*EL nombre del proyecto ya ha sido ingresado anteriormente. Por favor ingrese otro nombre para el proyecto.</asp:Label>
 
             </div>
             <div class="form-horizontal">
@@ -45,13 +52,13 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" />
+                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" OnTextChanged="nombre_proyecto_TextChanged"/>
                         <script type="text/javascript">
                             function solo_letras(evt) {
                                 if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
                                     alert("Sólo se permite letras");
                                     return false;
-                                }
+                                }                               
                             }
                         </script>
                     </div>

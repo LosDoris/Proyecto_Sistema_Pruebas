@@ -109,7 +109,11 @@ namespace SistemaPruebas.Controladoras
         }
         public int ConsultarUsoProyecto(int id)
         {
-            return controlBD.ConsultarUsoProyecto(id);
+            int retorno = 0;
+
+            if (modificados.ContainsKey(id))
+                retorno = 1;
+            return retorno;//controlBD.ConsultarUsoProyecto(id);
         }
 
         public void UpdateUsoProyecto(int id, int use)
@@ -141,11 +145,13 @@ namespace SistemaPruebas.Controladoras
         {
             //enModificacion = i.ToString();
             modificados.Add(i, id);
+            UpdateUsoProyecto(i, 1);
 
         }
         public void QuitarEliminacion(int i)
         {
             modificados.Remove(i);
+            UpdateUsoProyecto(i, 0);
 
         }
         public string IdLogeado()

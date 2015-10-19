@@ -128,7 +128,8 @@ namespace SistemaPruebas.Acceso
                     if (e.Number == 2627)//Violación de llave primaria al insertar
                     {
                         a = e.Number;
-                    }        
+                    }
+                    a = e.Number;
                 }
 
                 try
