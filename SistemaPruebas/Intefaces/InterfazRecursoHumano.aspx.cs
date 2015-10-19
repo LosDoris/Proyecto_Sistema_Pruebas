@@ -213,6 +213,9 @@ namespace SistemaPruebas.Intefaces
             BotonRHAceptar.Enabled = true;
             BotonRHCancelar.Enabled = true;
             BotonRHInsertar.Enabled = false;
+            BotonRHModificar.Enabled = false;
+            BotonRHInsertar.Enabled = false;
+            BotonRHEliminar.Enabled = false;
             TextBoxCedulaRH.Text = "";
             TextBoxNombreRH.Text = "";
             TextBoxEmail.Text = "";
