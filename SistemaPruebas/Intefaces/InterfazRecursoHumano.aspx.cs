@@ -391,15 +391,9 @@ namespace SistemaPruebas.Intefaces
 
             foreach (String p1 in pr)
             {
-                String[] p2 = p1.Split(' ');
-                //if(p2[0] == "No" && p2[1] == "aplica")//"Proyecto" No aplica
-                //{
-                    //this.ProyectoAsociado.Items.Add(new ListItem (p2[0]+" "+p2[1], p2[2]));
-                //}
-                //else
-                //{
-                    this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
-                //}
+                String[] p2 = p1.Split('_');
+                 this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                
             }
         }
 
