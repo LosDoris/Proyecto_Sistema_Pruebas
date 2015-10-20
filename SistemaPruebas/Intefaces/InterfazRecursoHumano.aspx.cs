@@ -245,6 +245,7 @@ namespace SistemaPruebas.Intefaces
                     volverAlOriginal();
                     BotonRHEliminar.Enabled = true;
                     BotonRHModificar.Enabled = true;
+                    llenarDatosRecursoHumano(Int32.Parse(cedulaConsulta));
 
                 }
                 else
