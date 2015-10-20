@@ -11,6 +11,7 @@ namespace SistemaPruebas.Intefaces
     public partial class InterfazProyecto : System.Web.UI.Page
     {
 
+        //Variables:
         public static string button
         {
             get
@@ -85,13 +86,11 @@ namespace SistemaPruebas.Intefaces
                 HttpContext.Current.Session["id_modificando"] = value;
             }
         }
-
-        //private static int id_Proyecto = -1; 
-        //private static int button = 0;
-        //private static bool adm = true;
-        //private bool modificando = false;
-        //private int id_modificando = -1;
+        
         Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
+
+        //Métodos:
+
         protected void Page_Load(object sender, EventArgs e)
         {
             id_logeado = controladoraProyecto.IdLogeado();
@@ -109,6 +108,10 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorLlaves.Visible = false;
         }
 
+            //Restricciones_Campos()
+            //Requiere: N/A
+            //Modifica: delimita algunas características de los componentes a mostrarse en la interfaz
+            //Retorna: N/A
         protected void Restricciones_Campos()
         {
 
@@ -136,6 +139,11 @@ namespace SistemaPruebas.Intefaces
             of_rep.Enabled = true;
             //datepicker.Disabled = false;
         }
+
+        //Deshabilitar_Campos():
+        //Requiere: El usuario haya presionado el botón aceptar o cancelar, dentro de una inserción, modificación, consulta o eliminación de un proyecto.
+        //Modifica: Deshabilitan los campos de: Nombre_sistema, Objetivo_general, Fecha_asignación, estado, Nombre_representante, oficina_representante y telefono_representante.
+        //Retorna:   N/A.
         protected void Deshabilitar_Campos()
         {
             nombre_proyecto.Enabled = false;
@@ -146,6 +154,11 @@ namespace SistemaPruebas.Intefaces
             of_rep.Enabled = false;
             //datepicker.Enabled = false;
         }
+
+        //Limpiar_campos():
+        //Requiere: El usuario haya presionado el botón cancelar, dentro de una inserción, modificación, consulta o eliminación de un proyecto.
+        //Modifica: Limpian todos los campos de: Nombre_sistema, Objetivo_general, Fecha_asignación, estado, Nombre_representante, oficina_representante y telefono_representante.
+        //Retorna:   N/A.
         protected void Limpiar_Campos()
         {
             nombre_proyecto.Text = "";
@@ -162,6 +175,12 @@ namespace SistemaPruebas.Intefaces
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue("1");
         }
+
+        //Insertar_button():
+        //Requiere: El usuario haya presionado el botón de insertar un proyecto
+        //Modifica: Prepara el proceso para insertar un proyecto, habilita y limpia los campos de: Nombre_sistema, Objetivo_general, Fecha_asignación, estado, Nombre_representante, oficina_representante y telefono_representante.Además habilita el botón aceptar y cancelar y deshabilita el botón de modificar, eliminar, y el grid de consultas.
+        //Retorna:   N/A.
+
         protected void Insertar_button(object sender, EventArgs e)
         {
             marcarBoton(ref Insertar);
@@ -174,6 +193,11 @@ namespace SistemaPruebas.Intefaces
             UnenabledButtons();
             deshabilitarGrid();
         }
+
+        //aceptar_Click():
+        //Requiere: El usuario haya presionado el botón de aceptar dentro de proyecto.
+        //Modifica: Dependiendo de si se quiere aceptar una inserción, una modificación o una eliminación; se procederá de distinta forma.Al aceptar un insertar, se verifica que los campos se hayan llenado correctamente, e invoca a la controladora Proyecto para que realice la inserción de la nueva información dentro de la base de datos.Al modificar, similar al proceso de insertar se envían los datos a la controladora Proyecto, pero para que actualice la información del proyecto. Al aceptar una eliminación, depende de si es un administrador o un Miembro de equipo, el administrador elimina la tupla del sistema, mientras que el miembro de equipo sigue un proceso para declarar como cancelado el proyecto “eliminado.”
+        //Retorna:   N/A.
         protected void aceptar_Click(object sender, EventArgs e)
         {
 
@@ -294,6 +318,8 @@ namespace SistemaPruebas.Intefaces
 
             }
         }
+
+
         protected void cancelar_Click(object sender, EventArgs e)
         {
             switch (Int32.Parse(button))
@@ -310,7 +336,6 @@ namespace SistemaPruebas.Intefaces
                         id_modificando = i.ToString();
                         modificando = false.ToString();
                         controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 0);
-
                     }
                     break;
                 case 3:
@@ -323,7 +348,6 @@ namespace SistemaPruebas.Intefaces
                     }
                     break;
             }
-
             Limpiar_Campos();
             Deshabilitar_Campos();
             aceptar.Enabled = false;
