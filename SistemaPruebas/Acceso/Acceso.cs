@@ -13,9 +13,9 @@ namespace SistemaPruebas.Acceso
     {
 
 
-        //  String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
-       // string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
-        String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
+          String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
+        //string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
+        //String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
         public DataTable ejecutarConsultaTabla(String consulta)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
@@ -71,7 +71,13 @@ namespace SistemaPruebas.Acceso
                 catch (SqlException ex)
                 {
                     string mensajeError = ex.ToString();
-                    throw new Exception("Error al insertar. " + ex.Message);
+
+                    if (ex.Number == 2627)//Violación de llave primaria al insertar
+                    {
+                        a = ex.Number;
+                    }
+
+                    //throw new Exception("Error al insertar. " + ex.Message);
 
                     // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
                 }
@@ -114,11 +120,16 @@ namespace SistemaPruebas.Acceso
                 {
                     a = comando.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (SqlException e)
                 {
-                    string mensajeError = ex.ToString();
-                    throw new Exception("Error al insertar. " + ex.Message);
-                    // System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">alert("Hello this is an Alert")</SCRIPT>")               
+                    //string mensajeError = ex.ToString();
+                    string mensajeError = e.ToString();
+
+                    if (e.Number == 2627)//Violación de llave primaria al insertar
+                    {
+                        a = e.Number;
+                    }
+                    a = e.Number;
                 }
 
                 try
@@ -127,10 +138,7 @@ namespace SistemaPruebas.Acceso
                 }
                 catch (SqlException e)
                 {
-                    string mensajeError = e.ToString();
-                    throw new Exception("Error al cerrar la conexión con la base de datos. " + e.Message);
-
-                    //    MessageBox.Show(mensajeError);
+                    
                 }
             }
             catch (SqlException e)

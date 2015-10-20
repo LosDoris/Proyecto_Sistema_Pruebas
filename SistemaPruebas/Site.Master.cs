@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace SistemaPruebas
 {
     public partial class SiteMaster : MasterPage
@@ -67,20 +68,70 @@ namespace SistemaPruebas
             }
         }
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Account.Login.el_logeado == "")
             {
-
+                makeInVisible();
+            }
+            else if (Account.Login.loggeado == 1)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
+                makeVisible();
+                Account.Login.loggeado = 0;
+            }
+            if (Account.Login.el_logeado == "")
+            {
+                LOGIN.Visible = true;
+                LOGOUT.Visible = false;
             }
             else if (controladoraRH.loggeado(Account.Login.el_logeado) == false)
             {
-                controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+                LOGIN.Visible = true;
+                LOGOUT.Visible = false;
             }
+            else
+            {
+                LOGIN.Visible = false;
+                LOGOUT.Visible = true;
+            }
+        }
+
+        public void makeVisible()
+        {
+            try
+            {
+                A1.Visible = true;
+                A2.Visible = true;
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+            }
+
+        }
+        public void makeInVisible()
+        {
+            try
+            {
+                A1.Visible = false;
+                A2.Visible = false;
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+            }
+
         }
 
         protected void LogOut(object sender, EventArgs e)
         {
+            Session.Abandon();
+            controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+            Account.Login.el_logeado = "";
+            makeInVisible();           
+            Response.Redirect("~/Default");
             
         }
     }

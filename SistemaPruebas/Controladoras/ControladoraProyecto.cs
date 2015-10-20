@@ -9,10 +9,14 @@ namespace SistemaPruebas.Controladoras
     public class ControladoraProyecto
     {
         ControladoraBDProyecto controlBD;
+        ControladoraRecursosHumanos controlRH;
+        private static Dictionary<int, string> modificados = new Dictionary<int, string>();        
+        
         public ControladoraProyecto()
         {
-            controlBD = new ControladoraBDProyecto();
+            controlBD = new ControladoraBDProyecto();            
         }
+      
         public List<string> ConsultarRHSinProyecto()
         {
             List<String> listaNombre = new List<string>();
@@ -44,17 +48,17 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controlBD.ConsultarProyecto(id_Proyecto);
             if (dt.Rows.Count == 1)
             {
-                Object[] datos = new Object[7];
+                Object[] datos = new Object[8];
                 EntidadProyecto retorno;
 
-                datos[0] = dt.Rows[0].ToString();
-                datos[1] = dt.Rows[1].ToString();
-                datos[2] = dt.Rows[2].ToString();
-                datos[3] = dt.Rows[3].ToString();
-                datos[4] = dt.Rows[4].ToString();
-                datos[5] = dt.Rows[5].ToString();
-                datos[6] = dt.Rows[6].ToString();
-                datos[7] = dt.Rows[7].ToString();
+                datos[0] = dt.Rows[0][0].ToString();
+                datos[1] = dt.Rows[0][1].ToString();
+                datos[2] = dt.Rows[0][2].ToString();
+                datos[3] = dt.Rows[0][3].ToString();
+                datos[4] = dt.Rows[0][4].ToString();
+                datos[5] = dt.Rows[0][5].ToString();
+                datos[6] = dt.Rows[0][6].ToString();
+                datos[7] = dt.Rows[0][7].ToString();
                 retorno = new EntidadProyecto(datos);
                 return retorno;
             }
@@ -63,8 +67,25 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable ConsultarProyectoIdNombre()
         {
-            return controlBD.ConsultarProyectoIdNombre();
-
+            controlRH = new ControladoraRecursosHumanos();
+            int id = controlRH.proyectosDelLoggeado();
+            if (controlRH.perfilDelLoggeado() == "Administrador")
+            {
+                return controlBD.ConsultarProyectoIdNombre();
+            }
+            else
+            {
+                if (id == -1)
+                    return new DataTable();
+                else
+                    return controlBD.ConsultarProyectoIdNombre(id);
+            }            
+        }
+        public int ConsultarIdProyectoPorNombre(string nombre)
+        {
+            int retorno = -1;
+            controlBD.ConsultarProyectoIdPorNombre(nombre);
+            return retorno;
         }
 
         //public List<string> ConsultarIdProyecto()
@@ -72,12 +93,83 @@ namespace SistemaPruebas.Controladoras
         //    List<string> retorno = controlBD.ConsultaIdProyecto();
         //    return retorno;
         //}
+        public void EliminarUSo()
+        {
+            
+        }
+        public int CancelarProyecto(string id)
+        {
+            int retorno = controlBD.CancelarProyecto(id);
+            return retorno;
+        }
         public int EliminarProyecto(string id)
         {
             int retorno = controlBD.EliminarProyecto(id);
             return retorno;
         }
+        public int ConsultarUsoProyecto(int id)
+        {
+            int retorno = 0;
 
+            if (modificados.ContainsKey(id))
+                retorno = 1;
+            return retorno;//controlBD.ConsultarUsoProyecto(id);
+        }
+
+        public void UpdateUsoProyecto(int id, int use)
+        {
+             controlBD.UpdateUsoProyecto(id, use);
+        }
+
+
+        public bool PerfilDelLogeado()
+        {
+            controlRH = new ControladoraRecursosHumanos();
+            bool retorno;
+            string perfil = controlRH.perfilDelLoggeado();
+            if (perfil == "Administrador")
+                retorno = true;
+            else
+                retorno = false;
+            return retorno;
+
+        }
+
+        public string ConsultarNombreProyectoPorId(int id)
+
+        {
+            string retorno = controlBD.ConsultarNombreProyectoPorId(id);
+            return retorno;
+        }
+        public void AgregarModificacion(int i, string id)
+        {
+            //enModificacion = i.ToString();
+            modificados.Add(i, id);
+            UpdateUsoProyecto(i, 1);
+
+        }
+        public void QuitarEliminacion(int i)
+        {
+            modificados.Remove(i);
+            UpdateUsoProyecto(i, 0);
+
+        }
+        public string IdLogeado()
+        {
+            controlRH = new ControladoraRecursosHumanos();
+            return controlRH.idDelLoggeado().ToString();
+        }
+        public void LimpiarModificaciones()
+        {
+            modificados.ToString();
+            controlRH = new ControladoraRecursosHumanos();
+            string ff = controlRH.idDelLoggeado().ToString();
+            foreach (var item in modificados.Where(kvp => kvp.Value == ff).ToList())
+            {
+                modificados.Remove(item.Key);
+                UpdateUsoProyecto(item.Key, 0);
+            }
+        }
 
     }
 }

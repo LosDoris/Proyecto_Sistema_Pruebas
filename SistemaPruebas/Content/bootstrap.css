@@ -36,6 +36,21 @@ summary {
   display: block;
 }
 
+.btn-LogOut {
+    color: #2e8e9e;
+    
+    background-color: #99cccc;
+    border-color: #154b67;
+    border-width: 2px;
+    margin-top: 11px;
+    border-radius: 5px;
+    border: none;
+    width: 70px;
+    height: 27px;
+
+}
+
+
 audio,
 canvas,
 video {
@@ -73,6 +88,7 @@ a:hover {
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
+  color: #154b67;
 }
 
 abbr[title] {
@@ -500,6 +516,7 @@ h2,
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
+
 }
 
 h4,
@@ -517,6 +534,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  color: #154b67;
 }
 
 h3,
@@ -2052,6 +2070,18 @@ fieldset[disabled] .btn {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
+}
+
+.btn-cancelar {
+color: #fe5e3e;
+background-color: #ffffff;
+border-color: #fe5e3e;
+}
+
+.btn-aceptar {
+color: #33d275;
+background-color: #ffffff;
+border-color: #33d275;
 }
 
 .btn-default:hover,
@@ -4501,12 +4531,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #2e8e9e;
+  border-color: #2b8493;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #99cccc;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4516,11 +4546,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #99cccc;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #99cccc;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -4934,16 +4964,31 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #ead5b6;
+}
+
+.jumbozRH {
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #ffffff;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
 }
 
 .jumbotron h1 {
   line-height: 1;
-  color: inherit;
+  color: #154b67;
 }
 
 .jumbotron p {
   line-height: 1.4;
+  color: #154b67;
 }
 
 .container .jumbotron {

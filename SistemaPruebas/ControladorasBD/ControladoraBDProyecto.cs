@@ -70,19 +70,36 @@ namespace SistemaPruebas.Controladoras
         public DataTable ConsultarProyecto()
         {
             DataTable dt = new DataTable();
-            dt= acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema, fecha_asignacion, estado, nombre_rep from Proyecto");
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema, fecha_asignacion, estado, nombre_rep from Proyecto where id_proyecto >=0");
             return dt;
         }
         public DataTable ConsultarProyectoIdNombre()
         {
             DataTable dt = new DataTable();
-            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto");
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto where id_proyecto >=0 ORDER BY id_proyecto DESC");
             return dt;
-        }       
+        }
+        public DataTable ConsultarProyectoIdNombre(int id_Proyecto)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto where id_proyecto = " + id_Proyecto);
+            return dt;
+        }
+        public int ConsultarProyectoIdPorNombre(string nombre)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto from proyecto where nombre_sistema = '"+nombre+"' and id_proyecto >= 0");
+            return Int32.Parse(dt.Rows[0][0].ToString());
+        }
 
-        public int EliminarProyecto(string id)
+
+        public int CancelarProyecto(string id)
         {
             return acceso_BD.EliminarProyecto("update Proyecto set estado = 5 where id_proyecto =" + id);
+        }
+        public int EliminarProyecto(string id)
+        {
+            return acceso_BD.EliminarProyecto("Delete from Proyecto where id_proyecto =" + id);
         }
 
         public int ActualizarProyecto(EntidadProyecto datos)
@@ -113,6 +130,24 @@ namespace SistemaPruebas.Controladoras
                 return acceso_BD.Insertar_Proced_Almacenado(comando);
 
             }
+        }
+
+        public int ConsultarUsoProyecto(int id)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select Uso from proyecto where id_proyecto =" + id);
+            return Int32.Parse(dt.Rows[0][0].ToString());
+        }
+        public int UpdateUsoProyecto(int id, int use)
+        {
+            return acceso_BD.EliminarProyecto("update Proyecto set Uso = "+use+" where id_proyecto =" + id);            
+        }
+        //ConsultarNombreProyectoPorId
+        public string ConsultarNombreProyectoPorId(int id)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select nombre_sistema from proyecto where  id_proyecto=" + id);
+            return dt.Rows[0][0].ToString();
         }
     }
 }
