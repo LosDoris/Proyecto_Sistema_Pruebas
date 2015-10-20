@@ -319,7 +319,7 @@ namespace SistemaPruebas.Intefaces
                         int i = -1;
                         id_modificando = i.ToString();
                         modificando = false.ToString();
-                        controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 0);
+                        controladoraProyecto.UpdateUsoProyecto(int.Parse(id_Proyecto), 0);
                     }
                     break;
             }

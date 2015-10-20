@@ -384,7 +384,14 @@ namespace SistemaPruebas.Intefaces
             foreach (String p1 in pr)
             {
                 String[] p2 = p1.Split('_');
-                 this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                try
+                {
+                    this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                }
+                catch (Exception e)
+                {
+
+                }
                 
             }
         }
