@@ -162,12 +162,14 @@ namespace SistemaPruebas.Intefaces
                 RolComboBox.Items.Clear();
                 RolComboBox.Items.Add(new ListItem("Administrador"));
                 ProyectoAsociado.Enabled = false;
-                ProyectoAsociado.Items.FindByText("No aplica").Selected = true;
+                ProyectoAsociado.Items.Clear();
+                ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
             }
             else
             {
                 RolComboBox.Items.Clear();
                 llenarDDRol();
+                llenarDDProyecto();
                 RolComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
             }

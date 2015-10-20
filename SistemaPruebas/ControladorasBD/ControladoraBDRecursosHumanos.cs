@@ -47,13 +47,12 @@ namespace SistemaPruebas.Controladoras
            para luego hacer la comparación con los datos ingresados por el usuario.
          * Retorna: vector de hileras.
          */
+
         public string nombresContrasenas()
         {
             DataTable DR = acceso.ejecutarConsultaTabla("SELECT * FROM Recurso_Humano");
             string regresa = "";
             string nombres = "";
-
-
             try
             {
                 foreach (DataRow row in DR.Rows)
@@ -61,7 +60,6 @@ namespace SistemaPruebas.Controladoras
                     if (nombres != "")
                         nombres += ";";
                     nombres += row["usuario"].ToString();
-
 
                 }
                 regresa = nombres;
@@ -313,6 +311,7 @@ namespace SistemaPruebas.Controladoras
          * Modifica: Elimina un recurso humano del sistema.
          * Retorna: int.
          */
+
         public int eliminarRecursoHumanoBD(int cedula)
         {
             return acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = " + cedula + ";");
