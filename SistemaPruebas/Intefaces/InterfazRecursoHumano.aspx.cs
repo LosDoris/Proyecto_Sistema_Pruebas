@@ -198,6 +198,7 @@ namespace SistemaPruebas.Intefaces
          * Modifica: Intenta insertar una tupla y despliega el respectivo mensaje de exito u error
          * Retorna: N/A.
          */
+
         protected void BotonRHInsertar_Click(object sender, EventArgs e)
         {
             modo = 1;
@@ -254,7 +255,7 @@ namespace SistemaPruebas.Intefaces
                 volverAlOriginal();
             }
             modo=0;
-           //botonesCancelar();
+           
         }
 
         /*
@@ -298,18 +299,12 @@ namespace SistemaPruebas.Intefaces
                 BotonRHEliminar.Visible = false;
                 BotonRHInsertar.Visible = false;
                 RH.Visible = false;
-                //TextBoxCedulaRH.Text = controladoraRecursosHumanos.idDelLoggeado().ToString();
             } 
 
 
 
 
         }
-
-        //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
-             //enviar la info a la controladora
-             //Ver el resultado. Si se realizo exitosamente
-
 
         /*
          * Requiere: Evento click en boton aceptar de insertar.
@@ -318,7 +313,6 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonRHAceptar_Click(object sender, EventArgs e)
         {
-            //desactivarErrores();
             if (validarCampos())
             {
                 Object[] datosNuevos = new Object[11];
@@ -360,9 +354,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorInsertar.Visible = true;
                 }
             }
-            //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
-            //enviar la info a la controladora
-            //Ver el resultado. Si se realizo exitosamente
+    
         }
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
@@ -405,8 +397,6 @@ namespace SistemaPruebas.Intefaces
             this.PerfilAccesoComboBox.Items.Clear();
             string[] tipos = new string[] { "Miembro de equipo", "Administrador" };
 
-            // Object[] perfiles = new Object[tipos.Length];
-
             for (int i = 0; i < tipos.Length; i++)
             {
                 this.PerfilAccesoComboBox.Items.Add(new ListItem(tipos[i]));
@@ -421,11 +411,8 @@ namespace SistemaPruebas.Intefaces
          */
         protected void llenarDDRol()
         {
-        //líder de pruebas, tester, líder de desarrollo, usuario,soporte
             this.RolComboBox.Items.Clear();
             string[] tipos = new string[] { "No aplica", "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
-
-            // Object[] roles = new Object[tipos.Length];
 
             for (int i = 0; i < tipos.Length; i++)
             {
@@ -474,22 +461,15 @@ namespace SistemaPruebas.Intefaces
             TextBoxTel1.Enabled = false;
             TextBoxTel2.Enabled = false;
             BotonRHCancelar.Enabled = false;
-            //if (esAdmin)
-            //{
-                TextBoxClave.Enabled = false;
-                TextBoxUsuario.Enabled = false;
-                TextBoxCedulaRH.Enabled = false;
-                TextBoxNombreRH.Enabled = false;
-                RolComboBox.Enabled = false;
-                PerfilAccesoComboBox.Enabled = false;
-                ProyectoAsociado.Enabled = false;
-                BotonRHAceptar.Enabled = false;
-
-            //}
-            //else
-            //{
-                BotonRHAceptarModificar.Enabled = false;
-            //}
+            TextBoxClave.Enabled = false;
+            TextBoxUsuario.Enabled = false;
+            TextBoxCedulaRH.Enabled = false;
+            TextBoxNombreRH.Enabled = false;
+            RolComboBox.Enabled = false;
+            PerfilAccesoComboBox.Enabled = false;
+            ProyectoAsociado.Enabled = false;
+            BotonRHAceptar.Enabled = false;
+            BotonRHAceptarModificar.Enabled = false;
             
         }
 
@@ -537,7 +517,7 @@ namespace SistemaPruebas.Intefaces
             {
                 BotonRHModificar.Enabled = true;
             }
-               // RH.Enabled = true;
+              
         }
 
         /*
@@ -569,7 +549,6 @@ namespace SistemaPruebas.Intefaces
             {
                 todosValidos = false;
                 EmailVal.Visible = true;
-                //poner mensaje de no valido
             }
 
             return todosValidos;
@@ -604,58 +583,53 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonRHAceptarModificar_Click(object sender, EventArgs e)
         {
-            //{
-                if (validarCampos())
-                {
-                    Object[] datosNuevos = new Object[11];
-                    datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
-                    datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
-                    datosNuevos[2] = this.TextBoxTel1.Text;
-                    datosNuevos[3] = this.TextBoxTel2.Text;
-                    datosNuevos[4] = this.TextBoxEmail.Text;
-                    datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
-                    datosNuevos[6] = this.TextBoxClave.Text;
-                    datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
-                    datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                    datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
-                    datosNuevos[10] = cedulaConsulta;
+            if (validarCampos())
+            {
+                Object[] datosNuevos = new Object[11];
+                datosNuevos[0] = this.TextBoxCedulaRH.Text;//cedula
+                datosNuevos[1] = this.TextBoxNombreRH.Text;//nombre
+                datosNuevos[2] = this.TextBoxTel1.Text;
+                datosNuevos[3] = this.TextBoxTel2.Text;
+                datosNuevos[4] = this.TextBoxEmail.Text;
+                datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
+                datosNuevos[6] = this.TextBoxClave.Text;
+                datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
+                datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
+                datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
+                datosNuevos[10] = cedulaConsulta;
 
-                if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
+            if (controladoraRecursosHumanos.modificarRecursoHumano(datosNuevos) == 1)
+            {
+                desmarcarBotones();
+                deshabilitarCampos();
+                BotonRHModificar.Enabled = true;
+                BotonRHCancelar.Enabled = false;
+                BotonRHAceptarModificar.Enabled = false;
+                modo = 0;
+                if (esAdmin)
                 {
-                    desmarcarBotones();
-                    deshabilitarCampos();
-                    BotonRHModificar.Enabled = true;
-                    BotonRHCancelar.Enabled = false;
-                    BotonRHAceptarModificar.Enabled = false;
-                    modo = 0;
-                    if (esAdmin)
-                    {
-                        habilitarGrid();
-                        BotonRHInsertar.Enabled = true;
-                        BotonRHEliminar.Enabled = true;
-                        llenarGrid();
-						controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
-                        resaltarNuevo(this.TextBoxCedulaRH.Text);
+                    habilitarGrid();
+                    BotonRHInsertar.Enabled = true;
+                    BotonRHEliminar.Enabled = true;
+                    llenarGrid();
+					controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+                    resaltarNuevo(this.TextBoxCedulaRH.Text);
      
-                    }
-                    else
-                    {
-						controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
-                    }
-                    //habilitar consulta
                 }
                 else
                 {
-                    EtiqErrorModificar.Visible = true;
-                    //mensaje de error
+					controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                 }
-                }
-                //si se inserto o modif exitosamente entonces aparece como la primera tupla del grid
-                //enviar la info a la controladora
-                //Ver el resultado. Si se realizo exitosamente
-            //}
+                //habilitar consulta
+            }
+            else
+            {
+                EtiqErrorModificar.Visible = true;
+                //mensaje de error
+            }
+            }
         }
 
         /*
@@ -726,13 +700,12 @@ namespace SistemaPruebas.Intefaces
             int cedula = Convert.ToInt32(ced);
             llenarDatosRecursoHumano(cedula);
             habilitarGrid();
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + cedula + "');", true);
         }
 
         /*
-         * falta------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-         * //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-         * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         * Requiere: El evento de enlazar información de un datatable con el grid
+         * Modifica: Establece el comportamiento del grid ante los diferentes eventos.
+         * Retorna: N/A.
          */
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {   
@@ -757,7 +730,6 @@ namespace SistemaPruebas.Intefaces
             if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false){
 				if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
 				{
-					//marcarEliminar();
 					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
 					volverAlOriginal();
 					llenarGrid();
@@ -767,8 +739,9 @@ namespace SistemaPruebas.Intefaces
 				{
 					EtiqErrorEliminar.Visible = true;
 				}
-				//this.cedula = Convert.ToInt32(datos[0].ToString());
-			}  else {		
+			}
+            else
+            {		
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		
 	        }
         }
