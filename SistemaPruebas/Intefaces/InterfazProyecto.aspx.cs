@@ -319,6 +319,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //cancelar_Click():
+        //Requiere: El usuario haya presionado el botón de cancelar dentro de proyecto.
+        //Modifica: De forma general se invoca a los métodos Deshabilitar_Campos() y Limpiar_Campos(), además de deshabilitar los botones de aceptar y cancelar, y se habilita el grid para realizar consultas.
+        //Retorna:   N/A.
 
         protected void cancelar_Click(object sender, EventArgs e)
         {
@@ -359,29 +363,12 @@ namespace SistemaPruebas.Intefaces
             habilitarGrid();
         }
 
-        //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    switch (e.CommandName)
-        //    {
-        //        case "seleccionarProyecto":
-        //            {
-        //                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-        //                try
-        //                {
-        //                    id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
-        //                    Llenar_Datos_Conultados(id_Proyecto);
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    Console.WriteLine(ex);
-        //                }
-        //            };
-        //            break;
-        //    }
-
-        //}
 
 
+        //llenarGrid():
+        //Requiere: Que se presione el botón cancelar, aceptar o se cargue la página
+        //Modifica: Invoca la clase ControladoraProyecto para que brinde el id y nombre de todos los proyectos que se encuentran almacenados dentro de la base de datos.Eso lo muestra en una tabla por medio de un GridView.
+        //Retorna:   N/A.
         protected void llenarGrid()
         {
             DataTable dt = new DataTable();//crearTablaProyecto();
@@ -405,6 +392,10 @@ namespace SistemaPruebas.Intefaces
             this.gridProyecto.DataBind();
         }
 
+        //Llenar_Datos_Consultados():
+        //Requiere: el número de id de un proyecto previamente consultado.
+        //Modifica: Invoca a la clase ControladoraProyecto para cargar los campos de: Nombre_sistema, Objetivo_general, Fecha_asignación, estado, Nombre_representante, oficina_representante y telefono_representante; con los valores conrrespondientes al id del proyecto.
+        //Retorna:   N/A.
         public void Llenar_Datos_Conultados(int idProyecto)
         {
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
@@ -422,27 +413,11 @@ namespace SistemaPruebas.Intefaces
             this.of_rep.Text = entidadP.Oficina_representante;
         }
 
-        //protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
-        //{
-        //    if (controladoraProyecto.ConsultarUsoProyecto(id_Proyecto) == 0)
-        //    {
-        //        Modificar.Enabled = true;
-        //        Eliminar.Enabled = true;
-        //        Insertar.Enabled = false;
-        //        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-        //        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
-        //        Llenar_Datos_Conultados(id_Proyecto);
-        //    }
-        //    else
-        //    {
-        //        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso, se muestra solo con fines de lectura');", true);
-        //        GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-        //        id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[0].Text);
-        //        Llenar_Datos_Conultados(id_Proyecto);
-        //        cancelar.Enabled = true;                
-        //    }
-        //}
 
+        //Modificar_Click():
+        //Requiere: Que se presione el botón modificar.
+        //Modifica: Lo primero que realiza es corroborar que el proyecto a modificar no esté siento modificado por otra persona. En caso contrario, coloca al proyecto como en proceso de modificación e invoca al método Habilitar_Campos(), además de habilitas los botones de aceptar y cancelar, y deshabilita los botones de Insertar, modificar y el grid de Consultas.
+        //Retorna:   N/A.
         protected void Modificar_Click(object sender, EventArgs e)
         {
             deshabilitarGrid();
@@ -469,6 +444,10 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //Eliminar_Click():
+        //Requiere: Que se presione el botón Eliminar.
+        //Modifica: Lo primero que realiza es corroborar que el proyecto a eliminar no esté siento modificado o eliminado por otra persona. En caso contrario, coloca al proyecto como en proceso de eliminación y habilita los botones de aceptar y cancelar, y deshabilita los botones de Insertar, modificar y el grid de Consultas.
+        //Retorna:   N/A.
         protected void Eliminar_Click(object sender, EventArgs e)
         {
             if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0)
@@ -489,6 +468,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //OnSelectedIndexChanged():
+        //Requiere: Que se presione una fila del grid de consultas
+        //Modifica: Primero se verifica que la tupla no este siendo modificada o eliminada por otro usuario.Posterior a ese proceso, habilita los botones de aceptar, cancelar, modificar y eliminar.Además verifica el id del proyecto seleccionado y se llama al método Llenar_Datos_Consultados().
+        //Retorna:   N/A.
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             //Accessing BoundField Column
@@ -531,11 +514,21 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //OnPageIndexChanging():
+        //Requiere: Que se presione un cambio de pagina dentro de grid de consultas
+        //Modifica: Invoca al método LlenarGrid(), lo cual hace que se cargue el grid con los nuevos datos, según la pa’gina de consulta seleccionada.
+        //Retorna:   N/A.
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridProyecto.PageIndex = e.NewPageIndex;
             this.llenarGrid();
         }
+
+
+        //EnabledButtons():
+        //Requiere: N/A
+        //Modifica: Se habilitan los botones de Modificar, eliminar e Insertar.El botón de insertar sólo se habilita en caso de que la persona logeada sea administradora.
+        //Retorna:   N/A.
         protected void EnabledButtons()
         {
             Modificar.Enabled = true;
@@ -543,6 +536,11 @@ namespace SistemaPruebas.Intefaces
             if (Convert.ToBoolean(adm))
                 Insertar.Enabled = true;
         }
+
+        //UnenabledButtons():
+        //Requiere: N/A
+        //Modifica: Se deshabilitan los botones de Modificar, eliminar e Insertar.
+        //Retorna:   N/A.
         protected void UnenabledButtons()
         {
             Modificar.Enabled = false;
@@ -551,6 +549,10 @@ namespace SistemaPruebas.Intefaces
                 Insertar.Enabled = false;
         }
 
+        //marcarBoton():
+        //Requiere: La referencia a un botón existente dentro de la interfaz.
+        //Modifica: Se cambia el color del botón ingresado por parámetro.
+        //Retorna:   N/A.
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -558,17 +560,25 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.White;
         }
 
+        //desmarcarBoton():
+        //Requiere: La referencia a un botón existente dentro de la interfaz.
+        //Modifica: Se devuelve al color original del botón ingresado por parámetro.
+        //Retorna:   N/A.
+
         protected void desmarcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.Color.LightGray;
             b.BackColor = System.Drawing.Color.White;
             b.ForeColor = System.Drawing.Color.Black;
-
         }
 
+
+        //OnRowDataBound():
+        //Requiere: Una referencia aun grid existente dentro de la interfaz.
+        //Modifica: Cambia el color de la fila del grid, por la que pasa el mouse por encima.Además cmabia el color de la fila del grid que es presionada por el mouse.También cambia la forma del mouse cuando pasa por encima del grid.
+        //Retorna:   N/A.
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
             if (gridProyecto.Enabled && e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
@@ -577,6 +587,11 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
+
+        //deshabilitarGrid():
+        //Requiere: N/A
+        //Modifica: Deshabilita el gridview que contiene los proyectos a consultar.
+        //Retorna:   N/A.
         protected void deshabilitarGrid()
         {
             gridProyecto.Enabled = false;
@@ -589,6 +604,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //habilitarGrid():
+        //Requiere: N/A
+        //Modifica: Habilita el gridview que contiene los proyectos a consultar.
+        //Retorna:   N/A.
         protected void habilitarGrid()
         {
             gridProyecto.Enabled = true;
@@ -601,6 +620,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //nombre_proyecto_TextChanged():
+        //Requiere: Se digite cualquier tecla dentro del TextBox denominado nombre_proyecto.
+        //Modifica: Regresa al color original al TextBox nombre_proyecto.
+        //Retorna:   N/A.
         protected void nombre_proyecto_TextChanged(object sender, EventArgs e)
         {
             nombre_proyecto.BorderColor = System.Drawing.Color.LightGray;
