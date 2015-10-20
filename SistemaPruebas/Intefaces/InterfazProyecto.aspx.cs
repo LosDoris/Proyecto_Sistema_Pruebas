@@ -259,28 +259,54 @@ namespace SistemaPruebas.Intefaces
                     {
                         desmarcarBoton(ref Modificar);
                         Console.WriteLine("Modificar");
-                        string text = "";//= txtDate.Text;
+                        string text = Page.Request.Form["txt_date"];
                         object[] datos = new object[8] { id_modificando, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
                         int a = controladoraProyecto.ActualizarProyecto(datos);
                         if (a == 1)
                         {
+                            id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
+                            llenarGrid();
+                            Deshabilitar_Campos();
+                            gridProyecto.Enabled = true;
+                            EnabledButtons();
+                            controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 0);
+                            controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
+                            int i = -1;
+                            id_modificando = i.ToString();
+                            modificando = false.ToString();
                         }
 
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+                            switch (a)
+                            {
+                                case 2627:
+                                    {
+                                        EtiqErrorLlaves.Text = "El nombre del sistema ya ha sido ingresado anteriormente, por favor ingrese un nombre nuevo";
+                                        nombre_proyecto.BorderColor = System.Drawing.Color.Red;
+                                    }
+                                    break;
+                                case 547:
+                                    {
+                                        EtiqErrorLlaves.Text = "El nombre del sistema sólo puede tener letras, no acepta números ni caracteres especiales";
+                                        nombre_proyecto.BorderColor = System.Drawing.Color.Red;
+                                    } break;
+                                default:
+                                    {
+                                        EtiqErrorLlaves.Text = "Se produjo un error al momento de insertar el proyecto, por favor intente luego";
+                                    } break;
+
+                            };
+                            
+                            //Deshabilitar_Campos();
+                            //gridProyecto.Enabled = true;
+                            //EnabledButtons();
+                            llenarGrid();
+                            EtiqErrorLlaves.Visible = true;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);                            
                         }
-                        controladoraProyecto.UpdateUsoProyecto(Int32.Parse(id_Proyecto), 0);
-                        Deshabilitar_Campos();
-                        gridProyecto.Enabled = true;
-                        EnabledButtons();
-
-                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
-                        int i = -1;
-                        id_modificando = i.ToString();
-                        modificando = false.ToString();
-
                     }
                     break;
                 case 3:
@@ -315,12 +341,13 @@ namespace SistemaPruebas.Intefaces
                     }
                     break;
 
-            }
+            };
         }
 
 
         protected void cancelar_Click(object sender, EventArgs e)
         {
+            nombre_proyecto.BorderColor = System.Drawing.Color.LightGray;
             switch (Int32.Parse(button))
             {
                 case 1://Insertar
