@@ -1,4 +1,4 @@
-/* NUGET: BEGIN LICENSE TEXT
+ju/* NUGET: BEGIN LICENSE TEXT
  *
  * Microsoft grants you the right to use these script files for the sole
  * purpose of either: (i) interacting through your browser with the Microsoft
@@ -4968,8 +4968,10 @@ a.list-group-item.active > .badge,
 }
 
 .jumbozRH {
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 35px;
+  max-width: 460px;
+
+  margin-bottom:20px;
   font-size: 14px;
   font-weight: 100;
   line-height: 2.1428571435;
@@ -4978,7 +4980,7 @@ a.list-group-item.active > .badge,
   border-color:#2e8e9e;
   border-bottom-width: 3px;
   border: 1px solid #d3d3d3;
-  border-radius: 3px;
+  border-radius: 9px;
 }
 
 .jumbotron h1 {

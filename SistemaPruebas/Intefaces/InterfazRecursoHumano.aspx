@@ -177,14 +177,14 @@
         </div>
                     <div class="form-group">
                         <div class="col-md-offset-10 col-md-12">
-                            <asp:Button runat="server" style="border-color:#36df7c;color:#33d275" 
+                            <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648" 
                                 Text="Aceptar" 
                                 causesvalidation="true" 
                                 validationgroup="CamposNoVacios"
                                 CssClass="btn btn-default" 
                                 ID="BotonRHAceptar" 
                                 OnClick="BotonRHAceptar_Click" />
-                            <asp:Button runat="server" style="border-color:#36df7c;color:#33d275"
+                            <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648"
                                 Text="Aceptar" 
                                 causesvalidation="true" 
                                 validationgroup="CamposNoVacios"                               

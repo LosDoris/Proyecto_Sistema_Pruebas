@@ -4,8 +4,6 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
 
-
-   <%-- PRODUCIA ERRORES CON LA NAVEGACION %> <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> --%>
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -147,7 +145,7 @@
     </div>
     <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#36df7c;color:#33d275"/>
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelar_Click" OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
 
         </div>
