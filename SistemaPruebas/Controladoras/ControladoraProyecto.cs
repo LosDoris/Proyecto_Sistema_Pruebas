@@ -10,38 +10,53 @@ namespace SistemaPruebas.Controladoras
     {
         ControladoraBDProyecto controlBD;
         ControladoraRecursosHumanos controlRH;
-        private static Dictionary<int, string> modificados = new Dictionary<int, string>();        
-        
+        private static Dictionary<int, string> modificados = new Dictionary<int, string>();
+        /*      
+        Requiere: N/A
+        Modifica: Inicializa la instancia de la controladora de BD
+        Retorna: N/A
+        */
         public ControladoraProyecto()
         {
             controlBD = new ControladoraBDProyecto();            
-        }
-      
-        public List<string> ConsultarRHSinProyecto()
-        {
-            List<String> listaNombre = new List<string>();
-
-            return null;
-        }
-
+        }     
+        /*
+        Requiere: Los siguientes object [].
+        Modifica: Solicita a la entidad de proyecto crear un objeto con el parámetro y llama a controladoraBDProyecto para hacer la inserción. 
+        Retorna: un 0 (cero) en caso de que se haya insertado correctamente, un -1(menos uno) en el caso contrario.
+        */
         public int IngresaProyecto(object[] datos)
         {
             EntidadProyecto objProyecto = new EntidadProyecto(datos);
             int a= controlBD.InsertarProyecto(objProyecto);
             return a;            
         }
+        /*      
+        Requiere: Los datos ingresados atravez de la interfaz mediante un object[]
+        Modifica: Actualiza la tupla correspondiente mediante la controladora de BD
+        Retorna: N/A
+        */
         public int ActualizarProyecto(object[] datos)
         {
             EntidadProyecto objProyecto = new EntidadProyecto(datos);
             int a = controlBD.ActualizarProyecto(objProyecto);
             return a;
         }
-        
+        /*      
+      Requiere: N/A
+      Modifica: Pide a la controladora de BD de proyecto el nombre y id de todos los proyectos
+      Retorna: Un string con todos los nombres de proyecto y sus respectivos ids
+      */
         public string Consultar_ID_Nombre_Proyecto()
         {
 
             return controlBD.Consultar_ID_Nombre_Proyecto();
         }
+        /*
+        Requiere: int id_proyecto
+        Modifica: Se solicita el: objetivo_general, fecha_asignacion, estado, nombre_resp, telefono_resp y oficina_resp del proyecto con el id que concuerde con el ingresado por parámetro.
+        Retorna: Lista de string con: objetivo_general, fecha_asignacion, estado, nombre_resp, telefono_resp y oficina_resp.
+        */
         public EntidadProyecto ConsultarProyecto(int id_Proyecto)
         {
 
@@ -64,7 +79,11 @@ namespace SistemaPruebas.Controladoras
             }
             else return null;
         }
-
+        /*
+        Requiere: N/A
+        Modifica: Se solicita una lista del id y nombre de todos los proyectos almacenados en la BD
+        Retorna: Lista con id y nombre de todos los proyectos almacenados en la BD
+        */
         public DataTable ConsultarProyectoIdNombre()
         {
             controlRH = new ControladoraRecursosHumanos();
@@ -81,47 +100,62 @@ namespace SistemaPruebas.Controladoras
                     return controlBD.ConsultarProyectoIdNombre(id);
             }            
         }
+        /*  Requiere: El nombre del proyecto
+            Modifica: Invoca al método ConsultarIDProyecto() en controladoraBDProyecto.
+            Retorna: Retorna un int con el id */
         public int ConsultarIdProyectoPorNombre(string nombre)
         {
             int retorno = -1;
             controlBD.ConsultarProyectoIdPorNombre(nombre);
             return retorno;
         }
-
-        //public List<string> ConsultarIdProyecto()
-        //{
-        //    List<string> retorno = controlBD.ConsultaIdProyecto();
-        //    return retorno;
-        //}
-        public void EliminarUSo()
-        {
-            
-        }
+        /*
+        Requiere: string id_proyecto
+        Modifica: Se cambia el estado del proyecto a “Cancelado”.
+        Retorna: Un 0 (cero) en caso de que se haya modificado el estado correctamente, un -1 (menos uno) en caso de que se haya producido un error.
+        */
         public int CancelarProyecto(string id)
         {
             int retorno = controlBD.CancelarProyecto(id);
             return retorno;
         }
+        /*
+        Requiere: string id_proyecto
+        Modifica: Se elimina la tupla del proyecto.
+        Retorna: Un 0 (cero) en caso de que se haya modificado el estado correctamente, un -1 (menos uno) en caso de que se haya producido un error.
+        */
         public int EliminarProyecto(string id)
         {
             int retorno = controlBD.EliminarProyecto(id);
             return retorno;
         }
+        /*      
+       Requiere: id del proyecto
+       Modifica: N/A
+       Retorna: un entero que indica si un proyecto esta siendo usado por alguien mas (0=no 1=si)
+       */
         public int ConsultarUsoProyecto(int id)
         {
             int retorno = 0;
 
             if (modificados.ContainsKey(id))
                 retorno = 1;
-            return retorno;//controlBD.ConsultarUsoProyecto(id);
+            return retorno;
         }
-
+        /*      
+       Requiere: id del proyecto, int de uso
+       Modifica: mediante la controladora de BD modifica el estado del uso segun el id
+       Retorna: N/A
+       */
         public void UpdateUsoProyecto(int id, int use)
         {
              controlBD.UpdateUsoProyecto(id, use);
         }
-
-
+        /*      
+       Requiere: N/A
+       Modifica: Usa la controladora de RH
+       Retorna: un booleano que indica si esta loggeado un Admin o un Miembro de equipo
+       */
         public bool PerfilDelLogeado()
         {
             controlRH = new ControladoraRecursosHumanos();
@@ -134,31 +168,55 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
-
+        /*      
+       Requiere: id del proyecto
+       Modifica: N/A
+       Retorna: el string con el nombre de un proyecto en particular dado su id
+       */
         public string ConsultarNombreProyectoPorId(int id)
 
         {
             string retorno = controlBD.ConsultarNombreProyectoPorId(id);
             return retorno;
         }
+        /*      
+       Requiere: int es el id_proyecto y string id es la cedula de la persona
+       Modifica: lleva un registro de quien está modificando qué proyecto
+       Retorna: N/A
+       */
         public void AgregarModificacion(int i, string id)
         {
-            //enModificacion = i.ToString();
+            
             modificados.Add(i, id);
             UpdateUsoProyecto(i, 1);
 
         }
+        /*      
+       Requiere: el id del proyecto
+       Modifica: Libera el proyecto, cambia su uso=0
+       Retorna: N/A
+       */
         public void QuitarEliminacion(int i)
         {
             modificados.Remove(i);
             UpdateUsoProyecto(i, 0);
 
         }
+        /*      
+       Requiere: N/A
+       Modifica: N/A
+       Retorna: un string con la cedula del usuario logeado
+       */
         public string IdLogeado()
         {
             controlRH = new ControladoraRecursosHumanos();
             return controlRH.idDelLoggeado().ToString();
         }
+        /*      
+       Requiere: N/A
+       Modifica: Elimina las modificaciones hechas y no terminadas de un usuario al cual le expiro la sesion
+       Retorna: N/A
+       */
         public void LimpiarModificaciones()
         {
             modificados.ToString();
