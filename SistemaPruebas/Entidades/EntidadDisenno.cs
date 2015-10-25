@@ -11,33 +11,33 @@ namespace SistemaPruebas.Controladoras
         //(" + Disenno.Id + ",'" + Disenno.Proposito + "','" + Disenno.Nivel + "','" + Disenno.Tecnica + "','" + Disenno.Tipo + "','" + Disenno.Ambiente + "','" + Disenno.Procedimiento + "','" + Disenno.FechaDeDisenno + "','" + Disenno.CriterioAceptacion + "'," + Disenno.Responsable + "'," + Disenno.ProyAsociado + ", getDate()" + ")";
         private String id;
         private String proposito;
-        private String nivel;
-        private String tecnica;
-        private String tipo;
+        private int nivel;
+        private int tecnica;
+        private int tipo;
         private String ambiente;
         private String procedimiento;
         private String fechaDeDisenno;
         private String criterioAceptacion;
-        private String responsable;
-        private String proyAsociado;
+        private int responsable;
+        private int proyAsociado;
        // private String IdConsulta;
 
 
 
         public EntidadDisenno(Object[] datos)
         {
-            this.id = Convert.ToInt32(datos[0].ToString());
+            this.id = datos[0].ToString();
             this.proposito = datos[1].ToString();
-            this.nivel = datos[2].ToString();
-            this.tecnica = datos[3].ToString();
-            this.tipo = datos[4].ToString();
+            this.nivel = Convert.ToInt32(datos[2].ToString());
+            this.tecnica = Convert.ToInt32(datos[3].ToString());
+            this.tipo = Convert.ToInt32(datos[4].ToString());
             this.ambiente = datos[5].ToString();
             this.procedimiento = datos[6].ToString();
             this.fechaDeDisenno = datos[7].ToString();
             
             this.criterioAceptacion = datos[8].ToString();
-            this.responsable = datos[9].ToString();
-            this.proyAsociado = datos[10].ToString();
+            this.responsable = Convert.ToInt32(datos[9].ToString());
+            this.proyAsociado = Convert.ToInt32(datos[10].ToString());
            // this.IdConsulta = Convert.ToInt32(datos[10].ToString());
         }
 
@@ -64,21 +64,21 @@ namespace SistemaPruebas.Controladoras
         }
 
         //Metodos set y get para la variable nivel
-        public String Nivel
+        public int Nivel
         {
             get { return nivel; }
             set { nivel = value; }
         }
 
         //Metodos set y get para la variable tecnica
-        public String Tecnica
+        public int Tecnica
         {
             get { return tecnica; }
             set { tecnica = value; }
         }
 
         //Metodos set y get para la variable Correo
-        public String Tipo
+        public int Tipo
         {
             get { return tipo; }
             set { tipo = value; }
@@ -113,14 +113,14 @@ namespace SistemaPruebas.Controladoras
         }
 
         //Metodos set y get para la variable ProyAsociado
-        public String ProyAsociado
+        public int ProyAsociado
         {
             get { return proyAsociado; }
             set { proyAsociado = value; }
         }
 
         //Metodos set y get para la variable responsable
-        public String Responsable
+        public int Responsable
         {
             get { return responsable; }
             set { responsable = value; }
