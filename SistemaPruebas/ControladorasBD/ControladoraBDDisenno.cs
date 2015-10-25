@@ -30,7 +30,7 @@ namespace SistemaPruebas.Controladoras
         public int modificarDisennoBD(EntidadDisenno Disenno)
         {
             String consulta = "UPDATE Disenno_Prueba SET id_disenno ='"+ Disenno.Id + "',proposito ='"+ Disenno.Proposito + "',nivel ='"+ Disenno.Nivel + "',tecnica ='"+ Disenno.Tecnica + "',tipo ='"+ Disenno.Tipo + "',ambiente ='"+ Disenno.Ambiente + "',procedimiento ='"+ Disenno.Procedimiento + "',fecha_de_disenno ='"+ Disenno.FechaDeDisenno + "',criterio_aceptacion ='"+ Disenno.CriterioAceptacion + "',responsable ='"+ Disenno.Responsable + "',id_proyecto ='"+ Disenno.ProyAsociado + "',fechaUltimo =getDate();";
-            int ret = acceso.Insertar(""/*consulta*/);
+            int ret = acceso.Insertar(consulta);
             return ret;
 
         }
@@ -41,9 +41,9 @@ namespace SistemaPruebas.Controladoras
          * Retorna: int.
          */
 
-        public int eliminarDisennoBD(int cedula)
+        public int eliminarDisennoBD(String id)
         {
-            return 0; //acceso.Insertar("DELETE FROM Disenno_Prueba WHERE cedula = " + cedula + ";");
+            return acceso.Insertar("DELETE FROM Disenno_Prueba WHERE id_disenno = " + id + ";");
 
         }
 
