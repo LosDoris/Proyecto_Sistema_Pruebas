@@ -4983,6 +4983,16 @@ a.list-group-item.active > .badge,
   border-radius: 9px;
 }
 
+.borderCP{
+  padding: 35px;
+  max-width: 500px;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 9px;
+  float:left;
+
+}
 .jumbotron h1 {
   line-height: 1;
   color: #154b67;
