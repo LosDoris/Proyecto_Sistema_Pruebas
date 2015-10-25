@@ -249,6 +249,7 @@
     <Compile Include="Entidades\EntidadEjecucionPrueba.cs" />
     <Compile Include="Entidades\EntidadProyecto.cs" />
     <Compile Include="Entidades\EntidadRecursosHumanos.cs" />
+    <Compile Include="Entidades\EntidadRequerimientos.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
