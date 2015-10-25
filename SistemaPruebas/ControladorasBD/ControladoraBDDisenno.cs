@@ -29,7 +29,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int modificarDisennoBD(EntidadDisenno Disenno)
         {
-            //String consulta = "UPDATE Disenno_Prueba SET cedula =" + Disenno.Cedula + ", nombre_completo = '" + Disenno.Nombre_Completo + "', telefono1 = '" + Disenno.Tel1 + "', telefono2 = '" + Disenno.Tel2 + "', correo_electronico = '" + Disenno.Correo + "', usuario = '" + Disenno.Usuario + "', contrasenna = '" + Disenno.Clave + "', perfil_acceso = '" + Disenno.PerfilAcceso + "', rol = '" + Disenno.Rol + "', id_proyecto = '" + Disenno.ProyAsociado + "', fechaUltimo=getDate()" + " WHERE cedula = " + Disenno.CedulaVieja + ";";
+            String consulta = "UPDATE Disenno_Prueba SET id_disenno ='"+ Disenno.Id + "',proposito ='"+ Disenno.Proposito + "',nivel ='"+ Disenno.Nivel + "',tecnica ='"+ Disenno.Tecnica + "',tipo ='"+ Disenno.Tipo + "',ambiente ='"+ Disenno.Ambiente + "',procedimiento ='"+ Disenno.Procedimiento + "',fecha_de_disenno ='"+ Disenno.FechaDeDisenno + "',criterio_aceptacion ='"+ Disenno.CriterioAceptacion + "',responsable ='"+ Disenno.Responsable + "',id_proyecto ='"+ Disenno.ProyAsociado + "',fechaUltimo =getDate();";
             int ret = acceso.Insertar(""/*consulta*/);
             return ret;
 
