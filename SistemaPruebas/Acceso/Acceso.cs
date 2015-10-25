@@ -16,6 +16,7 @@ namespace SistemaPruebas.Acceso
           String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
         //string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
         //String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
+        //String conexion = "Data Source=LENOVO-PC\SQLEXPRESS;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public DataTable ejecutarConsultaTabla(String consulta)
         {
             SqlConnection sqlConnection = new SqlConnection(conexion);
