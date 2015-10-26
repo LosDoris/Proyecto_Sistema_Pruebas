@@ -11,10 +11,32 @@ namespace SistemaPruebas.Intefaces
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            restriccionesCampos();
+            deshabilitarCampos();
         }
+
+
+        public static string button
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["button"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["button"] = value;
+            }
+        }
+
+
         protected void insertarClick(object sender, EventArgs e)
         {
+            limpiarCampos();
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;
+            habilitarCampos();
+            deshabilitarGrid();
         }
 
         protected void modificarClick(object sender, EventArgs e)
@@ -96,7 +118,24 @@ namespace SistemaPruebas.Intefaces
 
         protected void aceptarClick()
         {
+            llenarGridDisenos();
+            habilitarGrid();
+            switch (Int32.Parse(button))
+            {
+                case 1://Insertar
+                    {
+                    }
+                    break;
+                case 2://Modificar
+                    {
+                    }
+                    break;
+                case 3://Eliminar
+                    {
+                    }
+                    break;
 
+            };
         }
 
         protected void cancelarClick()
@@ -131,6 +170,14 @@ namespace SistemaPruebas.Intefaces
 
         protected void deshabilitarProyectoMiembro()
         {
+
+        }
+
+        protected void obtenerDatosInsertados()
+        {
+
+            string fecha = Page.Request.Form["txt_date"];
+            object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha};
 
         }
     }
