@@ -27,15 +27,15 @@ namespace SistemaPruebas.Intefaces
         }
         protected void llenarGridEntradaDatos()
         {
-            String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
-            DataTable table = new DataTable();
-            using (SqlConnection con = new SqlConnection(conexion))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Dummy", con);
-                con.Open();
-                DECP.DataSource = cmd.ExecuteReader();
-                DECP.DataBind();
-            }
+            //String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
+            //DataTable table = new DataTable();
+            //using (SqlConnection con = new SqlConnection(conexion))
+            //{
+            //    SqlCommand cmd = new SqlCommand("SELECT * FROM Dummy", con);
+            //    con.Open();
+            //    DECP.DataSource = cmd.ExecuteReader();
+            //    DECP.DataBind();
+            //}
         }
     }
 }
