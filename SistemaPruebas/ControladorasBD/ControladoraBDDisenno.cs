@@ -16,7 +16,20 @@ namespace SistemaPruebas.Controladoras
          */
         public int insertarDisennoBD(EntidadDisenno Disenno)
         {
-            String consulta = "INSERT INTO Disenno_Prueba(id_disenno,proposito,nivel,tecnica,tipo,ambiente,procedimiento,fecha_de_disenno,criterio_aceptacion,responsable,id_proyecto,fechaUltimo) values(" + Disenno.Id + ",'" + Disenno.Proposito + "','" + Disenno.Nivel + "','" + Disenno.Tecnica + "','" + Disenno.Tipo + "','" + Disenno.Ambiente + "','" + Disenno.Procedimiento + "','" + Disenno.FechaDeDisenno + "','" + Disenno.CriterioAceptacion + "'," + Disenno.Responsable + "'," + Disenno.ProyAsociado + ", getDate()" + ")";
+            String consulta = "INSERT INTO Disenno_Prueba(id_disenno,proposito,nivel,tecnica,tipo,ambiente,procedimiento,fecha_de_disenno,criterio_aceptacion,responsable,id_proyecto,fechaUltimo) values('" + Disenno.Id + "','" + Disenno.Proposito + "'," + Disenno.Nivel + "," + Disenno.Tecnica + "," + Disenno.Tipo + ",'" + Disenno.Ambiente + "','" + Disenno.Procedimiento + "'," + Disenno.FechaDeDisenno + ",'" + Disenno.CriterioAceptacion + "','" + Disenno.Responsable + "'," + Disenno.ProyAsociado + ", getDate()" + ")";
+            int ret = acceso.Insertar(consulta);
+            return ret;
+
+        }
+
+        /*
+         * Requiere: Entidad de Requerimiento
+         * Modifica: Inserta un nuevo disenno en el sistema.
+         * Retorna: int.
+         */
+        public int insertarRequerimientoBD(EntidadRequerimientos Requerimiento)
+        {
+            String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales) values('" + Requerimiento.Id + "','" + Requerimiento.Precondiciones + "','" + Requerimiento.Precondiciones + "', getDate())";
             int ret = acceso.Insertar(consulta);
             return ret;
 

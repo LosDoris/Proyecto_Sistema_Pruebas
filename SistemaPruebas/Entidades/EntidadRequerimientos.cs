@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SistemaPruebas.Entidades
+namespace SistemaPruebas.Controladoras//.Entidades
 {
-    public class EntidadRequerimiento
+    public class EntidadRequerimientos
     {
         private String id;
         private String precondiciones;
 
         private String requerimientosEspeciales;
 
-        public EntidadRequerimiento(Object[] datos)
+        public EntidadRequerimientos(Object[] datos)
         {
             this.id = datos[0].ToString();
             this.precondiciones = datos[1].ToString();
