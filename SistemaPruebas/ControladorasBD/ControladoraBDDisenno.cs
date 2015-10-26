@@ -24,7 +24,7 @@ namespace SistemaPruebas.Controladoras
 
         /*
          * Requiere: Entidad de Requerimiento
-         * Modifica: Inserta un nuevo disenno en el sistema.
+         * Modifica: Inserta un nuevo requerimiento de un disenno en el sistema.
          * Retorna: int.
          */
         public int insertarRequerimientoBD(EntidadRequerimientos Requerimiento)
@@ -49,16 +49,39 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         * Requiere: Cédula
+         * Requiere: Id del diseño
          * Modifica: Elimina un disenno del sistema.
          * Retorna: int.
          */
 
         public int eliminarDisennoBD(String id)
         {
-            return acceso.Insertar("DELETE FROM Disenno_Prueba WHERE id_disenno = " + id + ";");
+            return acceso.Insertar("DELETE FROM Disenno_Prueba WHERE id_disenno = '" + id + "';");
 
         }
+
+        /*
+         * Requiere: Id requerimiento.
+         * Modifica: Elimina un requerimiento de un disenno del sistema.
+         * Retorna: int.
+         */
+
+        public int eliminarRequerimientoBD(String id)
+        {
+            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_requerimiento = '" + id + "';");
+        }
+
+        /*
+         * Requiere: Id diseño.
+         * Modifica: Elimina un requerimiento de un disenno del sistema.
+         * Retorna: int.
+         
+
+        public int eliminarRequerimientosProyectoBD(String id_disenno)
+        {
+            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_disenno = '" + id_disenno + "';");
+        }
+        */
 
         /*
          * Requiere: tipo de consulta y cédula.
