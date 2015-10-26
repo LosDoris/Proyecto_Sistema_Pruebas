@@ -39,19 +39,19 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombreReqLabel" CssClass="col-md-2 control-label">Nombre:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="nombreReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="20"/> 
+                    <asp:TextBox runat="server" ID="nombreReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="30"/> 
 </div>
 </div>
                     <div class="form-group">
                     <asp:Label runat="server" ID="precondicionReqLabel" CssClass="col-md-2 control-label">Precondiciones:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="precondicionReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="20"/> 
+                    <asp:TextBox runat="server" ID="precondicionReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="150"/> 
 </div>
 </div>
                     <div class="form-group">
                     <asp:Label runat="server" ID="reqEspecialesReqLabel" CssClass="col-md-2 control-label">Requerimientos Especiales:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="reqEspecialesReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="20"/> 
+                    <asp:TextBox runat="server" ID="reqEspecialesReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="150"/> 
 </div>
 </div>
 
@@ -59,7 +59,7 @@
                     <div class="form-group">
                     <asp:Label runat="server" ID="propositoLabel" CssClass="col-md-2 control-label">Propósito:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="20"/> 
+                    <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"/> 
 </div>
 </div>
 
@@ -120,7 +120,7 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Ambiente:</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                        <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
 
 </div>
 </div>
@@ -133,7 +133,7 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Procedimiento Utilizado:</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                        <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
 
 
 </div>
@@ -171,7 +171,7 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                        <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
 
 </div>
 </div>
