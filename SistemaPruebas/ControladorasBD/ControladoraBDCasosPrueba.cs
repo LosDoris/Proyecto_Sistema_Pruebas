@@ -36,12 +36,12 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public int eliminarCasosPrueba(string id)
+        public int eliminarCasosPrueba(int id)
         {
             return acceso.Insertar("DELETE FROM Caso_prueba WHERE id_caso_prueba = " + id + ";");
         }
 
-        public DataTable consultarCasosPrueba(int id)
+        public DataTable consultarCasosPrueba()
         {
             DataTable dt = null;
             String consulta = "";

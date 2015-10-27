@@ -31,37 +31,17 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
-        public int eliminarCasosPrueba(string id)
+        public int eliminarCasosPrueba(int id)
         {
             int ret = controlBD.eliminarCasosPrueba(id);
             return ret;
         }
 
-        public DataTable consultarCasosPrueba(int id)
+        public DataTable consultarCasosPrueba()
         {
             DataTable dt = controlBD.consultarCasosPrueba(id);
             return dt;
 
-        }
-
-        public String solicitarProyectos()
-        {
-            controlProyecto = new ControladoraProyecto();
-            String proyectos = controlProyecto.Consultar_ID_Nombre_Proyecto();
-            return proyectos;
-
-        }
-
-        public String solicitarDisennos(string id_proyecto)
-        {
-
-            return null;
-        }
-
-        public String solicitarRequerimientos(string id_disenno)
-        {
-
-            return null;
         }
     }
 }
