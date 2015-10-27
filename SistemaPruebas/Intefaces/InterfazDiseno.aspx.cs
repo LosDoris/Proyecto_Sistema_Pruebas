@@ -9,6 +9,8 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazDiseno : System.Web.UI.Page
     {
+
+        Controladoras.ControladoraDisenno controlDiseno = new Controladoras.ControladoraDisenno();
         protected void Page_Load(object sender, EventArgs e)
         {
             restriccionesCampos();
@@ -37,6 +39,11 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             habilitarCampos();
             deshabilitarGrid();
+            marcarBoton(ref Insertar);
+            button = "1";
+            cancelar.Enabled = true;
+            aceptar.Enabled = true;
+
         }
 
         protected void modificarClick(object sender, EventArgs e)
@@ -116,14 +123,29 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected void aceptarClick()
+        protected void aceptarClick(object sender, EventArgs e)
         {
-            llenarGridDisenos();
-            habilitarGrid();
+            
             switch (Int32.Parse(button))
             {
                 case 1://Insertar
                     {
+
+                        string fecha = Page.Request.Form["txt_date"];
+                        object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
+                        int a = controlDiseno.ingresaProyecto(datos);
+                        if (a == 1)
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
+                            llenarGridDisenos();
+                            habilitarGrid();
+                            deshabilitarCampos();
+                            desmarcarBoton(ref Insertar);
+                        }
+                        else
+                        {
+                            //completar
+                        }
                     }
                     break;
                 case 2://Modificar
@@ -178,6 +200,21 @@ namespace SistemaPruebas.Intefaces
 
             string fecha = Page.Request.Form["txt_date"];
             object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha};
+
+        }
+
+        protected void marcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.ForeColor = System.Drawing.Color.White;
+        }
+
+        protected void desmarcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.LightGray;
+            b.BackColor = System.Drawing.Color.White;
+            b.ForeColor = System.Drawing.Color.Black;
 
         }
     }

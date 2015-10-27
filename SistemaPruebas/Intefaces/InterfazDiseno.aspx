@@ -17,7 +17,7 @@
 
         <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default"/>
+            <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="insertarClick"/>
             <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default"/>
             <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default"/>
         </div>
