@@ -184,10 +184,10 @@ namespace SistemaPruebas.Controladoras
        Modifica: lleva un registro de quien está modificando qué proyecto
        Retorna: N/A
        */
-        public void AgregarModificacion(int i, string id)
+        public void AgregarModificacion(int i)
         {
-            
-            modificados.Add(i, id);
+
+            modificados.Add(i, IdLogeado());
             UpdateUsoProyecto(i, 1);
 
         }
@@ -217,12 +217,11 @@ namespace SistemaPruebas.Controladoras
        Modifica: Elimina las modificaciones hechas y no terminadas de un usuario al cual le expiro la sesion
        Retorna: N/A
        */
-        public void LimpiarModificaciones()
+        public void LimpiarModificaciones(string nombre)
         {
             modificados.ToString();
-            controlRH = new ControladoraRecursosHumanos();
-            string ff = controlRH.idDelLoggeado().ToString();
-            foreach (var item in modificados.Where(kvp => kvp.Value == ff).ToList())
+            
+            foreach (var item in modificados.Where(kvp => kvp.Value == nombre).ToList())
             {
                 modificados.Remove(item.Key);
                 UpdateUsoProyecto(item.Key, 0);

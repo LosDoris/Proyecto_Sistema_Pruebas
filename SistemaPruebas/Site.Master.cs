@@ -71,22 +71,26 @@ namespace SistemaPruebas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Account.Login.el_logeado == "")
+            if (Account.Login.id_logeado == null)
             {
+                nombre.Visible = false;
                 makeInVisible();
             }
             else if (Account.Login.loggeado == 1)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Alerta", "alert('" + "Loggeo correcto" + "');", true);
                 makeVisible();
+                nombre.Visible = true;
+                //nombre.InnerHtml = Account.Login.id_logeado;
+                Nombres.InnerText = Account.Login.id_logeado;
                 Account.Login.loggeado = 0;
             }
-            if (Account.Login.el_logeado == "")
+            if (Account.Login.id_logeado == "")
             {
                 LOGIN.Visible = true;
                 LOGOUT.Visible = false;
             }
-            else if (controladoraRH.loggeado(Account.Login.el_logeado) == false)
+            else if (controladoraRH.loggeado(Account.Login.id_logeado) == false)
             {
                 LOGIN.Visible = true;
                 LOGOUT.Visible = false;
@@ -94,6 +98,9 @@ namespace SistemaPruebas
             else
             {
                 LOGIN.Visible = false;
+                nombre.Visible = true;
+                Nombres.Visible = true;
+                Nombres.InnerText = Account.Login.id_logeado;
                 LOGOUT.Visible = true;
             }
         }
@@ -106,6 +113,10 @@ namespace SistemaPruebas
                 A2.Visible = true;
                 A3.Visible = true;
                 A4.Visible = true;
+//                nombre.InnerText = Account.Login.id_logeado;
+                nombre.Visible = true;
+                Nombres.Visible = true;
+                Nombres.InnerText = Account.Login.id_logeado;
             }
             catch (NullReferenceException e)
             {
@@ -121,6 +132,7 @@ namespace SistemaPruebas
                 A2.Visible = false;
                 A3.Visible = false;
                 A4.Visible = false;
+                nombre.Visible = false;
             }
             catch (NullReferenceException e)
             {
@@ -132,8 +144,8 @@ namespace SistemaPruebas
         protected void LogOut(object sender, EventArgs e)
         {
             Session.Abandon();
-            controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
-            Account.Login.el_logeado = "";
+            //controladoraRH.estadoLoggeado(Account.Login.el_logeado, "0");
+            //Account.Login.el_logeado = "";
             makeInVisible();           
             Response.Redirect("~/Default");
             

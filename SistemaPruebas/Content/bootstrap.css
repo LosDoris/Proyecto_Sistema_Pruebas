@@ -50,6 +50,14 @@ summary {
 
 }
 
+.lbl-Name {
+    color: #2e8e9e;            
+    margin-top: 11px;   
+    border: none;
+    width: 70px;
+    height: 27px;
+}
+
 
 audio,
 canvas,

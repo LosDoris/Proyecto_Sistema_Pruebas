@@ -59,13 +59,16 @@
                         <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
                         <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
                         <li id ="A3" runat="server"><a  runat="server" href="~/Intefaces/InterfazDiseno">Diseño</a></li>
-                        <li id ="A4" runat="server"><a  runat="server" href="~/Intefaces/InterfazCasosDePrueba">Casos de Prueba</a></li>
-                        
-                    </ul>
+                        <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRquerimiento">Rquerimiento</a></li>
+                        <li id ="A4" runat="server"><a  runat="server" href="~/Intefaces/InterfazCasosDePrueba">Casos de Prueba</a></li>                                                
+                    </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
+                        <li id="nombre" runat="server"><a id="Nombres" runat="server" class="lbl-Name"></a></li>                             
+                        <li>
+
                             <button id="LOGOUT" runat="server" class="btn-LogOut"
-                                onserverclick="LogOut">Log Out</button>
+                                onserverclick="LogOut">Salir</button>
                         </li>
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>

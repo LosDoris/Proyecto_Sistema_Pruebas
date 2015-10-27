@@ -73,7 +73,7 @@ namespace SistemaPruebas.Controladoras
         public bool estadoLoggeado(string nombre, string estado)
         {
             if (estado == "0")
-                controladoraProyecto.LimpiarModificaciones();
+                controladoraProyecto.LimpiarModificaciones(nombre);
             return controladoraBDRecursosHumanos.estadoLoggeado(nombre, estado);
         }
         
@@ -89,7 +89,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int proyectosDelLoggeado()
         {
-            return controladoraBDRecursosHumanos.proyectosDelLoggeado(Account.Login.el_logeado);
+            return controladoraBDRecursosHumanos.proyectosDelLoggeado(Account.Login.id_logeado);
         }
 
         /*
@@ -100,7 +100,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int idDelLoggeado()
         {
-            return controladoraBDRecursosHumanos.idDelLoggeado(Account.Login.el_logeado);
+            return controladoraBDRecursosHumanos.idDelLoggeado(Account.Login.id_logeado);
         }
 
         /*
@@ -111,7 +111,7 @@ namespace SistemaPruebas.Controladoras
          */
         public string perfilDelLoggeado()
         {
-            return controladoraBDRecursosHumanos.perfilDelLoggeado(Account.Login.el_logeado);
+            return controladoraBDRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
         }
 
         /*

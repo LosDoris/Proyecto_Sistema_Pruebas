@@ -13,8 +13,32 @@ namespace SistemaPruebas.Account
 {
     public partial class Login : Page
     {
-        static public string el_logeado = "";
-        static public int loggeado = 0;
+        public static string id_logeado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_logeado"];
+                return value == null ? "" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_logeado"] = value;
+            }
+        }
+
+        public static int loggeado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["loggeado"];
+                return value == null ? 0 : (Int32.Parse(value.ToString()));
+            }
+            set
+            {
+                HttpContext.Current.Session["loggeado"] = value;
+            }
+        }
+        //static public int loggeado = 0;
         Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -44,7 +68,7 @@ namespace SistemaPruebas.Account
                 if (controladoraRH.usuarioMiembroEquipo(datos))
                 {
                     //regreso true
-                    el_logeado = datos[0].ToString();
+                    id_logeado = datos[0].ToString();
 
                     controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
