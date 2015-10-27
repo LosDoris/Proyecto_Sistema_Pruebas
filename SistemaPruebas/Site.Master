@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SistemaPruebas.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SistemaPruebas.SiteMaster"%>
 
 <!DOCTYPE html>
 
@@ -8,21 +8,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Sistema de Pruebas</title>
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type = "text/javascript"> src = "http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" </script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-<script type="text/javascript">
-    function CloseWindow() {
-        alert('closing');
-        window.close();
-    }
-</script>
+    <script type="text/javascript">
+        function CloseWindow() {
+            alert('closing');
+            window.close();
+        }
+        function myFunction() {
+            alert('Profile not parsed!!');
+            window.parent.parent.parent.location.reload();
+        }       
+    </script>
 </head>
 <body>
     <form runat="server">
+        
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -40,6 +47,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+               
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
@@ -54,17 +62,20 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">Inicio</a>
                 </div>
+                
+ 
+
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
                         <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
                         <li id ="A3" runat="server"><a  runat="server" href="~/Intefaces/InterfazDiseno">Diseño</a></li>
-                        <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRquerimiento">Rquerimiento</a></li>
+                        <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRequerimiento">Requerimiento</a></li>
                         <li id ="A4" runat="server"><a  runat="server" href="~/Intefaces/InterfazCasosDePrueba">Casos de Prueba</a></li>                                                
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                        <li id="nombre" runat="server"><a id="Nombres" runat="server" class="lbl-Name"></a></li>                             
+                        <li id="nombre" runat="server"><a id="Nombres" runat="server"></a></li>                             
                         <li>
 
                             <button id="LOGOUT" runat="server" class="btn-LogOut"

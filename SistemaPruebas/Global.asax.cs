@@ -18,9 +18,9 @@ namespace SistemaPruebas
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        void Application_Stop(object sender, EventArgs e)
+        void Application_Disposed(object sender, EventArgs e)
         {
-            Session.Abandon();
+           // Session.Abandon();
         }
       protected void Session_Start(Object sender, EventArgs e)
       {

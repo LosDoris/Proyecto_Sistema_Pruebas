@@ -23,7 +23,7 @@ namespace SistemaPruebas.Controladoras
             this.entrada_datos = datos[2].ToString();
             this.resultado_esperado = datos[3].ToString();
             this.flujo_central = datos[4].ToString();
-            this.id_requerimiento = Convert.ToInt32(datos[5].ToString());+
+            this.id_requerimiento = Convert.ToInt32(datos[5].ToString());
         }
 
         //Metodos set y get para la variable id_caso_prueba
