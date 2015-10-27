@@ -18,16 +18,16 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        public static string button
+        public static string buttonDisenno
         {
             get
             {
-                object value = HttpContext.Current.Session["button"];
+                object value = HttpContext.Current.Session["buttonDisenno"];
                 return value == null ? "0" : (string)value;
             }
             set
             {
-                HttpContext.Current.Session["button"] = value;
+                HttpContext.Current.Session["buttonDisenno"] = value;
             }
         }
 
@@ -40,7 +40,7 @@ namespace SistemaPruebas.Intefaces
             habilitarCampos();
             deshabilitarGrid();
             marcarBoton(ref Insertar);
-            button = "1";
+            buttonDisenno = "1";
             cancelar.Enabled = true;
             aceptar.Enabled = true;
 
@@ -125,14 +125,15 @@ namespace SistemaPruebas.Intefaces
 
         protected void aceptarClick(object sender, EventArgs e)
         {
-            
-            switch (Int32.Parse(button))
+
+            switch (Int32.Parse(buttonDisenno))
             {
                 case 1://Insertar
                     {
 
                         string fecha = Page.Request.Form["txt_date"];
-                        object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
+                        //Cambiar responsable y Proyecto asociado para que almacene la llave y no el nombre
+                        object[] datos = new object[10] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, responsable.SelectedValue, proyectoAsociado.SelectedValue };
                         int a = controlDiseno.ingresaProyecto(datos);
                         if (a == 1)
                         {

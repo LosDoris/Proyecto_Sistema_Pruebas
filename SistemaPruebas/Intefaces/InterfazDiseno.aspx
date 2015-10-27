@@ -183,7 +183,7 @@
 
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-10">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648"/>
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648" OnClick="aceptarClick"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default"/>
 
         </div>
