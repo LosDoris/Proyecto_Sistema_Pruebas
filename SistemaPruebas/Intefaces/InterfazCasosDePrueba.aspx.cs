@@ -6,11 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using SistemaPruebas.Controladoras;
 
 namespace SistemaPruebas.Intefaces
 {
     public partial class CasosDePrueba : System.Web.UI.Page
     {
+        ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -123,6 +126,24 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        protected void llenarDDProyecto()
+        {
+            this.ProyectoComboBox.Items.Clear();
+            String proyectos = controladoraCasosPrueba.solicitarProyectos();
+            Console.Write(proyectos);
+
+            String[] pr = proyectos.Split(';');
+
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+               
+                this.ProyectoComboBox.Items.Add(new ListItem(p2[0]));
+               
+
+            }
+
+        }
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -138,7 +159,6 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-
         protected void BotonCPInsertar_Click(object sender, EventArgs e)
         {
             ViewState["modo"] = 1;
@@ -152,6 +172,7 @@ namespace SistemaPruebas.Intefaces
             habilitarCampos();
             BotonCPAceptar.Enabled = true;
             BotonCPCancelar.Enabled = true;
+            llenarDDProyecto();
             //deshabilitar grid principal, aún no programado
         }
 
@@ -175,6 +196,11 @@ namespace SistemaPruebas.Intefaces
             {
 
             }
+        }
+
+        protected void ProyectoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProyectoComboBox.Items.FindByText("Seleccionar").Enabled = false;
         }
     }
 }

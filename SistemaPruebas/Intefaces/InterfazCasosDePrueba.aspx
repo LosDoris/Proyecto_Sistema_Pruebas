@@ -25,7 +25,7 @@
            <div class="form-group">      
                 <asp:Label ID="ProyectoCP" CssClass="col-md-2 control-label" runat="server" Text="Proyecto:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:DropDownList ID="ProyectoComboBox" runat="server">
+                    <asp:DropDownList ID="ProyectoComboBox" runat="server" OnSelectedIndexChanged="ProyectoComboBox_SelectedIndexChanged">
                         <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
                     </asp:DropDownList>
                </div>
