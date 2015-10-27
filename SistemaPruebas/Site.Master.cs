@@ -104,6 +104,8 @@ namespace SistemaPruebas
             {
                 A1.Visible = true;
                 A2.Visible = true;
+                A3.Visible = true;
+                A4.Visible = true;
             }
             catch (NullReferenceException e)
             {
@@ -117,6 +119,8 @@ namespace SistemaPruebas
             {
                 A1.Visible = false;
                 A2.Visible = false;
+                A3.Visible = false;
+                A4.Visible = false;
             }
             catch (NullReferenceException e)
             {
