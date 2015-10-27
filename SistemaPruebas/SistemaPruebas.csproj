@@ -157,6 +157,7 @@
     <Content Include="Intefaces\InterfazDiseno.aspx" />
     <Content Include="Intefaces\InterfazProyecto.aspx" />
     <Content Include="Intefaces\InterfazRecursoHumano.aspx" />
+    <Content Include="Intefaces\InterfazRequerimiento.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -233,11 +234,13 @@
     <Compile Include="ControladorasBD\ControladoraBDCasosPrueba.cs" />
     <Compile Include="ControladorasBD\ControladoraBDDisenno.cs" />
     <Compile Include="ControladorasBD\ControladoraBDEjecucionPrueba.cs" />
+    <Compile Include="ControladorasBD\ControladoraBDRequerimiento.cs" />
     <Compile Include="Controladoras\ControladoraCasosPrueba.cs" />
     <Compile Include="Controladoras\ControladoraProyecto.cs" />
     <Compile Include="Controladoras\ControladoraRecursosHumanos.cs" />
     <Compile Include="Controladoras\ControladoraDisenno.cs" />
     <Compile Include="Controladoras\ControladoraEjecucionPrueba.cs" />
+    <Compile Include="Controladoras\ControladoraRequerimiento.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -281,6 +284,13 @@
     </Compile>
     <Compile Include="Intefaces\InterfazRecursoHumano.aspx.designer.cs">
       <DependentUpon>InterfazRecursoHumano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Intefaces\InterfazRequerimiento.aspx.cs">
+      <DependentUpon>InterfazRequerimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Intefaces\InterfazRequerimiento.aspx.designer.cs">
+      <DependentUpon>InterfazRequerimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
