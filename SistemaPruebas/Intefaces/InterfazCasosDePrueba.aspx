@@ -12,7 +12,7 @@
     <div class="col-md-offset-10 col-md-12">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click"/>
 
-        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" />
+        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" />
 
         <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar este caso de prueba?')" />
     </div>
@@ -25,19 +25,25 @@
            <div class="form-group">      
                 <asp:Label ID="ProyectoCP" CssClass="col-md-2 control-label" runat="server" Text="Proyecto:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:DropDownList ID="ProyectoComboBox" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ProyectoComboBox" runat="server">
+                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
+                    </asp:DropDownList>
                </div>
            </div>
            <div class="form-group">      
                 <asp:Label ID="DisenoCP" runat="server" CssClass="col-md-2 control-label" Text="Diseño:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:DropDownList ID="DisenoComboBox" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="DisenoComboBox" runat="server">
+                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
+                    </asp:DropDownList>
                </div>
            </div>
            <div class="form-group">      
                 <asp:Label ID="RequerimientoCP" runat="server" CssClass="col-md-2 control-label" Text="Requerimiento:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:DropDownList ID="RequerimientoComboBox" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="RequerimientoComboBox" runat="server">
+                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
+                    </asp:DropDownList>
                </div>
            </div>
            <div class="form-group">      
@@ -117,7 +123,7 @@
         />
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
-            OnClientClick="return confirm('¿Está seguro que desea cancelar?')" 
+            OnClientClick="return confirm('¿Está seguro que desea cancelar?')" OnClick="BotonCPCancelar_Click" 
         />
     </div>
 </div>
