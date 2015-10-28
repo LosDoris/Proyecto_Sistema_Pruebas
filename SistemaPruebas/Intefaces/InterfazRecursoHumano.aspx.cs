@@ -377,7 +377,6 @@ namespace SistemaPruebas.Intefaces
         {
 
             this.ProyectoAsociado.Items.Clear();
-            //this.ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
 
             String proyectos = controladoraRecursosHumanos.solicitarProyectos();
             String[] pr = proyectos.Split(';');

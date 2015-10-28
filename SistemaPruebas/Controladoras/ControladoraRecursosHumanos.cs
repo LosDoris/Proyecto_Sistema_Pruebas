@@ -238,5 +238,11 @@ namespace SistemaPruebas.Controladoras
             return proyecto;
         }
 
+        public String solicitarNombreRecursoPorProyecto(int id_proyecto)
+        {
+            String proyecto = controladoraBDRecursosHumanos.solicitarNombreRecursoPorProyecto(id_proyecto);
+           return proyecto;
+        }
+
     }
 }

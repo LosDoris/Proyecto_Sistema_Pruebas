@@ -15,6 +15,8 @@ namespace SistemaPruebas.Intefaces
         {
             restriccionesCampos();
             deshabilitarCampos();
+            llenarComboboxProyectoAdmin(); //CAMBIAR
+           // llenarComboboxResponsable(proyectoAsociado.SelectedIndex);
         }
 
 
@@ -218,5 +220,50 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.Black;
 
         }
+
+        protected void llenarComboboxProyectoAdmin()
+        {
+
+            this.proyectoAsociado.Items.Clear();
+
+            String proyectos = controlDiseno.solicitarProyectos();
+            String[] pr = proyectos.Split(';');
+
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+                try
+                {
+                    this.proyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
+        protected void llenarComboboxResponsable(int id_proyecto)
+        {
+            //string 
+            this.responsable.Items.Clear();
+
+            String responsables = controlDiseno.solicitarResponsanles(id_proyecto);
+            String[] pr = responsables.Split(';');
+
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+                try
+                {
+                    this.responsable.Items.Add(new ListItem(p2[0], p2[1]));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
     }
 }
