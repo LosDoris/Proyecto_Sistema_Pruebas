@@ -27,7 +27,7 @@
     <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
         <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
                     <div class="form-group">
-                        <div class="col-md-offset-10 col-md-12">
+                        <div class="col-md-offset-5 col-md-12">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonREQInsertar" OnClick="BotonREQInsertar_Click"  />
 
                             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonREQModificar" OnClick="BotonREQModificar_Click" />
@@ -92,7 +92,7 @@
         </div>
     </div>
         <div class="form-group">
-            <div class="col-md-offset-10 col-md-12">
+            <div class="col-md-offset-5 col-md-12">
                 <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648" 
                     Text="Aceptar" 
                     causesvalidation="true" 
