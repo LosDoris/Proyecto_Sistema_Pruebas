@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <div class="col-md-16">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
-                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreREQ"
@@ -70,14 +70,14 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Precondiciones:</asp:Label>
                             <div class="col-md-16">
-                            <asp:TextBox runat="server" ID="TextBoxPrecondicionesREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxPrecondicionesREQ" CssClass="form-control" MaxLength="150" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorPrecondiciones">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Condiciones Especiales:</asp:Label>
                             <div class="col-md-16">
-                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="150" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorReqEsp">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
                         </div>
