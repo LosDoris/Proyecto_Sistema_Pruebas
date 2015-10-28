@@ -22,32 +22,15 @@
 <div class ="row">
     <div class ="col-md-8" style = "margin-top: 40px">
         <div class="form-horizontal">
-           <div class="form-group">      
-                <asp:Label ID="ProyectoCP" CssClass="col-md-2 control-label" runat="server" Text="Proyecto:"></asp:Label>    
+            <div class="form-group">      
+                <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" Text="ID:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:DropDownList ID="ProyectoComboBox" runat="server" OnSelectedIndexChanged="ProyectoComboBox_SelectedIndexChanged">
-                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
-                    </asp:DropDownList>
-               </div>
+                    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" MaxLength="50"/>
+                </div>
            </div>
+
            <div class="form-group">      
-                <asp:Label ID="DisenoCP" runat="server" CssClass="col-md-2 control-label" Text="Diseño:"></asp:Label>    
-                <div class="col-md-10">
-                    <asp:DropDownList ID="DisenoComboBox" runat="server">
-                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
-                    </asp:DropDownList>
-               </div>
-           </div>
-           <div class="form-group">      
-                <asp:Label ID="RequerimientoCP" runat="server" CssClass="col-md-2 control-label" Text="Requerimiento:"></asp:Label>    
-                <div class="col-md-10">
-                    <asp:DropDownList ID="RequerimientoComboBox" runat="server">
-                        <asp:ListItem Enabled="True">Seleccionar</asp:ListItem>
-                    </asp:DropDownList>
-               </div>
-           </div>
-           <div class="form-group">      
-                <asp:Label ID="PropositoCP" runat="server" CssClass="col-md-2 control-label" Text="Propósito:"></asp:Label>    
+                <asp:Label ID="PropositoCP" runat="server" CssClass="col-md-2 control-label" Text="Propósito de Caso de Prueba:"></asp:Label>    
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="TextBoxPropositoCP" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
                 </div>
@@ -72,14 +55,22 @@
             <h4>Entrada de Datos</h4>
             <div class ="borderCP" >
                 <div class="form-group">      
-                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" Text="Entrada de Datos:"></asp:Label>    
+                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" Text="Descripción:"></asp:Label>    
                     <div class="col-md-8">
                         <asp:TextBox runat="server" ID="TextBoxEntradaDatos" style="width:250px" CssClass="form-control"/>
                     </div>
                 </div>
-                <div class="form-group">          
+                <div class="form-group">  
                     <div class="col-md-8">
-                         <asp:DropDownList ID="TipoEntrada" runat="server"></asp:DropDownList>
+                        <asp:Label ID="DatosCP" runat="server" CssClass="col-md-2 control-label" Text="Datos:"></asp:Label>
+
+                        <asp:TextBox runat="server" ID="TextBoxDatos" CssClass="form-control" MaxLength="50"/>
+                        <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" Text="Tipo:"></asp:Label>
+                         <asp:DropDownList ID="TipoEntrada" runat="server">
+                             <asp:ListItem Text ="Válido" Value =1/>
+                             <asp:ListItem Text ="Inválido" Value =2/>
+                             <asp:ListItem Text ="No Aplica" Value =3/>
+                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="form-group">          

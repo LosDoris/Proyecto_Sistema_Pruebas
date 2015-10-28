@@ -66,12 +66,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxEntradaDatos.Text = "";
         }
 
-        protected void deshabilitarDropDowns()
-        {
-            ProyectoComboBox.Enabled      = false;
-            DisenoComboBox.Enabled        = false;
-            RequerimientoComboBox.Enabled = false;
-        }
+    
 
         protected void deshabilitarCamposEntrada()
         {
@@ -98,7 +93,6 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             deshabilitarCampos();
             limpiarCampos();
-            deshabilitarDropDowns();
         }
 
         protected void habilitarCampos()
@@ -107,7 +101,6 @@ namespace SistemaPruebas.Intefaces
             TextBoxResultadoCP.Enabled  = true;
             TextBoxFlujoCentral.Enabled = true;
             habilitarCamposEntrada();
-            ProyectoComboBox.Enabled    = true;
         }
         
 
@@ -196,11 +189,6 @@ namespace SistemaPruebas.Intefaces
             {
 
             }
-        }
-
-        protected void ProyectoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProyectoComboBox.Items.FindByText("Seleccionar").Enabled = false;
         }
     }
 }

@@ -76,58 +76,22 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button BotonCPEliminar;
         
         /// <summary>
-        /// Control ProyectoCP.
+        /// Control id_casoPrueba.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ProyectoCP;
+        protected global::System.Web.UI.WebControls.Label id_casoPrueba;
         
         /// <summary>
-        /// Control ProyectoComboBox.
+        /// Control TextBoxID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ProyectoComboBox;
-        
-        /// <summary>
-        /// Control DisenoCP.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DisenoCP;
-        
-        /// <summary>
-        /// Control DisenoComboBox.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DisenoComboBox;
-        
-        /// <summary>
-        /// Control RequerimientoCP.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequerimientoCP;
-        
-        /// <summary>
-        /// Control RequerimientoComboBox.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequerimientoComboBox;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxID;
         
         /// <summary>
         /// Control PropositoCP.
@@ -200,6 +164,33 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxEntradaDatos;
+        
+        /// <summary>
+        /// Control DatosCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DatosCP;
+        
+        /// <summary>
+        /// Control TextBoxDatos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDatos;
+        
+        /// <summary>
+        /// Control TiposCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TiposCP;
         
         /// <summary>
         /// Control TipoEntrada.
