@@ -58,31 +58,31 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label EtiqErrorEliminar;
         
         /// <summary>
-        /// Control BotonRHInsertar.
+        /// Control BotonREQInsertar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHInsertar;
+        protected global::System.Web.UI.WebControls.Button BotonREQInsertar;
         
         /// <summary>
-        /// Control BotonRHModificar.
+        /// Control BotonREQModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHModificar;
+        protected global::System.Web.UI.WebControls.Button BotonREQModificar;
         
         /// <summary>
-        /// Control BotonRHEliminar.
+        /// Control BotonREQEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHEliminar;
+        protected global::System.Web.UI.WebControls.Button BotonREQEliminar;
         
         /// <summary>
         /// Control ErrorMessage.
@@ -112,13 +112,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label Etiqueta1;
         
         /// <summary>
-        /// Control TextBoxCedulaRH.
+        /// Control TextBoxNombreREQ.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxCedulaRH;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNombreREQ;
         
         /// <summary>
         /// Control CedVal.
@@ -138,15 +138,15 @@ namespace SistemaPruebas.Intefaces {
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidaCampos;
         
-        /// <summary>
-        /// Control TextBoxNombreRH.
+       /* /// <summary>
+        /// Control TextBoxNombreREQ.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNombreRH;
-        
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNombreREQ;
+        */
         /// <summary>
         /// Control NombVal.
         /// </summary>
@@ -247,24 +247,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator3;
         
         /// <summary>
-        /// Control TextBoxClave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxClave;
-        
-        /// <summary>
-        /// Control ClaveVal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ClaveVal;
-        
-        /// <summary>
         /// Control PerfilAccesoComboBox.
         /// </summary>
         /// <remarks>
@@ -292,39 +274,39 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.DropDownList ProyectoAsociado;
         
         /// <summary>
-        /// Control BotonRHAceptar.
+        /// Control BotonREQAceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHAceptar;
+        protected global::System.Web.UI.WebControls.Button BotonREQAceptar;
         
         /// <summary>
-        /// Control BotonRHAceptarModificar.
+        /// Control BotonREQAceptarModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHAceptarModificar;
+        protected global::System.Web.UI.WebControls.Button BotonREQAceptarModificar;
         
         /// <summary>
-        /// Control BotonRHCancelar.
+        /// Control BotonREQCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonRHCancelar;
+        protected global::System.Web.UI.WebControls.Button BotonREQCancelar;
         
         /// <summary>
-        /// Control RH.
+        /// Control gridRequerimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView RH;
+        protected global::System.Web.UI.WebControls.GridView gridRequerimiento;
     }
 }
