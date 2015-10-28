@@ -121,13 +121,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.TextBox TextBoxNombreREQ;
         
         /// <summary>
-        /// Control NombVal.
+        /// Control EtiqErrorNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombVal;
+        protected global::System.Web.UI.WebControls.Label EtiqErrorNombre;
         
         /// <summary>
         /// Control Requiredfieldvalidator1.

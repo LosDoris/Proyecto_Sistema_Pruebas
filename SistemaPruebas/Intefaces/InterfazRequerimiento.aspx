@@ -35,8 +35,9 @@
                             <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonREQEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"  OnClick="BotonREQEliminar_Click" />
                         </div>
                     </div>
-
+    <div class="col-md-16">
     <div class="row">
+        <div class="col-md-16">
         <div class="col-md-16">
             <div class="col-md-16">
                 <div class="form-horizontal">
@@ -56,7 +57,7 @@
                             <div class="col-md-16">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
                             <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorNombre">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreREQ"
                                     Display="Dynamic"
@@ -84,12 +85,14 @@
                 </div>
             </div>
         </div>
+        </div>
         <div class="col-md-4">
             <div class="form-horizontal">
             </div>
 
          
         </div>
+    </div>
     </div>
         <div class="form-group">
             <div class="col-md-offset-5 col-md-12">

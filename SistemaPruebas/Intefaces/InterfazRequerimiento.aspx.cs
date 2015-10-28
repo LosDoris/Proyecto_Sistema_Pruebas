@@ -485,13 +485,9 @@ namespace SistemaPruebas.Intefaces
         protected void desactivarErrores()
         {
 
-            //CedVal.Visible = false;
-            //NombVal.Visible = false;
-            //TelVal1.Visible = false;
-            //TelVal2.Visible = false;
-            //EmailVal.Visible = false;
-            //UserVal.Visible = false;
-            //ClaveVal.Visible = false;
+            EtiqErrorPrecondiciones.Visible = false;
+            EtiqErrorReqEsp.Visible = false;
+            EtiqErrorNombre.Visible = false;
             EtiqErrorEliminar.Visible = false;
             EtiqErrorInsertar.Visible = false;
             EtiqErrorModificar.Visible = false;
