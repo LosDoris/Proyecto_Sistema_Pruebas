@@ -66,10 +66,10 @@ namespace SistemaPruebas.Intefaces
         protected void Restricciones_Campos()
         {
             TextBoxNombreREQ.MaxLength = 9;
-            TextBoxNombreREQ.MaxLength = 50;
-            TextBoxEmail.MaxLength = 30;
-            TextBoxTel1.MaxLength = 8;
-            TextBoxTel2.MaxLength = 8;
+            //TextBoxNombreREQ.MaxLength = 50;
+            //TextBoxEmail.MaxLength = 30;
+            //TextBoxTel1.MaxLength = 8;
+            //TextBoxTel2.MaxLength = 8;
         }
 
         /*
@@ -126,8 +126,8 @@ namespace SistemaPruebas.Intefaces
             {
                 TextBoxNombreREQ.Text = dt.Rows[0].ItemArray[0].ToString();
                 TextBoxNombreREQ.Text = dt.Rows[0].ItemArray[1].ToString();
-                TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
-                TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
+                //TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
+                //TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
                 //TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
                // TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
                 //PerfilAccesoComboBox.ClearSelection();
@@ -214,11 +214,11 @@ namespace SistemaPruebas.Intefaces
             BotonREQInsertar.Enabled = false;
             BotonREQEliminar.Enabled = false;
             TextBoxNombreREQ.Text = "";
-            TextBoxNombreREQ.Text = "";
-            TextBoxEmail.Text = "";
-            TextBoxTel1.Text = "";
-            TextBoxTel2.Text = "";
-            TextBoxUsuario.Text = "";
+            //TextBoxNombreREQ.Text = "";
+            //TextBoxEmail.Text = "";
+            //TextBoxTel1.Text = "";
+            //TextBoxTel2.Text = "";
+            //TextBoxUsuario.Text = "";
            // TextBoxClave.Text = "";
             marcarBoton(ref BotonREQInsertar);
             deshabilitarGrid();
@@ -273,11 +273,11 @@ namespace SistemaPruebas.Intefaces
             llenarDDProyecto();
             if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";
-                TextBoxNombreREQ.Text = ".";
-                TextBoxEmail.Text = "";
-                TextBoxTel1.Text = "";
-                TextBoxTel2.Text = "";
-                TextBoxUsuario.Text = "";
+                //TextBoxNombreREQ.Text = ".";
+                //TextBoxEmail.Text = "";
+                //TextBoxTel1.Text = "";
+                //TextBoxTel2.Text = "";
+                //TextBoxUsuario.Text = "";
                // TextBoxClave.Text = "";
                 BotonREQAceptarModificar.Visible = false;
                 BotonREQAceptar.Visible = true;
@@ -435,9 +435,9 @@ namespace SistemaPruebas.Intefaces
          */
         protected void habilitarCampos()
         {
-            TextBoxEmail.Enabled = true;
-            TextBoxTel1.Enabled = true;
-            TextBoxTel2.Enabled = true;
+            //TextBoxEmail.Enabled = true;
+            //TextBoxTel1.Enabled = true;
+            //TextBoxTel2.Enabled = true;
             BotonREQCancelar.Enabled = true;
             if (esAdmin)
             {
@@ -464,16 +464,16 @@ namespace SistemaPruebas.Intefaces
         protected void deshabilitarCampos()
         {
 
-            TextBoxEmail.Enabled = false;
-            TextBoxTel1.Enabled = false;
-            TextBoxTel2.Enabled = false;
+            //TextBoxEmail.Enabled = false;
+            //TextBoxTel1.Enabled = false;
+            //TextBoxTel2.Enabled = false;
             BotonREQCancelar.Enabled = false;
             //TextBoxClave.Enabled = false;
-            TextBoxUsuario.Enabled = false;
+            //TextBoxUsuario.Enabled = false;
+            //TextBoxNombreREQ.Enabled = false;
             TextBoxNombreREQ.Enabled = false;
-            TextBoxNombreREQ.Enabled = false;
-            RolComboBox.Enabled = false;
-            PerfilAccesoComboBox.Enabled = false;
+            //RolComboBox.Enabled = false;
+            //PerfilAccesoComboBox.Enabled = false;
             ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
@@ -550,13 +550,13 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             bool todosValidos = true;
 
-            Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
+            /*Regex emailRE = new Regex("(([a-zA-z,.-_#%]+@[a-zA-z,.-_#%]+.[a-zA-z,.-_#%]+)?){0,29}");
             if ((TextBoxEmail.Text != "") &&
                 (!Regex.IsMatch(TextBoxEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))//emailRE.IsMatch(TextBoxEmail.Text))
             {
                 todosValidos = false;
                 EmailVal.Visible = true;
-            }
+            }*/
 
             return todosValidos;
         }
@@ -569,12 +569,12 @@ namespace SistemaPruebas.Intefaces
         protected void desactivarErrores()
         {
 
-            CedVal.Visible = false;
-            NombVal.Visible = false;
-            TelVal1.Visible = false;
-            TelVal2.Visible = false;
-            EmailVal.Visible = false;
-            UserVal.Visible = false;
+            //CedVal.Visible = false;
+            //NombVal.Visible = false;
+            //TelVal1.Visible = false;
+            //TelVal2.Visible = false;
+            //EmailVal.Visible = false;
+            //UserVal.Visible = false;
             //ClaveVal.Visible = false;
             EtiqErrorEliminar.Visible = false;
             EtiqErrorInsertar.Visible = false;
