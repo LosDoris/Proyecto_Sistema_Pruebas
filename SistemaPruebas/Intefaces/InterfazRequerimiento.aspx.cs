@@ -20,7 +20,7 @@ namespace SistemaPruebas.Intefaces
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         static String cedulaConsulta = "";
-        private static bool esAdmin = false;
+        private static bool esAdmin = true;
         private static int cedulaLoggeado;
 
 

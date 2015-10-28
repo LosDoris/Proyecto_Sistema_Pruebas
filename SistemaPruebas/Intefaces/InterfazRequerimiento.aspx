@@ -37,8 +37,8 @@
                     </div>
 
     <div class="row">
-        <div class="col-md-8">
-            <div class="col-md-7">
+        <div class="col-md-16">
+            <div class="col-md-16">
                 <div class="form-horizontal">
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                             <p class="text-danger">
@@ -46,15 +46,15 @@
                             </p>
                         </asp:PlaceHolder>
                         <div class="form-group">      
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-2 control-label">Proyecto Asociado</asp:Label>
-                                <div class="col-md-8">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Proyecto Asociado:</asp:Label>
+                                <div class="col-md-">
                                     <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control" Width="232px">
                                     </asp:DropDownList>
                                 </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
-                            <div class="col-md-10">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
+                            <div class="col-md-16">
                             <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
@@ -65,6 +65,20 @@
                                     errormessage="El campo de Nombre es obligatorio."
                                     runat="Server">
                                 </asp:requiredfieldvalidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Precondiciones:</asp:Label>
+                            <div class="col-md-16">
+                            <asp:TextBox runat="server" ID="TextBoxPrecondiciones" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorPrecondiciones">*En este campo solo se permiten letras y espacios.</asp:Label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Condiciones Especiales:</asp:Label>
+                            <div class="col-md-16">
+                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspeciales" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="Label1">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
                         </div>
                 </div>
