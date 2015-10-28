@@ -15,7 +15,6 @@ namespace SistemaPruebas.Intefaces
     {
 
         ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
-        //ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
@@ -151,9 +150,9 @@ namespace SistemaPruebas.Intefaces
          * Modifica: Bloqua el dropdownlist de rol.
          * Retorna: N/A.
          */
-        protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        /*protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
             {
                 RolComboBox.Enabled = false;
                 RolComboBox.Items.Clear();
@@ -169,17 +168,17 @@ namespace SistemaPruebas.Intefaces
                 llenarDDProyecto();
                 RolComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
-            }*/
-        }
+            }
+        }*/
 
         /*
          * Requiere: tipo.
          * Modifica: Selecciona el rol en la consulta.
          * Retorna: N/A.
          */
-        protected void seleccionRolEnConsulta(String tipo)
+        /*protected void seleccionRolEnConsulta(String tipo)
         {
-            /*if(tipo == "Administrador")
+            if(tipo == "Administrador")
             {
                 RolComboBox.Items.Clear();
                 RolComboBox.Items.Add(new ListItem("Administrador"));
@@ -189,8 +188,8 @@ namespace SistemaPruebas.Intefaces
             {
                 RolComboBox.Items.Clear();
                 llenarDDRol();
-            }*/
-        }
+            }
+        }*/
 
         /*
          * Requiere: evento click en el boton insertar.
