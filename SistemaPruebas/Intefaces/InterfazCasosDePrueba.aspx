@@ -41,19 +41,40 @@
            <div class="form-group">      
                 <asp:Label ID="PropositoCP" runat="server" CssClass="col-md-2 control-label" Text="Propósito de Caso de Prueba:"></asp:Label>    
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="TextBoxPropositoCP" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="TextBoxPropositoCP" onkeypress="checkInput3(event)" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                    <script type="text/javascript">
+                        function checkInput3(e) {
+                            var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
+                            if (!ok)
+                                e.preventDefault();
+                        }
+                    </script>
                 </div>
            </div>
            <div class="form-group">      
                 <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-2 control-label" Text="Resultado esperado:"></asp:Label>    
                 <div class="col-md-8">
-                    <asp:TextBox runat="server" ID="TextBoxResultadoCP" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
-               </div>
+                    <asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                    <script type="text/javascript">
+                        function checkInput4(e) {
+                            var ok = /[A-Za-z.áéíóú]/.test(String.fromCharCode(e.charCode));
+                            if (!ok)
+                                e.preventDefault();
+                        }
+                    </script>
+                </div>
            </div>
             <div class="form-group">      
                 <asp:Label ID="FlujoCP" runat="server" CssClass="col-md-2 control-label" Text="Flujo Central:"></asp:Label>    
                 <div class="col-md-8">
-                    <asp:TextBox runat="server" ID="TextBoxFlujoCentral" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                    <script type="text/javascript">
+                        function checkInput5(e) {
+                            var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
+                            if (!ok)
+                                e.preventDefault();
+                        }
+                    </script>
                 </div>
             </div>
         </div>
