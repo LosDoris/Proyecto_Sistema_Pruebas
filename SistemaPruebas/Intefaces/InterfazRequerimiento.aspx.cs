@@ -261,8 +261,10 @@ namespace SistemaPruebas.Intefaces
         {
             if (validarCampos())
             {
-                Object[] datosNuevos = new Object[11];
-                datosNuevos[0] = this.TextBoxNombreREQ.Text;//cedula
+                Object[] datosNuevos = new Object[5];
+                datosNuevos[0] = this.TextBoxNombreREQ.Text;//id_Req
+                datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
+                datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                // datosNuevos[1] = this.TextBoxNombreREQ.Text;//nombre
                 //datosNuevos[2] = this.TextBoxTel1.Text;
                 //datosNuevos[3] = this.TextBoxTel2.Text;
@@ -270,9 +272,9 @@ namespace SistemaPruebas.Intefaces
                 //datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
                 //datosNuevos[6] = this.TextBoxClave.Text;
                 //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
-                datosNuevos[8] = this.ProyectoAsociado.SelectedValue;
+                datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
                 //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
-                datosNuevos[10] = 1;
+                datosNuevos[4] = "1";
 
                 int insercion = controladoraRequerimiento.insertarRequerimiento(datosNuevos);
                 if (insercion == 1)
@@ -506,19 +508,13 @@ namespace SistemaPruebas.Intefaces
         {
             if (validarCampos())
             {
-                Object[] datosNuevos = new Object[11];
-                datosNuevos[8] = this.ProyectoAsociado.SelectedValue.ToString();
-                datosNuevos[0] = this.TextBoxNombreREQ.Text;//cedula
-                //datosNuevos[1] = this.TextBoxNombreREQ.Text;//nombre
-                //datosNuevos[2] = this.TextBoxTel1.Text;
-                //datosNuevos[3] = this.TextBoxTel2.Text;
-                //datosNuevos[4] = this.TextBoxEmail.Text;
-                //datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
-                //datosNuevos[6] = this.TextBoxClave.Text;
-                //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
 
-                //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
-                datosNuevos[10] = cedulaConsulta;
+                Object[] datosNuevos = new Object[5];
+                datosNuevos[0] = this.TextBoxNombreREQ.Text;//id_Req
+                datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
+                datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
+                datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
+                datosNuevos[4] = cedulaConsulta;
 
             if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
             {
