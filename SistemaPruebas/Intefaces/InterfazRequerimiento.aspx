@@ -70,15 +70,15 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Precondiciones:</asp:Label>
                             <div class="col-md-16">
-                            <asp:TextBox runat="server" ID="TextBoxPrecondiciones" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxPrecondicionesREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorPrecondiciones">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Condiciones Especiales:</asp:Label>
                             <div class="col-md-16">
-                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspeciales" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="Label1">*En este campo solo se permiten letras y espacios.</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorReqEsp">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
                         </div>
                 </div>

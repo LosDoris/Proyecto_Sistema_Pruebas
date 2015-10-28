@@ -139,13 +139,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator1;
         
         /// <summary>
-        /// Control TextBoxPrecondiciones.
+        /// Control TextBoxPrecondicionesREQ.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxPrecondiciones;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPrecondicionesREQ;
         
         /// <summary>
         /// Control EtiqErrorPrecondiciones.
@@ -157,22 +157,22 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label EtiqErrorPrecondiciones;
         
         /// <summary>
-        /// Control TextBoxRequerimientosEspeciales.
+        /// Control TextBoxRequerimientosEspecialesREQ.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxRequerimientosEspeciales;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxRequerimientosEspecialesREQ;
         
         /// <summary>
-        /// Control Label1.
+        /// Control EtiqErrorReqEsp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label EtiqErrorReqEsp;
         
         /// <summary>
         /// Control BotonREQAceptar.

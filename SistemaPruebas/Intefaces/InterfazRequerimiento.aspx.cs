@@ -146,52 +146,6 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-         * Requiere: Evento de cambiar la opcion seleccionada
-         * Modifica: Bloqua el dropdownlist de rol.
-         * Retorna: N/A.
-         */
-        /*protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
-            {
-                RolComboBox.Enabled = false;
-                RolComboBox.Items.Clear();
-                RolComboBox.Items.Add(new ListItem("Administrador"));
-                ProyectoAsociado.Enabled = false;
-                ProyectoAsociado.Items.Clear();
-                ProyectoAsociado.Items.Add(new ListItem("No aplica", "-1"));
-            }
-            else
-            {
-                RolComboBox.Items.Clear();
-                llenarDDRol();
-                llenarDDProyecto();
-                RolComboBox.Enabled = true;
-                ProyectoAsociado.Enabled = true;
-            }
-        }*/
-
-        /*
-         * Requiere: tipo.
-         * Modifica: Selecciona el rol en la consulta.
-         * Retorna: N/A.
-         */
-        /*protected void seleccionRolEnConsulta(String tipo)
-        {
-            if(tipo == "Administrador")
-            {
-                RolComboBox.Items.Clear();
-                RolComboBox.Items.Add(new ListItem("Administrador"));
-                RolComboBox.Enabled = false;
-            }
-            else
-            {
-                RolComboBox.Items.Clear();
-                llenarDDRol();
-            }
-        }*/
-
-        /*
          * Requiere: evento click en el boton insertar.
          * Modifica: Intenta insertar una tupla y despliega el respectivo mensaje de exito u error
          * Retorna: N/A.
@@ -201,8 +155,8 @@ namespace SistemaPruebas.Intefaces
         {
             modo = 1;
             habilitarCampos();
-            llenarDDPerfil();
-            llenarDDRol();
+            //llenarDDPerfil();
+            //llenarDDRol();
             llenarDDProyecto();
             desactivarErrores();
             BotonREQAceptar.Visible = true;
@@ -213,12 +167,8 @@ namespace SistemaPruebas.Intefaces
             BotonREQInsertar.Enabled = false;
             BotonREQEliminar.Enabled = false;
             TextBoxNombreREQ.Text = "";
-            //TextBoxNombreREQ.Text = "";
-            //TextBoxEmail.Text = "";
-            //TextBoxTel1.Text = "";
-            //TextBoxTel2.Text = "";
-            //TextBoxUsuario.Text = "";
-           // TextBoxClave.Text = "";
+            TextBoxPrecondicionesREQ.Text = "";
+            TextBoxRequerimientosEspecialesREQ.Text = "";
             marcarBoton(ref BotonREQInsertar);
             deshabilitarGrid();
         }
@@ -267,17 +217,14 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            llenarDDPerfil();
-            llenarDDRol();
+            //llenarDDPerfil();
+            //llenarDDRol();
             llenarDDProyecto();
             if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";
-                //TextBoxNombreREQ.Text = ".";
-                //TextBoxEmail.Text = "";
-                //TextBoxTel1.Text = "";
-                //TextBoxTel2.Text = "";
-                //TextBoxUsuario.Text = "";
-               // TextBoxClave.Text = "";
+                //TextBoxNombreREQ.Text = "";
+                TextBoxPrecondicionesREQ.Text = "";
+                TextBoxRequerimientosEspecialesREQ.Text = "";
                 BotonREQAceptarModificar.Visible = false;
                 BotonREQAceptar.Visible = true;
                 BotonREQAceptarModificar.Enabled = false;
@@ -393,40 +340,7 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        /*
-         * Requiere: N/A.
-         * Modifica: Llena el dropdownlist de perfil de acceso.
-         * Retorna: N/A.
-         */
-        protected void llenarDDPerfil()
-        {
-           /* //this.PerfilAccesoComboBox.Items.Clear();
-            string[] tipos = new string[] { "Miembro de equipo", "Administrador" };
 
-            for (int i = 0; i < tipos.Length; i++)
-            {
-                //this.PerfilAccesoComboBox.Items.Add(new ListItem(tipos[i]));
-            }*/
-
-        }
-
-        /*
-         * Requiere: N/A.
-         * Modifica: Llena el dropdownlist de Rol.
-         * Retorna: N/A.
-         */
-        protected void llenarDDRol()
-        {
-            /*this.RolComboBox.Items.Clear();
-            string[] tipos = new string[] { "No aplica", "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
-
-            for (int i = 0; i < tipos.Length; i++)
-            {
-                this.RolComboBox.Items.Add(new ListItem(tipos[i]));
-            }
-             * */
-
-        }
 
         /*
          * Requiere: N/A.
