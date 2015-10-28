@@ -23,9 +23,13 @@
     <div class ="col-md-8" style = "margin-top: 40px">
         <div class="form-horizontal">
             <div class="form-group">      
-                <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" Text="ID:"></asp:Label>    
+                <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" Text="ID:"></asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" MaxLength="50"/>
+                    <asp:TextBox ID="TextBoxID" CssClass="form-control" OnTextChanged="TextBoxID_TextChanged" AutoPostBack="true" runat="server">
+                        
+                    </asp:TextBox>
+
+                    <asp:Label ID="errorID" runat="server" CssClass="text-danger" Text="Debe ingresar sólo letras, números y paréntesis."></asp:Label>
                 </div>
            </div>
 
@@ -57,7 +61,8 @@
                 <div class="form-group">      
                     <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" Text="Descripción:"></asp:Label>    
                     <div class="col-md-8">
-                        <asp:TextBox runat="server" ID="TextBoxEntradaDatos" style="width:250px" CssClass="form-control"/>
+                        <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:250px" CssClass="form-control"/>
+                        <asp:Label ID="errorDescripcion" runat="server" CssClass="col-md-2 control-label" Text="Debe ingresar sólo letras."></asp:Label>
                     </div>
                 </div>
                 <div class="form-group">  
@@ -65,6 +70,7 @@
                         <asp:Label ID="DatosCP" runat="server" CssClass="col-md-2 control-label" Text="Datos:"></asp:Label>
 
                         <asp:TextBox runat="server" ID="TextBoxDatos" CssClass="form-control" MaxLength="50"/>
+                        <asp:Label ID="errorDatos" runat="server" CssClass="col-md-2 control-label" Text="Debe ingresar sólo números o letras."></asp:Label>
                         <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" Text="Tipo:"></asp:Label>
                          <asp:DropDownList ID="TipoEntrada" runat="server">
                              <asp:ListItem Text ="Válido" Value =1/>
@@ -110,7 +116,7 @@
             Text="Aceptar" 
             causesvalidation="true"                              
             CssClass="btn btn-default" 
-            ID="BotonCPAceptar" 
+            ID="BotonCPAceptar" OnClick="BotonCPAceptar_Click" 
         />
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
