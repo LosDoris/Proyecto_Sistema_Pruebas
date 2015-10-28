@@ -8,26 +8,25 @@ namespace SistemaPruebas.Controladoras
     public class EntidadCasosPrueba
     {
         // Variables correspondientes a la entidad cliente
-        private int id_caso_prueba;
+        private string id_caso_prueba;
         private String proposito;
         private String entrada_datos;
         private String resultado_esperado;
         private String flujo_central;
         private int id_disenno;
-        private int id_requerimiento;
 
         public EntidadCasosPrueba(Object[] datos)
         { // Constructor donde se inicializan las variables de la clase
-            this.id_caso_prueba = Convert.ToInt32(datos[0].ToString());
+            this.id_caso_prueba = datos[0].ToString();
             this.proposito = datos[1].ToString();
             this.entrada_datos = datos[2].ToString();
             this.resultado_esperado = datos[3].ToString();
             this.flujo_central = datos[4].ToString();
-            this.id_requerimiento = Convert.ToInt32(datos[5].ToString());
+            this.id_disenno =  Convert.ToInt32(datos[5].ToString());
         }
 
         //Metodos set y get para la variable id_caso_prueba
-        public int Id_caso_prueba
+        public string Id_caso_prueba
         {
             get { return id_caso_prueba; }
             set { id_caso_prueba = value; }
