@@ -25,11 +25,16 @@
             <div class="form-group">      
                 <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" Text="ID:"></asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox ID="TextBoxID" CssClass="form-control" OnTextChanged="TextBoxID_TextChanged" AutoPostBack="true" runat="server">
-                        
-                    </asp:TextBox>
+                    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" onkeypress="checkInput(event)" AutoPostBack="true" />
+                    <script type="text/javascript">
+                        function checkInput(e) {
+                            var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
+                            if (!ok)
+                                e.preventDefault();
+                        }
+                    </script>
 
-                    <asp:Label ID="errorID" runat="server" CssClass="text-danger" Text="Debe ingresar sólo letras, números y paréntesis."></asp:Label>
+                    <asp:Label ID="errorID" runat="server" CssClass="text-danger" Text=""></asp:Label>
                 </div>
            </div>
 
@@ -61,16 +66,28 @@
                 <div class="form-group">      
                     <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" Text="Descripción:"></asp:Label>    
                     <div class="col-md-8">
-                        <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:250px" CssClass="form-control"/>
-                        <asp:Label ID="errorDescripcion" runat="server" CssClass="col-md-2 control-label" Text="Debe ingresar sólo letras."></asp:Label>
+                        <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:250px" onkeypress="checkInput1(event)" CssClass="form-control"/>
+                        <script type="text/javascript">
+                            function checkInput1(e) {
+                                var ok = /[A-Za-z]/.test(String.fromCharCode(e.charCode));
+                                if (!ok)
+                                    e.preventDefault();
+                            }
+                        </script>
                     </div>
                 </div>
                 <div class="form-group">  
                     <div class="col-md-8">
                         <asp:Label ID="DatosCP" runat="server" CssClass="col-md-2 control-label" Text="Datos:"></asp:Label>
 
-                        <asp:TextBox runat="server" ID="TextBoxDatos" CssClass="form-control" MaxLength="50"/>
-                        <asp:Label ID="errorDatos" runat="server" CssClass="col-md-2 control-label" Text="Debe ingresar sólo números o letras."></asp:Label>
+                        <asp:TextBox runat="server" ID="TextBoxDatos" CssClass="form-control" onkeypress="checkInput2(event)" />
+                        <script type="text/javascript">
+                            function checkInput2(e) {
+                                var ok = /[A-Za-z0-9]/.test(String.fromCharCode(e.charCode));
+                                if (!ok)
+                                    e.preventDefault();
+                            }
+                        </script>
                         <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" Text="Tipo:"></asp:Label>
                          <asp:DropDownList ID="TipoEntrada" runat="server">
                              <asp:ListItem Text ="Válido" Value =1/>

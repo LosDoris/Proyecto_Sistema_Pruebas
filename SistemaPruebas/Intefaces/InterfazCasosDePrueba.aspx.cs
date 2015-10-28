@@ -200,13 +200,5 @@ namespace SistemaPruebas.Intefaces
 
             return null;
         }
-
-        protected void TextBoxID_TextChanged(object sender, EventArgs e)
-        {
-            if ((TextBoxID.Text != "") && (!Regex.IsMatch(TextBoxID.Text, @"^[!#$%&'()*+,-./:;?@[\]^_]*$")))
-            {
-                errorID.Visible = true;
-            }
-        }
     }
 }
