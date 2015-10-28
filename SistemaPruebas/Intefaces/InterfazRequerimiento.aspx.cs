@@ -132,9 +132,9 @@ namespace SistemaPruebas.Intefaces
                // TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
                 //PerfilAccesoComboBox.ClearSelection();
                 //PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
-                RolComboBox.ClearSelection();
-                seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
-                RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
+                //RolComboBox.ClearSelection();
+                //seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
+                //RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
                 ProyectoAsociado.ClearSelection();
                 ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
             }
@@ -153,7 +153,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void PerfilAccesoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+            /*if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
             {
                 RolComboBox.Enabled = false;
                 RolComboBox.Items.Clear();
@@ -169,7 +169,7 @@ namespace SistemaPruebas.Intefaces
                 llenarDDProyecto();
                 RolComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
-            }
+            }*/
         }
 
         /*
@@ -179,7 +179,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void seleccionRolEnConsulta(String tipo)
         {
-            if(tipo == "Administrador")
+            /*if(tipo == "Administrador")
             {
                 RolComboBox.Items.Clear();
                 RolComboBox.Items.Add(new ListItem("Administrador"));
@@ -189,7 +189,7 @@ namespace SistemaPruebas.Intefaces
             {
                 RolComboBox.Items.Clear();
                 llenarDDRol();
-            }
+            }*/
         }
 
         /*
@@ -401,13 +401,13 @@ namespace SistemaPruebas.Intefaces
          */
         protected void llenarDDPerfil()
         {
-            this.PerfilAccesoComboBox.Items.Clear();
+           /* //this.PerfilAccesoComboBox.Items.Clear();
             string[] tipos = new string[] { "Miembro de equipo", "Administrador" };
 
             for (int i = 0; i < tipos.Length; i++)
             {
-                this.PerfilAccesoComboBox.Items.Add(new ListItem(tipos[i]));
-            }
+                //this.PerfilAccesoComboBox.Items.Add(new ListItem(tipos[i]));
+            }*/
 
         }
 
@@ -418,13 +418,14 @@ namespace SistemaPruebas.Intefaces
          */
         protected void llenarDDRol()
         {
-            this.RolComboBox.Items.Clear();
+            /*this.RolComboBox.Items.Clear();
             string[] tipos = new string[] { "No aplica", "Líder de desarrollo", "Líder de pruebas", "Programador", "Tester" };
 
             for (int i = 0; i < tipos.Length; i++)
             {
                 this.RolComboBox.Items.Add(new ListItem(tipos[i]));
             }
+             * */
 
         }
 
@@ -442,11 +443,11 @@ namespace SistemaPruebas.Intefaces
             if (esAdmin)
             {
                 //TextBoxClave.Enabled = true;
-                TextBoxUsuario.Enabled = true;
+                //TextBoxUsuario.Enabled = true;
                 TextBoxNombreREQ.Enabled = true;
-                TextBoxNombreREQ.Enabled = true;
-                RolComboBox.Enabled = true;
-                PerfilAccesoComboBox.Enabled = true;
+                //TextBoxNombreREQ.Enabled = true;
+                //RolComboBox.Enabled = true;
+                //PerfilAccesoComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
                 BotonREQAceptar.Enabled = true;
             } else
@@ -665,15 +666,15 @@ namespace SistemaPruebas.Intefaces
 				if (esAdmin)
 				{
 					deshabilitarGrid();
-					PerfilAccesoComboBox.Enabled = false;
-					if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
-					{
-						RolComboBox.Enabled = false;
-						ProyectoAsociado.Enabled = false;
-					}
+					//PerfilAccesoComboBox.Enabled = false;
+					//if (PerfilAccesoComboBox.SelectedItem.Text == "Administrador")
+					//{
+					//	RolComboBox.Enabled = false;
+					//	ProyectoAsociado.Enabled = false;
+					//}
 				}
 				habilitarCampos();
-				PerfilAccesoComboBox.Enabled = false;
+				//PerfilAccesoComboBox.Enabled = false;
 				
 			} else {
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            

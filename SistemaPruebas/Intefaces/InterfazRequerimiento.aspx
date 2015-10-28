@@ -38,18 +38,24 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="form-horizontal">
-                      <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:PlaceHolder>
-
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" style="width:250px" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
+                        <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                            <p class="text-danger">
+                                <asp:Literal runat="server" ID="FailureText" />
+                            </p>
+                        </asp:PlaceHolder>
+                        <div class="form-group">      
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-2 control-label">Proyecto Asociado</asp:Label>
+                                <div class="col-md-8">
+                                    <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control" Width="232px">
+                                    </asp:DropDownList>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
+                            <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreREQ"
@@ -59,89 +65,44 @@
                                     errormessage="El campo de Nombre es obligatorio."
                                     runat="Server">
                                 </asp:requiredfieldvalidator>
+                            </div>
                         </div>
-                    </div>
-      
+                </div>
             </div>
-                 </div>
-            </div>
-                
-         <div class="col-md-4">
-                    <h4>Datos del Perfil</h4>
-                <div class="form-horizontal">
-                    <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
-                        <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" />
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="UserVal" >*Por favor ingrese un usuario valido.</asp:Label>
-                            <asp:requiredfieldvalidator id="Requiredfieldvalidator3"
-                                    controltovalidate="TextBoxUsuario"
-                                    Display="Dynamic"
-                                    validationgroup="CamposNoVacios"
-                                    CssClass="text-danger" 
-                                    errormessage="El campo de Nombre de Usuario es obligatorio."
-                                    runat="Server">
-                                </asp:requiredfieldvalidator>
-                            </div>
-                        </div>
-
-                    <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-4 control-label">Tipo de perfil</asp:Label>
-                        <div class="col-md-8">
-                            <asp:DropDownList ID="PerfilAccesoComboBox" runat="server" OnSelectedIndexChanged="PerfilAccesoComboBox_SelectedIndexChanged" AutoPostBack ="true" CssClass="form-control">
-                              </asp:DropDownList>
-                            </div>
-                        </div>
-                    <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-4 control-label">Rol</asp:Label>
-                        <div class="col-md-8">
-                                <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                    
-                    
-
-      </div>
-             <div class="form-group">      
-                        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
-                        <div class="col-md-8">
-                            <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control">
-                              </asp:DropDownList>
-                            </div>
-                        </div>
-         
-             </div>
         </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-10 col-md-12">
-                            <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648" 
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"
-                                CssClass="btn btn-default" 
-                                ID="BotonREQAceptar" 
-                                OnClick="BotonREQAceptar_Click" />
-                            <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648"
-                                Text="Aceptar" 
-                                causesvalidation="true" 
-                                validationgroup="CamposNoVacios"                               
-                                CssClass="btn btn-default" 
-                                ID="BotonREQAceptarModificar" OnClick="BotonREQAceptarModificar_Click" 
-                                />
-                            <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" ID="BotonREQCancelar" OnClick="BotonREQCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
-                        </div>
-                    </div>
+        <div class="col-md-4">
+            <div class="form-horizontal">
+            </div>
+
+         
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-12">
+                <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648" 
+                    Text="Aceptar" 
+                    causesvalidation="true" 
+                    validationgroup="CamposNoVacios"
+                    CssClass="btn btn-default" 
+                    ID="BotonREQAceptar" 
+                    OnClick="BotonREQAceptar_Click" />
+                <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648"
+                    Text="Aceptar" 
+                    causesvalidation="true" 
+                    validationgroup="CamposNoVacios"                               
+                    CssClass="btn btn-default" 
+                    ID="BotonREQAceptarModificar" OnClick="BotonREQAceptarModificar_Click" />
+                <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" ID="BotonREQCancelar" OnClick="BotonREQCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
+            </div>
+        </div>
         <div class="row">
-        
-        <asp:GridView ID="gridRequerimiento" runat ="server" margin-right ="auto" 
-             CellPadding="10" 
-             margin-left="auto" OnSelectedIndexChanged="gridRequerimiento_SelectedIndexChanged"
-             OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
-             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
-             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
-            AutoPostBack ="true" >
-            
-        </asp:GridView>
-    </div>  
+            <asp:GridView ID="gridRequerimiento" runat ="server" margin-right ="auto" 
+                CellPadding="10" 
+                margin-left="auto" OnSelectedIndexChanged="gridRequerimiento_SelectedIndexChanged"
+                OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
+                AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
+                HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
+                AutoPostBack ="true" >
+            </asp:GridView>
+        </div>  
 </asp:Content>
