@@ -15,8 +15,13 @@ namespace SistemaPruebas.Intefaces
         {
             restriccionesCampos();
             deshabilitarCampos();
-            llenarComboboxProyectoAdmin(); //CAMBIAR
-           // llenarComboboxResponsable(proyectoAsociado.SelectedIndex);
+            llenarComboboxProyectoAdmin();
+
+            if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
+            {
+                cargarResponsables();
+            }
+
         }
 
 
@@ -77,7 +82,7 @@ namespace SistemaPruebas.Intefaces
             ambienteTxtbox.Enabled = true;
             procedimientoTxtbox.Enabled = true;
             criteriosTxtbox.Enabled = true;
-            proyectoAsociado.Enabled = true;
+            //proyectoAsociado.Enabled = true;
             Nivel.Enabled = true;
             Tecnica.Enabled = true;
             Tipo.Enabled = true;
@@ -94,7 +99,7 @@ namespace SistemaPruebas.Intefaces
             ambienteTxtbox.Enabled = false;
             procedimientoTxtbox.Enabled = false;
             criteriosTxtbox.Enabled = false;
-            proyectoAsociado.Enabled = false;
+            //proyectoAsociado.Enabled = false;
             Nivel.Enabled = false;
             Tecnica.Enabled = false;
             Tipo.Enabled = false;
@@ -225,7 +230,7 @@ namespace SistemaPruebas.Intefaces
         {
 
             this.proyectoAsociado.Items.Clear();
-
+            proyectoAsociado.Items.Add(new ListItem("Seleccionar"));
             String proyectos = controlDiseno.solicitarProyectos();
             String[] pr = proyectos.Split(';');
 
@@ -243,9 +248,17 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void cargarResponsables()
+        {
+            int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+            llenarComboboxResponsable(id_proyecto);
+        }
+        
+
+
         protected void llenarComboboxResponsable(int id_proyecto)
         {
-            //string 
+            
             this.responsable.Items.Clear();
 
             String responsables = controlDiseno.solicitarResponsanles(id_proyecto);

@@ -26,6 +26,7 @@ namespace SistemaPruebas.Controladoras
 
         public String solicitarProyectos()
         {
+            
             String proyectos = controlProyecto.Consultar_ID_Nombre_Proyecto();
             return proyectos;
 
