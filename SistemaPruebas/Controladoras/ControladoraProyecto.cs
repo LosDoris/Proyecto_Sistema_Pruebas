@@ -109,6 +109,13 @@ namespace SistemaPruebas.Controladoras
             controlBD.ConsultarProyectoIdPorNombre(nombre);
             return retorno;
         }
+
+        public int ConsultarIdProyectoPorNombre2(string nombre)
+        {
+            int retorno = -1;
+            retorno = controlBD.ConsultarProyectoIdPorNombre(nombre);
+            return retorno;
+        }
         /*
         Requiere: string id_proyecto
         Modifica: Se cambia el estado del proyecto a “Cancelado”.

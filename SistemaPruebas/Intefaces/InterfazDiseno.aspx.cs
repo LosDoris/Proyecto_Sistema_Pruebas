@@ -9,21 +9,34 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazDiseno : System.Web.UI.Page
     {
-
+        static bool proyecto = true;
         Controladoras.ControladoraDisenno controlDiseno = new Controladoras.ControladoraDisenno();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             restriccionesCampos();
             deshabilitarCampos();
-            llenarComboboxProyectoAdmin();
-
-            if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
+            if (llenarProyecto == true.ToString())
             {
-                cargarResponsables();
+                llenarComboboxProyectoAdmin();
             }
+            llenarProyecto = false.ToString();
+
 
         }
 
+        public static string llenarProyecto
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["llenarProyecto"];
+                return value == null ? "True" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["llenarProyecto"] = value;
+            }
+        }
 
         public static string buttonDisenno
         {
@@ -41,13 +54,13 @@ namespace SistemaPruebas.Intefaces
 
         protected void insertarClick(object sender, EventArgs e)
         {
+            buttonDisenno = "1";
             limpiarCampos();
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             habilitarCampos();
             deshabilitarGrid();
-            marcarBoton(ref Insertar);
-            buttonDisenno = "1";
+            marcarBoton(ref Insertar);           
             cancelar.Enabled = true;
             aceptar.Enabled = true;
 
@@ -115,8 +128,8 @@ namespace SistemaPruebas.Intefaces
             ambienteTxtbox.Text = "";
             procedimientoTxtbox.Text = "";
             criteriosTxtbox.Text = "";
-            proyectoAsociado.ClearSelection();
-            ListItem selectedListItem = proyectoAsociado.Items.FindByValue("1");
+            //proyectoAsociado.ClearSelection();
+            //ListItem selectedListItem = proyectoAsociado.Items.FindByValue("1");
             Nivel.ClearSelection();
             ListItem selectedListItem1 = Nivel.Items.FindByValue("1");
             Tecnica.ClearSelection();
@@ -207,7 +220,7 @@ namespace SistemaPruebas.Intefaces
         {
 
             string fecha = Page.Request.Form["txt_date"];
-            object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha};
+            object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
 
         }
 
@@ -250,33 +263,42 @@ namespace SistemaPruebas.Intefaces
 
         protected void cargarResponsables()
         {
-            int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-            llenarComboboxResponsable(id_proyecto);
+
+            //  llenarComboboxResponsable(id_proyecto);
         }
-        
 
 
-        protected void llenarComboboxResponsable(int id_proyecto)
+
+        protected void llenarComboboxResponsable(object sender, EventArgs e)
         {
-            
+
+            if(proyectoAsociado.SelectedItem.Text!="Seleccionar") {
+
+            int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
             this.responsable.Items.Clear();
-
+            responsable.Items.Add(new ListItem("Seleccionar"));
             String responsables = controlDiseno.solicitarResponsanles(id_proyecto);
-            String[] pr = responsables.Split(';');
 
-            foreach (String p1 in pr)
+            if (responsables != null)
             {
-                String[] p2 = p1.Split('_');
-                try
-                {
-                    this.responsable.Items.Add(new ListItem(p2[0], p2[1]));
-                }
-                catch (Exception e)
-                {
+                String[] pr = responsables.Split(';');
 
+                foreach (String p1 in pr)
+                {
+                    //String[] p2 = p1.Split(';');
+                    try
+                    {
+                        if (p1 != pr[pr.Length - 1])
+                            this.responsable.Items.Add(new ListItem(p1));
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
             }
         }
 
+    }
     }
 }

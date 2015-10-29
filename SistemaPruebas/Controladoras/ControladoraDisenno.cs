@@ -41,7 +41,7 @@ namespace SistemaPruebas.Controladoras
 
         public int solicitarProyecto_Id(string nomb_proyecto)
         {
-            int proyectos = controlProyecto.ConsultarIdProyectoPorNombre(nomb_proyecto);
+            int proyectos = controlProyecto.ConsultarIdProyectoPorNombre2(nomb_proyecto);
             return proyectos;
 
         }

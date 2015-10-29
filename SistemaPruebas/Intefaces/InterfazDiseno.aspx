@@ -29,8 +29,8 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Proyecto asociado:</asp:Label>
                     <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
+                        <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control" OnSelectedIndexChanged="llenarComboboxResponsable">
+                            <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
