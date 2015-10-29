@@ -20,10 +20,9 @@ namespace SistemaPruebas.Intefaces
             if(!IsPostBack)
             {
                 inicializarModo();
+                inicializarDTDatosEntrada();
                 estadoInicial();
             }
-
-            llenarGridEntradaDatos();
             errorID.Visible = false;
         }
 
@@ -42,6 +41,27 @@ namespace SistemaPruebas.Intefaces
             {
                 ViewState["modo"] = 0;
             }
+        }
+
+        public static DataTable dtDatosEntrada
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["datosEntrada"];
+                return value == null ? null : (DataTable)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["datosEntrada"] = value;
+            }
+        }
+
+        protected void inicializarDTDatosEntrada()
+        {
+            dtDatosEntrada = new DataTable();
+            dtDatosEntrada.Clear();
+            dtDatosEntrada.Columns.Add("Tipo", typeof(String));
+            dtDatosEntrada.Columns.Add("Datos", typeof(String));
         }
 
         protected void ocultarErroresDeOperacion()
@@ -77,6 +97,8 @@ namespace SistemaPruebas.Intefaces
             TextBoxFlujoCentral.Enabled = false;
             deshabilitarCamposEntrada();
             //deshabilitarGrid principal aún no programado
+            this.DECP.DataSource = null;
+            this.DECP.DataBind();
         }
         protected void deshabilitarCamposEntrada()
         {
@@ -107,29 +129,14 @@ namespace SistemaPruebas.Intefaces
             TextBoxDatos.Text = "";
         }
 
-    
-
-        
-
-
-        
-
-        
-        
-
-        protected void llenarGridEntradaDatos()
+        protected void agregarGridEntradaDatos()
         {
-            //String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
-            //DataTable table = new DataTable();
-            //using (SqlConnection con = new SqlConnection(conexion))
-            //{
-            //    SqlCommand cmd = new SqlCommand("SELECT * FROM Dummy", con);
-            //    con.Open();
-            //    DECP.DataSource = cmd.ExecuteReader();
-            //    DECP.DataBind();
-            //}
-
-
+            DataRow row = dtDatosEntrada.NewRow();
+            row["Tipo"] = TipoEntrada.SelectedItem.Text.ToString();
+            row["Datos"] = TextBoxDatos.Text;
+            dtDatosEntrada.Rows.Add(row);
+            DECP.DataSource = dtDatosEntrada;
+            DECP.DataBind();
         }
 
         protected void marcarBoton(ref Button b)
@@ -199,6 +206,18 @@ namespace SistemaPruebas.Intefaces
         {
 
             return null;
+        }
+
+        protected void AgregarEntrada_Click(object sender, EventArgs e)
+        {
+            agregarGridEntradaDatos();
+        }
+
+        protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DECP.PageIndex = e.NewPageIndex;
+            DECP.DataSource = dtDatosEntrada;
+            DECP.DataBind();
         }
     }
 }
