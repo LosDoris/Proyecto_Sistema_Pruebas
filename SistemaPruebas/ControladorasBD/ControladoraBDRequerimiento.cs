@@ -18,7 +18,7 @@ namespace SistemaPruebas.Controladoras
           Uso del Recurso Humano, si está siendo  manipulado en algún otro lugar.
          *Retorna: booleano.
         */
-        public bool ConsultarUsoREQ(int id)		
+        public bool ConsultarUsoREQ(String id)		
         {		
             bool regresa = false;		
             int el_uso = 0;		
@@ -52,7 +52,7 @@ namespace SistemaPruebas.Controladoras
           se encuentra o no en otro lado modificado.
          *Retorna: entero.
         */
-        public int UpdateUsoREQ(int id, int use)		
+        public int UpdateUsoREQ(String id, int use)		
         {		
             return acceso.Insertar("update Recurso_Humano set esta_en_Uso = " + use + " where cedula =" + id);		
         }		
@@ -107,17 +107,19 @@ namespace SistemaPruebas.Controladoras
          * Modifica: N/A.
          * Retorna: DataTable.
          */
-        public DataTable consultarRequerimientoBD(int tipo, int cedula)
+        public DataTable consultarRequerimientoBD(int tipo, String id)
         {
             DataTable dt = null;
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano ORDER BY fechaUltimo desc;";//BY perfil_acceso";
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento ORDER BY fechaUltimo desc;";
+                // "SELECT cedula, nombre_completo, rol, id_proyecto FROM Recurso_Humano ORDER BY fechaUltimo desc;";//BY perfil_acceso";
             }
             else if (tipo == 2)
             {
-                consulta = "SELECT cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto FROM Recurso_Humano WHERE cedula =" + cedula;
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_requerimiento='"+id+"';";
+                //"SELECT cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto FROM Recurso_Humano WHERE cedula =" + cedula;
                 // dt = acceso.ejecutarConsultaTabla(consulta);
             }
 

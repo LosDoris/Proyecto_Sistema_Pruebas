@@ -77,7 +77,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
             DataTable Requerimiento = crearTablaREQ();
-            DataTable dt = controladoraRequerimiento.consultarRequerimiento(1, 0); // en consultas tipo 1, no se necesita la cédula
+            DataTable dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita la cédula
 
             Object[] datos = new Object[4];
         
@@ -113,9 +113,9 @@ namespace SistemaPruebas.Intefaces
          * Modifica: Carga los datos del recurso humano consultado en sus respectivas posisiones en la pantalla.
          * Retorna: N/A.
          */
-        void llenarDatosRequerimiento(int cedula)
+        void llenarDatosRequerimiento(String cedula)
         {
-            DataTable dt = new DataTable();//controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
+            DataTable dt = controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
 
             BotonREQEliminar.Enabled = true;
             BotonREQModificar.Enabled = true;
@@ -169,7 +169,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
             if(modo == 2)
-                controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(idViejo), 0);    //ya no está en uso
+                controladoraRequerimiento.UpdateUsoREQ(idViejo, 0);    //ya no está en uso
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
@@ -179,7 +179,7 @@ namespace SistemaPruebas.Intefaces
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
-                    llenarDatosRequerimiento(Int32.Parse(idViejo));
+                    llenarDatosRequerimiento(idViejo);
 
                 }
                 else
@@ -389,7 +389,6 @@ namespace SistemaPruebas.Intefaces
          * Retorna: N/A.
          */
         protected void botonesCancelar() //Estado de los botones después de apretar 
-             
         {
             desmarcarBotones();
             if (esAdmin)
@@ -491,14 +490,14 @@ namespace SistemaPruebas.Intefaces
                     BotonREQInsertar.Enabled = true;
                     BotonREQEliminar.Enabled = true;
                     llenarGrid();
-					controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(TextBoxNombreREQ.Text.ToString()), 0);//ya fue modificado el REQ
+					controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
      
                 }
                 else
                 {
-					controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(TextBoxNombreREQ.Text.ToString()), 0);//ya fue modificado el REQ
+					controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                 }
                 //habilitar consulta
@@ -518,9 +517,9 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQModificar_Click(object sender, EventArgs e)
         {
-			if (controladoraRequerimiento.ConsultarUsoREQ(Int32.Parse(TextBoxNombreREQ.Text.ToString())) == false)
+			if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false)
 			{
-				controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(TextBoxNombreREQ.Text.ToString()), 1);//está siendo modificado el recurso humano
+				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el recurso humano
 				
 				modo = 2;
 				marcarBoton(ref BotonREQModificar);
@@ -576,8 +575,8 @@ namespace SistemaPruebas.Intefaces
         {
             int index = gridRequerimiento.SelectedRow.RowIndex;
             String ced = gridRequerimiento.SelectedRow.Cells[0].Text;
-            int cedula = Convert.ToInt32(ced);
-            llenarDatosRequerimiento(cedula);
+            //int cedula = Convert.ToInt32(ced);
+            llenarDatosRequerimiento(ced);
             habilitarGrid();
         }
 
@@ -606,7 +605,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQEliminar_Click(object sender, EventArgs e)
         {
-            if (controladoraRequerimiento.ConsultarUsoREQ(Int32.Parse(TextBoxNombreREQ.Text.ToString())) == false){
+            if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false){
 				if (controladoraRequerimiento.eliminarRequerimiento(Convert.ToInt32(this.TextBoxNombreREQ.Text.ToString())) == 1)
 				{
 					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
