@@ -660,7 +660,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQEliminar_Click(object sender, EventArgs e)
         {
             if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false){
-				if (controladoraRequerimiento.eliminarRequerimiento(Convert.ToInt32(this.TextBoxNombreREQ.Text.ToString())) == 1)
+				if (controladoraRequerimiento.eliminarRequerimiento(this.TextBoxNombreREQ.Text.ToString()) == 1)
 				{
 					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
 					volverAlOriginal();
