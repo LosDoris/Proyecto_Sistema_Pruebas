@@ -25,6 +25,7 @@ namespace SistemaPruebas.Controladoras//.Entidades
             get { return id; }
             set { id = value; }
         }
+
         public String IdViejo
         {
             get { return idViejo; }
