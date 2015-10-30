@@ -282,10 +282,10 @@ namespace SistemaPruebas.Intefaces
     
         }
 
-        /*protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
+        /*
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
         }*/
