@@ -71,6 +71,7 @@ namespace SistemaPruebas.Account
                     id_logeado = datos[0].ToString();
 
                     controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
+
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
                     loggeado = 1;
                     Response.Redirect("~/Default");

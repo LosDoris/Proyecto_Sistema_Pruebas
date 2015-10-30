@@ -21,10 +21,7 @@
             alert('closing');
             window.close();
         }
-        function myFunction() {
-            alert('Profile not parsed!!');
-            window.parent.parent.parent.location.reload();
-        }       
+            
     </script>
 </head>
 <body>

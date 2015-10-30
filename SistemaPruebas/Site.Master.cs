@@ -78,8 +78,7 @@ namespace SistemaPruebas
             }
             else if (Account.Login.loggeado == 1)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + "Loggeo correcto" + "');", true);
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "displayalertmessage", "myFunction()", false);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + "Loggeo correcto" + "');", true);                
                 makeVisible();
                 nombre.Visible = true;
                 //nombre.InnerHtml = Account.Login.id_logeado;
