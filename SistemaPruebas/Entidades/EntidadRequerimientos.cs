@@ -9,14 +9,16 @@ namespace SistemaPruebas.Controladoras//.Entidades
     {
         private String id;
         private String precondiciones;
-
         private String requerimientosEspeciales;
-
+        private int proyecto;
+        private String idViejo;
         public EntidadRequerimientos(Object[] datos)
         {
             this.id = datos[0].ToString();
             this.precondiciones = datos[1].ToString();
             this.requerimientosEspeciales = datos[2].ToString();
+            this.proyecto = Convert.ToInt32(datos[3].ToString());
+            this.idViejo = datos[4].ToString();
         }
 
         //Metodos set y get para la variable Id
@@ -24,6 +26,12 @@ namespace SistemaPruebas.Controladoras//.Entidades
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public String IdViejo
+        {
+            get { return idViejo; }
+            set { idViejo = value; }
         }
 
         //Metodos set y get para la variable proposito
@@ -38,6 +46,11 @@ namespace SistemaPruebas.Controladoras//.Entidades
         {
             get { return requerimientosEspeciales; }
             set { requerimientosEspeciales = value; }
+        }
+        public int Proyecto
+        {
+            get { return proyecto; }
+            set { proyecto = value; }
         }
     }
 }

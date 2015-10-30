@@ -13,6 +13,7 @@ namespace SistemaPruebas.Controladoras
         //ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
         ControladoraBDRequerimiento controladoraBDRequerimiento = new ControladoraBDRequerimiento();
         ControladoraProyecto controladoraProyecto = new ControladoraProyecto();
+        ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
        
 
@@ -22,12 +23,12 @@ namespace SistemaPruebas.Controladoras
            llamando al método que modifica los datos dentro de la base de datos.
          * Retorna: booleano.
          */
-        public bool estadoLoggeado(string nombre, string estado)
+        /*public bool estadoLoggeado(string nombre, string estado)
         {
             if (estado == "0")
                 controladoraProyecto.LimpiarModificaciones(nombre);
             return true; controladoraBDRequerimiento.estadoLoggeado(nombre, estado);
-        }
+        }*/
 
 
         /*
@@ -36,9 +37,9 @@ namespace SistemaPruebas.Controladoras
            la cédula de quien tiene sesión abierta actualmente.
          * Retorna: número.
          */
-        public int idDelLoggeado()
+        public String idDelLoggeado()
         {
-            return 0;// controladoraRequerimiento.idDelLoggeado(Account.Login.id_logeado);
+            return "";// controladoraRequerimiento.idDelLoggeado(Account.Login.id_logeado);
         }
 
         /*
@@ -49,7 +50,7 @@ namespace SistemaPruebas.Controladoras
          */
         public string perfilDelLoggeado()
         {
-            return controladoraBDRequerimiento.perfilDelLoggeado(Account.Login.id_logeado);
+            return "";// controladoraRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
         }
 
         /*
@@ -85,7 +86,7 @@ namespace SistemaPruebas.Controladoras
           Regresa verdadero si está en uso o falso si no.
          *Retorna: booleano.
          */
-        public bool ConsultarUsoREQ(int id)		
+        public bool ConsultarUsoREQ(String id)		
         {		
             return controladoraBDRequerimiento.ConsultarUsoREQ(id);		
         }
@@ -96,7 +97,7 @@ namespace SistemaPruebas.Controladoras
           base de datos para cambiar el uso asociado al número de cédula.
          *Retorna: entero.
          */
-        public int UpdateUsoREQ(int id, int use)		
+        public int UpdateUsoREQ(String id, int use)		
         {		
             return controladoraBDRequerimiento.UpdateUsoREQ(id, use);		
         }
@@ -146,7 +147,7 @@ namespace SistemaPruebas.Controladoras
          * Modifica: N/A.
          * Retorna: DataTable.
          */
-        public DataTable consultarRequerimiento(int tipo, int cedula)
+        public DataTable consultarRequerimiento(int tipo, String cedula)
         {
             DataTable dt = controladoraBDRequerimiento.consultarRequerimientoBD(tipo, cedula);
             return dt;
