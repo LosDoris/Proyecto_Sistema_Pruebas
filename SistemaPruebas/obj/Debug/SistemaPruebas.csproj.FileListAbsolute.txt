@@ -525,3 +525,4 @@ C:\Users\b32896\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\
 C:\Users\b32896\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\b32896\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.dll
 C:\Users\b32896\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.pdb
+C:\Users\b32896\Documents\GitHub\Proyecto_Sistema_Pruebas\SistemaPruebas\obj\Debug\SistemaPruebas.csprojResolveAssemblyReference.cache

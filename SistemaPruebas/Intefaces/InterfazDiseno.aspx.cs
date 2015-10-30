@@ -291,7 +291,7 @@ namespace SistemaPruebas.Intefaces
                 {
 
                 }
-            }
+            
         }
 
         protected void cargarResponsables()

@@ -178,24 +178,26 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
-            if(modo == 2)
+            if (modo == 2)
+            {
                 controladoraRequerimiento.UpdateUsoREQ(idViejo, 0);    //ya no está en uso
+            }
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
             {
-                if (esAdmin)
-                {
+                //if (esAdmin)
+                //{
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
                     llenarDatosRequerimiento(idViejo);
 
-                }
-                else
-                {
-                    volverAlOriginal();
-                }
+                //}
+                //else
+                //{
+                //    volverAlOriginal();
+                //}
             }
             else if (modo==1)
             {
@@ -217,7 +219,7 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             deshabilitarCampos();
             llenarDDProyecto();
-            if (esAdmin) {
+            //if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
                 TextBoxRequerimientosEspecialesREQ.Text = "";
@@ -227,21 +229,21 @@ namespace SistemaPruebas.Intefaces
                 BotonREQEliminar.Enabled = false;
                 habilitarGrid();
                 llenarGrid();
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 //consulta y cargar datos del usuario actual
                 //this.llenarDatosRequerimiento(controladoraRequerimiento.idDelLoggeado());
-                BotonREQModificar.Enabled = true;
-                BotonREQAceptarModificar.Visible = true;
-                BotonREQAceptarModificar.Enabled = false;
-                BotonREQCancelar.Enabled = false;
-                BotonREQAceptar.Visible = false;
-                BotonREQEliminar.Enabled = false;
-                BotonREQEliminar.Visible = false;
-                BotonREQInsertar.Visible = false;
-                gridRequerimiento.Visible = false;
-            } 
+                //BotonREQModificar.Enabled = true;
+                //BotonREQAceptarModificar.Visible = true;
+                //BotonREQAceptarModificar.Enabled = false;
+                //BotonREQCancelar.Enabled = false;
+                //BotonREQAceptar.Visible = false;
+                //BotonREQEliminar.Enabled = false;
+                //BotonREQEliminar.Visible = false;
+                //BotonREQInsertar.Visible = false;
+                //gridRequerimiento.Visible = false;
+            //} 
 
 
 
@@ -317,8 +319,8 @@ namespace SistemaPruebas.Intefaces
                     BotonREQCancelar.Enabled = false;
                     BotonREQAceptarModificar.Enabled = false;
                     modo = 0;
-                    if (esAdmin)
-                    {
+                    //if (esAdmin)
+                    //{
                         habilitarGrid();
                         BotonREQInsertar.Enabled = true;
                         BotonREQEliminar.Enabled = true;
@@ -327,12 +329,12 @@ namespace SistemaPruebas.Intefaces
                         ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                         resaltarNuevo(this.TextBoxNombreREQ.Text);
 
-                    }
-                    else
-                    {
-                        controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
-                    }
+                    //}
+                    //else
+                    //{
+                        //controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
+                        //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
+                    //}
                     //habilitar consulta
                 }
                 else
@@ -393,14 +395,15 @@ namespace SistemaPruebas.Intefaces
             TextBoxPrecondicionesREQ.Enabled = true;
             TextBoxRequerimientosEspecialesREQ.Enabled = true;
             BotonREQCancelar.Enabled = true;
+            BotonREQAceptar.Enabled = true;
             if (esAdmin)
             {
                 ProyectoAsociado.Enabled = true;
-                BotonREQAceptar.Enabled = true;
-            } else
-            {
-                BotonREQAceptarModificar.Enabled = true;
-            }
+                
+            } //else
+            //{
+                //BotonREQAceptarModificar.Enabled = true;
+            //}
 
         }
 
@@ -430,18 +433,18 @@ namespace SistemaPruebas.Intefaces
         protected void botonesInicio()
         {
             BotonREQCancelar.Enabled = false;
-            if (esAdmin)
-            {
+            //if (esAdmin)
+            //{
                 BotonREQEliminar.Enabled = false;
                 BotonREQModificar.Enabled = false;
                 BotonREQAceptar.Enabled = false;
                 BotonREQInsertar.Enabled = true;
-            }
-            else
-            {
-                BotonREQAceptarModificar.Enabled = false;
-                BotonREQModificar.Enabled = true;
-            }
+            //}
+            //else
+            //{
+                //BotonREQAceptarModificar.Enabled = false;
+                //BotonREQModificar.Enabled = true;
+            //}
         }
 
         /*
@@ -452,19 +455,19 @@ namespace SistemaPruebas.Intefaces
         protected void botonesCancelar() //Estado de los botones después de apretar 
         {
             desmarcarBotones();
-            if (esAdmin)
-            {
+            //if (esAdmin)
+            //{
                 BotonREQInsertar.Enabled = true;
                 if (gridRequerimiento.Rows.Count > 0)
                 {
                     BotonREQModificar.Enabled = true;
                     BotonREQEliminar.Enabled = true;
                 }
-            }
-            else
-            {
-                BotonREQModificar.Enabled = true;
-            }
+            //}
+            //else
+            //{
+                //BotonREQModificar.Enabled = true;
+            //}
               
         }
 
