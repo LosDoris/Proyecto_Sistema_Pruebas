@@ -244,5 +244,10 @@ namespace SistemaPruebas.Controladoras
            return proyecto;
         }
 
+        public int solicitarCedulaRecurso(string nombre)
+        {
+            return controladoraBDRecursosHumanos.solicitarCedulaRecurso(nombre);
+        }
+
     }
 }

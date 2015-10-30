@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Proyecto asociado:</asp:Label>
                     <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control" OnSelectedIndexChanged="llenarComboboxResponsable">
+                        <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
                     </div>
@@ -184,10 +184,11 @@
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-10">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648" OnClick="aceptarClick"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelarClick"/>
 
         </div>
     </div>
 
 </div>
 </asp:Content>
+
