@@ -9,9 +9,8 @@ namespace SistemaPruebas.Controladoras//.Entidades
     {
         private String id;
         private String precondiciones;
-
         private String requerimientosEspeciales;
-
+        private String id;
         public EntidadRequerimientos(Object[] datos)
         {
             this.id = datos[0].ToString();

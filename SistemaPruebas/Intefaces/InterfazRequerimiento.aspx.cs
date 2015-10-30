@@ -18,9 +18,9 @@ namespace SistemaPruebas.Intefaces
 
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
-        static String idNuevo = "";
+        static String idViejo = "";
         private static bool esAdmin = true;
-        private static int cedulaLoggeado;
+        //private static int cedulaLoggeado;
 
 
         /*
@@ -64,11 +64,9 @@ namespace SistemaPruebas.Intefaces
          */
         protected void Restricciones_Campos()
         {
-            TextBoxNombreREQ.MaxLength = 9;
-            //TextBoxNombreREQ.MaxLength = 50;
-            //TextBoxEmail.MaxLength = 30;
-            //TextBoxTel1.MaxLength = 8;
-            //TextBoxTel2.MaxLength = 8;
+            TextBoxNombreREQ.MaxLength = 6;
+            TextBoxPrecondicionesREQ.MaxLength = 150;
+            TextBoxRequerimientosEspecialesREQ.MaxLength = 150;
         }
 
         /*
@@ -171,7 +169,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
             if(modo == 2)
-                controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(idNuevo), 0);    //ya no está en uso
+                controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(idViejo), 0);    //ya no está en uso
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
@@ -181,7 +179,7 @@ namespace SistemaPruebas.Intefaces
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
-                    llenarDatosRequerimiento(Int32.Parse(idNuevo));
+                    llenarDatosRequerimiento(Int32.Parse(idViejo));
 
                 }
                 else
@@ -284,13 +282,13 @@ namespace SistemaPruebas.Intefaces
     
         }
 
-        protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
+        /*protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
         protected void RolComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-        }
+        }*/
 
         /*
          * Requiere: N/A.
@@ -477,7 +475,7 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-                datosNuevos[4] = idNuevo;
+                datosNuevos[4] = idViejo;
 
             if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
             {
@@ -530,7 +528,7 @@ namespace SistemaPruebas.Intefaces
 				desactivarErrores();
 				BotonREQAceptarModificar.Visible = true;
 				BotonREQAceptarModificar.Enabled = true;
-				idNuevo = TextBoxNombreREQ.Text;
+				idViejo = TextBoxNombreREQ.Text;
 				BotonREQAceptar.Visible = false;
 				BotonREQCancelar.Enabled = true;
 				BotonREQInsertar.Enabled = false;
@@ -561,9 +559,9 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaREQ()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Cedula", typeof(int));
-            dt.Columns.Add("Nombre Completo", typeof(String));
-            dt.Columns.Add("Rol", typeof(String));
+            dt.Columns.Add("ID Requerimiento", typeof(String));
+            dt.Columns.Add("Precondiciones", typeof(String));
+            dt.Columns.Add("Req. Especiales", typeof(String));
             dt.Columns.Add("Nombre Proyecto");
             //dt.
             return dt;
