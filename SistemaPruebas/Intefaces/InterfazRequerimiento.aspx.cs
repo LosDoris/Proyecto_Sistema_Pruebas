@@ -20,7 +20,7 @@ namespace SistemaPruebas.Intefaces
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         private static String idViejo = "";
         private static bool esAdmin = true;
-        //private static int cedulaLoggeado;
+        //private static int proyectoDelLoggeado;
 
 
         /*
@@ -33,12 +33,12 @@ namespace SistemaPruebas.Intefaces
             Restricciones_Campos();
             if (!IsPostBack)
             {
-                //esAdmin = controladoraRequerimiento.loggeadoEsAdmin();
+                esAdmin = controladoraRequerimiento.PerfilDelLogeado();
                 //cedulaLoggeado = controladoraRequerimiento.idDelLoggeado();
                 volverAlOriginal();
                 if (!esAdmin)
                 {
-                    gridRequerimiento.Visible = false;
+                    //gridRequerimiento.Visible = false;
                 }
                 else
                 {
@@ -76,9 +76,17 @@ namespace SistemaPruebas.Intefaces
          */
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
+            
             DataTable Requerimiento = crearTablaREQ();
-            DataTable dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita la cédula
-
+            DataTable dt;
+            if (esAdmin)
+            {
+                dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita la cédula
+            }
+            else
+            {
+                dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(controladoraRequerimiento.proyectosDelLoggeado()));
+            }
             Object[] datos = new Object[4];
         
 
@@ -223,7 +231,7 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 //consulta y cargar datos del usuario actual
-                this.llenarDatosRequerimiento(controladoraRequerimiento.idDelLoggeado());
+                //this.llenarDatosRequerimiento(controladoraRequerimiento.idDelLoggeado());
                 BotonREQModificar.Enabled = true;
                 BotonREQAceptarModificar.Visible = true;
                 BotonREQAceptarModificar.Enabled = false;

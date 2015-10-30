@@ -37,33 +37,23 @@ namespace SistemaPruebas.Controladoras
            la cédula de quien tiene sesión abierta actualmente.
          * Retorna: número.
          */
-        public String idDelLoggeado()
+        public int idDelLoggeado()
         {
-            return "";// controladoraRequerimiento.idDelLoggeado(Account.Login.id_logeado);
+            return controladoraRecursosHumanos.idDelLoggeado();
         }
 
-        /*
-         * Requiere: N/A.
-         * Modifica: Hace el llamado al método que accede a la base de datos para regresar
-           el perfil de quien tiene sesión abierta actualmente.
-         * Retorna: hilera.
-         */
-        public string perfilDelLoggeado()
-        {
-            return "";// controladoraRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
-        }
 
-        /*
-         *Requiere:  N/A.
-         *Modifica: Hace llamado a método que consulta si la persona loggeada
-          es un administrador, según el sistema y los datos dentro de él, o no.
-         *Retorna: booleano.
+        /*      
+        Requiere: N/A
+        Modifica: Usa la controladora de RH
+        Retorna: un booleano que indica si esta loggeado un Admin o un Miembro de equipo
         */
-        public bool loggeadoEsAdmin()
+        public bool PerfilDelLogeado()
         {
-            //controlREQ = new ControladoraRequerimiento();
+            //controlRH = new ControladoraRecursosHumanos();
             bool retorno;
-            string perfil = this.perfilDelLoggeado();
+            //string perfil = controlRH.perfilDelLoggeado();
+            string perfil = controladoraRecursosHumanos.perfilDelLoggeado();
             if (perfil == "Administrador")
             {
                 retorno = true;
@@ -75,9 +65,11 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
-
-
-        /**/
+        public int proyectosDelLoggeado()
+        {
+            return controladoraRecursosHumanos.proyectosDelLoggeado();
+        }
+       
 
         /*
          *Requiere:  Número de cédula.
@@ -179,3 +171,41 @@ namespace SistemaPruebas.Controladoras
 
     }
 }
+
+/*
+ * Requiere: N/A.
+ * Modifica: Hace el llamado al método que accede a la base de datos para regresar
+   el perfil de quien tiene sesión abierta actualmente.
+ * Retorna: hilera.
+         
+public string perfilDelLoggeado()
+{
+    return "";// controladoraRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
+}
+*/
+
+/*
+        *Requiere:  N/A.
+        *Modifica: Hace llamado a método que consulta si la persona loggeada
+         es un administrador, según el sistema y los datos dentro de él, o no.
+        *Retorna: booleano.
+       */
+/*  public bool loggeadoEsAdmin()
+  {
+      //controlREQ = new ControladoraRequerimiento();
+      bool retorno;
+      string perfil = this.perfilDelLoggeado();
+      if (perfil == "Administrador")
+      {
+          retorno = true;
+      }
+      else
+      {
+          retorno = false;
+      }
+      return retorno;
+
+  }*/
+
+
+/**/
