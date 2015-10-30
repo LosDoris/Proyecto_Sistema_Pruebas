@@ -89,7 +89,7 @@
                             }
                         </script>
                         <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" Text="Tipo:"></asp:Label>
-                         <asp:DropDownList ID="TipoEntrada" runat="server">
+                         <asp:DropDownList ID="TipoEntrada" runat="server" OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
                              <asp:ListItem Text ="Válido" Value =1/>
                              <asp:ListItem Text ="Inválido" Value =2/>
                              <asp:ListItem Text ="No Aplica" Value =3/>
@@ -114,7 +114,7 @@
                                     CssClass ="GridView" HorizontalAlign="Center"  
                                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 
                                     AutoPostBack ="true" OnSelectedIndexChanged="DECP_SelectedIndexChanged"
-                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" >                            
+                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound">                            
                         </asp:GridView>
                     </div>
                 </div>

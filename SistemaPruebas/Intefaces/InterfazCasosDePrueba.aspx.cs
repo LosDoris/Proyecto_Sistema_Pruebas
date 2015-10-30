@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using SistemaPruebas.Controladoras;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -176,7 +177,19 @@ namespace SistemaPruebas.Intefaces
 
         protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            foreach (GridViewRow row in DECP.Rows)
+            {
+                if (row.RowIndex == DECP.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#2e8e9e");
+                    row.ToolTip = string.Empty;
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                   // row.ToolTip = "Click to select this row.";
+                }
+            }
         }
 
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
@@ -213,6 +226,8 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 int index = 0;
+                DECP.AllowPaging = false;
+                DECP.DataBind();
                 foreach (GridViewRow row in DECP.Rows)
                 {
                     if (index != 0)
@@ -227,6 +242,7 @@ namespace SistemaPruebas.Intefaces
                     else
                     {
                         datosEntrada += "]";
+                        datosEntrada += "\""+row.Cells[1].Text+"\"";
                     }
                     index++;
                 }
@@ -235,8 +251,12 @@ namespace SistemaPruebas.Intefaces
                     datosEntrada = "[" + datosEntrada + "]";
                 }
 
+                datosEntrada += "_" + TextBoxDescripcion.Text;
+
             }
-            Response.Write(datosEntrada);
+            DECP.AllowPaging = true;
+            DECP.DataBind();
+            //Response.Write(datosEntrada);
             return datosEntrada;
         }
 
@@ -251,6 +271,30 @@ namespace SistemaPruebas.Intefaces
             DECP.PageIndex = e.NewPageIndex;
             DECP.DataSource = dtDatosEntrada;
             DECP.DataBind();
+        }
+
+        protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(DECP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void TipoEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(TipoEntrada.SelectedItem.Text == "No Aplica")
+            {
+                AgregarEntrada.Enabled = false;
+            }
+            else
+            {
+                AgregarEntrada.Enabled = true;
+            }
         }
     }
 }
