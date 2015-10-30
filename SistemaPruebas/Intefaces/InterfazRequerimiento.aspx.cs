@@ -33,7 +33,7 @@ namespace SistemaPruebas.Intefaces
             Restricciones_Campos();
             if (!IsPostBack)
             {
-                esAdmin = controladoraRequerimiento.PerfilDelLogeado();
+                //esAdmin = controladoraRequerimiento.PerfilDelLogeado();
                 //cedulaLoggeado = controladoraRequerimiento.idDelLoggeado();
                 volverAlOriginal();
                 if (!esAdmin)
