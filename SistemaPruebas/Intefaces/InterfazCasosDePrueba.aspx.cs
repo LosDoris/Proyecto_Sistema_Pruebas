@@ -10,12 +10,6 @@ using SistemaPruebas.Controladoras;
 using System.Text.RegularExpressions;
 using System.Drawing;
 
-
-/// <summary>
-/// RECORDAR DEFINIR CRITERIOS DE ACEPTACION
-/// </summary>
-/// 
-
 namespace SistemaPruebas.Intefaces
 {
     public partial class CasosDePrueba : System.Web.UI.Page
@@ -30,7 +24,6 @@ namespace SistemaPruebas.Intefaces
                 inicializarDTDatosEntrada();
                 estadoInicial();
             }
-            errorID.Visible = false;
         }
 
 

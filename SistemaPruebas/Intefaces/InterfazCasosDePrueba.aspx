@@ -16,12 +16,11 @@
     </div>
 </div>
 <div class ="row">    
-    <div class="jumbozCP">
+    <div class="jumbozCP" >
         <h4>Resumen</h4>
 
     </div>
 </div>
-
 
 <div class ="col-md-6">
     <div class="jumbozCP1">
@@ -118,45 +117,44 @@
 </div>
 
 <div class="col-md-6">    
-            <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-2 control-label" style="margin-top=80px" Text="Resultado esperado:"></asp:Label>    
-            <div class="col-md-10">
-                <asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:50px; margin-top=80px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
-                <script type="text/javascript">
-                    function checkInput4(e) {
-                        var ok = /[A-Za-z.áéíóú]/.test(String.fromCharCode(e.charCode));
-                        if (!ok)
-                            e.preventDefault();
-                    }
-                </script>
-            </div>
-            <asp:Label ID="FlujoCP" runat="server" CssClass="col-md-2 control-label" Text="Flujo Central:"></asp:Label>    
-            <div class="col-md-10">
-                <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="width:250px;height:50px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
-                <script type="text/javascript">
-                    function checkInput5(e) {
-                        var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
-                        if (!ok)
-                            e.preventDefault();
-                    }
-                </script>
-            </div>
-        </div>
+    <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-2 control-label" style="margin-top:120px;" Text="Resultado esperado:"></asp:Label>    
+    <div class="col-md-10">
+        <asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:150px; margin-top:120px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+        <script type="text/javascript">
+            function checkInput4(e) {
+                var ok = /[A-Za-z.áéíóú]/.test(String.fromCharCode(e.charCode));
+                if (!ok)
+                    e.preventDefault();
+            }
+        </script>
+    </div>
+    <asp:Label ID="FlujoCP" runat="server" CssClass="col-md-2 control-label" style="width:20px;margin-top:20px;" Text="Flujo Central:"></asp:Label>    
+    <div class="col-md-10">
+        <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="margin-top:20px; width:250px; height:150px; margin-left: 63px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+        <script type="text/javascript">
+            function checkInput5(e) {
+                var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
+                if (!ok)
+                    e.preventDefault();
+            }
+        </script>
+    </div>
 
-
-<div class="form-group">
-    <div class="col-md-offset-10 col-md-12">
-        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648"
+    <div class="col-md-10">
+        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;margin-top:200px;margin-left: 200px;margin-top: 50px;"
             Text="Aceptar" 
             causesvalidation="true"                              
             CssClass="btn btn-default" 
             ID="BotonCPAceptar" OnClick="BotonCPAceptar_Click" 
         />
-        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" 
+        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
             OnClientClick="return confirm('¿Está seguro que desea cancelar?')" OnClick="BotonCPCancelar_Click" 
         />
     </div>
 </div>
+
+
 
  <div class="row">        
     <asp:GridView ID="CP" runat ="server" margin-right ="auto" 
