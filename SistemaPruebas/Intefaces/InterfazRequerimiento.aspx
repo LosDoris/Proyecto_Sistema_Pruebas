@@ -115,6 +115,7 @@
         <div class="row">
             <asp:GridView ID="gridRequerimiento" runat ="server" margin-right ="auto" 
                 CellPadding="10" 
+
                 margin-left="auto" OnSelectedIndexChanged="gridRequerimiento_SelectedIndexChanged"
                 OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
                 AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 

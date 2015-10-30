@@ -83,7 +83,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int modificarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
         {
-            String consulta = "UPDATE Requerimiento SET id_requerimiento='" + requerimiento.Id + "',precondiciones='" + requerimiento.Precondiciones + "',Requerimientos_especiales='" + requerimiento.RequerimientosEspeciales + "',id_proyecto='" + requerimiento.Proyecto + "',fechaUltimo=getDate() WHERE id_requerimiento='" + requerimiento.IdViejo + "+';";
+            String consulta = "UPDATE Requerimiento SET id_requerimiento='" + requerimiento.Id + "',precondiciones='" + requerimiento.Precondiciones + "',Requerimientos_especiales='" + requerimiento.RequerimientosEspeciales + "',id_proyecto='" + requerimiento.Proyecto + "',fechaUltimo=getDate() WHERE id_requerimiento='" + requerimiento.IdViejo + "';";
             // = "UPDATE Recurso_Humano SET cedula =" + requerimiento.Cedula + ", nombre_completo = '" + requerimiento.Nombre_Completo + "', telefono1 = '" + requerimiento.Tel1 + "', telefono2 = '" + requerimiento.Tel2 + "', correo_electronico = '" + requerimiento.Correo + "', usuario = '" + requerimiento.Usuario + "', contrasenna = '" + requerimiento.Clave + "', perfil_acceso = '" + requerimiento.PerfilAcceso + "', rol = '" + requerimiento.Rol + "', id_proyecto = '" + requerimiento.ProyAsociado + "', fechaUltimo=getDate()" + " WHERE cedula = " + requerimiento.CedulaVieja + ";";
             int ret = acceso.Insertar(consulta);
             return ret;
@@ -96,9 +96,9 @@ namespace SistemaPruebas.Controladoras
          * Retorna: int.
          */
 
-        public int eliminarRequerimientoBD(int cedula)
+        public int eliminarRequerimientoBD(String cedula)
         {
-            return acceso.Insertar("DELETE FROM Recurso_Humano WHERE cedula = " + cedula + ";");
+            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_requerimiento = '" + cedula + "';");
 
         }
 

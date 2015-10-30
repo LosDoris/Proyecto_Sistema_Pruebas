@@ -134,7 +134,7 @@ namespace SistemaPruebas.Controladoras
          * Modifica: Elimina un recurso humano del sistema.
          * Retorna: int.
          */
-        public int eliminarRequerimiento(int cedula)
+        public int eliminarRequerimiento(String cedula)
         {
             //datos[0];
             //EntidadRequerimientos Requerimiento = new EntidadRequerimientos(datos);

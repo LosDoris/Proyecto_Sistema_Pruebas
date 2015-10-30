@@ -8,37 +8,37 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraCasosPrueba
     {
-        ControladoraBDCasosPrueba controlBD;
+        ControladoraBDCasosPrueba controladoraBDCasosPrueba;
         //ControladoraBDDisenno controlDisenno;
 
         public ControladoraCasosPrueba()
         {
-            controlBD = new ControladoraBDCasosPrueba();
+            controladoraBDCasosPrueba = new ControladoraBDCasosPrueba();
         }
 
-        public int IngresaCasosPrueba(object[] datos)
+        public int insertarCasosPrueba(object[] datos)
         {
-            EntidadCasosPrueba objCasoPrueba = new EntidadCasosPrueba(datos);
-            int a = controlBD.ingresarCasosPrueba(objCasoPrueba);
-            return a;
+            EntidadCasosPrueba casoPrueba = new EntidadCasosPrueba(datos);
+            int ret = controladoraBDCasosPrueba.ingresarCasosPrueba(casoPrueba);
+            return ret;
         }
 
         public int modificarCasosPrueba(Object[] datos)
         {
             EntidadCasosPrueba objCasoPrueba = new EntidadCasosPrueba(datos);
-            int ret = controlBD.modificarCasosPrueba(objCasoPrueba);
+            int ret = controladoraBDCasosPrueba.modificarCasosPrueba(objCasoPrueba);
             return ret;
         }
 
         public int eliminarCasosPrueba(string id)
         {
-            int ret = controlBD.eliminarCasosPrueba(id);
+            int ret = controladoraBDCasosPrueba.eliminarCasosPrueba(id);
             return ret;
         }
 
         public DataTable consultarCasosPrueba()
         {
-            DataTable dt = controlBD.consultarCasosPrueba();
+            DataTable dt = controladoraBDCasosPrueba.consultarCasosPrueba();
             return dt;
 
         }
