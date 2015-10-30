@@ -78,7 +78,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
-           /* DataTable Requerimiento = crearTablagridRequerimiento();
+            DataTable Requerimiento = crearTablaREQ();
             DataTable dt = controladoraRequerimiento.consultarRequerimiento(1, 0); // en consultas tipo 1, no se necesita la cédula
 
             Object[] datos = new Object[4];
@@ -107,7 +107,7 @@ namespace SistemaPruebas.Intefaces
             }
             gridRequerimiento.DataSource = Requerimiento;
             gridRequerimiento.DataBind();
-            */
+            
         }
 
         /*
@@ -124,18 +124,10 @@ namespace SistemaPruebas.Intefaces
             try
             {
                 TextBoxNombreREQ.Text = dt.Rows[0].ItemArray[0].ToString();
-                TextBoxNombreREQ.Text = dt.Rows[0].ItemArray[1].ToString();
-                //TextBoxTel1.Text = dt.Rows[0].ItemArray[2].ToString();
-                //TextBoxTel2.Text = dt.Rows[0].ItemArray[3].ToString();
-                //TextBoxEmail.Text = dt.Rows[0].ItemArray[4].ToString();
-               // TextBoxUsuario.Text = dt.Rows[0].ItemArray[5].ToString();
-                //PerfilAccesoComboBox.ClearSelection();
-                //PerfilAccesoComboBox.Items.FindByText(dt.Rows[0].ItemArray[7].ToString()).Selected = true;
-                //RolComboBox.ClearSelection();
-                //seleccionRolEnConsulta(dt.Rows[0].ItemArray[7].ToString());
-                //RolComboBox.Items.FindByText(dt.Rows[0].ItemArray[8].ToString()).Selected = true;
+                TextBoxPrecondicionesREQ.Text = dt.Rows[0].ItemArray[1].ToString();
+                TextBoxRequerimientosEspecialesREQ.Text = dt.Rows[0].ItemArray[2].ToString();
                 ProyectoAsociado.ClearSelection();
-                ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[9].ToString()).Selected = true;
+                ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[4].ToString()).Selected = true;
             }
             catch
             {
@@ -155,8 +147,6 @@ namespace SistemaPruebas.Intefaces
         {
             modo = 1;
             habilitarCampos();
-            //llenarDDPerfil();
-            //llenarDDRol();
             llenarDDProyecto();
             desactivarErrores();
             BotonREQAceptar.Visible = true;
@@ -217,12 +207,9 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            //llenarDDPerfil();
-            //llenarDDRol();
             llenarDDProyecto();
             if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";
-                //TextBoxNombreREQ.Text = "";
                 TextBoxPrecondicionesREQ.Text = "";
                 TextBoxRequerimientosEspecialesREQ.Text = "";
                 BotonREQAceptarModificar.Visible = false;
@@ -262,18 +249,10 @@ namespace SistemaPruebas.Intefaces
             if (validarCampos())
             {
                 Object[] datosNuevos = new Object[5];
-                datosNuevos[0] = this.TextBoxNombreREQ.Text;//id_Req
+                datosNuevos[0] = this.TextBoxNombreREQ.Text;
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
-               // datosNuevos[1] = this.TextBoxNombreREQ.Text;//nombre
-                //datosNuevos[2] = this.TextBoxTel1.Text;
-                //datosNuevos[3] = this.TextBoxTel2.Text;
-                //datosNuevos[4] = this.TextBoxEmail.Text;
-                //datosNuevos[5] = this.TextBoxUsuario.Text;//nombre de usuario
-                //datosNuevos[6] = this.TextBoxClave.Text;
-                //datosNuevos[7] = this.PerfilAccesoComboBox.SelectedItem.Text.ToString();
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-                //datosNuevos[9] = this.RolComboBox.SelectedValue.ToString();
                 datosNuevos[4] = "1";
 
                 int insercion = controladoraRequerimiento.insertarRequerimiento(datosNuevos);
@@ -351,18 +330,12 @@ namespace SistemaPruebas.Intefaces
          */
         protected void habilitarCampos()
         {
-            //TextBoxEmail.Enabled = true;
-            //TextBoxTel1.Enabled = true;
-            //TextBoxTel2.Enabled = true;
+            TextBoxNombreREQ.Enabled = true;
+            TextBoxPrecondicionesREQ.Enabled = true;
+            TextBoxRequerimientosEspecialesREQ.Enabled = true;
             BotonREQCancelar.Enabled = true;
             if (esAdmin)
             {
-                //TextBoxClave.Enabled = true;
-                //TextBoxUsuario.Enabled = true;
-                TextBoxNombreREQ.Enabled = true;
-                //TextBoxNombreREQ.Enabled = true;
-                //RolComboBox.Enabled = true;
-                //PerfilAccesoComboBox.Enabled = true;
                 ProyectoAsociado.Enabled = true;
                 BotonREQAceptar.Enabled = true;
             } else
@@ -380,16 +353,10 @@ namespace SistemaPruebas.Intefaces
         protected void deshabilitarCampos()
         {
 
-            //TextBoxEmail.Enabled = false;
-            //TextBoxTel1.Enabled = false;
-            //TextBoxTel2.Enabled = false;
-            BotonREQCancelar.Enabled = false;
-            //TextBoxClave.Enabled = false;
-            //TextBoxUsuario.Enabled = false;
-            //TextBoxNombreREQ.Enabled = false;
             TextBoxNombreREQ.Enabled = false;
-            //RolComboBox.Enabled = false;
-            //PerfilAccesoComboBox.Enabled = false;
+            TextBoxPrecondicionesREQ.Enabled = false;
+            TextBoxRequerimientosEspecialesREQ.Enabled = false;
+            BotonREQCancelar.Enabled = false;
             ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
