@@ -18,7 +18,7 @@ namespace SistemaPruebas.Intefaces
 
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
-        static String cedulaConsulta = "";
+        static String idNuevo = "";
         private static bool esAdmin = true;
         private static int cedulaLoggeado;
 
@@ -171,7 +171,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
             if(modo == 2)
-                controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(cedulaConsulta), 0);    //ya no está en uso
+                controladoraRequerimiento.UpdateUsoREQ(Int32.Parse(idNuevo), 0);    //ya no está en uso
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
@@ -181,7 +181,7 @@ namespace SistemaPruebas.Intefaces
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
-                    llenarDatosRequerimiento(Int32.Parse(cedulaConsulta));
+                    llenarDatosRequerimiento(Int32.Parse(idNuevo));
 
                 }
                 else
@@ -477,7 +477,7 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-                datosNuevos[4] = cedulaConsulta;
+                datosNuevos[4] = idNuevo;
 
             if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
             {
@@ -530,7 +530,7 @@ namespace SistemaPruebas.Intefaces
 				desactivarErrores();
 				BotonREQAceptarModificar.Visible = true;
 				BotonREQAceptarModificar.Enabled = true;
-				cedulaConsulta = TextBoxNombreREQ.Text;
+				idNuevo = TextBoxNombreREQ.Text;
 				BotonREQAceptar.Visible = false;
 				BotonREQCancelar.Enabled = true;
 				BotonREQInsertar.Enabled = false;
