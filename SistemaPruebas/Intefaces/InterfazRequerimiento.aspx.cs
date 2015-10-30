@@ -20,7 +20,7 @@ namespace SistemaPruebas.Intefaces
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         private static String idViejo = "";
         private static bool esAdmin = true;
-        //private static int proyectoDelLoggeado;
+        private static int proyectoDelLoggeado;
 
 
         /*
@@ -33,8 +33,9 @@ namespace SistemaPruebas.Intefaces
             Restricciones_Campos();
             if (!IsPostBack)
             {
-                //esAdmin = controladoraRequerimiento.PerfilDelLogeado();
+                esAdmin = controladoraRequerimiento.PerfilDelLogeado();
                 //cedulaLoggeado = controladoraRequerimiento.idDelLoggeado();
+                //proyectoDelLoggeado = Convert.ToInt32(controladoraRequerimiento.solicitarProyectos());
                 volverAlOriginal();
                 if (!esAdmin)
                 {
@@ -134,8 +135,17 @@ namespace SistemaPruebas.Intefaces
                 TextBoxRequerimientosEspecialesREQ.Text = dt.Rows[0].ItemArray[2].ToString();
                 //ProyectoAsociado.ClearSelection();
                 //ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[4].ToString()).Selected = true;
-                ProyectoAsociado.ClearSelection();
-                ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[3].ToString()).Selected = true;
+
+                if (!esAdmin)
+                {
+                    ProyectoAsociado.ClearSelection();
+                    ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                }
+                else
+                {
+                    ProyectoAsociado.ClearSelection();
+                    ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[3].ToString()).Selected = true;
+                }
             }
             catch
             {
@@ -155,7 +165,15 @@ namespace SistemaPruebas.Intefaces
         {
             modo = 1;
             habilitarCampos();
-            llenarDDProyecto();
+            if (!esAdmin)
+            {
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            else
+            {
+                llenarDDProyecto();
+            }
             desactivarErrores();
             BotonREQAceptar.Visible = true;
             BotonREQAceptar.Enabled = true;
@@ -218,7 +236,15 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            llenarDDProyecto();
+            if (!esAdmin)
+            {
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            else
+            {
+                llenarDDProyecto();
+            }
             //if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
@@ -229,6 +255,15 @@ namespace SistemaPruebas.Intefaces
                 BotonREQEliminar.Enabled = false;
                 habilitarGrid();
                 llenarGrid();
+                if (!esAdmin)
+                {
+                    ProyectoAsociado.ClearSelection();
+                    ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                }
+                /*
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[3].ToString()).Selected = true;
+                  */
             //}
             //else
             //{
@@ -400,7 +435,13 @@ namespace SistemaPruebas.Intefaces
             {
                 ProyectoAsociado.Enabled = true;
                 
-            } //else
+            }
+            else
+            {
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            //else
             //{
                 //BotonREQAceptarModificar.Enabled = true;
             //}
