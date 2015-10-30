@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using SistemaPruebas.Models;
+using System.Data;
+using System.Web.UI.WebControls;
 
 
 namespace SistemaPruebas.Account
@@ -80,13 +82,17 @@ namespace SistemaPruebas.Account
                 else
                 {
                     //regreso false
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Usuario no coincide con contraseña" + "');", true);
+                    ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Usuario no coincide con contraseña";
+                    ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
+                    //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Usuario no coincide con contraseña" + "');", true);
                 }
             }
             else
             {
                 //esta loggeado en otro lado
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Está loggeado en otro lado. Será cerrará la sesión." + "');", true);
+                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Está loggeado en otro lado. Será cerrará la sesión.";
+                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
+                //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Está loggeado en otro lado. Será cerrará la sesión." + "');", true);
                 controladoraRH.estadoLoggeado(datos[0].ToString(), "0");
 
 

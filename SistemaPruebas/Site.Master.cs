@@ -78,7 +78,10 @@ namespace SistemaPruebas
             }
             else if (Account.Login.loggeado == 1)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + "Loggeo correcto" + "');", true);                
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + "Loggeo correcto" + "');", true);
+                MensajesGenerales.Text = "Ingreso correcto al sistema";
+                MensajesGenerales.ForeColor = System.Drawing.Color.DarkSeaGreen;
+               // ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Ingreso correcto al sistema";
                 makeVisible();
                 nombre.Visible = true;
                 //nombre.InnerHtml = Account.Login.id_logeado;

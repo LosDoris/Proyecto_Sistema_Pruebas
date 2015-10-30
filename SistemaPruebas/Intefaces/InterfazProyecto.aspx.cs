@@ -206,7 +206,9 @@ namespace SistemaPruebas.Intefaces
                             if (a == 1)
                             {
                                 id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
-                                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+                                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto ha sido insertado con éxito";
+                                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
+                                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
                                 llenarGrid();
                                 Deshabilitar_Campos();
                                 gridProyecto.Enabled = true;
@@ -254,7 +256,9 @@ namespace SistemaPruebas.Intefaces
                         if (a == 1)
                         {
                             id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
+                            ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto ha sido modificado con éxito";
+                            ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
+                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
                             llenarGrid();
                             Deshabilitar_Campos();
                             gridProyecto.Enabled = true;
@@ -300,33 +304,33 @@ namespace SistemaPruebas.Intefaces
                     break;
                 case 3:
                     {
-                        desmarcarBoton(ref Eliminar);
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "confirm('¿Está seguro que desea eliminar?');", true);
-                        Console.WriteLine("Eliminar");
-                        int a = 0;
-                        if (Convert.ToBoolean(adm))
-                        {
-                            a = controladoraProyecto.EliminarProyecto(id_modificando.ToString());
-                        }
-                        else
-                        {
-                            a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
-                        }
-                        if (a == 1)
-                        {
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
-                        }
+                        //desmarcarBoton(ref Eliminar);
+                        //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "confirm('¿Está seguro que desea eliminar?');", true);
+                        //Console.WriteLine("Eliminar");
+                        //int a = 0;
+                        //if (Convert.ToBoolean(adm))
+                        //{
+                        //    a = controladoraProyecto.EliminarProyecto(id_modificando.ToString());
+                        //}
+                        //else
+                        //{
+                        //    a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
+                        //}
+                        //if (a == 1)
+                        //{
+                        //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+                        //}
 
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-                        }
+                        //else
+                        //{
+                        //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+                        //}
 
-                        Limpiar_Campos();
-                        controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
-                        int i = -1;
-                        id_modificando = i.ToString();
-                        modificando = false.ToString();
+                        //Limpiar_Campos();
+                        //controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
+                        //int i = -1;
+                        //id_modificando = i.ToString();
+                        //modificando = false.ToString();
                     }
                     break;
 
@@ -629,32 +633,36 @@ namespace SistemaPruebas.Intefaces
             
 
             desmarcarBoton(ref Eliminar);
-            //
-            //Console.WriteLine("Eliminar");
-            //int a = 0;
-            //if (Convert.ToBoolean(adm))
-            //{
-            //    a = controladoraProyecto.EliminarProyecto(id_modificando.ToString());
-            //}
-            //else
-            //{
-            //    a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
-            //}
-            //if (a == 1)
-            //{
-            //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
-            //}
 
-            //else
-            //{
-            //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
-            //}
+            Console.WriteLine("Eliminar");
+            int a = 0;
+            if (Convert.ToBoolean(adm))
+            {
+                a = controladoraProyecto.EliminarProyecto(id_modificando.ToString());
+            }
+            else
+            {
+                a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
+            }
+            if (a == 1)
+            {
+                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto se ha sido eliminado con éxito";
+                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto no pudo ser eliminado, ocurrió un error";
+                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.Salmon;
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+            }
 
             Limpiar_Campos();
-            //controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
-            //int i = -1;
-            //id_modificando = i.ToString();
-            //modificando = false.ToString();
+            controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
+            int i = -1;
+            id_modificando = i.ToString();
+            modificando = false.ToString();
         }
 
         protected void cancelarModal_Click(object sender, EventArgs e)

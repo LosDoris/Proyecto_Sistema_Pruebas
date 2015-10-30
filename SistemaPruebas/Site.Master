@@ -81,16 +81,22 @@
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>
                 </div>
+               
             </div>
         </div>
+       
         <div class="container body-content">
+            <div>
+                    <asp:label runat="server" ID="MensajesGenerales" Font-Bold="False" Font-Size="X-Large" Style="margin-top:50px"></asp:label>                    
+                </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                 
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
                 <p>&nbsp;</p>
             </footer>
         </div>
-    </form>
+    </form> 
 </body>
 </html>
