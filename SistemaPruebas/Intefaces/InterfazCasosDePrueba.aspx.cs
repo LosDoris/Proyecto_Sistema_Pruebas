@@ -10,6 +10,12 @@ using SistemaPruebas.Controladoras;
 using System.Text.RegularExpressions;
 using System.Drawing;
 
+
+/// <summary>
+/// RECORDAR DEFINIR CRITERIOS DE ACEPTACION
+/// </summary>
+/// 
+
 namespace SistemaPruebas.Intefaces
 {
     public partial class CasosDePrueba : System.Web.UI.Page
@@ -28,22 +34,6 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        protected void estadoInicial()
-        {
-            ocultarErroresDeOperacion();
-            botonesInicio();
-            deshabilitarCampos();
-            limpiarCampos();
-        }
-
-        protected void inicializarModo()
-        {
-            if(ViewState["modo"] == null)
-            {
-                ViewState["modo"] = 0;
-            }
-        }
-
         public static DataTable dtDatosEntrada
         {
             get
@@ -56,6 +46,33 @@ namespace SistemaPruebas.Intefaces
                 HttpContext.Current.Session["datosEntrada"] = value;
             }
         }
+        public static int modo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["modo"];
+                return value == null ? 0 : (int)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["modo"] = value;
+            }
+        }
+
+
+        protected void estadoInicial()
+        {
+            ocultarErroresDeOperacion();
+            botonesInicio();
+            deshabilitarCampos();
+            limpiarCampos();
+        }
+
+        protected void inicializarModo()
+        {
+            modo = 0;
+        }
+
 
         protected void inicializarDTDatosEntrada()
         {
@@ -156,7 +173,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonCPInsertar_Click(object sender, EventArgs e)
         {
-            ViewState["modo"] = 1;
+            modo = 1;
             estadoInsertar();
         }
 
@@ -172,7 +189,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonCPModificar_Click(object sender, EventArgs e)
         {
-            ViewState["modo"] = 2;
+            modo = 2;
         }
 
         protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
@@ -196,11 +213,12 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
         {
-            if( (int) ViewState["modo"] == 1)
+            if( modo == 1)
             {
                 estadoInicial();
+                desmarcarBoton(ref BotonCPInsertar);
             }
-            else if ((int)ViewState["modo"] == 2)
+            else if (modo == 2)
             {
 
             }
@@ -208,13 +226,31 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonCPAceptar_Click(object sender, EventArgs e)
         {
-            Object[] datosNuevos = new Object[7];
+            Object[] datosNuevos = new Object[6];
             datosNuevos[0] = this.TextBoxID.Text;
             datosNuevos[1] = this.TextBoxPropositoCP.Text;
             datosNuevos[2] = datosEntrada();
             datosNuevos[3] = this.TextBoxResultadoCP.Text;
             datosNuevos[4] = this.TextBoxFlujoCentral.Text;
-            datosNuevos[5] = 1;
+            datosNuevos[5] = 1; //recordar modificar cuando se tenga el id del diseño
+
+            int operacion = -1;
+            if(modo == 1)
+            {
+                Response.Write("Modo es 1");
+                operacion = controladoraCasosPrueba.insertarCasosPrueba(datosNuevos);
+            }
+            else if( modo == 2)
+            {
+
+            }
+            if (operacion == 1)
+            {
+                Response.Write("Se insertó con éxito"); //temporal hasta que halla modal
+            }
+            Response.Write(operacion);
+            Response.Write(modo);
+
         }
 
         protected string datosEntrada()
@@ -227,9 +263,9 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                int index = 0;
                 DECP.AllowPaging = false;
                 DECP.DataBind();
+                int index = 0;
                 foreach (GridViewRow row in DECP.Rows)
                 {
                     if (index != 0)
@@ -253,12 +289,12 @@ namespace SistemaPruebas.Intefaces
                     datosEntrada = "[" + datosEntrada + "]";
                 }
 
-                datosEntrada += "_" + TextBoxDescripcion.Text;
+                datosEntrada = datosEntrada + "_" + TextBoxDescripcion.Text;
 
             }
             DECP.AllowPaging = true;
             DECP.DataBind();
-            //Response.Write(datosEntrada);
+            Response.Write(datosEntrada);
             return datosEntrada;
         }
 

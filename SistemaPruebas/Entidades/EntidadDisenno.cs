@@ -30,13 +30,13 @@ namespace SistemaPruebas.Controladoras
             this.proposito = datos[0].ToString();
             this.nivel = Convert.ToInt32(datos[1].ToString());
             this.tecnica = Convert.ToInt32(datos[2].ToString());
-            this.tipo = Convert.ToInt32(datos[3].ToString());
-            this.ambiente = datos[4].ToString();
-            this.procedimiento = datos[5].ToString();
-            this.fechaDeDisenno = datos[6].ToString();            
-            this.criterioAceptacion = datos[7].ToString();
-            this.responsable = Convert.ToInt32(datos[8].ToString());
-            this.proyAsociado = Convert.ToInt32(datos[9].ToString());
+            //this.tipo = Convert.ToInt32(datos[3].ToString());
+            this.ambiente = datos[3].ToString();
+            this.procedimiento = datos[4].ToString();
+            this.fechaDeDisenno = datos[5].ToString();            
+            this.criterioAceptacion = datos[6].ToString();
+            this.responsable = Convert.ToInt32(datos[7].ToString());
+            this.proyAsociado = Convert.ToInt32(datos[8].ToString());
            // this.IdConsulta = Convert.ToInt32(datos[10].ToString());
         }
 
@@ -76,12 +76,6 @@ namespace SistemaPruebas.Controladoras
             set { tecnica = value; }
         }
 
-        //Metodos set y get para la variable Correo
-        public int Tipo
-        {
-            get { return tipo; }
-            set { tipo = value; }
-        }
 
         //Metodos set y get para la variable ambiente
         public String Ambiente

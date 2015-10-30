@@ -10,12 +10,12 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
-        public int ingresarCasosPrueba(EntidadCasosPrueba entidad)
+        public int ingresarCasosPrueba(EntidadCasosPrueba casoPrueba)
         {
             String consulta =
-                "INSERT INTO Caso_prueba(id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central, id_requerimiento) values(" +
-                entidad.Id_caso_prueba + ",'" + entidad.Proposito + "','" + entidad.Entrada_datos + "','" + entidad.Resultado_esperado + "','" +
-                entidad.Flujo_central + "','" + entidad.Id_disenno +
+                "INSERT INTO Caso_Prueba(id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central, id_disenno, fechaUltimo) values('" +
+                casoPrueba.Id_caso_prueba + "','" + casoPrueba.Proposito + "','" + casoPrueba.Entrada_datos + "','" + casoPrueba.Resultado_esperado + "','" +
+                casoPrueba.Flujo_central + "'," + casoPrueba.Id_disenno +
                 ", getDate()" + ")";
             int ret = acceso.Insertar(consulta);
             return ret;

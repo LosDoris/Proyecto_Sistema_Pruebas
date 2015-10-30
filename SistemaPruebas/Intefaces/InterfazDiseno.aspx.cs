@@ -9,21 +9,34 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazDiseno : System.Web.UI.Page
     {
-        static bool proyecto = true;
+       
         Controladoras.ControladoraDisenno controlDiseno = new Controladoras.ControladoraDisenno();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             restriccionesCampos();
-            deshabilitarCampos();
-            if (llenarProyecto == true.ToString())
+            if (controlDiseno.loggeadoEsAdmin())
             {
-                llenarComboboxProyectoAdmin();
+                if (llenarProyecto == true.ToString())
+                {
+                    llenarComboboxProyectoAdmin();
+                    deshabilitarCampos();
+                }
+                llenarProyecto = false.ToString();
             }
-            llenarProyecto = false.ToString();
 
+            else
+            {
+                if (llenarProyecto == true.ToString())
+                {
+                   // llenarComboboxProyectoAdmin();
+                    deshabilitarCampos();
+                }
+                llenarProyecto = false.ToString();
 
+            }
         }
+
 
         public static string llenarProyecto
         {
@@ -60,7 +73,7 @@ namespace SistemaPruebas.Intefaces
             Eliminar.Enabled = false;
             habilitarCampos();
             deshabilitarGrid();
-            marcarBoton(ref Insertar);           
+            marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
 
@@ -145,16 +158,17 @@ namespace SistemaPruebas.Intefaces
 
         protected void aceptarClick(object sender, EventArgs e)
         {
-
+            deshabilitarCampos();
             switch (Int32.Parse(buttonDisenno))
             {
                 case 1://Insertar
                     {
 
                         string fecha = Page.Request.Form["txt_date"];
+                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
                         //Cambiar responsable y Proyecto asociado para que almacene la llave y no el nombre
-                        object[] datos = new object[10] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, responsable.SelectedValue, proyectoAsociado.SelectedValue };
-                        int a = controlDiseno.ingresaProyecto(datos);
+                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyectoAsociado.SelectedValue };
+                        int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
                         {
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
@@ -181,9 +195,12 @@ namespace SistemaPruebas.Intefaces
             };
         }
 
-        protected void cancelarClick()
+        protected void cancelarClick(object sender, EventArgs e)
         {
-
+            deshabilitarCampos();
+            desmarcarBoton(ref Insertar);
+            desmarcarBoton(ref Modificar);
+            desmarcarBoton(ref Eliminar);
         }
 
         protected void llenarGridRequerimientos()
@@ -261,44 +278,63 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void llenarComboboxProyectoMiembro()
+        {
+                      
+            this.proyectoAsociado.Items.Clear();
+
+                try
+                {
+                    this.proyectoAsociado.Items.Add(new ListItem(controlDiseno.solicitarNombreProyectoMiembro(controlDiseno.solicitarProyecto_IdMiembro())));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
         protected void cargarResponsables()
         {
 
             //  llenarComboboxResponsable(id_proyecto);
         }
 
-
-
-        protected void llenarComboboxResponsable(object sender, EventArgs e)
+        protected void proyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if(proyectoAsociado.SelectedItem.Text!="Seleccionar") {
-
-            int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-            this.responsable.Items.Clear();
-            responsable.Items.Add(new ListItem("Seleccionar"));
-            String responsables = controlDiseno.solicitarResponsanles(id_proyecto);
-
-            if (responsables != null)
+            if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
-                String[] pr = responsables.Split(';');
 
-                foreach (String p1 in pr)
+                int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+                this.responsable.Items.Clear();
+                responsable.Items.Add(new ListItem("Seleccionar"));
+                String responsables = controlDiseno.solicitarResponsanles(id_proyecto);
+
+                if (responsables != null)
                 {
-                    //String[] p2 = p1.Split(';');
-                    try
-                    {
-                        if (p1 != pr[pr.Length - 1])
-                            this.responsable.Items.Add(new ListItem(p1));
-                    }
-                    catch (Exception ex)
-                    {
+                    String[] pr = responsables.Split(';');
 
+                    foreach (String p1 in pr)
+                    {
+                        //String[] p2 = p1.Split(';');
+                        try
+                        {
+                            if (p1 != pr[pr.Length - 1])
+                                this.responsable.Items.Add(new ListItem(p1));
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
                 }
+                else
+                {
+                    this.responsable.Items.Clear();
+                    responsable.Items.Add(new ListItem("No Disponible"));
+                }
             }
-        }
 
-    }
+        }
     }
 }

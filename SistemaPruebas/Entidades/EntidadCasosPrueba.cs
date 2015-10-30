@@ -8,7 +8,7 @@ namespace SistemaPruebas.Controladoras
     public class EntidadCasosPrueba
     {
         // Variables correspondientes a la entidad cliente
-        private string id_caso_prueba;
+        private String id_caso_prueba;
         private String proposito;
         private String entrada_datos;
         private String resultado_esperado;
@@ -26,7 +26,7 @@ namespace SistemaPruebas.Controladoras
         }
 
         //Metodos set y get para la variable id_caso_prueba
-        public string Id_caso_prueba
+        public String Id_caso_prueba
         {
             get { return id_caso_prueba; }
             set { id_caso_prueba = value; }

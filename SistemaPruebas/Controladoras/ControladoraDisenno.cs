@@ -14,12 +14,12 @@ namespace SistemaPruebas.Controladoras
         public ControladoraDisenno()
         {
             controlBD = new ControladoraBDDisenno();            
-        } 
+        }
 
-        public int ingresaProyecto(object[] datos)
+        public int ingresaDiseno(object[] datos)
         {
             EntidadDisenno objDisenno = new EntidadDisenno(datos);
-            int a = controlBD.insertarDisennoBD(objDisenno);
+            int a = controlBD.InsertarDiseno(objDisenno);
             return a;
         }
 
@@ -32,6 +32,15 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public String solicitarNombreProyectoMiembro(int id_proyecto)
+        {
+
+            String proyectos = controlProyecto.ConsultarNombreProyectoPorId(id_proyecto);
+            return proyectos;
+
+        }
+
+
         public String solicitarResponsanles(int id_proyecto)
         {
             String responsables = controlRH.solicitarNombreRecursoPorProyecto(id_proyecto);
@@ -43,6 +52,24 @@ namespace SistemaPruebas.Controladoras
         {
             int proyectos = controlProyecto.ConsultarIdProyectoPorNombre2(nomb_proyecto);
             return proyectos;
+
+        }
+
+        public int solicitarResponsableCedula(string responsable)
+        {
+            int cedula = controlRH.solicitarCedulaRecurso(responsable);               
+            return cedula;
+
+        }
+
+        public bool loggeadoEsAdmin()
+        {
+            return controlRH.loggeadoEsAdmin();
+        }
+
+        public int solicitarProyecto_IdMiembro()
+        {
+            return controlRH.proyectosDelLoggeado();
 
         }
     }
