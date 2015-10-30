@@ -13,6 +13,7 @@ namespace SistemaPruebas.Controladoras
         //ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
         ControladoraBDRequerimiento controladoraBDRequerimiento = new ControladoraBDRequerimiento();
         ControladoraProyecto controladoraProyecto = new ControladoraProyecto();
+        ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
        
 
@@ -22,12 +23,12 @@ namespace SistemaPruebas.Controladoras
            llamando al método que modifica los datos dentro de la base de datos.
          * Retorna: booleano.
          */
-        public bool estadoLoggeado(string nombre, string estado)
+        /*public bool estadoLoggeado(string nombre, string estado)
         {
             if (estado == "0")
                 controladoraProyecto.LimpiarModificaciones(nombre);
             return true; controladoraBDRequerimiento.estadoLoggeado(nombre, estado);
-        }
+        }*/
 
 
         /*
@@ -49,7 +50,7 @@ namespace SistemaPruebas.Controladoras
          */
         public string perfilDelLoggeado()
         {
-            return controladoraBDRequerimiento.perfilDelLoggeado(Account.Login.id_logeado);
+            return "";// controladoraRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
         }
 
         /*
