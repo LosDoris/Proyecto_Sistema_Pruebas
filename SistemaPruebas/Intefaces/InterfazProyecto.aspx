@@ -1,7 +1,26 @@
 ﻿<%@ Page EnableEventValidation="false" Title="Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazProyecto.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazProyecto" Async="true" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <style type="text/css">
+        .modalBackground 
+        {
+            background-color: black;
+            filter: alpha(opacity=90);
+            opacity:0.8;
+        }
+        .modalPopup 
+        {
+            background-color: #ffffff;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+            padding-top: 10px;
+            padding-left: 10px;         
+        }
+    </style>
     <h2><%: Title %>.</h2>
 
     <link rel="stylesheet" type="text/css" media="screen"
@@ -167,5 +186,16 @@
  
             </asp:GridView>
     </div>
+    
+    <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
+        <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este proyecto?</asp:label>
+        <br/> <br/>
+        <div aria-pressed="true">
+            <asp:button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
+            <asp:button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
+       </div>
+    </asp:Panel>
+    <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="Eliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal">
+    </ajaxToolkit:ModalPopupExtender>
 </asp:Content>
 
