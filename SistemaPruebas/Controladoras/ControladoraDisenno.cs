@@ -32,6 +32,15 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public String solicitarNombreProyectoMiembro(int id_proyecto)
+        {
+
+            String proyectos = controlProyecto.ConsultarNombreProyectoPorId(id_proyecto);
+            return proyectos;
+
+        }
+
+
         public String solicitarResponsanles(int id_proyecto)
         {
             String responsables = controlRH.solicitarNombreRecursoPorProyecto(id_proyecto);
@@ -50,6 +59,17 @@ namespace SistemaPruebas.Controladoras
         {
             int cedula = controlRH.solicitarCedulaRecurso(responsable);               
             return cedula;
+
+        }
+
+        public bool loggeadoEsAdmin()
+        {
+            return controlRH.loggeadoEsAdmin();
+        }
+
+        public int solicitarProyecto_IdMiembro()
+        {
+            return controlRH.proyectosDelLoggeado();
 
         }
     }

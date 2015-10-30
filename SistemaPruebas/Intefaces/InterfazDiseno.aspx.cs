@@ -15,14 +15,26 @@ namespace SistemaPruebas.Intefaces
         {
 
             restriccionesCampos();
-            
-            if (llenarProyecto == true.ToString())
+            if (controlDiseno.loggeadoEsAdmin())
             {
-                llenarComboboxProyectoAdmin();
-                deshabilitarCampos();
+                if (llenarProyecto == true.ToString())
+                {
+                    llenarComboboxProyectoAdmin();
+                    deshabilitarCampos();
+                }
+                llenarProyecto = false.ToString();
             }
-            llenarProyecto = false.ToString();
 
+            else
+            {
+                if (llenarProyecto == true.ToString())
+                {
+                   // llenarComboboxProyectoAdmin();
+                    deshabilitarCampos();
+                }
+                llenarProyecto = false.ToString();
+
+            }
         }
 
 
@@ -258,6 +270,22 @@ namespace SistemaPruebas.Intefaces
                 try
                 {
                     this.proyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+
+        protected void llenarComboboxProyectoMiembro()
+        {
+                      
+            this.proyectoAsociado.Items.Clear();
+
+                try
+                {
+                    this.proyectoAsociado.Items.Add(new ListItem(controlDiseno.solicitarNombreProyectoMiembro(controlDiseno.solicitarProyecto_IdMiembro())));
                 }
                 catch (Exception e)
                 {
