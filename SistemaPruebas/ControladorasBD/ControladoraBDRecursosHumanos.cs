@@ -364,6 +364,13 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        public int solicitarCedulaRecurso(string nombre)
+        {
 
+            DataTable dt = new DataTable();
+            dt = acceso.ejecutarConsultaTabla("SELECT cedula FROM Recurso_Humano WHERE nombre_completo = '" + nombre + "'");
+            return Int32.Parse(dt.Rows[0][0].ToString());
+
+        }
     }
 }
