@@ -204,13 +204,46 @@ namespace SistemaPruebas.Intefaces
 
         protected string datosEntrada()
         {
+            String datosEntrada = "";
+            String tipo = TipoEntrada.SelectedItem.Text;
+            if (tipo == "No Aplica")
+            {
+                datosEntrada = "N/A";
+            }
+            else
+            {
+                int index = 0;
+                foreach (GridViewRow row in DECP.Rows)
+                {
+                    if (index != 0)
+                        datosEntrada += ",";
 
-            return null;
+                    datosEntrada += "[";
+                    datosEntrada += row.Cells[0].Text[0];
+                    if(Regex.IsMatch(row.Cells[1].Text, @"\d+"))
+                    {
+                        datosEntrada += "," + row.Cells[1].Text + "]";
+                    }
+                    else
+                    {
+                        datosEntrada += "]";
+                    }
+                    index++;
+                }
+                if(DECP.Rows.Count > 1)
+                {
+                    datosEntrada = "[" + datosEntrada + "]";
+                }
+
+            }
+            Response.Write(datosEntrada);
+            return datosEntrada;
         }
 
         protected void AgregarEntrada_Click(object sender, EventArgs e)
         {
             agregarGridEntradaDatos();
+            datosEntrada();
         }
 
         protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
