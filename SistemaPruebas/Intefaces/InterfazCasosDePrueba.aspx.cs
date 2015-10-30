@@ -117,7 +117,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxDescripcion.Enabled = true;
             TipoEntrada.Enabled = true;
             AgregarEntrada.Enabled = true;
-            EliminarEntrada.Enabled = true;
+           // EliminarEntrada.Enabled = true;
             //habilitarGrid todavía no programado
         }
 
@@ -190,6 +190,8 @@ namespace SistemaPruebas.Intefaces
                    // row.ToolTip = "Click to select this row.";
                 }
             }
+
+            EliminarEntrada.Enabled = true;
         }
 
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
@@ -295,6 +297,11 @@ namespace SistemaPruebas.Intefaces
             {
                 AgregarEntrada.Enabled = true;
             }
+        }
+
+        protected void EliminarEntrada_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
