@@ -45,14 +45,14 @@ namespace SistemaPruebas.Intefaces
 
                 }
             }
-            if (!esAdmin)
-            {
+            //if (!esAdmin)
+            //{
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 llenarGrid();
-            }
+            //}
 
            // gridRequerimiento.Enabled = false;
         }
