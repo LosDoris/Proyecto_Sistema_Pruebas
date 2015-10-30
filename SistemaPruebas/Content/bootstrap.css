@@ -36,6 +36,70 @@ summary {
   display: block;
 }
 
+.col-mdP {
+    width: 100%;
+	float: left;
+	
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.jumbozCP {
+  padding: 30px;
+  margin-bottom:20px;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #ffffff;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 9px;
+  min-width: 1210px;
+}
+
+.jumbozCP1 {
+  padding: 30px;
+  margin-bottom:20px;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #ffffff;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 9px;
+  min-width: 1210px;
+  min-height: 650px;
+}
+
+.derechaCP {
+    
+}
+
+.jumbozCP2 {
+  padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 2.14286;
+    color: inherit;
+    background-color: #FFF;
+    border: 1px solid #D3D3D3;
+    border-radius: 9px;
+    min-width: 370px;
+    min-height: 300px;
+    margin-top: 200px;
+    max-width: 200px;
+    margin-left: 48px;
+}
+
+
 .btn-LogOut {
     color: #2e8e9e;
     
@@ -1745,7 +1809,6 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-control {
   display: block;
   width: 100%;
-  height: 34px;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
@@ -4997,12 +5060,13 @@ a.list-group-item.active > .badge,
 .borderCP{
   padding: 35px;
   max-width: 500px;
-  border-color:#2e8e9e;
   border-bottom-width: 3px;
   border: 1px solid #d3d3d3;
   border-radius: 9px;
   float:left;
-
+    height: 28px;
+    width: 652px;
+    margin-bottom: 25px;
 }
 .jumbotron h1 {
   line-height: 1;
