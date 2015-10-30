@@ -87,7 +87,7 @@ namespace SistemaPruebas.Intefaces
             {
                 dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(controladoraRequerimiento.proyectosDelLoggeado()));
             }
-            Object[] datos = new Object[4];
+            Object[] datos = new Object[2];
         
 
             if (dt.Rows.Count > 0)
@@ -95,11 +95,11 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    datos[1] = dr[1];
-                    datos[2] = dr[2];
+                    //datos[1] = dr[1];
+                    //datos[2] = dr[2];
                     int id = Convert.ToInt32(dr[3]);
                     String nomp = controladoraRequerimiento.solicitarNombreProyecto(id);
-                    datos[3] = nomp;
+                    datos[1] = nomp;
                     Requerimiento.Rows.Add(datos);
                 }
             }
@@ -107,8 +107,8 @@ namespace SistemaPruebas.Intefaces
             {
                 datos[0] = "-";
                 datos[1] = "-";
-                datos[2] = "-";
-                datos[3] = "-";
+                //datos[2] = "-";
+                //datos[3] = "-";
                 Requerimiento.Rows.Add(datos);
             }
             gridRequerimiento.DataSource = Requerimiento;
@@ -574,8 +574,8 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID Requerimiento", typeof(String));
-            dt.Columns.Add("Precondiciones", typeof(String));
-            dt.Columns.Add("Req. Especiales", typeof(String));
+            //dt.Columns.Add("Precondiciones", typeof(String));
+            //dt.Columns.Add("Req. Especiales", typeof(String));
             dt.Columns.Add("Nombre Proyecto");
             //dt.
             return dt;
