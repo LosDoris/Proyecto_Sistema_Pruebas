@@ -18,11 +18,22 @@ namespace SistemaPruebas.Intefaces
 
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
-        private static String idViejo = "";
+        //private static String idViejo = "";
         //private static bool esAdminREQ = true;
-        private static int proyectoDelLoggeado;
+        //private static int proyectoDelLoggeado;
 
-
+        public static string idViejoREQ 
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_modificando"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_modificando"] = value;
+            }
+        }
 
         public static string esAdminREQ
         {
@@ -214,7 +225,7 @@ namespace SistemaPruebas.Intefaces
         {
             if (modo == 2)
             {
-                controladoraRequerimiento.UpdateUsoREQ(idViejo, 0);    //ya no está en uso
+                controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);    //ya no está en uso
             }
             desmarcarBotones();
             deshabilitarCampos();
@@ -225,7 +236,7 @@ namespace SistemaPruebas.Intefaces
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
-                    llenarDatosRequerimiento(idViejo);
+                    llenarDatosRequerimiento(idViejoREQ);
 
                 //}
                 //else
@@ -362,7 +373,7 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-                datosNuevos[4] = idViejo;
+                datosNuevos[4] = idViejoREQ;
                 if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
                 {
                     desmarcarBotones();
@@ -600,7 +611,7 @@ namespace SistemaPruebas.Intefaces
 				desactivarErrores();
 				BotonREQAceptarModificar.Visible = true;
 				BotonREQAceptarModificar.Enabled = true;
-				idViejo = TextBoxNombreREQ.Text;
+				idViejoREQ = TextBoxNombreREQ.Text;
 				BotonREQAceptar.Visible = false;
 				BotonREQCancelar.Enabled = true;
 				BotonREQInsertar.Enabled = false;
