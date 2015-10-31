@@ -71,35 +71,44 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="20" OnTextChanged="nombre_proyecto_TextChanged"/>
+                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" MaxLength="20" OnTextChanged="nombre_proyecto_TextChanged"/>
                         <script type="text/javascript">
                             function solo_letras(evt) {
-                                if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
-                                    alert("Sólo se permite letras");
-                                    return false;
+                                if ((evt.charCode != 32) && (evt.charCode != 13) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
+                                    $('#errorNombreSistema').fadeIn();
+                                    $('#errorNombreSistema').fadeOut(6000);
+                                    if (window.event)//IE
+                                        e.returnValue = false;
+                                    else//Firefox
+                                        e.preventDefault();
                                 }                               
                             }
                         </script>
+                        <div id="errorNombreSistema" style="display:none">
+                            <asp:Label runat="server" ID="errorNombreSistLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline" onkeypress="return solo_letrasYNumeros(event)"/>
+                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)"/>
                         <script type="text/javascript">
                             function solo_letrasYNumeros(evt) {
                                 if ((evt.charCode != 32) && (evt.charCode != 13) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
-                                    function HideLabel() {
-                                        var seconds = 5;
-                                        setTimeout(function () {
-
-                                            $('#' + '<%=EtiqErrorLlaves.ClientID %>').fadeIn('slow');
-                                        }, 2000);
-                                    };
+                                    $('#errorObjSistema').fadeIn();
+                                    $('#errorObjSistema').fadeOut(6000);
+                                    if (window.event)//IE
+                                        e.returnValue = false;
+                                    else//Firefox
+                                        e.preventDefault();
                                 }
                             }
                         </script>
+                        <div id="errorObjSistema" style="display:none">
+                            <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                        </div>
                     </div>
                 </div>
 
@@ -107,7 +116,7 @@
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                     <div class="col-md-4">
                         <asp:DropDownList runat="server" ID="estado" style="width:250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Pendiente</asp:ListItem>
+                            <asp:ListItem Value="1">Pendiente</asp:ListItem>
                             <asp:ListItem Value="2">Asignado</asp:ListItem>
                             <asp:ListItem Value="3">En Ejecución</asp:ListItem>
                             <asp:ListItem Value="4">Finalizado</asp:ListItem>
@@ -138,7 +147,23 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre de la oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
+                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras2(event)" MaxLength="17" />
+                        <script type="text/javascript">
+                            function solo_letras2(evt) {
+                                if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
+                                    $('#errorNombreOficina').fadeIn();
+                                    $('#errorNombreOficina').fadeOut(6000);
+
+                                    if (window.event)//IE
+                                        e.returnValue = false;
+                                    else//Firefox
+                                        e.preventDefault();
+                                }
+                            }
+                        </script>
+                        <div id="errorNombreOficina" style="display:none">
+                            <asp:Label runat="server" ID="errorNombreOficinaLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                        </div>
                     </div>
                 </div>
 
@@ -148,51 +173,104 @@
                     <div class="col-md-6">
                         <asp:label runat="server" id="tel1Label" text="Teléfono 1:"></asp:label>
 
-                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control"/>
-                        <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^\d{8}$" runat="server" 
+                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)"/>
+                        <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
-                            function solo_numeros(evt) {
-                                if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {                                    
-                                    HideLabel();
+                            function check_txt(textBox, e, length) {
+                                var mLen = textBox["MaxLength"];
+                                if (null == mLen)
+                                    mLen = length;
+                                var maxLength = parseInt(mLen);
+                                if (!checkSpecialKeys(e)) {
+                                    $('#errorTel1').fadeIn();
+                                    $('#errorTel1').fadeOut(6000);
+                                   
+                                    if (window.event)//IE
+                                        e.returnValue = false;
+                                    else//Firefox
+                                        e.preventDefault();                                    
+                                }
+                                else
+                                    $('#errorTel1').fadeOut();
+                            }
+                            function checkSpecialKeys(e) {
+                                if ((e.keyCode < 48 || e.keyCode > 57) && ((e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8 && e.keyCode != 127 && e.keyCode != 37 && e.keyCode != 39 && e.keyCode != 13)
                                     return false;
-                                        }
-                                    }
-                                    function HideLabel() {
-                                        var seconds = 5;
-                                        setTimeout(function () {
-                                            $('#' + '<%=errorTel1.ClientID %>').fadeOut('slow');
-                                }, 2000);
-                            };
+                                else
+                                    return true;
+                            }                                   
                         </script>
-                        <asp:label runat="server" ID="errorTel1" visible="true" Enabled="false" Text="Este campo sólo recibe números" ForeColor="Salmon"></asp:label>
+                        <div id="errorTel1" Style="display:none">
+                            <asp:label runat="server" ID="errorTel1Txt" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
+                        </div>
                         <asp:label runat="server" id="tel2Label" text="Teléfono 2:" style="margin-top:20px"></asp:label>
-                        <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" Enabled="False" />
-                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep" ID="RegularExpressionValidator1" ValidationExpression = "^[\s\S]{8,8}$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
+                        <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="check_txt2(this,event,8)" MaxLength="8" CausesValidation="True"/>
+                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep2" ID="RegularExpressionValidator1" ValidationExpression = "^(\d{8})|()$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
-                            function solo_numeros(evt) {
-                                if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
-                                    HideLabel();
+                            function check_txt2(textBox, e, length) {
+                                if (document.getElementById('<%=tel_rep.ClientID%>').value.length != 8)
+                                {
+                                    document.getElementById("errorTel2Lbl").innerHTML = "Primero complete el campo de télefono 1";
+                                    $('#errorTel2').fadeIn();
+                                    $('#errorTel2').fadeOut(3000);
+                                    //if (window.event)//IE
+                                    //    e.returnValue = false;
+                                    //else//Firefox
+                                    //    e.preventDefault();
+                                }
+                                else
+                                {                                    
+                                    if (!checkSpecialKeys2(e)) {
+                                        $('#errorTel2').fadeIn();
+                                        $('#errorTel2').fadeOut(3000);
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }                                   
                                 }
                             }
-                            function HideLabel() {
-                                var seconds = 5;
-                                setTimeout(function () {
-
-                                    $('#' + '<%=EtiqErrorLlaves.ClientID %>').fadeIn('slow');
-                                        }, 2000);
-                                    };
+                            function checkSpecialKeys2(e) {
+                                if ((e.keyCode < 48 || e.keyCode > 57) && ((e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8 && e.keyCode != 127 && e.keyCode != 37 && e.keyCode != 39 && e.keyCode != 13)
+                                    return false;
+                                else
+                                    return true;
+                            }
                         </script>
+                        <div id="errorTel2" Style="display:none">
+                            <asp:label runat="server" ID="errorTel2Lbl" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
+                        </div>
                     </div>                
-                </div>
-
-               
+                </div>                                
                 <div class="form-group" style="margin-top:40px">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre del representante</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
+                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras3(event)" MaxLength="30" />
+                        <script type="text/javascript">
+                            function solo_letras3(evt) {
+                                if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
+                                    $('#errorNombreUsuario').fadeIn();
+                                    $('#errorNombreUsuario').fadeOut(6000);
+
+                                    if (window.event)//IE
+                                        e.returnValue = false;
+                                    else//Firefox
+                                        e.preventDefault();
+                                }
+                            }
+                        </script>
+                        <div id="errorNombreUsuario" style="display:none">
+                            <asp:Label runat="server" ID="errorNombreUsuarioLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                        </div>
                     </div>
                 </div>
+                <div class="form-group">
+                     <asp:Label runat="server" id="LiderLbl" Text="Nombre del lidel del proyecto" CssClass="col-md-4 control-label"></asp:label>
+                        <div class="col-md-6">
+                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                  
+                            </div>
+                 </div>
 
             </div>
         </div>

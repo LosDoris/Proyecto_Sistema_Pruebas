@@ -125,7 +125,9 @@ namespace SistemaPruebas.Intefaces
             estado.Enabled = true;
             nombre_rep.Enabled = true;
             tel_rep.Enabled = true;
+            tel_rep2.Enabled = true;
             of_rep.Enabled = true;
+            LiderProyecto.Enabled = true;
             //datepicker.Disabled = false;
         }
 
@@ -140,7 +142,9 @@ namespace SistemaPruebas.Intefaces
             estado.Enabled = false;
             nombre_rep.Enabled = false;
             tel_rep.Enabled = false;
+            tel_rep2.Enabled = false;
             of_rep.Enabled = false;
+            LiderProyecto.Enabled = false;
             //datepicker.Enabled = false;
         }
 
@@ -154,6 +158,7 @@ namespace SistemaPruebas.Intefaces
             obj_general.Text = "";
             nombre_rep.Text = "";
             tel_rep.Text = "";
+            tel_rep2.Text = "";
             of_rep.Text = "";
             llenarGrid();
             gridProyecto.Enabled = true;
@@ -162,7 +167,8 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             estado.ClearSelection();
-            ListItem selectedListItem = estado.Items.FindByValue("1");
+            ListItem selectedListItems = estado.Items.FindByValue("1");
+            ListItem selectedListItemsLider = LiderProyecto.Items.FindByValue("0");
         }
 
         //Insertar_button():
