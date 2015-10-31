@@ -21,6 +21,14 @@
             alert('closing');
             window.close();
         }
+      
+        function HideLabel() {
+            var seconds = 5;           
+            setTimeout(function () {
+
+                $('#'+'<%#MensajesGenerales.ClientID %>').fadeOut('slow');
+            }, 1000);           
+        };
             
     </script>
 </head>
@@ -59,9 +67,6 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">Inicio</a>
                 </div>
-                
- 
-
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
@@ -87,7 +92,7 @@
        
         <div class="container body-content">
             <div>
-                    <asp:label runat="server" ID="MensajesGenerales" Font-Bold="False" Font-Size="X-Large" Style="margin-top:50px"></asp:label>                    
+                    <asp:label runat="server" ID="MensajesGenerales" Font-Bold="False" Font-Size="Large" Style="margin-top:50px" Visible="False"></asp:label>                    
                 </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                  

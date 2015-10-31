@@ -3,10 +3,19 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
+    <script type="text/javascript">
+        function HideLabel() {
+            var seconds = 5;
+            setTimeout(function () {
 
+                $('#' + '<%=EtiqErrorLlaves.ClientID %>').fadeOut('slow');
+            }, 1000);
+        };
+</script>
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
+                <asp:label runat="server" ID="EtiqErrorLlaves" Visible="False" Font-Size="Large"></asp:label>
                 <div class="form-horizontal">
                     <h4>Utilice una cuenta local para iniciar sesión.</h4>
                     <hr />

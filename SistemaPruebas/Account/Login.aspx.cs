@@ -74,7 +74,7 @@ namespace SistemaPruebas.Account
 
                     controladoraRH.estadoLoggeado(datos[0].ToString(), "1");
 
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Loggeo correcto" + "');", true);
                     loggeado = 1;
                     Response.Redirect("~/Default");
 
@@ -82,16 +82,24 @@ namespace SistemaPruebas.Account
                 else
                 {
                     //regreso false
-                    ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Usuario no coincide con contraseña";
-                    ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
+                    EtiqErrorLlaves.Text = "Usuario no coincide con contraseña";
+                    EtiqErrorLlaves.Visible = true;
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    //((Label)this.Master.FindControl("MensajesGenerales")).Text = "Usuario no coincide con contraseña";
+                    //((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
                     //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Usuario no coincide con contraseña" + "');", true);
                 }
             }
             else
             {
                 //esta loggeado en otro lado
-                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Está loggeado en otro lado. Será cerrará la sesión.";
-                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
+                EtiqErrorLlaves.Text = "Está loggeado en otro lado. Será cerrará la sesión";
+                EtiqErrorLlaves.Visible = true;
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                //((Label)this.Master.FindControl("MensajesGenerales")).Text = "Está loggeado en otro lado. Será cerrará la sesión.";
+                //((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.LightSalmon;
                 //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Está loggeado en otro lado. Será cerrará la sesión." + "');", true);
                 controladoraRH.estadoLoggeado(datos[0].ToString(), "0");
 

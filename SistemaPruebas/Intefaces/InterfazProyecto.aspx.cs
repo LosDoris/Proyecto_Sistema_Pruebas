@@ -206,8 +206,12 @@ namespace SistemaPruebas.Intefaces
                             if (a == 1)
                             {
                                 id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
-                                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto ha sido insertado con éxito";
-                                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
+                                EtiqErrorLlaves.Text = "El proyecto ha sido insertado con éxito";
+                                EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                                EtiqErrorLlaves.Visible = true;
+                                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                                //((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto ha sido insertado con éxito";
+                                //((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
                                 //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
                                 llenarGrid();
                                 Deshabilitar_Campos();
@@ -255,9 +259,11 @@ namespace SistemaPruebas.Intefaces
                         int a = controladoraProyecto.ActualizarProyecto(datos);
                         if (a == 1)
                         {
-                            id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();
-                            ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto ha sido modificado con éxito";
-                            ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
+                            EtiqErrorLlaves.Text = "El proyecto ha sido modificado con éxito";
+                            EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                            EtiqErrorLlaves.Visible = true;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                            id_Proyecto = controladoraProyecto.ConsultarIdProyectoPorNombre(nombre_proyecto.Text).ToString();                            
                             //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido modificado con éxito');", true);
                             llenarGrid();
                             Deshabilitar_Campos();
@@ -482,7 +488,11 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso');", true);
+                EtiqErrorLlaves.Text = "El proyecto consultado se encuentra actualmente en uso";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorLlaves.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso');", true);
 
             }
 
@@ -532,14 +542,23 @@ namespace SistemaPruebas.Intefaces
                 }
                 else
                 {
+                    EtiqErrorLlaves.Text = "";
                     if (Convert.ToBoolean(modificando))
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Actualmente usted se encuentra modificando/elimiando otro proyecto');", true);
-                    if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 1)
-                    {// ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);                        
-                        EtiqErrorLlaves.Text = "El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura";
-                        EtiqErrorLlaves.Visible = true;
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    {
+                        EtiqErrorLlaves.Text = "Actualmente usted se encuentra modificando/elimiando otro proyecto";
+                        
+                        //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);
                     }
+                      
+                    if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 1)
+                    {// ScriptManager.RegisterStartpScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);                        
+                        if (EtiqErrorLlaves.Text != "")
+                            EtiqErrorLlaves.Text += "<br/><br/>";
+                        EtiqErrorLlaves.Text += "El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura";                                                
+                    }
+                    EtiqErrorLlaves.Visible = true;
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 }
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
@@ -645,16 +664,19 @@ namespace SistemaPruebas.Intefaces
                 a = controladoraProyecto.CancelarProyecto(id_modificando.ToString());
             }
             if (a == 1)
-            {
-                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto se ha sido eliminado con éxito";
-                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.DarkSeaGreen;
-                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto ha sido insertado con éxito');", true);
+            {                
+                EtiqErrorLlaves.Text = "El proyecto se ha eliminado correctamente";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen; 
+                EtiqErrorLlaves.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);                                     
             }
 
             else
             {
-                ((Label)this.Master.FindControl("MensajesGenerales")).Text = "El proyecto no pudo ser eliminado, ocurrió un error";
-                ((Label)this.Master.FindControl("MensajesGenerales")).ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorLlaves.Text = "El proyecto no pudo ser eliminado, ocurrió un error";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon ;
+                EtiqErrorLlaves.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);                         
                 //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
             }
 

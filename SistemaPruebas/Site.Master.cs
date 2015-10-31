@@ -71,6 +71,7 @@ namespace SistemaPruebas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Header.DataBind();  
             if (Account.Login.id_logeado == null)
             {
                 nombre.Visible = false;
@@ -81,6 +82,8 @@ namespace SistemaPruebas
                 //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + "Loggeo correcto" + "');", true);
                 MensajesGenerales.Text = "Ingreso correcto al sistema";
                 MensajesGenerales.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                MensajesGenerales.Visible = true;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                // ((Label)this.Master.FindControl("MensajesGenerales")).Text = "Ingreso correcto al sistema";
                 makeVisible();
                 nombre.Visible = true;

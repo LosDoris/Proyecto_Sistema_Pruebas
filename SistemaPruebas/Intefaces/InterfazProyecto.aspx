@@ -21,7 +21,6 @@
             padding-left: 10px;         
         }
     </style>
-    <h2><%: Title %>.</h2>
 
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
@@ -29,6 +28,7 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
+    
     <script type="text/javascript">
         $(function () {
             $("#txt_date").datepicker();
@@ -36,31 +36,27 @@
     </script>
     <script type="text/javascript">
         function HideLabel() {
-            var seconds = 5;
+            var seconds = 5;           
             setTimeout(function () {
-                document.getElementById("<%=EtiqErrorLlaves.ClientID %>").style.display = "none";
-            }, seconds * 1000);
-            function HideLabelGeneral() {
-                var seconds = 5;
-                setTimeout(function () {
-                    document.getElementById("<%=EtiqErrorLlaves.ClientID %>").style.display = "none";
-                }, seconds * 1000);
-            }
+
+                $('#'+'<%=EtiqErrorLlaves.ClientID %>').fadeOut('slow');
+            }, 2000);           
     };
-</script>   
+</script>
+      
     <div class="form-group">
-        <div class="col-md-offset-10 col-md-12">
+        <div class="col-md-offset-10 col-md-12" style="margin-top:15px">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" />
             <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="Modificar_Click" />
 
-            <asp:Button runat="server" ID="Eliminar" Text="   Eliminar" CssClass="btn btn-default" OnClick="Eliminar_Click" />
+            <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="Eliminar_Click" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-8">
             <div>
-                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves">*EL nombre del proyecto ya ha sido ingresado anteriormente. Por favor ingrese otro nombre para el proyecto.</asp:Label>
+                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" Font-Size="Large" Visible="False"></asp:Label>
 
             </div>
             <div class="form-horizontal">
