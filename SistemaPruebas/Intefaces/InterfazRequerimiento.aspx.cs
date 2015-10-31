@@ -18,9 +18,36 @@ namespace SistemaPruebas.Intefaces
 
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
-        private static String idViejo = "";
-        private static bool esAdmin = true;
-        private static int proyectoDelLoggeado;
+        //private static String idViejo = "";
+        //private static bool esAdminREQ = true;
+        //private static int proyectoDelLoggeado;
+
+        public static string idViejoREQ 
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_modificando"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_modificando"] = value;
+            }
+        }
+
+        public static string esAdminREQ
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["esAdminREQ"];
+                return value == null ? "false" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["esAdminREQ"] = value;
+            }
+        }
+
 
 
         /*
@@ -33,11 +60,11 @@ namespace SistemaPruebas.Intefaces
             Restricciones_Campos();
             if (!IsPostBack)
             {
-                esAdmin = controladoraRequerimiento.PerfilDelLogeado();
+                esAdminREQ = controladoraRequerimiento.PerfilDelLogeado().ToString();
                 //cedulaLoggeado = controladoraRequerimiento.idDelLoggeado();
                 //proyectoDelLoggeado = Convert.ToInt32(controladoraRequerimiento.solicitarProyectos());
                 volverAlOriginal();
-                if (!esAdmin)
+                if (!Convert.ToBoolean(esAdminREQ))//!Convert.ToBoolean(esAdminREQ)
                 {
                     //gridRequerimiento.Visible = false;
                 }
@@ -46,7 +73,7 @@ namespace SistemaPruebas.Intefaces
 
                 }
             }
-            //if (!esAdmin)
+            //if (!esAdminREQ)
             //{
 
             //}
@@ -80,7 +107,7 @@ namespace SistemaPruebas.Intefaces
             
             DataTable Requerimiento = crearTablaREQ();
             DataTable dt;
-            if (esAdmin)
+            if (Convert.ToBoolean(esAdminREQ))
             {
                 dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita la cédula
             }
@@ -136,7 +163,7 @@ namespace SistemaPruebas.Intefaces
                 //ProyectoAsociado.ClearSelection();
                 //ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[4].ToString()).Selected = true;
 
-                if (!esAdmin)
+                if (!Convert.ToBoolean(esAdminREQ))
                 {
                     ProyectoAsociado.ClearSelection();
                     ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
@@ -165,7 +192,7 @@ namespace SistemaPruebas.Intefaces
         {
             modo = 1;
             habilitarCampos();
-            if (!esAdmin)
+            if (!Convert.ToBoolean(esAdminREQ))
             {
                 ProyectoAsociado.ClearSelection();
                 ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
@@ -198,18 +225,18 @@ namespace SistemaPruebas.Intefaces
         {
             if (modo == 2)
             {
-                controladoraRequerimiento.UpdateUsoREQ(idViejo, 0);    //ya no está en uso
+                controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);    //ya no está en uso
             }
             desmarcarBotones();
             deshabilitarCampos();
             if (modo==2)
             {
-                //if (esAdmin)
+                //if (esAdminREQ)
                 //{
                     volverAlOriginal();
                     BotonREQEliminar.Enabled = true;
                     BotonREQModificar.Enabled = true;
-                    llenarDatosRequerimiento(idViejo);
+                    llenarDatosRequerimiento(idViejoREQ);
 
                 //}
                 //else
@@ -236,16 +263,17 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
-            if (!esAdmin)
+            llenarDDProyecto();
+            if (!Convert.ToBoolean(esAdminREQ))
             {
                 ProyectoAsociado.ClearSelection();
                 ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
             }
             else
             {
-                llenarDDProyecto();
+
             }
-            //if (esAdmin) {
+            //if (esAdminREQ) {
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
                 TextBoxRequerimientosEspecialesREQ.Text = "";
@@ -255,7 +283,7 @@ namespace SistemaPruebas.Intefaces
                 BotonREQEliminar.Enabled = false;
                 habilitarGrid();
                 llenarGrid();
-                if (!esAdmin)
+                if (!Convert.ToBoolean(esAdminREQ))
                 {
                     ProyectoAsociado.ClearSelection();
                     ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
@@ -345,7 +373,7 @@ namespace SistemaPruebas.Intefaces
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-                datosNuevos[4] = idViejo;
+                datosNuevos[4] = idViejoREQ;
                 if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
                 {
                     desmarcarBotones();
@@ -354,7 +382,7 @@ namespace SistemaPruebas.Intefaces
                     BotonREQCancelar.Enabled = false;
                     BotonREQAceptarModificar.Enabled = false;
                     modo = 0;
-                    //if (esAdmin)
+                    //if (esAdminREQ)
                     //{
                         habilitarGrid();
                         BotonREQInsertar.Enabled = true;
@@ -431,7 +459,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxRequerimientosEspecialesREQ.Enabled = true;
             BotonREQCancelar.Enabled = true;
             BotonREQAceptar.Enabled = true;
-            if (esAdmin)
+            if (Convert.ToBoolean(esAdminREQ))
             {
                 ProyectoAsociado.Enabled = true;
                 
@@ -474,7 +502,7 @@ namespace SistemaPruebas.Intefaces
         protected void botonesInicio()
         {
             BotonREQCancelar.Enabled = false;
-            //if (esAdmin)
+            //if (esAdminREQ)
             //{
                 BotonREQEliminar.Enabled = false;
                 BotonREQModificar.Enabled = false;
@@ -496,7 +524,7 @@ namespace SistemaPruebas.Intefaces
         protected void botonesCancelar() //Estado de los botones después de apretar 
         {
             desmarcarBotones();
-            //if (esAdmin)
+            //if (esAdminREQ)
             //{
                 BotonREQInsertar.Enabled = true;
                 if (gridRequerimiento.Rows.Count > 0)
@@ -583,12 +611,12 @@ namespace SistemaPruebas.Intefaces
 				desactivarErrores();
 				BotonREQAceptarModificar.Visible = true;
 				BotonREQAceptarModificar.Enabled = true;
-				idViejo = TextBoxNombreREQ.Text;
+				idViejoREQ = TextBoxNombreREQ.Text;
 				BotonREQAceptar.Visible = false;
 				BotonREQCancelar.Enabled = true;
 				BotonREQInsertar.Enabled = false;
 				BotonREQEliminar.Enabled = false;
-				if (esAdmin)
+				if (Convert.ToBoolean(esAdminREQ))
 				{
 					deshabilitarGrid();
 					//PerfilAccesoComboBox.Enabled = false;
@@ -820,7 +848,7 @@ protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
         BotonREQCancelar.Enabled = false;
         BotonREQAceptarModificar.Enabled = false;
         modo = 0;
-        if (esAdmin)
+        if (esAdminREQ)
         {
             habilitarGrid();
             BotonREQInsertar.Enabled = true;
