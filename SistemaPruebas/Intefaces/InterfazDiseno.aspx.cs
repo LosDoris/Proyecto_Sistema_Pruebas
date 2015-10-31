@@ -29,7 +29,8 @@ namespace SistemaPruebas.Intefaces
             {
                 if (llenarProyecto == true.ToString())
                 {
-                   // llenarComboboxProyectoAdmin();
+                    llenarComboboxProyectoMiembro();
+                    cargarResponsablesMiembro();
                     deshabilitarCampos();
                 }
                 llenarProyecto = false.ToString();
@@ -166,8 +167,9 @@ namespace SistemaPruebas.Intefaces
 
                         string fecha = Page.Request.Form["txt_date"];
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+                        int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         //Cambiar responsable y Proyecto asociado para que almacene la llave y no el nombre
-                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyectoAsociado.SelectedValue };
+                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto};
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
                         {
@@ -275,6 +277,7 @@ namespace SistemaPruebas.Intefaces
                 {
 
                 }
+
             }
         }
 
@@ -294,10 +297,36 @@ namespace SistemaPruebas.Intefaces
             
         }
 
-        protected void cargarResponsables()
+        protected void cargarResponsablesMiembro()
         {
+            int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+            this.responsable.Items.Clear();
+            responsable.Items.Add(new ListItem("Seleccionar"));
+            String responsables = controlDiseno.solicitarResponsanles(id_proyecto);
 
-            //  llenarComboboxResponsable(id_proyecto);
+            if (responsables != null)
+            {
+                String[] pr = responsables.Split(';');
+
+                foreach (String p1 in pr)
+                {
+                    //String[] p2 = p1.Split(';');
+                    try
+                    {
+                        if (p1 != pr[pr.Length - 1])
+                            this.responsable.Items.Add(new ListItem(p1));
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                this.responsable.Items.Clear();
+                responsable.Items.Add(new ListItem("No Disponible"));
+            }
         }
 
         protected void proyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
