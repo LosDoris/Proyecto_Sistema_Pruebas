@@ -90,8 +90,13 @@
                         <script type="text/javascript">
                             function solo_letrasYNumeros(evt) {
                                 if ((evt.charCode != 32) && (evt.charCode != 13) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
-                                    alert("Sólo se permite letras");
-                                    return false;
+                                    function HideLabel() {
+                                        var seconds = 5;
+                                        setTimeout(function () {
+
+                                            $('#' + '<%=EtiqErrorLlaves.ClientID %>').fadeIn('slow');
+                                        }, 2000);
+                                    };
                                 }
                             }
                         </script>
@@ -124,16 +129,16 @@
         </div>
 
 
-        <h4>Oficina Usuaria</h4>
+        <h4>Datos de la oficina usuaria</h4>
         <div class="col-md-4">
 
             <div class="form-horizontal">
 
 
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre</asp:Label>
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre de la oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
+                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
                     </div>
                 </div>
 
@@ -141,23 +146,51 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
 
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" />
-                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^[\s\S]{8,8}$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
+                        <asp:label runat="server" id="tel1Label" text="Teléfono 1:"></asp:label>
+
+                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control"/>
+                        <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^\d{8}$" runat="server" 
+                            foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
+                        <script type="text/javascript">
+                            function solo_numeros(evt) {
+                                if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {                                    
+                                    HideLabel();
+                                    return false;
+                                        }
+                                    }
+                                    function HideLabel() {
+                                        var seconds = 5;
+                                        setTimeout(function () {
+                                            $('#' + '<%=errorTel1.ClientID %>').fadeOut('slow');
+                                }, 2000);
+                            };
+                        </script>
+                        <asp:label runat="server" ID="errorTel1" visible="true" Enabled="false" Text="Este campo sólo recibe números" ForeColor="Salmon"></asp:label>
+                        <asp:label runat="server" id="tel2Label" text="Teléfono 2:" style="margin-top:20px"></asp:label>
+                        <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_numeros(event)" MaxLength="8" CausesValidation="True" Enabled="False" />
+                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "tel_rep" ID="RegularExpressionValidator1" ValidationExpression = "^[\s\S]{8,8}$" runat="server" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
                             function solo_numeros(evt) {
                                 if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
-                                    alert("Sólo se permite números");
-                                    return false;
+                                    HideLabel();
                                 }
                             }
+                            function HideLabel() {
+                                var seconds = 5;
+                                setTimeout(function () {
+
+                                    $('#' + '<%=EtiqErrorLlaves.ClientID %>').fadeIn('slow');
+                                        }, 2000);
+                                    };
                         </script>
-                    </div>
+                    </div>                
                 </div>
 
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Oficina</asp:Label>
+               
+                <div class="form-group" style="margin-top:40px">
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre del representante</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="17" />
+                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras(event)" MaxLength="30" />
                     </div>
                 </div>
 
