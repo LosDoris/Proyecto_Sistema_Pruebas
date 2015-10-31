@@ -236,6 +236,7 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             desactivarErrores();
             deshabilitarCampos();
+            llenarDDProyecto();
             if (!esAdmin)
             {
                 ProyectoAsociado.ClearSelection();
@@ -243,7 +244,7 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                llenarDDProyecto();
+
             }
             //if (esAdmin) {
                 TextBoxNombreREQ.Text = ".";

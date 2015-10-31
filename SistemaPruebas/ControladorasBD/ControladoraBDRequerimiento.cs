@@ -119,13 +119,13 @@ namespace SistemaPruebas.Controladoras
             else if (tipo == 2)
             {
                 consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_requerimiento='"+id+"';";
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_requerimiento='"+id+"';";
+                //consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_requerimiento='"+id+"';";
                 //"SELECT cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto FROM Recurso_Humano WHERE cedula =" + cedula;
                 // dt = acceso.ejecutarConsultaTabla(consulta);
             }
             else if (tipo == 3)
             {
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from where id_requerimiento='" + Convert.ToInt32(id) + "' Requerimiento ORDER BY fechaUltimo desc;";
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_proyecto='" + Convert.ToInt32(id) + "'  ORDER BY fechaUltimo desc;";
             }
                 
 
