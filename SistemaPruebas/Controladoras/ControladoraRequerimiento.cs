@@ -169,6 +169,17 @@ namespace SistemaPruebas.Controladoras
             return proyecto;
         }
 
+        public DataTable consultarRequerimientoNoEnDiseno(int id_proyecto, int id_diseno)
+        {
+            return new DataTable(); //CAMBIAR, ESTO ES X MIENTRAS
+        }
+
+        public DataTable consultarRequerimientoEnDiseno(int id_proyecto, int id_diseno)
+        {
+            return new DataTable(); //CAMBIAR, ESTO ES X MIENTRAS
+
+        }
+
     }
 }
 

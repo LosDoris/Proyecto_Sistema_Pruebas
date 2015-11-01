@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace SistemaPruebas.Controladoras
 {
@@ -10,7 +11,7 @@ namespace SistemaPruebas.Controladoras
         ControladoraBDDisenno controlBD;
         ControladoraProyecto controlProyecto = new ControladoraProyecto();
         ControladoraRecursosHumanos controlRH = new ControladoraRecursosHumanos();
-
+        ControladoraRequerimiento controlReq = new ControladoraRequerimiento();
         public ControladoraDisenno()
         {
             controlBD = new ControladoraBDDisenno();            
@@ -71,6 +72,16 @@ namespace SistemaPruebas.Controladoras
         {
             return controlRH.proyectosDelLoggeado();
 
+        }
+
+        public DataTable consultarReqNoenDiseno(int id_proyecto, int id_diseno)
+        {
+            return controlReq.consultarRequerimientoNoEnDiseno(id_proyecto, id_diseno);
+        }
+
+        public DataTable consultarReqEnDiseno(int id_proyecto, int id_diseno)
+        {
+            return controlReq.consultarRequerimientoEnDiseno(id_proyecto, id_diseno);
         }
     }
 }
