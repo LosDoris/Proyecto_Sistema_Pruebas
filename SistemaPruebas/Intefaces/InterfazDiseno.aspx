@@ -42,9 +42,20 @@
 
 <div class="cajaAnchoPagina">
 
-<div class="form-group">
-</div>
-
+    <div id="tablasReqs" class="row">
+<%--
+        <asp:GridView ID="gridNoAsociado" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
+            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc" BorderColor="#cdcdcd" border-radius="7px" 
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingNoAsoc" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBoundNoAsoc" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
+            <Columns>
+                <asp:BoundField DataField="Id Proyecto" ItemStyle-Width="185px" HeaderText=" Id Requerimiento"/>
+                </Columns>
+            </asp:GridView>
+--%>
+    </div>
+        <div class="col-md-offset-10 col-md-12">
+            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq"/>
+        </div>
 </div>
 
 <div class="row">

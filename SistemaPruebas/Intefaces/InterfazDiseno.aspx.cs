@@ -39,7 +39,6 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
         public static string llenarProyecto
         {
             get
@@ -66,6 +65,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void irAReq(object sender, EventArgs e)
+        {
+            Response.Redirect("InterfazRequerimiento.aspx");
+        }
 
         protected void insertarClick(object sender, EventArgs e)
         {
@@ -78,6 +81,7 @@ namespace SistemaPruebas.Intefaces
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
+            //llenarGridsReq(1);
 
         }
 
@@ -104,8 +108,9 @@ namespace SistemaPruebas.Intefaces
         protected void habilitarCampos()
         {
             //nombreReqTxtbox.Enabled = true;
-           // precondicionReqTxtbox.Enabled = true;
+            // precondicionReqTxtbox.Enabled = true;
             //reqEspecialesReqTxtbox.Enabled = true;
+            iraRequerimientoBtn.Enabled = true;
             propositoTxtbox.Enabled = true;
             ambienteTxtbox.Enabled = true;
             procedimientoTxtbox.Enabled = true;
@@ -115,15 +120,19 @@ namespace SistemaPruebas.Intefaces
             Tecnica.Enabled = true;
           //  Tipo.Enabled = true;
             responsable.Enabled = true;
+            aceptar.Enabled = true;
+            cancelar.Enabled = true;
+
 
         }
 
         protected void deshabilitarCampos()
         {
-           // nombreReqTxtbox.Enabled = false;
-           // precondicionReqTxtbox.Enabled = false;
-           // reqEspecialesReqTxtbox.Enabled = false;
-            propositoTxtbox.Enabled = false;
+            // nombreReqTxtbox.Enabled = false;
+            // precondicionReqTxtbox.Enabled = false;
+            // reqEspecialesReqTxtbox.Enabled = false;
+            iraRequerimientoBtn.Enabled = false;
+             propositoTxtbox.Enabled = false;
             ambienteTxtbox.Enabled = false;
             procedimientoTxtbox.Enabled = false;
             criteriosTxtbox.Enabled = false;
@@ -132,6 +141,8 @@ namespace SistemaPruebas.Intefaces
             Tecnica.Enabled = false;
            // Tipo.Enabled = false;
             responsable.Enabled = false;
+            aceptar.Enabled = false;
+            cancelar.Enabled = false;
         }
 
         protected void limpiarCampos()
@@ -206,36 +217,24 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Eliminar);
         }
 
-        protected void llenarGridReqNoDiseno()
+        protected void llenarGridsReq(int tipo)
         {
-            int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-            int diseno = -1;
-            if (Int32.Parse(buttonDisenno)==2)
+            DataTable req = solicitarReqs(tipo);
+            if (tipo==1)
             {
-               // diseno = controlDiseno. CREAR METODO
+                // this.gridNoAsociado.DataSource = req;
+                // this.gridNoAsociado.DataBind();
             }
-            DataTable dt = new DataTable();//crearTablaProyecto();
-            dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Id Requerimiento")});
-            DataTable req = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
-            //Object[] datos = new Object[5];
-            if (req.Rows.Count > 0)
-            {
-                foreach (DataRow fila in req.Rows)
-                {
-                    dt.Rows.Add(fila[0].ToString());
-                }
-            }
-            else
+            else 
             {
 
-                dt.Rows.Add("-");
 
             }
-           // this.gridProyecto.DataSource = dt;
-           // this.gridProyecto.DataBind();
+
         }
 
-        protected void llenarGridReqEnDiseno()
+
+        protected DataTable solicitarReqs(int tipo)
         {
             int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
             int diseno = -1;
@@ -243,10 +242,19 @@ namespace SistemaPruebas.Intefaces
             {
                 // diseno = controlDiseno. CREAR METODO
             }
-            DataTable dt = new DataTable();//crearTablaProyecto();
+            DataTable dt = new DataTable();
+            DataTable req = new DataTable();
             dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Id Requerimiento") });
-            DataTable req = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
-            //Object[] datos = new Object[5];
+
+            if (tipo == 1)
+            {
+                req = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
+            }
+            else
+            {
+                req = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
+
+            }
             if (req.Rows.Count > 0)
             {
                 foreach (DataRow fila in req.Rows)
@@ -260,8 +268,32 @@ namespace SistemaPruebas.Intefaces
                 dt.Rows.Add("-");
 
             }
-            // this.gridProyecto.DataSource = dt;
-            // this.gridProyecto.DataBind();
+
+            return dt;
+        }
+
+        protected void OnSelectedIndexChangedNoAsoc(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void OnPageIndexChangingNoAsoc(object sender, GridViewPageEventArgs e)
+        {
+          //  gridNoAsociado.PageIndex = e.NewPageIndex;
+            this.llenarGridsReq(1);
+        }
+
+        protected void OnRowDataBoundNoAsoc(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+         /*   if (gridNoAsociado.Enabled && e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridNoAsociado, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+            */
         }
 
         protected void llenarGridDisenos()
