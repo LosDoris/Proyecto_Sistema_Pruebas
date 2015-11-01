@@ -83,17 +83,17 @@ namespace SistemaPruebas.Intefaces
         protected void Page_Load(object sender, EventArgs e)
         {
             //id_logeado = controladoraProyecto.IdLogeado();
-            adm = controladoraProyecto.PerfilDelLogeado().ToString();
+            //adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
             Deshabilitar_Campos();
-            if (!Convert.ToBoolean(adm))
-                Insertar.Enabled = false;
+           // if (!Convert.ToBoolean(adm))
+                Insertar.Enabled = true;
             aceptar.Enabled = false;
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             //datepicker.Disabled = true;
-            llenarGrid();
+            //llenarGrid();
             EtiqErrorLlaves.Visible = false;
         }
 
@@ -104,10 +104,11 @@ namespace SistemaPruebas.Intefaces
         protected void Restricciones_Campos()
         {
 
-            nombre_proyecto.MaxLength = 10;
+            nombre_proyecto.MaxLength = 20;
             obj_general.MaxLength = 50;
             nombre_rep.MaxLength = 30;
             tel_rep.MaxLength = 8;
+            tel_rep2.MaxLength = 8;
             of_rep.MaxLength = 17;
             obj_general.Rows = 5;
 
@@ -160,9 +161,9 @@ namespace SistemaPruebas.Intefaces
             tel_rep.Text = "";
             tel_rep2.Text = "";
             of_rep.Text = "";
-            llenarGrid();
+           // llenarGrid();
             gridProyecto.Enabled = true;
-            if (Convert.ToBoolean(adm))
+            //if (Convert.ToBoolean(adm))
                 Insertar.Enabled = true;
             cancelar.Enabled = false;
             Modificar.Enabled = false;
@@ -568,8 +569,8 @@ namespace SistemaPruebas.Intefaces
                 }
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
-                if (!Convert.ToBoolean(adm))
-                    Insertar.Enabled = false;
+               // if (!Convert.ToBoolean(adm))
+                    Insertar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -587,14 +588,14 @@ namespace SistemaPruebas.Intefaces
         {
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
-            if (Convert.ToBoolean(adm))
+           // if (Convert.ToBoolean(adm))
                 Insertar.Enabled = true;
         }
         protected void UnenabledButtons()
         {
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
-            if (Convert.ToBoolean(adm))
+           // if (Convert.ToBoolean(adm))
                 Insertar.Enabled = false;
         }
 
