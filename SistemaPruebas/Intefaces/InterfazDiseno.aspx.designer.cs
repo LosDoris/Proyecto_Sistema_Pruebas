@@ -49,60 +49,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.DropDownList proyectoAsociado;
         
         /// <summary>
-        /// nombreReqLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nombreReqLabel;
-        
-        /// <summary>
-        /// nombreReqTxtbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombreReqTxtbox;
-        
-        /// <summary>
-        /// precondicionReqLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label precondicionReqLabel;
-        
-        /// <summary>
-        /// precondicionReqTxtbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox precondicionReqTxtbox;
-        
-        /// <summary>
-        /// reqEspecialesReqLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label reqEspecialesReqLabel;
-        
-        /// <summary>
-        /// reqEspecialesReqTxtbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox reqEspecialesReqTxtbox;
-        
-        /// <summary>
         /// propositoLabel control.
         /// </summary>
         /// <remarks>

@@ -41,23 +41,8 @@
     <h4>Requerimientos a Probar</h4>
 
 <div class="cajaAnchoPagina">
-                <div class="form-group">
-                    <asp:Label runat="server" ID="nombreReqLabel" CssClass="col-md-2 control-label">Nombre:</asp:Label>
-                    <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="nombreReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="30"/> 
-</div>
-</div>
-                    <div class="form-group">
-                    <asp:Label runat="server" ID="precondicionReqLabel" CssClass="col-md-2 control-label">Precondiciones:</asp:Label>
-                    <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="precondicionReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="150"/> 
-</div>
-</div>
-                    <div class="form-group">
-                    <asp:Label runat="server" ID="reqEspecialesReqLabel" CssClass="col-md-2 control-label">Requerimientos Especiales:</asp:Label>
-                    <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="reqEspecialesReqTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="150"/> 
-</div>
+
+<div class="form-group">
 </div>
 
 </div>
@@ -107,13 +92,13 @@
 </div>
 </div>
 
-<div class="col-md-offset-6 col-md-10">
+<div class="col-md-4">
 <div class="form-horizontal">
 
 
 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-6 control-label">Ambiente:</asp:Label>
-                    <div class="col-md-8">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Ambiente:</asp:Label>
+                    <div class="col-md-4">
                     <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:130px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
                     </div>
 </div>
@@ -128,16 +113,25 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Procedimiento Utilizado:</asp:Label>
 
 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:1020px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
 </div>
 </div>
 
 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:1020px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
 </div>
 </div>
+
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+<div class="form-horizontal">
+
 
 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Responsable:</asp:Label>
@@ -147,62 +141,31 @@
                     </asp:DropDownList>
 </div>
 </div>
-
 </div>
 </div>
-
-<div class="col-md-offset-6 col-md-11">
+<div class="col-md-4">
 <div class="form-horizontal">
 
-<div class="form-group">                     
-                    <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Diseño:</asp:Label>
-<div class="col-md-8" runat="server">
+
+<div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
+<div class="col-md-4" runat="server">
                     <input id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" readonly="readonly"/>
-</div>                         
+                    </div>
 </div>
 
 </div>
 </div>
 
 </div>
-
-
-                <div class="col-md-4">
-            <div class="form-horizontal">
-
-
-</div>
-</div>
-</div>
-</div>
-
-        <div class="col-md-4">
-            <div class="form-horizontal">
-
-                </div>
-                </div>
-
-        <div class="col-md-4">
-            <div class="form-horizontal">
-
-                </div>                         
-                </div>
-
-                <div class="col-md-4">
-            <div class="form-horizontal">
-
-</div>
-</div>
-
 
    <div class="form-group">
-        <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-10">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648" OnClick="aceptarClick"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelarClick"/>
+        <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; margin-top:20px;" CssClass="btn btn-default" OnClick="cancelarClick"/>
 
         </div>
     </div>
 
-</div>
 </asp:Content>
 

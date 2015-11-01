@@ -90,9 +90,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void restriccionesCampos()
         {
-            nombreReqTxtbox.MaxLength = 30;
-            precondicionReqTxtbox.MaxLength = 150;
-            reqEspecialesReqTxtbox.MaxLength = 150;
+            //nombreReqTxtbox.MaxLength = 30;
+            //precondicionReqTxtbox.MaxLength = 150;
+            //reqEspecialesReqTxtbox.MaxLength = 150;
             propositoTxtbox.MaxLength = 80;
             ambienteTxtbox.MaxLength = 150;
             procedimientoTxtbox.MaxLength = 150;
@@ -102,9 +102,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void habilitarCampos()
         {
-            nombreReqTxtbox.Enabled = true;
-            precondicionReqTxtbox.Enabled = true;
-            reqEspecialesReqTxtbox.Enabled = true;
+            //nombreReqTxtbox.Enabled = true;
+           // precondicionReqTxtbox.Enabled = true;
+            //reqEspecialesReqTxtbox.Enabled = true;
             propositoTxtbox.Enabled = true;
             ambienteTxtbox.Enabled = true;
             procedimientoTxtbox.Enabled = true;
@@ -119,9 +119,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void deshabilitarCampos()
         {
-            nombreReqTxtbox.Enabled = false;
-            precondicionReqTxtbox.Enabled = false;
-            reqEspecialesReqTxtbox.Enabled = false;
+           // nombreReqTxtbox.Enabled = false;
+           // precondicionReqTxtbox.Enabled = false;
+           // reqEspecialesReqTxtbox.Enabled = false;
             propositoTxtbox.Enabled = false;
             ambienteTxtbox.Enabled = false;
             procedimientoTxtbox.Enabled = false;
@@ -135,9 +135,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void limpiarCampos()
         {
-            nombreReqTxtbox.Text = "";
-            precondicionReqTxtbox.Text = "";
-            reqEspecialesReqTxtbox.Text = "";
+           // nombreReqTxtbox.Text = "";
+           // precondicionReqTxtbox.Text = "";
+            //reqEspecialesReqTxtbox.Text = "";
             propositoTxtbox.Text = "";
             ambienteTxtbox.Text = "";
             procedimientoTxtbox.Text = "";
