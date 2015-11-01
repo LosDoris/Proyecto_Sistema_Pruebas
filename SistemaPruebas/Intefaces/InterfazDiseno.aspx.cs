@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -205,9 +206,62 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Eliminar);
         }
 
-        protected void llenarGridRequerimientos()
+        protected void llenarGridReqNoDiseno()
         {
+            int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+            int diseno = -1;
+            if (Int32.Parse(buttonDisenno)==2)
+            {
+               // diseno = controlDiseno. CREAR METODO
+            }
+            DataTable dt = new DataTable();//crearTablaProyecto();
+            dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Id Requerimiento")});
+            DataTable req = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
+            //Object[] datos = new Object[5];
+            if (req.Rows.Count > 0)
+            {
+                foreach (DataRow fila in req.Rows)
+                {
+                    dt.Rows.Add(fila[0].ToString());
+                }
+            }
+            else
+            {
 
+                dt.Rows.Add("-");
+
+            }
+           // this.gridProyecto.DataSource = dt;
+           // this.gridProyecto.DataBind();
+        }
+
+        protected void llenarGridReqEnDiseno()
+        {
+            int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+            int diseno = -1;
+            if (Int32.Parse(buttonDisenno) == 2)
+            {
+                // diseno = controlDiseno. CREAR METODO
+            }
+            DataTable dt = new DataTable();//crearTablaProyecto();
+            dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Id Requerimiento") });
+            DataTable req = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
+            //Object[] datos = new Object[5];
+            if (req.Rows.Count > 0)
+            {
+                foreach (DataRow fila in req.Rows)
+                {
+                    dt.Rows.Add(fila[0].ToString());
+                }
+            }
+            else
+            {
+
+                dt.Rows.Add("-");
+
+            }
+            // this.gridProyecto.DataSource = dt;
+            // this.gridProyecto.DataBind();
         }
 
         protected void llenarGridDisenos()
@@ -363,6 +417,18 @@ namespace SistemaPruebas.Intefaces
                     responsable.Items.Add(new ListItem("No Disponible"));
                 }
             }
+
+        }
+
+        public int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
+        {
+            return 1;//resultado de la eliminacion 
+
+        }
+
+        public int asociarRequerimientoEnDiseno(int id_req, int id_diseno)
+        {
+            return 1;//resultado de la insersion
 
         }
     }
