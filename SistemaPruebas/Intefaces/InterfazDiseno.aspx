@@ -14,7 +14,7 @@
             $("#txt_date").datepicker();
         });
     </script>
-
+        
         <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="insertarClick"/>
@@ -32,10 +32,15 @@
                         <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
-                    </div>
-                </div>
+        </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
     <h4>Requerimientos a Probar</h4>
 
+<div class="cajaAnchoPagina">
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombreReqLabel" CssClass="col-md-2 control-label">Nombre:</asp:Label>
                     <div class="col-md-4">
@@ -55,12 +60,20 @@
 </div>
 </div>
 
+</div>
 
-                    <div class="form-group">
+<div class="row">
+<div class="col-md-8">
+<div class="form-horizontal">
+
+
+
+<div class="form-group">
                     <asp:Label runat="server" ID="propositoLabel" CssClass="col-md-2 control-label">Propósito:</asp:Label>
                     <div class="col-md-4">
                     <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"/> 
-</div>
+                    </div>
+
 </div>
 
                 <div class="form-group">
@@ -76,11 +89,6 @@
                     </div>
                 </div>
 
-</div>
-</div>
-
-        <div class="col-md-4">
-            <div class="form-horizontal">
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Técnica:</asp:Label>
                     <div class="col-md-6">
@@ -92,48 +100,46 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-              </div>
-            </div>
-        <div class="col-md-4">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Tipo:</asp:Label>
-                    <div class="col-md-6">
-                        <asp:DropDownList runat="server" ID="Tipo" style="width:250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
-                           <asp:ListItem Value="2">Funcional</asp:ListItem>
-                            <asp:ListItem Value="3">Interfaz de Usuario</asp:ListItem>
-                            <asp:ListItem Value="4">Rendimiento</asp:ListItem>
-                           <asp:ListItem Value="5">Stress</asp:ListItem>
-                            <asp:ListItem Value="6">Volumen</asp:ListItem>
-                            <asp:ListItem Value="7">Configuración</asp:ListItem>
-                            <asp:ListItem Value="7">Instalación</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                </div>
-                </div>
 
-                <div class="col-md-4">
-            <div class="form-horizontal">
-                <div class="form-group">
+            
+
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="form-horizontal">
+
+
+<div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Ambiente:</asp:Label>
-
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
-
-</div>
-</div>
-</div>
+                    <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:130px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    </div>
 </div>
 
-                <div class="col-md-4">
-            <div class="form-horizontal">
-                <div class="form-group">
+</div>
+</div>
+
+<div class="col-md-8">
+<div class="form-horizontal">
+
+<div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Procedimiento Utilizado:</asp:Label>
 
-                    <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+<div class="col-md-6">
+                    <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:1020px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+                <div class="col-md-4">
+            <div class="form-horizontal">
 
 
 </div>
@@ -178,8 +184,6 @@
 </div>
 </div>
 
-</div>
-</div>
 
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-10">

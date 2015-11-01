@@ -112,7 +112,7 @@ namespace SistemaPruebas.Intefaces
             //proyectoAsociado.Enabled = true;
             Nivel.Enabled = true;
             Tecnica.Enabled = true;
-            Tipo.Enabled = true;
+          //  Tipo.Enabled = true;
             responsable.Enabled = true;
 
         }
@@ -129,7 +129,7 @@ namespace SistemaPruebas.Intefaces
             //proyectoAsociado.Enabled = false;
             Nivel.Enabled = false;
             Tecnica.Enabled = false;
-            Tipo.Enabled = false;
+           // Tipo.Enabled = false;
             responsable.Enabled = false;
         }
 
@@ -148,8 +148,8 @@ namespace SistemaPruebas.Intefaces
             ListItem selectedListItem1 = Nivel.Items.FindByValue("1");
             Tecnica.ClearSelection();
             ListItem selectedListItem2 = Tecnica.Items.FindByValue("1");
-            Tipo.ClearSelection();
-            ListItem selectedListItem3 = Tipo.Items.FindByValue("1");
+          //  Tipo.ClearSelection();
+           // ListItem selectedListItem3 = Tipo.Items.FindByValue("1");
             responsable.ClearSelection();
             ListItem selectedListItem4 = responsable.Items.FindByValue("1");
             cancelar.Enabled = false;
@@ -239,7 +239,7 @@ namespace SistemaPruebas.Intefaces
         {
 
             string fecha = Page.Request.Form["txt_date"];
-            object[] datos = new object[7] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, Tipo.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
+            object[] datos = new object[6] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
 
         }
 

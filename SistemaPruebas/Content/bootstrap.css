@@ -36,6 +36,21 @@ summary {
   display: block;
 }
 
+.cajaAnchoPagina {
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom:20px;
+  color: inherit;
+  background-color: #ffffff;
+  border-color:#2e8e9e;
+  border-bottom-width: 3px;
+  border: 1px solid #d3d3d3;
+  border-radius: 9px;
+  width:100%;
+  height:auto;
+  display:inline-block;
+}
+
 .col-mdP {
     width: 100%;
 	float: left;
