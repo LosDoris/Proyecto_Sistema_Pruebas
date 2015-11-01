@@ -157,15 +157,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.TextBox procedimientoTxtbox;
         
         /// <summary>
-        /// responsable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList responsable;
-        
-        /// <summary>
         /// criteriosTxtbox control.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace SistemaPruebas.Intefaces {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox criteriosTxtbox;
+        
+        /// <summary>
+        /// responsable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList responsable;
         
         /// <summary>
         /// aceptar control.

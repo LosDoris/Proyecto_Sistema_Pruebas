@@ -107,13 +107,13 @@
 </div>
 </div>
 
-<div class="col-md-4">
+<div class="col-md-offset-6 col-md-10">
 <div class="form-horizontal">
 
 
 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Ambiente:</asp:Label>
-                    <div class="col-md-6">
+                    <asp:Label runat="server" CssClass="col-md-6 control-label">Ambiente:</asp:Label>
+                    <div class="col-md-8">
                     <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:130px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
                     </div>
 </div>
@@ -132,6 +132,35 @@
 </div>
 </div>
 
+<div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
+<div class="col-md-6">
+                    <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:1020px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+</div>
+</div>
+
+<div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Responsable:</asp:Label>
+<div class="col-md-6">
+                    <asp:DropDownList runat="server" ID="responsable" style="width:250px" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
+                    </asp:DropDownList>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="col-md-offset-6 col-md-11">
+<div class="form-horizontal">
+
+<div class="form-group">                     
+                    <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Diseño:</asp:Label>
+<div class="col-md-8" runat="server">
+                    <input id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" readonly="readonly"/>
+</div>                         
+</div>
+
 </div>
 </div>
 
@@ -149,38 +178,19 @@
 
         <div class="col-md-4">
             <div class="form-horizontal">
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Responsable:</asp:Label>
-                    <div class="col-md-6">
-                        <asp:DropDownList runat="server" ID="responsable" style="width:250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </div>
+
                 </div>
                 </div>
 
         <div class="col-md-4">
             <div class="form-horizontal">
-                <div class="form-group">                     
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
-                    <div class="col-md-4" runat="server">
-                        <input id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" readonly="readonly"/>
-                    </div>                         
-                </div>
+
                 </div>                         
                 </div>
 
                 <div class="col-md-4">
             <div class="form-horizontal">
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
 
-                    <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:250px;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
-
-</div>
-</div>
 </div>
 </div>
 
