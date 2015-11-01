@@ -2,26 +2,56 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <h2><%: Title %>.</h2>
-    
+     <style type="text/css">
+        .modalBackground 
+        {
+            background-color: black;
+            filter: alpha(opacity=90);
+            opacity:0.8;
+        }
+        .modalPopup 
+        {
+            background-color: #ffffff;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+            padding-top: 10px;
+            padding-left: 10px;         
+        }
+         .errorDiv 
+         {
+             display: none;
+         }
+    </style>
 
-                       <script type="text/javascript">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">        
+    <script type="text/javascript">
+        function HideLabel() {
+            var seconds = 5;           
+            setTimeout(function () {
+
+                $('#'+'<%=EtiqErrorGen.ClientID %>').fadeOut('5000');
+            }, 2000);           
+    }
                            function solo_numeros(evt) {
                                if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
-                                   alert("Sólo se permite números");
+                                   //alert("Sólo se permite números");
                                    return false;
                                }
-                           }
-                        </script>
-
-                        <script type="text/javascript">
+                           }                        
                             function solo_letras(evt) {
                                 if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
-                                    alert("Sólo se permite letras");
+                                    //alert("Sólo se permite letras");
                                     return false;
                                 }
                             }
                         </script>
-
+    <asp:label runat="server" ID="EtiqErrorGen" Visible="false"></asp:label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorConsultar" >*Ha habido problemas para consultar este recurso humano. Por favor vuelva a intentarlo mas tarde.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorLlaves" >*La cédula ingresada ya pertenece a un usuario de la aplicación. Por favor ingrese otra identificación.</asp:Label>
@@ -55,7 +85,7 @@
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1" >Cédula:</asp:Label>
                         <div class="col-md-10">                           
   
-                            <asp:TextBox runat="server" ID="TextBoxCedulaRH" style="width:250px" CssClass="form-control" MaxLength="10" onkeypress="return solo_numeros(event)">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxCedulaRH" style="width:250px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal" >*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
                                 <asp:requiredfieldvalidator id="ValidaCampos"
                                     controltovalidate="TextBoxCedulaRH"
@@ -65,6 +95,24 @@
                                     errormessage="El campo de Cédula es obligatorio."
                                     runat="Server">
                                 </asp:requiredfieldvalidator>
+                            <script type="text/javascript">
+                                function check_txt(e) {
+                                    if (!solo_numeros(e)) {
+                                        $('#errorCedula').fadeIn();
+                                        $('#errorCedula').fadeOut(5000);
+
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }
+                                    else
+                                        $('#errorCedula').fadeOut();
+                                };
+                                </script>
+                            <div id="errorCedula" class="errorDiv">
+                                <asp:label runat="server" Text="Este campo sólo acepta números"></asp:label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

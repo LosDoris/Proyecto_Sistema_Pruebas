@@ -30,16 +30,16 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     
     <script type="text/javascript">
-        $(function () {
-            $("#txt_date").datepicker();
-        });
+        //$(function () {
+          //  $("#txt_date").datepicker();
+        //});
     </script>
     <script type="text/javascript">
         function HideLabel() {
             var seconds = 5;           
             setTimeout(function () {
 
-                $('#'+'<%=EtiqErrorLlaves.ClientID %>').fadeOut('slow');
+                $('#'+'<%=EtiqErrorLlaves.ClientID %>').fadeOut('5000');
             }, 2000);           
     };
 </script>
@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged"/>
+                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras(evt) {
@@ -98,7 +98,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General</asp:Label>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)"/>
+                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)" placeHolder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="obj_general" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letrasYNumeros(evt) {
@@ -141,8 +141,10 @@
                      
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <input id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" readonly="readonly"/>
+                        <asp:TextBox runat="server" id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" ReadOnly="True" placeholder="De un click para seleccionar fecha."></asp:TextBox>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
                     </div>
+                    
                          
                 </div>
             </div>
@@ -186,7 +188,7 @@
                     <div class="col-md-6">
                         <asp:label runat="server" id="tel1Label" text="Teléfono 1:"></asp:label>
 
-                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)"/>
+                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)" placeholder="00000000"/>
                         <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
@@ -218,7 +220,7 @@
                             <asp:label runat="server" ID="errorTel1Txt" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
                         </div>
                         <asp:label runat="server" id="tel2Label" text="Teléfono 2:" style="margin-top:20px"></asp:label>
-                        <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="check_txt2(this,event,8)" MaxLength="8" CausesValidation="True"/>
+                        <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="check_txt2(this,event,8)" MaxLength="8" CausesValidation="True" placeholder="Complete primero el Tél. 1"/>
                         <asp:RegularExpressionValidator Display = "Dynamic"  ControlToValidate = "tel_rep2" ID="RegularExpressionValidator1" ValidationExpression = "^(\d{8})|()$" runat="server" ErrorMessage="Debe digitar 8 números." ForeColor="Salmon"></asp:RegularExpressionValidator>
                         <script type="text/javascript">
                             function check_txt2(textBox, e, length) {

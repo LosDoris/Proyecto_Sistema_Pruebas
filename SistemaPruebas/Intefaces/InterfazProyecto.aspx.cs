@@ -86,13 +86,13 @@ namespace SistemaPruebas.Intefaces
             //adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
             Deshabilitar_Campos();
-           // if (!Convert.ToBoolean(adm))
-                Insertar.Enabled = true;
+            //if (!Convert.ToBoolean(adm))
+              //  Insertar.Enabled = false;
             aceptar.Enabled = false;
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
-            //datepicker.Disabled = true;
+            
             //llenarGrid();
             EtiqErrorLlaves.Visible = false;
         }
@@ -111,6 +111,7 @@ namespace SistemaPruebas.Intefaces
             tel_rep2.MaxLength = 8;
             of_rep.MaxLength = 17;
             obj_general.Rows = 5;
+            gridProyecto.Columns[0].Visible = false;
 
         }
 
@@ -129,6 +130,7 @@ namespace SistemaPruebas.Intefaces
             tel_rep2.Enabled = true;
             of_rep.Enabled = true;
             LiderProyecto.Enabled = true;
+            txt_date.Enabled = true;
             //datepicker.Disabled = false;
         }
 
@@ -146,6 +148,7 @@ namespace SistemaPruebas.Intefaces
             tel_rep2.Enabled = false;
             of_rep.Enabled = false;
             LiderProyecto.Enabled = false;
+            txt_date.Enabled = false;
             //datepicker.Enabled = false;
         }
 
@@ -170,6 +173,7 @@ namespace SistemaPruebas.Intefaces
             estado.ClearSelection();
             ListItem selectedListItems = estado.Items.FindByValue("1");
             ListItem selectedListItemsLider = LiderProyecto.Items.FindByValue("0");
+            txt_date.Text = "";
         }
 
         //Insertar_button():
@@ -207,7 +211,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             desmarcarBoton(ref Insertar);
                             Console.WriteLine("Insertar");
-                            string text = Page.Request.Form["txt_date"];
+                            string text = txt_date.Text; ;
                             object[] datos = new object[8] { 0, nombre_proyecto.Text, obj_general.Text, text, estado.SelectedValue, nombre_rep.Text, tel_rep.Text, of_rep.Text };
                             int a = controladoraProyecto.IngresaProyecto(datos);
                             if (a == 1)
@@ -442,7 +446,7 @@ namespace SistemaPruebas.Intefaces
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
-            //txtDate.Text = entidadP.Fecha_asignacion;
+            txt_date.Text = entidadP.Fecha_asignacion;
             estado.ClearSelection();
             ListItem selectedListItem = estado.Items.FindByValue(entidadP.Estado);
             if (selectedListItem != null)
@@ -510,22 +514,24 @@ namespace SistemaPruebas.Intefaces
             textModal.Text = "¿Desea Eliminar este proyecto?";
             deshabilitarGrid();
             marcarBoton(ref Eliminar);
-            //button = "3";
+            button = "3";
             UnenabledButtons();
             //aceptar.Enabled = true;
             //cancelar.Enabled = true;
-            //modificando = true.ToString();
-            //id_modificando = id_Proyecto;
-            //controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
-            //if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0)
-            //{
-            //    
-
-            //}
-            //else
-            //{
+            modificando = true.ToString();
+            if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0)
+            {
+                id_modificando = id_Proyecto;
+                controladoraProyecto.AgregarModificacion(Int32.Parse(id_modificando));
+            }
+            else
+            {
+                EtiqErrorLlaves.Text = "El proyecto consultado se encuentra actualmente en uso, se muestra sólo con fines de lectura";
+                EtiqErrorLlaves.Visible = true;
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El proyecto consultado se encuentra actualmente en uso');", true);
-            //}
+        }
         }
 
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
@@ -701,7 +707,11 @@ namespace SistemaPruebas.Intefaces
             //id_modificando = i.ToString();
             //modificando = false.ToString();
             //controladoraProyecto.UpdateUsoProyecto(int.Parse(id_Proyecto), 0);
-
+            controladoraProyecto.QuitarEliminacion(Int32.Parse(id_modificando));
+            int i = -1;
+            id_modificando = i.ToString();
+            modificando = false.ToString();
+            if (button != "2" && button != "3")
             Limpiar_Campos();
             Deshabilitar_Campos();
             aceptar.Enabled = false;
