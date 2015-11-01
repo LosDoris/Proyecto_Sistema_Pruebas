@@ -19,9 +19,34 @@ namespace SistemaPruebas.Intefaces
         private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         static String cedulaConsulta = "";
-        private static bool esAdmin = false;
-        private static int cedulaLoggeado;
+        //private static bool esAdmin = false;
+        //private static int cedulaLoggeado;
         //Controladoras.ControladoraProyecto controladoraProyecto = new Controladoras.ControladoraProyecto();
+
+        public static string cedulaLoggeado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["cedulaLoggeado"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["cedulaLoggeado"] = value;
+            }
+        }
+        public static bool esAdmin
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["esAdmin"];
+                return value == null ? true : Convert.ToBoolean(value);
+            }
+            set
+            {
+                HttpContext.Current.Session["esAdmin"] = value;
+            }
+        }
 
 
         /*
@@ -35,7 +60,7 @@ namespace SistemaPruebas.Intefaces
             if (!IsPostBack)
             {
                 esAdmin = controladoraRecursosHumanos.loggeadoEsAdmin();
-                cedulaLoggeado = controladoraRecursosHumanos.idDelLoggeado();
+                cedulaLoggeado = controladoraRecursosHumanos.idDelLoggeado().ToString();
                 volverAlOriginal();
                 if (!esAdmin)
                 {
@@ -43,18 +68,9 @@ namespace SistemaPruebas.Intefaces
                 }
                 else
                 {
-
+                    llenarGrid();
                 }
-            }
-            if (!esAdmin)
-            {
-
-            }
-            else
-            {
-                llenarGrid();
-            }
-
+            }            
            // RH.Enabled = false;
         }
 
@@ -275,8 +291,8 @@ namespace SistemaPruebas.Intefaces
             llenarDDRol();
             llenarDDProyecto();
             if (esAdmin) {
-                TextBoxCedulaRH.Text = ".";
-                TextBoxNombreRH.Text = ".";
+                TextBoxCedulaRH.Text = "";
+                TextBoxNombreRH.Text = "";
                 TextBoxEmail.Text = "";
                 TextBoxTel1.Text = "";
                 TextBoxTel2.Text = "";
@@ -860,6 +876,21 @@ namespace SistemaPruebas.Intefaces
             }
             RH.AllowPaging = true;
             RH.DataBind();
+        }
+
+        protected void aceptarModal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cancelarModal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
