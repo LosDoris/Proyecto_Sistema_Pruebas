@@ -508,11 +508,15 @@ namespace SistemaPruebas.Intefaces
 
             Controladoras.EntidadDisenno entidad = controlDiseno.consultarDisenno(id_diseno);
             this.propositoTxtbox.Text = entidad.Proposito;
+
+            Nivel.ClearSelection();
             ListItem selectedListItem = Nivel.Items.FindByValue(entidad.Nivel.ToString());
             if (selectedListItem != null)
             {
                 selectedListItem.Selected = true;
             };
+
+            Tecnica.ClearSelection();
             ListItem selectedListItem2 = Tecnica.Items.FindByValue(entidad.Tecnica.ToString());
             if (selectedListItem2 != null)
             {
@@ -522,8 +526,10 @@ namespace SistemaPruebas.Intefaces
             this.procedimientoTxtbox.Text = entidad.Procedimiento;
             //txt_date.Text
             this.criteriosTxtbox.Text = entidad.CriterioAceptacion;
+
             cargarResponsablesMiembro();
-            ListItem selectedListItem3 = Tecnica.Items.FindByText(controlDiseno.solicitarNombreResponsable(entidad.Responsable));
+            responsable.ClearSelection();
+            ListItem selectedListItem3 = responsable.Items.FindByText(controlDiseno.solicitarNombreResponsable(entidad.Responsable));
             if (selectedListItem3 != null)
             {
                 selectedListItem3.Selected = true;

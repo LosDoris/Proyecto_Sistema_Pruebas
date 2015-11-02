@@ -170,6 +170,14 @@
 
 </div>
 
+   <div class="form-group">
+        <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; margin-top:20px;" CssClass="btn btn-default" OnClick="cancelarClick"/>
+
+        </div>
+    </div>
+
     <div id="tablaDisenos" class="row">
 
         <asp:GridView ID="gridDisenos" runat="server" margin-right="auto"
@@ -180,14 +188,6 @@
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true">
         </asp:GridView>
-    </div>
-
-   <div class="form-group">
-        <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; margin-top:20px;" CssClass="btn btn-default" OnClick="cancelarClick"/>
-
-        </div>
     </div>
 
 </asp:Content>
