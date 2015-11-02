@@ -15,7 +15,7 @@
         <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar este caso de prueba?')" />
     </div>
 </div>
-<div class ="row">    
+<div class ="row" style ="width: 100%">    
     <div class="jumbozCP" >
         <h4>Resumen</h4>
 
@@ -100,10 +100,10 @@
                         <asp:GridView ID="DECP" runat ="server" margin-right ="auto" 
                                     CellPadding="10" 
                                     margin-left="auto" AutoGenerateColumns ="true" 
-                                    CssClass ="GridView" HorizontalAlign="Center"  
+                                    CssClass ="GridView" HorizontalAlign="Center"   
                                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 
                                     AutoPostBack ="true" OnSelectedIndexChanged="DECP_SelectedIndexChanged"
-                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound">                            
+                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnRowDataBound">                            
                         </asp:GridView>
                     </div>
                 </div>
@@ -161,7 +161,9 @@
             CellPadding="10" 
             margin-left="auto" 
             CssClass ="GridView" HorizontalAlign="Center" 
+            OnRowDataBound="OnRowDataBound" 
             AllowPaging="true"   PageSize="5" 
+            OnPageIndexChanging="OnCPPageIndexChanging"
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
             AutoPostBack ="true" >      
     </asp:GridView>
