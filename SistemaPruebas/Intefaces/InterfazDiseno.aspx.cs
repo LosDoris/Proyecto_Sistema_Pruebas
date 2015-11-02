@@ -542,7 +542,7 @@ namespace SistemaPruebas.Intefaces
                 Eliminar.Enabled = true;
                 aceptar.Enabled = true;
 
-                Llenar_Datos_Conultados(Int32.Parse(proposito_Diseno));
+                Llenar_Datos_Conultados(id_diseno);
                 cancelar.Enabled = true;
 
             }
