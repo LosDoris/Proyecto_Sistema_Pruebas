@@ -78,7 +78,7 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             habilitarCampos();
-            deshabilitarGrid();
+            deshabilitarGridDiseno();
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
@@ -188,7 +188,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
-                            habilitarGrid();
+                            habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Insertar);
                         }
@@ -336,14 +336,28 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected void habilitarGrid()
+        protected void habilitarGridDiseno()
         {
-
+            gridDisenos.Enabled = true;
+            foreach (GridViewRow row in gridDisenos.Rows)
+            {
+                row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridDisenos, "Select$" + row.RowIndex);
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                row.Attributes["style"] = "cursor:pointer";
+            }
         }
 
-        protected void deshabilitarGrid()
+        protected void deshabilitarGridDiseno()
         {
-
+            gridDisenos.Enabled = false;
+            foreach (GridViewRow row in gridDisenos.Rows)
+            {
+                row.Attributes.Remove("onclick");
+                row.Attributes.Remove("onmouseover");
+                row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
+            }
         }
 
         protected void obtenerDatosInsertados()
