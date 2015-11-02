@@ -31,6 +31,7 @@ namespace SistemaPruebas.Intefaces
                 if (llenarProyecto == true.ToString())
                 {
                     llenarComboboxProyectoMiembro();
+                    llenarGridDisenos();
                     cargarResponsablesMiembro();
                     deshabilitarCampos();
                 }
@@ -299,26 +300,39 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridDisenos()
         {
 
-            DataTable dt = new DataTable();//crearTablaProyecto();
-            dt.Columns.AddRange(new DataColumn[4] { new DataColumn("Propósito"), new DataColumn("Nivel"), new DataColumn("Técnica"), new DataColumn("Responsable")});
+            DataTable disennos = new DataTable();
+
+            disennos.Columns.Add("Propósito");
+            disennos.Columns.Add("Nivel");
+            disennos.Columns.Add("Técnica");
+            disennos.Columns.Add("Responsable");
+
             int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-            DataTable disennos = controlDiseno.consultarDisenoGrid(proyecto);
-            Object[] datos = new Object[5];
-            if (disennos.Rows.Count > 0)
+            DataTable dt = controlDiseno.consultarDisenoGrid(proyecto);
+            Object[] datos = new Object[4];
+
+
+            if (dt.Rows.Count > 0)
             {
-                foreach (DataRow fila in proyecto.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
-                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString());
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    datos[3] = dr[3];
+                    disennos.Rows.Add(datos);
                 }
             }
             else
             {
-
-                dt.Rows.Add("-", "-", "*");
-
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                disennos.Rows.Add(datos);
             }
-            this.gridDisenos.DataSource = dt;
-            this.gridDisenos.DataBind();
+            gridDisenos.DataSource = disennos;
+            gridDisenos.DataBind();
 
         }
 
@@ -372,7 +386,7 @@ namespace SistemaPruebas.Intefaces
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine(e);
                 }
 
             }
@@ -389,7 +403,7 @@ namespace SistemaPruebas.Intefaces
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine(e);
                 }
             
         }
@@ -415,7 +429,7 @@ namespace SistemaPruebas.Intefaces
                     }
                     catch (Exception ex)
                     {
-
+                        Console.WriteLine(ex);
                     }
                 }
             }
@@ -430,7 +444,7 @@ namespace SistemaPruebas.Intefaces
         {
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
-
+                llenarGridDisenos();
                 int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                 this.responsable.Items.Clear();
                 responsable.Items.Add(new ListItem("Seleccionar"));
@@ -450,7 +464,7 @@ namespace SistemaPruebas.Intefaces
                         }
                         catch (Exception ex)
                         {
-
+                            Console.WriteLine(ex);
                         }
                     }
                 }
@@ -534,7 +548,7 @@ namespace SistemaPruebas.Intefaces
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
-            if (gridDisenos.Enabled && e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";

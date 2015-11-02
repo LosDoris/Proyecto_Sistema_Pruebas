@@ -171,28 +171,15 @@
 </div>
 
     <div id="tablaDisenos" class="row">
-        <asp:GridView ID="gridDisenos" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
-            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="7px" 
-            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
-            <Columns>
-                <asp:BoundField DataField="Proposito" ItemStyle-Width="185px" HeaderText="Propósito"  />
-                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Nivel">
-                    <ItemTemplate>
-                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nivel") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Técnica">
-                    <ItemTemplate>
-                        <asp:Label ID="Tecnica" runat="server" Text='<%# Eval("Técnica") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Responsable">
-                    <ItemTemplate>
-                        <asp:Label ID="Responsable" runat="server" Text='<%# Eval("Responsable") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+
+        <asp:GridView ID="gridDisenos" runat="server" margin-right="auto"
+            CellPadding="10"
+            margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChanged"
+            OnRowDataBound="OnRowDataBound" CssClass="GridView" HorizontalAlign="Center"
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5"
+            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
+            AutoPostBack="true">
+        </asp:GridView>
     </div>
 
    <div class="form-group">

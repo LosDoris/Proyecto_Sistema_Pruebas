@@ -122,3 +122,4 @@ namespace SistemaPruebas.Controladoras
             return controlBD.consultarId_Disenno(proposito);
         }
 }
+}

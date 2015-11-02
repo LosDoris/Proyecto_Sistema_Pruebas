@@ -134,7 +134,7 @@ namespace SistemaPruebas.Controladoras
                     }
             else if (tipo == 2)//consulta para llenar grid
             {
-                consulta = "select D.proposito, D.nivel, D.tecnica, R.nombre_completo from Disenno_Prueba D, Recurso_Humano R where D.cedula=R.cedula AND id_proyecto=" + id;
+                consulta = "select D.proposito, D.nivel, D.tecnica, R.nombre_completo from Disenno_Prueba D, Recurso_Humano R where D.cedula=R.cedula AND D.id_proyecto=" + id;
                     }
 
                 dt = acceso.ejecutarConsultaTabla(consulta);
