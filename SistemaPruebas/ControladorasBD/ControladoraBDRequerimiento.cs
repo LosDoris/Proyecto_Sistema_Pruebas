@@ -135,6 +135,51 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public DataTable consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
+        {
+            String consulta = "select id_requerimiento from Requerimiento where id_requerimiento not in (select id_requerimiento from Prueba_Disenno_Req where id_proyecto = "+id_proyecto+" and id_disenno ="+ id_diseno+");";
+            DataTable dt = acceso.ejecutarConsultaTabla(consulta);
+            //DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
+            return dt;
+        }
+
+        public DataTable consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
+        {
+            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_disenno = "+id_diseno+"; ";
+            DataTable dt = acceso.ejecutarConsultaTabla(consulta);
+            //DataTable dt = controladoraBDRequerimiento.consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
+            return dt;
+
+        }
+
+        public int desasociarRequerimientoEnDisenoBD(int id_req, int id_diseno)
+        {
+
+            String consulta = "delete from Prueba_Disenno_Req where id_disenno=" + id_diseno + " and id_requerimiento='" + id_req + "';";
+            int ret = acceso.Insertar(consulta);
+            return ret;
+
+        }
+
+        public int asociarRequerimientoEnDisenoBD(int id_req, int id_diseno)
+        {
+
+            String consulta = "insert Prueba_Disenno_Req (id_disenno, id_proyecto, id_requerimiento)values ("+id_diseno+ ",(select id_proyecto from Disenno_Prueba where id_disenno=" + id_diseno + " ),'"+id_req+"');";
+            int ret = acceso.Insertar(consulta);
+            return ret;
+
+        }
+        /*select id_requerimiento from Requerimiento
+where id_requerimiento not in (select id_requerimiento
+								from Prueba_Disenno_Req
+								where id_proyecto=-1 and id_disenno=4)
+
+select id_requerimiento from Prueba_Disenno_Req
+where id_disenno=4;
+
+
+insert Prueba_Disenno_Req (id_disenno, id_proyecto, id_requerimiento)values (4,(select id_proyecto from Disenno_Prueba where id_disenno=4 ),'req 3')*/
+
     }
 }
 /*

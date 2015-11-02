@@ -171,14 +171,33 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRequerimientoNoEnDiseno(int id_proyecto, int id_diseno)
         {
-            return new DataTable(); //CAMBIAR, ESTO ES X MIENTRAS
+            //DataTable dt = new DataTable();
+            DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(id_proyecto, id_diseno);
+            return dt;
         }
 
         public DataTable consultarRequerimientoEnDiseno(int id_proyecto, int id_diseno)
         {
-            return new DataTable(); //CAMBIAR, ESTO ES X MIENTRAS
+            //DataTable dt = new DataTable();
+            DataTable dt = controladoraBDRequerimiento.consultarRequerimientoEnDisenoBD(id_proyecto, id_diseno);
+            return dt;
 
         }
+
+        public int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
+        {
+            //;
+            return controladoraBDRequerimiento.desasociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la eliminacion 
+
+        }
+
+        public int asociarRequerimientoEnDiseno(int id_req, int id_diseno)
+        {
+            //;
+            return controladoraBDRequerimiento.asociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la insersion
+
+        }
+
 
     }
 }
