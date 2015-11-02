@@ -94,7 +94,7 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controlBD.consultarDisennoBD(1, id_diseno);
             if (dt.Rows.Count == 1)
             {
-                Object[] datos = new Object[7];
+                Object[] datos = new Object[9];
                 EntidadDisenno retorno;
 
                 datos[0] = dt.Rows[0][0].ToString();
@@ -106,6 +106,7 @@ namespace SistemaPruebas.Controladoras
                 datos[6] = dt.Rows[0][6].ToString();
                 datos[7] = dt.Rows[0][7].ToString();
                 datos[8] = dt.Rows[0][8].ToString();
+                datos[9] = dt.Rows[0][9].ToString();
                 retorno = new EntidadDisenno(datos);
                 return retorno;
             }
