@@ -63,6 +63,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public string solicitarNombreResponsable(int cedula)
+        {
+            return controlRH.solicitarNombreRecurso(cedula);
+        }
+
         public bool loggeadoEsAdmin()
         {
             return controlRH.loggeadoEsAdmin();
@@ -83,5 +88,37 @@ namespace SistemaPruebas.Controladoras
         {
             return controlReq.consultarRequerimientoEnDiseno(id_proyecto, id_diseno);
         }
-    }
+
+        public EntidadDisenno consultarDisenno(int id_diseno)
+        {
+            DataTable dt = controlBD.consultarDisennoBD(1, id_diseno);
+            if (dt.Rows.Count == 1)
+            {
+                Object[] datos = new Object[7];
+                EntidadDisenno retorno;
+
+                datos[0] = dt.Rows[0][0].ToString();
+                datos[1] = dt.Rows[0][1].ToString();
+                datos[2] = dt.Rows[0][2].ToString();
+                datos[3] = dt.Rows[0][3].ToString();
+                datos[4] = dt.Rows[0][4].ToString();
+                datos[5] = dt.Rows[0][5].ToString();
+                datos[6] = dt.Rows[0][6].ToString();
+                datos[7] = dt.Rows[0][7].ToString();
+                datos[8] = dt.Rows[0][8].ToString();
+                retorno = new EntidadDisenno(datos);
+                return retorno;
+            }
+            else return null;
+        }
+
+        public DataTable consultarDisenoGrid(int id_proyecto)
+        {
+            return controlBD.consultarDisennoBD(2, id_proyecto);
+        }
+        
+        public int consultarId_Disenno(String proposito)
+        {
+            return controlBD.consultarId_Disenno(proposito);
+        }
 }

@@ -124,24 +124,30 @@ namespace SistemaPruebas.Controladoras
          * Modifica: N/A.
          * Retorna: DataTable.
          */
-        public DataTable consultarDisennoBD(int tipo, int cedula)
+        public DataTable consultarDisennoBD(int tipo, int id)
         {
             DataTable dt = null;
             String consulta = "";
-            if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
+            if (tipo == 1)
             {
-                //consulta = "SELECT cedula, nombre_completo, rol, id_proyecto FROM Disenno_Prueba ORDER BY fechaUltimo desc;";//BY perfil_acceso";
-            }
-            else if (tipo == 2)
+                consulta = "select proposito, nivel, tecnica, ambiente, procedimiento, fecha_de_disenno, criterio_aceptacion, cedula, id_proyecto from Disenno_Prueba where id_disenno= " + id;             
+                    }
+            else if (tipo == 2)//consulta para llenar grid
             {
-                //consulta = "SELECT cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto FROM Disenno_Prueba WHERE cedula =" + cedula;
-                // dt = acceso.ejecutarConsultaTabla(consulta);
-            }
+                consulta = "select D.proposito, D.nivel, D.tecnica, R.nombre_completo from Disenno_Prueba D, Recurso_Humano R where D.cedula=R.cedula AND id_proyecto=" + id;
+                    }
 
-            dt = acceso.ejecutarConsultaTabla(""/*consulta*/);
+                dt = acceso.ejecutarConsultaTabla(consulta);
 
             return dt;
 
+        }
+
+        public int consultarId_Disenno(String proposito)
+        {
+            DataTable dt = new DataTable();
+            dt = acceso.ejecutarConsultaTabla("select id_disenno from Disenno_Prueba where proposito = '" + proposito + "'");
+            return Int32.Parse(dt.Rows[0][0].ToString());
         }
     }
 }

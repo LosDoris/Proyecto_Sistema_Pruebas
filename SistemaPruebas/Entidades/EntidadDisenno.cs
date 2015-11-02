@@ -20,9 +20,7 @@ namespace SistemaPruebas.Controladoras
         private String criterioAceptacion;
         private int responsable;
         private int proyAsociado;
-       // private String IdConsulta;
-
-
+        // private String IdConsulta;
 
         public EntidadDisenno(Object[] datos)
         {

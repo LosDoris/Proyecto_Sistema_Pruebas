@@ -170,6 +170,31 @@
 
 </div>
 
+    <div id="tablaDisenos" class="row">
+        <asp:GridView ID="gridDisenos" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
+            AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="7px" 
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
+            <Columns>
+                <asp:BoundField DataField="Proposito" ItemStyle-Width="185px" HeaderText="Propósito"  />
+                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Nivel">
+                    <ItemTemplate>
+                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nivel") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Técnica">
+                    <ItemTemplate>
+                        <asp:Label ID="Tecnica" runat="server" Text='<%# Eval("Técnica") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ItemStyle-Width="185px" HeaderText="Responsable">
+                    <ItemTemplate>
+                        <asp:Label ID="Responsable" runat="server" Text='<%# Eval("Responsable") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+    </div>
+
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
