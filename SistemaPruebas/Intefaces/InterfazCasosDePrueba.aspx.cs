@@ -124,6 +124,7 @@ namespace SistemaPruebas.Intefaces
         }
         protected void habilitarCamposEntrada()
         {
+            llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
             TextBoxDatos.Enabled = true;
             TextBoxDescripcion.Enabled = true;
             TipoEntrada.Enabled = true;
@@ -379,5 +380,61 @@ namespace SistemaPruebas.Intefaces
         {
 
         }
+
+
+        public static List<string> edDelGreggGrandeAlChiquitito(string hilera)
+        {
+
+            string[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
+            string[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
+
+            for (int i = 0; i < primeraDivision.Length; i++)
+            {
+                primeraDivision[i] = primeraDivision[i].Replace("[", "");
+                primeraDivision[i] = primeraDivision[i].Replace("]", "");
+            }
+            List<string> regresa = new List<string>();
+            for (int i = 0; i < primeraDivision.Length; i++)
+            {
+                if (primeraDivision[i].Contains("\""))
+                {
+                    string[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
+                    regresa.Add(temp[0]);
+                    regresa.Add(temp[1]);
+                }
+                else
+                {
+                    string[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
+                    regresa.Add(temp[0]);
+                    regresa.Add(temp[1]);
+                }
+            }
+
+            //regresa.Add(descripcion[1]);
+            return regresa;
+        }
+        public static string deLaBaseAGreggGrande(string hilera)
+        {
+            hilera = hilera.Replace("_", "");
+            return hilera;
+        }
+
+        protected void llenarGridEntradaDatos(List<string> lista_datos)
+        {
+            // ejemplo de uso:
+            //llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
+            for (int i = 0; i < lista_datos.Count; i+=2)
+            {
+                DataRow row = dtDatosEntrada.NewRow();
+                row["Tipo"] = lista_datos[i];
+                row["Datos"] = lista_datos[i + 1];
+                dtDatosEntrada.Rows.Add(row);
+                DECP.DataSource = dtDatosEntrada;
+                DECP.DataBind();
+            }
+
+        }
+
+
     }
 }

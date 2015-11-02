@@ -43,7 +43,7 @@
 		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; margin-top: 20px; width: 200px;height: 100px;" onkeypress="checkInput3(event)" TextMode="multiline"/>
 		    <script type="text/javascript">
 			    function checkInput3(e) {
-				    var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
+				    var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
 				    if (!ok)
 					    e.preventDefault();
 			    }
@@ -122,7 +122,7 @@
         <asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:150px; margin-top:120px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
         <script type="text/javascript">
             function checkInput4(e) {
-                var ok = /[A-Za-z.áéíóú]/.test(String.fromCharCode(e.charCode));
+                var ok = /[A-Za-z.áéíóú ]/.test(String.fromCharCode(e.charCode));
                 if (!ok)
                     e.preventDefault();
             }
@@ -133,7 +133,7 @@
         <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="margin-top:20px; width:250px; height:150px; margin-left: 63px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
         <script type="text/javascript">
             function checkInput5(e) {
-                var ok = /[A-Za-z0-9.\"\(\)áéíóú]/.test(String.fromCharCode(e.charCode));
+                var ok = /[A-Za-z0-9.\"\(\)áéíóú +]/.test(String.fromCharCode(e.charCode));
                 if (!ok)
                     e.preventDefault();
             }
@@ -157,9 +157,10 @@
 
 
  <div class="row">        
-    <asp:GridView ID="CP" runat ="server" margin-right ="auto" 
+    <asp:GridView ID="CP" runat ="server" margin-right ="auto"
+            style="margin-top: 700px;"
             CellPadding="10" 
-            margin-left="auto" 
+            margin-left="auto"
             CssClass ="GridView" HorizontalAlign="Center" 
             OnRowDataBound="OnRowDataBound" 
             AllowPaging="true"   PageSize="5" 
