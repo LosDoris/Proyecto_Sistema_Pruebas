@@ -36,16 +36,24 @@ namespace SistemaPruebas.Controladoras
 
         }
 
-        public int eliminarCasosPrueba(string id)
+        public int eliminarCasosPrueba(String id)
         {
             return acceso.Insertar("DELETE FROM Caso_prueba WHERE id_caso_prueba = " + id + ";");
         }
 
-        public DataTable consultarCasosPrueba()
+        public DataTable consultarCasosPrueba(int tipo, String id)
         {
             DataTable dt = null;
             String consulta = "";
-            consulta = "SELECT * FROM Caso_prueba ORDER BY fechaUltimo desc;";
+            if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
+            {
+                consulta = "SELECT id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central FROM Caso_Prueba ORDER BY fechaUltimo DESC;";
+            }
+            else if (tipo == 2)
+            {
+                consulta = "SELECT id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central FROM Caso_Prueba WHERE id_caso_prueba = '" + id + "';";
+         
+            }
             dt = acceso.ejecutarConsultaTabla(consulta);
 
             return dt;

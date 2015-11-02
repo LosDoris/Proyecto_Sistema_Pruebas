@@ -36,9 +36,9 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
-        public DataTable consultarCasosPrueba()
+        public DataTable consultarCasosPrueba(int tipo, String id)
         {
-            DataTable dt = controladoraBDCasosPrueba.consultarCasosPrueba();
+            DataTable dt = controladoraBDCasosPrueba.consultarCasosPrueba(tipo, id);
             return dt;
 
         }

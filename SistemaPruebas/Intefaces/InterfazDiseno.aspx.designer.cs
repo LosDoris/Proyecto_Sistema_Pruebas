@@ -49,6 +49,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.DropDownList proyectoAsociado;
         
         /// <summary>
+        /// iraRequerimientoBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button iraRequerimientoBtn;
+        
+        /// <summary>
         /// propositoLabel control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace SistemaPruebas.Intefaces {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList responsable;
+        
+        /// <summary>
+        /// gridDisenos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridDisenos;
         
         /// <summary>
         /// aceptar control.

@@ -23,6 +23,7 @@ namespace SistemaPruebas.Intefaces
                 inicializarModo();
                 inicializarDTDatosEntrada();
                 estadoInicial();
+                llenarGrid();
             }
         }
 
@@ -180,6 +181,55 @@ namespace SistemaPruebas.Intefaces
             //deshabilitar grid principal, aún no programado
         }
 
+        protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
+        {
+            DataTable casosPrueba = crearTablaCP();
+            DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(1,""); // en consultas tipo 1, no se necesita la cédula
+            
+            Object[] datos = new Object[5];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    datos[3] = dr[3];
+                    datos[4] = dr[4];
+                    casosPrueba.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                datos[4] = "-";
+                casosPrueba.Rows.Add(datos);
+            }
+            CP.DataSource = casosPrueba;
+            CP.DataBind();
+        }
+
+
+        protected DataTable crearTablaCP()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id", typeof(String));
+            dt.Columns.Add("Propósito", typeof(String));
+            dt.Columns.Add("Entrada de Datos", typeof(String));
+            dt.Columns.Add("Resultado", typeof(String));
+            dt.Columns.Add("Flujo Central", typeof(String));
+            return dt;
+        }
+
+        protected void OnCPPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            CP.PageIndex = e.NewPageIndex;
+            this.llenarGrid();
+        }
+
         protected void BotonCPModificar_Click(object sender, EventArgs e)
         {
             modo = 2;
@@ -230,7 +280,7 @@ namespace SistemaPruebas.Intefaces
             int operacion = -1;
             if(modo == 1)
             {
-                Response.Write("Modo es 1");
+                //Response.Write("Modo es 1");
                 operacion = controladoraCasosPrueba.insertarCasosPrueba(datosNuevos);
             }
             else if( modo == 2)
@@ -246,7 +296,7 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected string datosEntrada()
+        protected String datosEntrada()
         {
             String datosEntrada = "";
             String tipo = TipoEntrada.SelectedItem.Text;
@@ -256,45 +306,42 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                DECP.AllowPaging = false;
-                DECP.DataBind();
                 int index = 0;
-                foreach (GridViewRow row in DECP.Rows)
+                foreach (DataRow row in dtDatosEntrada.Rows)
                 {
                     if (index != 0)
                         datosEntrada += ",";
 
                     datosEntrada += "[";
-                    datosEntrada += row.Cells[0].Text[0];
-                    if(Regex.IsMatch(row.Cells[1].Text, @"\d+"))
+                    datosEntrada += row["Tipo"].ToString()[0];
+                    if(Regex.IsMatch(row["Datos"].ToString(), @"\d+"))
                     {
-                        datosEntrada += "," + row.Cells[1].Text + "]";
+                        datosEntrada += "," + row["Datos"].ToString() + "]";
                     }
                     else
                     {
                         datosEntrada += "]";
-                        datosEntrada += "\""+row.Cells[1].Text+"\"";
+                        datosEntrada += "\""+ row["Datos"].ToString() + "\"";
                     }
                     index++;
                 }
                 if(DECP.Rows.Count > 1)
                 {
-                    datosEntrada = "[" + datosEntrada + "]";
+                   datosEntrada = "[" + datosEntrada + "]";
                 }
 
                 datosEntrada = datosEntrada + "_" + TextBoxDescripcion.Text;
 
             }
-            DECP.AllowPaging = true;
-            DECP.DataBind();
-            Response.Write(datosEntrada);
+         
             return datosEntrada;
         }
 
         protected void AgregarEntrada_Click(object sender, EventArgs e)
         {
             agregarGridEntradaDatos();
-            datosEntrada();
+            Response.Write( datosEntrada());
+            TextBoxDatos.Text = "";
         }
 
         protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -304,7 +351,7 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
-        protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
             if (e.Row.RowType == DataControlRowType.DataRow)
