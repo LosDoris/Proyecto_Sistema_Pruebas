@@ -77,6 +77,7 @@ namespace SistemaPruebas.Intefaces
             limpiarCampos();
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
+            Insertar.Enabled = false;
             habilitarCampos();
             deshabilitarGridDiseno();
             marcarBoton(ref Insertar);
@@ -88,6 +89,16 @@ namespace SistemaPruebas.Intefaces
 
         protected void modificarClick(object sender, EventArgs e)
         {
+            marcarBoton(ref Modificar);
+            buttonDisenno = "2";
+            habilitarCampos();
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;            
+            Insertar.Enabled = false;
+            deshabilitarGridDiseno();
+            aceptar.Enabled = true;
+            cancelar.Enabled = true;
+
         }
 
         protected void eliminarClick(object sender, EventArgs e)
@@ -213,6 +224,7 @@ namespace SistemaPruebas.Intefaces
         protected void cancelarClick(object sender, EventArgs e)
         {
             deshabilitarCampos();
+            limpiarCampos();
             desmarcarBoton(ref Insertar);
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
