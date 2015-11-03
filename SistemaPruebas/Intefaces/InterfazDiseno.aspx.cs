@@ -40,6 +40,33 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static string id_req_asoc
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_req_asoc"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_req_asoc"] = value;
+            }
+        }
+
+        public static string id_req_noAsoc
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_req_noAsoc"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_req_noAsoc"] = value;
+            }
+        }
+
+
         public static string id_diseno_cargado
         {
             get
@@ -305,15 +332,15 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridsReq(int tipo)
         {
             DataTable req = solicitarReqs(tipo);
-            if (tipo==1)
+            if (tipo == 1)
             {
-                // this.gridNoAsociado.DataSource = req;
-                // this.gridNoAsociado.DataBind();
+                gridNoAsociados.DataSource = req;
+                gridNoAsociados.DataBind();
             }
-            else 
+            else
             {
-
-
+                // gridNoAsociados.DataSource = req;
+                // gridNoAsociados.DataBind();
             }
 
         }
@@ -321,64 +348,73 @@ namespace SistemaPruebas.Intefaces
 
         protected DataTable solicitarReqs(int tipo)
         {
+            DataTable req = new DataTable();
+            DataTable dt = new DataTable();
+
+            req.Columns.Add("Id de Requerimiento");
+
             int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
             int diseno = -1;
+
             if (Int32.Parse(buttonDisenno) == 2)
             {
-                // diseno = controlDiseno. CREAR METODO
+                diseno = Int32.Parse(id_diseno_cargado);
             }
-            DataTable dt = new DataTable();
-            DataTable req = new DataTable();
-            dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Id Requerimiento") });
 
             if (tipo == 1)
             {
-                req = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
+                dt = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
             }
             else
             {
-                req = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
+                dt = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
 
             }
-            if (req.Rows.Count > 0)
+
+            if (dt.Rows.Count > 0)
             {
-                foreach (DataRow fila in req.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
-                    dt.Rows.Add(fila[0].ToString());
+                    req.Rows.Add(dr[0].ToString());
+
                 }
             }
             else
             {
 
-                dt.Rows.Add("-");
-
+                req.Rows.Add('-');
             }
-
-            return dt;
+            return req;       
         }
 
         protected void OnSelectedIndexChangedNoAsoc(object sender, EventArgs e)
         {
-
+            try
+            {
+                id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         protected void OnPageIndexChangingNoAsoc(object sender, GridViewPageEventArgs e)
         {
-          //  gridNoAsociado.PageIndex = e.NewPageIndex;
-            this.llenarGridsReq(1);
+            gridNoAsociados.PageIndex = e.NewPageIndex;
+            this.llenarGridDisenos();
         }
 
         protected void OnRowDataBoundNoAsoc(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
-         /*   if (gridNoAsociado.Enabled && e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridNoAsociado, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridNoAsociados, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
-            */
         }
 
         protected void llenarGridDisenos()
