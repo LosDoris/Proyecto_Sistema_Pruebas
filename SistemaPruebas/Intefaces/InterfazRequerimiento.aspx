@@ -56,8 +56,28 @@
                         <div class="form-group">
                             <div class="col-md-16">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
-                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letrasYNumeros2(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorNombre">*En este campo solo se permiten letras y espacios</asp:Label>
+                                <script type="text/javascript">
+                                    function solo_letrasYNumeros2(evt) {
+                                        if ((evt.charCode < 48 || evt.charCode > 57) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                            if ((evt.charCode != 32)) {
+                                                if ($('#errorObjSistema2').css('display') == 'none') {
+                                                    //alert(evt.charCode);
+                                                    $('#errorObjSistema2').fadeIn();
+                                                    $('#errorObjSistema2').fadeOut(6000);
+                                                }
+                                                if (window.event)//IE
+                                                    evt.returnValue = false;
+                                                else//Firefox
+                                                    evt.preventDefault();
+                                            }
+                                        }
+                                    }
+                                 </script>
+                                 <div id="errorObjSistema2" style="display:none">
+                                    <asp:Label runat="server" ID="Label1" text="Sólo se permite el ingreso de letras y numeros." ForeColor="Salmon"></asp:Label>
+                                </div>
                                <asp:requiredfieldvalidator id="Requiredfieldvalidator1"
                                     controltovalidate="TextBoxNombreREQ"
                                     Display="Dynamic"
