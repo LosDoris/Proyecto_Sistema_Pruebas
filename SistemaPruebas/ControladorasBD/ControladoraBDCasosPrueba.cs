@@ -46,7 +46,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central FROM Caso_Prueba ORDER BY fechaUltimo DESC;";
+                consulta = "SELECT id_caso_prueba, proposito FROM Caso_Prueba ORDER BY fechaUltimo DESC;";
             }
             else if (tipo == 2)
             {

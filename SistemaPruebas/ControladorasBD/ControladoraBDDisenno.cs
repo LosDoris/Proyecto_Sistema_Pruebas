@@ -89,10 +89,9 @@ namespace SistemaPruebas.Controladoras
          * Retorna: int.
          */
 
-        public int eliminarDisennoBD(String id)
+        public int eliminarDisennoBD(int id)
         {
-            return acceso.Insertar("DELETE FROM Disenno_Prueba WHERE id_disenno = '" + id + "';");
-
+            return acceso.Insertar("DELETE FROM Disenno_Prueba WHERE id_disenno = " + id + ";");
         }
 
         /*
