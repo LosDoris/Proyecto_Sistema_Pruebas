@@ -4,7 +4,7 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <style type="text/css">
+     <style type="text/css">      
         .modalBackground 
         {
             background-color: black;
@@ -19,9 +19,9 @@
             border-color: black;
             padding-top: 10px;
             padding-left: 10px;         
-        }
+        }      
     </style>
-
+        
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -297,8 +297,7 @@
                 <div class="form-group">
                      <asp:Label runat="server" id="LiderLbl" Text="Nombre del lidel del proyecto" CssClass="col-md-4 control-label"></asp:label>
                         <div class="col-md-6">
-                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" ControlToValidate="LiderProyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>                     
+                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                       
                             </div>
                  </div>
 

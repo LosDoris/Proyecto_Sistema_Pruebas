@@ -403,7 +403,7 @@ namespace SistemaPruebas.Controladoras
 
         public int addProyecto(int cedula, int id_proyecto)
         {           
-            return acceso.Insertar("Update Recurso_Humano set id_proyecto = " + id_proyecto + "where cedula=" + cedula); 
+            return acceso.Insertar("Update Recurso_Humano set id_proyecto = " + id_proyecto + " where cedula=" + cedula); 
         }
     }
 }

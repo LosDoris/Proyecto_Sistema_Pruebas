@@ -41,7 +41,7 @@ namespace SistemaPruebas.Controladoras
             if (datos[8].ToString() != "")
             {
                 datos[8] = controlRH.solicitarCedulaRecurso(datos[8].ToString()).ToString();
-                controlRH.addProyecto(Int32.Parse(datos[0].ToString()), Int32.Parse(datos[8].ToString()));
+                controlRH.addProyecto(Int32.Parse(datos[8].ToString()), Int32.Parse(datos[0].ToString()));
             }
             else
                 datos[8] = "";
@@ -82,7 +82,7 @@ namespace SistemaPruebas.Controladoras
                 datos[6] = dt.Rows[0][6].ToString();
                 datos[7] = dt.Rows[0][7].ToString();
                 if (dt.Rows[0][9].ToString() != "")
-                    datos[8] = controlRH.solicitarCedulaRecurso(dt.Rows[0][9].ToString()).ToString();
+                    datos[8] = controlRH.solicitarNombreRecurso(Int32.Parse(dt.Rows[0][9].ToString())).ToString();
                 else
                     datos[8] = "";
                 //datos[8] = dt.Rows[0][8].ToString();

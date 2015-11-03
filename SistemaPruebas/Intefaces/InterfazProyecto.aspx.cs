@@ -172,7 +172,7 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             estado.ClearSelection();
             ListItem selectedListItems = estado.Items.FindByValue("1");
-            LiderProyecto.ClearSelection();
+            LiderProyecto.Items.Clear();
             txt_date.Text = "";
         }
 
@@ -458,6 +458,7 @@ namespace SistemaPruebas.Intefaces
 
         public void Llenar_Datos_Conultados(int idProyecto)
         {
+            Limpiar_Campos();
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
             this.nombre_proyecto.Text = entidadP.Nombre_sistema;
             this.obj_general.Text = entidadP.Objetivo_general;
@@ -469,7 +470,14 @@ namespace SistemaPruebas.Intefaces
                 selectedListItem.Selected = true;
             };
             this.nombre_rep.Text = entidadP.Nombre_representante;
-            this.tel_rep.Text = entidadP.Telefono_representante;
+            if (entidadP.Telefono_representante.ToString().Contains(","))
+            {
+                string[] tels = entidadP.Telefono_representante.ToString().Split(',');
+                this.tel_rep.Text = tels[0];
+                this.tel_rep2.Text = tels[1];
+            }
+            else
+                this.tel_rep.Text = entidadP.Telefono_representante;
             this.of_rep.Text = entidadP.Oficina_representante;
             this.LiderProyecto.Items.Add(entidadP.LiderProyecto);
         }
@@ -590,7 +598,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 }
-                LiderProyecto.ClearSelection();
+                LiderProyecto.Items.Clear();
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
                 if (!Convert.ToBoolean(adm))
@@ -749,12 +757,16 @@ namespace SistemaPruebas.Intefaces
         {
             string seleccionado = LiderProyecto.SelectedValue;
             LiderProyecto.Items.Clear();
-            string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
-            string[] nombre = nombres.Split(';');
             LiderProyecto.Items.Add(seleccionado);
-            foreach (string n in nombre)
+            string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
+            if (!String.IsNullOrEmpty(nombres))
             {
-                LiderProyecto.Items.Add(n);
+                string[] nombre = nombres.Split(';');
+                
+                foreach (string n in nombre)
+                {
+                    LiderProyecto.Items.Add(n);
+                }
             }
         }
     }
