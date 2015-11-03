@@ -105,16 +105,16 @@
                                 <script type="text/javascript">
                                     function check_txt(e) {
                                         if (!solo_numeros(e)) {
-                                            $('#errorCedula').fadeIn();
-                                            $('#errorCedula').fadeOut(5000);
+                                            if ($('#errorCedula').css('display') == 'none') {
+                                                $('#errorCedula').fadeIn();
+                                                $('#errorCedula').fadeOut(5000);
+                                            }
 
                                             if (window.event)//IE
                                                 e.returnValue = false;
                                             else//Firefox
                                                 e.preventDefault();
-                                        }
-                                        else
-                                            $('#errorCedula').fadeOut();
+                                        }                                        
                                     };
                                 </script>
                                 <div id="errorCedula" class="errorDiv">
