@@ -309,7 +309,7 @@
     <div id="tablaDisenos" class="row">
 
         <asp:GridView ID="gridDisenos" runat="server" margin-right="auto"
-            CellPadding="10"
+            CellPadding="10" CellSpacing="500"
             margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChanged"
             OnRowDataBound="OnRowDataBound" CssClass="GridView" HorizontalAlign="Center"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5"

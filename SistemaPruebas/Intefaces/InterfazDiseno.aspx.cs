@@ -397,8 +397,8 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    datos[1] = dr[1];
-                    datos[2] = dr[2];
+                    datos[1] = Nivel.Items.FindByValue(dr[1].ToString());
+                    datos[2] = Tecnica.Items.FindByValue(dr[2].ToString());
                     datos[3] = dr[3];
                     disennos.Rows.Add(datos);
                 }
