@@ -243,6 +243,11 @@ namespace SistemaPruebas.Controladoras
             String proyecto = controladoraBDRecursosHumanos.solicitarNombreRecursoPorProyecto(id_proyecto);
            return proyecto;
         }
+        public String solicitarNombreRecursoSinProyecto()
+        {
+            String proyecto = controladoraBDRecursosHumanos.solicitarNombreRecursoSinProyecto();
+            return proyecto;
+        }
 
         public int solicitarCedulaRecurso(string nombre)
         {

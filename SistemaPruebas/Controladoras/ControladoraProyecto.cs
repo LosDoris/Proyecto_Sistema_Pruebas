@@ -63,9 +63,9 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controlBD.ConsultarProyecto(id_Proyecto);
             if (dt.Rows.Count == 1)
             {
-                Object[] datos = new Object[8];
+                Object[] datos = new Object[9];
                 EntidadProyecto retorno;
-
+                controlRH = new ControladoraRecursosHumanos();
                 datos[0] = dt.Rows[0][0].ToString();
                 datos[1] = dt.Rows[0][1].ToString();
                 datos[2] = dt.Rows[0][2].ToString();
@@ -74,6 +74,8 @@ namespace SistemaPruebas.Controladoras
                 datos[5] = dt.Rows[0][5].ToString();
                 datos[6] = dt.Rows[0][6].ToString();
                 datos[7] = dt.Rows[0][7].ToString();
+                datos[8] = controlRH.solicitarCedulaRecurso(datos[8].ToString()).ToString();
+                datos[8] = dt.Rows[0][8].ToString();
                 retorno = new EntidadProyecto(datos);
                 return retorno;
             }
@@ -135,6 +137,13 @@ namespace SistemaPruebas.Controladoras
         {
             int retorno = controlBD.EliminarProyecto(id);
             return retorno;
+        }
+
+        public string solicitarNombreRecursoSinProyecto()
+        {
+            controlRH = new ControladoraRecursosHumanos();
+            string regreso = controlRH.solicitarNombreRecursoSinProyecto();
+            return regreso;
         }
         /*      
        Requiere: id del proyecto

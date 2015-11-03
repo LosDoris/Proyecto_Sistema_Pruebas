@@ -20,6 +20,7 @@ namespace SistemaPruebas.Controladoras
         private String nombre_representante;
         private String telefono_representante;
         private String oficina_representante;
+        private String liderProyecto;
 
         
 
@@ -33,6 +34,7 @@ namespace SistemaPruebas.Controladoras
             this.nombre_representante = datos[5].ToString();
             this.telefono_representante = datos[6].ToString();
             this.oficina_representante = datos[7].ToString();
+            this.liderProyecto = datos[8].ToString();
         }
 
         //Metodos set y get para la variable id_proyecto
@@ -88,6 +90,11 @@ namespace SistemaPruebas.Controladoras
         {
             get { return oficina_representante; }
             set { oficina_representante = value; }
+        }
+        public String LiderProyecto
+        {
+            get { return LiderProyecto; }
+            set { LiderProyecto = value; }
         }
 //=======
 //=======

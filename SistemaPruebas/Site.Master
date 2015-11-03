@@ -81,7 +81,7 @@
                         <li>
 
                             <button id="LOGOUT" runat="server" class="btn-LogOut"
-                                onserverclick="LogOut">Salir</button>
+                                onserverclick="LogOut" causesvalidation="false">Salir</button>
                         </li>
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>

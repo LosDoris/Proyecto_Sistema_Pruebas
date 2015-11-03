@@ -381,5 +381,24 @@ namespace SistemaPruebas.Controladoras
             return dt.Rows[0][0].ToString();
 
         }
+        public string solicitarNombreRecursoSinProyecto()
+        {
+          
+            string regresa = null;
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo FROM Recurso_Humano WHERE id_proyecto >= 0 and NOT (perfil_acceso = 'Administrador');");
+            try
+            {
+                foreach (DataRow row in DR.Rows)
+                {
+                    regresa += row["nombre_completo"].ToString() + ";";
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                regresa = null;
+            }
+
+            return regresa;
+        }
     }
 }

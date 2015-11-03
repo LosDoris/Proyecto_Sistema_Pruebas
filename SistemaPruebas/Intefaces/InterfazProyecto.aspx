@@ -75,15 +75,19 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras(evt) {
+                                
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
-                                        //alert(evt.charCode);
-                                        $('#errorNombreSistLbl').fadeIn();
-                                        $('#errorNombreSistLbl').fadeOut(6000);
-                                        if (window.event)//IE
-                                            evt.returnValue = false;
-                                        else//Firefox
-                                            evt.preventDefault();
+                                        //alert();
+                                        if ($('#errorNombreSistema').css('display') == 'none') {
+                                            $('#errorNombreSistema').fadeIn();
+                                            $('#errorNombreSistema').fadeOut(6000);
+                                        }
+                                            if (window.event)//IE
+                                                evt.returnValue = false;
+                                            else//Firefox
+                                                evt.preventDefault();
+                                        
                                     }
                                 }
                             }
@@ -106,13 +110,16 @@
                                 {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83))
                                     {
-                                        //alert(evt.charCode);
-                                        $('#errorObjSistema').fadeIn();
-                                        $('#errorObjSistema').fadeOut(6000);
-                                        if (window.event)//IE
-                                            evt.returnValue = false;
-                                        else//Firefox
-                                            evt.preventDefault();
+                                        if ($('#errorObjSistema').css('display') == 'none') {
+                                            //alert(evt.charCode);
+                                            $('#errorObjSistema').fadeIn();
+                                            $('#errorObjSistema').fadeOut(6000);
+                                        }
+                                            if (window.event)//IE
+                                                evt.returnValue = false;
+                                            else//Firefox
+                                                evt.preventDefault();
+                                        
                                     }
                                 }
                             }
@@ -166,8 +173,10 @@
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83) && (evt.charCode != 44)) {
                                         //alert(evt.charCode);
-                                        $('#errorNombreOficinaLbl').fadeIn();
-                                        $('#errorNombreOficinaLbl').fadeOut(6000);
+                                        if ($('#errorNombreOficina').css('display') == 'none') {
+                                            $('#errorNombreOficina').fadeIn();
+                                            $('#errorNombreOficina').fadeOut(6000);
+                                        }
                                         if (window.event)//IE
                                             evt.returnValue = false;
                                         else//Firefox
@@ -192,15 +201,12 @@
                         <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
-                            function check_txt(textBox, e, length) {
-                                var mLen = textBox["MaxLength"];
-                                if (null == mLen)
-                                    mLen = length;
-                                var maxLength = parseInt(mLen);
+                            function check_txt(textBox, e, length) {                              
                                 if (!checkSpecialKeys(e)) {
-                                    $('#errorTel1').fadeIn();
-                                    $('#errorTel1').fadeOut(6000);
-                                   
+                                    if ($('#errorTel1').css('display') == 'none') {
+                                        $('#errorTel1').fadeIn();
+                                        $('#errorTel1').fadeOut(6000);
+                                    }
                                     if (window.event)//IE
                                         e.returnValue = false;
                                     else//Firefox
@@ -226,10 +232,12 @@
                             function check_txt2(textBox, e, length) {
                                 if (document.getElementById('<%=tel_rep.ClientID%>').value.length != 8)
                                 {
-                                    //document.getElementById("errorTel2Lbl").innerHTML = "Primero complete el campo de télefono 1";
-                                    document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Primero complete el campo de télefono 1";
-                                    $('#errorTel2').fadeIn();
-                                    $('#errorTel2').fadeOut(5000);
+                                    if ($('#errorTel2').css('display') == 'none') {
+                                        //document.getElementById("errorTel2Lbl").innerHTML = "Primero complete el campo de télefono 1";
+                                        document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Primero complete el campo de télefono 1";
+                                        $('#errorTel2').fadeIn();
+                                        $('#errorTel2').fadeOut(5000);
+                                    }
                                     if (window.event)//IE
                                         e.returnValue = false;
                                     else//Firefox
@@ -241,9 +249,11 @@
                                         if((e.keyCode != 37) && (e.keyCode != 39) && (e.keyCode != 8) && (e.keyCode != 83) && (e.keyCode != 46) && (e.keyCode != 13))
                                         {                                        
                                             //alert(e.charCode);
-                                        document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Este campo sólo recibe números";
-                                            $('#errorTel2').fadeIn();
-                                            $('#errorTel2').fadeOut(5000);
+                                            if ($('#errorTel2').css('display') == 'none') {
+                                                document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Este campo sólo recibe números";
+                                                $('#errorTel2').fadeIn();
+                                                $('#errorTel2').fadeOut(5000);
+                                            }
                                         if (window.event)//IE
                                             e.returnValue = false;
                                         else//Firefox
@@ -268,8 +278,10 @@
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83) && (evt.charCode != 44)) {
                                         //alert(evt.charCode);
-                                        $('#errorNombreUsuarioLbl').fadeIn();
-                                        $('#errorNombreUsuarioLbl').fadeOut(5000);
+                                        if ($('#errorNombreUsuario').css('display') == 'none') {
+                                            $('#errorNombreUsuario').fadeIn();
+                                            $('#errorNombreUsuario').fadeOut(5000);
+                                        }
                                         if (window.event)//IE
                                             evt.returnValue = false;
                                         else//Firefox
@@ -286,7 +298,8 @@
                 <div class="form-group">
                      <asp:Label runat="server" id="LiderLbl" Text="Nombre del lidel del proyecto" CssClass="col-md-4 control-label"></asp:label>
                         <div class="col-md-6">
-                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                  
+                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" ControlToValidate="LiderProyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>                     
                             </div>
                  </div>
 
