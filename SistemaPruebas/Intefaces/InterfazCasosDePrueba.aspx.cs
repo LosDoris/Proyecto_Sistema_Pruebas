@@ -16,8 +16,6 @@ namespace SistemaPruebas.Intefaces
     {
         ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
 
-
-
         public static DataTable dtDatosEntrada
         {
             get
@@ -80,6 +78,7 @@ namespace SistemaPruebas.Intefaces
         {
             modo = 0;
             deshabilitarCampos();
+            habilitarGrid(ref CP);
             BotonCPInsertar.Enabled = true;
             BotonCPModificar.Enabled = true;
             BotonCPEliminar.Enabled = true;
@@ -87,11 +86,33 @@ namespace SistemaPruebas.Intefaces
             BotonCPAceptar.Enabled = false;
         }
 
+        protected void estadoInsertar()
+        {
+            marcarBoton(ref BotonCPInsertar);
+            limpiarCampos();
+            habilitarCampos();
+            BotonCPAceptar.Enabled = true;
+            BotonCPCancelar.Enabled = true;
+            BotonCPModificar.Enabled = false;
+            BotonCPEliminar.Enabled = false;
+            deshabilitarGrid(ref CP);
+        }
+
+        protected void estadoModificar()
+        {
+            marcarBoton(ref BotonCPModificar);
+            habilitarCampos();
+            BotonCPAceptar.Enabled = true;
+            BotonCPCancelar.Enabled = true;
+            BotonCPInsertar.Enabled = false;
+            BotonCPEliminar.Enabled = false;
+            deshabilitarGrid(ref CP);
+        }
+
         protected void inicializarModo()
         {
             modo = 0;
         }
-
 
         protected void inicializarDTDatosEntrada()
         {
@@ -125,7 +146,9 @@ namespace SistemaPruebas.Intefaces
             TextBoxResultadoCP.Enabled = true;
             TextBoxFlujoCentral.Enabled = true;
             habilitarCamposEntrada();
+            habilitarGrid(ref CP);
         }
+
         protected void deshabilitarCampos()
         {
             TextBoxID.Enabled = false;
@@ -133,10 +156,11 @@ namespace SistemaPruebas.Intefaces
             TextBoxResultadoCP.Enabled  = false;
             TextBoxFlujoCentral.Enabled = false;
             deshabilitarCamposEntrada();
-            //deshabilitarGrid principal aún no programado
+          //  deshabilitarGrid(ref CP);
             this.DECP.DataSource = null;
             this.DECP.DataBind();
         }
+
         protected void deshabilitarCamposEntrada()
         {
             TextBoxDatos.Enabled = false;
@@ -144,18 +168,16 @@ namespace SistemaPruebas.Intefaces
             TipoEntrada.Enabled = false;
             AgregarEntrada.Enabled = false;
             EliminarEntrada.Enabled = false;
-
-            //deshabilitarGrid todavía no programado
+            deshabilitarGrid(ref DECP);
         }
+
         protected void habilitarCamposEntrada()
         {
-           // llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
             TextBoxDatos.Enabled = true;
             TextBoxDescripcion.Enabled = true;
             TipoEntrada.Enabled = true;
             AgregarEntrada.Enabled = true;
-           // EliminarEntrada.Enabled = true;
-            //habilitarGrid todavía no programado
+            habilitarGrid(ref DECP);
         }
 
         protected void limpiarCampos()
@@ -177,49 +199,46 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
-        protected void marcarBoton(ref Button b)
+        protected String datosEntrada()
         {
-            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
-            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
-            b.ForeColor = System.Drawing.Color.White;
-        }
+            String datosEntrada = "";
+            String tipo = TipoEntrada.SelectedItem.Text;
+            if (tipo == "No Aplica")
+            {
+                datosEntrada = "N/A";
+            }
+            else
+            {
+                int index = 0;
+                foreach (DataRow row in dtDatosEntrada.Rows)
+                {
+                    if (index != 0)
+                        datosEntrada += ",";
 
-        protected void desmarcarBoton(ref Button b)
-        {
-            b.BorderColor = System.Drawing.Color.LightGray;
-            b.BackColor = System.Drawing.Color.White;
-            b.ForeColor = System.Drawing.Color.Black;
-        }
+                    datosEntrada += "[";
+                    datosEntrada += row["Tipo"].ToString()[0];
+                    if(Regex.IsMatch(row["Datos"].ToString(), @"\d+"))
+                    {
+                        datosEntrada += "," + row["Datos"].ToString() + "]";
+                    }
+                    else
+                    {
+                        datosEntrada += "]";
+                        datosEntrada += "\""+ row["Datos"].ToString() + "\"";
+                    }
+                    index++;
+                }
+                if(DECP.Rows.Count > 1)
+                {
+                   datosEntrada = "[" + datosEntrada + "]";
+                }
 
-        protected void BotonCPInsertar_Click(object sender, EventArgs e)
-        {
-            modo = 1;
-            estadoInsertar();
-        }
+                datosEntrada = datosEntrada + "_" + TextBoxDescripcion.Text;
 
-        protected void estadoInsertar()
-        {
-            marcarBoton(ref BotonCPInsertar);
-            limpiarCampos();
-            habilitarCampos();
-            BotonCPAceptar.Enabled = true;
-            BotonCPCancelar.Enabled = true;
-            BotonCPModificar.Enabled = false;
-            BotonCPEliminar.Enabled = false;
-            //deshabilitar grid principal, aún no programado
+            }
+         
+            return datosEntrada;
         }
-
-        protected void estadoModificar()
-        {
-            marcarBoton(ref BotonCPModificar);
-            habilitarCampos();
-            BotonCPAceptar.Enabled = true;
-            BotonCPCancelar.Enabled = true;
-            BotonCPInsertar.Enabled = false;
-            BotonCPEliminar.Enabled = false;
-            //deshabilitar grid principal, aún no programado
-        }
-
 
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
@@ -253,7 +272,6 @@ namespace SistemaPruebas.Intefaces
             CP.DataSource = casosPrueba;
             CP.DataBind();
         }
-
 
         protected DataTable crearTablaCP()
         {
@@ -291,10 +309,95 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected void OnCPPageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected  List<String> transformarDatosEntrada(String hilera)
         {
-            CP.PageIndex = e.NewPageIndex;
-            this.llenarGrid();
+
+            String[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
+            String[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
+
+            for (int i = 0; i < primeraDivision.Length; i++)
+            {
+                primeraDivision[i] = primeraDivision[i].Replace("[", "");
+                primeraDivision[i] = primeraDivision[i].Replace("]", "");
+            }
+            List <String> regresa = new List <String>();
+            for (int i = 0; i < primeraDivision.Length; i++)
+            {
+                if (primeraDivision[i].Contains("\""))
+                {
+                    String[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
+                    regresa.Add(temp[0]);
+                    regresa.Add(temp[1]);
+                }
+                else
+                {
+                    String[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
+                    regresa.Add(temp[0]);
+                    regresa.Add(temp[1]);
+                }
+            }
+
+            regresa.Add(descripcion[1]);
+            return regresa;
+        }
+
+        protected void llenarGridEntradaDatos(List<String> lista_datos)
+        {
+            dtDatosEntrada.Clear();
+            for (int i = 0; i < lista_datos.Count - 1; i+=2)
+            {
+                DataRow row = dtDatosEntrada.NewRow();
+                row["Tipo"] = lista_datos[i];
+                row["Datos"] = lista_datos[i + 1];
+                dtDatosEntrada.Rows.Add(row);
+                DECP.DataSource = dtDatosEntrada;
+                DECP.DataBind();
+            }
+            TextBoxDescripcion.Text = lista_datos[lista_datos.Count - 1];
+        }
+
+        protected void deshabilitarGrid(ref GridView grid)
+        {
+            grid.Enabled = false;
+            foreach (GridViewRow row in grid.Rows)
+            {
+                row.Attributes.Remove("onclick");
+                row.Attributes.Remove("onmouseover");
+                row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
+            }
+        }
+
+        protected void habilitarGrid(ref GridView grid)
+        {
+            grid.Enabled = true;
+            foreach (GridViewRow row in grid.Rows)
+            {
+                row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grid, "Select$" + row.RowIndex);
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void marcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
+            b.ForeColor = System.Drawing.Color.White;
+        }
+
+        protected void desmarcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.LightGray;
+            b.BackColor = System.Drawing.Color.White;
+            b.ForeColor = System.Drawing.Color.Black;
+        }
+
+        protected void BotonCPInsertar_Click(object sender, EventArgs e)
+        {
+            modo = 1;
+            estadoInsertar();
         }
 
         protected void BotonCPModificar_Click(object sender, EventArgs e)
@@ -304,23 +407,15 @@ namespace SistemaPruebas.Intefaces
             estadoModificar();
         }
 
-        protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
+        protected void BotonCPEliminar_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in DECP.Rows)
-            {
-                if (row.RowIndex == DECP.SelectedIndex)
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#2e8e9e");
-                    row.ToolTip = string.Empty;
-                }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                   // row.ToolTip = "Click to select this row.";
-                }
-            }
+            int eliminacion = controladoraCasosPrueba.eliminarCasosPrueba(TextBoxID.Text);
 
-            EliminarEntrada.Enabled = true;
+            if (eliminacion == 1)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);//esto es temporal hasta aprender a usar los modales
+                estadoPostOperacion();
+            }
         }
 
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
@@ -370,156 +465,12 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected String datosEntrada()
-        {
-            String datosEntrada = "";
-            String tipo = TipoEntrada.SelectedItem.Text;
-            if (tipo == "No Aplica")
-            {
-                datosEntrada = "N/A";
-            }
-            else
-            {
-                int index = 0;
-                foreach (DataRow row in dtDatosEntrada.Rows)
-                {
-                    if (index != 0)
-                        datosEntrada += ",";
-
-                    datosEntrada += "[";
-                    datosEntrada += row["Tipo"].ToString()[0];
-                    if(Regex.IsMatch(row["Datos"].ToString(), @"\d+"))
-                    {
-                        datosEntrada += "," + row["Datos"].ToString() + "]";
-                    }
-                    else
-                    {
-                        datosEntrada += "]";
-                        datosEntrada += "\""+ row["Datos"].ToString() + "\"";
-                    }
-                    index++;
-                }
-                if(DECP.Rows.Count > 1)
-                {
-                   datosEntrada = "[" + datosEntrada + "]";
-                }
-
-                datosEntrada = datosEntrada + "_" + TextBoxDescripcion.Text;
-
-            }
-         
-            return datosEntrada;
-        }
-
         protected void AgregarEntrada_Click(object sender, EventArgs e)
         {
             agregarGridEntradaDatos();
             Response.Write( datosEntrada());
             TextBoxDatos.Text = "";
         }
-
-        protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            DECP.PageIndex = e.NewPageIndex;
-            DECP.DataSource = dtDatosEntrada;
-            DECP.DataBind();
-        }
-
-        protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
-        {
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(DECP, "Select$" + e.Row.RowIndex);
-                e.Row.Attributes["style"] = "cursor:pointer";
-            }
-        }
-
-        protected void OnCPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
-        {
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(CP, "Select$" + e.Row.RowIndex);
-                e.Row.Attributes["style"] = "cursor:pointer";
-            }
-        }
-
-        protected void TipoEntrada_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(TipoEntrada.SelectedItem.Text == "No Aplica")
-            {
-                AgregarEntrada.Enabled = false;
-            }
-            else
-            {
-                AgregarEntrada.Enabled = true;
-            }
-        }
-
-
-        protected  List<String> transformarDatosEntrada(String hilera)
-        {
-
-            String[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
-            String[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
-
-            for (int i = 0; i < primeraDivision.Length; i++)
-            {
-                primeraDivision[i] = primeraDivision[i].Replace("[", "");
-                primeraDivision[i] = primeraDivision[i].Replace("]", "");
-            }
-            List <String> regresa = new List <String>();
-            for (int i = 0; i < primeraDivision.Length; i++)
-            {
-                if (primeraDivision[i].Contains("\""))
-                {
-                    String[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
-                    regresa.Add(temp[0]);
-                    regresa.Add(temp[1]);
-                }
-                else
-                {
-                    String[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
-                    regresa.Add(temp[0]);
-                    regresa.Add(temp[1]);
-                }
-            }
-
-            regresa.Add(descripcion[1]);
-            return regresa;
-        }
-        public static string deLaBaseAGreggGrande(string hilera)
-        {
-            hilera = hilera.Replace("_"," ");
-            return hilera;
-        }
-
-        protected void llenarGridEntradaDatos(List<String> lista_datos)
-        {
-            dtDatosEntrada.Clear();
-            for (int i = 0; i < lista_datos.Count - 1; i+=2)
-            {
-                DataRow row = dtDatosEntrada.NewRow();
-                row["Tipo"] = lista_datos[i];
-                row["Datos"] = lista_datos[i + 1];
-                dtDatosEntrada.Rows.Add(row);
-                DECP.DataSource = dtDatosEntrada;
-                DECP.DataBind();
-            }
-            TextBoxDescripcion.Text = lista_datos[lista_datos.Count - 1];
-        }
-
-        protected void CP_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            String id = CP.SelectedRow.Cells[0].Text;
-            llenarDatosCasoPrueba(id);
-        }
-
 
         protected void EliminarEntrada_Click(object sender, EventArgs e)
         {
@@ -536,6 +487,79 @@ namespace SistemaPruebas.Intefaces
             EliminarEntrada.Enabled = false;
         }
 
-       
+        protected void CP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String id = CP.SelectedRow.Cells[0].Text;
+            llenarDatosCasoPrueba(id);
+        }
+
+        protected void OnCPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(CP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void OnCPPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            CP.PageIndex = e.NewPageIndex;
+            this.llenarGrid();
+        }
+
+        protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in DECP.Rows)
+            {
+                if (row.RowIndex == DECP.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#2e8e9e");
+                    row.ToolTip = string.Empty;
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                   // row.ToolTip = "Click to select this row.";
+                }
+            }
+
+            EliminarEntrada.Enabled = true;
+        }
+
+        protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(DECP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DECP.PageIndex = e.NewPageIndex;
+            DECP.DataSource = dtDatosEntrada;
+            DECP.DataBind();
+        }
+
+        protected void TipoEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(TipoEntrada.SelectedItem.Text == "No Aplica")
+            {
+                AgregarEntrada.Enabled = false;
+            }
+            else
+            {
+                AgregarEntrada.Enabled = true;
+            }
+        }
+
     }
 }

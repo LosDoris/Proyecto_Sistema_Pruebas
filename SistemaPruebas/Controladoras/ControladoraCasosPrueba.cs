@@ -30,7 +30,7 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
-        public int eliminarCasosPrueba(string id)
+        public int eliminarCasosPrueba(String id)
         {
             int ret = controladoraBDCasosPrueba.eliminarCasosPrueba(id);
             return ret;
