@@ -16,16 +16,6 @@ namespace SistemaPruebas.Intefaces
     {
         ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if(!IsPostBack)
-            {
-                inicializarModo();
-                inicializarDTDatosEntrada();
-                estadoInicial();
-                llenarGrid();
-            }
-        }
 
 
         public static DataTable dtDatosEntrada
@@ -40,6 +30,7 @@ namespace SistemaPruebas.Intefaces
                 HttpContext.Current.Session["datosEntrada"] = value;
             }
         }
+
         public static int modo
         {
             get
@@ -53,6 +44,29 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static String idMod
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["idmod"];
+                return value == null ? "" : (String)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["idmod"] = value;
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(!IsPostBack)
+            {
+                inicializarModo();
+                inicializarDTDatosEntrada();
+                estadoInicial();
+            }
+                llenarGrid();
+        }
 
         protected void estadoInicial()
         {
@@ -60,6 +74,17 @@ namespace SistemaPruebas.Intefaces
             botonesInicio();
             deshabilitarCampos();
             limpiarCampos();
+        }
+
+        protected void estadoPostOperacion()
+        {
+            modo = 0;
+            deshabilitarCampos();
+            BotonCPInsertar.Enabled = true;
+            BotonCPModificar.Enabled = true;
+            BotonCPEliminar.Enabled = true;
+            BotonCPCancelar.Enabled = false;
+            BotonCPAceptar.Enabled = false;
         }
 
         protected void inicializarModo()
@@ -124,7 +149,7 @@ namespace SistemaPruebas.Intefaces
         }
         protected void habilitarCamposEntrada()
         {
-            llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
+           // llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
             TextBoxDatos.Enabled = true;
             TextBoxDescripcion.Enabled = true;
             TipoEntrada.Enabled = true;
@@ -179,8 +204,22 @@ namespace SistemaPruebas.Intefaces
             habilitarCampos();
             BotonCPAceptar.Enabled = true;
             BotonCPCancelar.Enabled = true;
+            BotonCPModificar.Enabled = false;
+            BotonCPEliminar.Enabled = false;
             //deshabilitar grid principal, aún no programado
         }
+
+        protected void estadoModificar()
+        {
+            marcarBoton(ref BotonCPModificar);
+            habilitarCampos();
+            BotonCPAceptar.Enabled = true;
+            BotonCPCancelar.Enabled = true;
+            BotonCPInsertar.Enabled = false;
+            BotonCPEliminar.Enabled = false;
+            //deshabilitar grid principal, aún no programado
+        }
+
 
         protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
         {
@@ -194,9 +233,11 @@ namespace SistemaPruebas.Intefaces
                 {
                     datos[0] = dr[0];
                     datos[1] = dr[1];
-                    datos[2] = dr[2];
                     datos[3] = dr[3];
                     datos[4] = dr[4];
+                    String datosEntrada = dr[2].ToString();
+                    datosEntrada = datosEntrada.Replace("_", " ");
+                    datos[2] = datosEntrada;
                     casosPrueba.Rows.Add(datos);
                 }
             }
@@ -225,6 +266,31 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
+        void llenarDatosCasoPrueba(String id)
+        {
+            DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(2, id); // Consulta tipo 2, para llenar los campos de un recurso humano
+           // Response.Write("Longitud = " + dt.Rows.Count);
+            BotonCPEliminar.Enabled = true;
+            BotonCPModificar.Enabled = true;
+            try
+            {
+                TextBoxID.Text = dt.Rows[0].ItemArray[0].ToString();
+                TextBoxPropositoCP.Text = dt.Rows[0].ItemArray[1].ToString();            
+                TextBoxResultadoCP.Text = dt.Rows[0].ItemArray[3].ToString();
+                TextBoxFlujoCentral.Text = dt.Rows[0].ItemArray[4].ToString();
+                String datosEntrada = dt.Rows[0].ItemArray[2].ToString();
+                //datosEntrada = datosEntrada.Replace("_"," ");
+                llenarGridEntradaDatos(transformarDatosEntrada(datosEntrada));
+          
+            }
+            catch
+            {
+                EtiqErrorConsultar.Visible = true;
+            }
+            //Response.Write(dt.Rows.Co)
+
+        }
+
         protected void OnCPPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             CP.PageIndex = e.NewPageIndex;
@@ -234,6 +300,8 @@ namespace SistemaPruebas.Intefaces
         protected void BotonCPModificar_Click(object sender, EventArgs e)
         {
             modo = 2;
+            idMod = TextBoxID.Text;
+            estadoModificar();
         }
 
         protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
@@ -264,13 +332,13 @@ namespace SistemaPruebas.Intefaces
             }
             else if (modo == 2)
             {
-
+                desmarcarBoton(ref BotonCPModificar);
             }
         }
 
         protected void BotonCPAceptar_Click(object sender, EventArgs e)
         {
-            Object[] datosNuevos = new Object[6];
+            Object[] datosNuevos = new Object[7];
             datosNuevos[0] = this.TextBoxID.Text;
             datosNuevos[1] = this.TextBoxPropositoCP.Text;
             datosNuevos[2] = datosEntrada();
@@ -281,18 +349,23 @@ namespace SistemaPruebas.Intefaces
             int operacion = -1;
             if(modo == 1)
             {
-                //Response.Write("Modo es 1");
+                datosNuevos[6] = "";
                 operacion = controladoraCasosPrueba.insertarCasosPrueba(datosNuevos);
             }
             else if( modo == 2)
             {
-
+                datosNuevos[6] = idMod;
+                operacion = controladoraCasosPrueba.modificarCasosPrueba(datosNuevos);
             }
             if (operacion == 1)
             {
                 Response.Write("Se insertó con éxito"); //temporal hasta que halla modal
+                llenarGrid();
+                estadoPostOperacion();
             }
-            Response.Write(operacion);
+
+
+            Response.Write("Resultado "+operacion);
             Response.Write(modo);
 
         }
@@ -352,7 +425,7 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
-        protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -360,6 +433,18 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(DECP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void OnCPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(CP, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
@@ -376,54 +461,48 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void EliminarEntrada_Click(object sender, EventArgs e)
+
+        protected  List<String> transformarDatosEntrada(String hilera)
         {
 
-        }
-
-
-        public static List<string> edDelGreggGrandeAlChiquitito(string hilera)
-        {
-
-            string[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
-            string[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
+            String[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
+            String[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
 
             for (int i = 0; i < primeraDivision.Length; i++)
             {
                 primeraDivision[i] = primeraDivision[i].Replace("[", "");
                 primeraDivision[i] = primeraDivision[i].Replace("]", "");
             }
-            List<string> regresa = new List<string>();
+            List <String> regresa = new List <String>();
             for (int i = 0; i < primeraDivision.Length; i++)
             {
                 if (primeraDivision[i].Contains("\""))
                 {
-                    string[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
+                    String[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
                     regresa.Add(temp[0]);
                     regresa.Add(temp[1]);
                 }
                 else
                 {
-                    string[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
+                    String[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
                     regresa.Add(temp[0]);
                     regresa.Add(temp[1]);
                 }
             }
 
-            //regresa.Add(descripcion[1]);
+            regresa.Add(descripcion[1]);
             return regresa;
         }
         public static string deLaBaseAGreggGrande(string hilera)
         {
-            hilera = hilera.Replace("_", "");
+            hilera = hilera.Replace("_"," ");
             return hilera;
         }
 
-        protected void llenarGridEntradaDatos(List<string> lista_datos)
+        protected void llenarGridEntradaDatos(List<String> lista_datos)
         {
-            // ejemplo de uso:
-            //llenarGridEntradaDatos(edDelGreggGrandeAlChiquitito(@"[[V]""hilera"",[I]""hilera"",[V,1]]_h"));
-            for (int i = 0; i < lista_datos.Count; i+=2)
+            dtDatosEntrada.Clear();
+            for (int i = 0; i < lista_datos.Count - 1; i+=2)
             {
                 DataRow row = dtDatosEntrada.NewRow();
                 row["Tipo"] = lista_datos[i];
@@ -432,9 +511,31 @@ namespace SistemaPruebas.Intefaces
                 DECP.DataSource = dtDatosEntrada;
                 DECP.DataBind();
             }
+            TextBoxDescripcion.Text = lista_datos[lista_datos.Count - 1];
+        }
 
+        protected void CP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String id = CP.SelectedRow.Cells[0].Text;
+            llenarDatosCasoPrueba(id);
         }
 
 
+        protected void EliminarEntrada_Click(object sender, EventArgs e)
+        {
+            for (int i = dtDatosEntrada.Rows.Count - 1; i >= 0; i--)
+            {
+                DataRow dr = dtDatosEntrada.Rows[i];
+                if (i == DECP.SelectedIndex)
+                {
+                    dr.Delete();
+                }
+                DECP.DataSource = dtDatosEntrada;
+                DECP.DataBind();
+            }
+            EliminarEntrada.Enabled = false;
+        }
+
+       
     }
 }

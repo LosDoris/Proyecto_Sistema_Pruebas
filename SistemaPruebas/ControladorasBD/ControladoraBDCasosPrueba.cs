@@ -16,21 +16,20 @@ namespace SistemaPruebas.Controladoras
                 "INSERT INTO Caso_Prueba(id_caso_prueba, proposito, entrada_de_datos, resultado_esperado, flujo_central, id_disenno, fechaUltimo) values('" +
                 casoPrueba.Id_caso_prueba + "','" + casoPrueba.Proposito + "','" + casoPrueba.Entrada_datos + "','" + casoPrueba.Resultado_esperado + "','" +
                 casoPrueba.Flujo_central + "'," + casoPrueba.Id_disenno +
-                ", getDate()" + ")";
+                ", getDate()" + ");";
             int ret = acceso.Insertar(consulta);
             return ret;
         }
 
-        public int modificarCasosPrueba(EntidadCasosPrueba entidad)
+        public int modificarCasosPrueba(EntidadCasosPrueba casoPrueba)
         {
-            String consulta = "UPDATE Caso_prueba SET id_caso_prueba =" + entidad.Id_caso_prueba +
-                                ", proposito = '" + entidad.Proposito +
-                                "', entrada_de_datos = '" + entidad.Entrada_datos +
-                                "', resultado_esperado = '" + entidad.Resultado_esperado +
-                                "', flujo_central = '" + entidad.Flujo_central +
-                                "', id_requerimiento = '" + entidad.Id_disenno +
-                                 "', fechaUltimo=getDate()" +
-                                " WHERE id_caso_prueba = " + entidad.Id_caso_prueba + ";";
+            String consulta = "UPDATE Caso_Prueba SET id_caso_prueba ='" + casoPrueba.Id_caso_prueba +
+                                "', proposito = '" + casoPrueba.Proposito +
+                                "', entrada_de_datos = '" + casoPrueba.Entrada_datos +
+                                "', resultado_esperado = '" + casoPrueba.Resultado_esperado +
+                                "', flujo_central = '" + casoPrueba.Flujo_central +
+                                "', fechaUltimo=getDate()" +
+                                " WHERE id_caso_prueba = '" + casoPrueba.IdConsulta + "';";
             int ret = acceso.Insertar(consulta);
             return ret;
 

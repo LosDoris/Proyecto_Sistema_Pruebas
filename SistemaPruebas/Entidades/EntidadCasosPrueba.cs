@@ -14,6 +14,7 @@ namespace SistemaPruebas.Controladoras
         private String resultado_esperado;
         private String flujo_central;
         private int id_disenno;
+        private String idConsulta;
 
         public EntidadCasosPrueba(Object[] datos)
         { // Constructor donde se inicializan las variables de la clase
@@ -23,6 +24,7 @@ namespace SistemaPruebas.Controladoras
             this.resultado_esperado = datos[3].ToString();
             this.flujo_central = datos[4].ToString();
             this.id_disenno =  Convert.ToInt32(datos[5].ToString());
+            this.idConsulta = datos[6].ToString();
         }
 
         //Metodos set y get para la variable id_caso_prueba
@@ -66,6 +68,11 @@ namespace SistemaPruebas.Controladoras
             get { return id_disenno; }
             set { id_disenno = value; }
         }
-        
+
+        public String IdConsulta
+        {
+            get { return idConsulta; }
+            set { idConsulta = value; }
+        }
     }
 }

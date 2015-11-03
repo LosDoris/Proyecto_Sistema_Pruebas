@@ -91,7 +91,7 @@
                             <asp:Button runat="server" Text="Agregar"                               
                                 CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" />
                             <asp:Button runat="server" Text="Eliminar"  
-                                CssClass="btn btn-default" ID="EliminarEntrada"/>
+                                CssClass="btn btn-default" ID="EliminarEntrada" OnClick="EliminarEntrada_Click"/>
                         </div>
                 </div>
 
@@ -103,7 +103,7 @@
                                     CssClass ="GridView" HorizontalAlign="Center"   
                                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 
                                     AutoPostBack ="true" OnSelectedIndexChanged="DECP_SelectedIndexChanged"
-                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnRowDataBound">                            
+                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound">                            
                         </asp:GridView>
                     </div>
                 </div>
@@ -162,11 +162,11 @@
             CellPadding="10" 
             margin-left="auto"
             CssClass ="GridView" HorizontalAlign="Center" 
-            OnRowDataBound="OnRowDataBound" 
+            OnRowDataBound="OnCPRowDataBound" 
             AllowPaging="true"   PageSize="5" 
             OnPageIndexChanging="OnCPPageIndexChanging"
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
-            AutoPostBack ="true" >      
+            AutoPostBack ="true" OnSelectedIndexChanged="CP_SelectedIndexChanged" >      
     </asp:GridView>
 </div> 
 </asp:Content>
