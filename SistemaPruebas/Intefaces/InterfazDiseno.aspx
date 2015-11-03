@@ -14,6 +14,11 @@
             $("#txt_date").datepicker();
         });
     </script>
+     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+        <p class="text-danger">
+            <asp:Literal runat="server" ID="FailureText" />
+        </p>
+    </asp:PlaceHolder>
         
         <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
@@ -67,7 +72,30 @@
 <div class="form-group">
                     <asp:Label runat="server" ID="propositoLabel" CssClass="col-md-2 control-label">Propósito:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"/> 
+                    <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"
+                        onkeypress="solo_letras(event)" placeholder="Sólo letras."/> 
+                    <script type="text/javascript">
+                        function solo_letras(evt) {
+
+                            if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
+                                    //alert();
+                                    if ($('#errorNombreSistema').css('display') == 'none') {
+                                        $('#errorNombreSistema').fadeIn();
+                                        $('#errorNombreSistema').fadeOut(6000);
+                                    }
+                                    if (window.event)//IE
+                                        evt.returnValue = false;
+                                    else//Firefox
+                                        evt.preventDefault();
+
+                                }
+                            }
+                        }
+                        </script>
+                        <div id="errorNombreSistema" style="display:none">
+                            <asp:Label runat="server" ID="errorNombreSistLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                        </div>      
                     </div>
 
 </div>
@@ -110,7 +138,30 @@
 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Ambiente:</asp:Label>
                     <div class="col-md-4">
-                    <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:130px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="ambienteTxtbox" style="width:250px;height:130px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+                        onkeypress="solo_letras1(event)" placeholder="Sólo letras y espacios."/>
+                    <script type="text/javascript">
+                            function solo_letras1(evt) {
+
+                                if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                    if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
+                                        //alert();
+                                        if ($('#errorNombreSistema1').css('display') == 'none') {
+                                            $('#errorNombreSistema1').fadeIn();
+                                            $('#errorNombreSistema1').fadeOut(6000);
+                                        }
+                                        if (window.event)//IE
+                                            evt.returnValue = false;
+                                        else//Firefox
+                                            evt.preventDefault();
+
+                                    }
+                                }
+                            }
+                        </script>
+                        <div id="errorNombreSistema1" style="display:none; width: 250px;">
+                            <asp:Label runat="server" ID="errorNombreSistLbl1" text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
+                        </div>  
                     </div>
 </div>
 
@@ -124,14 +175,60 @@
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Procedimiento Utilizado:</asp:Label>
 
 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+                        onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
+                        <script type="text/javascript">
+                            function solo_letras2(evt) {
+
+                                if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                    if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
+                                        //alert();
+                                        if ($('#errorNombreSistema2').css('display') == 'none') {
+                                            $('#errorNombreSistema2').fadeIn();
+                                            $('#errorNombreSistema2').fadeOut(6000);
+                                        }
+                                        if (window.event)//IE
+                                            evt.returnValue = false;
+                                        else//Firefox
+                                            evt.preventDefault();
+
+                                    }
+                                }
+                            }
+                        </script>
+                        <div id="errorNombreSistema2" style="display:none; width: 500px;">
+                            <asp:Label runat="server" ID="errorNombreSistLbl2" text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
+                        </div>  
 </div>
 </div>
 
 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
 <div class="col-md-6">
-                    <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"/>
+                    <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+                        onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
+                    <script type="text/javascript">
+                        function solo_letras3(evt) {
+
+                            if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
+                                    //alert();
+                                    if ($('#errorNombreSistema3').css('display') == 'none') {
+                                        $('#errorNombreSistema3').fadeIn();
+                                        $('#errorNombreSistema3').fadeOut(6000);
+                                    }
+                                    if (window.event)//IE
+                                        evt.returnValue = false;
+                                    else//Firefox
+                                        evt.preventDefault();
+
+                                }
+                            }
+                        }
+                        </script>
+                        <div id="errorNombreSistema3" style="display:none; width: 500px;">
+                            <asp:Label runat="server" ID="Label1" text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
+                        </div>  
 </div>
 </div>
 
