@@ -16,22 +16,22 @@ namespace SistemaPruebas.Intefaces
 
         ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
 
-        //private static int modo=0;  //Numero para identificar accion del boton Aceptar
+        //private static int modoREQ=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         //private static String idViejo = "";
         //private static bool esAdminREQ = true;
         //private static int proyectoDelLoggeado;
 
-        public static string modo
+        public static string modoREQ
         {
             get
             {
-                object value = HttpContext.Current.Session["modo"];
+                object value = HttpContext.Current.Session["modoREQ"];
                 return value == null ? "0" : (string)value;
             }
             set
             {
-                HttpContext.Current.Session["modo"] = value;
+                HttpContext.Current.Session["modoREQ"] = value;
             }
         }
 
@@ -203,7 +203,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonREQInsertar_Click(object sender, EventArgs e)
         {
-            modo = Convert.ToString(1);
+            modoREQ = Convert.ToString(1);
             habilitarCampos();
             if (!Convert.ToBoolean(esAdminREQ))
             {
@@ -236,13 +236,13 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
-            if (modo == 2.ToString())
+            if (modoREQ == 2.ToString())
             {
                 controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);    //ya no está en uso
             }
             desmarcarBotones();
             deshabilitarCampos();
-            if (modo==2.ToString())
+            if (modoREQ==2.ToString())
             {
                 //if (esAdminREQ)
                 //{
@@ -257,11 +257,11 @@ namespace SistemaPruebas.Intefaces
                 //    volverAlOriginal();
                 //}
             }
-            else if (modo==1.ToString())
+            else if (modoREQ==1.ToString())
             {
                 volverAlOriginal();
             }
-            modo=0.ToString();
+            modoREQ=0.ToString();
            
         }
 
@@ -345,7 +345,7 @@ namespace SistemaPruebas.Intefaces
                 int insercion = controladoraRequerimiento.insertarRequerimiento(datosNuevos);
                 if (insercion == 1)
                 {
-                    modo = Convert.ToString(0);
+                    modoREQ = Convert.ToString(0);
                     desmarcarBotones();
                     deshabilitarCampos();
                     BotonREQInsertar.Enabled = true;
@@ -394,7 +394,7 @@ namespace SistemaPruebas.Intefaces
                     BotonREQModificar.Enabled = true;
                     BotonREQCancelar.Enabled = false;
                     BotonREQAceptarModificar.Enabled = false;
-                    modo = Convert.ToString(0);
+                    modoREQ = Convert.ToString(0);
                     //if (esAdminREQ)
                     //{
                         habilitarGrid();
@@ -618,7 +618,7 @@ namespace SistemaPruebas.Intefaces
 			{
 				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el recurso humano
 				
-				modo = Convert.ToString(2);
+				modoREQ = Convert.ToString(2);
 				marcarBoton(ref BotonREQModificar);
 				BotonREQModificar.Enabled = false;
 				desactivarErrores();
@@ -860,7 +860,7 @@ protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
         BotonREQModificar.Enabled = true;
         BotonREQCancelar.Enabled = false;
         BotonREQAceptarModificar.Enabled = false;
-        modo = 0;
+        modoREQ = 0;
         if (esAdminREQ)
         {
             habilitarGrid();
