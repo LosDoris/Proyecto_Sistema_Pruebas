@@ -129,5 +129,10 @@ namespace SistemaPruebas.Controladoras
             return controlBD.modificarDisennoBD(objDisenno, id_diseno);
 
         }
+
+        public int eliminarDisenno(int id_diseno)
+        {
+            return controlBD.eliminarDisennoBD(id_diseno);
+        }
 }
 }

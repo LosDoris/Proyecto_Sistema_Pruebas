@@ -117,6 +117,10 @@ namespace SistemaPruebas.Intefaces
 
         protected void eliminarClick(object sender, EventArgs e)
         {
+            marcarBoton(ref Eliminar);
+            Modificar.Enabled = false;
+            Insertar.Enabled = false;
+            deshabilitarGridDiseno();
         }
 
         protected void restriccionesCampos()
@@ -129,6 +133,35 @@ namespace SistemaPruebas.Intefaces
             procedimientoTxtbox.MaxLength = 150;
             criteriosTxtbox.MaxLength = 150;
 
+        }
+
+        protected void aceptarModal_ClickEliminar(object sender, EventArgs e)
+        {
+           int a= controlDiseno.eliminarDisenno(Int32.Parse(id_diseno_cargado));
+           if (a == 1)
+           {
+               ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true); //CAMBIAR ALERTA
+               llenarGridDisenos();
+               habilitarGridDiseno();
+               deshabilitarCampos();
+               desmarcarBoton(ref Eliminar);
+               Modificar.Enabled = true;
+               Eliminar.Enabled = true;
+               Insertar.Enabled = true;
+           }
+           else
+           {
+               //completar
+           }
+
+        }
+
+        protected void cancelarModal_ClickEliminar(object sender, EventArgs e)
+        {
+            desmarcarBoton(ref Eliminar);
+            Modificar.Enabled = true;
+            Eliminar.Enabled = true;
+            Insertar.Enabled = true;
         }
 
         protected void habilitarCampos()
@@ -246,13 +279,12 @@ namespace SistemaPruebas.Intefaces
                             Eliminar.Enabled = true;
                             Insertar.Enabled = true;
                         }
+                        else
+                        {
+                            //completar
+                        }
                     }
                     break;
-                case 3://Eliminar
-                    {
-                    }
-                    break;
-
             };
         }
 
@@ -260,6 +292,7 @@ namespace SistemaPruebas.Intefaces
         {
             deshabilitarCampos();
             limpiarCampos();
+            habilitarGridDiseno();
             desmarcarBoton(ref Insertar);
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
