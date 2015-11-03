@@ -245,18 +245,13 @@ namespace SistemaPruebas.Intefaces
             DataTable casosPrueba = crearTablaCP();
             DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(1,""); // en consultas tipo 1, no se necesita la cédula
             
-            Object[] datos = new Object[5];
+            Object[] datos = new Object[2];
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
                     datos[1] = dr[1];
-                    datos[3] = dr[3];
-                    datos[4] = dr[4];
-                    String datosEntrada = dr[2].ToString();
-                    datosEntrada = datosEntrada.Replace("_", " ");
-                    datos[2] = datosEntrada;
                     casosPrueba.Rows.Add(datos);
                 }
             }
@@ -264,9 +259,6 @@ namespace SistemaPruebas.Intefaces
             {
                 datos[0] = "-";
                 datos[1] = "-";
-                datos[2] = "-";
-                datos[3] = "-";
-                datos[4] = "-";
                 casosPrueba.Rows.Add(datos);
             }
             CP.DataSource = casosPrueba;
@@ -278,9 +270,6 @@ namespace SistemaPruebas.Intefaces
             DataTable dt = new DataTable();
             dt.Columns.Add("Id", typeof(String));
             dt.Columns.Add("Propósito", typeof(String));
-            dt.Columns.Add("Entrada de Datos", typeof(String));
-            dt.Columns.Add("Resultado", typeof(String));
-            dt.Columns.Add("Flujo Central", typeof(String));
             return dt;
         }
 
@@ -590,5 +579,14 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void aceptarModal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cancelarModal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

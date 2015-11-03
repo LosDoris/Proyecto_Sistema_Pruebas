@@ -385,7 +385,7 @@ namespace SistemaPruebas.Controladoras
         {
           
             string regresa = null;
-            DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo FROM Recurso_Humano WHERE id_proyecto >= 0 and NOT (perfil_acceso = 'Administrador');");
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo FROM Recurso_Humano WHERE id_proyecto < 0 and NOT (perfil_acceso = 'Administrador');");
             try
             {
                 foreach (DataRow row in DR.Rows)
@@ -399,6 +399,11 @@ namespace SistemaPruebas.Controladoras
             }
 
             return regresa;
+        }
+
+        public int addProyecto(int cedula, int id_proyecto)
+        {           
+            return acceso.Insertar("Update Recurso_Humano set id_proyecto = " + id_proyecto + "where cedula=" + cedula); 
         }
     }
 }

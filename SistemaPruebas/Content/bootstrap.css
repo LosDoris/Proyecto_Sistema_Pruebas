@@ -35,7 +35,21 @@ section,
 summary {
   display: block;
 }
-
+ .modalBackground 
+        {
+            background-color: black;
+            filter: alpha(opacity=90);
+            opacity:0.8;
+        }
+        .modalPopup 
+        {
+            background-color: #ffffff;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+            padding-top: 10px;
+            padding-left: 10px;         
+        }
 .cajaAnchoPagina {
   padding: 20px;
   margin-top: 10px;

@@ -93,8 +93,8 @@ namespace SistemaPruebas.Controladoras
         }
         public String LiderProyecto
         {
-            get { return LiderProyecto; }
-            set { LiderProyecto = value; }
+            get { return liderProyecto; }
+            set { liderProyecto = value; }
         }
 //=======
 //=======

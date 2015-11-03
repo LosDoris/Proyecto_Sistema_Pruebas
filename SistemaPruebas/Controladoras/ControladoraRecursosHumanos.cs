@@ -259,5 +259,10 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRecursosHumanos.solicitarNombreRecurso(cedula);
         }
 
+        public int addProyecto(int cedula, int id_proyecto)
+        {
+            return controladoraBDRecursosHumanos.addProyecto(cedula, id_proyecto);
+        }
+
     }
 }
