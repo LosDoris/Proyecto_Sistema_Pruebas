@@ -94,8 +94,7 @@
                         </script>
                         <div id="errorNombreSistema" style="display:none">
                             <asp:Label runat="server" ID="errorNombreSistLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
-                        </div>                        
-                    
+                        </div>                                            
                     </div>
                 </div>
 

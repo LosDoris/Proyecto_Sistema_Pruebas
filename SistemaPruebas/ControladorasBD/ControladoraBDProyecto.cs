@@ -45,7 +45,7 @@ namespace SistemaPruebas.Controladoras
 
                 comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
 
-                comando.Parameters.Add(new SqlParameter("@Lider", datos.LiderProyecto));
+                comando.Parameters.Add(new SqlParameter("@LiderProyecto", datos.LiderProyecto));
 
                return acceso_BD.Insertar_Proced_Almacenado(comando);
 
@@ -172,6 +172,8 @@ namespace SistemaPruebas.Controladoras
                 comando.Parameters.Add(new SqlParameter("@telefono_rep", datos.Telefono_representante));
 
                 comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
+                
+                comando.Parameters.Add(new SqlParameter("@LiderProyecto", datos.LiderProyecto));
 
                 return acceso_BD.Insertar_Proced_Almacenado(comando);
 

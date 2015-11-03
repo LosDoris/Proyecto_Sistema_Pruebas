@@ -38,6 +38,13 @@ namespace SistemaPruebas.Controladoras
         */
         public int ActualizarProyecto(object[] datos)
         {
+            if (datos[8].ToString() != "")
+            {
+                datos[8] = controlRH.solicitarCedulaRecurso(datos[8].ToString()).ToString();
+                controlRH.addProyecto(Int32.Parse(datos[0].ToString()), Int32.Parse(datos[8].ToString()));
+            }
+            else
+                datos[8] = "";
             EntidadProyecto objProyecto = new EntidadProyecto(datos);
             int a = controlBD.ActualizarProyecto(objProyecto);
             return a;
@@ -74,8 +81,11 @@ namespace SistemaPruebas.Controladoras
                 datos[5] = dt.Rows[0][5].ToString();
                 datos[6] = dt.Rows[0][6].ToString();
                 datos[7] = dt.Rows[0][7].ToString();
-                datos[8] = controlRH.solicitarCedulaRecurso(datos[8].ToString()).ToString();
-                datos[8] = dt.Rows[0][8].ToString();
+                if (dt.Rows[0][9].ToString() != "")
+                    datos[8] = controlRH.solicitarCedulaRecurso(dt.Rows[0][9].ToString()).ToString();
+                else
+                    datos[8] = "";
+                //datos[8] = dt.Rows[0][8].ToString();
                 retorno = new EntidadProyecto(datos);
                 return retorno;
             }

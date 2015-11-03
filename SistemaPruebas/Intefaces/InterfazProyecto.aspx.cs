@@ -188,6 +188,7 @@ namespace SistemaPruebas.Intefaces
             Limpiar_Campos();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+            LiderProyecto.ClearSelection();
             cargarComboRH();
             gridProyecto.Enabled = false;
             Habilitar_Campos();
@@ -272,7 +273,7 @@ namespace SistemaPruebas.Intefaces
                     {
                         desmarcarBoton(ref Modificar);
                         Console.WriteLine("Modificar");
-                        string text = Page.Request.Form["txt_date"];
+                        string text = txt_date.Text; ;
                         string telefonos = "";
                         if (tel_rep2.Text != "")
                             telefonos = tel_rep.Text + "," + tel_rep2.Text;
@@ -564,6 +565,7 @@ namespace SistemaPruebas.Intefaces
                 id_Proyecto = gridProyecto.SelectedRow.Cells[0].Text;
                 if (controladoraProyecto.ConsultarUsoProyecto(Int32.Parse(id_Proyecto)) == 0 && !Convert.ToBoolean(modificando))
                 {
+                    
                     Modificar.Enabled = true;
                     Eliminar.Enabled = true;
                     aceptar.Enabled = true;
@@ -588,6 +590,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 }
+                LiderProyecto.ClearSelection();
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
                 if (!Convert.ToBoolean(adm))
@@ -595,6 +598,10 @@ namespace SistemaPruebas.Intefaces
             }
             catch (Exception ex)
             {
+                EtiqErrorLlaves.Text = ex.ToString();
+                EtiqErrorLlaves.Visible = true;
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 Console.WriteLine(ex);
             }
 
@@ -740,9 +747,11 @@ namespace SistemaPruebas.Intefaces
 
         protected void cargarComboRH()
         {
-            //LiderProyecto.Items.Clear();
+            string seleccionado = LiderProyecto.SelectedValue;
+            LiderProyecto.Items.Clear();
             string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
-            string[] nombre = nombres.Split(';');            
+            string[] nombre = nombres.Split(';');
+            LiderProyecto.Items.Add(seleccionado);
             foreach (string n in nombre)
             {
                 LiderProyecto.Items.Add(n);
