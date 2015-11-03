@@ -158,7 +158,7 @@
 
  <div class="row">        
     <asp:GridView ID="CP" runat ="server" margin-right ="auto"
-            style="margin-top: 700px;"
+            style="margin-top: 900px;"
             CellPadding="10" 
             margin-left="auto"
             CssClass ="GridView" HorizontalAlign="Center" 
