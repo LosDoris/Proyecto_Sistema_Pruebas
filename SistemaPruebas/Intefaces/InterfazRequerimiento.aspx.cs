@@ -16,11 +16,24 @@ namespace SistemaPruebas.Intefaces
 
         ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
 
-        private static int modo=0;  //Numero para identificar accion del boton Aceptar
+        //private static int modo=0;  //Numero para identificar accion del boton Aceptar
         //Opciones: 1. Insertar, 2. Modificar, 3. Eliminar, 4. Consultar
         //private static String idViejo = "";
         //private static bool esAdminREQ = true;
         //private static int proyectoDelLoggeado;
+
+        public static string modo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["modo"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["modo"] = value;
+            }
+        }
 
         public static string idViejoREQ 
         {
@@ -223,13 +236,13 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
         {
-            if (modo == 2)
+            if (modo == 2.ToString())
             {
                 controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);    //ya no está en uso
             }
             desmarcarBotones();
             deshabilitarCampos();
-            if (modo==2)
+            if (modo==2.ToString())
             {
                 //if (esAdminREQ)
                 //{
@@ -244,11 +257,11 @@ namespace SistemaPruebas.Intefaces
                 //    volverAlOriginal();
                 //}
             }
-            else if (modo==1)
+            else if (modo==1.ToString())
             {
                 volverAlOriginal();
             }
-            modo=0;
+            modo=0.ToString();
            
         }
 
