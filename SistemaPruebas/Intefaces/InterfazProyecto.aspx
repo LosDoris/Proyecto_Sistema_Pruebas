@@ -48,7 +48,6 @@
         <div class="col-md-offset-10 col-md-12" style="margin-top:15px">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" CausesValidation="false" />
             <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="Modificar_Click"  CausesValidation="false"/>
-
             <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="Eliminar_Click" CausesValidation="false"/>
         </div>
     </div>

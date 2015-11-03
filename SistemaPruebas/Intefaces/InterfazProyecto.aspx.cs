@@ -168,8 +168,8 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.Enabled = true;
             if (Convert.ToBoolean(adm))
                 Insertar.Enabled = true;
-            cancelar.Enabled = false;
-            Modificar.Enabled = false;
+            //cancelar.Enabled = false;
+           // Modificar.Enabled = false;
             estado.ClearSelection();
             ListItem selectedListItems = estado.Items.FindByValue("1");
             LiderProyecto.Items.Clear();
