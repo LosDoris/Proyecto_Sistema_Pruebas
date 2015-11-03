@@ -138,6 +138,16 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGridDiseno();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+            if (this.proyectoAsociado.SelectedIndex==0)
+            {
+                labelSeleccioneProyecto.Visible = true;
+            }
+            else
+            {
+                labelSeleccioneProyecto.Visible = false;
+            }
+            //mostrar caso prueba
+            
 
         }
 
@@ -147,6 +157,15 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             Insertar.Enabled = false;
             deshabilitarGridDiseno();
+            labelSeleccioneProyecto.Visible = true;
+            if (this.proyectoAsociado.SelectedIndex == 0)
+            {
+                labelSeleccioneProyecto.Visible = true;
+            }
+            else
+            {
+                labelSeleccioneProyecto.Visible = false;
+            }
         }
 
         protected void restriccionesCampos()
@@ -326,6 +345,7 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Insertar);
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
+            labelSeleccioneProyecto.Visible = false;
 
         }
 
@@ -608,6 +628,7 @@ namespace SistemaPruebas.Intefaces
                     responsable.Items.Add(new ListItem("No Disponible"));
                 }
             }
+            labelSeleccioneProyecto.Visible = false;
 
         }
 
@@ -702,9 +723,14 @@ namespace SistemaPruebas.Intefaces
             deshabilitarCampos();
             limpiarCampos();
             habilitarGridDiseno();
+            desmarcarBoton(ref Insertar);
+            desmarcarBoton(ref Modificar);
+            desmarcarBoton(ref Eliminar);
             Insertar.Enabled = true;
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
+            labelSeleccioneProyecto.Visible = false;
+
         }
         protected void cancelarModal_ClickCancelar(object sender, EventArgs e)
         {

@@ -68,6 +68,7 @@
                         <asp:DropDownList runat="server" ID="proyectoAsociado" style="width:250px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:label runat ="server" ID="labelSeleccioneProyecto" class="text-danger" Visible="false">Seleccione primero un Proyecto</asp:label>
         </div>
         </div>
 
