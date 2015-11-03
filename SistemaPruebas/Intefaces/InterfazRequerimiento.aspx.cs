@@ -159,12 +159,12 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Cédula
-         * Modifica: Carga los datos del recurso humano consultado en sus respectivas posisiones en la pantalla.
+         * Modifica: Carga los datos del requerimiento consultado en sus respectivas posisiones en la pantalla.
          * Retorna: N/A.
          */
         void llenarDatosRequerimiento(String cedula)
         {
-            DataTable dt = controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
+            DataTable dt = controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un requerimiento
 
             BotonREQEliminar.Enabled = true;
             BotonREQModificar.Enabled = true;
@@ -328,7 +328,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Evento click en boton aceptar de insertar.
-         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
          * Retorna: N/A.
          */
         protected void BotonREQAceptar_Click(object sender, EventArgs e)
@@ -355,7 +355,7 @@ namespace SistemaPruebas.Intefaces
                     BotonREQAceptar.Enabled = false;
                     habilitarGrid();
                     llenarGrid();
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento ha sido insertado con éxito');", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
                 }
@@ -373,7 +373,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
         * Requiere: Evento click en boton aceptar de modificar.
-        * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+        * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
         * Retorna: N/A.
         */
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
@@ -402,7 +402,7 @@ namespace SistemaPruebas.Intefaces
                         BotonREQEliminar.Enabled = true;
                         llenarGrid();
                         controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento ha sido modificado con éxito');", true);
                         resaltarNuevo(this.TextBoxNombreREQ.Text);
 
                     //}
@@ -616,7 +616,7 @@ namespace SistemaPruebas.Intefaces
         {
 			if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false)
 			{
-				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el recurso humano
+				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el requerimiento
 				
 				modoREQ = Convert.ToString(2);
 				marcarBoton(ref BotonREQModificar);
@@ -643,7 +643,7 @@ namespace SistemaPruebas.Intefaces
 				//PerfilAccesoComboBox.Enabled = false;
 				
 			} else {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento consultado se encuentra actualmente en uso');", true);		            
 	        } 
         }
 
@@ -664,7 +664,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-         * Requiere: Evento seleccionar un recurso humano.
+         * Requiere: Evento seleccionar un requerimiento.
          * Modifica: Carga los datos del REQ seleccionado en pantalla.
          * Retorna: N/A.
          */
@@ -697,7 +697,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Evento click en boton eliminar.
-         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
          * Retorna: N/A.
          */
         protected void BotonREQEliminar_Click(object sender, EventArgs e)
@@ -705,7 +705,7 @@ namespace SistemaPruebas.Intefaces
             if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false){
 				if (controladoraRequerimiento.eliminarRequerimiento(this.TextBoxNombreREQ.Text.ToString()) == 1)
 				{
-					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento ha sido eliminado con éxito');", true);
 					volverAlOriginal();
 					llenarGrid();
 					llenarGrid();
@@ -717,7 +717,7 @@ namespace SistemaPruebas.Intefaces
 			}
             else
             {		
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento consultado se encuentra actualmente en uso');", true);		
 	        }
         }
 
@@ -804,7 +804,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-         * Requiere: Cedula del recurso humano más recientemente insertado o modificado.
+         * Requiere: Cedula del requerimiento más recientemente insertado o modificado.
          * Modifica: Mueve el grid para que se seleccione inmediatamente la página donde está la tupla agregada o modificada.
          * Retorna: N/A.      
         */
@@ -837,7 +837,7 @@ namespace SistemaPruebas.Intefaces
 
 /*
  * Requiere: Evento click en boton aceptar de modificar.
- * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+ * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
  * Retorna: N/A.
  */
 /*
@@ -868,7 +868,7 @@ protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
             BotonREQEliminar.Enabled = true;
             llenarGrid();
             controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento ha sido modificado con éxito');", true);
             resaltarNuevo(this.TextBoxNombreREQ.Text);
      
         }
