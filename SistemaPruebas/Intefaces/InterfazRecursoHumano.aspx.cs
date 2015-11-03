@@ -56,6 +56,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void Page_Load(object sender, EventArgs e)
         {
+            InterfazDiseno.llenarProyecto = true.ToString();
             Restricciones_Campos();
             if (!IsPostBack)
             {
