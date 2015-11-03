@@ -203,7 +203,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonREQInsertar_Click(object sender, EventArgs e)
         {
-            modo = 1;
+            modo = Convert.ToString(1);
             habilitarCampos();
             if (!Convert.ToBoolean(esAdminREQ))
             {
@@ -345,7 +345,7 @@ namespace SistemaPruebas.Intefaces
                 int insercion = controladoraRequerimiento.insertarRequerimiento(datosNuevos);
                 if (insercion == 1)
                 {
-                    modo = 0;
+                    modo = Convert.ToString(0);
                     desmarcarBotones();
                     deshabilitarCampos();
                     BotonREQInsertar.Enabled = true;
@@ -394,7 +394,7 @@ namespace SistemaPruebas.Intefaces
                     BotonREQModificar.Enabled = true;
                     BotonREQCancelar.Enabled = false;
                     BotonREQAceptarModificar.Enabled = false;
-                    modo = 0;
+                    modo = Convert.ToString(0);
                     //if (esAdminREQ)
                     //{
                         habilitarGrid();
@@ -618,7 +618,7 @@ namespace SistemaPruebas.Intefaces
 			{
 				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el recurso humano
 				
-				modo = 2;
+				modo = Convert.ToString(2);
 				marcarBoton(ref BotonREQModificar);
 				BotonREQModificar.Enabled = false;
 				desactivarErrores();
