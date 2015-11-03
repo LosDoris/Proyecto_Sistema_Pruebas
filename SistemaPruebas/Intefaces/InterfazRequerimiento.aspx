@@ -80,7 +80,7 @@
                             <div class="col-md-16">
                             <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="150" TextMode="multiline" onkeypress="return this.value.length<=149" Width="230px" Height="79px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorReqEsp">*En este campo solo se permiten letras y espacios.</asp:Label>
-<<<<<<< HEAD
+
                                 <script type="text/javascript">
                                     function solo_letrasYNumeros(evt) {
                                         if ((evt.charCode < 48 || evt.charCode > 59) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
@@ -102,8 +102,7 @@
                                  <div id="errorObjSistema" style="display:none">
                                     <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras, numeros, puntos('.'), comas(','), dos puntos(:) y punto y coma(;) " ForeColor="Salmon"></asp:Label>
                                 </div>
-=======
->>>>>>> origin/master
+
                             </div>
                         </div>
                 </div>
