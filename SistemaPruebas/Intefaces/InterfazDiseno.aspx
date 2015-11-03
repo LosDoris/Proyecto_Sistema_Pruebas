@@ -322,5 +322,17 @@
         </asp:GridView>
     </div>
 
+
+<asp:Panel runat="server" ID="panelModalCancelar" CssClass="modalPopup"> 
+    <asp:label runat ="server" ID="Label2" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar este diseño?</asp:label>
+    <br/> <br/>
+    <div aria-pressed="true">
+        <asp:button runat="server" ID="aceptarModalCancelar" Text="Si"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModal_ClickCancelar" CausesValidation="false"/>
+        <asp:button runat="server" ID="cancelarModalCancelar" Text="No"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" OnClick="cancelarModal_ClickCancelar" CausesValidation="false"/>           
+    </div>
+</asp:Panel>
+
+<ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModalCancelar" TargetControlID="cancelar" OnCancelScript="cancelarModalCancelar" OnOkScript="aceptarModalCancelar"></ajaxToolkit:ModalPopupExtender>
+
 </asp:Content>
 

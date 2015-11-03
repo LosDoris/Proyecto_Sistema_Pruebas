@@ -697,6 +697,19 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
+        protected void aceptarModal_ClickCancelar(object sender, EventArgs e)
+        {
+            deshabilitarCampos();
+            limpiarCampos();
+            habilitarGridDiseno();
+            Insertar.Enabled = true;
+            Modificar.Enabled = true;
+            Eliminar.Enabled = true;
+        }
+        protected void cancelarModal_ClickCancelar(object sender, EventArgs e)
+        {
+
+        }
 
     }
 
