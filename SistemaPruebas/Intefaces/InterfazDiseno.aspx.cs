@@ -98,6 +98,9 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = true;
             aceptar.Enabled = true;
             //llenarGridsReq(1);
+            RequiredFieldValidator1.Enabled = true;
+            RequiredFieldValidator2.Enabled = true;
+            RequiredFieldValidator3.Enabled = true;
 
         }
 
@@ -112,6 +115,10 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGridDiseno();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+
+            RequiredFieldValidator1.Enabled = true;
+            RequiredFieldValidator2.Enabled = true;
+            RequiredFieldValidator3.Enabled = true;
 
         }
 

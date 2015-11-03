@@ -105,6 +105,7 @@
                     <div class="col-md-4">
                     <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"
                         onkeypress="solo_letras(event)" placeholder="Sólo letras."/> 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" Enabled="false" ControlToValidate="propositoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     <script type="text/javascript">
                         function solo_letras(evt) {
 
@@ -208,6 +209,7 @@
 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                         onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  Enabled="false" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras2(evt) {
 
@@ -238,6 +240,7 @@
 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                         onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" Enabled="false" ControlToValidate="criteriosTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     <script type="text/javascript">
                         function solo_letras3(evt) {
 
