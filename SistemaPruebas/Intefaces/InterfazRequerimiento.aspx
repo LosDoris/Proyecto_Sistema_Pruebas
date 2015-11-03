@@ -100,6 +100,9 @@
                                         }
                                     }
                                  </script>
+                                 <div id="errorObjSistema" style="display:none">
+                                    <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras, numeros, puntos('.'), comas(','), dos puntos(:) y punto y coma(;) " ForeColor="Salmon"></asp:Label>
+                                </div>
                             </div>
                         </div>
                 </div>
