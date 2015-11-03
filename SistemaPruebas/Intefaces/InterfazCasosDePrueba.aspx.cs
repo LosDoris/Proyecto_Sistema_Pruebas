@@ -579,5 +579,14 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void aceptarModal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cancelarModal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
