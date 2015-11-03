@@ -78,7 +78,7 @@ namespace SistemaPruebas.Controladoras
         */
         public int modificarDisennoBD(EntidadDisenno Disenno, int id)
         {
-            String consulta = "UPDATE Disenno_Prueba SET proposito ='"+ Disenno.Proposito + "',nivel ="+ Disenno.Nivel + ",tecnica ="+ Disenno.Tecnica + ",ambiente ='"+ Disenno.Ambiente + "',procedimiento ='"+ Disenno.Procedimiento + "',fecha_de_disenno ="+ Disenno.FechaDeDisenno + ",criterio_aceptacion ='"+ Disenno.CriterioAceptacion + "',responsable ="+ Disenno.Responsable + ",fechaUltimo =getDate() WHERE id_disenno = " + id;
+            String consulta = "UPDATE Disenno_Prueba SET proposito = '" + Disenno.Proposito + "', nivel= " + Disenno.Nivel + " , tecnica= " + Disenno.Tecnica + ", ambiente= '" + Disenno.Ambiente + "', procedimiento= '" + Disenno.Procedimiento + "', fecha_de_disenno= '" + Disenno.FechaDeDisenno + "', criterio_aceptacion= '" + Disenno.CriterioAceptacion + "', cedula = " + Disenno.Responsable + ", fechaUltimo =getDate() WHERE id_disenno =" + id;
             int ret = acceso.Insertar(consulta);
             return ret;
         }
@@ -133,7 +133,7 @@ namespace SistemaPruebas.Controladoras
                     }
             else if (tipo == 2)//consulta para llenar grid
             {
-                consulta = "select D.proposito, D.nivel, D.tecnica, R.nombre_completo from Disenno_Prueba D, Recurso_Humano R where D.cedula=R.cedula AND D.id_proyecto=" + id;
+                consulta = "select D.proposito, D.nivel, D.tecnica, R.nombre_completo from Disenno_Prueba D, Recurso_Humano R where D.cedula=R.cedula AND D.id_proyecto=" + id + " ORDER BY D.fechaUltimo desc";
                     }
 
                 dt = acceso.ejecutarConsultaTabla(consulta);

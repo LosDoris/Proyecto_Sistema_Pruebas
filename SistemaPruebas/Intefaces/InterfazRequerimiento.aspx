@@ -24,8 +24,8 @@
     <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este requerimiento al sistema. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorConsultar" >*Ha habido problemas para consultar este requerimiento. Por favor vuelva a intentarlo mas tarde.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorLlaves" >*El ID ingresado ya pertenece a un requerimiento del proyecto. Por favor ingrese otra identificación.</asp:Label>
-    <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este requerimiento. Por favor vuelva a intentarlo.</asp:Label>
-        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este requerimiento del sistema. Por favor vuelva a intentarlo.</asp:Label>
+    <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
+        <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
                     <div class="form-group">
                         <div class="col-md-offset-5 col-md-12">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonREQInsertar" OnClick="BotonREQInsertar_Click"  />
@@ -71,7 +71,6 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Precondiciones:</asp:Label>
                             <div class="col-md-16">
-                                
                             <asp:TextBox runat="server" ID="TextBoxPrecondicionesREQ" CssClass="form-control" MaxLength="150" onkeypress="return solo_letras(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorPrecondiciones">*En este campo solo se permiten letras y espacios.</asp:Label>
                             </div>
@@ -79,9 +78,9 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Condiciones Especiales:</asp:Label>
                             <div class="col-md-16">
-                               <%-- <%<asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="return this.value.length<=149" placeHolder="Sólo letras."/> %>--%>
-                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="150" TextMode="multiline" onkeypress="return ( this.value.length<=149 && solo_letrasYNumeros(event))" Width="230px" Height="79px" placeHolder="Sólo letras y números en este campo.">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="150" TextMode="multiline" onkeypress="return this.value.length<=149" Width="230px" Height="79px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorReqEsp">*En este campo solo se permiten letras y espacios.</asp:Label>
+<<<<<<< HEAD
                                 <script type="text/javascript">
                                     function solo_letrasYNumeros(evt) {
                                         if ((evt.charCode < 48 || evt.charCode > 59) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
@@ -103,6 +102,8 @@
                                  <div id="errorObjSistema" style="display:none">
                                     <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras, numeros, puntos('.'), comas(','), dos puntos(:) y punto y coma(;) " ForeColor="Salmon"></asp:Label>
                                 </div>
+=======
+>>>>>>> origin/master
                             </div>
                         </div>
                 </div>
