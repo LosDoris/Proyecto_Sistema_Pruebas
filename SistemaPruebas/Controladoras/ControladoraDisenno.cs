@@ -122,5 +122,12 @@ namespace SistemaPruebas.Controladoras
         {
             return controlBD.consultarId_Disenno(proposito);
         }
+
+        public int modificarDiseno(int id_diseno, object[] datos)
+        {
+            EntidadDisenno objDisenno = new EntidadDisenno(datos);
+            return controlBD.modificarDisennoBD(objDisenno, id_diseno);
+
+        }
 }
 }

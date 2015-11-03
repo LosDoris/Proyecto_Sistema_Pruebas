@@ -75,15 +75,14 @@ namespace SistemaPruebas.Controladoras
          * Requiere: Entidad de Disenno
          * Modifica: Modifica un disenno previamente ingresado al sistema.
          * Retorna: int.
-        
-        public int modificarDisennoBD(EntidadDisenno Disenno)
+        */
+        public int modificarDisennoBD(EntidadDisenno Disenno, int id)
         {
-            String consulta = "UPDATE Disenno_Prueba SET id_disenno ='"+ Disenno.Id + "',proposito ='"+ Disenno.Proposito + "',nivel ="+ Disenno.Nivel + ",tecnica ="+ Disenno.Tecnica + ",tipo ="+ Disenno.Tipo + ",ambiente ='"+ Disenno.Ambiente + "',procedimiento ='"+ Disenno.Procedimiento + "',fecha_de_disenno ="+ Disenno.FechaDeDisenno + ",criterio_aceptacion ='"+ Disenno.CriterioAceptacion + "',responsable ="+ Disenno.Responsable + ",id_proyecto ="+ Disenno.ProyAsociado + ",fechaUltimo =getDate();";
+            String consulta = "UPDATE Disenno_Prueba SET proposito ='"+ Disenno.Proposito + "',nivel ="+ Disenno.Nivel + ",tecnica ="+ Disenno.Tecnica + ",ambiente ='"+ Disenno.Ambiente + "',procedimiento ='"+ Disenno.Procedimiento + "',fecha_de_disenno ="+ Disenno.FechaDeDisenno + ",criterio_aceptacion ='"+ Disenno.CriterioAceptacion + "',responsable ="+ Disenno.Responsable + ",fechaUltimo =getDate() WHERE id_disenno = " + id;
             int ret = acceso.Insertar(consulta);
             return ret;
-
         }
-         */
+         
         /*
          * Requiere: Id del diseño
          * Modifica: Elimina un disenno del sistema.

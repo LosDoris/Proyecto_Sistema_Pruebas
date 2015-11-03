@@ -40,6 +40,20 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static string id_diseno_cargado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["id_diseno_cargado"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["id_diseno_cargado"] = value;
+            }
+        }
+
+
         public static string llenarProyecto
         {
             get
@@ -192,7 +206,6 @@ namespace SistemaPruebas.Intefaces
                         string fecha = Page.Request.Form["txt_date"];
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-                        //Cambiar responsable y Proyecto asociado para que almacene la llave y no el nombre
                         object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto};
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
@@ -202,6 +215,9 @@ namespace SistemaPruebas.Intefaces
                             habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Insertar);
+                            Modificar.Enabled = true;
+                            Eliminar.Enabled = true;
+                            Insertar.Enabled = true;
                         }
                         else
                         {
@@ -211,6 +227,25 @@ namespace SistemaPruebas.Intefaces
                     break;
                 case 2://Modificar
                     {
+
+                        string fecha = Page.Request.Form["txt_date"];
+                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);                       
+                        int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+
+                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
+
+                        int a = controlDiseno.modificarDiseno(Int32.Parse(id_diseno_cargado), datos);
+                        if (a == 1)
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido modificado con éxito');", true); //CAMBIAR ALERTA
+                            llenarGridDisenos();
+                            habilitarGridDiseno();
+                            deshabilitarCampos();
+                            desmarcarBoton(ref Modificar);
+                            Modificar.Enabled = true;
+                            Eliminar.Enabled = true;
+                            Insertar.Enabled = true;
+                        }
                     }
                     break;
                 case 3://Eliminar
@@ -555,6 +590,7 @@ namespace SistemaPruebas.Intefaces
             {
                 string proposito_Diseno = gridDisenos.SelectedRow.Cells[0].Text;
                 int id_diseno = controlDiseno.consultarId_Disenno(proposito_Diseno);
+                id_diseno_cargado = id_diseno.ToString();
                 Insertar.Enabled = true;
                 Modificar.Enabled = true;
                 Eliminar.Enabled = true;
