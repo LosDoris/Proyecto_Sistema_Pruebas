@@ -97,7 +97,7 @@ namespace SistemaPruebas.Controladoras
         public DataTable ConsultarProyectoIdNombre()
         {
             DataTable dt = new DataTable();
-            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto where id_proyecto >=0 ORDER BY id_proyecto DESC");
+            dt = acceso_BD.ejecutarConsultaTabla("select p.id_proyecto, p.nombre_sistema, r.nombre_completo from Proyecto p left outer join Recurso_Humano r on p.LiderProyecto=r.cedula where p.id_proyecto >=0 ORDER BY p.id_proyecto DESC");
             return dt;
         }
         
@@ -108,7 +108,7 @@ namespace SistemaPruebas.Controladoras
         public DataTable ConsultarProyectoIdNombre(int id_Proyecto)
         {
             DataTable dt = new DataTable();
-            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema from Proyecto where id_proyecto = " + id_Proyecto);
+            dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto, nombre_sistema, LiderProyecto from Proyecto where id_proyecto = " + id_Proyecto);
             return dt;
         }
 
@@ -173,7 +173,10 @@ namespace SistemaPruebas.Controladoras
 
                 comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
                 
+                if(datos.LiderProyecto.ToString() != "")
                 comando.Parameters.Add(new SqlParameter("@LiderProyecto", datos.LiderProyecto));
+                else
+                    comando.Parameters.Add(new SqlParameter("@LiderProyecto", DBNull.Value));    
 
                 return acceso_BD.Insertar_Proced_Almacenado(comando);
 

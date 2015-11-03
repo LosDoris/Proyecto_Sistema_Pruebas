@@ -28,12 +28,7 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
-    
-    <script type="text/javascript">
-        //$(function () {
-          //  $("#txt_date").datepicker();
-        //});
-    </script>
+       
     <script type="text/javascript">
         function HideLabel() {
             var seconds = 5;           
@@ -124,7 +119,7 @@
                             }
                         </script>
                         <div id="errorObjSistema" style="display:none">
-                            <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                            <asp:Label runat="server" ID="errorObjSistemalbl" text="Este campo sólo acepta letras" ForeColor="Salmon"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -295,10 +290,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                     <asp:Label runat="server" id="LiderLbl" Text="Nombre del lidel del proyecto" CssClass="col-md-4 control-label"></asp:label>
+                     <asp:Label runat="server" id="LiderLbl" Text="Nombre del lider del proyecto" CssClass="col-md-4 control-label"></asp:label>
                         <div class="col-md-6">
-                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" ControlToValidate="LiderProyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>                     
+                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                         
                             </div>
                  </div>
 
@@ -334,6 +328,7 @@
                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre del sistema") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:BoundField DataField="Lider del Proyecto" ItemStyle-Width="185px" HeaderText=" Lider del proyecto"  />
                 </Columns>
  
             </asp:GridView>

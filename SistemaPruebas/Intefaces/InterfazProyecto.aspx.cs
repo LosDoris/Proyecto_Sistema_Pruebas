@@ -168,11 +168,11 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.Enabled = true;
             if (Convert.ToBoolean(adm))
                 Insertar.Enabled = true;
-            cancelar.Enabled = false;
-            Modificar.Enabled = false;
+            //cancelar.Enabled = false;
+            //Modificar.Enabled = false;
             estado.ClearSelection();
             ListItem selectedListItems = estado.Items.FindByValue("1");
-            LiderProyecto.ClearSelection();
+            LiderProyecto.Items.Clear();
             txt_date.Text = "";
         }
 
@@ -321,11 +321,11 @@ namespace SistemaPruebas.Intefaces
                                         EtiqErrorLlaves.Text = "Se produjo un error al momento de insertar el proyecto, por favor intente luego";
                                     } break;
 
-                            };
-
-                            //Deshabilitar_Campos();
-                            //gridProyecto.Enabled = true;
-                            //EnabledButtons();
+                            };                           
+                            Habilitar_Campos();
+                            button = "2";
+                            aceptar.Enabled = true;
+                            cancelar.Enabled = true;
                             llenarGrid();
                             EtiqErrorLlaves.Visible = true;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
@@ -435,14 +435,14 @@ namespace SistemaPruebas.Intefaces
         {
             gridProyecto.Columns[0].Visible = true;
             DataTable dt = new DataTable();//crearTablaProyecto();
-            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("conteo"), new DataColumn("Id Proyecto"), new DataColumn("Nombre del Sistema") });
+            dt.Columns.AddRange(new DataColumn[4] { new DataColumn("conteo"), new DataColumn("Id Proyecto"), new DataColumn("Nombre del Sistema"), new DataColumn("Lider del Proyecto")});
             DataTable proyecto = controladoraProyecto.ConsultarProyectoIdNombre();
             Object[] datos = new Object[5];
             if (proyecto.Rows.Count > 0)
             {
                 foreach (DataRow fila in proyecto.Rows)
                 {
-                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString());
+                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), fila[2].ToString());
                 }
             }
             else
@@ -469,9 +469,18 @@ namespace SistemaPruebas.Intefaces
                 selectedListItem.Selected = true;
             };
             this.nombre_rep.Text = entidadP.Nombre_representante;
-            this.tel_rep.Text = entidadP.Telefono_representante;
+            if (entidadP.Telefono_representante.ToString().Contains(","))
+            {
+                string[] tels = entidadP.Telefono_representante.ToString().Split(',');
+                tel_rep.Text = tels[0];
+                tel_rep2.Text = tels[1];
+            }
+            else
+                this.tel_rep.Text = entidadP.Telefono_representante;
             this.of_rep.Text = entidadP.Oficina_representante;
-            this.LiderProyecto.Items.Add(entidadP.LiderProyecto);
+            this.LiderProyecto.Items.Clear();
+            if (entidadP.LiderProyecto != "")
+                this.LiderProyecto.Items.Add(entidadP.LiderProyecto);
         }
 
         //protected void gridProyecto_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
@@ -590,6 +599,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 }
+                Limpiar_Campos();
                 LiderProyecto.ClearSelection();
                 Llenar_Datos_Conultados(Int32.Parse(id_Proyecto));
                 cancelar.Enabled = true;
@@ -749,13 +759,19 @@ namespace SistemaPruebas.Intefaces
         {
             string seleccionado = LiderProyecto.SelectedValue;
             LiderProyecto.Items.Clear();
-            string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
-            string[] nombre = nombres.Split(';');
             LiderProyecto.Items.Add(seleccionado);
-            foreach (string n in nombre)
+            string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
+            if (!String.IsNullOrEmpty(nombres))
             {
-                LiderProyecto.Items.Add(n);
+                string[] nombre = nombres.Split(';');                
+                foreach (string n in nombre)
+                {
+                    if(!String.IsNullOrWhiteSpace(n))
+                    LiderProyecto.Items.Add(n);
+                }
+                
             }
+            LiderProyecto.Items.Add("");
         }
     }
 
