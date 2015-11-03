@@ -98,10 +98,6 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = true;
             aceptar.Enabled = true;
             //llenarGridsReq(1);
-            RequiredFieldValidator1.Enabled = true;
-            RequiredFieldValidator2.Enabled = true;
-            RequiredFieldValidator3.Enabled = true;
-
         }
 
         protected void modificarClick(object sender, EventArgs e)
@@ -115,10 +111,6 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGridDiseno();
             aceptar.Enabled = true;
             cancelar.Enabled = true;
-
-            RequiredFieldValidator1.Enabled = true;
-            RequiredFieldValidator2.Enabled = true;
-            RequiredFieldValidator3.Enabled = true;
 
         }
 
@@ -165,10 +157,13 @@ namespace SistemaPruebas.Intefaces
 
         protected void cancelarModal_ClickEliminar(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true);
             desmarcarBoton(ref Eliminar);
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
             Insertar.Enabled = true;
+
+
         }
 
         protected void habilitarCampos()
@@ -237,6 +232,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void aceptarClick(object sender, EventArgs e)
         {
+
             deshabilitarCampos();
             switch (Int32.Parse(buttonDisenno))
             {
@@ -303,6 +299,7 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Insertar);
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
+
         }
 
         protected void llenarGridsReq(int tipo)

@@ -41,9 +41,9 @@
         
         <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="insertarClick"/>
-            <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="modificarClick"/>
-            <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="eliminarClick"/>
+            <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="insertarClick" CausesValidation="false"/>
+            <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="modificarClick" CausesValidation="false"/>
+            <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="eliminarClick" CausesValidation="false"/>
         </div>
     </div>
 
@@ -51,8 +51,8 @@
         <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este diseño?</asp:label>
         <br/> <br/>
         <div aria-pressed="true">
-            <asp:button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
-            <asp:button runat="server" ID="cancelarModalEliminar" Text="Cancelar" OnClick="cancelarModal_ClickEliminar" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
+            <asp:button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" CausesValidation="false"/>
+            <asp:button runat="server" ID="cancelarModalEliminar" Text="Cancelar" OnClick="cancelarModal_ClickEliminar" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" CausesValidation="false"/>           
        </div>
     </asp:Panel>
     <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" OnCancelScript="cancelarModalEliminar" OnOkScript="aceptarModalEliminar" TargetControlID="Eliminar" PopupControlID="panelModalEliminar"></ajaxToolkit:ModalPopupExtender>
@@ -90,7 +90,7 @@
 --%>
     </div>
         <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq"/>
+            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false"/>
         </div>
 </div>
 
@@ -105,7 +105,7 @@
                     <div class="col-md-4">
                     <asp:TextBox runat="server" ID="propositoTxtbox" style="width:250px;height:36px" CssClass="form-control" MaxLength="80"
                         onkeypress="solo_letras(event)" placeholder="Sólo letras."/> 
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" Enabled="false" ControlToValidate="propositoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="propositoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     <script type="text/javascript">
                         function solo_letras(evt) {
 
@@ -142,6 +142,7 @@
                             <asp:ListItem Value="4">Sistema</asp:ListItem>
                             <asp:ListItem Value="5">Aceptación</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -154,6 +155,7 @@
                             <asp:ListItem Value="3">Caja Blanca</asp:ListItem>
                             <asp:ListItem Value="4">Exploratoria</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -209,7 +211,7 @@
 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="procedimientoTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                         onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  Enabled="false" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
+                    
                         <script type="text/javascript">
                             function solo_letras2(evt) {
 
@@ -240,7 +242,6 @@
 <div class="col-md-6">
                     <asp:TextBox runat="server" ID="criteriosTxtbox" style="width:284%;height:90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                         onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" Enabled="false" ControlToValidate="criteriosTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     <script type="text/javascript">
                         function solo_letras3(evt) {
 
@@ -304,7 +305,7 @@
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; margin-top:20px;" CssClass="btn btn-default" OnClick="cancelarClick"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; margin-top:20px;" CssClass="btn btn-default" OnClick="cancelarClick" CausesValidation="false"/>
 
         </div>
     </div>
