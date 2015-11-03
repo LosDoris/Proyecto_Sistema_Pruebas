@@ -78,8 +78,31 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Condiciones Especiales:</asp:Label>
                             <div class="col-md-16">
-                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" TextMode="multiline" CssClass="form-control" MaxLength="150" onkeypress="return solo_letras(event)" Width="230px" Height="79px">.</asp:TextBox>
+                            <asp:TextBox runat="server" ID="TextBoxRequerimientosEspecialesREQ" CssClass="form-control" MaxLength="150" TextMode="multiline" onkeypress="return this.value.length<=149" Width="230px" Height="79px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorReqEsp">*En este campo solo se permiten letras y espacios.</asp:Label>
+
+                                <script type="text/javascript">
+                                    function solo_letrasYNumeros(evt) {
+                                        if ((evt.charCode < 48 || evt.charCode > 59) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                            if ((evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 8) && (evt.keyCode != 83)) 
+                                            {
+                                                if ($('#errorObjSistema').css('display') == 'none') {
+                                                    //alert(evt.charCode);
+                                                    $('#errorObjSistema').fadeIn();
+                                                    $('#errorObjSistema').fadeOut(6000);
+                                                }
+                                                if (window.event)//IE
+                                                    evt.returnValue = false;
+                                                else//Firefox
+                                                    evt.preventDefault();
+                                            }
+                                        }
+                                    }
+                                 </script>
+                                 <div id="errorObjSistema" style="display:none">
+                                    <asp:Label runat="server" ID="errorObjSistemalbl" text="Sólo se permite el ingreso de letras, numeros, puntos('.'), comas(','), dos puntos(:) y punto y coma(;) " ForeColor="Salmon"></asp:Label>
+                                </div>
+
                             </div>
                         </div>
                 </div>

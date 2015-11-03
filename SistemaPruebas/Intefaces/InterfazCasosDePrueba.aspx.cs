@@ -311,44 +311,73 @@ namespace SistemaPruebas.Intefaces
 
         protected  List<String> transformarDatosEntrada(String hilera)
         {
-
-            String[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
-            String[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
-
-            for (int i = 0; i < primeraDivision.Length; i++)
-            {
-                primeraDivision[i] = primeraDivision[i].Replace("[", "");
-                primeraDivision[i] = primeraDivision[i].Replace("]", "");
+            if (hilera=="N/A"){
+                List<String> regresa = new List<String>();
+                regresa.Add(hilera);
+                return regresa;
             }
-            List <String> regresa = new List <String>();
-            for (int i = 0; i < primeraDivision.Length; i++)
+            else
             {
-                if (primeraDivision[i].Contains("\""))
+                String[] descripcion = hilera.Split(new[] { "_" }, StringSplitOptions.None);
+                String[] primeraDivision = descripcion[0].Split(new[] { ",[" }, StringSplitOptions.None);
+
+                for (int i = 0; i < primeraDivision.Length; i++)
                 {
-                    String[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
-                    regresa.Add(temp[0]);
-                    regresa.Add(temp[1]);
+                    primeraDivision[i] = primeraDivision[i].Replace("[", "");
+                    primeraDivision[i] = primeraDivision[i].Replace("]", "");
                 }
-                else
+                List<String> regresa = new List<String>();
+                for (int i = 0; i < primeraDivision.Length; i++)
                 {
-                    String[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
-                    regresa.Add(temp[0]);
-                    regresa.Add(temp[1]);
+                    if (primeraDivision[i].Contains("\""))
+                    {
+                        String[] temp = primeraDivision[i].Split(new[] { "\"" }, StringSplitOptions.None);
+                        regresa.Add(temp[0]);
+                        regresa.Add(temp[1]);
+                    }
+                    else
+                    {
+                        String[] temp = primeraDivision[i].Split(new[] { "," }, StringSplitOptions.None);
+                        regresa.Add(temp[0]);
+                        regresa.Add(temp[1]);
+                    }
                 }
+
+                regresa.Add(descripcion[1]);
+                return regresa;
             }
 
-            regresa.Add(descripcion[1]);
-            return regresa;
+            
         }
 
         protected void llenarGridEntradaDatos(List<String> lista_datos)
         {
             dtDatosEntrada.Clear();
+            DECP.DataSource = dtDatosEntrada;
+            DECP.DataBind();
             for (int i = 0; i < lista_datos.Count - 1; i+=2)
             {
                 DataRow row = dtDatosEntrada.NewRow();
-                row["Tipo"] = lista_datos[i];
-                row["Datos"] = lista_datos[i + 1];
+                if (lista_datos[i] == "V")
+                {
+                    row["Tipo"] = "Válido";
+                }
+                else if (lista_datos[i] == "I")
+                {
+                    row["Tipo"] = "Inválido";
+                }
+                //row["Tipo"] = lista_datos[i];
+
+                if (Regex.IsMatch(lista_datos[i + 1], @"\d+"))
+                {
+                    row["Datos"] = lista_datos[i + 1];
+                }
+                else
+                {
+                    row["Datos"] = "\"" + lista_datos[i + 1] + "\"";
+                }
+                
+                //row["Datos"] = lista_datos[i + 1];
                 dtDatosEntrada.Rows.Add(row);
                 DECP.DataSource = dtDatosEntrada;
                 DECP.DataBind();
@@ -454,7 +483,7 @@ namespace SistemaPruebas.Intefaces
             }
             if (operacion == 1)
             {
-                Response.Write("Se insertó con éxito"); //temporal hasta que halla modal
+                Response.Write("Se insertó con éxito"); //temporal hasta que haya modal
                 llenarGrid();
                 estadoPostOperacion();
             }
