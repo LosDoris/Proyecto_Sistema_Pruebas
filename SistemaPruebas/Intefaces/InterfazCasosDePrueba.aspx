@@ -12,7 +12,7 @@
     <div class="col-md-offset-10 col-md-12">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click"/>
         <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" />
-        <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar este caso de prueba?')" />
+        <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" OnClientClick="return confirm('¿Está seguro que desea eliminar este caso de prueba?')" />
     </div>
 </div>
 <div class ="row" style ="width: 100%">    
