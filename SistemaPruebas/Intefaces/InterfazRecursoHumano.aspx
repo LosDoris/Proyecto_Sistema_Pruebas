@@ -117,7 +117,7 @@
                                         }                                        
                                     };
                                 </script>
-                                <div id="errorCedula" class="errorDiv">
+                                <div id="errorCedula" class="errorDiv" style="display:none">
                                     <asp:Label runat="server" Text="Este campo sólo acepta números" CssClass="text-danger"></asp:Label>
                                 </div>
                             </div>
@@ -125,8 +125,8 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                             <div class="col-md-10">
-                                <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="return solo_letras(event)">.</asp:TextBox>
-                                <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label>
+                                <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras.">.</asp:TextBox>
+                                <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label> --%>
                                 <asp:RequiredFieldValidator ID="Requiredfieldvalidator1"
                                     ControlToValidate="TextBoxNombreRH"
                                     Display="Dynamic"
@@ -135,6 +135,24 @@
                                     ErrorMessage="El campo de Nombre es obligatorio."
                                     runat="Server">
                                 </asp:RequiredFieldValidator>
+                                <script type="text/javascript">
+                                    function check_txt1(e) {
+                                        if (!solo_letras(e)) {
+                                            if ($('#errorNombre').css('display') == 'none') {
+                                                $('#errorNombre').fadeIn();
+                                                $('#errorNombre').fadeOut(5000);
+                                            }
+
+                                            if (window.event)//IE
+                                                e.returnValue = false;
+                                            else//Firefox
+                                                e.preventDefault();
+                                        }
+                                    };
+                                </script>
+                                <div id="errorNombre" class="errorDiv" style="display:none">
+                                    <asp:Label runat="server" Text="Este campo sólo acepta Letras" CssClass="text-danger"></asp:Label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

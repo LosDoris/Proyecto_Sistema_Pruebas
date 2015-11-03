@@ -588,7 +588,7 @@ namespace SistemaPruebas.Intefaces
         {
 
             CedVal.Visible = false;
-            NombVal.Visible = false;
+            //NombVal.Visible = false;
             TelVal1.Visible = false;
             TelVal2.Visible = false;
             EmailVal.Visible = false;
