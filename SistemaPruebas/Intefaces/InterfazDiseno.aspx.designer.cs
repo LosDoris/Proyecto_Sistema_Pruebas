@@ -301,6 +301,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
         
         /// <summary>
+        /// Control botonCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button botonCP;
+        
+        /// <summary>
         /// Control aceptar.
         /// </summary>
         /// <remarks>

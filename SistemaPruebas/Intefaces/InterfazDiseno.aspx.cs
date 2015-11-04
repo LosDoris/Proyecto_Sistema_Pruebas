@@ -22,6 +22,7 @@ namespace SistemaPruebas.Intefaces
                 {
                     llenarComboboxProyectoAdmin();
                     deshabilitarCampos();
+
                 }
                 llenarProyecto = false.ToString();
             }
@@ -31,7 +32,9 @@ namespace SistemaPruebas.Intefaces
                 if (llenarProyecto == true.ToString())
                 {
                     llenarComboboxProyectoMiembro();
-                    llenarGridDisenos();
+                    llenarGridDisenos();                   
+                    llenarGridsReq(1);
+                    llenarGridsReq(2);
                     cargarResponsablesMiembro();
                     deshabilitarCampos();
                 }
@@ -124,31 +127,38 @@ namespace SistemaPruebas.Intefaces
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
-            //llenarGridsReq(1);
+            botonCP.Enabled = false;
+            
         }
 
         protected void modificarClick(object sender, EventArgs e)
         {
-            marcarBoton(ref Modificar);
-            buttonDisenno = "2";
-            habilitarCampos();
-            Modificar.Enabled = false;
-            Eliminar.Enabled = false;            
-            Insertar.Enabled = false;
-            deshabilitarGridDiseno();
-            aceptar.Enabled = true;
-            cancelar.Enabled = true;
-            if (this.proyectoAsociado.SelectedIndex==0)
+            if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
-                labelSeleccioneProyecto.Visible = true;
+                marcarBoton(ref Modificar);
+                buttonDisenno = "2";
+                habilitarCampos();
+                Modificar.Enabled = false;
+                Eliminar.Enabled = false;
+                Insertar.Enabled = false;
+                deshabilitarGridDiseno();
+                aceptar.Enabled = true;
+                cancelar.Enabled = true;
+                if (this.proyectoAsociado.SelectedIndex == 0)
+                {
+                    labelSeleccioneProyecto.Visible = true;
+                }
+                else
+                {
+                    labelSeleccioneProyecto.Visible = false;
+                }
+
+                botonCP.Enabled = true;
             }
-            else
+            if (proyectoAsociado.Items.Count == 1)
             {
                 labelSeleccioneProyecto.Visible = false;
             }
-            //mostrar caso prueba
-            
-
         }
 
         protected void eliminarClick(object sender, EventArgs e)
@@ -166,6 +176,7 @@ namespace SistemaPruebas.Intefaces
             {
                 labelSeleccioneProyecto.Visible = false;
             }
+            botonCP.Enabled = false;
         }
 
         protected void restriccionesCampos()
@@ -250,6 +261,9 @@ namespace SistemaPruebas.Intefaces
             responsable.Enabled = false;
             aceptar.Enabled = false;
             cancelar.Enabled = false;
+            deshabilitarGridReq(1);
+            deshabilitarGridReq(2);
+            botonCP.Enabled = false;
         }
 
         protected void limpiarCampos()
@@ -273,6 +287,8 @@ namespace SistemaPruebas.Intefaces
             ListItem selectedListItem4 = responsable.Items.FindByValue("1");
             cancelar.Enabled = false;
             Modificar.Enabled = false;
+            habilitarGridReq(1);
+            habilitarGridReq(2);
 
         }
 
@@ -294,6 +310,8 @@ namespace SistemaPruebas.Intefaces
                         {
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
+                            llenarGridsReq(1);
+                            llenarGridsReq(2);
                             habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Insertar);
@@ -321,6 +339,8 @@ namespace SistemaPruebas.Intefaces
                         {
                             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido modificado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
+                            llenarGridsReq(1);
+                            llenarGridsReq(2);
                             habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Modificar);
@@ -518,6 +538,34 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void habilitarGridReq(int tipo)
+        {
+            if (tipo == 1)
+            {
+                gridNoAsociados.Enabled = true;
+                foreach (GridViewRow row in gridNoAsociados.Rows)
+                {
+                    row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridNoAsociados, "Select$" + row.RowIndex);
+                    row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                    row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                    row.Attributes["style"] = "cursor:pointer";
+                }
+            }
+
+            else
+            {
+                gridAsociados.Enabled = true;
+                foreach (GridViewRow row in gridAsociados.Rows)
+                {
+                    row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridAsociados, "Select$" + row.RowIndex);
+                    row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                    row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                    row.Attributes["style"] = "cursor:pointer";
+                }
+            }
+        }
+
+
         protected void deshabilitarGridDiseno()
         {
             gridDisenos.Enabled = false;
@@ -527,6 +575,34 @@ namespace SistemaPruebas.Intefaces
                 row.Attributes.Remove("onmouseover");
                 row.Attributes.Remove("style");
                 row.Attributes.Remove("onmouseout");
+            }
+        }
+
+        protected void deshabilitarGridReq(int tipo)
+        {
+
+            if (tipo == 1)
+            {
+                gridNoAsociados.Enabled = false;
+                foreach (GridViewRow row in gridNoAsociados.Rows)
+            {
+                row.Attributes.Remove("onclick");
+                row.Attributes.Remove("onmouseover");
+                row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
+            }
+            }
+
+            else
+            {
+                gridAsociados.Enabled = false;
+                foreach (GridViewRow row in gridAsociados.Rows)
+                {
+                    row.Attributes.Remove("onclick");
+                    row.Attributes.Remove("onmouseover");
+                    row.Attributes.Remove("style");
+                    row.Attributes.Remove("onmouseout");
+                }
             }
         }
 
@@ -629,6 +705,8 @@ namespace SistemaPruebas.Intefaces
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
                 llenarGridDisenos();
+                llenarGridsReq(1);
+                llenarGridsReq(2);
                 int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                 this.responsable.Items.Clear();
                 responsable.Items.Add(new ListItem("Seleccionar"));
@@ -658,8 +736,6 @@ namespace SistemaPruebas.Intefaces
                     responsable.Items.Add(new ListItem("No Disponible"));
                 }
             }
-            labelSeleccioneProyecto.Visible = false;
-
         }
 
         protected int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
@@ -748,6 +824,7 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
+
         protected void aceptarModal_ClickCancelar(object sender, EventArgs e)
         {
             deshabilitarCampos();
@@ -762,11 +839,16 @@ namespace SistemaPruebas.Intefaces
             labelSeleccioneProyecto.Visible = false;
 
         }
+
         protected void cancelarModal_ClickCancelar(object sender, EventArgs e)
         {
 
         }
 
+        protected void irACasoPrueba(object sender, EventArgs e){
+            Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
+        }
+        
     }
 
     }

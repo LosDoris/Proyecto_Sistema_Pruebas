@@ -68,7 +68,7 @@ namespace SistemaPruebas.Controladoras
          * Retorna: int.
          */
         public int insertarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
-        {
+        {   
             String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales,id_proyecto,fechaUltimo) VALUES ('" + requerimiento.Id + "','" + requerimiento.Precondiciones + "','" + requerimiento.RequerimientosEspeciales+ "',"+requerimiento.Proyecto+", getDate());";
             // = "INSERT INTO Recurso_Humano(cedula, nombre_completo, telefono1, telefono2, correo_electronico, usuario, contrasenna, perfil_acceso, rol, id_proyecto,fechaUltimo) values('" + requerimiento.Usuario + "','" + requerimiento.Clave + "','" + requerimiento.PerfilAcceso + "','" + requerimiento.Rol + "'," + requerimiento.ProyAsociado + ", getDate()" + ")";
             int ret = acceso.Insertar(consulta);
@@ -137,7 +137,8 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
         {
-            String consulta = "select id_requerimiento from Requerimiento where id_requerimiento not in (select id_requerimiento from Prueba_Disenno_Req where id_proyecto = "+id_proyecto+" and id_disenno ="+ id_diseno+");";
+
+            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_proyecto =" + id_proyecto + " and id_disenno !=" + id_diseno; 
             DataTable dt = acceso.ejecutarConsultaTabla(consulta);
             //DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
             return dt;
@@ -145,7 +146,8 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
         {
-            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_disenno = "+id_diseno+"; ";
+
+            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_proyecto =" + id_proyecto + " and id_disenno =" + id_diseno;
             DataTable dt = acceso.ejecutarConsultaTabla(consulta);
             //DataTable dt = controladoraBDRequerimiento.consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
             return dt;
