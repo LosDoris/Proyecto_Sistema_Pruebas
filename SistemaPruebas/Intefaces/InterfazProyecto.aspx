@@ -142,7 +142,7 @@
                      
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <asp:TextBox runat="server" id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" ReadOnly="True" placeholder="De un click para seleccionar fecha."></asp:TextBox>
+                        <asp:TextBox runat="server" id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" ReadOnly="True" placeholder="De click para seleccionar fecha."></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
                     </div>
                     
@@ -161,9 +161,9 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre de la oficina</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="return solo_letras2(event)" MaxLength="17" />
+                        <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras2(event)" MaxLength="17" placeholder="Sólo recibe letras y espacios"/>
                         <script type="text/javascript">
-                            function solo_letras2(e) {
+                            function solo_letras2(evt) {
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83) && (evt.charCode != 44)) {
                                         //alert(evt.charCode);
@@ -191,7 +191,7 @@
                     <div class="col-md-6">
                         <asp:label runat="server" id="tel1Label" text="Teléfono 1:"></asp:label>
 
-                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)" placeholder="00000000"/>
+                        <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)" placeholder="Formato: 00000000"/>
                         <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
@@ -266,7 +266,7 @@
                 <div class="form-group" style="margin-top:40px">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre del representante</asp:Label>
                     <div class="col-md-6">
-                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="return solo_letras3(event)" MaxLength="30" />
+                        <asp:TextBox runat="server" style="width:250px;height:36px"  ID="nombre_rep" CssClass="form-control" onkeypress="solo_letras3(event)" MaxLength="30" placeHolder="Sólo recibe letras y espacios"/>
                         <script type="text/javascript">
                             function solo_letras3(evt) {
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
@@ -285,7 +285,7 @@
                             }
                         </script>
                         <div id="errorNombreUsuario" style="display:none">
-                            <asp:Label runat="server" ID="errorNombreUsuarioLbl" text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
+                            <asp:Label runat="server" ID="errorNombreUsuarioLbl" text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
                         </div>
                     </div>
                 </div>

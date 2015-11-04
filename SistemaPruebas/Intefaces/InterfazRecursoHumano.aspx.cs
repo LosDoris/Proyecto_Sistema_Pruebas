@@ -361,7 +361,10 @@ namespace SistemaPruebas.Intefaces
                     BotonRHAceptar.Enabled = false;
                     habilitarGrid();
                     llenarGrid();
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
+                    EtiqErrorGen.Text = "El recurso humano ha sido insertado con éxito";
+                    EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxCedulaRH.Text);
                 }
@@ -573,8 +576,8 @@ namespace SistemaPruebas.Intefaces
             if ((TextBoxEmail.Text != "") &&
                 (!Regex.IsMatch(TextBoxEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))//emailRE.IsMatch(TextBoxEmail.Text))
             {
-                todosValidos = false;
-                EmailVal.Visible = true;
+                //todosValidos = false;
+                //EmailVal.Visible = true;
             }
 
             return todosValidos;
@@ -588,13 +591,13 @@ namespace SistemaPruebas.Intefaces
         protected void desactivarErrores()
         {
 
-            CedVal.Visible = false;
-            //NombVal.Visible = false;
-            TelVal1.Visible = false;
-            TelVal2.Visible = false;
-            EmailVal.Visible = false;
-            UserVal.Visible = false;
-            ClaveVal.Visible = false;
+            //CedVal.Visible = false;
+            ////NombVal.Visible = false;
+            //TelVal1.Visible = false;
+            ////TelVal2.Visible = false;
+            //EmailVal.Visible = false;
+            //UserVal.Visible = false;
+            //ClaveVal.Visible = false;
             EtiqErrorEliminar.Visible = false;
             EtiqErrorInsertar.Visible = false;
             EtiqErrorModificar.Visible = false;
@@ -639,14 +642,20 @@ namespace SistemaPruebas.Intefaces
                     BotonRHEliminar.Enabled = true;
                     llenarGrid();
 					controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+                    EtiqErrorGen.Text = "El recurso humano ha sido modificado con éxito";
+                    EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     resaltarNuevo(this.TextBoxCedulaRH.Text);
      
                 }
                 else
                 {
 					controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString()), 0);//ya fue modificado el RH
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
+                    EtiqErrorGen.Text = "Su informacion ha sido actualizada exitosamente";
+                    EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                 }
                 //habilitar consulta
             }
@@ -694,7 +703,10 @@ namespace SistemaPruebas.Intefaces
 				PerfilAccesoComboBox.Enabled = false;
 				
 			} else {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            
+                EtiqErrorGen.Text = "El Recurso Humano consultado se encuentra actualmente en uso";
+                EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            
 	        } 
         }
 
@@ -706,7 +718,7 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaRH()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Cedula", typeof(int));
+            dt.Columns.Add("Cédula", typeof(int));
             dt.Columns.Add("Nombre Completo", typeof(String));
             dt.Columns.Add("Rol", typeof(String));
             dt.Columns.Add("Nombre Proyecto");
@@ -756,7 +768,10 @@ namespace SistemaPruebas.Intefaces
             if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false){
 				if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
 				{
-					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
+                    EtiqErrorGen.Text = "El recurso humano ha sido eliminado con éxito";
+                    EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;                   
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+					//ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
 					volverAlOriginal();
 					llenarGrid();
 					llenarGrid();
@@ -767,8 +782,11 @@ namespace SistemaPruebas.Intefaces
 				}
 			}
             else
-            {		
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		
+            {
+                EtiqErrorGen.Text = "El Recurso Humano consultado se encuentra actualmente en uso";
+                EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);		
 	        }
         }
 
@@ -881,7 +899,30 @@ namespace SistemaPruebas.Intefaces
 
         protected void aceptarModal_Click(object sender, EventArgs e)
         {
-
+            if (controladoraRecursosHumanos.ConsultarUsoRH(Int32.Parse(TextBoxCedulaRH.Text.ToString())) == false)
+            {
+                if (controladoraRecursosHumanos.eliminarRecursoHumano(Convert.ToInt32(this.TextBoxCedulaRH.Text.ToString())) == 1)
+                {
+                    EtiqErrorGen.Text = "El recurso humano ha sido eliminado con éxito";
+                    EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
+                    volverAlOriginal();
+                    llenarGrid();
+                    llenarGrid();
+                }
+                else
+                {
+                    EtiqErrorEliminar.Visible = true;
+                }
+            }
+            else
+            {
+                EtiqErrorGen.Text = "El Recurso Humano consultado se encuentra actualmente en uso";
+                EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('');", true);		
+            }
         }
 
         protected void cancelarModal_Click(object sender, EventArgs e)
@@ -891,7 +932,30 @@ namespace SistemaPruebas.Intefaces
 
         protected void cancelar_Click(object sender, EventArgs e)
         {
+            if (modo == 2)
+                controladoraRecursosHumanos.UpdateUsoRH(Int32.Parse(cedulaConsulta), 0);    //ya no está en uso
+            desmarcarBotones();
+            deshabilitarCampos();
+            if (modo == 2)
+            {
+                if (esAdmin)
+                {
+                    volverAlOriginal();
+                    BotonRHEliminar.Enabled = true;
+                    BotonRHModificar.Enabled = true;
+                    llenarDatosRecursoHumano(Int32.Parse(cedulaConsulta));
 
+                }
+                else
+                {
+                    volverAlOriginal();
+                }
+            }
+            else if (modo == 1)
+            {
+                volverAlOriginal();
+            }
+            modo = 0;
         }
     }
 }

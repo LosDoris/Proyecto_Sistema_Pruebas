@@ -23,11 +23,8 @@
         }
       
         function HideLabel() {
-            var seconds = 5;           
-            setTimeout(function () {
-
-                $('#'+'<%#MensajesGenerales.ClientID %>').fadeOut('slow');
-            }, 1000);           
+            $('#MsgGen').fadeIn();
+            $('#MsgGen').fadeOut(5000);
         };
             
     </script>
@@ -91,9 +88,11 @@
         </div>
        
         <div class="container body-content">
-            <div>
-                    <asp:label runat="server" ID="MensajesGenerales" Font-Bold="False" Font-Size="Large" Style="margin-top:50px" Visible="False"></asp:label>                    
-                </div>
+            <div id="MsgGen" style="display:none; padding-top:40px; text-align:center">
+                <p>
+                    <asp:label runat="server" ID="MensajesGenerales" Font-Bold="False" Font-Size="Large"></asp:label>                    
+               </p>
+            </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                  
             </asp:ContentPlaceHolder>
