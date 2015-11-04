@@ -79,30 +79,59 @@
 
 <div class="cajaAnchoPagina">
 
-    <div id="tablasReq" class="row">
+ <div class="row">
+<div class="col-md-offset-2 col-md-6">
+<div class="form-horizontal">   
 
-        <asp:GridView ID="gridNoAsociados" runat="server" margin-right="auto"
-            CellPadding="10" 
-            margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc"
-            OnRowDataBound="OnRowDataBoundNoAsoc" CssClass="GridView" HorizontalAlign="Center"
+        <asp:GridView ID="gridNoAsociados" runat="server" 
+            CellPadding="10" padding-left="20px" margin-left="20px"
+            OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc"
+            OnRowDataBound="OnRowDataBoundNoAsoc" CssClass="GridView" HorizontalAlign="Left"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingNoAsoc" PageSize="5"
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true">
         </asp:GridView>
 
+            <asp:Button runat="server" ID="Button1" Text="Asociar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-content:center;margin-top:125px;margin-left:135px;margin-right:10px"/>
+            <asp:Button runat="server" ID="Button2" Text="Desasociar" style="border-color:#fe6c4f;color:#fe5e3e;align-content:center;margin-top:125px;margin-left:10px;margin-right:20px"  CssClass="btn btn-default" CausesValidation="false"/>
+
+</div>
+</div>
+
+     <div class="col-md-2">
+    <div class="form-horizontal">
+
             <asp:GridView ID="gridAsociados" runat="server" margin-right="auto"
-            CellPadding="10" 
+            CellPadding="10" padding-right="20px"
             margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedAsoc"
-            OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Center"
+            OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Right"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingAsoc" PageSize="5"
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true">
-        </asp:GridView>
+            </asp:GridView>
 
     </div>
-        <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false"/>
-        </div>
+    </div>
+</div>
+
+ <div class="row">
+                    <div class="col-md-offset-2 col-md-6">
+                    <div class="form-group">
+                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-2 control-label">Disponibles</asp:Label>
+                    </div>
+                    </div>
+
+                    <div class="col-md-2">
+                    <div class="form-group">
+                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-10 control-label">En Diseño</asp:Label>
+    </div>
+    </div>
+
+    </div>
+            <div class="col-md-offset-10 col-md-12">
+            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false" style="margin-top:20px"/>
+            </div>
+
 </div>
 
 <div class="row">
