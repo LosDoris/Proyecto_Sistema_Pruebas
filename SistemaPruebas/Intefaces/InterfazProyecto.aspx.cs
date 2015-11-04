@@ -263,6 +263,7 @@ namespace SistemaPruebas.Intefaces
                                 aceptar.Enabled = true;
                                 cancelar.Enabled = true;
                                 marcarBoton(ref Insertar);
+                                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                                 EtiqErrorLlaves.Visible = true;
                                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
 
@@ -306,7 +307,7 @@ namespace SistemaPruebas.Intefaces
                             //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
                             switch (a)
                             {
-                                case 2627:
+                                case 2601:
                                     {
                                         EtiqErrorLlaves.Text = "El nombre del sistema ya ha sido ingresado anteriormente, por favor ingrese un nombre nuevo";
                                         nombre_proyecto.BorderColor = System.Drawing.Color.Red;
@@ -328,6 +329,7 @@ namespace SistemaPruebas.Intefaces
                             aceptar.Enabled = true;
                             cancelar.Enabled = true;
                             llenarGrid();
+                            EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                             EtiqErrorLlaves.Visible = true;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                         }
