@@ -264,9 +264,8 @@ namespace SistemaPruebas.Intefaces
                 volverAlOriginal();
             }
             modoREQ=0.ToString();
-           
         }
-
+        
 
         /*
          * Requiere: N/A.
@@ -279,6 +278,7 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             deshabilitarCampos();
             llenarDDProyecto();
+            modoREQ = Convert.ToString(0);
             if (!Convert.ToBoolean(esAdminREQ))
             {
                 ProyectoAsociado.ClearSelection();
@@ -357,7 +357,7 @@ namespace SistemaPruebas.Intefaces
                     BotonREQAceptar.Enabled = false;
                     habilitarGrid();
                     llenarGrid();
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido insertado con éxito');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requrimiento ha sido insertado con éxito');", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
                 }
@@ -370,7 +370,6 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorInsertar.Visible = true;
                 }
             }
-    
         }
 
         /*
@@ -379,6 +378,11 @@ namespace SistemaPruebas.Intefaces
         * Retorna: N/A.
         */
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
+        {
+            modificarReq();
+        }
+
+        protected void modificarReq()
         {
             if (validarCampos())
             {
@@ -399,19 +403,19 @@ namespace SistemaPruebas.Intefaces
                     modoREQ = Convert.ToString(0);
                     //if (esAdminREQ)
                     //{
-                        habilitarGrid();
-                        BotonREQInsertar.Enabled = true;
-                        BotonREQEliminar.Enabled = true;
-                        llenarGrid();
-                        controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-                        ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
-                        resaltarNuevo(this.TextBoxNombreREQ.Text);
+                    habilitarGrid();
+                    BotonREQInsertar.Enabled = true;
+                    BotonREQEliminar.Enabled = true;
+                    llenarGrid();
+                    controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
+                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+                    resaltarNuevo(this.TextBoxNombreREQ.Text);
 
                     //}
                     //else
                     //{
-                        //controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-                        //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
+                    //controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
                     //}
                     //habilitar consulta
                 }
@@ -648,7 +652,7 @@ namespace SistemaPruebas.Intefaces
 				//PerfilAccesoComboBox.Enabled = false;
 				
 			} else {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		            
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento consultado se encuentra actualmente en uso');", true);		            
 	        } 
         }
 
@@ -707,7 +711,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonREQEliminar_Click(object sender, EventArgs e)
         {
-            if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false){
+            /*if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false){
 				if (controladoraRequerimiento.eliminarRequerimiento(this.TextBoxNombreREQ.Text.ToString()) == 1)
 				{
 					ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);
@@ -723,8 +727,14 @@ namespace SistemaPruebas.Intefaces
             else
             {		
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El Recurso Humano consultado se encuentra actualmente en uso');", true);		
-	        }
+	        }*/
+            marcarBoton(ref BotonREQEliminar);
+            modoREQ = Convert.ToString(3);
+            idViejoREQ=TextBoxNombreREQ.Text;
+            //controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 1);
         }
+
+       
 
         /*
          * Requiere: Evento de pasar de página en el grid.
@@ -832,62 +842,90 @@ namespace SistemaPruebas.Intefaces
             gridRequerimiento.AllowPaging = true;
             gridRequerimiento.DataBind();
         }
+
+        protected void aceptarModal_Click(object sender, EventArgs e)
+        {
+            idViejoREQ = TextBoxNombreREQ.Text.ToString();
+            if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false)
+            {
+                desmarcarBoton(ref BotonREQEliminar);
+                //idViejoREQ = TextBoxNombreREQ.Text;
+                int proyecto = Convert.ToInt32( this.ProyectoAsociado.SelectedValue);
+                Console.WriteLine("Eliminar");
+                //int    a = controladoraRequerimiento.eliminarRequerimiento(TextBoxNombreREQ.Text.ToString());
+                if (controladoraRequerimiento.eliminarRequerimiento(this.TextBoxNombreREQ.Text.ToString(),proyecto) == 1)
+                {
+                    volverAlOriginal();
+                    EtiqErrorLlaves.Text = "El requerimiento se ha eliminado correctamente";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    idViejoREQ = "";
+                    
+                }
+                else
+                {
+                    EtiqErrorLlaves.Text = "El requerimiento no pudo ser eliminado, ocurrió un error. "+idViejoREQ;
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Ha ocurrido un problema, el proyecto no fue insertado');", true);
+                    idViejoREQ = "";
+                    controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);
+                }
+
+                llenarGrid();
+                llenarGrid();
+
+                //int i = -1;
+                //id_modificando = i.ToString();
+                //modificando = false.ToString();
+            }
+            else
+            {
+                EtiqErrorLlaves.Text = "Otro usuario esta modificando este requerimiento por lo que pude ser eliminado. Por favor intente mas tarde. ";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorLlaves.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+            }
+        }
+
+        protected void cancelarModal_Click(object sender, EventArgs e)
+        {
+            desmarcarBotones();
+            deshabilitarCampos();
+            if(modoREQ==Convert.ToString(3)){
+                modoREQ=Convert.ToString(0);
+                controladoraRequerimiento.UpdateUsoREQ(idViejoREQ,0);
+                //idViejoREQ = "";
+                llenarDatosRequerimiento(idViejoREQ);
+            }
+            else if (modoREQ == Convert.ToString(2))
+            {
+                controladoraRequerimiento.UpdateUsoREQ(idViejoREQ, 0);    //ya no está en uso
+                //if (esAdminREQ)
+                //{
+                volverAlOriginal();
+                BotonREQEliminar.Enabled = true;
+                BotonREQModificar.Enabled = true;
+                llenarDatosRequerimiento(idViejoREQ);
+
+                //}
+                //else
+                //{
+                //    volverAlOriginal();
+                //}
+            }
+            else if (modoREQ == 1.ToString())
+            {
+                volverAlOriginal();
+            }
+            modoREQ = 0.ToString();
+            llenarGrid();
+            desmarcarBoton(ref BotonREQEliminar);
+            desmarcarBoton(ref BotonREQInsertar);
+            desmarcarBoton(ref BotonREQModificar);
+        }
+        
     }
 }
-
-
-
-
-
-
-/*
- * Requiere: Evento click en boton aceptar de modificar.
- * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
- * Retorna: N/A.
- */
-/*
-protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
-{
-    if (validarCampos())
-    {
-
-        Object[] datosNuevos = new Object[5];
-        datosNuevos[0] = this.TextBoxNombreREQ.Text;//id_Req
-        datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
-        datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
-        datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
-        datosNuevos[4] = idViejo;
-
-    if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
-    {
-        desmarcarBotones();
-        deshabilitarCampos();
-        BotonREQModificar.Enabled = true;
-        BotonREQCancelar.Enabled = false;
-        BotonREQAceptarModificar.Enabled = false;
-        modoREQ = 0;
-        if (esAdminREQ)
-        {
-            habilitarGrid();
-            BotonREQInsertar.Enabled = true;
-            BotonREQEliminar.Enabled = true;
-            llenarGrid();
-            controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
-            resaltarNuevo(this.TextBoxNombreREQ.Text);
-     
-        }
-        else
-        {
-            controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('Su informacion ha sido actualizada exitosamente');", true);
-        }
-        //habilitar consulta
-    }
-    else
-    {
-        EtiqErrorModificar.Visible = true;
-        //mensaje de error
-    }
-    }
-} */

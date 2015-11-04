@@ -1,7 +1,23 @@
 ﻿<%@ Page Title="Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
          <h2><%: Title %>.</h2>
-    
+    <style type="text/css">
+        .modalBackground 
+        {
+            background-color: black;
+            filter: alpha(opacity=90);
+            opacity:0.8;
+        }
+        .modalPopup 
+        {
+            background-color: #ffffff;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+            padding-top: 10px;
+            padding-left: 10px;         
+        }
+    </style>
 
                        <script type="text/javascript">
                            function solo_numeros(evt) {
@@ -32,7 +48,8 @@
 
                             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonREQModificar" OnClick="BotonREQModificar_Click" />
 
-                            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonREQEliminar"  OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"  OnClick="BotonREQEliminar_Click" />
+                            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonREQEliminar" OnClick="BotonREQEliminar_Click" />
+                            <%--OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"--%>
                         </div>
                     </div>
     <div class="col-md-16">
@@ -186,4 +203,14 @@
                 AutoPostBack ="true" >
             </asp:GridView>
         </div>  
+        <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup" Style="display:none"> 
+            <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este requerimiento?</asp:label>
+            <br/> <br/>
+            <div aria-pressed="true">
+                <asp:button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
+                <asp:button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
+            </div>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonREQEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal" BehaviorID="ModalEliminar">
+        </ajaxToolkit:ModalPopupExtender>
 </asp:Content>
