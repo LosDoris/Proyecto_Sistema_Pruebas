@@ -58,6 +58,7 @@ namespace SistemaPruebas.Intefaces
         protected void Page_Load(object sender, EventArgs e)
         {
             infoDisenno();
+            informacionDisenno.Text = "Diseño:\nProposito:";
             InterfazDiseno.llenarProyecto = true.ToString();
             if(!IsPostBack)
             {

@@ -32,9 +32,9 @@
 <div class ="row" style ="width: 100%">    
     <div class="jumbozCP" >
         <h4>Resumen</h4>
-        <div class="col-md-8 form-group">
-		    <asp:Label ID="informacionDisenno" runat="server" CssClass="col-md-2 control-label"
-                style="text-align: right; width: 1100px;height: 32px;" Text="Informa Diseño Informa Diseño Informa Diseño: \nPropósito: 		____"></asp:Label>
+        <div class="row">
+		    <asp:Label ID="informacionDisenno" runat="server" CssClass="control-label"
+                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
         </div>
     </div>
 </div>
