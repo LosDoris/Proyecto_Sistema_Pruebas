@@ -305,7 +305,7 @@
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
 <div class="col-md-4" runat="server">
                     <asp:textBox runat="server" id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" ReadOnly="True"></asp:textbox>
-                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
+                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date"/>
                     </div>
 </div>
 
