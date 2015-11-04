@@ -49,16 +49,30 @@
         }
     </script>
     <script type="text/javascript">
-        function solo_letras(evt) {
-            if ((evt.charCode < 32 || evt.charCode > 32) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122) && (evt.charCode < 209 || evt.charCode > 209) && (evt.charCode < 241 || evt.charCode > 241)) {
-                //alert("Sólo se permite letras");
-                return false;
+        function solo_letras(evt) {           
+            if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39)
+                    && (evt.keyCode != 8) && (evt.keyCode != 83) && (evt.charCode != 44)) {                  
+                    return false;
+                }
+                else {
+
+                    return true;
+                }
             }
             else
                 return true;
         }
     </script>
-    <asp:Label runat="server" ID="EtiqErrorGen" Visible="false"></asp:Label>
+    <script type="text/javascript">
+        function HideLabel() {
+            $('#errorGen').fadeIn();
+            $('#errorGen').fadeOut(5000);
+        };
+</script>
+    <div id="errorGen" style="display:none" >
+    <asp:Label runat="server" ID="EtiqErrorGen"></asp:Label>
+        </div>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorInsertar">*Ha habido problemas para agregar este recurso humano al sistema. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorConsultar">*Ha habido problemas para consultar este recurso humano. Por favor vuelva a intentarlo mas tarde.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorLlaves">*La cédula ingresada ya pertenece a un usuario de la aplicación. Por favor ingrese otra identificación.</asp:Label>
@@ -93,7 +107,7 @@
                             <div class="col-md-10">
 
                                 <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 250px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
-                                <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal">*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>
+                                <%-- %><asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal">*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>--%>
                                 <asp:RequiredFieldValidator ID="ValidaCampos"
                                     ControlToValidate="TextBoxCedulaRH"
                                     Display="Dynamic"
@@ -117,15 +131,15 @@
                                         }                                        
                                     };
                                 </script>
-                                <div id="errorCedula" class="errorDiv" style="display:none">
-                                    <asp:Label runat="server" Text="Este campo sólo acepta números" CssClass="text-danger"></asp:Label>
+                                <div id="errorCedula" class="errorDiv" style="display: none">
+                                    <asp:Label runat="server" CssClass="text-danger">*Este campo sólo acepta números</asp:Label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
                             <div class="col-md-10">
-                                <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras.">.</asp:TextBox>
+                                <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras."></asp:TextBox>
                                 <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label> --%>
                                 <asp:RequiredFieldValidator ID="Requiredfieldvalidator1"
                                     ControlToValidate="TextBoxNombreRH"
@@ -142,7 +156,6 @@
                                                 $('#errorNombre').fadeIn();
                                                 $('#errorNombre').fadeOut(5000);
                                             }
-
                                             if (window.event)//IE
                                                 e.returnValue = false;
                                             else//Firefox
@@ -150,32 +163,66 @@
                                         }
                                     };
                                 </script>
-                                <div id="errorNombre" class="errorDiv" style="display:none">
-                                    <asp:Label runat="server" Text="Este campo sólo acepta Letras" CssClass="text-danger"></asp:Label>
+                                <div id="errorNombre" class="errorDiv" style="display: none">
+                                    <asp:Label runat="server" CssClass="text-danger">*Este campo sólo acepta Letras</asp:Label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
                             <div class="col-md-10">
-                                <asp:TextBox runat="server" ID="TextBoxTel1" Style="width: 250px" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="return solo_numeros(event)" />
-                                <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal1">*Por favor ingrese un teléfono valido.</asp:Label>
+                                <asp:TextBox runat="server" ID="TextBoxTel1" Style="width: 250px" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="check_txt3(event)" placeholder="Formato: 00000000" />
+                                <script type="text/javascript">
+                                    function check_txt3(e) {
+                                        if (!solo_numeros(e)) {
+                                            if ($('#errorTel1').css('display') == 'none') {
+                                                $('#errorTel1').fadeIn();
+                                                $('#errorTel1').fadeOut(5000);
+                                            }
+                                            if (window.event)//IE
+                                                e.returnValue = false;
+                                            else//Firefox
+                                                e.preventDefault();
+                                        }
+                                    };
+                                </script>
+                                <div id="errorTel1" style="display: none">
+                                    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal1">*Por favor ingrese un teléfono valido.</asp:Label>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
                             <div class="col-md-10">
-                                <asp:TextBox runat="server" ID="TextBoxTel2" Style="width: 250px" CssClass="form-control" MaxLength="8" onkeypress="return solo_numeros(event)" />
-                                <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="TelVal2">*Por favor ingrese un teléfono valido.</asp:Label>
+                                <asp:TextBox runat="server" ID="TextBoxTel2" Style="width: 250px" CssClass="form-control" MaxLength="8" onkeypress="check_txt4(event)" placeholder="Formato: 00000000" />
+                                <script type="text/javascript">
+                                    function check_txt4(e) {
+                                        if (!solo_numeros(e)) {
+                                            if ($('#errorTel2').css('display') == 'none') {
+                                                $('#errorTel2').fadeIn();
+                                                $('#errorTel2').fadeOut(5000);
+                                            }
+                                            if (window.event)//IE
+                                                e.returnValue = false;
+                                            else//Firefox
+                                                e.preventDefault();
+                                        }
+                                    };
+                                </script>
+                                <div id="errorTel2" style="display: none">
+                                    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger">*Por favor ingrese un teléfono valido.</asp:Label>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
                             <div class="col-md-10">
-                                <asp:TextBox runat="server" ID="TextBoxEmail" Style="width: 250px" CssClass="form-control" MaxLength="30" />
-                                <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EmailVal">*Por favor ingrese un email valido valido.</asp:Label>
+                                <asp:TextBox runat="server" ID="TextBoxEmail" Style="width: 250px" CssClass="form-control" MaxLength="30" placeholder="Formato: xxx@yyy.com" />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*Error en el formato del email" ControlToValidate="TextBoxEmail" 
+                                    CssClass="text-danger" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EmailVal">*Por favor ingrese un email valido valido.</asp:Label> --%>
                             </div>
                         </div>
                     </div>
@@ -190,8 +237,8 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" />
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal">*Por favor ingrese un usuario valido.</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" placeholder="Ingrese sólo letras y números" onkeypress="check_txt5(event)"/>
+                            <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal">*Por favor ingrese un usuario valido.</asp:Label>--%>
                             <asp:RequiredFieldValidator ID="Requiredfieldvalidator3"
                                 ControlToValidate="TextBoxUsuario"
                                 Display="Dynamic"
@@ -200,14 +247,31 @@
                                 ErrorMessage="El campo de Nombre de Usuario es obligatorio."
                                 runat="Server">
                             </asp:RequiredFieldValidator>
+                            <script type="text/javascript">
+                                function check_txt5(e) {
+                                    if (!solo_letras(e)) {
+                                        if ($('#errorUsuario').css('display') == 'none') {
+                                            $('#errorUsuario').fadeIn();
+                                            $('#errorUsuario').fadeOut(5000);
+                                        }
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }
+                                };
+                                </script>
+                                <div id="errorUsuario" style="display: none">
+                                    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger">*Por favor ingrese un usuario valido.</asp:Label>
+                                </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Contraseña</asp:Label>
                         <div class="col-md-8">
-                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" />
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal">*Por favor ingrese una contraseña valida.</asp:Label>
+                            <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" placeholder="Ingrese sólo letras y números" onkeypress="check_txt6"/>
+                            <%-- <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal">*Por favor ingrese una contraseña valida.</asp:Label> --%>
                             <asp:RequiredFieldValidator
                                 ControlToValidate="TextBoxClave"
                                 Display="Dynamic"
@@ -216,6 +280,23 @@
                                 ErrorMessage="El campo de Contraseña es obligatorio."
                                 runat="Server">
                             </asp:RequiredFieldValidator>
+                            <script type="text/javascript">
+                                function check_txt6(e) {
+                                    if (!solo_letras(e)) {
+                                        if ($('#errorPass').css('display') == 'none') {
+                                            $('#errorPass').fadeIn();
+                                            $('#errorPass').fadeOut(5000);
+                                        }
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }
+                                };
+                                </script>
+                                <div id="errorPass" style="display: none">
+                                    <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger">*Por favor ingrese un usuario valido.</asp:Label>
+                                </div>
                         </div>
                     </div>
 
@@ -264,16 +345,17 @@
                 CssClass="btn btn-default"
                 ID="BotonRHAceptarModificar" OnClick="BotonRHAceptarModificar_Click" />
             <asp:Button runat="server" Text="Cancelar" Style="border-color: #fe6c4f; color: #fe5e3e" CssClass="btn btn-default" ID="BotonRHCancelar" OnClick="BotonRHCancelar_Click" CausesValidation="False" />
-            <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
-        <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
-        <br/> <br/>
-        <div aria-pressed="true">
-            <asp:button runat="server" ID="cancelarButtonSiModal" Text="Si" OnClick="cancelar_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false"/>
-            <asp:button runat="server" ID="cancelarButtonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false"/>           
-       </div>
-    </asp:Panel>
-    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="BotonRHCancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal">
-    </ajaxToolkit:ModalPopupExtender>
+            <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup">
+                <asp:Label runat="server" ID="cancelarLabelModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea cancelar la operación?</asp:Label>
+                <br />
+                <br />
+                <div aria-pressed="true">
+                    <asp:Button runat="server" ID="cancelarButtonSiModal" Text="Si" OnClick="cancelar_Click" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; margin-left: 20px; margin-right: 20px; margin-bottom: 20px" CausesValidation="false" />
+                    <asp:Button runat="server" ID="cancelarButtonNoModal" Text="No" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 20px; margin-right: 20px; margin-bottom: 20px" CausesValidation="false" />
+                </div>
+            </asp:Panel>
+            <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="BotonRHCancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal">
+            </ajaxToolkit:ModalPopupExtender>
         </div>
     </div>
     <div class="row">
@@ -287,14 +369,17 @@
             AutoPostBack="true">
         </asp:GridView>
     </div>
-    <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
-        <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este Recurso Humano?</asp:label>
-        <br/> <br/>
-        <div aria-pressed="true">
-            <asp:button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
-            <asp:button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
-       </div>
-    </asp:Panel>
-    <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonRHEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal">
-    </ajaxToolkit:ModalPopupExtender>
+    <div>
+        <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup" Style="display:none">
+            <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este Recurso Humano?</asp:Label>
+            <br />
+            <br />
+            <div aria-pressed="true">
+                <asp:Button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
+                <asp:Button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px" CausesValidation="false" />
+            </div>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonRHEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal">
+        </ajaxToolkit:ModalPopupExtender>
+    </div>
 </asp:Content>

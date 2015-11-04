@@ -4,9 +4,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+<script type="text/javascript">
+        function HideLabel() {
+            var seconds = 5;           
+            setTimeout(function () {
+
+                $('#'+'<%=EtiqMensajeOperacion.ClientID %>').fadeOut('5000');
+            }, 2000);           
+    };
+</script>
+
+
 <h2><%: Title %>Casos de Prueba</h2>
 
-
+<asp:Label runat="server" CssClass="text-danger" ID="EtiqMensajeOperacion" >.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este caso de prueba al sistema. Por favor vuelva a intentarlo.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorConsultar" >*Ha habido problemas para consultar este caso de prueba. Por favor vuelva a intentarlo mas tarde.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este caso de prueba. Por favor vuelva a intentarlo.</asp:Label>
@@ -15,7 +26,7 @@
     <div class="col-md-offset-10 col-md-12">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click"/>
         <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" />
-        <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" OnClientClick="return confirm('¿Está seguro que desea eliminar este caso de prueba?')" />
+        <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" />
     </div>
 </div>
 <div class ="row" style ="width: 100%">    
@@ -31,7 +42,7 @@
 
         <div class="col-md-8">
 		    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" style="text-align: right; width: 200px;height: 32px;" Text="ID:"></asp:Label>                      
-		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20"/>
+		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20" OnTextChanged="TextBoxID_TextChanged"/>
 		    <script type="text/javascript">
 			    function checkInput(e) {
 				    var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
@@ -152,7 +163,7 @@
         />
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
-            OnClientClick="return confirm('¿Está seguro que desea cancelar?')" OnClick="BotonCPCancelar_Click" 
+            OnClick="BotonCPCancelar_Click" 
         />
     </div>
 </div>
@@ -174,11 +185,22 @@
 </div> 
 
 
-<asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
-    <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este proyecto?</asp:label>
+
+<asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
+    <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
     <br/> <br/>
     <div aria-pressed="true">
-        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModal_Click"/>
+        <asp:button runat="server" ID="cancelarBotonSiModal" Text="Si" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" OnClick="cancelarModal_Click"/>
+        <asp:button runat="server" ID="cancelarBotonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />           
+    </div>
+</asp:Panel>
+<ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="BotonCPCancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal"></ajaxToolkit:ModalPopupExtender>
+
+<asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
+    <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este caso de prueba?</asp:label>
+    <br/> <br/>
+    <div aria-pressed="true">
+        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModalEliminar_Click"/>
         <asp:button runat="server" ID="cancelarModal" Text="Cancelar"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" OnClick="cancelarModal_Click"/>           
     </div>
 </asp:Panel>

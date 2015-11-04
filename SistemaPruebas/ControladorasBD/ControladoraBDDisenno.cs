@@ -141,6 +141,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         Requiere: propósito de un diseño
+         Modifica: Hace acceso a la base de datos para obtener el id del diseño dado el propósito del mismo.
+         Retorna: entero.
+         */
         public int consultarId_Disenno(String proposito)
         {
             DataTable dt = new DataTable();
