@@ -644,5 +644,32 @@ namespace SistemaPruebas.Intefaces
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
         }
+
+        protected void infoDisenno()
+        {
+            
+            ControladoraDisenno cd = new ControladoraDisenno();
+            ControladoraRequerimiento cr = new ControladoraRequerimiento();
+
+            Object[] tabla=cd.infoDisenno();
+            string proposito = tabla[0].ToString();
+            string nivel = tabla[1].ToString();
+            string tecnica = tabla[2].ToString();
+            string ambiente = tabla[3].ToString();
+            string procedimiento = tabla[4].ToString();
+            string fecha = tabla[5].ToString();
+            string criterios = tabla[6].ToString();
+            string responsable = tabla[7].ToString();
+            string proyecto = tabla[8].ToString();
+
+            int id_diseno = cd.consultarId_Disenno(proposito);
+            DataTable dt = cr.consultarRequerimientoEnDiseno(Int32.Parse(proyecto), id_diseno);
+
+            string requerimientos = "";
+            foreach (DataRow row in dt.Rows)
+            {
+                requerimientos = requerimientos +";"+ row["ImagePath"].ToString();
+            }
+        }
     }
-}
+} 
