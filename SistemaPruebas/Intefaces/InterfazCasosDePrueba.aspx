@@ -35,6 +35,10 @@
         <div class="row">
 		    <asp:Label ID="informacionDisenno" runat="server" CssClass="control-label"
                 style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
+            <asp:Label ID="informacionProposito" runat="server" CssClass="control-label"
+                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
+            <asp:Label ID="Label1" runat="server" CssClass="control-label"
+                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
         </div>
     </div>
 </div>
