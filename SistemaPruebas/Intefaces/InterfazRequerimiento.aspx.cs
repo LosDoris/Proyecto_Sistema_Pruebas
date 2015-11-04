@@ -218,6 +218,7 @@ namespace SistemaPruebas.Intefaces
             desactivarErrores();
             BotonREQAceptar.Visible = true;
             BotonREQAceptar.Enabled = true;
+            BotonREQAceptarModificar.Visible = false;
             BotonREQCancelar.Enabled = true;
             BotonREQInsertar.Enabled = false;
             BotonREQModificar.Enabled = false;
@@ -449,7 +450,10 @@ namespace SistemaPruebas.Intefaces
                 String[] p2 = p1.Split('_');
                 try
                 {
-                    this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                    if (Convert.ToInt32(p2[1]) > -1)
+                    {
+                        this.ProyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                    }
                 }
                 catch (Exception e)
                 {
