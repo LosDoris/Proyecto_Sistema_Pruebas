@@ -127,31 +127,38 @@ namespace SistemaPruebas.Intefaces
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
+            botonCP.Enabled = false;
             
         }
 
         protected void modificarClick(object sender, EventArgs e)
         {
-            marcarBoton(ref Modificar);
-            buttonDisenno = "2";
-            habilitarCampos();
-            Modificar.Enabled = false;
-            Eliminar.Enabled = false;            
-            Insertar.Enabled = false;
-            deshabilitarGridDiseno();
-            aceptar.Enabled = true;
-            cancelar.Enabled = true;
-            if (this.proyectoAsociado.SelectedIndex==0)
+            if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
-                labelSeleccioneProyecto.Visible = true;
+                marcarBoton(ref Modificar);
+                buttonDisenno = "2";
+                habilitarCampos();
+                Modificar.Enabled = false;
+                Eliminar.Enabled = false;
+                Insertar.Enabled = false;
+                deshabilitarGridDiseno();
+                aceptar.Enabled = true;
+                cancelar.Enabled = true;
+                if (this.proyectoAsociado.SelectedIndex == 0)
+                {
+                    labelSeleccioneProyecto.Visible = true;
+                }
+                else
+                {
+                    labelSeleccioneProyecto.Visible = false;
+                }
+
+                botonCP.Enabled = true;
             }
-            else
+            if (proyectoAsociado.Items.Count == 1)
             {
                 labelSeleccioneProyecto.Visible = false;
             }
-            //mostrar caso prueba
-            
-
         }
 
         protected void eliminarClick(object sender, EventArgs e)
@@ -169,6 +176,7 @@ namespace SistemaPruebas.Intefaces
             {
                 labelSeleccioneProyecto.Visible = false;
             }
+            botonCP.Enabled = false;
         }
 
         protected void restriccionesCampos()
@@ -255,6 +263,7 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             deshabilitarGridReq(1);
             deshabilitarGridReq(2);
+            botonCP.Enabled = false;
         }
 
         protected void limpiarCampos()
@@ -727,8 +736,6 @@ namespace SistemaPruebas.Intefaces
                     responsable.Items.Add(new ListItem("No Disponible"));
                 }
             }
-            labelSeleccioneProyecto.Visible = false;
-
         }
 
         protected int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
@@ -817,6 +824,7 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
+
         protected void aceptarModal_ClickCancelar(object sender, EventArgs e)
         {
             deshabilitarCampos();
@@ -831,11 +839,16 @@ namespace SistemaPruebas.Intefaces
             labelSeleccioneProyecto.Visible = false;
 
         }
+
         protected void cancelarModal_ClickCancelar(object sender, EventArgs e)
         {
 
         }
 
+        protected void irACasoPrueba(object sender, EventArgs e){
+            Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
+        }
+        
     }
 
     }

@@ -313,7 +313,11 @@
 </div>
 
 </div>
-
+    <div class="row">
+        <div id="botonCasoPrueba">
+            <asp:Button runat="server" ID="botonCP" Text="Casos de Prueba" CssClass="btn btn-default" style="margin-top:10px;margin-left: 15px;" CausesValidation="false" Enabled="false" OnClick="irACasoPrueba"/>
+        </div>
+    </div>
    <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648; margin-top:20px;" OnClick="aceptarClick"/>
