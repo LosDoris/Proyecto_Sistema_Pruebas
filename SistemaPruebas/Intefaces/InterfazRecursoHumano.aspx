@@ -370,7 +370,7 @@
         </asp:GridView>
     </div>
     <div>
-        <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup">
+        <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup" Style="display:none">
             <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este Recurso Humano?</asp:Label>
             <br />
             <br />
