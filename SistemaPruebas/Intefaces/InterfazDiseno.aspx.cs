@@ -848,8 +848,17 @@ namespace SistemaPruebas.Intefaces
         protected void irACasoPrueba(object sender, EventArgs e){
             Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
         }
+
+        public Object[] infoDisenno() {
+            string fecha = Page.Request.Form["txt_date"];
+            int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+            int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+
+            object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
+            return datos;
+        }
         
     }
 
-    }
+}
 
