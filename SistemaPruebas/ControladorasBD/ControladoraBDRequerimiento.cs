@@ -138,7 +138,8 @@ namespace SistemaPruebas.Controladoras
         public DataTable consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
         {
 
-            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_proyecto =" + id_proyecto + " and id_disenno !=" + id_diseno; 
+            //String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_proyecto =" + id_proyecto + " and id_disenno !=" + id_diseno; 
+            String consulta = "select * from Requerimiento where id_proyecto=" + id_proyecto + " and id_requerimiento not in (select id_requerimiento from Prueba_Disenno_Req where id_proyecto=" + id_proyecto + " and id_disenno=" + id_diseno + ");";
             DataTable dt = acceso.ejecutarConsultaTabla(consulta);
             //DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
             return dt;
