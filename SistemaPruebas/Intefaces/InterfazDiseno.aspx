@@ -82,13 +82,23 @@
     <div id="tablasReq" class="row">
 
         <asp:GridView ID="gridNoAsociados" runat="server" margin-right="auto"
-            CellPadding="10" CellSpacing="500"
+            CellPadding="10" 
             margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc"
             OnRowDataBound="OnRowDataBoundNoAsoc" CssClass="GridView" HorizontalAlign="Center"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingNoAsoc" PageSize="5"
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true">
         </asp:GridView>
+
+            <asp:GridView ID="gridAsociados" runat="server" margin-right="auto"
+            CellPadding="10" 
+            margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedAsoc"
+            OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Center"
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingAsoc" PageSize="5"
+            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
+            AutoPostBack="true">
+        </asp:GridView>
+
     </div>
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false"/>

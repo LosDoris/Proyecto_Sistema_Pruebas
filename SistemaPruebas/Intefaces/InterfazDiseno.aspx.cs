@@ -359,8 +359,8 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                // gridNoAsociados.DataSource = req;
-                // gridNoAsociados.DataBind();
+                gridAsociados.DataSource = req;
+                gridAsociados.DataBind();
             }
 
         }
@@ -419,10 +419,28 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void OnSelectedIndexChangedAsoc(object sender, EventArgs e)
+        {
+            try
+            {
+                id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
         protected void OnPageIndexChangingNoAsoc(object sender, GridViewPageEventArgs e)
         {
             gridNoAsociados.PageIndex = e.NewPageIndex;
-            this.llenarGridDisenos();
+            this.llenarGridsReq(1);
+        }
+
+        protected void OnPageIndexChangingAsoc(object sender, GridViewPageEventArgs e)
+        {
+            gridAsociados.PageIndex = e.NewPageIndex;
+            this.llenarGridsReq(2);
         }
 
         protected void OnRowDataBoundNoAsoc(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -433,6 +451,18 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridNoAsociados, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        protected void OnRowDataBoundAsoc(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridAsociados, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
             }
         }
