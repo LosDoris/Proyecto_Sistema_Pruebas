@@ -64,7 +64,8 @@ namespace SistemaPruebas.Intefaces
                 inicializarDTDatosEntrada();
                 estadoInicial();
             }
-                llenarGrid();
+            EtiqMensajeOperacion.Visible = false;
+            llenarGrid();
         }
 
         protected void estadoInicial()
@@ -183,11 +184,15 @@ namespace SistemaPruebas.Intefaces
 
         protected void limpiarCampos()
         {
+            TextBoxID.Text = "";
             TextBoxPropositoCP.Text  = "";
             TextBoxResultadoCP.Text  = "";
             TextBoxFlujoCentral.Text = "";
             TextBoxDescripcion.Text = "";
             TextBoxDatos.Text = "";
+            dtDatosEntrada.Clear();
+            DECP.DataSource = dtDatosEntrada;
+            DECP.DataBind();
         }
 
         protected void agregarGridEntradaDatos()
@@ -428,26 +433,51 @@ namespace SistemaPruebas.Intefaces
 
         protected void BotonCPEliminar_Click(object sender, EventArgs e)
         {
+            marcarBoton(ref BotonCPEliminar);
+        }
+
+        protected void aceptarModalEliminar_Click(object sender, EventArgs e)
+        {
+            desmarcarBoton(ref BotonCPEliminar);
             int eliminacion = controladoraCasosPrueba.eliminarCasosPrueba(TextBoxID.Text);
 
             if (eliminacion == 1)
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido eliminado con éxito');", true);//esto es temporal hasta aprender a usar los modales
+                EtiqMensajeOperacion.Text = "El caso de prueba se ha eliminado correctamente";
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                EtiqMensajeOperacion.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 estadoPostOperacion();
+                llenarGrid();
+            }
+            else
+            {
+                EtiqMensajeOperacion.Text = "El caso de prueba no pudo ser eliminado, ocurrió un error";
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
+                EtiqMensajeOperacion.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                
             }
         }
 
-        protected void BotonCPCancelar_Click(object sender, EventArgs e)
+        protected void cancelarModal_Click(object sender, EventArgs e)
         {
-            if( modo == 1)
+            TextBoxID.BorderColor = System.Drawing.Color.LightGray;
+            if ( modo == 1)
             {
                 estadoInicial();
                 desmarcarBoton(ref BotonCPInsertar);
+
             }
             else if (modo == 2)
             {
+                llenarDatosCasoPrueba(idMod);
+                estadoPostOperacion();
                 desmarcarBoton(ref BotonCPModificar);
             }
+        }
+        protected void BotonCPCancelar_Click(object sender, EventArgs e)
+        {
         }
 
         protected void BotonCPAceptar_Click(object sender, EventArgs e)
@@ -473,15 +503,45 @@ namespace SistemaPruebas.Intefaces
             }
             if (operacion == 1)
             {
-                Response.Write("Se insertó con éxito"); //temporal hasta que haya modal
+                switch (modo)
+                {
+                    case 1:
+                    {
+                        EtiqMensajeOperacion.Text = "El caso de prueba ha sido insertado con éxito";
+                        desmarcarBoton(ref BotonCPInsertar);
+                        break;
+                    }
+                    case 2:
+                    {
+                        EtiqMensajeOperacion.Text = "El caso de prueba ha sido modificado con éxito";
+                        desmarcarBoton(ref BotonCPModificar);
+                        break;
+                    }
+                }
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
                 llenarGrid();
                 estadoPostOperacion();
             }
-
-
-            Response.Write("Resultado "+operacion);
-            Response.Write(modo);
-
+            else
+            {
+                switch(operacion)
+                {   
+                    case 2627:
+                    {
+                        EtiqMensajeOperacion.Text = "Insertó un id de caso de prueba ya existente, debe modificarlo.";
+                        TextBoxID.BorderColor = System.Drawing.Color.Red;
+                        break;
+                    }
+                    default:
+                    {
+                        EtiqMensajeOperacion.Text = "Ocurrió un problema en la operación.";
+                        break;
+                    }
+                }
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
+            }
+                EtiqMensajeOperacion.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
         protected void AgregarEntrada_Click(object sender, EventArgs e)
@@ -580,14 +640,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void aceptarModal_Click(object sender, EventArgs e)
+        protected void TextBoxID_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        protected void cancelarModal_Click(object sender, EventArgs e)
-        {
-
+            TextBoxID.BorderColor = System.Drawing.Color.LightGray;
         }
     }
 }
