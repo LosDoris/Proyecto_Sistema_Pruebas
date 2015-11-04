@@ -190,7 +190,11 @@ namespace SistemaPruebas.Intefaces
             }
             catch
             {
-                EtiqErrorConsultar.Visible = true;
+                //EtiqErrorConsultar.Visible = true;
+                EtiqErrorLlaves.Text = "Ha habido problemas para consultar este requerimiento. Por favor intente mas tarde. ";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorLlaves.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
             //Response.Write(dt.Rows.Co)
 
@@ -357,17 +361,29 @@ namespace SistemaPruebas.Intefaces
                     BotonREQAceptar.Enabled = false;
                     habilitarGrid();
                     llenarGrid();
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requrimiento ha sido insertado con éxito');", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requrimiento ha sido insertado con éxito');", true);
+                    EtiqErrorLlaves.Text = "El requerimiento se ha insertado correctamente";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
                 }
                 else if(insercion == 2627)
                 {
+                    //EtiqErrorLlaves.Visible = true;
+                    EtiqErrorLlaves.Text = "Hay un requerimiento con este id. Por favor cambielo y vuelva a intentarlo. ";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 }
                 else
                 {
-                    EtiqErrorInsertar.Visible = true;
+                    //EtiqErrorInsertar.Visible = true;
+                    EtiqErrorLlaves.Text = "Ha habido problemas para insertar este requerimiento. Por favor intente nuevamente. ";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 }
             }
         }
@@ -408,8 +424,12 @@ namespace SistemaPruebas.Intefaces
                     BotonREQEliminar.Enabled = true;
                     llenarGrid();
                     controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
-                    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
+                    //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El recurso humano ha sido modificado con éxito');", true);
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
+                    EtiqErrorLlaves.Text = "El requerimiento se ha eliminado correctamente";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
 
                     //}
                     //else
@@ -421,8 +441,12 @@ namespace SistemaPruebas.Intefaces
                 }
                 else
                 {
-                    EtiqErrorModificar.Visible = true;
+                    //EtiqErrorModificar.Visible = true;
                     //mensaje de error
+                    EtiqErrorLlaves.Text = "Ha habido problemas para modificar este requerimiento. Por favor intente mas tarde. ";
+                    EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                    EtiqErrorLlaves.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 }
             }
         }
@@ -652,7 +676,11 @@ namespace SistemaPruebas.Intefaces
 				//PerfilAccesoComboBox.Enabled = false;
 				
 			} else {
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento consultado se encuentra actualmente en uso');", true);		            
+                //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El requerimiento consultado se encuentra actualmente en uso');", true);		
+                EtiqErrorLlaves.Text = "Otro usuario esta modificando este requerimiento por lo que pude ser eliminado. Por favor intente mas tarde. ";
+                EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorLlaves.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
 	        } 
         }
 
