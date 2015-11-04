@@ -96,9 +96,9 @@ namespace SistemaPruebas.Controladoras
          * Retorna: int.
          */
 
-        public int eliminarRequerimientoBD(String cedula, int id_proyecto)
+        public int eliminarRequerimientoBD(String cedula)
         {
-            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_requerimiento = '" + cedula + "' and id_proyecto='" + id_proyecto + "';");
+            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_requerimiento = '" + cedula + "';");
 
         }
 
