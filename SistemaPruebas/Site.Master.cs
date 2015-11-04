@@ -72,7 +72,7 @@ namespace SistemaPruebas
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.DataBind();  
-            if (Account.Login.id_logeado == null)
+            if (Account.Login.id_logeado == "")
             {
                 nombre.Visible = false;
                 makeInVisible();
@@ -123,6 +123,7 @@ namespace SistemaPruebas
                 nombre.Visible = true;
                 Nombres.Visible = true;
                 Nombres.InnerText = Account.Login.id_logeado;
+                Li1.Visible = true;
             }
             catch (NullReferenceException e)
             {
@@ -138,6 +139,7 @@ namespace SistemaPruebas
                 A2.Visible = false;
                 A3.Visible = false;
                 A4.Visible = false;
+                Li1.Visible = false;
                 nombre.Visible = false;
             }
             catch (NullReferenceException e)
