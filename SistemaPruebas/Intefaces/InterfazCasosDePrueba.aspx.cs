@@ -57,6 +57,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            infoDisenno();
             InterfazDiseno.llenarProyecto = true.ToString();
             if(!IsPostBack)
             {
@@ -651,7 +652,7 @@ namespace SistemaPruebas.Intefaces
             ControladoraDisenno cd = new ControladoraDisenno();
             ControladoraRequerimiento cr = new ControladoraRequerimiento();
 
-            Object[] tabla=cd.infoDisenno();
+            List<string> tabla=cd.infoDisenno();
             string proposito = tabla[0].ToString();
             string nivel = tabla[1].ToString();
             string tecnica = tabla[2].ToString();
@@ -668,7 +669,7 @@ namespace SistemaPruebas.Intefaces
             string requerimientos = "";
             foreach (DataRow row in dt.Rows)
             {
-                requerimientos = requerimientos +";"+ row["ImagePath"].ToString();
+                requerimientos = requerimientos + ";" + row["id_requerimiento"].ToString();
             }
         }
     }

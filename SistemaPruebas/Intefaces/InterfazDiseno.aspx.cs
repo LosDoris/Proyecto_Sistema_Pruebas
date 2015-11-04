@@ -43,6 +43,33 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static List<string> infDisenno
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["infDisenno"];
+                List<string> ids = HttpContext.Current.Session["infDisenno"] != null ? (List<string>)HttpContext.Current.Session["infDisenno"] : null;
+                return ids;
+            }
+            set
+            {
+                HttpContext.Current.Session["infDisenno"] = value;
+            }
+        }
+
+        public static string el_proyecto
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["el_proyecto"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["el_proyecto"] = value;
+            }
+        }
+
         public static string id_req_asoc
         {
             get
@@ -154,6 +181,7 @@ namespace SistemaPruebas.Intefaces
                 }
 
                 botonCP.Enabled = true;
+                el_proyecto = proyectoAsociado.SelectedItem.Text;
             }
             if (proyectoAsociado.Items.Count == 1)
             {
@@ -304,6 +332,7 @@ namespace SistemaPruebas.Intefaces
                         string fecha = Page.Request.Form["txt_date"];
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+                        el_proyecto = proyecto.ToString();
                         object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto};
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
@@ -704,6 +733,8 @@ namespace SistemaPruebas.Intefaces
         {
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
+                el_proyecto = proyectoAsociado.SelectedItem.Text;
+
                 llenarGridDisenos();
                 llenarGridsReq(1);
                 llenarGridsReq(2);
@@ -846,16 +877,24 @@ namespace SistemaPruebas.Intefaces
         }
 
         protected void irACasoPrueba(object sender, EventArgs e){
+            List<string> lista=new List<string>();
+            lista.Add(propositoTxtbox.Text.ToString());
+            lista.Add(Nivel.SelectedValue.ToString());
+            lista.Add(Tecnica.SelectedValue.ToString());
+            lista.Add(ambienteTxtbox.Text.ToString());
+            lista.Add(procedimientoTxtbox.Text.ToString());
+            lista.Add(txt_date.Text.ToString());
+            lista.Add(criteriosTxtbox.Text.ToString());
+            lista.Add(controlDiseno.solicitarResponsableCedula(responsable.SelectedValue).ToString());
+            lista.Add(controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text).ToString());
+            infDisenno = lista;
+
             Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
         }
 
-        public Object[] infoDisenno() {
-            string fecha = Page.Request.Form["txt_date"];
-            int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
-            int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-
-            object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
-            return datos;
+        public List<string> infoDisenno()
+        {
+            return infDisenno;
         }
         
     }

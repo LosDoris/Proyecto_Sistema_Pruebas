@@ -49,15 +49,6 @@ namespace SistemaPruebas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
         
         /// <summary>
-        /// Control A4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A4;
-        
-        /// <summary>
         /// Control nombre.
         /// </summary>
         /// <remarks>

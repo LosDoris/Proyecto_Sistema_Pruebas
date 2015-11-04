@@ -135,10 +135,10 @@ namespace SistemaPruebas.Controladoras
             return controlBD.eliminarDisennoBD(id_diseno);
         }
 
-        public Object[] infoDisenno()
+        public List<string> infoDisenno()
         {
             SistemaPruebas.Intefaces.InterfazDiseno i = new SistemaPruebas.Intefaces.InterfazDiseno();
             return i.infoDisenno();
         }
-}
+    }
 }
