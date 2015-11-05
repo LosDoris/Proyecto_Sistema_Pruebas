@@ -471,12 +471,32 @@ namespace SistemaPruebas.Intefaces
             if (tipo == 1)
             {
                 dtNoAsociados = req;
+                if (req.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    Object[] datos = new Object[1];
+                    datos[0] = "-";
+                    req.Rows.Add(datos);
+                }
                 gridNoAsociados.DataSource = req;
                 gridNoAsociados.DataBind();
             }
             else
             {
                 dtSiasociados = req;
+                if (req.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    Object[] datos = new Object[1];
+                    datos[0] = "-";
+                    req.Rows.Add(datos);
+                }
                 gridAsociados.DataSource = req;
                 gridAsociados.DataBind();
             }
@@ -539,8 +559,8 @@ namespace SistemaPruebas.Intefaces
                 //EtiqErrorLlaves.Visible = true;
                 //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
-                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
+                dtSiasociados = quitarElemento(dtSiasociados, id_req_asoc);
+                dtNoAsociados = ponerElemento(dtNoAsociados, id_req_asoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -569,8 +589,9 @@ namespace SistemaPruebas.Intefaces
                             dtNueva.Rows.Add(datos);
                         }
                     }
-                    
-                }
+                
+
+            }
                 else
                 {
                     datos[0] = "-";
