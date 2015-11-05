@@ -409,35 +409,12 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
             habilitarGrid();
-        }
-
-        //protected void gridProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    switch (e.CommandName)
-        //    {
-        //        case "seleccionarProyecto":
-        //            {
-        //                GridViewRow filaSeleccionada = this.gridProyecto.Rows[Convert.ToInt32(e.CommandArgument)];
-        //                try
-        //                {
-        //                    id_Proyecto = Convert.ToInt32(filaSeleccionada.Cells[1].Text);
-        //                    Llenar_Datos_Conultados(id_Proyecto);
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    Console.WriteLine(ex);
-        //                }
-        //            };
-        //            break;
-        //    }
-
-        //}
-
+        }        
 
         protected void llenarGrid()
         {
             gridProyecto.Columns[0].Visible = true;
-            DataTable dt = new DataTable();//crearTablaProyecto();
+            DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[4] { new DataColumn("conteo"), new DataColumn("Id Proyecto"), new DataColumn("Nombre del Sistema"), new DataColumn("Lider del Proyecto")});
             DataTable proyecto = controladoraProyecto.ConsultarProyectoIdNombre();
             Object[] datos = new Object[5];

@@ -374,7 +374,7 @@
             <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este Recurso Humano?</asp:Label>
             <br />
             <br />
-            <div aria-pressed="true">
+            <div aria-pressed="true" style="padding-left:30px">
                 <asp:Button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
                 <asp:Button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px" CausesValidation="false" />
             </div>
