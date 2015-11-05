@@ -52,8 +52,8 @@
         </div>
         
         <div class="col-md-12">
-		    <asp:Label ID="Label1" runat="server" CssClass="control-label"
-                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
+		    <asp:Label ID="Requerimientos" runat="server" CssClass="control-label"
+                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos"></asp:Label>
         </div>
         <div style="clear:both"></div>
 

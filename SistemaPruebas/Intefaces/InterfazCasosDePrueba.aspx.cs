@@ -100,14 +100,50 @@ namespace SistemaPruebas.Intefaces
 
         protected void llenarEtiquetasDiseno()
         {
+            ControladoraRecursosHumanos crh = new ControladoraRecursosHumanos();
+
             List<string> la_lista = infoDisenno();
             Proposito.Text="Propósito: "+la_lista[0];
-            Nivel.Text="Nivel: "+la_lista[1];
-            Tecnica.Text="Técnica: "+la_lista[2];
-            Proyecto.Text="Proyecto: "+la_lista[8];
+            if (Convert.ToInt32(la_lista[1])==2)
+            {
+                Nivel.Text="Nivel: Unitaria";
+            }
+            else if (Convert.ToInt32(la_lista[1]) == 3)
+            {
+                Nivel.Text="Nivel: Integración";
+            }
+            else if (Convert.ToInt32(la_lista[1]) == 4)
+            {
+                Nivel.Text="Nivel: Sistema";
+            }
+            else if (Convert.ToInt32(la_lista[1]) == 5)
+            {
+                Nivel.Text="Nivel: Aceptación";
+            }
 
 
+            if (Convert.ToInt32(la_lista[2]) == 2)
+            {
+                Tecnica.Text="Técnica: Caja Negra";
+            }
+            else if (Convert.ToInt32(la_lista[2]) == 3)
+            {
+                Tecnica.Text="Técnica: Caja Blanca";
+            }
+            else if (Convert.ToInt32(la_lista[2]) == 4)
+            {
+                Tecnica.Text = "Técnica: Exploratoria";
+            }
+            
+            Proyecto.Text="Proyecto: "+crh.solicitarNombreProyecto(Convert.ToInt32(la_lista[8]));
 
+            string[] esplit = la_lista[9].Split(';');
+            string la_hilera = "Requerimientos: ";
+            for (int i = 1; i < esplit.Length - 2; i++)
+            {
+                la_hilera += "<br />"+esplit[i];
+            }
+            Requerimientos.Text = la_hilera;
         }
 
 
@@ -590,7 +626,7 @@ namespace SistemaPruebas.Intefaces
         protected void AgregarEntrada_Click(object sender, EventArgs e)
         {
             agregarGridEntradaDatos();
-            Response.Write( datosEntrada());
+            //Response.Write( datosEntrada());
             TextBoxDatos.Text = "";
         }
 
