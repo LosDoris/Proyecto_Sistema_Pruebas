@@ -148,14 +148,17 @@ namespace SistemaPruebas.Intefaces
 
         protected void insertarClick(object sender, EventArgs e)
         {
+            EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
+            EtiqErrorGen.ForeColor = System.Drawing.Color.Beige;
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             buttonDisenno = "1";
             limpiarCampos();
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             Insertar.Enabled = false;
-            //habilitarCampos();
-            gridDisenos.Enabled = false;
+            //habilitarCampos();           
             deshabilitarGridDiseno();
+            gridDisenos.Enabled = false;
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
             aceptar.Enabled = true;
@@ -995,8 +998,7 @@ namespace SistemaPruebas.Intefaces
                 Insertar.Enabled = true;
                 Modificar.Enabled = true;
                 Eliminar.Enabled = true;
-                aceptar.Enabled = true;
-
+                aceptar.Enabled = true;                
                 Llenar_Datos_Conultados(id_diseno);
                 cancelar.Enabled = true;
 
