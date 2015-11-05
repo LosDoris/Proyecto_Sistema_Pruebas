@@ -408,13 +408,13 @@ namespace SistemaPruebas.Intefaces
             DataTable req = solicitarReqs(tipo);
             if (tipo == 1)
             {
-                dtNoAsociados = req;
+                //dtNoAsociados = req;
                 gridNoAsociados.DataSource = req;
                 gridNoAsociados.DataBind();
             }
             else
             {
-                dtSiasociados = req;
+                //dtSiasociados = req;
                 gridAsociados.DataSource = req;
                 gridAsociados.DataBind();
             }
@@ -439,11 +439,14 @@ namespace SistemaPruebas.Intefaces
 
             if (tipo == 1)
             {
+                
                 dt = controlDiseno.consultarReqNoenDiseno(proyecto, diseno);
+                dtNoAsociados = dt;
             }
             else
             {
                 dt = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
+                dtSiasociados = dt;
 
             }
 
@@ -478,6 +481,29 @@ namespace SistemaPruebas.Intefaces
                 gridAsociados.DataBind();
             }
         }
+
+        protected DataTable crearTablaREQ(/*int tipo*/)
+        {
+            DataTable dt = new DataTable();
+            //if (tipo == 1) { }
+            dt.Columns.Add("ID Requerimiento", typeof(String));
+        //}
+            //dt.Columns.Add("Precondiciones", typeof(String));
+            //dt.Columns.Add("Req. Especiales", typeof(String));
+            //dt.Columns.Add("Nombre Proyecto");
+            //dt.
+            return dt;
+        }
+        /*protected DataTable crearTablaREQNoAso()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID Requerimiento", typeof(String));
+            //dt.Columns.Add("Precondiciones", typeof(String));
+            //dt.Columns.Add("Req. Especiales", typeof(String));
+            //dt.Columns.Add("Nombre Proyecto");
+            //dt.
+            return dt;
+        }*/
         protected void OnSelectedIndexChangedNoAsoc(object sender, EventArgs e)
         {
             try
@@ -487,10 +513,16 @@ namespace SistemaPruebas.Intefaces
                 //EtiqErrorLlaves.Visible = true;
                 //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_noAsoc,1);
-                dtSiasociados = ponerElemento(dtNoAsociados, id_req_noAsoc,2);
+                dtNoAsociados = quitarElemento(dtNoAsociados, id_req_noAsoc);
+                dtSiasociados = ponerElemento(dtSiasociados, id_req_noAsoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
+                /*
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
+                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
+                llenarGridsReqModificar(1, dtNoAsociados);
+                llenarGridsReqModificar(2, dtSiasociados);
+                */
             }
             catch (Exception ex)
             {
@@ -507,8 +539,8 @@ namespace SistemaPruebas.Intefaces
                 //EtiqErrorLlaves.Visible = true;
                 //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc,2);
-                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc,1);
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
+                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -518,30 +550,26 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected DataTable quitarElemento(DataTable dtVieja, String id, int tipo)
+        protected DataTable quitarElemento(DataTable dtVieja, String id)
         {
 
-            DataTable dtNueva = solicitarReqs(tipo);
+            DataTable dtNueva = crearTablaREQ();
             //DataTable req = solicitarReqs(tipo);
             Object[] datos = new Object[1];
 
 
-                if (dtVieja.Rows.Count > 0)
+                if (dtVieja.Rows.Count > (0-1))
                 {
                     foreach (DataRow dr in dtVieja.Rows)
                     {
                         
                         datos[0] = dr[0];
-                        if (Convert.ToString(datos[0]) != id)
+                        if (Convert.ToString(datos[0]) != Convert.ToString(id))
                         {
                             dtNueva.Rows.Add(datos);
                         }
                     }
-                    if (dtNueva.Rows.Count == 0)
-                    {
-                    datos[0] = "-";
-                    dtNueva.Rows.Add(datos);
-                }
+                    
                 }
                 else
                 {
@@ -551,35 +579,23 @@ namespace SistemaPruebas.Intefaces
                 
             return dtNueva;
         }
-        protected DataTable ponerElemento(DataTable dtVieja, String id, int tipo)
+        protected DataTable ponerElemento(DataTable dtVieja, String id)
         {
 
 
-            DataTable dtNueva = solicitarReqs(tipo);
+            DataTable dtNueva = crearTablaREQ();
             Object[] datos = new Object[1];
 
             datos[0] = id;
             dtNueva.Rows.Add(datos);
-            if (dtVieja.Rows.Count > 0)
-            {
-                foreach (DataRow dr in dtVieja.Rows)
+            foreach (DataRow dr in dtVieja.Rows)
                 {
 
                     datos[0] = dr[0];
                     dtNueva.Rows.Add(datos);
                     
                 }
-                if (dtNueva.Rows.Count == 0)
-                {
-                    datos[0] = "-";
-                    dtNueva.Rows.Add(datos);
-                }
-            }
-            else
-            {
-                datos[0] = "-";
-                dtNueva.Rows.Add(datos);
-            }
+            
 
             return dtNueva;
         }
