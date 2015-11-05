@@ -23,6 +23,8 @@ namespace SistemaPruebas.Intefaces
                 {
                     llenarComboboxProyectoAdmin();
                     deshabilitarCampos();
+                    deshabilitarGridReq(1);
+                    deshabilitarGridReq(2);
 
                 }
                 llenarProyecto = false.ToString();
@@ -269,6 +271,8 @@ namespace SistemaPruebas.Intefaces
             responsable.Enabled = true;
             aceptar.Enabled = true;
             cancelar.Enabled = true;
+            habilitarGridReq(1);
+            habilitarGridReq(2);
 
 
         }
@@ -478,9 +482,13 @@ namespace SistemaPruebas.Intefaces
         {
             try
             {
+                //EtiqErrorLlaves.Text = "Entro a no asociados";
+                //EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                //EtiqErrorLlaves.Visible = true;
+                //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_noAsoc);
-                dtSiasociados = ponerElemento(dtNoAsociados, id_req_noAsoc);
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_noAsoc,1);
+                dtSiasociados = ponerElemento(dtNoAsociados, id_req_noAsoc,2);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -494,9 +502,13 @@ namespace SistemaPruebas.Intefaces
         {
             try
             {
+                //EtiqErrorLlaves.Text = "Entro a asociados";
+                //EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                //EtiqErrorLlaves.Visible = true;
+                //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
-                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc,2);
+                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc,1);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -506,10 +518,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected DataTable quitarElemento(DataTable dtVieja, String id)
+        protected DataTable quitarElemento(DataTable dtVieja, String id, int tipo)
         {
 
-            DataTable dtNueva = new DataTable();
+            DataTable dtNueva = solicitarReqs(tipo);
+            //DataTable req = solicitarReqs(tipo);
             Object[] datos = new Object[1];
 
 
@@ -538,11 +551,11 @@ namespace SistemaPruebas.Intefaces
                 
             return dtNueva;
         }
-        protected DataTable ponerElemento(DataTable dtVieja, String id)
+        protected DataTable ponerElemento(DataTable dtVieja, String id, int tipo)
         {
 
 
-            DataTable dtNueva = new DataTable();
+            DataTable dtNueva = solicitarReqs(tipo);
             Object[] datos = new Object[1];
 
             datos[0] = id;
