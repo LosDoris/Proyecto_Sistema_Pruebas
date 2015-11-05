@@ -182,7 +182,7 @@
                             <asp:ListItem Value="4">Sistema</asp:ListItem>
                             <asp:ListItem Value="5">Aceptación</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
+                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>--%>
                     </div>
                 </div>
 

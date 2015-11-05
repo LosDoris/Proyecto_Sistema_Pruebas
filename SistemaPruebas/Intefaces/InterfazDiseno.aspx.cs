@@ -10,7 +10,8 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazDiseno : System.Web.UI.Page
     {
-       
+        static DataTable dtNoAsociados;
+        static DataTable dtSiasociados;
         Controladoras.ControladoraDisenno controlDiseno = new Controladoras.ControladoraDisenno();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -403,16 +404,18 @@ namespace SistemaPruebas.Intefaces
             DataTable req = solicitarReqs(tipo);
             if (tipo == 1)
             {
+                dtNoAsociados = req;
                 gridNoAsociados.DataSource = req;
                 gridNoAsociados.DataBind();
             }
             else
             {
+                dtSiasociados = req;
                 gridAsociados.DataSource = req;
                 gridAsociados.DataBind();
             }
-
         }
+        
 
 
         protected DataTable solicitarReqs(int tipo)
@@ -455,12 +458,31 @@ namespace SistemaPruebas.Intefaces
             }
             return req;       
         }
-
+        protected void llenarGridsReqModificar(int tipo, DataTable req)
+        {
+            //DataTable req = solicitarReqs(tipo);
+            if (tipo == 1)
+            {
+                dtNoAsociados = req;
+                gridNoAsociados.DataSource = req;
+                gridNoAsociados.DataBind();
+            }
+            else
+            {
+                dtSiasociados = req;
+                gridAsociados.DataSource = req;
+                gridAsociados.DataBind();
+            }
+        }
         protected void OnSelectedIndexChangedNoAsoc(object sender, EventArgs e)
         {
             try
             {
                 id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_noAsoc);
+                dtSiasociados = ponerElemento(dtNoAsociados, id_req_noAsoc);
+                llenarGridsReqModificar(1, dtNoAsociados);
+                llenarGridsReqModificar(2, dtSiasociados);
             }
             catch (Exception ex)
             {
@@ -473,11 +495,80 @@ namespace SistemaPruebas.Intefaces
             try
             {
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
+                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
+                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
+                llenarGridsReqModificar(1, dtNoAsociados);
+                llenarGridsReqModificar(2, dtSiasociados);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        protected DataTable quitarElemento(DataTable dtVieja, String id)
+        {
+
+            DataTable dtNueva = new DataTable();
+            Object[] datos = new Object[1];
+
+
+                if (dtVieja.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dtVieja.Rows)
+                    {
+                        
+                        datos[0] = dr[0];
+                        if (Convert.ToString(datos[0]) != id)
+                        {
+                            dtNueva.Rows.Add(datos);
+                        }
+                    }
+                    if (dtNueva.Rows.Count == 0)
+                    {
+                    datos[0] = "-";
+                    dtNueva.Rows.Add(datos);
+                }
+                }
+                else
+                {
+                    datos[0] = "-";
+                    dtNueva.Rows.Add(datos);
+                }
+                
+            return dtNueva;
+        }
+        protected DataTable ponerElemento(DataTable dtVieja, String id)
+        {
+
+
+            DataTable dtNueva = new DataTable();
+            Object[] datos = new Object[1];
+
+            datos[0] = id;
+            dtNueva.Rows.Add(datos);
+            if (dtVieja.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dtVieja.Rows)
+                {
+
+                    datos[0] = dr[0];
+                    dtNueva.Rows.Add(datos);
+                    
+                }
+                if (dtNueva.Rows.Count == 0)
+                {
+                    datos[0] = "-";
+                    dtNueva.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                dtNueva.Rows.Add(datos);
+            }
+
+            return dtNueva;
         }
 
         protected void OnPageIndexChangingNoAsoc(object sender, GridViewPageEventArgs e)
@@ -671,7 +762,10 @@ namespace SistemaPruebas.Intefaces
                 String[] p2 = p1.Split('_');
                 try
                 {
-                    this.proyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                    if (Convert.ToInt32(p2[1]) > -1)
+                    {
+                        this.proyectoAsociado.Items.Add(new ListItem(p2[0], p2[1]));
+                    }
                 }
                 catch (Exception e)
                 {
@@ -688,6 +782,7 @@ namespace SistemaPruebas.Intefaces
 
                 try
                 {
+                //hay que ver que hacemos con los miembros que no tienen un proyecto asociado.
                     this.proyectoAsociado.Items.Add(new ListItem(controlDiseno.solicitarNombreProyectoMiembro(controlDiseno.solicitarProyecto_IdMiembro())));
                 }
                 catch (Exception e)
