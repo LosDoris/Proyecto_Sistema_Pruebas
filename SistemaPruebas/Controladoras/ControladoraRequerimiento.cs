@@ -8,27 +8,11 @@ namespace SistemaPruebas.Controladoras
 {
     public class ControladoraRequerimiento
     {
-        
 
-        //ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
         ControladoraBDRequerimiento controladoraBDRequerimiento = new ControladoraBDRequerimiento();
         ControladoraProyecto controladoraProyecto = new ControladoraProyecto();
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
-       
-
-        /*
-         * Requiere: El nombre de usuario y el estado de sesión abierta o cerrada que va a cambiarse.
-         * Modifica: Se hace el cambio en el estado de loggeo para un usuario,
-           llamando al método que modifica los datos dentro de la base de datos.
-         * Retorna: booleano.
-         */
-        /*public bool estadoLoggeado(string nombre, string estado)
-        {
-            if (estado == "0")
-                controladoraProyecto.LimpiarModificaciones(nombre);
-            return true; controladoraBDRequerimiento.estadoLoggeado(nombre, estado);
-        }*/
 
 
         /*
@@ -50,9 +34,7 @@ namespace SistemaPruebas.Controladoras
         */
         public bool PerfilDelLogeado()
         {
-            //controlRH = new ControladoraRecursosHumanos();
             bool retorno;
-            //string perfil = controlRH.perfilDelLoggeado();
             string perfil = controladoraRecursosHumanos.perfilDelLoggeado();
             if (perfil == "Administrador")
             {
@@ -63,7 +45,6 @@ namespace SistemaPruebas.Controladoras
                 retorno = false;
             }
             return retorno;
-
         }
         public int proyectosDelLoggeado()
         {
@@ -94,7 +75,6 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRequerimiento.UpdateUsoREQ(id, use);		
         }
 
-        /**/
 
         /*
          * Requiere: Object[] datos
@@ -121,6 +101,7 @@ namespace SistemaPruebas.Controladoras
             int ret = controladoraBDRequerimiento.modificarRequerimientoBD(requerimiento);
             return ret;
         }
+
         /*
          * Requiere: Cédula
          * Modifica: Elimina un recurso humano del sistema.
@@ -128,8 +109,6 @@ namespace SistemaPruebas.Controladoras
          */
         public int eliminarRequerimiento(String cedula, int proyecto)
         {
-            //datos[0];
-            //EntidadRequerimientos Requerimiento = new EntidadRequerimientos(datos);
             int ret = controladoraBDRequerimiento.eliminarRequerimientoBD(cedula, proyecto);
             return ret;
         }
@@ -155,7 +134,6 @@ namespace SistemaPruebas.Controladoras
         {
             String proyectos = controladoraProyecto.Consultar_ID_Nombre_Proyecto();
             return proyectos;
-
         }
 
         /*
@@ -169,73 +147,32 @@ namespace SistemaPruebas.Controladoras
             return proyecto;
         }
 
+
         public DataTable consultarRequerimientoNoEnDiseno(int id_proyecto, int id_diseno)
         {
-            //DataTable dt = new DataTable();
             DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(id_proyecto, id_diseno);
             return dt;
         }
 
+
         public DataTable consultarRequerimientoEnDiseno(int id_proyecto, int id_diseno)
         {
-            //DataTable dt = new DataTable();
             DataTable dt = controladoraBDRequerimiento.consultarRequerimientoEnDisenoBD(id_proyecto, id_diseno);
             return dt;
-
         }
+
 
         public int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
         {
-            //;
             return controladoraBDRequerimiento.desasociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la eliminacion 
-
         }
+
 
         public int asociarRequerimientoEnDiseno(int id_req, int id_diseno)
         {
-            //;
             return controladoraBDRequerimiento.asociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la insersion
-
         }
 
 
     }
 }
-
-/*
- * Requiere: N/A.
- * Modifica: Hace el llamado al método que accede a la base de datos para regresar
-   el perfil de quien tiene sesión abierta actualmente.
- * Retorna: hilera.
-         
-public string perfilDelLoggeado()
-{
-    return "";// controladoraRecursosHumanos.perfilDelLoggeado(Account.Login.id_logeado);
-}
-*/
-
-/*
-        *Requiere:  N/A.
-        *Modifica: Hace llamado a método que consulta si la persona loggeada
-         es un administrador, según el sistema y los datos dentro de él, o no.
-        *Retorna: booleano.
-       */
-/*  public bool loggeadoEsAdmin()
-  {
-      //controlREQ = new ControladoraRequerimiento();
-      bool retorno;
-      string perfil = this.perfilDelLoggeado();
-      if (perfil == "Administrador")
-      {
-          retorno = true;
-      }
-      else
-      {
-          retorno = false;
-      }
-      return retorno;
-
-  }*/
-
-
-/**/

@@ -76,10 +76,6 @@ namespace SistemaPruebas.Controladoras
                 controladoraProyecto.LimpiarModificaciones(nombre);
             return controladoraBDRecursosHumanos.estadoLoggeado(nombre, estado);
         }
-        
-        
-        
-        /**/
 
         /*
          * Requiere: N/A.
@@ -122,7 +118,6 @@ namespace SistemaPruebas.Controladoras
         */
         public bool loggeadoEsAdmin()
         {
-            //controlRH = new ControladoraRecursosHumanos();
             bool retorno;
             string perfil = this.perfilDelLoggeado();
             if (perfil == "Administrador")
@@ -141,7 +136,7 @@ namespace SistemaPruebas.Controladoras
         /**/
 
         /*
-         *Requiere:  Número de cédula.
+         *Requiere: Cedula del recurso humano.
          *Modifica: Hace llamado al método que accede a la base de datos
           para hacer confirmación del uso del Recurso Humano.
           Regresa verdadero si está en uso o falso si no.
@@ -153,7 +148,7 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         *Requiere:  Número de cédula y el estado del Uso actual.
+         *Requiere:  Cedula del recurso humano y el estado del Uso actual.
          *Modifica: Se encarga de hacer el llamado al método que accede a la
           base de datos para cambiar el uso asociado al número de cédula.
          *Retorna: entero.
@@ -184,12 +179,11 @@ namespace SistemaPruebas.Controladoras
          */
         public int modificarRecursoHumano(Object[] datos)
         {
-            //datos[0];
-
             EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
             int ret = controladoraBDRecursosHumanos.modificarRecursoHumanoBD(recursoHumano);
             return ret;
         }
+
         /*
          * Requiere: Cédula
          * Modifica: Elimina un recurso humano del sistema.
@@ -197,8 +191,6 @@ namespace SistemaPruebas.Controladoras
          */
         public int eliminarRecursoHumano(int cedula)
         {
-            //datos[0];
-            //EntidadRecursosHumanos recursoHumano = new EntidadRecursosHumanos(datos);
             int ret = controladoraBDRecursosHumanos.eliminarRecursoHumanoBD(cedula);
             return ret;
         }
@@ -238,27 +230,54 @@ namespace SistemaPruebas.Controladoras
             return proyecto;
         }
 
+
+        /*
+         * Requiere: ID del proyecto al que pertenece.
+         * Modifica: N/A.
+         * Retorna: String.
+         */
         public String solicitarNombreRecursoPorProyecto(int id_proyecto)
         {
             String proyecto = controladoraBDRecursosHumanos.solicitarNombreRecursoPorProyecto(id_proyecto);
            return proyecto;
         }
+
+        /*
+         * Requiere: Solicitar el nombre de las personas que no tienen un proyecto asociado.
+         * Modifica: N/A.
+         * Retorna: String.
+         */
         public String solicitarNombreRecursoSinProyecto()
         {
             String proyecto = controladoraBDRecursosHumanos.solicitarNombreRecursoSinProyecto();
             return proyecto;
         }
 
+        /*
+        * Requiere: Nombre de la persona.
+        * Modifica: N/A.
+        * Retorna: Int (el id).
+        */
         public int solicitarCedulaRecurso(string nombre)
         {
             return controladoraBDRecursosHumanos.solicitarCedulaRecurso(nombre);
         }
 
+        /*
+        * Requiere: Cedula de la persona.
+        * Modifica: N/A.
+        * Retorna: String nombre de las personas.
+        */
         public string solicitarNombreRecurso(int cedula)
         {
             return controladoraBDRecursosHumanos.solicitarNombreRecurso(cedula);
         }
 
+        /*
+        * Requiere: Cedula de la persona y proyecto que se le quiere asociar.
+        * Modifica: N/A.
+        * Retorna: Resultado de la operacion.
+        */
         public int addProyecto(int cedula, int id_proyecto)
         {
             return controladoraBDRecursosHumanos.addProyecto(cedula, id_proyecto);
