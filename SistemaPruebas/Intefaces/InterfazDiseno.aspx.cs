@@ -264,6 +264,7 @@ namespace SistemaPruebas.Intefaces
             ambienteTxtbox.Enabled = true;
             procedimientoTxtbox.Enabled = true;
             criteriosTxtbox.Enabled = true;
+            txt_date.Enabled = true;
             //proyectoAsociado.Enabled = true;
             Nivel.Enabled = true;
             Tecnica.Enabled = true;
@@ -290,6 +291,7 @@ namespace SistemaPruebas.Intefaces
             //proyectoAsociado.Enabled = false;
             Nivel.Enabled = false;
             Tecnica.Enabled = false;
+            txt_date.Enabled = false;
            // Tipo.Enabled = false;
             responsable.Enabled = false;
             aceptar.Enabled = false;
@@ -308,6 +310,7 @@ namespace SistemaPruebas.Intefaces
             ambienteTxtbox.Text = "";
             procedimientoTxtbox.Text = "";
             criteriosTxtbox.Text = "";
+            txt_date.Text = "";
             //proyectoAsociado.ClearSelection();
             //ListItem selectedListItem = proyectoAsociado.Items.FindByValue("1");
             Nivel.ClearSelection();
@@ -334,7 +337,7 @@ namespace SistemaPruebas.Intefaces
                 case 1://Insertar
                     {
 
-                        string fecha = Page.Request.Form["txt_date"];
+                        string fecha = txt_date.Text;
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         el_proyecto = proyecto.ToString();
@@ -362,7 +365,7 @@ namespace SistemaPruebas.Intefaces
                 case 2://Modificar
                     {
 
-                        string fecha = Page.Request.Form["txt_date"];
+                        string fecha = txt_date.Text;
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);                       
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
 
@@ -779,7 +782,7 @@ namespace SistemaPruebas.Intefaces
         protected void obtenerDatosInsertados()
         {
 
-            string fecha = Page.Request.Form["txt_date"];
+            string fecha = txt_date.Text;
             object[] datos = new object[6] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha };
 
         }
@@ -947,7 +950,7 @@ namespace SistemaPruebas.Intefaces
             };
             this.ambienteTxtbox.Text = entidad.Ambiente;
             this.procedimientoTxtbox.Text = entidad.Procedimiento;
-            //txt_date.Text
+            this.txt_date.Text = entidad.FechaDeDisenno;
             this.criteriosTxtbox.Text = entidad.CriterioAceptacion;
 
             cargarResponsablesMiembro();
