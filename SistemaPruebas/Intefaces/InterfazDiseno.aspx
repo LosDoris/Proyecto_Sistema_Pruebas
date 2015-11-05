@@ -88,10 +88,10 @@
             HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true">
         </asp:GridView>
-
+        <%--
             <asp:Button runat="server" ID="Button1" Text="Asociar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-content:center;margin-top:125px;margin-left:135px;margin-right:10px"/>
             <asp:Button runat="server" ID="Button2" Text="Desasociar" style="border-color:#fe6c4f;color:#fe5e3e;align-content:center;margin-top:125px;margin-left:10px;margin-right:20px"  CssClass="btn btn-default" CausesValidation="false"/>
-
+        --%>
 </div>
 </div>
 

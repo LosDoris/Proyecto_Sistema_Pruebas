@@ -172,11 +172,11 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
-        public DataTable consultarDisennoReq(int id)
+        public DataTable consultarDisennoReq(int idDisenno)
         {
             DataTable dt = null;
             String consulta = "";
-            consulta = "select * from Prueba_Disenno_Req where id_disenno = " +id;
+            consulta = "select id_requerimiento from Prueba_Disenno_Req where id_disenno = " +idDisenno;
             dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
         }
@@ -195,11 +195,11 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
-        public DataTable EliminarDisennoReq(SistemaPruebas.Entidades.EntidadDisennoReq datos)
+        public DataTable EliminarDisennoReq(int idDisenno, string idReq)
         {
             DataTable dt = null;
             String consulta = "";
-            consulta = "delete from Prueba_Disenno_Req where id_requerimiento = "+ datos.IdReq+" and id_disenno = "+ datos.IdDisenno +" and id_proyecto = "+datos.IdPrueba;
+            consulta = "delete from Prueba_Disenno_Req where id_requerimiento = " + idReq + " and id_disenno = " + idDisenno;
             dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
         }

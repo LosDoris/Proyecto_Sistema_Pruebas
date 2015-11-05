@@ -140,5 +140,12 @@ namespace SistemaPruebas.Controladoras
             SistemaPruebas.Intefaces.InterfazDiseno i = new SistemaPruebas.Intefaces.InterfazDiseno();
             return i.infoDisenno();
         }
+
+
+
+        public DataTable consultarDisennoReq(int idDisenno)
+        {
+            return controlBD.consultarDisennoReq(idDisenno);
+        }
     }
 }

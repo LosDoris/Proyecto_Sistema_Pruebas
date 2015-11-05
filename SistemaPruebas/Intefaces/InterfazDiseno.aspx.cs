@@ -22,6 +22,7 @@ namespace SistemaPruebas.Intefaces
                 if (llenarProyecto == true.ToString())
                 {
                     llenarComboboxProyectoAdmin();
+                    //llenarGridDisenos();     
                     deshabilitarCampos();
                     deshabilitarGridReq(1);
                     deshabilitarGridReq(2);
@@ -323,8 +324,8 @@ namespace SistemaPruebas.Intefaces
             ListItem selectedListItem4 = responsable.Items.FindByValue("1");
             cancelar.Enabled = false;
             Modificar.Enabled = false;
-            habilitarGridReq(1);
-            habilitarGridReq(2);
+            deshabilitarGridReq(1);
+            deshabilitarGridReq(2);
 
         }
 
@@ -447,8 +448,8 @@ namespace SistemaPruebas.Intefaces
                 dtNoAsociados = dt;
             }
             else
-            {
-                dt = controlDiseno.consultarReqEnDiseno(proyecto, diseno);
+            {                
+                dt = controlDiseno.consultarDisennoReq(diseno);
                 dtSiasociados = dt;
 
             }
@@ -931,8 +932,11 @@ namespace SistemaPruebas.Intefaces
 
         protected void Llenar_Datos_Conultados(int id_diseno)
         {
-
+                     
+            buttonDisenno = "2";
             Controladoras.EntidadDisenno entidad = controlDiseno.consultarDisenno(id_diseno);
+            llenarGridsReq(1);
+            llenarGridsReq(2);
             this.propositoTxtbox.Text = entidad.Proposito;
 
             Nivel.ClearSelection();
@@ -959,7 +963,8 @@ namespace SistemaPruebas.Intefaces
             if (selectedListItem3 != null)
             {
                 selectedListItem3.Selected = true;
-            };
+            }
+            deshabilitarCampos();  
 
         }
 
