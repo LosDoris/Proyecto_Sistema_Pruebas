@@ -189,7 +189,8 @@
                     validationgroup="CamposNoVacios"                               
                     CssClass="btn btn-default" 
                     ID="BotonREQAceptarModificar" OnClick="BotonREQAceptarModificar_Click" />
-                <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" ID="BotonREQCancelar" OnClick="BotonREQCancelar_Click"  OnClientClick="return confirm('¿Está seguro que desea cancelar?')" />
+                <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" ID="BotonREQCancelar" OnClick="BotonREQCancelar_Click"   />
+                <%--OnClientClick="return confirm('¿Está seguro que desea cancelar?')"--%>
             </div>
         </div>
         <div class="row">
@@ -217,8 +218,8 @@
             <asp:label runat ="server" ID="textModal2" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Esta seguro de que quiere cancelar?</asp:label>
             <br/> <br/>
             <div aria-pressed="true">
-                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="siModalCancelar_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
-                <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
+                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
+                <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="siModalCancelar_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
             </div>
         </asp:Panel>
         <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal2" TargetControlID="BotonREQCancelar" OnCancelScript="noModalCancelar" OnOkScript="siModalCancelar" BehaviorID="ModalCancelar">

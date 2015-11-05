@@ -954,6 +954,10 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref BotonREQInsertar);
             desmarcarBoton(ref BotonREQModificar);
         }
-        
+        protected void siModalCancelar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
