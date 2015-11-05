@@ -152,5 +152,56 @@ namespace SistemaPruebas.Controladoras
             dt = acceso.ejecutarConsultaTabla("select id_disenno from Disenno_Prueba where proposito = '" + proposito + "'");
             return Int32.Parse(dt.Rows[0][0].ToString());
         }
+
+
+
+
+        /*
+         * Métodos relacionados con la entidadDisennoReq, entidad compartida entre Diseño y Requerimiento
+         */
+
+
+
+
+        public DataTable consultarDisennoReq()
+        {
+            DataTable dt = null;
+            String consulta = "";           
+            consulta = "select * from Prueba_Disenno_Req";          
+            dt = acceso.ejecutarConsultaTabla(consulta);
+            return dt;
+        }
+
+        public DataTable consultarDisennoReq(int id)
+        {
+            DataTable dt = null;
+            String consulta = "";
+            consulta = "select * from Prueba_Disenno_Req where id_disenno = " +id;
+            dt = acceso.ejecutarConsultaTabla(consulta);
+            return dt;
+        }
+
+        public int InsertarDisenoReq(SistemaPruebas.Entidades.EntidadDisennoReq datos)
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Insertar_Disenno_Req"))
+            {
+
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.Add(new SqlParameter("@idPrueba", datos.IdPrueba));
+                comando.Parameters.Add(new SqlParameter("@idReq", datos.IdReq));
+                comando.Parameters.Add(new SqlParameter("@idDisenno", datos.IdDisenno));                
+                return acceso.Insertar_Proced_Almacenado(comando);
+            }
+        }
+
+        public DataTable EliminarDisennoReq(SistemaPruebas.Entidades.EntidadDisennoReq datos)
+        {
+            DataTable dt = null;
+            String consulta = "";
+            consulta = "delete from Prueba_Disenno_Req where id_requerimiento = "+ datos.IdReq+" and id_disenno = "+ datos.IdDisenno +" and id_proyecto = "+datos.IdPrueba;
+            dt = acceso.ejecutarConsultaTabla(consulta);
+            return dt;
+        }
     }
 }

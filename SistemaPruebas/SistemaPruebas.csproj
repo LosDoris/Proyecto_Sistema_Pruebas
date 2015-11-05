@@ -252,6 +252,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\EntidadDisennoReq.cs" />
     <Compile Include="Entidades\EntidadCasosPrueba.cs" />
     <Compile Include="Entidades\EntidadDisenno.cs" />
     <Compile Include="Entidades\EntidadEjecucionPrueba.cs" />

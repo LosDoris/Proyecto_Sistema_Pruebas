@@ -8,22 +8,22 @@ namespace SistemaPruebas.Entidades
     public class EntidadDisennoReq
     {
 
-        private int idProyecto;
+        private int idPrueba;
         private string idReq;
         private int idDisenno;
 
         public EntidadDisennoReq (object []datos)
         {
-            this.idProyecto = Int32.Parse(datos[0].ToString());
+            this.idPrueba= Int32.Parse(datos[0].ToString());
             this.idReq = datos[1].ToString();
             this.idDisenno = Int32.Parse(datos[2].ToString());
         }
 
 
-        public int IdProyecto
+        public int IdPrueba
         {
-            get { return idProyecto; }
-            set { idProyecto = value; }
+            get { return idPrueba; }
+            set { idPrueba = value; }
         }
         public string IdReq
         {
