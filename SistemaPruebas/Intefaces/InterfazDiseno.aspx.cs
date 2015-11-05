@@ -153,7 +153,8 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             Insertar.Enabled = false;
-            habilitarCampos();
+            //habilitarCampos();
+            gridDisenos.Enabled = false;
             deshabilitarGridDiseno();
             marcarBoton(ref Insertar);
             cancelar.Enabled = true;
@@ -228,7 +229,10 @@ namespace SistemaPruebas.Intefaces
            int a= controlDiseno.eliminarDisenno(Int32.Parse(id_diseno_cargado));
            if (a == 1)
            {
-               ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true); //CAMBIAR ALERTA
+               EtiqErrorGen.Text = "El diseño ha sido eliminado con éxito";
+               EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+               ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+               //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true); //CAMBIAR ALERTA
                llenarGridDisenos();
                habilitarGridDiseno();
                deshabilitarCampos();
@@ -246,7 +250,10 @@ namespace SistemaPruebas.Intefaces
 
         protected void cancelarModal_ClickEliminar(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true);
+            //EtiqErrorGen.Text = "El diseño ha sido eliminado con éxito";
+            //EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true);
             desmarcarBoton(ref Eliminar);
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
@@ -346,7 +353,10 @@ namespace SistemaPruebas.Intefaces
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
                         {
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
+                            EtiqErrorGen.Text = "El diseño ha sido insertado con éxito";
+                            EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
                             llenarGridsReq(1);
                             llenarGridsReq(2);
@@ -359,7 +369,9 @@ namespace SistemaPruebas.Intefaces
                         }
                         else
                         {
-                            //completar
+                            EtiqErrorGen.Text = "Se produjo un error al momento de insertar el diseño, por favor intente luego";
+                            EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                         }
                     }
                     break;
@@ -371,11 +383,13 @@ namespace SistemaPruebas.Intefaces
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
 
                         object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
-
                         int a = controlDiseno.modificarDiseno(Int32.Parse(id_diseno_cargado), datos);
                         if (a == 1)
                         {
-                            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido modificado con éxito');", true); //CAMBIAR ALERTA
+                            EtiqErrorGen.Text = "El diseño ha sido modificado con éxito";
+                            EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido modificado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
                             llenarGridsReq(1);
                             llenarGridsReq(2);
@@ -388,7 +402,9 @@ namespace SistemaPruebas.Intefaces
                         }
                         else
                         {
-                            //completar
+                            EtiqErrorGen.Text = "Se produjo un error al momento de modificar el diseño, por favor intente luego";
+                            EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                         }
                     }
                     break;
@@ -741,8 +757,7 @@ namespace SistemaPruebas.Intefaces
 
 
         protected void deshabilitarGridDiseno()
-        {
-            gridDisenos.Enabled = false;
+        {            
             foreach (GridViewRow row in gridDisenos.Rows)
             {
                 row.Attributes.Remove("onclick");
@@ -750,14 +765,14 @@ namespace SistemaPruebas.Intefaces
                 row.Attributes.Remove("style");
                 row.Attributes.Remove("onmouseout");
             }
+            gridDisenos.Enabled = false;
         }
 
         protected void deshabilitarGridReq(int tipo)
         {
 
             if (tipo == 1)
-            {
-                gridNoAsociados.Enabled = false;
+            {                
                 foreach (GridViewRow row in gridNoAsociados.Rows)
             {
                 row.Attributes.Remove("onclick");
@@ -765,6 +780,7 @@ namespace SistemaPruebas.Intefaces
                 row.Attributes.Remove("style");
                 row.Attributes.Remove("onmouseout");
             }
+                gridNoAsociados.Enabled = false;
             }
 
             else
@@ -883,7 +899,8 @@ namespace SistemaPruebas.Intefaces
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
                 el_proyecto = proyectoAsociado.SelectedItem.Text;
-
+                if(buttonDisenno == "1")
+                    habilitarCampos();
                 llenarGridDisenos();
                 llenarGridsReq(1);
                 llenarGridsReq(2);
