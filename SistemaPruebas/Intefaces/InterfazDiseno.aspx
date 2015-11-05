@@ -126,7 +126,7 @@
 
     </div>
             <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false" style="margin-top:20px"/>
+            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false" style="margin-top:20px" />
             </div>
 
 </div>

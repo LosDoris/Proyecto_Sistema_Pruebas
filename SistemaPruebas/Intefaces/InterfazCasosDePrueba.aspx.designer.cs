@@ -85,22 +85,40 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button BotonCPEliminar;
         
         /// <summary>
-        /// Control informacionDisenno.
+        /// Control Proposito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label informacionDisenno;
+        protected global::System.Web.UI.WebControls.Label Proposito;
         
         /// <summary>
-        /// Control informacionProposito.
+        /// Control Nivel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label informacionProposito;
+        protected global::System.Web.UI.WebControls.Label Nivel;
+        
+        /// <summary>
+        /// Control Tecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Tecnica;
+        
+        /// <summary>
+        /// Control Proyecto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Proyecto;
         
         /// <summary>
         /// Control Label1.

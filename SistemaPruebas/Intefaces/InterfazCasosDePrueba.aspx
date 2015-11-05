@@ -32,14 +32,31 @@
 <div class ="row" style ="width: 100%">    
     <div class="jumbozCP" >
         <h4>Resumen</h4>
-        <div class="row">
-		    <asp:Label ID="informacionDisenno" runat="server" CssClass="control-label"
-                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
-            <asp:Label ID="informacionProposito" runat="server" CssClass="control-label"
-                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
-            <asp:Label ID="Label1" runat="server" CssClass="control-label"
+        <div class="col-md-6">
+            <div class ="form-group">
+		        <asp:Label ID="Proposito" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Propósito"></asp:Label>
+            </div>
+            <div class="form-group">
+                <asp:Label ID="Nivel" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nivel"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="Tecnica" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Técnica"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="Proyecto" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Proyecto"></asp:Label>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+		    <asp:Label ID="Label1" runat="server" CssClass="control-label"
                 style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Informa Diseño"></asp:Label>
         </div>
+        <div style="clear:both"></div>
+
     </div>
 </div>
 

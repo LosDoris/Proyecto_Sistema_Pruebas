@@ -57,8 +57,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            infoDisenno();
-            informacionDisenno.Text = "Diseño:\nProposito:";
+            llenarEtiquetasDiseno();
             InterfazDiseno.llenarProyecto = true.ToString();
             if(!IsPostBack)
             {
@@ -69,6 +68,48 @@ namespace SistemaPruebas.Intefaces
             EtiqMensajeOperacion.Visible = false;
             llenarGrid();
         }
+
+        protected List<string> infoDisenno()
+        {
+
+            ControladoraDisenno cd = new ControladoraDisenno();
+            ControladoraRequerimiento cr = new ControladoraRequerimiento();
+
+            List<string> tabla = cd.infoDisenno();
+            string proposito = tabla[0].ToString();
+            string nivel = tabla[1].ToString();
+            string tecnica = tabla[2].ToString();
+            string ambiente = tabla[3].ToString();
+            string procedimiento = tabla[4].ToString();
+            string fecha = tabla[5].ToString();
+            string criterios = tabla[6].ToString();
+            string responsable = tabla[7].ToString();
+            string proyecto = tabla[8].ToString();
+
+            int id_diseno = cd.consultarId_Disenno(proposito);
+            DataTable dt = cr.consultarRequerimientoEnDiseno(Int32.Parse(proyecto), id_diseno);
+
+            string requerimientos = "";
+            foreach (DataRow row in dt.Rows)
+            {
+                requerimientos = requerimientos + ";" + row["id_requerimiento"].ToString();
+            }
+            tabla.Add(requerimientos);
+            return tabla;
+        }
+
+        protected void llenarEtiquetasDiseno()
+        {
+            List<string> la_lista = infoDisenno();
+            Proposito.Text="Propósito: "+la_lista[0];
+            Nivel.Text="Nivel: "+la_lista[1];
+            Tecnica.Text="Técnica: "+la_lista[2];
+            Proyecto.Text="Proyecto: "+la_lista[8];
+
+
+
+        }
+
 
         protected void estadoInicial()
         {
@@ -646,32 +687,6 @@ namespace SistemaPruebas.Intefaces
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
         }
-
-        protected void infoDisenno()
-        {
-            
-            ControladoraDisenno cd = new ControladoraDisenno();
-            ControladoraRequerimiento cr = new ControladoraRequerimiento();
-
-            List<string> tabla=cd.infoDisenno();
-            string proposito = tabla[0].ToString();
-            string nivel = tabla[1].ToString();
-            string tecnica = tabla[2].ToString();
-            string ambiente = tabla[3].ToString();
-            string procedimiento = tabla[4].ToString();
-            string fecha = tabla[5].ToString();
-            string criterios = tabla[6].ToString();
-            string responsable = tabla[7].ToString();
-            string proyecto = tabla[8].ToString();
-
-            int id_diseno = cd.consultarId_Disenno(proposito);
-            DataTable dt = cr.consultarRequerimientoEnDiseno(Int32.Parse(proyecto), id_diseno);
-
-            string requerimientos = "";
-            foreach (DataRow row in dt.Rows)
-            {
-                requerimientos = requerimientos + ";" + row["id_requerimiento"].ToString();
-            }
-        }
+        
     }
 } 
