@@ -13,16 +13,16 @@ namespace SistemaPruebas.Controladoras
 
 
         /*
-         *Requiere:  Número de cédula del Recurso Humano
+         *Requiere:  Número de ID del requerimiento
          *Modifica: Hace acceso a base de datos para consultar el estado de
-          Uso del Recurso Humano, si está siendo  manipulado en algún otro lugar.
+          Uso del requerimiento, si está siendo  manipulado en algún otro lugar.
          *Retorna: booleano.
         */
         public bool ConsultarUsoREQ(String id)		
         {		
             bool regresa = false;		
-            int el_uso = 0;		
-            DataTable DR = acceso.ejecutarConsultaTabla("select esta_en_Uso from Recurso_Humano where cedula =" + id);		
+            int el_uso = 0;
+            DataTable DR = acceso.ejecutarConsultaTabla("select esta_en_Uso from Requerimiento where id_requerimiento ='" + id"');	";	
             try		
             {		
                 foreach (DataRow row in DR.Rows)		
@@ -46,21 +46,21 @@ namespace SistemaPruebas.Controladoras
         }		
 
         /*
-         *Requiere:  Número de cédula de Recurso Humano y el estado de Uso actual.
+         *Requiere:  Número de cédula de requerimiento y el estado de Uso actual.
          *Modifica: Con el número de cédula que recibe, cambia en la base de datos
-          el estado del Uso asociado a este. Este indicará que el Recurso Humano
+          el estado del Uso asociado a este. Este indicará que el requerimiento
           se encuentra o no en otro lado modificado.
          *Retorna: entero.
         */
         public int UpdateUsoREQ(String id, int use)		
         {		
-            return acceso.Insertar("update Recurso_Humano set esta_en_Uso = " + use + " where cedula =" + id);		
+            return acceso.Insertar("update Requerimiento set esta_en_Uso = " + use + " where cedula ='" + id"');	";
         }		
 
 
         /*
-         * Requiere: Entidad de Recursos Humanos
-         * Modifica: Inserta un nuevo recurso humano en el sistema.
+         * Requiere: Entidad de requerimiento
+         * Modifica: Inserta un nuevo requerimiento en el sistema.
          * Retorna: int.
          */
         public int insertarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
@@ -72,8 +72,8 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         * Requiere: Entidad de Recursos Humanos
-         * Modifica: Modifica un recurso humano previamente ingresado al sistema.
+         * Requiere: Entidad de requerimiento
+         * Modifica: Modifica un requerimiento previamente ingresado al sistema.
          * Retorna: int.
          */
         public int modificarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
@@ -84,8 +84,8 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         * Requiere: Cédula
-         * Modifica: Elimina un recurso humano del sistema.
+         * Requiere: ID
+         * Modifica: Elimina un requerimiento del sistema.
          * Retorna: int.
          */
         public int eliminarRequerimientoBD(String cedula, int id_proyecto)
@@ -94,7 +94,7 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         * Requiere: tipo de consulta y cédula.
+         * Requiere: tipo de consulta y ID.
          * Modifica: N/A.
          * Retorna: DataTable.
          */
@@ -122,6 +122,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: ID del diseño y del proyecto.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRequerimientoNoEnDisenoBD(int id_proyecto, int id_diseno)
         { 
             String consulta = "select * from Requerimiento where id_proyecto=" + id_proyecto + " and id_requerimiento not in (select id_requerimiento from Prueba_Disenno_Req where id_proyecto=" + id_proyecto + " and id_disenno=" + id_diseno + ");";
@@ -129,6 +134,11 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+        /*
+         * Requiere: ID del diseño y del proyecto.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
         {
 
@@ -138,6 +148,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+         * Requiere: ID del diseño y del requerimiento.
+         * Modifica: Desasocia un requerimiento de un diseño.
+         * Retorna: int.
+         */
         public int desasociarRequerimientoEnDisenoBD(int id_req, int id_diseno)
         {
 
@@ -147,6 +162,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+        * Requiere: ID del diseño y del requerimiento.
+        * Modifica: Asocia un requerimiento de un diseño.
+        * Retorna: int.
+        */
         public int asociarRequerimientoEnDisenoBD(int id_req, int id_diseno)
         {
 

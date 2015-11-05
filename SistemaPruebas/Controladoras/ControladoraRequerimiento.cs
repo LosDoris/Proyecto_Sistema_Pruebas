@@ -147,27 +147,43 @@ namespace SistemaPruebas.Controladoras
             return proyecto;
         }
 
-
+        /*
+         * Requiere: ID del diseño y del proyecto.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRequerimientoNoEnDiseno(int id_proyecto, int id_diseno)
         {
             DataTable dt = controladoraBDRequerimiento.consultarRequerimientoNoEnDisenoBD(id_proyecto, id_diseno);
             return dt;
         }
 
-
+        /*
+         * Requiere: ID del diseño y del proyecto.
+         * Modifica: N/A.
+         * Retorna: DataTable.
+         */
         public DataTable consultarRequerimientoEnDiseno(int id_proyecto, int id_diseno)
         {
             DataTable dt = controladoraBDRequerimiento.consultarRequerimientoEnDisenoBD(id_proyecto, id_diseno);
             return dt;
         }
 
-
+        /*
+         * Requiere: ID del diseño y del requerimiento.
+         * Modifica: Desasocia un requerimiento de un diseño.
+         * Retorna: int.
+         */
         public int desasociarRequerimientoEnDiseno(int id_req, int id_diseno)
         {
             return controladoraBDRequerimiento.desasociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la eliminacion 
         }
 
-
+        /*
+        * Requiere: ID del diseño y del requerimiento.
+        * Modifica: Asocia un requerimiento de un diseño.
+        * Retorna: int.
+        */
         public int asociarRequerimientoEnDiseno(int id_req, int id_diseno)
         {
             return controladoraBDRequerimiento.asociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la insersion
