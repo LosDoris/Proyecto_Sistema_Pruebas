@@ -166,6 +166,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.TextBox TextBoxPropositoCP;
         
         /// <summary>
+        /// Control errorNombreSistLbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorNombreSistLbl;
+        
+        /// <summary>
         /// Control EntradaDatosCP.
         /// </summary>
         /// <remarks>

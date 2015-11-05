@@ -78,14 +78,28 @@
 
 		<div class="col-mdP">
 		    <asp:Label ID="PropositoCP" runat="server"  CssClass="col-md-2 control-label" style="margin-top: 20px; text-align: right;  width: 200px;height: 50px;" Text="Propósito de Caso de Prueba:"></asp:Label>                        
-		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; margin-top: 20px; width: 200px;height: 100px;" onkeypress="checkInput3(event)" TextMode="multiline"/>
+		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; margin-top: 20px; width: 200px;height: 100px;"
+                 onkeypress="checkInput3(event)" TextMode="multiline"/>
 		    <script type="text/javascript">
-			    function checkInput3(e) {
-				    var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
-				    if (!ok)
-					    e.preventDefault();
+		        function checkInput3(e) {
+		            var key = theEvent.keyCode || theEvent.which;
+		            
+			        var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
+			        if (!ok) {
+				        if ($('#errorNombreSistema').css('display') == 'none') {
+				            $('#errorNombreSistema').fadeIn();
+				            $('#errorNombreSistema').fadeOut(6000);
+				        }
+				        if (window.event)//IE
+				            e.returnValue = false;
+				        else//Firefox
+				            e.preventDefault();
+			        }
 			    }
 		    </script>
+            <div id="errorNombreSistema" style="display:none; margin-left:170px">
+                <asp:Label runat="server" ID="errorNombreSistLbl" text="Caracter no válido." ForeColor="Salmon"></asp:Label>
+            </div>
         </div>
 
         <div class="jumbozCP2">

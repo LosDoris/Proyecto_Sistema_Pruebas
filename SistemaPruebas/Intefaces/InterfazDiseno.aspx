@@ -192,7 +192,6 @@
                             <asp:ListItem Value="3">Caja Blanca</asp:ListItem>
                             <asp:ListItem Value="4">Exploratoria</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
