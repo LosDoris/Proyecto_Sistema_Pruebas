@@ -463,7 +463,7 @@ namespace SistemaPruebas.Intefaces
                 this.tel_rep.Text = entidadP.Telefono_representante;
             this.of_rep.Text = entidadP.Oficina_representante;
             this.LiderProyecto.Items.Clear();
-            if (entidadP.LiderProyecto != "")
+            if (entidadP.LiderProyecto != "" && !entidadP.LiderProyecto.Contains("dummy"))
                 this.LiderProyecto.Items.Add(entidadP.LiderProyecto);
         }
 
@@ -743,7 +743,8 @@ namespace SistemaPruebas.Intefaces
         {
             string seleccionado = LiderProyecto.SelectedValue;
             LiderProyecto.Items.Clear();
-            LiderProyecto.Items.Add(seleccionado);
+            if (!String.IsNullOrWhiteSpace(seleccionado) && !seleccionado.Contains("dummy"))               
+             LiderProyecto.Items.Add(seleccionado);
             string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
             if (!String.IsNullOrEmpty(nombres))
             {

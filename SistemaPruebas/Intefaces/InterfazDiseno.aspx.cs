@@ -437,7 +437,8 @@ namespace SistemaPruebas.Intefaces
                         }
                         else
                         {
-                            EtiqErrorGen.Text = "Se produjo un error al momento de modificar el diseño, por favor intente luego";
+
+                           EtiqErrorGen.Text = "Se produjo un error al momento de modificar el diseño, por favor intente luego";
                             EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                         }

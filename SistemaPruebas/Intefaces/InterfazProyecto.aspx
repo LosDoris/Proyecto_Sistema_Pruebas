@@ -330,7 +330,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="Lider del Proyecto" ItemStyle-Width="185px" HeaderText=" Lider del proyecto"  />
                 </Columns>
- 
+
             </asp:GridView>
     </div>
     
