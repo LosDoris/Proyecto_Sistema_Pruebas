@@ -32,6 +32,7 @@ namespace SistemaPruebas.Intefaces
                 Modificar.Enabled = false;
                 Insertar.Enabled = false;
                 Eliminar.Enabled = false;
+
             }
 
             else
@@ -168,6 +169,16 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = true;
             aceptar.Enabled = true;
             botonCP.Enabled = false;
+
+            if (this.proyectoAsociado.SelectedItem.Text == "Seleccionar")
+            {
+                labelSeleccioneProyecto.Visible = true;
+
+            }
+            else
+            {
+                labelSeleccioneProyecto.Visible = false;
+            }
             
         }
 
