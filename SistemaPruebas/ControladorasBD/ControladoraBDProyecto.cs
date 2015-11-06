@@ -52,6 +52,37 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
+        public int InsertarProyecto_SinLider(EntidadProyecto datos)
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Insertar_Proyecto_SinLider"))
+            {
+                //  comando.CommandText = "Insertar_Proyecto";
+                comando.CommandType = CommandType.StoredProcedure;
+
+                //  comando.Parameters.Add(new SqlParameter("@id_proyecto", datos.Id_proyecto));
+
+                comando.Parameters.Add(new SqlParameter("@nombre_sistema", datos.Nombre_sistema));
+
+                comando.Parameters.Add(new SqlParameter("@objetivo_general", datos.Objetivo_general));
+
+                comando.Parameters.Add(new SqlParameter("@fecha_asignacion", datos.Fecha_asignacion));
+
+                comando.Parameters.Add(new SqlParameter("@estado", datos.Estado));
+
+                comando.Parameters.Add(new SqlParameter("@nombre_rep", datos.Nombre_representante));
+
+                comando.Parameters.Add(new SqlParameter("@telefono_rep", datos.Telefono_representante));
+
+                comando.Parameters.Add(new SqlParameter("@oficina_rep", datos.Oficina_representante));
+
+                return acceso_BD.Insertar_Proced_Almacenado(comando);
+
+            }
+        }
+
+
+
+
         //Consultar_ID_Nombre_Proyecto();
         //Requiere: N/A
         //Modifica: Se invoca al procedimiento Almacenado Consultar_ID_Nombre_Proyecto ubicado en la base datos, con el fin de que devuleva un string con el id de todos los proyectos.

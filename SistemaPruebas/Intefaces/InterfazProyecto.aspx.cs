@@ -423,7 +423,10 @@ namespace SistemaPruebas.Intefaces
             {
                 foreach (DataRow fila in proyecto.Rows)
                 {
-                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), fila[2].ToString());
+                    if (fila[2].ToString() != "dummy")
+                        dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), fila[2].ToString());
+                    else
+                        dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), "");
                 }
             }
             else
@@ -747,8 +750,8 @@ namespace SistemaPruebas.Intefaces
                 string[] nombre = nombres.Split(';');                
                 foreach (string n in nombre)
                 {
-                    if(!String.IsNullOrWhiteSpace(n))
-                    LiderProyecto.Items.Add(n);
+                    if(!String.IsNullOrWhiteSpace(n) && !n.Contains("dummy"))
+                        LiderProyecto.Items.Add(n);
                 }
                 
             }
