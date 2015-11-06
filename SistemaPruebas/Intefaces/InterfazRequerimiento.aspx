@@ -66,7 +66,7 @@
                         <div class="form-group">      
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Proyecto Asociado:</asp:Label>
                                 <div class="col-md-">
-                                    <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control" Width="232px">
+                                    <asp:DropDownList ID="ProyectoAsociado" runat="server" OnSelectedIndexChanged="ProyectoAsociado_SelectedIndexChanged" CssClass="form-control" Width="232px" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </div>
                         </div>

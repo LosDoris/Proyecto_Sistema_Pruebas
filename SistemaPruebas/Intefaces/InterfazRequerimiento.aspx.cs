@@ -57,6 +57,18 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static string proyectoActual
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["proyectoActual"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["proyectoActual"] = value;
+            }
+        }
 
 
         /*
@@ -71,9 +83,25 @@ namespace SistemaPruebas.Intefaces
             if (!IsPostBack)
             {
                 esAdminREQ = controladoraRequerimiento.PerfilDelLogeado().ToString();
+                if (Convert.ToBoolean(esAdminREQ))
+                {
+                    proyectoActual = controladoraRequerimiento.consultarIDProyMinimo().ToString();
+                }
+                else
+                {
+                    proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+                }
                 volverAlOriginal();
             }
-                llenarGrid();
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+            }
+            else
+            {
+                proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+            }
+            llenarGrid();
         }
 
         /*
@@ -100,7 +128,9 @@ namespace SistemaPruebas.Intefaces
             DataTable dt;
             if (Convert.ToBoolean(esAdminREQ))
             {
-                dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
+                //dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+                dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(proyectoActual));
             }
             else
             {
@@ -166,6 +196,7 @@ namespace SistemaPruebas.Intefaces
                 EtiqErrorLlaves.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
+            llenarGrid();
 
         }
 
@@ -187,6 +218,8 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 llenarDDProyecto();
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
             }
             desactivarErrores();
             BotonREQAceptar.Visible = true;
@@ -202,6 +235,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxRequerimientosEspecialesREQ.Text = "";
             marcarBoton(ref BotonREQInsertar);
             deshabilitarGrid();
+            llenarGrid();
         }
 
         /*
@@ -251,7 +285,8 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
             }
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
@@ -266,7 +301,12 @@ namespace SistemaPruebas.Intefaces
                 {
                     ProyectoAsociado.ClearSelection();
                     ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-                }
+                } else
+            {
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
+            }
+            llenarGrid();
         }
 
         /*
@@ -304,6 +344,7 @@ namespace SistemaPruebas.Intefaces
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
+                    llenarGrid();
                 }
                 else if(insercion == 2627)
                 {
@@ -311,6 +352,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
                 }
                 else
                 {
@@ -318,6 +360,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
                 }
             }
         }
@@ -330,6 +373,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
         {
             modificarReq();
+            llenarGrid();
         }
 
         protected void modificarReq()
@@ -357,10 +401,11 @@ namespace SistemaPruebas.Intefaces
                     llenarGrid();
                     controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
-                    EtiqErrorLlaves.Text = "El requerimiento se ha eliminado correctamente";
+                    EtiqErrorLlaves.Text = "El requerimiento se ha modificado correctamente";
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
 
                 }
                 else
@@ -376,6 +421,16 @@ namespace SistemaPruebas.Intefaces
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+            }
+            else
+            {
+                //proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+            }
+            volverAlOriginal();
+            llenarGrid();
         }
 
         /*
@@ -430,8 +485,9 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                ProyectoAsociado.ClearSelection();
-                ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                ProyectoAsociado.Enabled = false;
             }
         }
 
@@ -447,7 +503,18 @@ namespace SistemaPruebas.Intefaces
             TextBoxPrecondicionesREQ.Enabled = false;
             TextBoxRequerimientosEspecialesREQ.Enabled = false;
             BotonREQCancelar.Enabled = false;
-            ProyectoAsociado.Enabled = false;
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                ProyectoAsociado.Enabled = true;
+
+            }
+            else
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                ProyectoAsociado.Enabled = false;
+            }
+            //ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
             
