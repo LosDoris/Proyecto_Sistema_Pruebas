@@ -138,7 +138,7 @@ namespace SistemaPruebas.Intefaces
             Proyecto.Text="Proyecto: "+crh.solicitarNombreProyecto(Convert.ToInt32(la_lista[8]));
 
             string[] esplit = la_lista[9].Split(';');
-            string la_hilera = "Requerimientos: ";
+            string la_hilera = "<br />" + "Requerimientos: ";
             for (int i = 1; i < esplit.Length - 2; i++)
             {
                 la_hilera += "<br />"+esplit[i];

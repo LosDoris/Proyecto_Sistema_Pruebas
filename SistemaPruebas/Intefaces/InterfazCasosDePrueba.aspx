@@ -24,9 +24,9 @@
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este caso de prueba del sistema. Por favor vuelva a intentarlo.</asp:Label>
 <div class="form-group">
     <div class="col-md-offset-10 col-md-12">
-        <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click"/>
-        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" />
-        <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" />
+        <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click" CausesValidation="false"/>
+        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" CausesValidation="false"/>
+        <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" CausesValidation="false"/>
     </div>
 </div>
 <div class ="row" style ="width: 100%">    
@@ -67,11 +67,14 @@
         <div class="col-md-8">
 		    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" style="text-align: right; width: 200px;height: 32px;" Text="ID:"></asp:Label>                      
 		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20" OnTextChanged="TextBoxID_TextChanged"/>
-		    <script type="text/javascript">
+		    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" style="margin-left:200px" runat="server" ErrorMessage="Campo requerido" ControlToValidate="TextBoxID" ForeColor="Salmon"></asp:RequiredFieldValidator>
+            <script type="text/javascript">
 			    function checkInput(e) {
 				    var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
 				    if (!ok)
-					    e.preventDefault();
+				        e.preventDefault();
+				    if(e.charCode==8)
+                        alert("estpacio")
 			    }
 		    </script>
         </div>
@@ -80,6 +83,7 @@
 		    <asp:Label ID="PropositoCP" runat="server"  CssClass="col-md-2 control-label" style="margin-top: 20px; text-align: right;  width: 200px;height: 50px;" Text="Propósito de Caso de Prueba:"></asp:Label>                        
 		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; margin-top: 20px; width: 200px;height: 100px;"
                  onkeypress="checkInput3(event)" TextMode="multiline"/>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" style="margin-left:200px" ErrorMessage="Campo requerido" ControlToValidate="TextBoxPropositoCP" ForeColor="Salmon"></asp:RequiredFieldValidator>
 		    <script type="text/javascript">
 		        function checkInput3(e) {
 		            var key = theEvent.keyCode || theEvent.which;
@@ -106,7 +110,7 @@
             <div class="form-horizontal">
             <h4>Entrada de Datos</h4>
                 <div class="form-group">      
-                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text ="Descripción:"></asp:Label>    
+                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px; margin-top:20px" Text ="Descripción:"></asp:Label>    
                     <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:200px" onkeypress="checkInput1(event)" CssClass="form-control"/>
                     <script type="text/javascript">
                         function checkInput1(e) {
@@ -141,9 +145,9 @@
                 <div class="form-group">          
                         <div class="col-md-offset-5 col-md-12">
                             <asp:Button runat="server" Text="Agregar"                               
-                                CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" />
+                                CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" CausesValidation="false"/>
                             <asp:Button runat="server" Text="Eliminar"  
-                                CssClass="btn btn-default" ID="EliminarEntrada" OnClick="EliminarEntrada_Click"/>
+                                CssClass="btn btn-default" ID="EliminarEntrada" OnClick="EliminarEntrada_Click" CausesValidation="false"/>
                         </div>
                 </div>
 
@@ -202,6 +206,7 @@
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
             OnClick="BotonCPCancelar_Click" 
+            CausesValidation="false"
         />
     </div>
 </div>
@@ -238,8 +243,8 @@
     <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este caso de prueba?</asp:label>
     <br/> <br/>
     <div aria-pressed="true">
-        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModalEliminar_Click"/>
-        <asp:button runat="server" ID="cancelarModal" Text="Cancelar"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" OnClick="cancelarModal_Click"/>           
+        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModalEliminar_Click" CausesValidation="false"/>
+        <asp:button runat="server" ID="cancelarModal" Text="Cancelar"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" OnClick="cancelarModal_Click" CausesValidation="false"/>           
     </div>
 </asp:Panel>
 
