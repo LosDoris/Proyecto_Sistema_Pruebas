@@ -57,6 +57,18 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static string proyectoActual
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["proyectoActual"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["proyectoActual"] = value;
+            }
+        }
 
 
         /*
@@ -71,9 +83,25 @@ namespace SistemaPruebas.Intefaces
             if (!IsPostBack)
             {
                 esAdminREQ = controladoraRequerimiento.PerfilDelLogeado().ToString();
+                if (Convert.ToBoolean(esAdminREQ))
+                {
+                    proyectoActual = controladoraRequerimiento.consultarIDProyMinimo().ToString();
+                }
+                else
+                {
+                    proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+                }
                 volverAlOriginal();
             }
-                llenarGrid();
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+            }
+            else
+            {
+                proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+            }
+            llenarGrid();
         }
 
         /*
@@ -101,7 +129,8 @@ namespace SistemaPruebas.Intefaces
             if (Convert.ToBoolean(esAdminREQ))
             {
                 //dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
-                dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(this.ProyectoAsociado.SelectedValue));
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+                dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(proyectoActual));
             }
             else
             {
@@ -189,6 +218,8 @@ namespace SistemaPruebas.Intefaces
             else
             {
                 llenarDDProyecto();
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
             }
             desactivarErrores();
             BotonREQAceptar.Visible = true;
@@ -254,7 +285,8 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
             }
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
@@ -269,7 +301,11 @@ namespace SistemaPruebas.Intefaces
                 {
                     ProyectoAsociado.ClearSelection();
                     ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-                }
+                } else
+            {
+                ProyectoAsociado.ClearSelection();
+                ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
+            }
             llenarGrid();
         }
 
@@ -385,6 +421,15 @@ namespace SistemaPruebas.Intefaces
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
+            }
+            else
+            {
+                //proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
+            }
+            volverAlOriginal();
             llenarGrid();
         }
 
@@ -457,7 +502,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxPrecondicionesREQ.Enabled = false;
             TextBoxRequerimientosEspecialesREQ.Enabled = false;
             BotonREQCancelar.Enabled = false;
-            ProyectoAsociado.Enabled = false;
+            //ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
             

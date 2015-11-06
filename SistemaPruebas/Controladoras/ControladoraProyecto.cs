@@ -261,5 +261,14 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
+        //consultarIDProyMinimo();
+        //Requiere: N/A.
+        //Modifica: N/A.
+        //Retorna: int con el id del proyecto.
+        public int consultarIDProyMinimo()
+        {
+            return controlBD.consultarIDProyMinimoBD();
+        }
+
     }
 }

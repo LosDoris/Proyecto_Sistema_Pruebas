@@ -214,5 +214,16 @@ namespace SistemaPruebas.Controladoras
             dt = acceso_BD.ejecutarConsultaTabla("select nombre_sistema from proyecto where  id_proyecto=" + id);
             return dt.Rows[0][0].ToString();
         }
+
+        //consultarIDProyMinimo();
+        //Requiere: N/A.
+        //Modifica: N/A.
+        //Retorna: int con el id del proyecto.
+        public int consultarIDProyMinimoBD()
+        {
+            DataTable dt = new DataTable();
+            dt = acceso_BD.ejecutarConsultaTabla("select min(id_proyecto) from Proyecto where id_proyecto > -1;");
+            return Int32.Parse(dt.Rows[0][0].ToString());
+        }
     }
 }

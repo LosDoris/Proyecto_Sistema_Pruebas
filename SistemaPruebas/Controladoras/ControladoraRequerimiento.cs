@@ -188,7 +188,14 @@ namespace SistemaPruebas.Controladoras
         {
             return controladoraBDRequerimiento.asociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la insersion
         }
-
+        //consultarIDProyMinimo();
+        //Requiere: N/A.
+        //Modifica: N/A.
+        //Retorna: int con el id del proyecto.
+        public int consultarIDProyMinimo()
+        {
+            return controladoraProyecto.consultarIDProyMinimo();
+        }
 
     }
 }
