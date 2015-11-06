@@ -401,7 +401,7 @@ namespace SistemaPruebas.Intefaces
                     llenarGrid();
                     controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 0);//ya fue modificado el REQ
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
-                    EtiqErrorLlaves.Text = "El requerimiento se ha eliminado correctamente";
+                    EtiqErrorLlaves.Text = "El requerimiento se ha modificado correctamente";
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
@@ -485,8 +485,9 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                ProyectoAsociado.ClearSelection();
-                ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                ProyectoAsociado.Enabled = false;
             }
         }
 
@@ -502,6 +503,17 @@ namespace SistemaPruebas.Intefaces
             TextBoxPrecondicionesREQ.Enabled = false;
             TextBoxRequerimientosEspecialesREQ.Enabled = false;
             BotonREQCancelar.Enabled = false;
+            if (Convert.ToBoolean(esAdminREQ))
+            {
+                ProyectoAsociado.Enabled = true;
+
+            }
+            else
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+                ProyectoAsociado.Enabled = false;
+            }
             //ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
