@@ -96,6 +96,7 @@ namespace SistemaPruebas.Intefaces
 
             llenarGrid();
             EtiqErrorLlaves.Visible = false;
+            txt_date.Attributes.Add("readonly", "readonly");
         }
 
         //Restricciones_Campos()
@@ -215,7 +216,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             desmarcarBoton(ref Insertar);
                             Console.WriteLine("Insertar");
-                            string text = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
+                            string text = txt_date.Text;
                             string telefonos = "";
                             if (tel_rep2.Text != "")
                                  telefonos = tel_rep.Text+","+tel_rep2.Text;
@@ -275,7 +276,7 @@ namespace SistemaPruebas.Intefaces
                     {
                         desmarcarBoton(ref Modificar);
                         Console.WriteLine("Modificar");
-                        string text = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
+                        string text = txt_date.Text;
                         string telefonos = "";
                         if (tel_rep2.Text != "")
                             telefonos = tel_rep.Text + "," + tel_rep2.Text;

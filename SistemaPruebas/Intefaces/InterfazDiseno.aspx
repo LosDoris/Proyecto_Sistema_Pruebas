@@ -18,6 +18,8 @@
             padding-top: 10px;
             padding-left: 10px;            
         }
+
+
     </style>
     <script type="text/javascript">
         function HideLabel() {
@@ -32,6 +34,16 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
+<pages>
+      <controls>
+       
+ <add tagPrefix="asp" namespace="System.Web.UI" 
+assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, 
+PublicKeyToken=31bf3856ad364e35"/>
+        <add namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" 
+            tagPrefix="ajaxToolkit"/>
+      </controls>
+    </pages>
 
     <div id="errorGen" style="display: none">
         <asp:Label runat="server" ID="EtiqErrorGen"></asp:Label>
@@ -336,8 +348,8 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <asp:TextBox runat="server" ID="txt_date" name="txt_date" Style="width: 250px; height: 36px" type="text" ReadOnly="True" placeholder="De click para seleccionar fecha."></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
+                <asp:TextBox runat="server" ID="txt_date" Style="width: 250px; height: 36px" CssClass="form-control"></asp:TextBox>
+                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="txt_date" TargetControlID="txt_date" />
                     </div>
                 </div>
 
