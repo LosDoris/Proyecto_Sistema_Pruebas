@@ -27,15 +27,20 @@ namespace SistemaPruebas.Controladoras
         */
         public int IngresaProyecto(object[] datos)
         {
+            int a = 0;
             if (datos[8].ToString() != "")
             {
                 datos[8] = controlRH.solicitarCedulaRecurso(datos[8].ToString()).ToString();
                 controlRH.addProyecto(Int32.Parse(datos[8].ToString()), Int32.Parse(datos[0].ToString()));
+                EntidadProyecto objProyecto = new EntidadProyecto(datos);
+                a = controlBD.InsertarProyecto_SinLider(objProyecto);
             }
             else
+            {
                 datos[8] = "";
-            EntidadProyecto objProyecto = new EntidadProyecto(datos);
-            int a= controlBD.InsertarProyecto(objProyecto);
+                EntidadProyecto objProyecto = new EntidadProyecto(datos);
+                a = controlBD.InsertarProyecto_SinLider(objProyecto);
+            }
             return a;            
         }
         /*      

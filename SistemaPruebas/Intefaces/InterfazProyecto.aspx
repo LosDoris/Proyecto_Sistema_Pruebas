@@ -142,7 +142,7 @@
                      
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <asp:TextBox runat="server" id="txt_date" Style="width: 250px; height: 36px" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" placeholder="De click para seleccionar fecha"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date"/>
                     </div>
                     
@@ -330,7 +330,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="Lider del Proyecto" ItemStyle-Width="185px" HeaderText=" Lider del proyecto"  />
                 </Columns>
- 
+
             </asp:GridView>
     </div>
     

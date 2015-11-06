@@ -423,7 +423,10 @@ namespace SistemaPruebas.Intefaces
             {
                 foreach (DataRow fila in proyecto.Rows)
                 {
-                    dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), fila[2].ToString());
+                    if (fila[2].ToString() != "dummy")
+                        dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), fila[2].ToString());
+                    else
+                        dt.Rows.Add(fila[0].ToString(), fila[0].ToString(), fila[1].ToString(), "");
                 }
             }
             else
@@ -460,7 +463,7 @@ namespace SistemaPruebas.Intefaces
                 this.tel_rep.Text = entidadP.Telefono_representante;
             this.of_rep.Text = entidadP.Oficina_representante;
             this.LiderProyecto.Items.Clear();
-            if (entidadP.LiderProyecto != "")
+            if (entidadP.LiderProyecto != "" && !entidadP.LiderProyecto.Contains("dummy"))
                 this.LiderProyecto.Items.Add(entidadP.LiderProyecto);
         }
 
@@ -740,15 +743,16 @@ namespace SistemaPruebas.Intefaces
         {
             string seleccionado = LiderProyecto.SelectedValue;
             LiderProyecto.Items.Clear();
-            LiderProyecto.Items.Add(seleccionado);
+            if (!String.IsNullOrWhiteSpace(seleccionado) && !seleccionado.Contains("dummy"))               
+             LiderProyecto.Items.Add(seleccionado);
             string nombres = controladoraProyecto.solicitarNombreRecursoSinProyecto();
             if (!String.IsNullOrEmpty(nombres))
             {
                 string[] nombre = nombres.Split(';');                
                 foreach (string n in nombre)
                 {
-                    if(!String.IsNullOrWhiteSpace(n))
-                    LiderProyecto.Items.Add(n);
+                    if(!String.IsNullOrWhiteSpace(n) && !n.Contains("dummy"))
+                        LiderProyecto.Items.Add(n);
                 }
                 
             }
