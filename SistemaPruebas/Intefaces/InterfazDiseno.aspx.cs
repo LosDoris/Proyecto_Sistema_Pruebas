@@ -47,6 +47,9 @@ namespace SistemaPruebas.Intefaces
                     deshabilitarCampos();
                 }
                 llenarProyecto = false.ToString();
+                Modificar.Enabled = false;
+                Insertar.Enabled = true;
+                Eliminar.Enabled = false;
 
             }
 
@@ -408,8 +411,8 @@ namespace SistemaPruebas.Intefaces
                             habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Insertar);
-                            Modificar.Enabled = true;
-                            Eliminar.Enabled = true;
+                            Modificar.Enabled = false;
+                            Eliminar.Enabled = false;
                             Insertar.Enabled = true;
                         }
                         else
