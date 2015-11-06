@@ -140,7 +140,7 @@ namespace SistemaPruebas.Intefaces
 
             string[] esplit = la_lista[9].Split(';');
             string la_hilera = "<br />" + "Requerimientos: ";
-            for (int i = 1; i < esplit.Length - 2; i++)
+            for (int i = 1; i < esplit.Length ; i++)
             {
                 la_hilera += "<br />"+esplit[i];
             }
