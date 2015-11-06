@@ -153,9 +153,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void insertarClick(object sender, EventArgs e)
         {
-            EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
-            EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+            //EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
+            //EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             buttonDisenno = "1";
             limpiarCampos();
             Modificar.Enabled = false;
@@ -357,14 +357,8 @@ namespace SistemaPruebas.Intefaces
                     {
 
 
-
-                        //string fecha = txt_date.Text;
-
-
-                        //string fecha = txt_date.Text;
+                       string fecha = txt_date.Text;
                         
-
-                        string fecha = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
 
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
 
@@ -1134,9 +1128,10 @@ namespace SistemaPruebas.Intefaces
         public void ModificarGridReq()
         {
 
+     
             for (int i = 0; i < gridNoAsociados.Rows.Count; i++)
             {
-                string value = gridAsociados.Rows[i].Cells[0].Text;                          
+                string value = gridNoAsociados.Rows[i].Cells[0].Text;                          
                 controlDiseno.eliminarDisennoReq(Int32.Parse(id_diseno_cargado), value);
             }
             
@@ -1149,6 +1144,9 @@ namespace SistemaPruebas.Intefaces
                 object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
                 controlDiseno.insertarDisennoReq(datos);
             }
+            
+
+                
         }
 
         public List<string> infoDisenno()
