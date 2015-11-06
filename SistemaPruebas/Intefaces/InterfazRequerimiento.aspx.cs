@@ -100,7 +100,8 @@ namespace SistemaPruebas.Intefaces
             DataTable dt;
             if (Convert.ToBoolean(esAdminREQ))
             {
-                dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
+                //dt = controladoraRequerimiento.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
+                dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(this.ProyectoAsociado.SelectedValue));
             }
             else
             {
@@ -166,6 +167,7 @@ namespace SistemaPruebas.Intefaces
                 EtiqErrorLlaves.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
+            llenarGrid();
 
         }
 
@@ -202,6 +204,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxRequerimientosEspecialesREQ.Text = "";
             marcarBoton(ref BotonREQInsertar);
             deshabilitarGrid();
+            llenarGrid();
         }
 
         /*
@@ -267,6 +270,7 @@ namespace SistemaPruebas.Intefaces
                     ProyectoAsociado.ClearSelection();
                     ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
                 }
+            llenarGrid();
         }
 
         /*
@@ -304,6 +308,7 @@ namespace SistemaPruebas.Intefaces
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                     desmarcarBotones();
                     resaltarNuevo(this.TextBoxNombreREQ.Text);
+                    llenarGrid();
                 }
                 else if(insercion == 2627)
                 {
@@ -311,6 +316,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
                 }
                 else
                 {
@@ -318,6 +324,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.Salmon;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
                 }
             }
         }
@@ -330,6 +337,7 @@ namespace SistemaPruebas.Intefaces
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
         {
             modificarReq();
+            llenarGrid();
         }
 
         protected void modificarReq()
@@ -361,6 +369,7 @@ namespace SistemaPruebas.Intefaces
                     EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     EtiqErrorLlaves.Visible = true;
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    llenarGrid();
 
                 }
                 else
@@ -376,6 +385,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            llenarGrid();
         }
 
         /*
