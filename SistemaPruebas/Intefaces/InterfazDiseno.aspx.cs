@@ -354,18 +354,18 @@ namespace SistemaPruebas.Intefaces
                 case 1://Insertar
                     {
 
-<<<<<<< HEAD
-                        string fecha = txt_date.Text;
+
+                        //string fecha = txt_date.Text;
                         
-=======
+
                         string fecha = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
->>>>>>> origin/master
+
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         el_proyecto = proyecto.ToString();
                         
                         object[] datos;
-                        int cedula;
+                        //int cedula;
                         if (responsable.SelectedValue == "Seleccionar" || responsable.SelectedValue == "No Disponible")
                         {
                             datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, -1, proyecto };
