@@ -152,7 +152,7 @@ namespace SistemaPruebas.Intefaces
         protected void insertarClick(object sender, EventArgs e)
         {
             EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
-            EtiqErrorGen.ForeColor = System.Drawing.Color.Beige;
+            EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             buttonDisenno = "1";
             limpiarCampos();
@@ -176,6 +176,7 @@ namespace SistemaPruebas.Intefaces
                 marcarBoton(ref Modificar);
                 buttonDisenno = "2";
                 habilitarCampos();
+               // gridDisenos.Enabled = false;
                 Modificar.Enabled = false;
                 Eliminar.Enabled = false;
                 Insertar.Enabled = false;
@@ -353,8 +354,13 @@ namespace SistemaPruebas.Intefaces
                 case 1://Insertar
                     {
 
+<<<<<<< HEAD
                         string fecha = txt_date.Text;
                         
+=======
+                        string fecha = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
+                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+>>>>>>> origin/master
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         el_proyecto = proyecto.ToString();
                         
@@ -374,6 +380,8 @@ namespace SistemaPruebas.Intefaces
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
                         {
+                            id_diseno_cargado = controlDiseno.consultarId_Disenno(propositoTxtbox.Text).ToString();
+                            insertarGridReq();
                             EtiqErrorGen.Text = "El diseño ha sido insertado con éxito";
                             EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
@@ -399,7 +407,7 @@ namespace SistemaPruebas.Intefaces
                 case 2://Modificar
                     {
 
-                        string fecha = txt_date.Text;
+                        string fecha = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);                       
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
 
@@ -407,6 +415,7 @@ namespace SistemaPruebas.Intefaces
                         int a = controlDiseno.modificarDiseno(Int32.Parse(id_diseno_cargado), datos);
                         if (a == 1)
                         {
+                            ModificarGridReq();
                             EtiqErrorGen.Text = "El diseño ha sido modificado con éxito";
                             EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
@@ -922,9 +931,14 @@ namespace SistemaPruebas.Intefaces
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
                 el_proyecto = proyectoAsociado.SelectedItem.Text;
-                if(buttonDisenno == "1")
+                if (buttonDisenno == "1")
+                {
+
                     habilitarCampos();
-                llenarGridDisenos();
+                    gridDisenos.Enabled = false;
+                }
+                else
+                    llenarGridDisenos();
                 llenarGridsReq(1);
                 llenarGridsReq(2);
                 int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
@@ -1091,6 +1105,39 @@ namespace SistemaPruebas.Intefaces
             infDisenno = lista;
 
             Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
+        }
+
+        public void insertarGridReq()
+        {
+            for (int i = 0; i< gridAsociados.Rows.Count ; i++ )
+            {
+                string value = gridAsociados.Rows[i].Cells[0].Text;
+                int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+                //el_proyecto = proyecto.ToString();
+                object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
+                controlDiseno.insertarDisennoReq(datos);
+            }
+        }
+
+
+        public void ModificarGridReq()
+        {
+
+            for (int i = 0; i < gridNoAsociados.Rows.Count; i++)
+            {
+                string value = gridAsociados.Rows[i].Cells[0].Text;                          
+                controlDiseno.eliminarDisennoReq(Int32.Parse(id_diseno_cargado), value);
+            }
+            
+
+            for (int i = 0; i < gridAsociados.Rows.Count; i++)
+            {
+                string value = gridAsociados.Rows[i].Cells[0].Text;
+                int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
+                controlDiseno.eliminarDisennoReq(Int32.Parse(id_diseno_cargado), value);
+                object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
+                controlDiseno.insertarDisennoReq(datos);
+            }
         }
 
         public List<string> infoDisenno()

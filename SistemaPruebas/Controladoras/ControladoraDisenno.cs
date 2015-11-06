@@ -147,5 +147,17 @@ namespace SistemaPruebas.Controladoras
         {
             return controlBD.consultarDisennoReq(idDisenno);
         }
+
+        public int insertarDisennoReq(object []datos)
+        {
+             SistemaPruebas.Entidades.EntidadDisennoReq entidad = new Entidades.EntidadDisennoReq(datos);
+             return controlBD.InsertarDisenoReq(entidad);
+
+        }
+
+        public int eliminarDisennoReq(int idDisenno, string idReg)
+        {
+            return controlBD.EliminarDisennoReq(idDisenno, idReg);
+        }
     }
 }

@@ -215,7 +215,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             desmarcarBoton(ref Insertar);
                             Console.WriteLine("Insertar");
-                            string text = txt_date.Text; ;
+                            string text = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
                             string telefonos = "";
                             if (tel_rep2.Text != "")
                                  telefonos = tel_rep.Text+","+tel_rep2.Text;
@@ -275,7 +275,7 @@ namespace SistemaPruebas.Intefaces
                     {
                         desmarcarBoton(ref Modificar);
                         Console.WriteLine("Modificar");
-                        string text = txt_date.Text; ;
+                        string text = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
                         string telefonos = "";
                         if (tel_rep2.Text != "")
                             telefonos = tel_rep.Text + "," + tel_rep2.Text;

@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup">
+    <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup" Style="display:none">
         <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este diseño?</asp:Label>
         <div aria-pressed="true">
             <asp:Button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
