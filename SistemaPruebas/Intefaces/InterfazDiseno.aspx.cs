@@ -357,14 +357,8 @@ namespace SistemaPruebas.Intefaces
                     {
 
 
-
-                        //string fecha = txt_date.Text;
-
-
-                        //string fecha = txt_date.Text;
+                       string fecha = txt_date.Text;
                         
-
-                        string fecha = DateTime.Parse(txt_date.Text).ToString("yyyyMMdd HH:mm:ss");
 
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
 
@@ -1134,6 +1128,7 @@ namespace SistemaPruebas.Intefaces
         public void ModificarGridReq()
         {
 
+     
             for (int i = 0; i < gridNoAsociados.Rows.Count; i++)
             {
                 string value = gridAsociados.Rows[i].Cells[0].Text;                          
@@ -1149,6 +1144,9 @@ namespace SistemaPruebas.Intefaces
                 object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
                 controlDiseno.insertarDisennoReq(datos);
             }
+            
+
+                
         }
 
         public List<string> infoDisenno()
