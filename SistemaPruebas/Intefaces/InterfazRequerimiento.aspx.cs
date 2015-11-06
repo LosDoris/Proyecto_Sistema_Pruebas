@@ -85,7 +85,7 @@ namespace SistemaPruebas.Intefaces
                 esAdminREQ = controladoraRequerimiento.PerfilDelLogeado().ToString();
                 if (Convert.ToBoolean(esAdminREQ))
                 {
-                    proyectoActual = controladoraRequerimiento.consultarIDProyMinimo().ToString();
+                    //proyectoActual = controladoraRequerimiento.consultarIDProyMinimo().ToString();
                 }
                 else
                 {
