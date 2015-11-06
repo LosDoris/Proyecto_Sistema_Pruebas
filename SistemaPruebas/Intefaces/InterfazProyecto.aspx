@@ -143,7 +143,7 @@
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
                     <div class="col-md-4" runat="server">
                         <asp:TextBox runat="server" id="txt_date" name="txt_date" style="width:250px;height:36px" type="text" ReadOnly="True" placeholder="De click para seleccionar fecha."></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" Format="dd/MMM/yyyy hh:mm"/>
                     </div>
                     
                          

@@ -195,13 +195,11 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
-        public DataTable EliminarDisennoReq(int idDisenno, string idReq)
-        {
-            DataTable dt = null;
+        public int EliminarDisennoReq(int idDisenno, string idReq)
+        {          
             String consulta = "";
-            consulta = "delete from Prueba_Disenno_Req where id_requerimiento = " + idReq + " and id_disenno = " + idDisenno;
-            dt = acceso.ejecutarConsultaTabla(consulta);
-            return dt;
+            consulta = "delete from Prueba_Disenno_Req where id_requerimiento = '" + idReq + "' and id_disenno = " + idDisenno;
+            return acceso.Insertar(consulta);          
         }
     }
 }

@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup">
+    <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup" Style="display:none">
         <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este diseño?</asp:Label>
         <br />
         <br />
