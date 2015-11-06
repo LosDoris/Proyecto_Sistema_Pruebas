@@ -29,6 +29,9 @@ namespace SistemaPruebas.Intefaces
 
                 }
                 llenarProyecto = false.ToString();
+                Modificar.Enabled = false;
+                Insertar.Enabled = false;
+                Eliminar.Enabled = false;
             }
 
             else
@@ -156,7 +159,7 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             Insertar.Enabled = false;
-            //habilitarCampos();           
+            habilitarCampos();           
             deshabilitarGridDiseno();
             gridDisenos.Enabled = false;
             marcarBoton(ref Insertar);
@@ -182,6 +185,7 @@ namespace SistemaPruebas.Intefaces
                 if (this.proyectoAsociado.SelectedIndex == 0)
                 {
                     labelSeleccioneProyecto.Visible = true;
+
                 }
                 else
                 {
@@ -213,6 +217,7 @@ namespace SistemaPruebas.Intefaces
                 labelSeleccioneProyecto.Visible = false;
             }
             botonCP.Enabled = false;
+            llenarGridDisenos();
         }
 
         protected void restriccionesCampos()
@@ -349,10 +354,23 @@ namespace SistemaPruebas.Intefaces
                     {
 
                         string fecha = txt_date.Text;
-                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+                        
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         el_proyecto = proyecto.ToString();
-                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto};
+                        
+                        object[] datos;
+                        int cedula;
+                        if (responsable.SelectedValue == "Seleccionar" || responsable.SelectedValue == "No Disponible")
+                        {
+                            datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, -1, proyecto };
+                        
+                        }
+                        else
+                        {
+                            cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+                            datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
+                        
+                        }
                         int a = controlDiseno.ingresaDiseno(datos);
                         if (a == 1)
                         {
@@ -423,6 +441,7 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
             labelSeleccioneProyecto.Visible = false;
+            Insertar.Enabled = true;
 
         }
 
@@ -899,6 +918,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void proyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            limpiarCampos();
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
             {
                 el_proyecto = proyectoAsociado.SelectedItem.Text;
@@ -935,6 +955,15 @@ namespace SistemaPruebas.Intefaces
                     this.responsable.Items.Clear();
                     responsable.Items.Add(new ListItem("No Disponible"));
                 }
+                Modificar.Enabled = false;
+                Insertar.Enabled = true;
+                Eliminar.Enabled = false;
+            }
+            else
+            {
+                Modificar.Enabled = false;
+                Insertar.Enabled = false;
+                Eliminar.Enabled = false;
             }
         }
 
@@ -1037,8 +1066,8 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
             Insertar.Enabled = true;
-            Modificar.Enabled = true;
-            Eliminar.Enabled = true;
+            Modificar.Enabled = false;
+            Eliminar.Enabled = false;
             labelSeleccioneProyecto.Visible = false;
 
         }

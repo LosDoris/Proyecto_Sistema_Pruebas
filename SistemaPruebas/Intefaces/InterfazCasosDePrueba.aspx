@@ -55,6 +55,7 @@
 		    <asp:Label ID="Requerimientos" runat="server" CssClass="control-label"
                 style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos"></asp:Label>
         </div>
+        <asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-default" ID="Regresar" CausesValidation="false"/>
         <div style="clear:both"></div>
 
     </div>
@@ -135,7 +136,7 @@
                 </div>
                 <div class="form-group">
                     <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Tipo:"></asp:Label>
-                        <asp:DropDownList ID="TipoEntrada" runat="server" OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
+                        <asp:DropDownList ID="TipoEntrada" runat="server"  CssClass="form-control"  OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
                             <asp:ListItem Text ="Válido" Value =1/>
                             <asp:ListItem Text ="Inválido" Value =2/>
                             <asp:ListItem Text ="No Aplica" Value =3/>

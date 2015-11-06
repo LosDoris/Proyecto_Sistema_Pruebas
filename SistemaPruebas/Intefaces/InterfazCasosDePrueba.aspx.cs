@@ -65,6 +65,7 @@ namespace SistemaPruebas.Intefaces
                 inicializarDTDatosEntrada();
                 estadoInicial();
             }
+            ocultarErroresDeOperacion();
             EtiqMensajeOperacion.Visible = false;
             llenarGrid();
         }
@@ -722,6 +723,10 @@ namespace SistemaPruebas.Intefaces
         protected void TextBoxID_TextChanged(object sender, EventArgs e)
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
+        }
+
+        protected void regresarADiseno(object sender, EventArgs e) {
+            Response.Redirect("~/Intefaces/InterfazDiseno.aspx");
         }
         
     }

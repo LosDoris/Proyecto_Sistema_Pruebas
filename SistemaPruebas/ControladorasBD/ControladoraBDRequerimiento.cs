@@ -22,7 +22,7 @@ namespace SistemaPruebas.Controladoras
         {		
             bool regresa = false;		
             int el_uso = 0;
-            DataTable DR = acceso.ejecutarConsultaTabla("select esta_en_Uso from Requerimiento where id_requerimiento ='" + id"');	";	
+            DataTable DR = acceso.ejecutarConsultaTabla("select esta_en_Uso from Requerimiento where id_requerimiento ='" + id+";	");	
             try		
             {		
                 foreach (DataRow row in DR.Rows)		
@@ -54,7 +54,7 @@ namespace SistemaPruebas.Controladoras
         */
         public int UpdateUsoREQ(String id, int use)		
         {		
-            return acceso.Insertar("update Requerimiento set esta_en_Uso = " + use + " where cedula ='" + id"');	";
+            return acceso.Insertar("update Requerimiento set esta_en_Uso = " + use + " where cedula ='" + id+";	");
         }		
 
 

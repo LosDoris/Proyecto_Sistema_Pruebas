@@ -52,8 +52,6 @@
 
     <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup">
         <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este diseño?</asp:Label>
-        <br />
-        <br />
         <div aria-pressed="true">
             <asp:Button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
             <asp:Button runat="server" ID="cancelarModalEliminar" Text="Cancelar" OnClick="cancelarModal_ClickEliminar" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px" CausesValidation="false" />
@@ -79,10 +77,10 @@
             </div>
         </div>
     </div>
-    <h4>Requerimientos a Probar</h4>
+    
 
     <div class="cajaAnchoPagina">
-
+        <h4>Requerimientos a Probar</h4>
         <div class="row">
             <div class="col-md-offset-2 col-md-6">
                 <div class="form-horizontal">
@@ -186,6 +184,7 @@
                             <asp:ListItem Value="4">Sistema</asp:ListItem>
                             <asp:ListItem Value="5">Aceptación</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Nivel" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>--%>
                     </div>
                 </div>
@@ -199,6 +198,7 @@
                             <asp:ListItem Value="3">Caja Blanca</asp:ListItem>
                             <asp:ListItem Value="4">Exploratoria</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="reqTecnica" runat="server" ControlToValidate="Tecnica" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
                     </div>
                 </div>
 
@@ -336,7 +336,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
                     <div class="col-md-4" runat="server">
-                        <asp:TextBox runat="server" ID="txt_date" name="txt_date" Style="width: 250px; height: 36px" type="text" ReadOnly="True"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txt_date" name="txt_date" Style="width: 250px; height: 36px" type="text" ReadOnly="True" placeholder="De click para seleccionar fecha."></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date" />
                     </div>
                 </div>
