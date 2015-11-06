@@ -153,9 +153,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void insertarClick(object sender, EventArgs e)
         {
-            EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
-            EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
+            //EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
+            //EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             buttonDisenno = "1";
             limpiarCampos();
             Modificar.Enabled = false;
@@ -1131,7 +1131,7 @@ namespace SistemaPruebas.Intefaces
      
             for (int i = 0; i < gridNoAsociados.Rows.Count; i++)
             {
-                string value = gridAsociados.Rows[i].Cells[0].Text;                          
+                string value = gridNoAsociados.Rows[i].Cells[0].Text;                          
                 controlDiseno.eliminarDisennoReq(Int32.Parse(id_diseno_cargado), value);
             }
             
