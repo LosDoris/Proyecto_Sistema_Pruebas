@@ -46,6 +46,13 @@ namespace SistemaPruebas.Controladoras
             }
             return retorno;
         }
+
+        /*
+         *Requiere:  N/A
+         *Modifica: Pregunta por el proyecto asociado del loggeado.
+          Regresa verdadero si está en uso o falso si no.
+         *Retorna: booleano.
+         */
         public int proyectosDelLoggeado()
         {
             return controladoraRecursosHumanos.proyectosDelLoggeado();
@@ -55,7 +62,7 @@ namespace SistemaPruebas.Controladoras
         /*
          *Requiere:  Número de cédula.
          *Modifica: Hace llamado al método que accede a la base de datos
-          para hacer confirmación del uso del Recurso Humano.
+          para hacer confirmación del uso del Requerimiento.
           Regresa verdadero si está en uso o falso si no.
          *Retorna: booleano.
          */
@@ -78,7 +85,7 @@ namespace SistemaPruebas.Controladoras
 
         /*
          * Requiere: Object[] datos
-         * Modifica: Inserta un nuevo recurso humano en el sistema.
+         * Modifica: Inserta un nuevo requerimiento en el sistema.
          * Retorna: int.
          */
         public int insertarRequerimiento(Object[] datos)
@@ -90,7 +97,7 @@ namespace SistemaPruebas.Controladoras
 
         /*
          * Requiere: Object[] datos
-         * Modifica: Modifica un recurso humano en el sistema.
+         * Modifica: Modifica un requerimiento en el sistema.
          * Retorna: int.
          */
         public int modificarRequerimiento(Object[] datos)
@@ -104,7 +111,7 @@ namespace SistemaPruebas.Controladoras
 
         /*
          * Requiere: Cédula
-         * Modifica: Elimina un recurso humano del sistema.
+         * Modifica: Elimina un requerimiento del sistema.
          * Retorna: int.
          */
         public int eliminarRequerimiento(String cedula, int proyecto)

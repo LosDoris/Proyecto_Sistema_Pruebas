@@ -163,12 +163,12 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Cédula
-         * Modifica: Carga los datos del recurso humano consultado en sus respectivas posisiones en la pantalla.
+         * Modifica: Carga los datos del requerimiento consultado en sus respectivas posisiones en la pantalla.
          * Retorna: N/A.
          */
         void llenarDatosRequerimiento(String cedula)
         {
-            DataTable dt = controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un recurso humano
+            DataTable dt = controladoraRequerimiento.consultarRequerimiento(2, cedula); // Consulta tipo 2, para llenar los campos de un requerimiento
 
             BotonREQEliminar.Enabled = true;
             BotonREQModificar.Enabled = true;
@@ -240,7 +240,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Evento de click en boton cancelar.
-         * Modifica: Borra los cambios que el usuario hizo y vuelve a como estaba antes de que el usuario intentara insertar o modificar una tupla de recursos humanos
+         * Modifica: Borra los cambios que el usuario hizo y vuelve a como estaba antes de que el usuario intentara insertar o modificar una tupla de requerimiento
          * Retorna: N/A.
          */
         protected void BotonREQCancelar_Click(object sender, EventArgs e)
@@ -264,11 +264,11 @@ namespace SistemaPruebas.Intefaces
             }
             modoREQ=0.ToString();
         }
-        
+
 
         /*
          * Requiere: N/A.
-         * Modifica: Vuelve al inicio de Recursos Humanos.
+         * Modifica: Vuelve al inicio de requerimiento.
          * Retorna: N/A.
          */
         protected void volverAlOriginal()
@@ -311,7 +311,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Evento click en boton aceptar de insertar.
-         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
          * Retorna: N/A.
          */
         protected void BotonREQAceptar_Click(object sender, EventArgs e)
@@ -367,7 +367,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
         * Requiere: Evento click en boton aceptar de modificar.
-        * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+        * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
         * Retorna: N/A.
         */
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
@@ -419,6 +419,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: Evento cambia la opcion de proyecto seleccionada.
+        * Modifica: Despliega en el grid los requerimientos asociados a ese proyecto.
+        * Retorna: N/A.
+        */
         protected void ProyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Convert.ToBoolean(esAdminREQ))
@@ -605,7 +610,7 @@ namespace SistemaPruebas.Intefaces
         {
 			if (controladoraRequerimiento.ConsultarUsoREQ(TextBoxNombreREQ.Text.ToString()) == false)
 			{
-				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el recurso humano
+				controladoraRequerimiento.UpdateUsoREQ(TextBoxNombreREQ.Text.ToString(), 1);//está siendo modificado el requerimiento
 				
 				modoREQ = Convert.ToString(2);
 				marcarBoton(ref BotonREQModificar);
@@ -634,7 +639,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A.
-         * Modifica: Inicializa y llena el grid de recursos humanos.
+         * Modifica: Inicializa y llena el grid de requerimientos.
          * Retorna: N/A.
          */
         protected DataTable crearTablaREQ()
@@ -646,7 +651,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-         * Requiere: Evento seleccionar un recurso humano.
+         * Requiere: Evento seleccionar un requerimiento.
          * Modifica: Carga los datos del REQ seleccionado en pantalla.
          * Retorna: N/A.
          */
@@ -678,7 +683,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: Evento click en boton eliminar.
-         * Modifica: Intenta insertar una tupla de recurso humano en la base de datos y despliega el respectivo mensaje de error o exito.
+         * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
          * Retorna: N/A.
          */
         protected void BotonREQEliminar_Click(object sender, EventArgs e)

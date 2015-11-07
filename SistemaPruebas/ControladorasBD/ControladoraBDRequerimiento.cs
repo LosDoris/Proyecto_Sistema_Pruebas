@@ -46,15 +46,15 @@ namespace SistemaPruebas.Controladoras
         }		
 
         /*
-         *Requiere:  Número de cédula de requerimiento y el estado de Uso actual.
-         *Modifica: Con el número de cédula que recibe, cambia en la base de datos
+         *Requiere:  ID del requerimiento y el estado de Uso actual.
+         *Modifica: Con el ID del requerimiento que recibe, cambia en la base de datos
           el estado del Uso asociado a este. Este indicará que el requerimiento
           se encuentra o no en otro lado modificado.
          *Retorna: entero.
         */
         public int UpdateUsoREQ(String id, int use)		
         {		
-            return acceso.Insertar("update Requerimiento set esta_en_Uso = " + use + " where cedula ='" + id+";	");
+            return acceso.Insertar("update Requerimiento set esta_en_Uso = " + use + " where id_requerimiento ='" + id+";	");
         }		
 
 
@@ -102,7 +102,7 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = null;
             String consulta = "";
-            if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
+            if (tipo == 1)//consulta para llenar grid, no ocupa el ID pues los consulta a todos
             {
                 consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento ORDER BY fechaUltimo desc;";
             }
