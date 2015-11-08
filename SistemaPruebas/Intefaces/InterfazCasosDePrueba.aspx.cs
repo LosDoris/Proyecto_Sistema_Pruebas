@@ -16,6 +16,12 @@ namespace SistemaPruebas.Intefaces
     {
         ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
 
+
+      /*
+       * Requiere: N/A
+       * Modifica: Declara dataTable global de datos de entrada
+       * Retorna: N/A
+       */
         public static DataTable dtDatosEntrada
         {
             get
@@ -29,6 +35,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+      /*
+       * Requiere: N/A
+       * Modifica: Declara variable global de modo (tipo de operación en ejecución)
+       * Retorna: N/A
+       */
         public static int modo
         {
             get
@@ -42,6 +53,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+      /*
+       * Requiere: N/A
+       * Modifica: Declara variable global que guarda el id del caso de prueba siendo modificado
+       * Retorna: N/A
+       */
         public static String idMod
         {
             get
@@ -55,6 +71,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+      /*
+       * Requiere: N/A
+       * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
+       * Retorna: N/A
+       */
         protected void Page_Load(object sender, EventArgs e)
         {
             llenarEtiquetasDiseno();
@@ -70,6 +91,11 @@ namespace SistemaPruebas.Intefaces
             llenarGrid();
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Se encarga de pedir la información principal del diseño al cual se asocia el caso de prueba.
+         * Retorna: Lista de hileras.
+         */
         protected List<string> infoDisenno()
         {
 
@@ -99,6 +125,11 @@ namespace SistemaPruebas.Intefaces
             return tabla;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Se encarga de desplegar la información del diseño asociado, llenando las etiquetas en la parte superior de la pantalla
+         * Retorna: N/A
+         */
         protected void llenarEtiquetasDiseno()
         {
             ControladoraRecursosHumanos crh = new ControladoraRecursosHumanos();
@@ -147,7 +178,11 @@ namespace SistemaPruebas.Intefaces
             Requerimientos.Text = la_hilera;
         }
 
-
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el estado de la pantalla la primera vez que se carga, habilitando y deshabilitando los controles elegidos
+         * Retorna: N/A
+         */
         protected void estadoInicial()
         {
             ocultarErroresDeOperacion();
@@ -156,6 +191,11 @@ namespace SistemaPruebas.Intefaces
             limpiarCampos();
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el estado de la pantalla inmediatamente después de efectuar una operación de inserción, modificación o eliminación
+         * Retorna: N/A
+         */
         protected void estadoPostOperacion()
         {
             modo = 0;
@@ -168,6 +208,11 @@ namespace SistemaPruebas.Intefaces
             BotonCPAceptar.Enabled = false;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Insertar"
+         * Retorna: N/A
+         */
         protected void estadoInsertar()
         {
             marcarBoton(ref BotonCPInsertar);
@@ -180,6 +225,11 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGrid(ref CP);
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Modificar"
+         * Retorna: N/A
+         */
         protected void estadoModificar()
         {
             marcarBoton(ref BotonCPModificar);
@@ -191,11 +241,21 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGrid(ref CP);
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el valor por defecto de la variable "modo" a 0
+         * Retorna: N/A
+         */
         protected void inicializarModo()
         {
             modo = 0;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Establece las columnas que poseerá el datatable de "Entrada de Datos".
+         * Retorna: N/A
+         */
         protected void inicializarDTDatosEntrada()
         {
             dtDatosEntrada = new DataTable();
@@ -204,6 +264,11 @@ namespace SistemaPruebas.Intefaces
             dtDatosEntrada.Columns.Add("Datos", typeof(String));
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Se encarga de ocultar las etiquetas de error y confirmación al cargarse la página.
+         * Retorna: N/A
+         */
         protected void ocultarErroresDeOperacion()
         {
             EtiqErrorInsertar.Visible  = false;
@@ -212,6 +277,11 @@ namespace SistemaPruebas.Intefaces
             EtiqErrorEliminar.Visible  = false;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Habilita los botones que pueden ser presionados la primera vez que se carga la pantalla.
+         * Retorna: N/A
+         */
         protected void botonesInicio()
         {
             BotonCPInsertar.Enabled  = true;
@@ -221,6 +291,11 @@ namespace SistemaPruebas.Intefaces
             BotonCPCancelar.Enabled  = false;
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Habilita los controles de la pantalla: Textbox, DropDownList y Grid
+         * Retorna: N/A
+         */
         protected void habilitarCampos()
         {
             TextBoxID.Enabled = true;
@@ -231,6 +306,11 @@ namespace SistemaPruebas.Intefaces
             habilitarGrid(ref CP);
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Deshabilita los controles de la pantalla: Textbox, DropDownList y Grid
+         * Retorna: N/A
+         */
         protected void deshabilitarCampos()
         {
             TextBoxID.Enabled = false;
@@ -243,6 +323,11 @@ namespace SistemaPruebas.Intefaces
             this.DECP.DataBind();
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Habilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid
+         * Retorna: N/A
+         */
         protected void deshabilitarCamposEntrada()
         {
             TextBoxDatos.Enabled = false;
@@ -253,6 +338,11 @@ namespace SistemaPruebas.Intefaces
             deshabilitarGrid(ref DECP);
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Deshabilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid
+        * Retorna: N/A
+        */
         protected void habilitarCamposEntrada()
         {
             TextBoxDatos.Enabled = true;
@@ -262,6 +352,11 @@ namespace SistemaPruebas.Intefaces
             habilitarGrid(ref DECP);
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de borrar toda la información de los Textbox y del Grid para que no se desplegue nada
+        * Retorna: N/A
+        */
         protected void limpiarCampos()
         {
             TextBoxID.Text = "";
@@ -275,6 +370,11 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga agregar nuevos datos al datatable global de "Entrada de datos" para que pueda llenarse el Grid de "Entrada de Datos"
+        * Retorna: N/A
+        */
         protected void agregarGridEntradaDatos()
         {
             DataRow row = dtDatosEntrada.NewRow();
@@ -285,6 +385,11 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de leer la información del datatable global de "Entrada de Datos" para enviarla a la controladora al insertar o modificar.
+        * Retorna: N/A
+        */
         protected String datosEntrada()
         {
             String datosEntrada = "";
@@ -326,10 +431,15 @@ namespace SistemaPruebas.Intefaces
             return datosEntrada;
         }
 
-        protected void llenarGrid()        //se encarga de llenar el grid cada carga de pantalla
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el Grid de casos de pruebas pidiendo la lista de casos disponibles a la Controladora de Casos de Prueba
+        * Retorna: N/A
+        */
+        protected void llenarGrid()        
         {
             DataTable casosPrueba = crearTablaCP();
-            DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(1,""); // en consultas tipo 1, no se necesita la cédula
+            DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(1,""); 
             
             Object[] datos = new Object[2];
             if (dt.Rows.Count > 0)
@@ -351,6 +461,11 @@ namespace SistemaPruebas.Intefaces
             CP.DataBind();
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de inicializar las columnas del datatable del cual se llenará el Grid de Casos de Prueba.
+        * Retorna: N/A
+        */
         protected DataTable crearTablaCP()
         {
             DataTable dt = new DataTable();
@@ -359,10 +474,14 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar los datos en los Textbox, correspondientes al caso de prueba consultado desde el grid
+        * Retorna: N/A
+        */
         void llenarDatosCasoPrueba(String id)
         {
             DataTable dt = controladoraCasosPrueba.consultarCasosPrueba(2, id); // Consulta tipo 2, para llenar los campos de un recurso humano
-           // Response.Write("Longitud = " + dt.Rows.Count);
             BotonCPEliminar.Enabled = true;
             BotonCPModificar.Enabled = true;
             try
@@ -384,7 +503,12 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected  List<String> transformarDatosEntrada(String hilera)
+       /*
+        * Requiere: Hilera.
+        * Modifica: Se encarga de transformar los datos de entrada a un formato desplegable en el Grid de "Entrada de Datos".
+        * Retorna: Lista de hileras.
+        */
+        protected List<String> transformarDatosEntrada(String hilera)
         {
             if (hilera=="N/A"){
                 List<String> regresa = new List<String>();
@@ -425,6 +549,11 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el Grid de "Entrada de Datos" pidiendolos a la Controladora de Casos de Prueba
+        * Retorna: N/A
+        */
         protected void llenarGridEntradaDatos(List<String> lista_datos)
         {
             dtDatosEntrada.Clear();
@@ -460,6 +589,11 @@ namespace SistemaPruebas.Intefaces
             TextBoxDescripcion.Text = lista_datos[lista_datos.Count - 1];
         }
 
+       /*
+        * Requiere: GridView.
+        * Modifica: Se encarga de deshabilitar las funciones del Grid pasado por parámetro.
+        * Retorna: N/A
+        */
         protected void deshabilitarGrid(ref GridView grid)
         {
             grid.Enabled = false;
@@ -472,6 +606,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: GridView.
+        * Modifica: Se encarga de habilitar las funciones del Grid pasado por parámetro.
+        * Retorna: N/A
+        */
         protected void habilitarGrid(ref GridView grid)
         {
             grid.Enabled = true;
@@ -484,6 +623,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: GridView.
+        * Modifica: Se encarga de marcar el botón pasado por parámetro.
+        * Retorna: N/A
+        */
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -491,6 +635,11 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.White;
         }
 
+       /*
+        * Requiere: GridView.
+        * Modifica: Se encarga de desmarcar el botón pasado por parámetro.
+        * Retorna: N/A
+        */
         protected void desmarcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.Color.LightGray;
@@ -498,12 +647,22 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.Black;
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una inserción.
+        * Retorna: N/A
+        */
         protected void BotonCPInsertar_Click(object sender, EventArgs e)
         {
             modo = 1;
             estadoInsertar();
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una modificación.
+        * Retorna: N/A
+        */
         protected void BotonCPModificar_Click(object sender, EventArgs e)
         {
             modo = 2;
@@ -511,11 +670,21 @@ namespace SistemaPruebas.Intefaces
             estadoModificar();
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una eliminación.
+        * Retorna: N/A
+        */
         protected void BotonCPEliminar_Click(object sender, EventArgs e)
         {
             marcarBoton(ref BotonCPEliminar);
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de efectuar la eliminación del caso de prueba elegido y confirmar al usuario si esta fue exitosa o no.
+        * Retorna: N/A
+        */
         protected void aceptarModalEliminar_Click(object sender, EventArgs e)
         {
             desmarcarBoton(ref BotonCPEliminar);
@@ -540,6 +709,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se de cancelar la operación en ejecución, retornando la pantalla a como estaba antes de elegir la operación.
+        * Retorna: N/A
+        */
         protected void cancelarModal_Click(object sender, EventArgs e)
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
