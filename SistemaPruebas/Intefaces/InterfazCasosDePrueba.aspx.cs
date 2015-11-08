@@ -733,7 +733,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
         * Requiere: Evento de dar click al botón "Cancelar".
-        * Modifica: Se encarga de la operación al presionar cancelar
+        * Modifica: Se encarga de la operación al presionar cancelar.
         * Retorna: N/A
         */
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
@@ -852,7 +852,7 @@ namespace SistemaPruebas.Intefaces
         }
 
        /*
-        * Requiere: El evento de enlazar información de un datatable con el Grid
+        * Requiere: El evento de enlazar información de un datatable con el Grid.
         * Modifica: Establece el comportamiento del Grid ante los diferentes eventos.
         * Retorna: N/A.
         */
@@ -960,7 +960,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
-        * Requiere: Evento de dar click al botón de "Regresar a Diseño"
+        * Requiere: Evento de dar click al botón de "Regresar a Diseño".
         * Modifica: Redirige al usuario a la página de Diseño de Prueba.
         * Retorna: N/A. 
         */
