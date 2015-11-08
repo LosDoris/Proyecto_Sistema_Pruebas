@@ -623,11 +623,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-       /*
-        * Requiere: GridView.
-        * Modifica: Se encarga de marcar el botón pasado por parámetro.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Botón.
+         * Modifica: Se encarga de marcar el botón pasado por parámetro.
+         * Retorna: N/A
+         */
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -635,11 +635,11 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.White;
         }
 
-       /*
-        * Requiere: GridView.
-        * Modifica: Se encarga de desmarcar el botón pasado por parámetro.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Botón.
+         * Modifica: Se encarga de desmarcar el botón pasado por parámetro.
+         * Retorna: N/A
+         */
         protected void desmarcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.Color.LightGray;
@@ -648,7 +648,7 @@ namespace SistemaPruebas.Intefaces
         }
 
        /*
-        * Requiere: N/A
+        * Requiere: Evento de dar click al botón "Insertar".
         * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una inserción.
         * Retorna: N/A
         */
@@ -658,11 +658,11 @@ namespace SistemaPruebas.Intefaces
             estadoInsertar();
         }
 
-       /*
-        * Requiere: N/A
-        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una modificación.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Evento de dar click al botón "Modificar".
+         * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una modificación.
+         * Retorna: N/A
+         */
         protected void BotonCPModificar_Click(object sender, EventArgs e)
         {
             modo = 2;
@@ -670,21 +670,21 @@ namespace SistemaPruebas.Intefaces
             estadoModificar();
         }
 
-       /*
-        * Requiere: N/A
-        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una eliminación.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Evento de dar click al botón "Eliminar".
+         * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una eliminación.
+         * Retorna: N/A
+         */
         protected void BotonCPEliminar_Click(object sender, EventArgs e)
         {
             marcarBoton(ref BotonCPEliminar);
         }
 
-       /*
-        * Requiere: N/A
-        * Modifica: Se encarga de efectuar la eliminación del caso de prueba elegido y confirmar al usuario si esta fue exitosa o no.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Evento de dar click al botón "Acepar" en el modal.
+         * Modifica: Se encarga de efectuar la eliminación del caso de prueba elegido y confirmar al usuario si esta fue exitosa o no.
+         * Retorna: N/A
+         */
         protected void aceptarModalEliminar_Click(object sender, EventArgs e)
         {
             desmarcarBoton(ref BotonCPEliminar);
@@ -709,11 +709,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-       /*
-        * Requiere: N/A
-        * Modifica: Se de cancelar la operación en ejecución, retornando la pantalla a como estaba antes de elegir la operación.
-        * Retorna: N/A
-        */
+        /*
+         * Requiere: Evento de dar click al botón "Cancelar" en el modal.
+         * Modifica: Se de cancelar la operación en ejecución, retornando la pantalla a como estaba antes de elegir la operación.
+         * Retorna: N/A
+         */
         protected void cancelarModal_Click(object sender, EventArgs e)
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
@@ -730,10 +730,21 @@ namespace SistemaPruebas.Intefaces
                 desmarcarBoton(ref BotonCPModificar);
             }
         }
+
+        /*
+        * Requiere: Evento de dar click al botón "Cancelar".
+        * Modifica: Se encarga de la operación al presionar cancelar
+        * Retorna: N/A
+        */
         protected void BotonCPCancelar_Click(object sender, EventArgs e)
         {
         }
 
+        /*
+         * Requiere: Evento de dar click al botón "Aceptar".
+         * Modifica: Se encarga de efectuar la inserción o modificación llamando a la Controladora de Casos de Prueba, usando los datos ingresados en los campos y confirmando al usuario el resultado de la operación.
+         * Retorna: N/A
+         */
         protected void BotonCPAceptar_Click(object sender, EventArgs e)
         {
             Object[] datosNuevos = new Object[7];
@@ -798,13 +809,22 @@ namespace SistemaPruebas.Intefaces
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
+        /*
+         * Requiere: Evento de dar click al botón "Agregar" en "Entrada de Datos".
+         * Modifica: Se encarga de consolidar una inserción al Grid de "Entrada de Datos".
+         * Retorna: N/A
+         */
         protected void AgregarEntrada_Click(object sender, EventArgs e)
         {
             agregarGridEntradaDatos();
-            //Response.Write( datosEntrada());
             TextBoxDatos.Text = "";
         }
 
+        /*
+         * Requiere: Evento de dar click al botón "Eliminar" en "Entrada de Datos".
+         * Modifica: Se encarga de eliminar al entrada del Grid de "Entrada de Datos" seleccionada.
+         * Retorna: N/A
+         */
         protected void EliminarEntrada_Click(object sender, EventArgs e)
         {
             for (int i = dtDatosEntrada.Rows.Count - 1; i >= 0; i--)
@@ -820,12 +840,22 @@ namespace SistemaPruebas.Intefaces
             EliminarEntrada.Enabled = false;
         }
 
+        /*
+         * Requiere: Evento de seleccionar un Caso de Prueba.
+         * Modifica: Se encarga de controlar qué fila está seleccionada en el Grid de Casos de Prueba para realizar el llenado de campos correspondiente.
+         * Retorna: N/A
+         */
         protected void CP_SelectedIndexChanged(object sender, EventArgs e)
         {
             String id = CP.SelectedRow.Cells[0].Text;
             llenarDatosCasoPrueba(id);
         }
 
+       /*
+        * Requiere: El evento de enlazar información de un datatable con el Grid
+        * Modifica: Establece el comportamiento del Grid ante los diferentes eventos.
+        * Retorna: N/A.
+        */
         protected void OnCPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
@@ -838,12 +868,22 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+         * Requiere: Evento de pasar de página en el Grid.
+         * Modifica: Pasa de página y llena el Grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
         protected void OnCPPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             CP.PageIndex = e.NewPageIndex;
             this.llenarGrid();
         }
 
+       /*
+        * Requiere: Evento de seleccionar fila en el Grid de "Entrada de Datos".
+        * Modifica: Resalta fila seleccionada.
+        * Retorna: N/A. 
+        */
         protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in DECP.Rows)
@@ -863,6 +903,11 @@ namespace SistemaPruebas.Intefaces
             EliminarEntrada.Enabled = true;
         }
 
+       /*
+        * Requiere: El evento de enlazar información de un datatable con el Grid de "Entrada de Datos".
+        * Modifica: Establece el comportamiento del Grid ante los diferentes eventos.
+        * Retorna: N/A.
+        */
         protected void OnDECPRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
@@ -875,6 +920,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: Evento de pasar de página en el Grid.
+        * Modifica: Pasa de página y llena el Grid con las n tuplas que siguen, siendo n el tamaño de la página.
+        * Retorna: N/A. 
+        */
         protected void OnDECPPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             DECP.PageIndex = e.NewPageIndex;
@@ -882,6 +932,11 @@ namespace SistemaPruebas.Intefaces
             DECP.DataBind();
         }
 
+      /*
+       * Requiere: Evento de cambiar de opción en el DropDown de "Entrada de Datos".
+       * Modifica: Habilita y deshabilita el botón "Agregar" de "Entrada de Datos".
+       * Retorna: N/A. 
+      */
         protected void TipoEntrada_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(TipoEntrada.SelectedItem.Text == "No Aplica")
@@ -894,11 +949,21 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: Evento de modificar el text box del id de Caso de Prueba.
+        * Modifica: Retorna el color de su borde al color estandard.
+        * Retorna: N/A. 
+        */
         protected void TextBoxID_TextChanged(object sender, EventArgs e)
         {
             TextBoxID.BorderColor = System.Drawing.Color.LightGray;
         }
 
+        /*
+        * Requiere: Evento de dar click al botón de "Regresar a Diseño"
+        * Modifica: Redirige al usuario a la página de Diseño de Prueba.
+        * Retorna: N/A. 
+        */
         protected void regresarADiseno(object sender, EventArgs e) {
             Response.Redirect("~/Intefaces/InterfazDiseno.aspx");
         }

@@ -565,7 +565,7 @@ namespace SistemaPruebas.Intefaces
         /*
          * Requiere: N/A.
          * Modifica: Valida el campo de email.
-         * Retorna: N/A.
+         * Retorna: booleano
          */
         protected bool validarCampos()
         {
@@ -713,7 +713,7 @@ namespace SistemaPruebas.Intefaces
         /*
          * Requiere: N/A.
          * Modifica: Inicializa y llena el grid de recursos humanos.
-         * Retorna: N/A.
+         * Retorna: dataTable
          */
         protected DataTable crearTablaRH()
         {
