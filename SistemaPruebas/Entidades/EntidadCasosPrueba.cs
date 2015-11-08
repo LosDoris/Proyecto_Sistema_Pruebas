@@ -7,7 +7,9 @@ namespace SistemaPruebas.Controladoras
 {
     public class EntidadCasosPrueba
     {
-        // Variables correspondientes a la entidad cliente
+       /* 
+        * Variables correspondientes a la entidad cliente
+        */
         private String id_caso_prueba;
         private String proposito;
         private String entrada_datos;
@@ -16,8 +18,13 @@ namespace SistemaPruebas.Controladoras
         private int id_disenno;
         private String idConsulta;
 
+        /*
+         * Requiere: Recibir un objeto con los datos de todos atributos de un Caso de Pruebas
+         * Modifica: Encapsula los datos recibidos
+         * Retorna: N/A
+        */
         public EntidadCasosPrueba(Object[] datos)
-        { // Constructor donde se inicializan las variables de la clase
+        {  
             this.id_caso_prueba = datos[0].ToString();
             this.proposito = datos[1].ToString();
             this.entrada_datos = datos[2].ToString();
@@ -27,48 +34,119 @@ namespace SistemaPruebas.Controladoras
             this.idConsulta = datos[6].ToString();
         }
 
-        //Metodos set y get para la variable id_caso_prueba
+        /*
+        * Implementación de los metodos get() y set() de este atributo
+        * get();
+        * Requiere: el atributo Id_caso_prueba
+        * Modifica: N/A
+        * Retorna: el valor del atributo Id_caso_prueba en un int
+        * set();
+        * Requiere: el atributo Id_caso_prueba
+        * Modifica: el valor del atributo Id_caso_prueba
+        * Retorna: N/A
+        */
         public String Id_caso_prueba
         {
             get { return id_caso_prueba; }
             set { id_caso_prueba = value; }
         }
 
-        //Metodos set y get para la variable proposito
+        /*
+        * Implementación de los metodos get() y set() de este atributo
+        * get();
+        * Requiere: el atributo Proposito
+        * Modifica: N/A
+        * Retorna: el valor del atributo Proposito en un string
+        * set();
+        * Requiere: el atributo Proposito
+        * Modifica: el valor del atributo Proposito
+        * Retorna: N/A
+        */
         public String Proposito
         {
             get { return proposito; }
             set { proposito = value; }
         }
 
-        //Metodos set y get para la variable entrada_datos
+        /*
+        * Implementación de los metodos get() y set() de este atributo
+        * get();
+        * Requiere: el atributo Entrada_datos
+        * Modifica: N/A
+        * Retorna: el valor del atributo Entrada_datos en un string
+        * set();
+        * Requiere: el atributo Entrada_datos
+        * Modifica: el valor del atributo Entrada_datos
+        * Retorna: N/A
+        */
         public String Entrada_datos
         {
             get { return entrada_datos; }
             set { entrada_datos = value; }
         }
 
-        //Metodos set y get para la variable resultado_esperado
+       /*
+        * Implementación de los metodos get() y set() de este atributo
+        * get();
+        * Requiere: el atributo Resultado_esperado
+        * Modifica: N/A
+        * Retorna: el valor del atributo Resultado_esperado en un string
+        * set();
+        * Requiere: el atributo Resultado_esperado
+        * Modifica: el valor del atributo Resultado_esperado
+        * Retorna: N/A
+        */
         public String Resultado_esperado
         {
             get { return resultado_esperado; }
             set { resultado_esperado = value; }
         }
 
-        //Metodos set y get para la variable flujo_central
+        /* 
+         * Implementación de los metodos get() y set() de este atributo
+         * get();
+         * Requiere: el atributo Flujo_central
+         * Modifica: N/A
+         * Retorna: el valor del atributo Flujo_central en un string
+         * set();
+         * Requiere: el atributo Flujo_central
+         * Modifica: el valor del atributo Flujo_central
+         * Retorna: N/A
+         */
         public String Flujo_central
         {
             get { return flujo_central; }
             set { flujo_central = value; }
         }
 
-        //Metodos set y get para la variable id_requerimiento
+        /*
+         * Implementación de los metodos get() y set() de este atributo
+         * get();
+         * Requiere: el atributo Id_disenno
+         * Modifica: N/A
+         * Retorna: el valor del atributo Id_disenno en un int
+         * set();
+         * Requiere: el atributo Id_disenno
+         * Modifica: el valor del atributo Id_disenno
+         * Retorna: N/A
+         */
         public int Id_disenno
         {
             get { return id_disenno; }
             set { id_disenno = value; }
         }
 
+        /*
+        * Implementación de los metodos get() y set() de este atributo
+        * get();
+        * Requiere: el atributo IdConsulta
+        * Modifica: N/A
+        * Retorna: el valor del atributo IdConsulta 
+        * set();
+        * Requiere: el atributo IdConsulta
+        * Modifica: el valor del atributo IdConsulta
+        * Retorna: N/A
+        */
         public String IdConsulta
         {
             get { return idConsulta; }
