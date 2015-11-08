@@ -788,7 +788,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
+        //Requiere: N/A
+        //Modifica: Se deshabilita el grid de consultas de diseño
+        //retorna N/A
         protected void deshabilitarGridDiseno()
         {            
             foreach (GridViewRow row in gridDisenos.Rows)
@@ -801,6 +803,11 @@ namespace SistemaPruebas.Intefaces
             gridDisenos.Enabled = false;
         }
 
+        //Requiere: entero con el tipo de grid
+        //Modifica: Se deshabilita la edición de los grid de requerimiento.
+        //Si ingresa 1, se deshabilita el grid de requerimientos disponibles
+        //Si se ingresa un 2 se deshabilita la edición de grid de requerimientos en diseño
+        //retorna N/A
         protected void deshabilitarGridReq(int tipo)
         {
 
@@ -829,6 +836,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+        //Requiere: datos de textbox de interfaz
+        //Modifica: Se almacenan los datos recién insertados, dentro de un objeto
+        //retorna N/A
         protected void obtenerDatosInsertados()
         {
 
@@ -837,6 +848,10 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+        //Requiere: N/A
+        //Modifica: Coloca color al botón recién seleccionado
+        //retorna N/A
         protected void marcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
@@ -844,6 +859,10 @@ namespace SistemaPruebas.Intefaces
             b.ForeColor = System.Drawing.Color.White;
         }
 
+
+        //Requiere: N/A
+        //Modifica: Quitar color al botón recién desmarcado
+        //retorna N/A
         protected void desmarcarBoton(ref Button b)
         {
             b.BorderColor = System.Drawing.Color.LightGray;
@@ -852,6 +871,9 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //Requiere: N/A
+        //Modifica: Carga el combobox de proyectos con todos los proyetos disponibles para un administrador
+        //retorna N/A
         protected void llenarComboboxProyectoAdmin()
         {
 
@@ -878,6 +900,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //Requiere: N/A
+        //Modifica: Çarga combo Box con todos los posibles proyectos en la BD, cuando es consultado por un miembro de equipo
+        //retorna N/A
         protected void llenarComboboxProyectoMiembro()
         {
                       
@@ -894,6 +919,9 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+        //Requiere: N/A
+        //Modifica: Solicita al controlador todos los RH disponibles para ser responsables de un diseño
+        //retorna N/A
         protected void cargarResponsablesMiembro()
         {
             int id_proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
@@ -925,6 +953,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //Requiere: N/A
+        //Modifica: Modifica los comboBox y grid de consulta luego de seleccionar un proyecto
+        //retorna N/A
         protected void proyectoAsociado_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarCampos();
@@ -992,6 +1023,10 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+        //Requiere: N/A
+        //Modifica: Carga en pantalla los datos de un deseño recién seleccionado en el grid de consulta.
+        //retorna N/A
         protected void Llenar_Datos_Conultados(int id_diseno)
         {
                      
@@ -1030,6 +1065,9 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //Requiere: N/A
+        //Modifica: Despliega el proceso de coonsulta de un Diseño
+        //retorna N/A
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1052,12 +1090,18 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //Requiere: N/A
+        //Modifica: Carga una nueva página en el grid de consulta
+        //retorna N/A
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridDisenos.PageIndex = e.NewPageIndex;
             this.llenarGridDisenos();
         }
 
+        //Requiere: N/A
+        //Modifica: Brinda formato a la fila seleccionada del grid.
+        //retorna N/A
         protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
 
@@ -1070,6 +1114,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //Requiere: N/A
+        //Modifica: Al presionar el botón de cancelar, y aceptar la cancelación, este método heshabilita la edición de los campos de texto, limpia los textbox y desmarca los botones
+        //retorna N/A
         protected void aceptarModal_ClickCancelar(object sender, EventArgs e)
         {
             deshabilitarCampos();
@@ -1090,6 +1137,9 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        //Requiere: N/A
+        //Modifica: Se carga la pinterfaz de casos de prueba.
+        //retorna N/A
         protected void irACasoPrueba(object sender, EventArgs e){
             List<string> lista=new List<string>();
             lista.Add(propositoTxtbox.Text.ToString());
@@ -1106,6 +1156,9 @@ namespace SistemaPruebas.Intefaces
             Response.Redirect("~/Intefaces/InterfazCasosDePrueba.aspx");
         }
 
+        //Requiere: N/A
+        //Modifica: Inserta, en la base de datos, una relación entre un requerimiento y el diseño
+        //retorna N/A
         public void insertarGridReq()
         {
             for (int i = 0; i< gridAsociados.Rows.Count ; i++ )
@@ -1116,7 +1169,12 @@ namespace SistemaPruebas.Intefaces
                 controlDiseno.insertarDisennoReq(datos);
             }
         }
-
+        
+        
+        //Requiere: N/A
+        //Modifica: Elimina, en la base de datos, la relación que pueda existir entre los requerimientos que no están en el diseño y el diseño mismo, 
+        //a la vez que crea una relación entre los que si están en el diseño y el diseño
+        //retorna N/A
 
         public void ModificarGridReq()
         {     
