@@ -17,11 +17,11 @@ namespace SistemaPruebas.Intefaces
         ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
 
 
-      /*
-       * Requiere: N/A
-       * Modifica: Declara dataTable global de datos de entrada
-       * Retorna: N/A
-       */
+       /*
+        * Requiere: N/A
+        * Modifica: Declara dataTable global de datos de entrada
+        * Retorna: dataTable
+        */
         public static DataTable dtDatosEntrada
         {
             get
@@ -38,7 +38,7 @@ namespace SistemaPruebas.Intefaces
       /*
        * Requiere: N/A
        * Modifica: Declara variable global de modo (tipo de operación en ejecución)
-       * Retorna: N/A
+       * Retorna: entero.
        */
         public static int modo
         {
@@ -56,7 +56,7 @@ namespace SistemaPruebas.Intefaces
       /*
        * Requiere: N/A
        * Modifica: Declara variable global que guarda el id del caso de prueba siendo modificado
-       * Retorna: N/A
+       * Retorna: hilera.
        */
         public static String idMod
         {
@@ -74,7 +74,7 @@ namespace SistemaPruebas.Intefaces
       /*
        * Requiere: N/A
        * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
-       * Retorna: N/A
+       * Retorna: N/A.
        */
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -127,7 +127,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Se encarga de desplegar la información del diseño asociado, llenando las etiquetas en la parte superior de la pantalla
+         * Modifica: Se encarga de desplegar la información del diseño asociado, llenando las etiquetas en la parte superior de la pantalla.
          * Retorna: N/A
          */
         protected void llenarEtiquetasDiseno()
@@ -180,7 +180,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Establece el estado de la pantalla la primera vez que se carga, habilitando y deshabilitando los controles elegidos
+         * Modifica: Establece el estado de la pantalla la primera vez que se carga, habilitando y deshabilitando los controles elegidos.
          * Retorna: N/A
          */
         protected void estadoInicial()
@@ -193,7 +193,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Establece el estado de la pantalla inmediatamente después de efectuar una operación de inserción, modificación o eliminación
+         * Modifica: Establece el estado de la pantalla inmediatamente después de efectuar una operación de inserción, modificación o eliminación.
          * Retorna: N/A
          */
         protected void estadoPostOperacion()
@@ -210,7 +210,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Insertar"
+         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Insertar".
          * Retorna: N/A
          */
         protected void estadoInsertar()
@@ -227,7 +227,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Modificar"
+         * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Modificar".
          * Retorna: N/A
          */
         protected void estadoModificar()
@@ -243,7 +243,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Establece el valor por defecto de la variable "modo" a 0
+         * Modifica: Establece el valor por defecto de la variable "modo" a 0.
          * Retorna: N/A
          */
         protected void inicializarModo()
@@ -293,7 +293,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Habilita los controles de la pantalla: Textbox, DropDownList y Grid
+         * Modifica: Habilita los controles de la pantalla: Textbox, DropDownList y Grid.
          * Retorna: N/A
          */
         protected void habilitarCampos()
@@ -308,7 +308,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Deshabilita los controles de la pantalla: Textbox, DropDownList y Grid
+         * Modifica: Deshabilita los controles de la pantalla: Textbox, DropDownList y Grid.
          * Retorna: N/A
          */
         protected void deshabilitarCampos()
@@ -325,7 +325,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A
-         * Modifica: Habilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid
+         * Modifica: Deshabilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid.
          * Retorna: N/A
          */
         protected void deshabilitarCamposEntrada()
@@ -340,7 +340,7 @@ namespace SistemaPruebas.Intefaces
 
        /*
         * Requiere: N/A
-        * Modifica: Deshabilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid
+        * Modifica: Habilita los controles de la pantalla correspondientes a "Entrada de Datos": Textbox, DropDownList y Grid.
         * Retorna: N/A
         */
         protected void habilitarCamposEntrada()
@@ -354,7 +354,7 @@ namespace SistemaPruebas.Intefaces
 
        /*
         * Requiere: N/A
-        * Modifica: Se encarga de borrar toda la información de los Textbox y del Grid para que no se desplegue nada
+        * Modifica: Se encarga de borrar toda la información de los Textbox y del Grid para que no se desplegue nada.
         * Retorna: N/A
         */
         protected void limpiarCampos()
@@ -372,7 +372,7 @@ namespace SistemaPruebas.Intefaces
 
        /*
         * Requiere: N/A
-        * Modifica: Se encarga agregar nuevos datos al datatable global de "Entrada de datos" para que pueda llenarse el Grid de "Entrada de Datos"
+        * Modifica: Se encarga agregar nuevos datos al datatable global de "Entrada de datos" para que pueda llenarse el Grid de "Entrada de Datos".
         * Retorna: N/A
         */
         protected void agregarGridEntradaDatos()
@@ -388,7 +388,7 @@ namespace SistemaPruebas.Intefaces
        /*
         * Requiere: N/A
         * Modifica: Se encarga de leer la información del datatable global de "Entrada de Datos" para enviarla a la controladora al insertar o modificar.
-        * Retorna: N/A
+        * Retorna: hilera.
         */
         protected String datosEntrada()
         {
@@ -433,7 +433,7 @@ namespace SistemaPruebas.Intefaces
 
        /*
         * Requiere: N/A
-        * Modifica: Se encarga de llenar el Grid de casos de pruebas pidiendo la lista de casos disponibles a la Controladora de Casos de Prueba
+        * Modifica: Se encarga de llenar el Grid de casos de pruebas pidiendo la lista de casos disponibles a la Controladora de Casos de Prueba.
         * Retorna: N/A
         */
         protected void llenarGrid()        
@@ -464,7 +464,7 @@ namespace SistemaPruebas.Intefaces
        /*
         * Requiere: N/A
         * Modifica: Se encarga de inicializar las columnas del datatable del cual se llenará el Grid de Casos de Prueba.
-        * Retorna: N/A
+        * Retorna: dataTable.
         */
         protected DataTable crearTablaCP()
         {
@@ -476,7 +476,7 @@ namespace SistemaPruebas.Intefaces
 
        /*
         * Requiere: N/A
-        * Modifica: Se encarga de llenar los datos en los Textbox, correspondientes al caso de prueba consultado desde el grid
+        * Modifica: Se encarga de llenar los datos en los Textbox, correspondientes al caso de prueba consultado desde el Grid.
         * Retorna: N/A
         */
         void llenarDatosCasoPrueba(String id)
@@ -550,8 +550,8 @@ namespace SistemaPruebas.Intefaces
         }
 
        /*
-        * Requiere: N/A
-        * Modifica: Se encarga de llenar el Grid de "Entrada de Datos" pidiendolos a la Controladora de Casos de Prueba
+        * Requiere: Lista de hileras.
+        * Modifica: Se encarga de llenar el Grid de "Entrada de Datos" pidiendolos a la Controladora de Casos de Prueba.
         * Retorna: N/A
         */
         protected void llenarGridEntradaDatos(List<String> lista_datos)
