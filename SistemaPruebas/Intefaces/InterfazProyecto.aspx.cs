@@ -85,7 +85,6 @@ namespace SistemaPruebas.Intefaces
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            //id_logeado = controladoraProyecto.IdLogeado();
             adm = controladoraProyecto.PerfilDelLogeado().ToString();
             Restricciones_Campos();
             Deshabilitar_Campos();

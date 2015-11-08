@@ -79,7 +79,6 @@ namespace SistemaPruebas.Intefaces
         protected void Page_Load(object sender, EventArgs e)
         {
             llenarEtiquetasDiseno();
-            InterfazDiseno.llenarProyecto = true.ToString();
             if(!IsPostBack)
             {
                 inicializarModo();
