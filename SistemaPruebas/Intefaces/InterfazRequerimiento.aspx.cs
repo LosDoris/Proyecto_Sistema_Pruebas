@@ -17,7 +17,7 @@ namespace SistemaPruebas.Intefaces
         ControladoraRequerimiento controladoraRequerimiento = new ControladoraRequerimiento();
 
 
-
+        // Variables de sesion. Gets y Sets
         public static string modoREQ
         {
             get
@@ -367,7 +367,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
         * Requiere: Evento click en boton aceptar de modificar.
-        * Modifica: Intenta insertar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
+        * Modifica: Intenta modificar una tupla de requerimiento en la base de datos y despliega el respectivo mensaje de error o exito.
         * Retorna: N/A.
         */
         protected void BotonREQAceptarModificar_Click(object sender, EventArgs e)
@@ -375,7 +375,11 @@ namespace SistemaPruebas.Intefaces
             modificarReq();
             llenarGrid();
         }
-
+        /*
+        * Requiere: N/A.
+        * Modifica: Es el metodo en el que se encuentra la logica de lo que se debe hacer para modificar un requerimiento una vez que el usuario da aceptar.
+        * Retorna: N/A.
+        */
         protected void modificarReq()
         {
             if (validarCampos())
@@ -432,7 +436,6 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                //proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
             }
             volverAlOriginal();
             llenarGrid();
@@ -490,8 +493,6 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
                 ProyectoAsociado.Enabled = false;
             }
         }
@@ -515,11 +516,8 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
                 ProyectoAsociado.Enabled = false;
             }
-            //ProyectoAsociado.Enabled = false;
             BotonREQAceptar.Enabled = false;
             BotonREQAceptarModificar.Enabled = false;
             
@@ -571,7 +569,7 @@ namespace SistemaPruebas.Intefaces
 
         /*
          * Requiere: N/A.
-         * Modifica: Valida el campo de email.
+         * Modifica: N/A.
          * Retorna: N/A.
          */
         protected bool validarCampos()
@@ -801,6 +799,11 @@ namespace SistemaPruebas.Intefaces
             gridRequerimiento.AllowPaging = true;
             gridRequerimiento.DataBind();
         }
+        /*
+         * Requiere: Que el usuario de clic en el aceptar cuando le aparece el modal.
+         * Modifica: Elimina un requerimiento, luego de la confirmacion.
+         * Retorna: N/A.      
+        */
 
         protected void aceptarModal_Click(object sender, EventArgs e)
         {
@@ -841,6 +844,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+         * Requiere: Que el usuario de clic en el cancelar cuando le aparece el modal.
+         * Modifica: Vuelve al estado en el que estaba antes de que el usuario haya intentado eliminar, modificar o insertar.
+         * Retorna: N/A.      
+        */
         protected void cancelarModal_Click(object sender, EventArgs e)
         {
             desmarcarBotones();
@@ -868,6 +876,11 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref BotonREQInsertar);
             desmarcarBoton(ref BotonREQModificar);
         }
+        /*
+         * Requiere: N/A. 
+         * Modifica: N/A. 
+         * Retorna: N/A.      
+        */
         protected void siModalCancelar_Click(object sender, EventArgs e)
         {
             
