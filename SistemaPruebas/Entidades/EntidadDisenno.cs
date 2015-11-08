@@ -8,7 +8,6 @@ namespace SistemaPruebas.Controladoras
     public class EntidadDisenno
     {
 
-        //(" + Disenno.Id + ",'" + Disenno.Proposito + "','" + Disenno.Nivel + "','" + Disenno.Tecnica + "','" + Disenno.Tipo + "','" + Disenno.Ambiente + "','" + Disenno.Procedimiento + "','" + Disenno.FechaDeDisenno + "','" + Disenno.CriterioAceptacion + "'," + Disenno.Responsable + "'," + Disenno.ProyAsociado + ", getDate()" + ")";
         private String id;
         private String proposito;
         private int nivel;
@@ -20,22 +19,24 @@ namespace SistemaPruebas.Controladoras
         private String criterioAceptacion;
         private int responsable;
         private int proyAsociado;
-        // private String IdConsulta;
 
+
+        /*
+        Requiere: Recibir un objeto con los datos de todos atributos de un Diseno
+        Modifica: Encapsula los datos recibidos
+        Retorna: N/A
+        */
         public EntidadDisenno(Object[] datos)
         {
-         //   this.id = datos[0].ToString();
             this.proposito = datos[0].ToString();
             this.nivel = Convert.ToInt32(datos[1].ToString());
             this.tecnica = Convert.ToInt32(datos[2].ToString());
-            //this.tipo = Convert.ToInt32(datos[3].ToString());
             this.ambiente = datos[3].ToString();
             this.procedimiento = datos[4].ToString();
             this.fechaDeDisenno = datos[5].ToString();            
             this.criterioAceptacion = datos[6].ToString();
             this.responsable = Convert.ToInt32(datos[7].ToString());
             this.proyAsociado = Convert.ToInt32(datos[8].ToString());
-           // this.IdConsulta = Convert.ToInt32(datos[10].ToString());
         }
 
         //Metodos set y get para la variable Id
@@ -45,13 +46,6 @@ namespace SistemaPruebas.Controladoras
             set { id = value; }
         }
 
-      /*  //Metodos set y get para la variable IdVieja
-        public String IdViejo
-        {
-            get { return idConsulta; }
-            set { id = value; }
-
-        }*/
 
         //Metodos set y get para la variable proposito
         public String Proposito

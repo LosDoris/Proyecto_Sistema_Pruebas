@@ -17,6 +17,11 @@ namespace SistemaPruebas.Controladoras
             controlBD = new ControladoraBDDisenno();            
         }
 
+        /*
+        Requiere: Object [ ] datos con los datos del diseño de prueba
+        Modifica: Inserta un Diseño de proyecto, al enviarle a la controladora de bases de datos una entidad del diseño con los datos generales junto con sus proyectos asociados uno por uno.
+        Retorna: int.
+        */
         public int ingresaDiseno(object[] datos)
         {
             EntidadDisenno objDisenno = new EntidadDisenno(datos);
@@ -89,6 +94,11 @@ namespace SistemaPruebas.Controladoras
             return controlReq.consultarRequerimientoEnDiseno(id_proyecto, id_diseno);
         }
 
+        /*
+        Requiere: id del diseño a consultar.
+        Modifica: N/A.
+        Retorna: Entidad disenno.
+        */
         public EntidadDisenno consultarDisenno(int id_diseno)
         {
             DataTable dt = controlBD.consultarDisennoBD(1, id_diseno);
@@ -113,16 +123,31 @@ namespace SistemaPruebas.Controladoras
             else return null;
         }
 
+        /*
+        Requiere: id del diseño a consultar.
+        Modifica: N/A.
+        Retorna: DataTable.
+        */
         public DataTable consultarDisenoGrid(int id_proyecto)
         {
             return controlBD.consultarDisennoBD(2, id_proyecto);
         }
-        
+
+        /*
+       Requiere: id del diseño a consultar.
+       Modifica: N/A.
+       Retorna: int.
+       */
         public int consultarId_Disenno(String proposito)
         {
             return controlBD.consultarId_Disenno(proposito);
         }
 
+        /*
+        Requiere: Object [ ] datos con los datos del diseño de prueba y una ListaRequerimientos req que tiene todos los requerimientos de este Diseño.
+        Modifica: Modifica un Diseño de proyecto, al enviarle a la controladora de bases de datos una entidad del diseño con los datos generales y también uno por uno los requerimientos.
+        Retorna: N/A.
+        */
         public int modificarDiseno(int id_diseno, object[] datos)
         {
             EntidadDisenno objDisenno = new EntidadDisenno(datos);
@@ -130,6 +155,11 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        /*
+        Requiere: idDiseño del diseño a eliminar.
+        Modifica: Elimina un diseño de pruebas junto con sus requerimientos asociados.
+        Retorna: id.
+        */
         public int eliminarDisenno(int id_diseno)
         {
             return controlBD.eliminarDisennoBD(id_diseno);
@@ -140,8 +170,6 @@ namespace SistemaPruebas.Controladoras
             SistemaPruebas.Intefaces.InterfazDiseno i = new SistemaPruebas.Intefaces.InterfazDiseno();
             return i.infoDisenno();
         }
-
-
 
         public DataTable consultarDisennoReq(int idDisenno)
         {

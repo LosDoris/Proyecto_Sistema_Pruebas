@@ -22,7 +22,6 @@ namespace SistemaPruebas.Intefaces
                 if (llenarProyecto == true.ToString())
                 {
                     llenarComboboxProyectoAdmin();
-                    //llenarGridDisenos();     
                     deshabilitarCampos();
                     deshabilitarGridReq(1);
                     deshabilitarGridReq(2);
@@ -55,6 +54,9 @@ namespace SistemaPruebas.Intefaces
 
             txt_date.Attributes.Add("readonly", "readonly");
         }
+
+
+        //Definiciones de variables de sesion
 
         public static List<string> infDisenno
         {
@@ -155,11 +157,15 @@ namespace SistemaPruebas.Intefaces
             Response.Redirect("InterfazRequerimiento.aspx");
         }
 
+        //Definiciones de los metodos
+
+        /*
+        Requiere:  El usuario haya presionado el botón de insertar
+        Modifica: Prepara el proceso para insertar un diseno, habilita y limpia los campos, habilita el botón aceptar y cancelar y deshabilita el botón de modificar, eliminar, y el grid de consultas.
+        Retorna: N/A
+        */
         protected void insertarClick(object sender, EventArgs e)
         {
-            //EtiqErrorGen.Text = "Primero seleccione el proyecto al que se asociará el presente diseño";
-            //EtiqErrorGen.ForeColor = System.Drawing.Color.Salmon;
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             buttonDisenno = "1";
             limpiarCampos();
             Modificar.Enabled = false;
@@ -185,6 +191,11 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+        /*
+        Requiere: El usuario haya presionado el botón de modificar
+        Modifica: Prepara el proceso para modificar un diseno, habilita y limpia los campos, habilita el botón aceptar y cancelar y deshabilita el botón de insertar, eliminar, y el grid de consultas.
+        Retorna: N/A
+        */
         protected void modificarClick(object sender, EventArgs e)
         {
             if (proyectoAsociado.SelectedItem.Text != "Seleccionar")
@@ -192,7 +203,6 @@ namespace SistemaPruebas.Intefaces
                 marcarBoton(ref Modificar);
                 buttonDisenno = "2";
                 habilitarCampos();
-               // gridDisenos.Enabled = false;
                 Modificar.Enabled = false;
                 Eliminar.Enabled = false;
                 Insertar.Enabled = false;
@@ -218,6 +228,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        Requiere: El usuario haya presionado el botón de eliminar  
+        Modifica: Confirma con el usuario si desea eliminar un diseno
+        Retorna: N/A
+        */
         protected void eliminarClick(object sender, EventArgs e)
         {
             marcarBoton(ref Eliminar);
@@ -237,11 +252,13 @@ namespace SistemaPruebas.Intefaces
             llenarGridDisenos();
         }
 
+        /*
+        Requiere:  N/A
+        Modifica: delimita algunas características de los componentes a mostrarse en la interfaz
+        Retorna: N/A
+        */
         protected void restriccionesCampos()
         {
-            //nombreReqTxtbox.MaxLength = 30;
-            //precondicionReqTxtbox.MaxLength = 150;
-            //reqEspecialesReqTxtbox.MaxLength = 150;
             propositoTxtbox.MaxLength = 80;
             ambienteTxtbox.MaxLength = 150;
             procedimientoTxtbox.MaxLength = 150;
@@ -257,7 +274,6 @@ namespace SistemaPruebas.Intefaces
                EtiqErrorGen.Text = "El diseño ha sido eliminado con éxito";
                EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
-               //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true); //CAMBIAR ALERTA
                llenarGridDisenos();
                habilitarGridDiseno();
                deshabilitarCampos();
@@ -266,27 +282,22 @@ namespace SistemaPruebas.Intefaces
                Eliminar.Enabled = true;
                Insertar.Enabled = true;
            }
-           else
-           {
-               //completar
-           }
 
         }
 
         protected void cancelarModal_ClickEliminar(object sender, EventArgs e)
         {
-            //EtiqErrorGen.Text = "El diseño ha sido eliminado con éxito";
-            //EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
-            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido eliminado con éxito');", true);
             desmarcarBoton(ref Eliminar);
             Modificar.Enabled = true;
             Eliminar.Enabled = true;
             Insertar.Enabled = true;
-
-
         }
 
+        /*
+        Requiere:  El usuario ha presionado el botón de Insertar dentro de la pestaña de Diseno
+        Modifica: Habilita  y despliega los campos
+        Retorna: N/A
+        */
         protected void habilitarCampos()
         {
             //nombreReqTxtbox.Enabled = true;
@@ -307,25 +318,24 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = true;
             habilitarGridReq(1);
             habilitarGridReq(2);
-
-
         }
+
+        /*
+        Requiere: El usuario haya presionado el botón aceptar o cancelar, dentro de una inserción, modificación, consulta o eliminación
+        Modifica: Deshabilitan los campos de: 
+        Retorna: N/A
+        */
 
         protected void deshabilitarCampos()
         {
-            // nombreReqTxtbox.Enabled = false;
-            // precondicionReqTxtbox.Enabled = false;
-            // reqEspecialesReqTxtbox.Enabled = false;
             iraRequerimientoBtn.Enabled = false;
              propositoTxtbox.Enabled = false;
             ambienteTxtbox.Enabled = false;
             procedimientoTxtbox.Enabled = false;
             criteriosTxtbox.Enabled = false;
-            //proyectoAsociado.Enabled = false;
             Nivel.Enabled = false;
             Tecnica.Enabled = false;
             txt_date.Enabled = false;
-           // Tipo.Enabled = false;
             responsable.Enabled = false;
             aceptar.Enabled = false;
             cancelar.Enabled = false;
@@ -334,33 +344,35 @@ namespace SistemaPruebas.Intefaces
             botonCP.Enabled = false;
         }
 
+        /*
+        Requiere: El usuario haya presionado el botón aceptar o cancelar, dentro de una inserción, modificación, consulta o eliminación 
+        Modifica: Limpia los campos
+        Retorna: N/A
+        */
         protected void limpiarCampos()
         {
-           // nombreReqTxtbox.Text = "";
-           // precondicionReqTxtbox.Text = "";
-            //reqEspecialesReqTxtbox.Text = "";
             propositoTxtbox.Text = "";
             ambienteTxtbox.Text = "";
             procedimientoTxtbox.Text = "";
             criteriosTxtbox.Text = "";
             txt_date.Text = "";
-            //proyectoAsociado.ClearSelection();
-            //ListItem selectedListItem = proyectoAsociado.Items.FindByValue("1");
             Nivel.ClearSelection();
             ListItem selectedListItem1 = Nivel.Items.FindByValue("1");
             Tecnica.ClearSelection();
             ListItem selectedListItem2 = Tecnica.Items.FindByValue("1");
-          //  Tipo.ClearSelection();
-           // ListItem selectedListItem3 = Tipo.Items.FindByValue("1");
             responsable.ClearSelection();
             ListItem selectedListItem4 = responsable.Items.FindByValue("1");
             cancelar.Enabled = false;
             Modificar.Enabled = false;
             deshabilitarGridReq(1);
             deshabilitarGridReq(2);
-
         }
 
+        /*
+        Requiere: El usuario haya presionado el botón de aceptar dentro de Diseno
+        Modifica: Al aceptar un insertar, se verifica que los campos se hayan llenado correctamente, e invoca a la controladora Diseno para que realice la inserción de la nueva información dentro de la base de datos. Al modificar, similar al proceso de insertar se envían los datos a la controladora Diseno, pero para que actualice la información del Diseno. Al aceptar una eliminación, elimina la tupla del sistema
+        Retorna: N/A
+        */
         protected void aceptarClick(object sender, EventArgs e)
         {
 
@@ -369,21 +381,11 @@ namespace SistemaPruebas.Intefaces
             {
                 case 1://Insertar
                     {
-
-
-                       string fecha = txt_date.Text;
-                        
-
+                       string fecha = txt_date.Text;                       
                         int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
-
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-                        el_proyecto = proyecto.ToString();
-                        
+                        el_proyecto = proyecto.ToString();                        
                         object[] datos;
-
-
-
-                        //int cedula;
 
                         if (responsable.SelectedValue == "Seleccionar" || responsable.SelectedValue == "No Disponible")
                         {
@@ -404,7 +406,6 @@ namespace SistemaPruebas.Intefaces
                             EtiqErrorGen.Text = "El diseño ha sido insertado con éxito";
                             EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
-                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido insertado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
                             llenarGridsReq(1);
                             llenarGridsReq(2);
@@ -438,7 +439,6 @@ namespace SistemaPruebas.Intefaces
                             EtiqErrorGen.Text = "El diseño ha sido modificado con éxito";
                             EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
-                            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "err_msg", "alert('El diseño ha sido modificado con éxito');", true); //CAMBIAR ALERTA
                             llenarGridDisenos();
                             llenarGridsReq(1);
                             llenarGridsReq(2);
@@ -460,6 +460,11 @@ namespace SistemaPruebas.Intefaces
                     break;
             };
         }
+        /*
+        Requiere:  El usuario haya presionado el botón de inserción, modificación, consulta o eliminación
+        Modifica: Confirma si el usurario desea cancelar e interrumpe la acción de inserción, modificación, consulta o eliminación
+        Retorna: N/A
+        */
 
         protected void cancelarClick(object sender, EventArgs e)
         {
@@ -479,19 +484,16 @@ namespace SistemaPruebas.Intefaces
             DataTable req = solicitarReqs(tipo);
             if (tipo == 1)
             {
-                //dtNoAsociados = req;
                 gridNoAsociados.DataSource = req;
                 gridNoAsociados.DataBind();
             }
             else
             {
-                //dtSiasociados = req;
                 gridAsociados.DataSource = req;
                 gridAsociados.DataBind();
             }
         }
         
-
 
         protected DataTable solicitarReqs(int tipo)
         {
@@ -538,7 +540,6 @@ namespace SistemaPruebas.Intefaces
         }
         protected void llenarGridsReqModificar(int tipo, DataTable req)
         {
-            //DataTable req = solicitarReqs(tipo);
             if (tipo == 1)
             {
                 dtNoAsociados = req;
@@ -576,44 +577,21 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaREQ(/*int tipo*/)
         {
             DataTable dt = new DataTable();
-            //if (tipo == 1) { }
             dt.Columns.Add("ID Requerimiento", typeof(String));
-        //}
-            //dt.Columns.Add("Precondiciones", typeof(String));
-            //dt.Columns.Add("Req. Especiales", typeof(String));
-            //dt.Columns.Add("Nombre Proyecto");
-            //dt.
             return dt;
         }
-        /*protected DataTable crearTablaREQNoAso()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID Requerimiento", typeof(String));
-            //dt.Columns.Add("Precondiciones", typeof(String));
-            //dt.Columns.Add("Req. Especiales", typeof(String));
-            //dt.Columns.Add("Nombre Proyecto");
-            //dt.
-            return dt;
-        }*/
+
+
         protected void OnSelectedIndexChangedNoAsoc(object sender, EventArgs e)
         {
             try
             {
-                //EtiqErrorLlaves.Text = "Entro a no asociados";
-                //EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
-                //EtiqErrorLlaves.Visible = true;
-                //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+
                 id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
                 dtNoAsociados = quitarElemento(dtNoAsociados, id_req_noAsoc);
                 dtSiasociados = ponerElemento(dtSiasociados, id_req_noAsoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
-                /*
-                dtNoAsociados = quitarElemento(dtSiasociados, id_req_asoc);
-                dtSiasociados= ponerElemento(dtNoAsociados, id_req_asoc);
-                llenarGridsReqModificar(1, dtNoAsociados);
-                llenarGridsReqModificar(2, dtSiasociados);
-                */
             }
             catch (Exception ex)
             {
@@ -625,10 +603,6 @@ namespace SistemaPruebas.Intefaces
         {
             try
             {
-                //EtiqErrorLlaves.Text = "Entro a asociados";
-                //EtiqErrorLlaves.ForeColor = System.Drawing.Color.DarkSeaGreen;
-                //EtiqErrorLlaves.Visible = true;
-                //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
                 dtSiasociados = quitarElemento(dtSiasociados, id_req_asoc);
                 dtNoAsociados = ponerElemento(dtNoAsociados, id_req_asoc);
@@ -645,23 +619,18 @@ namespace SistemaPruebas.Intefaces
         {
 
             DataTable dtNueva = crearTablaREQ();
-            //DataTable req = solicitarReqs(tipo);
             Object[] datos = new Object[1];
-
 
                 if (dtVieja.Rows.Count > (0-1))
                 {
                     foreach (DataRow dr in dtVieja.Rows)
-                    {
-                        
+                    {                        
                         datos[0] = dr[0];
                         if (Convert.ToString(datos[0]) != Convert.ToString(id))
                         {
                             dtNueva.Rows.Add(datos);
                         }
-                    }
-                
-
+                    }                
             }
                 else
                 {
@@ -673,7 +642,6 @@ namespace SistemaPruebas.Intefaces
         }
         protected DataTable ponerElemento(DataTable dtVieja, String id)
         {
-
 
             DataTable dtNueva = crearTablaREQ();
             Object[] datos = new Object[1];
@@ -688,7 +656,6 @@ namespace SistemaPruebas.Intefaces
                     
                 }
             
-
             return dtNueva;
         }
 
@@ -728,6 +695,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        Requiere: N/A
+        Modifica: Llena la tabla o grid de consultas con todos los disenos
+        Retorna: N/A
+        */
         protected void llenarGridDisenos()
         {
 
@@ -767,6 +739,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+        Requiere: El usuario ha seleccionado el proyecto: habilita grid Diseños, ha seleccionado insertar o modificar: hablilita los grids de Requerimientos y Criterios
+        Modifica: 
+        Retorna: N/A
+        */
         protected void habilitarGridDiseno()
         {
             gridDisenos.Enabled = true;
@@ -779,6 +756,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        Requiere: El usuario ha seleccionado insertar o eliminar: deshabilita grid Diseños, el usuario esta consultado o eliminando: deshablilita los grids de Requerimientos y Criterios
+        Modifica: Impide seleccionar tuplas de un grid al usuario
+        Retorna: N/A
+        */
         protected void habilitarGridReq(int tipo)
         {
             if (tipo == 1)
@@ -903,7 +885,6 @@ namespace SistemaPruebas.Intefaces
 
                 try
                 {
-                //hay que ver que hacemos con los miembros que no tienen un proyecto asociado.
                     this.proyectoAsociado.Items.Add(new ListItem(controlDiseno.solicitarNombreProyectoMiembro(controlDiseno.solicitarProyecto_IdMiembro())));
                 }
                 catch (Exception e)
@@ -926,7 +907,6 @@ namespace SistemaPruebas.Intefaces
 
                 foreach (String p1 in pr)
                 {
-                    //String[] p2 = p1.Split(';');
                     try
                     {
                         if (p1 != pr[pr.Length - 1])
@@ -972,7 +952,6 @@ namespace SistemaPruebas.Intefaces
 
                     foreach (String p1 in pr)
                     {
-                        //String[] p2 = p1.Split(';');
                         try
                         {
                             if (p1 != pr[pr.Length - 1])
@@ -1133,7 +1112,6 @@ namespace SistemaPruebas.Intefaces
             {
                 string value = gridAsociados.Rows[i].Cells[0].Text;
                 int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-                //el_proyecto = proyecto.ToString();
                 object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
                 controlDiseno.insertarDisennoReq(datos);
             }
@@ -1141,16 +1119,13 @@ namespace SistemaPruebas.Intefaces
 
 
         public void ModificarGridReq()
-        {
-
-     
+        {     
             for (int i = 0; i < gridNoAsociados.Rows.Count; i++)
             {
                 string value = gridNoAsociados.Rows[i].Cells[0].Text;                          
                 controlDiseno.eliminarDisennoReq(Int32.Parse(id_diseno_cargado), value);
             }
             
-
             for (int i = 0; i < gridAsociados.Rows.Count; i++)
             {
                 string value = gridAsociados.Rows[i].Cells[0].Text;
@@ -1159,9 +1134,7 @@ namespace SistemaPruebas.Intefaces
                 object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
                 controlDiseno.insertarDisennoReq(datos);
             }
-            
-
-                
+                            
         }
 
         public List<string> infoDisenno()

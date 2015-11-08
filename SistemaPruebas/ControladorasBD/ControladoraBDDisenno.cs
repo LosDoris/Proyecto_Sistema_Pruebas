@@ -43,21 +43,6 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
-
-        /*
-         * Requiere: Entidad de Disenno
-         * Modifica: Inserta un nuevo disenno en el sistema.
-         * Retorna: int.
-         
-
-        public int insertarDisennoBD(EntidadDisenno Disenno)
-        {
-            String consulta = "INSERT INTO Disenno_Prueba(id_disenno,proposito,nivel,tecnica,tipo,ambiente,procedimiento,fecha_de_disenno,criterio_aceptacion,responsable,id_proyecto,fechaUltimo) values('" + Disenno.Id + "','" + Disenno.Proposito + "'," + Disenno.Nivel + "," + Disenno.Tecnica + "," + Disenno.Tipo + ",'" + Disenno.Ambiente + "','" + Disenno.Procedimiento + "'," + Disenno.FechaDeDisenno + ",'" + Disenno.CriterioAceptacion + "','" + Disenno.Responsable + "'," + Disenno.ProyAsociado + ", getDate()" + ")";
-            int ret = acceso.Insertar(consulta);
-            return ret;
-
-        }
-        */
         /*
          * Requiere: Entidad de Requerimiento
          * Modifica: Inserta un nuevo requerimiento de un disenno en el sistema.
@@ -106,18 +91,6 @@ namespace SistemaPruebas.Controladoras
         }
 
         /*
-         * Requiere: Id diseño.
-         * Modifica: Elimina un requerimiento de un disenno del sistema.
-         * Retorna: int.
-         
-
-        public int eliminarRequerimientosProyectoBD(String id_disenno)
-        {
-            return acceso.Insertar("DELETE FROM Requerimiento WHERE id_disenno = '" + id_disenno + "';");
-        }
-        */
-
-        /*
          * Requiere: tipo de consulta y cédula.
          * Modifica: N/A.
          * Retorna: DataTable.
@@ -154,15 +127,16 @@ namespace SistemaPruebas.Controladoras
         }
 
 
-
-
         /*
          * Métodos relacionados con la entidadDisennoReq, entidad compartida entre Diseño y Requerimiento
          */
 
 
-
-
+        /*
+         * Requiere: Id diseño.
+         * Modifica: Consulta todos los requerimientos del sistema.
+         * Retorna: int.       
+        */
         public DataTable consultarDisennoReq()
         {
             DataTable dt = null;
@@ -172,6 +146,11 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+        /*
+         * Requiere: Id diseño.
+         * Modifica: Consulta un requerimiento de un disenno del sistema.
+         * Retorna: dataTable.       
+        */
         public DataTable consultarDisennoReq(int idDisenno)
         {
             DataTable dt = null;
@@ -181,6 +160,12 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+
+        /*
+         * Requiere: Id diseño.
+         * Modifica: Inserta un requerimiento de un disenno del sistema.
+         * Retorna: int.       
+        */
         public int InsertarDisenoReq(SistemaPruebas.Entidades.EntidadDisennoReq datos)
         {
             using (SqlCommand comando = new SqlCommand("dbo.Insertar_Disenno_Req"))
@@ -194,6 +179,13 @@ namespace SistemaPruebas.Controladoras
                 return acceso.Insertar_Proced_Almacenado(comando);
             }
         }
+
+
+        /*
+         * Requiere: Id diseño.
+         * Modifica: Elimina un requerimiento de un disenno del sistema.
+         * Retorna: int.       
+        */
 
         public int EliminarDisennoReq(int idDisenno, string idReq)
         {          
