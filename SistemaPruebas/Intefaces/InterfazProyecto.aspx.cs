@@ -412,8 +412,11 @@ namespace SistemaPruebas.Intefaces
             desmarcarBoton(ref Modificar);
             desmarcarBoton(ref Eliminar);
             habilitarGrid();
-        }        
+        }
 
+        //Requiere: N/A
+        //Modifica: Carga el grid consultas de proyectos, con los datos del Nombre del sistema y el lider del proyecto.
+        //retorna N/A
         protected void llenarGrid()
         {
             gridProyecto.Columns[0].Visible = true;
@@ -442,6 +445,10 @@ namespace SistemaPruebas.Intefaces
             gridProyecto.Columns[0].Visible = false;
         }
 
+
+        //Requiere: N/A
+        //Modifica: Carga los datos en interfaz, del proyecto recién consultado.
+        //retorna N/A
         public void Llenar_Datos_Conultados(int idProyecto)
         {
             Controladoras.EntidadProyecto entidadP = controladoraProyecto.ConsultarProyecto(idProyecto);
@@ -490,6 +497,10 @@ namespace SistemaPruebas.Intefaces
         //    }
         //}
 
+
+        //Requiere: Hacer click en el botón de modificar.
+        //Modifica: Se habilitan los campos para poder modificar un proyecto previamente consultado.
+        //retorna N/A
         protected void Modificar_Click(object sender, EventArgs e)
         {
             deshabilitarGrid();
@@ -521,6 +532,10 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+        //Requiere: Hacer click en el botón de eliminar
+        //Modifica: Se elimina un proyecto recién consultado.
+        //retorna N/A
         protected void Eliminar_Click(object sender, EventArgs e)
         {
             textModal.Text = "¿Desea Eliminar este proyecto?";
@@ -546,6 +561,9 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //Requiere: Dar click a una fila del grid de consultas de proyecto.
+        //Modifica: Se solicitan los datos de un proyecto seleccionado del click de consultas.
+        //retorna N/A
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             //Accessing BoundField Column
