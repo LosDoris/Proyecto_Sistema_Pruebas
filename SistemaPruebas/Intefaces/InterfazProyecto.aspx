@@ -157,7 +157,8 @@
 
             <div class="form-horizontal">
 
-
+            
+                <div class="cajaColumna2">
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre de la oficina</asp:Label>
                     <div class="col-md-6">
@@ -289,6 +290,7 @@
                         </div>
                     </div>
                 </div>
+                    </div>
                 <div class="form-group">
                      <asp:Label runat="server" id="LiderLbl" Text="Nombre del lider del proyecto" CssClass="col-md-4 control-label"></asp:label>
                         <div class="col-md-6">

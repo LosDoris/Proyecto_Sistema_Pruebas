@@ -93,9 +93,8 @@
             <div class="col-md-8">
                 <div class="form-horizontal">
 
-
-                    <div class="jumbozRH">
-                        <h4>Datos Personales</h4>
+                <h4>Datos Personales</h4>
+                    <div class="cajaAnchoPagina">                    
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                             <p class="text-danger">
                                 <asp:Literal runat="server" ID="FailureText" />
@@ -106,7 +105,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1">Cédula:</asp:Label>
                             <div class="col-md-10">
 
-                                <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 250px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
+                                <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 220px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
                                 <%-- %><asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal">*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>--%>
                                 <asp:RequiredFieldValidator ID="ValidaCampos"
                                     ControlToValidate="TextBoxCedulaRH"
@@ -231,8 +230,8 @@
         </div>
 
         <div class="col-md-4">
+       <h4>Datos del Perfil</h4>
             <div class="jumbozRH">
-                <h4>Datos del Perfil</h4>
                 <div class="form-horizontal">
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>

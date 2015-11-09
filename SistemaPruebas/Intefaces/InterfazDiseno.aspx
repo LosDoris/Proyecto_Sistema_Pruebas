@@ -90,9 +90,24 @@ PublicKeyToken=31bf3856ad364e35"/>
         </div>
     </div>
     
+<h4>Requerimientos a Probar</h4>
+    <div class="cajaAnchoPagina">   
+        
+        <div class="row">
+            <div class="col-md-offset-2 col-md-6">
+                <div class="form-group">
+                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-2 control-label">Disponibles</asp:Label>
+                </div>
+            </div>
 
-    <div class="cajaAnchoPagina">
-        <h4>Requerimientos a Probar</h4>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-10 control-label">En Diseño</asp:Label>
+                </div>
+            </div>
+
+        </div>        
+           
         <div class="row">
             <div class="col-md-offset-2 col-md-6">
                 <div class="form-horizontal">
@@ -128,20 +143,6 @@ PublicKeyToken=31bf3856ad364e35"/>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-offset-2 col-md-6">
-                <div class="form-group">
-                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-2 control-label">Disponibles</asp:Label>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-10 control-label">En Diseño</asp:Label>
-                </div>
-            </div>
-
-        </div>
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false" Style="margin-top: 20px" />
         </div>
