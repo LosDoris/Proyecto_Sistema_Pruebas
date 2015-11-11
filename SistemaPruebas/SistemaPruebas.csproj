@@ -161,6 +161,7 @@
     <Content Include="Intefaces\InterfazDiseno.aspx" />
     <Content Include="Intefaces\InterfazProyecto.aspx" />
     <Content Include="Intefaces\InterfazRecursoHumano.aspx" />
+    <Content Include="Intefaces\InterfazReportes.aspx" />
     <Content Include="Intefaces\InterfazRequerimiento.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="Intefaces\InterfazRecursoHumano.aspx.designer.cs">
       <DependentUpon>InterfazRecursoHumano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Intefaces\InterfazReportes.aspx.cs">
+      <DependentUpon>InterfazReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Intefaces\InterfazReportes.aspx.designer.cs">
+      <DependentUpon>InterfazReportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Intefaces\InterfazRequerimiento.aspx.cs">
       <DependentUpon>InterfazRequerimiento.aspx</DependentUpon>
