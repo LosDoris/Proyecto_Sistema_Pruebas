@@ -71,6 +71,36 @@
                                 </div>
                         </div>
                         <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Nombre:</asp:Label>
+                            <div class="col-md-16">
+                            <asp:TextBox runat="server" ID="NombreTxtbox" CssClass="form-control" MaxLength="75" onkeypress="return solo_letrasYNumeros1(event)" Width="230px">.</asp:TextBox>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="Label2">*En este campo solo se permiten letras y espacios.</asp:Label>
+                                <script type="text/javascript">
+                                    function solo_letrasYNumeros1(evt) {
+                                        if ((evt.charCode < 48 || evt.charCode > 59) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                            if ((evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
+                                                if ($('#errorObjSistema1').css('display') == 'none') {
+                                                    //alert(evt.charCode);
+                                                    $('#errorObjSistema1').fadeIn();
+                                                    $('#errorObjSistema1').fadeOut(6000);
+                                                }
+                                                if (window.event)//IE
+                                                    evt.returnValue = false;
+                                                else//Firefox
+                                                    evt.preventDefault();
+                                            }
+                                        }
+                                    }
+                                 </script>
+                                 <div id="errorObjSistema1" style="display:none">
+                                    <asp:Label runat="server" ID="Label3" text="Sólo se permite el ingreso de letras, numeros, puntos('.'), comas(','), dos puntos(':') y punto y coma(';') " ForeColor="Salmon"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
                             <div class="col-md-16">
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
                             <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letrasYNumeros2(event)" Width="230px">.</asp:TextBox>

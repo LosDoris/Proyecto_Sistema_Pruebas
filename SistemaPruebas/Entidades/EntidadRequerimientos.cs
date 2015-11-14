@@ -8,6 +8,7 @@ namespace SistemaPruebas.Controladoras//.Entidades
     public class EntidadRequerimientos
     {
         private String id;
+        private String nombre;
         private String precondiciones;
         private String requerimientosEspeciales;
         private int proyecto;
@@ -19,6 +20,7 @@ namespace SistemaPruebas.Controladoras//.Entidades
             this.requerimientosEspeciales = datos[2].ToString();
             this.proyecto = Convert.ToInt32(datos[3].ToString());
             this.idViejo = datos[4].ToString();
+            this.nombre = datos[5].ToString();
         }
 
         //Metodos set y get para la variable Id
@@ -26,6 +28,13 @@ namespace SistemaPruebas.Controladoras//.Entidades
         {
             get { return id; }
             set { id = value; }
+        }
+
+        //Metodos set y get para la variable nombre
+        public String Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
         }
 
         public String IdViejo

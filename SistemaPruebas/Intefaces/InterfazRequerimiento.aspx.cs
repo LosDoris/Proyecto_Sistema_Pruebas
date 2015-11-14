@@ -111,6 +111,7 @@ namespace SistemaPruebas.Intefaces
         protected void Restricciones_Campos()
         {
             TextBoxNombreREQ.MaxLength = 6;
+            NombreTxtbox.MaxLength = 75;
             TextBoxPrecondicionesREQ.MaxLength = 150;
             TextBoxRequerimientosEspecialesREQ.MaxLength = 150;
         }
@@ -135,7 +136,7 @@ namespace SistemaPruebas.Intefaces
             {
                 dt = controladoraRequerimiento.consultarRequerimiento(3, Convert.ToString(controladoraRequerimiento.proyectosDelLoggeado()));
             }
-            Object[] datos = new Object[2];
+            Object[] datos = new Object[3];
         
 
             if (dt.Rows.Count > 0)
@@ -143,9 +144,10 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    int id = Convert.ToInt32(dr[3]);
+                    int id = Convert.ToInt32(dr[4]);
                     String nomp = controladoraRequerimiento.solicitarNombreProyecto(id);
-                    datos[1] = nomp;
+                    datos[0] = dr[3];
+                    datos[2] = nomp;
                     Requerimiento.Rows.Add(datos);
                 }
             }
@@ -153,6 +155,7 @@ namespace SistemaPruebas.Intefaces
             {
                 datos[0] = "-";
                 datos[1] = "-";
+                datos[2] = "-";
                 Requerimiento.Rows.Add(datos);
             }
             gridRequerimiento.DataSource = Requerimiento;
@@ -176,7 +179,7 @@ namespace SistemaPruebas.Intefaces
                 TextBoxNombreREQ.Text = dt.Rows[0].ItemArray[0].ToString();
                 TextBoxPrecondicionesREQ.Text = dt.Rows[0].ItemArray[1].ToString();
                 TextBoxRequerimientosEspecialesREQ.Text = dt.Rows[0].ItemArray[2].ToString();
-
+                NombreTxtbox.Text = dt.Rows[0].ItemArray[3].ToString();
                 if (!Convert.ToBoolean(esAdminREQ))
                 {
                     ProyectoAsociado.ClearSelection();
@@ -185,7 +188,7 @@ namespace SistemaPruebas.Intefaces
                 else
                 {
                     ProyectoAsociado.ClearSelection();
-                    ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[3].ToString()).Selected = true;
+                    ProyectoAsociado.Items.FindByValue(dt.Rows[0].ItemArray[4].ToString()).Selected = true;
                 }
             }
             catch
@@ -232,6 +235,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxNombreREQ.Text = "";
             TextBoxPrecondicionesREQ.Text = "";
             TextBoxRequerimientosEspecialesREQ.Text = "";
+            NombreTxtbox.Text = "";
             marcarBoton(ref BotonREQInsertar);
             deshabilitarGrid();
             llenarGrid();
@@ -290,6 +294,7 @@ namespace SistemaPruebas.Intefaces
                 TextBoxNombreREQ.Text = ".";
                 TextBoxPrecondicionesREQ.Text = "";
                 TextBoxRequerimientosEspecialesREQ.Text = "";
+                NombreTxtbox.Text = "";
                 BotonREQAceptarModificar.Visible = false;
                 BotonREQAceptar.Visible = true;
                 BotonREQAceptarModificar.Enabled = false;
@@ -317,12 +322,13 @@ namespace SistemaPruebas.Intefaces
         {
             if (validarCampos())
             {
-                Object[] datosNuevos = new Object[5];
+                Object[] datosNuevos = new Object[6];
                 datosNuevos[0] = this.TextBoxNombreREQ.Text;
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
                 datosNuevos[4] = "1";
+                datosNuevos[5] = this.NombreTxtbox.Text;
 
                 int insercion = controladoraRequerimiento.insertarRequerimiento(datosNuevos);
                 if (insercion == 1)
@@ -384,12 +390,14 @@ namespace SistemaPruebas.Intefaces
             if (validarCampos())
             {
 
-                Object[] datosNuevos = new Object[5];
+                Object[] datosNuevos = new Object[6];
                 datosNuevos[0] = this.TextBoxNombreREQ.Text;//id_Req
                 datosNuevos[1] = this.TextBoxPrecondicionesREQ.Text;
                 datosNuevos[2] = this.TextBoxRequerimientosEspecialesREQ.Text;
                 datosNuevos[3] = this.ProyectoAsociado.SelectedValue;
                 datosNuevos[4] = idViejoREQ;
+                datosNuevos[5] = this.NombreTxtbox.Text;
+
                 if (controladoraRequerimiento.modificarRequerimiento(datosNuevos) == 1)
                 {
                     desmarcarBotones();
@@ -483,6 +491,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxNombreREQ.Enabled = true;
             TextBoxPrecondicionesREQ.Enabled = true;
             TextBoxRequerimientosEspecialesREQ.Enabled = true;
+            NombreTxtbox.Enabled = true;
             BotonREQCancelar.Enabled = true;
             BotonREQAceptar.Enabled = true;
             if (Convert.ToBoolean(esAdminREQ))
@@ -507,6 +516,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxNombreREQ.Enabled = false;
             TextBoxPrecondicionesREQ.Enabled = false;
             TextBoxRequerimientosEspecialesREQ.Enabled = false;
+            NombreTxtbox.Enabled = false;
             BotonREQCancelar.Enabled = false;
             if (Convert.ToBoolean(esAdminREQ))
             {
@@ -529,7 +539,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void botonesInicio()
         {
-            BotonREQCancelar.Enabled = false;
+                BotonREQCancelar.Enabled = false;
                 BotonREQEliminar.Enabled = false;
                 BotonREQModificar.Enabled = false;
                 BotonREQAceptar.Enabled = false;
@@ -643,6 +653,7 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID Requerimiento", typeof(String));
+            dt.Columns.Add("Nombre del Requerimiento", typeof(String));
             dt.Columns.Add("Nombre Proyecto");
             return dt;
         }

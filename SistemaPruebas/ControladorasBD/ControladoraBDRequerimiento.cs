@@ -65,7 +65,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int insertarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
         {   
-            String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales,id_proyecto,fechaUltimo) VALUES ('" + requerimiento.Id + "','" + requerimiento.Precondiciones + "','" + requerimiento.RequerimientosEspeciales+ "',"+requerimiento.Proyecto+", getDate());";
+            String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales,id_proyecto, nombre, fechaUltimo) VALUES ('" + requerimiento.Id + "','" + requerimiento.Precondiciones + "','" + requerimiento.RequerimientosEspeciales+ "',"+requerimiento.Proyecto+ "','" + requerimiento.Nombre + "', getDate());";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -78,7 +78,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int modificarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
         {
-            String consulta = "UPDATE Requerimiento SET id_requerimiento='" + requerimiento.Id + "',precondiciones='" + requerimiento.Precondiciones + "',Requerimientos_especiales='" + requerimiento.RequerimientosEspeciales + "',id_proyecto='" + requerimiento.Proyecto + "',fechaUltimo=getDate() WHERE id_requerimiento='" + requerimiento.IdViejo + "';";
+            String consulta = "UPDATE Requerimiento SET id_requerimiento='" + requerimiento.Id + "',precondiciones='" + requerimiento.Precondiciones + "',Requerimientos_especiales='" + requerimiento.RequerimientosEspeciales + "',id_proyecto='" + requerimiento.Proyecto + "', nombre='" + requerimiento.Nombre + "', fechaUltimo=getDate() WHERE id_requerimiento='" + requerimiento.IdViejo + "';";
             int ret = acceso.Insertar(consulta);
             return ret;
         }
@@ -104,15 +104,15 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa el ID pues los consulta a todos
             {
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento ORDER BY fechaUltimo desc;";
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, nombre, id_proyecto from Requerimiento ORDER BY fechaUltimo desc;";
             }
             else if (tipo == 2)
             {
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_requerimiento='"+id+"';";
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, nombre, id_proyecto from Requerimiento where id_requerimiento='" + id+"';";
             }
             else if (tipo == 3)
             {
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, id_proyecto from Requerimiento where id_proyecto='" + Convert.ToInt32(id) + "'  ORDER BY fechaUltimo desc;";
+                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, nombre, id_proyecto from Requerimiento where id_proyecto='" + Convert.ToInt32(id) + "'  ORDER BY fechaUltimo desc;";
             }
                 
 
