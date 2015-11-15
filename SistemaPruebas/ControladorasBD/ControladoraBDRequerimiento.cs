@@ -141,8 +141,7 @@ namespace SistemaPruebas.Controladoras
          */
         public DataTable consultarRequerimientoEnDisenoBD(int id_proyecto, int id_diseno)
         {
-
-            String consulta = "select p.id_requerimiento, r.nombre from Prueba_Disenno_Req p, requerimiento r where p.id_proyecto = " + id_proyecto + " and p.id_disenno = " + id_diseno+" AND p.id_requerimiento = r.id_requerimiento";
+            String consulta = "select id_requerimiento from Prueba_Disenno_Req where id_proyecto = " + id_proyecto + " and id_disenno = " + id_diseno;
 
             DataTable dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;

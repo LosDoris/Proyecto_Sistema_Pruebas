@@ -432,8 +432,8 @@ namespace SistemaPruebas.Intefaces
                             EtiqErrorGen.ForeColor = System.Drawing.Color.DarkSeaGreen;
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                             llenarGridDisenos();
-                            llenarGridsReq(1);
-                            llenarGridsReq(2);
+                           // llenarGridsReq(1);
+                           // llenarGridsReq(2);
                             habilitarGridDiseno();
                             deshabilitarCampos();
                             desmarcarBoton(ref Insertar);
