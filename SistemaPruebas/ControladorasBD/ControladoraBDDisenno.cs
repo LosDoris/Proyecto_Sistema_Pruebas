@@ -155,7 +155,9 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = null;
             String consulta = "";
-            consulta = "select id_requerimiento from Prueba_Disenno_Req where id_disenno = " +idDisenno;
+             consulta = "select p.id_requerimiento, r.nombre from Prueba_Disenno_Req p, requerimiento r where p.id_disenno = " + idDisenno + " AND p.id_requerimiento = r.id_requerimiento";
+
+           // consulta = "select id_requerimiento from Prueba_Disenno_Req where id_disenno = " +idDisenno;
             dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
         }

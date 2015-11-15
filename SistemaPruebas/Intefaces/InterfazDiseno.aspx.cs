@@ -111,6 +111,31 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static string nombre_req_asoc
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["nombre_req_asoc"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["nombre_req_asoc"] = value;
+            }
+        }
+
+        public static string nombre_req_NoAsoc
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["nombre_req_asoc"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["nombre_req_asoc"] = value;
+            }
+        }
 
         public static string id_diseno_cargado
         {
@@ -501,6 +526,7 @@ namespace SistemaPruebas.Intefaces
             DataTable dt = new DataTable();
 
             req.Columns.Add("Id de Requerimiento");
+            req.Columns.Add("Nombre del Requerimiento");
 
             int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
             int diseno = -1;
@@ -522,19 +548,26 @@ namespace SistemaPruebas.Intefaces
                 dtSiasociados = dt;
 
             }
+            Object[] datos = new Object[2];
 
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    req.Rows.Add(dr[0].ToString());
+                    datos[0] = dr[0].ToString();
+                    datos[1] = dr[1];
+                    req.Rows.Add(datos);
 
                 }
             }
+
             else
             {
 
-                req.Rows.Add('-');
+                Object[] datos1 = new Object[2];
+                datos1[0] = "-";
+                datos1[1] = "-";
+                req.Rows.Add(datos);
             }
             return req;       
         }
@@ -551,6 +584,7 @@ namespace SistemaPruebas.Intefaces
                 {
                     Object[] datos = new Object[1];
                     datos[0] = "-";
+                    datos[1] = "-";
                     req.Rows.Add(datos);
                 }
                 gridNoAsociados.DataSource = req;
@@ -565,8 +599,9 @@ namespace SistemaPruebas.Intefaces
                 }
                 else
                 {
-                    Object[] datos = new Object[1];
+                    Object[] datos = new Object[2];
                     datos[0] = "-";
+                    datos[1] = "-";
                     req.Rows.Add(datos);
                 }
                 gridAsociados.DataSource = req;
@@ -578,6 +613,7 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID Requerimiento", typeof(String));
+            dt.Columns.Add("Nombre del Requerimiento", typeof(String));
             return dt;
         }
 
@@ -588,8 +624,9 @@ namespace SistemaPruebas.Intefaces
             {
 
                 id_req_noAsoc = gridNoAsociados.SelectedRow.Cells[0].Text;
+                nombre_req_NoAsoc = gridNoAsociados.SelectedRow.Cells[1].Text;
                 dtNoAsociados = quitarElemento(dtNoAsociados, id_req_noAsoc);
-                dtSiasociados = ponerElemento(dtSiasociados, id_req_noAsoc);
+                dtSiasociados = ponerElemento(dtSiasociados, id_req_noAsoc, nombre_req_NoAsoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -604,8 +641,9 @@ namespace SistemaPruebas.Intefaces
             try
             {
                 id_req_asoc = gridAsociados.SelectedRow.Cells[0].Text;
+                nombre_req_asoc = gridAsociados.SelectedRow.Cells[1].Text;
                 dtSiasociados = quitarElemento(dtSiasociados, id_req_asoc);
-                dtNoAsociados = ponerElemento(dtNoAsociados, id_req_asoc);
+                dtNoAsociados = ponerElemento(dtNoAsociados, id_req_asoc, nombre_req_asoc);
                 llenarGridsReqModificar(1, dtNoAsociados);
                 llenarGridsReqModificar(2, dtSiasociados);
             }
@@ -619,14 +657,15 @@ namespace SistemaPruebas.Intefaces
         {
 
             DataTable dtNueva = crearTablaREQ();
-            Object[] datos = new Object[1];
+            Object[] datos = new Object[2];
 
                 if (dtVieja.Rows.Count > (0-1))
                 {
                     foreach (DataRow dr in dtVieja.Rows)
                     {                        
                         datos[0] = dr[0];
-                        if (Convert.ToString(datos[0]) != Convert.ToString(id))
+                        datos[1] = dr[1];
+                    if (Convert.ToString(datos[0]) != Convert.ToString(id))
                         {
                             dtNueva.Rows.Add(datos);
                         }
@@ -635,23 +674,26 @@ namespace SistemaPruebas.Intefaces
                 else
                 {
                     datos[0] = "-";
+                    datos[1] = "-";
                     dtNueva.Rows.Add(datos);
                 }
                 
             return dtNueva;
         }
-        protected DataTable ponerElemento(DataTable dtVieja, String id)
+        protected DataTable ponerElemento(DataTable dtVieja, String id, string nombre)
         {
 
             DataTable dtNueva = crearTablaREQ();
-            Object[] datos = new Object[1];
+            Object[] datos = new Object[2];
 
             datos[0] = id;
+            datos[1] = nombre;
             dtNueva.Rows.Add(datos);
             foreach (DataRow dr in dtVieja.Rows)
                 {
 
                     datos[0] = dr[0];
+                    datos[1] = dr[1];
                     dtNueva.Rows.Add(datos);
                     
                 }
@@ -1138,7 +1180,7 @@ namespace SistemaPruebas.Intefaces
         }
 
         //Requiere: N/A
-        //Modifica: Se carga la pinterfaz de casos de prueba.
+        //Modifica: Se carga la interfaz de casos de prueba.
         //retorna N/A
         protected void irACasoPrueba(object sender, EventArgs e){
             List<string> lista=new List<string>();
@@ -1163,9 +1205,9 @@ namespace SistemaPruebas.Intefaces
         {
             for (int i = 0; i< gridAsociados.Rows.Count ; i++ )
             {
-                string value = gridAsociados.Rows[i].Cells[0].Text;
+                string id_req = gridAsociados.Rows[i].Cells[0].Text;
                 int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
-                object[] datos = {proyecto, value, Int32.Parse(id_diseno_cargado)};
+                object[] datos = {proyecto, id_req, Int32.Parse(id_diseno_cargado)};
                 controlDiseno.insertarDisennoReq(datos);
             }
         }
