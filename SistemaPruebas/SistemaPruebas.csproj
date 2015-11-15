@@ -157,8 +157,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Imagenes\calendar.png" />
+    <Content Include="Intefaces\ejemplo.jpg" />
     <Content Include="Intefaces\InterfazCasosDePrueba.aspx" />
     <Content Include="Intefaces\InterfazDiseno.aspx" />
+    <Content Include="Intefaces\InterfazEjecucion.aspx" />
     <Content Include="Intefaces\InterfazProyecto.aspx" />
     <Content Include="Intefaces\InterfazRecursoHumano.aspx" />
     <Content Include="Intefaces\InterfazReportes.aspx" />
@@ -276,6 +279,13 @@
     </Compile>
     <Compile Include="Intefaces\InterfazDiseno.aspx.designer.cs">
       <DependentUpon>InterfazDiseno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Intefaces\InterfazEjecucion.aspx.cs">
+      <DependentUpon>InterfazEjecucion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Intefaces\InterfazEjecucion.aspx.designer.cs">
+      <DependentUpon>InterfazEjecucion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Intefaces\InterfazProyecto.aspx.cs">
       <DependentUpon>InterfazProyecto.aspx</DependentUpon>
