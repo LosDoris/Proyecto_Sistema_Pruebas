@@ -7,12 +7,14 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using System.IO;
 using System.Data.SqlClient;
+using SistemaPruebas.Controladoras;
 
 namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazEjecucion : System.Web.UI.Page
     {
 
+      ControladoraEjecucionPrueba controladoraEjecucionPrueba = new ControladoraEjecucionPrueba();
       /*
        * Requiere: N/A
        * Modifica: Declara variable global de modo (tipo de operación en ejecución)
@@ -56,7 +58,10 @@ namespace SistemaPruebas.Intefaces
        */
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                //estadoInicial();
+            }
         }
 
         /*
@@ -72,12 +77,32 @@ namespace SistemaPruebas.Intefaces
         protected void estadoInicial()
         {
             DatosEjecucion.Enabled = false;
+            llenarDDProyectoAdmin();
         }
 
-        protected void llenarDDProyecto()
+        protected void llenarDDProyectoAdmin()
         {
-            
 
+            this.DropDownProyecto.Items.Clear();
+            String proyectos = controladoraEjecucionPrueba.solicitarProyectos();
+            String[] pr = proyectos.Split(';');
+
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+                try
+                {
+                    if (Convert.ToInt32(p2[1]) > -1)
+                    {
+                        this.DropDownProyecto.Items.Add(new ListItem(p2[0], p2[1]));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
         }
 
         protected void BotonEPInsertar_Click(object sender, EventArgs e)
@@ -105,7 +130,7 @@ namespace SistemaPruebas.Intefaces
                     HttpPostedFile img = FileUploadControl.PostedFile;
                     img.InputStream.Read(imgbyte, 0, length);
                     string base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
-                    ImagenResultado.ImageUrl = "data:image/png;base64, data:image/jpg;base64" + base64String;
+                    ImagenResultado.ImageUrl = "data:image/png;base64," + base64String;
                     ImagenResultado.Visible = true;
                     String filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
                     using (SqlConnection con = new SqlConnection(strCon))

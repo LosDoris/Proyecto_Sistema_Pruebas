@@ -143,6 +143,11 @@ namespace SistemaPruebas.Controladoras
             return controlBD.consultarId_Disenno(proposito);
         }
 
+        public String solicitarPropositoDiseno(int idProyecto)
+        {
+            return controlBD.solicitarPropositoDiseno(idProyecto);
+        }
+
         /*
         Requiere: Object [ ] datos con los datos del diseño de prueba y una ListaRequerimientos req que tiene todos los requerimientos de este Diseño.
         Modifica: Modifica un Diseño de proyecto, al enviarle a la controladora de bases de datos una entidad del diseño con los datos generales y también uno por uno los requerimientos.
