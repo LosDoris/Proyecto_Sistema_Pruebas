@@ -87,7 +87,8 @@
                 </div>  
                 <div class="col-md-2">
                     <%--<asp:Image ID="ImagenResultado" runat="server" ImageUrl="~/Intefaces/ejemplo.jpg" style="max-height:100px;max-width:100px;border-color:#2e8e9e"/>--%>
-                    <asp:Button runat="server" Text="Subir Imagen"   CssClass="btn btn-default"   ID="Subir"     CausesValidation ="false"/>
+                    <asp:FileUpload id="FileUploadControl" runat="server" />
+                    <asp:Button runat="server" Text="Subir Imagen"   CssClass="btn btn-default"   ID="Subir"     CausesValidation ="false" OnClick="Subir_Click"/>
                     <asp:Button runat="server" Text="Mostrar Imagen" CssClass="btn btn-default" ID="Mostrar"   CausesValidation ="false"/>
                 </div>
             </div>
@@ -171,10 +172,10 @@
 <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonEPEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal"></ajaxToolkit:ModalPopupExtender>
 
 <asp:Panel runat="server" ID="PanelImagen" CssClass="modalPopup"> 
-    <asp:Image ID="ImagenResultado" runat="server" style="max-height:60%" ImageUrl="~/Imagenes/ejemplo.jpg"/>
+    <asp:Image ID="ImagenResultado" runat="server" style="max-height:400px" />
     <br/> <br/>
     <div aria-pressed="true">
-        <asp:button runat="server" ID="CerrarPanel" Text="Si" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />
+        <asp:button runat="server" ID="CerrarPanel" Text="Cerrar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />
     </div>
 </asp:Panel>
 <ajaxToolkit:ModalPopupExtender ID="ModalImagen" runat="server" BackgroundCssClass="modalBackground" PopupControlID="PanelImagen" TargetControlID="Mostrar" ></ajaxToolkit:ModalPopupExtender>

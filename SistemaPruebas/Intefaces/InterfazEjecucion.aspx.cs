@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.IO;
+using System.Data.SqlClient;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -88,6 +90,43 @@ namespace SistemaPruebas.Intefaces
             if(DropDownProyecto.SelectedItem.Text != "Seleccionar")
             {
 
+            }
+        }
+
+        protected void Subir_Click(object sender, EventArgs e)
+        {
+            string strCon = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
+            if (FileUploadControl.HasFile)
+            {
+                try
+                {
+                    int length = FileUploadControl.PostedFile.ContentLength;
+                    byte[] imgbyte = new byte[length];
+                    HttpPostedFile img = FileUploadControl.PostedFile;
+                    img.InputStream.Read(imgbyte, 0, length);
+                    string base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
+                    ImagenResultado.ImageUrl = "data:image/png;base64, data:image/jpg;base64" + base64String;
+                    ImagenResultado.Visible = true;
+                    String filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
+                    using (SqlConnection con = new SqlConnection(strCon))
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = "insert into Image_Sample(imagename,imgdata) values(@Name,@Data)";
+                            cmd.Parameters.AddWithValue("@Name", filename);
+                            cmd.Parameters.AddWithValue("@Data", imgbyte);
+                            cmd.Connection = con;
+                            con.Open();
+                            int a = cmd.ExecuteNonQuery();
+                            Response.Write("lkjlkjlk"+a);
+                            con.Close();
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
         }
     }
