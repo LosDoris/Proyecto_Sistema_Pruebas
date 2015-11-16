@@ -195,5 +195,10 @@ namespace SistemaPruebas.Controladoras
             consulta = "delete from Prueba_Disenno_Req where id_requerimiento = '" + idReq + "' and id_disenno = " + idDisenno;
             return acceso.Insertar(consulta);          
         }
+
+        //public String solicitarPropositoDiseno(int idProyecto)
+        //{
+        //    String consulta = "SELECT "
+        //}
     }
 }
