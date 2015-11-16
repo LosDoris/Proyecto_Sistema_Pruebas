@@ -54,7 +54,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -76,7 +76,7 @@
                         <li id="nombre" runat="server"><a id="Nombres" runat="server"></a></li>                             
                         <li>
 
-                            <button id="LOGOUT" runat="server" class="btn-LogOut"
+                            <button id="LOGOUT" runat="server" class="btn btn-default"
                                 onserverclick="LogOut" causesvalidation="false">Salir</button>
                         </li>
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>

@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="margin-top:60px">
         <h1>Bienvenido</h1>
         <p class="lead">Sistema de Pruebas. Página de inicio</p>
         
