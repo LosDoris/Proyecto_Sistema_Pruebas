@@ -158,7 +158,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Imagenes\calendar.png" />
-    <Content Include="Intefaces\ejemplo.jpg" />
+    <Content Include="Imagenes\ejemplo.jpg" />
     <Content Include="Intefaces\InterfazCasosDePrueba.aspx" />
     <Content Include="Intefaces\InterfazDiseno.aspx" />
     <Content Include="Intefaces\InterfazEjecucion.aspx" />
@@ -244,6 +244,7 @@
     <Compile Include="ControladorasBD\ControladoraBDEjecucionPrueba.cs" />
     <Compile Include="ControladorasBD\ControladoraBDRequerimiento.cs" />
     <Compile Include="Controladoras\ControladoraCasosPrueba.cs" />
+    <Compile Include="Controladoras\ControladoraEjecucion.cs" />
     <Compile Include="Controladoras\ControladoraProyecto.cs" />
     <Compile Include="Controladoras\ControladoraRecursosHumanos.cs" />
     <Compile Include="Controladoras\ControladoraDisenno.cs" />

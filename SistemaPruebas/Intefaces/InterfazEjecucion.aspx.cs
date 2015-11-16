@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -71,9 +72,23 @@ namespace SistemaPruebas.Intefaces
             DatosEjecucion.Enabled = false;
         }
 
+        protected void llenarDDProyecto()
+        {
+            
+
+        }
+
         protected void BotonEPInsertar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(DropDownProyecto.SelectedItem.Text != "Seleccionar")
+            {
+
+            }
         }
     }
 }
