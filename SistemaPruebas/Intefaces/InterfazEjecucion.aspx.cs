@@ -60,7 +60,7 @@ namespace SistemaPruebas.Intefaces
         {
             if(!IsPostBack)
             {
-                //estadoInicial();
+                estadoInicial();
             }
         }
 
@@ -84,7 +84,9 @@ namespace SistemaPruebas.Intefaces
         {
 
             this.DropDownProyecto.Items.Clear();
+            DropDownProyecto.Items.Add(new ListItem("Seleccionar"));
             String proyectos = controladoraEjecucionPrueba.solicitarProyectos();
+           // Response.Write(proyectos);
             String[] pr = proyectos.Split(';');
 
             foreach (String p1 in pr)
@@ -105,17 +107,31 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void BotonEPInsertar_Click(object sender, EventArgs e)
+        protected void llenarDDDisseno()
         {
-
+            this.DropDownDiseno.Items.Clear();
+            DropDownDiseno.Items.Add(new ListItem("Seleccionar"));
+            int idProyecto = Convert.ToInt32( DropDownProyecto.SelectedItem.Value);
+            String disenos = controladoraEjecucionPrueba.solicitarPropositoDiseno(idProyecto);
+            Response.Write(disenos);
         }
 
         protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(DropDownProyecto.SelectedItem.Text != "Seleccionar")
             {
-
+                DropDownDiseno.Enabled = true;
+                llenarDDDisseno();
             }
+            else
+            {
+                DropDownDiseno.Enabled = false;
+            }
+        }
+
+        protected void BotonEPInsertar_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void Subir_Click(object sender, EventArgs e)

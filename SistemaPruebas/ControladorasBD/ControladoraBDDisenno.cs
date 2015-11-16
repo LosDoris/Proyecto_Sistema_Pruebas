@@ -196,9 +196,15 @@ namespace SistemaPruebas.Controladoras
             return acceso.Insertar(consulta);          
         }
 
-        //public String solicitarPropositoDiseno(int idProyecto)
-        //{
-        //    String consulta = "SELECT "
-        //}
+        public String solicitarPropositoDiseno(int idProyecto)
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Consultar_Diseno_ID_Proyecto"))
+            {
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add(new SqlParameter("@id", idProyecto));
+                return acceso.Consultar_Proced_Almacenado(comando);
+
+            }
+        }
     }
 }
