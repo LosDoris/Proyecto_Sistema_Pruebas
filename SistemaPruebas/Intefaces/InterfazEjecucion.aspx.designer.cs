@@ -22,15 +22,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label EtiqMensajeOperacion;
         
         /// <summary>
-        /// Control BotonEPModificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonEPModificar;
-        
-        /// <summary>
         /// Control BotonEPInsertar.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BotonEPInsertar;
+        
+        /// <summary>
+        /// Control BotonEPModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BotonEPModificar;
         
         /// <summary>
         /// Control BotonEPEliminar.
