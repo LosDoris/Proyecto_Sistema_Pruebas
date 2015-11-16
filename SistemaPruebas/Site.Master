@@ -69,7 +69,8 @@
                         <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>
                         <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
                         <li id ="A3" runat="server"><a  runat="server" href="~/Intefaces/InterfazDiseno">Diseño</a></li>
-                        <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRequerimiento">Requerimiento</a></li>                                                
+                        <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRequerimiento">Requerimiento</a></li>  
+                        <li id="A4" runat="server"><a runat="server" href="~/Intefaces/InterfazReporte">Reportes</a></li>                                              
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
