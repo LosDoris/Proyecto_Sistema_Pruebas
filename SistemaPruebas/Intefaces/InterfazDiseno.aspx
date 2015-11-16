@@ -360,7 +360,7 @@ PublicKeyToken=31bf3856ad364e35"/>
     </div>
     <div class="row">
         <div id="botonCasoPrueba">
-            <asp:Button runat="server" ID="botonCP" Text="Casos de Prueba" CssClass="btn btn-default" Style="margin-top: 10px; margin-left: 15px;" CausesValidation="false" Enabled="false" OnClick="irACasoPrueba" />
+            <asp:Button runat="server" ID="botonCP" Text="Casos de Prueba" Enabled="false" CssClass="btn btn-default" Style="margin-top: 10px; margin-left: 15px;" CausesValidation="false" OnClick="irACasoPrueba" />
         </div>
     </div>
     <div class="form-group">

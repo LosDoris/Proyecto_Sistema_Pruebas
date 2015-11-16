@@ -15,43 +15,40 @@ namespace SistemaPruebas.Intefaces
         Controladoras.ControladoraDisenno controlDiseno = new Controladoras.ControladoraDisenno();
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            restriccionesCampos();
-            if (controlDiseno.loggeadoEsAdmin())
+            if (!IsPostBack)
             {
-                if (llenarProyecto == true.ToString())
+                if (controlDiseno.loggeadoEsAdmin())
                 {
                     llenarComboboxProyectoAdmin();
                     deshabilitarCampos();
                     deshabilitarGridReq(1);
                     deshabilitarGridReq(2);
-
                 }
-                llenarProyecto = false.ToString();
-                Modificar.Enabled = false;
-                Insertar.Enabled = false;
-                Eliminar.Enabled = false;
-
-            }
-
-            else
-            {
-                if (llenarProyecto == true.ToString())
+                else
                 {
                     llenarComboboxProyectoMiembro();
-                    llenarGridDisenos();                   
+                    llenarGridDisenos();
                     llenarGridsReq(1);
                     llenarGridsReq(2);
                     cargarResponsablesMiembro();
                     deshabilitarCampos();
                 }
+            }
+            restriccionesCampos();
+            if (controlDiseno.loggeadoEsAdmin())
+            {
+                llenarProyecto = false.ToString();
+                Modificar.Enabled = false;
+                Insertar.Enabled = false;
+                Eliminar.Enabled = false;
+            }
+            else
+            {
                 llenarProyecto = false.ToString();
                 Modificar.Enabled = false;
                 Insertar.Enabled = true;
                 Eliminar.Enabled = false;
-
             }
-
             txt_date.Attributes.Add("readonly", "readonly");
         }
 
@@ -366,7 +363,6 @@ namespace SistemaPruebas.Intefaces
             cancelar.Enabled = false;
             deshabilitarGridReq(1);
             deshabilitarGridReq(2);
-            botonCP.Enabled = false;
         }
 
         /*
@@ -1123,6 +1119,7 @@ namespace SistemaPruebas.Intefaces
                 aceptar.Enabled = true;                
                 Llenar_Datos_Conultados(id_diseno);
                 cancelar.Enabled = true;
+                botonCP.Enabled = true;
 
             }
             catch (Exception ex)
@@ -1171,6 +1168,7 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             Eliminar.Enabled = false;
             labelSeleccioneProyecto.Visible = false;
+            botonCP.Enabled = false;
 
         }
 

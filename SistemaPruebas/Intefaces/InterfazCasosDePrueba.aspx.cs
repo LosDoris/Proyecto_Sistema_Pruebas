@@ -885,21 +885,17 @@ namespace SistemaPruebas.Intefaces
         */
         protected void DECP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in DECP.Rows)
+            try
             {
-                if (row.RowIndex == DECP.SelectedIndex)
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#2e8e9e");
-                    row.ToolTip = string.Empty;
-                }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                   // row.ToolTip = "Click to select this row.";
-                }
+                TextBoxDatos.Text = DECP.SelectedRow.Cells[0].Text;
+                TipoEntrada.Text = DECP.SelectedRow.Cells[1].Text;
+                TipoEntrada.SelectedValue = DECP.SelectedRow.Cells[1].Text;
+               
             }
-
-            EliminarEntrada.Enabled = true;
+            catch
+            {
+                EtiqErrorConsultar.Visible = true;
+            }
         }
 
        /*
