@@ -52,6 +52,37 @@
                             <%--OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"--%>
                         </div>
                     </div>
+    <div class ="row" style ="width: 100%">    
+    <div class="jumbozCP" >
+        <h4>Resumen</h4>
+        <div class="col-md-6">
+            <div class ="form-group">
+		        <asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Nombre Sistema"></asp:Label>
+            </div>
+            <div class="form-group">
+                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Objetivo General"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="estado" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Estado"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nombre Representante"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Lider del Proyecto"></asp:Label>
+            </div>
+        </div>
+        
+		    
+        <div style="clear:both"></div>
+
+    </div>
+</div>
     <div class="col-md-16">
     <div class="row">
         <div class="col-md-16">
