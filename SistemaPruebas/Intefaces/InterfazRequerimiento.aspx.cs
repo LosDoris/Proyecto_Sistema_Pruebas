@@ -101,6 +101,39 @@ namespace SistemaPruebas.Intefaces
                 proyectoActual = ((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).ToString();
             }
             llenarGrid();
+            llenarProyectoResumen();
+        }
+
+        protected void llenarProyectoResumen()
+        {
+            ControladoraProyecto contP = new ControladoraProyecto();
+            EntidadProyecto ent = contP.ConsultarProyecto(Convert.ToInt32(proyectoActual));
+
+            nombre_sistema.Text = "Nombre del Sistema: " + ent.Nombre_sistema;
+            nombre_rep.Text = "Nombre del Representante: " + ent.Nombre_representante;
+            objetivo_general.Text = "Objetivo General: " + ent.Objetivo_general;
+            LiderProyecto.Text = "Líder del Proyecto: " + ent.LiderProyecto;
+            string el_estado = ent.Estado;
+            if (el_estado == "1") 
+            {
+                estado.Text = "Estado: Pendiente";
+            }
+            else if (el_estado == "2")
+            {
+                estado.Text = "Estado: Asignado";
+            }
+            else if (el_estado == "3")
+            {
+                estado.Text = "Estado: En Ejecución";
+            }
+            else if (el_estado == "4")
+            {
+                estado.Text = "Estado: Finalizado";
+            }
+            else if (el_estado == "5")
+            {
+                estado.Text = "Estado: Cerrado";
+            }
         }
 
         /*
@@ -144,9 +177,9 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    int id = Convert.ToInt32(dr[4]);
+                    int id = Convert.ToInt32(dr[2]);
                     String nomp = controladoraRequerimiento.solicitarNombreProyecto(id);
-                    datos[0] = dr[3];
+                    datos[1] = dr[1];
                     datos[2] = nomp;
                     Requerimiento.Rows.Add(datos);
                 }
@@ -446,6 +479,7 @@ namespace SistemaPruebas.Intefaces
             }
             volverAlOriginal();
             llenarGrid();
+            llenarProyectoResumen();
         }
 
         /*

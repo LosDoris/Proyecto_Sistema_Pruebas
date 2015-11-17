@@ -1,9 +1,10 @@
-﻿<%@ Page EnableEventValidation="false" Title="Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazProyecto.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazProyecto" Async="true" %>
+﻿<%@ Page Title="Gestión de Proyectos" EnableEventValidation="false"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazProyecto.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazProyecto" Async="true" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <h2><%: Title %></h2>
     <style type="text/css">
         .modalBackground 
         {
@@ -64,7 +65,7 @@
                 </asp:PlaceHolder>
 
                 <div class="form-group">
-                    <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto</asp:Label>
+                    <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto*</asp:Label>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
@@ -94,7 +95,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General</asp:Label>
+                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General*</asp:Label>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)" placeHolder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="obj_general" ForeColor="Salmon"></asp:RequiredFieldValidator>
@@ -300,6 +301,10 @@
 
             </div>
         </div>
+    </div>
+    
+    <div class="form-group col-md-offset-10 col-md-12">
+        <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
     <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">

@@ -244,6 +244,7 @@
     <Compile Include="ControladorasBD\ControladoraBDEjecucionPrueba.cs" />
     <Compile Include="ControladorasBD\ControladoraBDRequerimiento.cs" />
     <Compile Include="Controladoras\ControladoraCasosPrueba.cs" />
+    <Compile Include="Controladoras\ControladoraReportes.cs" />
     <Compile Include="Controladoras\ControladoraProyecto.cs" />
     <Compile Include="Controladoras\ControladoraRecursosHumanos.cs" />
     <Compile Include="Controladoras\ControladoraDisenno.cs" />

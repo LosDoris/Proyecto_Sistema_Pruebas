@@ -368,9 +368,13 @@ namespace SistemaPruebas.Controladoras
         {
 
             DataTable dt = new DataTable();
-            dt = acceso.ejecutarConsultaTabla("SELECT cedula FROM Recurso_Humano WHERE nombre_completo = '" + nombre + "'");
-            return Int32.Parse(dt.Rows[0][0].ToString());
-
+            if (nombre != "Seleccionar")
+            {
+                dt = acceso.ejecutarConsultaTabla("SELECT cedula FROM Recurso_Humano WHERE nombre_completo = '" + nombre + "'");
+                return Int32.Parse(dt.Rows[0][0].ToString());
+            }
+            else 
+                return 0;
         }
 
         public string solicitarNombreRecurso(int cedula)
