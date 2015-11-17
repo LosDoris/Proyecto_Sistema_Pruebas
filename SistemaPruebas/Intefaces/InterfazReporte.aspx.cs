@@ -66,7 +66,7 @@ namespace SistemaPruebas.Intefaces
                 {
                     //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
                 }
-                //volverAlOriginal();
+                volverAlOriginal();
             }
             if (Convert.ToBoolean(esAdminGE))
             {
@@ -81,7 +81,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridPP()
         {
 
-            DataTable Requerimiento = crearTablaPP();
+            DataTable dtGrid = crearTablaPP();
             DataTable dt=new DataTable();
             if (Convert.ToBoolean(esAdminGE))
             {
@@ -93,7 +93,7 @@ namespace SistemaPruebas.Intefaces
             {
                 //dt = controladoraGR.consultarRequerimiento(3, Convert.ToString(controladoraGR.proyectosDelLoggeado()));
             }
-            Object[] datos = new Object[3];
+            Object[] datos = new Object[2];
 
 
             if (dt.Rows.Count > 0)
@@ -104,16 +104,15 @@ namespace SistemaPruebas.Intefaces
                     int id = Convert.ToInt32(dr[4]);
                     String nomp="" ;//= controladoraGR.solicitarNombreProyecto(id);
                     datos[0] = dr[3];
-                    datos[2] = nomp;
-                    Requerimiento.Rows.Add(datos);
+                    datos[1] = nomp;
+                    dtGrid.Rows.Add(datos);
                 }
             }
             else
             {
                 datos[0] = "-";
                 datos[1] = "-";
-                datos[2] = "-";
-                Requerimiento.Rows.Add(datos);
+                dtGrid.Rows.Add(datos);
             }
             //gridRequerimiento.DataSource = Requerimiento;
             //gridRequerimiento.DataBind();
@@ -127,6 +126,11 @@ namespace SistemaPruebas.Intefaces
         protected void volverAlOriginal()
         {
             //deshabilitarCampos();
+
+            deshabilitarPP();
+            deshabilitarDP();
+            deshabilitarCP();
+            deshabilitarEP();
             modoGE = Convert.ToString(0);
             if (!Convert.ToBoolean(esAdminGE))
             {
@@ -182,6 +186,43 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Fecha.", typeof(String));
             return dt;
         }
+        protected void deshabilitarPP()
+        {
+            CheckBoxEstadoProyecto.Enabled = false;
+            CheckBoxFechAsignacionProyecto.Enabled = false;
+            CheckBoxMiembrosProyecto.Enabled = false;
+            CheckBoxNombreProyecto.Enabled = false;
+            CheckBoxObjetivoProyecto.Enabled = false;
+            CheckBoxOficinaProyecto.Enabled = false;
+            CheckBoxResponsableProyecto.Enabled = false;
+        }
+        protected void deshabilitarDP()
+        {
+            CheckBoxCriteriosAceptacionDisenno.Enabled = false;
+            CheckBoxFechAsignacionDisenno.Enabled = false;
+            CheckBoxNivelDisenno.Enabled = false;
+            CheckBoxProcedimientoDisenno.Enabled = false;
+            CheckBoxPropositoDisenno.Enabled = false;
+            CheckBoxReqDisenno.Enabled = false;
+            CheckBoxResponsableDisenno.Enabled = false;
+        }
+        protected void deshabilitarCP()
+        {
+            CheckBoxEntraDatosCP.Enabled = false;
+            CheckBoxFlujoCentralCP.Enabled = false;
+            CheckBoxIDCP.Enabled = false;
+            CheckBoxPropositoCP.Enabled = false;
+            CheckBoxResultadoEsperadoCP.Enabled = false;
+        }
+        protected void deshabilitarEP()
+        {
+            CheckBoxEntraDatosEP.Enabled = false;
+            CheckBoxFlujoCentralEP.Enabled = false;
+            CheckBoxIDEP.Enabled = false;
+            CheckBoxPropositoEP.Enabled = false;
+            CheckBoxResultadoEsperadoEP.Enabled = false;
+        }
             
     }
+    
 }
