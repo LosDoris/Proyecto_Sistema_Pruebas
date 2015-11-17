@@ -38,7 +38,9 @@ namespace SistemaPruebas.Intefaces
                 restriccionesCampos();
                 txt_date.Attributes.Add("readonly", "readonly");
                 llenarPrincipio();
+
             }
+
             
             if (controlDiseno.loggeadoEsAdmin())
             {
@@ -51,6 +53,12 @@ namespace SistemaPruebas.Intefaces
                 Modificar.Enabled = false;
                 Insertar.Enabled = true;
                 Eliminar.Enabled = false;
+            }
+            if (camposLlenos == "true")
+            {
+                Modificar.Enabled = true;
+                Insertar.Enabled = true;
+                Eliminar.Enabled = true;
             }
             
         }
@@ -96,6 +104,19 @@ namespace SistemaPruebas.Intefaces
             set
             {
                 HttpContext.Current.Session["el_proyecto"] = value;
+            }
+        }
+
+        public static string camposLlenos
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["camposLlenos"];
+                return value == null ? "-1" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["camposLlenos"] = value;
             }
         }
 
@@ -404,6 +425,7 @@ namespace SistemaPruebas.Intefaces
             Modificar.Enabled = false;
             deshabilitarGridReq(1);
             deshabilitarGridReq(2);
+            camposLlenos = "false";
         }
 
         /*
@@ -420,7 +442,7 @@ namespace SistemaPruebas.Intefaces
                 case 1://Insertar
                     {
                        string fecha = txt_date.Text;                       
-                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);
+                        int cedula = 0;
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
                         el_proyecto = proyecto.ToString();                        
                         object[] datos;
@@ -466,10 +488,15 @@ namespace SistemaPruebas.Intefaces
                     {
 
                         string fecha = txt_date.Text;
-                        int cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue);                       
+                        int cedula = 0;
+                        if (responsable.SelectedValue != "Seleccionar")
+                        {
+                            cedula = controlDiseno.solicitarResponsableCedula(responsable.SelectedValue); 
+                        }
+                                              
                         int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
 
-                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, cedula, proyecto };
+                        object[] datos = new object[9] { propositoTxtbox.Text, Nivel.SelectedValue, Tecnica.SelectedValue, ambienteTxtbox.Text, procedimientoTxtbox.Text, fecha, criteriosTxtbox.Text, -1, proyecto };
                         int a = controlDiseno.modificarDiseno(Int32.Parse(id_diseno_cargado), datos);
                         if (a == 1)
                         {
@@ -1271,6 +1298,8 @@ namespace SistemaPruebas.Intefaces
         public void llenarPrincipio()
         {
             try {
+                Modificar.Enabled = true;
+                Eliminar.Enabled = true;
                 this.propositoTxtbox.Text = infDisennoRegresar[0];
 
 
@@ -1299,7 +1328,9 @@ namespace SistemaPruebas.Intefaces
                 {
                     selectedListItem3.Selected = true;
                 }
+                camposLlenos = "true";         
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex);

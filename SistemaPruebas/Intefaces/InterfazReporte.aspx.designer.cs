@@ -22,67 +22,67 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.GridView GridProyecto;
         
         /// <summary>
-        /// Control CheckBox1.
+        /// Control CheckBoxNombreProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxNombreProyecto;
         
         /// <summary>
-        /// Control CheckBox2.
+        /// Control CheckBoxFechAsignacionProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxFechAsignacionProyecto;
         
         /// <summary>
-        /// Control CheckBox3.
+        /// Control CheckBoxOficinaProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxOficinaProyecto;
         
         /// <summary>
-        /// Control CheckBox4.
+        /// Control CheckBoxResponsableProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxResponsableProyecto;
         
         /// <summary>
-        /// Control CheckBox5.
+        /// Control CheckBoxObjetivoProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox5;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxObjetivoProyecto;
         
         /// <summary>
-        /// Control CheckBox6.
+        /// Control CheckBoxEstadoProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox6;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxEstadoProyecto;
         
         /// <summary>
-        /// Control CheckBox7.
+        /// Control CheckBoxMiembrosProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox7;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxMiembrosProyecto;
         
         /// <summary>
         /// Control GridView1.
@@ -94,67 +94,67 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// Control CheckBox8.
+        /// Control CheckBoxReqDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox8;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxReqDisenno;
         
         /// <summary>
-        /// Control CheckBox9.
+        /// Control CheckBoxNivelDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox9;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxNivelDisenno;
         
         /// <summary>
-        /// Control CheckBox10.
+        /// Control CheckBoxCriteriosAceptacionDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox10;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxCriteriosAceptacionDisenno;
         
         /// <summary>
-        /// Control CheckBox11.
+        /// Control CheckBoxFechAsignacionDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox11;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxFechAsignacionDisenno;
         
         /// <summary>
-        /// Control CheckBox12.
+        /// Control CheckBoxPropositoDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox12;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPropositoDisenno;
         
         /// <summary>
-        /// Control CheckBox13.
+        /// Control CheckBoxProcedimientoDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox13;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxProcedimientoDisenno;
         
         /// <summary>
-        /// Control CheckBox14.
+        /// Control CheckBoxResponsableDisenno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox14;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxResponsableDisenno;
         
         /// <summary>
         /// Control GridView2.
@@ -166,49 +166,49 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// Control CheckBox15.
+        /// Control CheckBoxIDCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox15;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxIDCP;
         
         /// <summary>
-        /// Control CheckBox16.
+        /// Control CheckBoxEntraDatosCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox16;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxEntraDatosCP;
         
         /// <summary>
-        /// Control CheckBox17.
+        /// Control CheckBoxFlujoCentralCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox17;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxFlujoCentralCP;
         
         /// <summary>
-        /// Control CheckBox19.
+        /// Control CheckBoxPropositoCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox19;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPropositoCP;
         
         /// <summary>
-        /// Control CheckBox20.
+        /// Control CheckBoxResultadoEsperadoCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox20;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxResultadoEsperadoCP;
         
         /// <summary>
         /// Control GridView3.
@@ -220,49 +220,49 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.GridView GridView3;
         
         /// <summary>
-        /// Control CheckBox22.
+        /// Control CheckBoxIDEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox22;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxIDEP;
         
         /// <summary>
-        /// Control CheckBox23.
+        /// Control CheckBoxEntraDatosEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox23;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxEntraDatosEP;
         
         /// <summary>
-        /// Control CheckBox24.
+        /// Control CheckBoxFlujoCentralEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox24;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxFlujoCentralEP;
         
         /// <summary>
-        /// Control CheckBox26.
+        /// Control CheckBoxPropositoEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox26;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPropositoEP;
         
         /// <summary>
-        /// Control CheckBox27.
+        /// Control CheckBoxResultadoEsperadoEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox27;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxResultadoEsperadoEP;
         
         /// <summary>
         /// Control Generar.
