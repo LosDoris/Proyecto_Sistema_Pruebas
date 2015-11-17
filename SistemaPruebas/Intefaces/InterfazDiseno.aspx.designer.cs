@@ -193,6 +193,24 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label errorNombreSistLbl;
         
         /// <summary>
+        /// Control ambienteTxtbox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ambienteTxtbox;
+        
+        /// <summary>
+        /// Control errorNombreSistLbl1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorNombreSistLbl1;
+        
+        /// <summary>
         /// Control Nivel.
         /// </summary>
         /// <remarks>
@@ -227,24 +245,6 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqTecnica;
-        
-        /// <summary>
-        /// Control ambienteTxtbox.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ambienteTxtbox;
-        
-        /// <summary>
-        /// Control errorNombreSistLbl1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorNombreSistLbl1;
         
         /// <summary>
         /// Control procedimientoTxtbox.

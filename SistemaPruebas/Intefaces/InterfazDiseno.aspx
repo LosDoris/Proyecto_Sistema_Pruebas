@@ -27,7 +27,9 @@
             $('#errorGen').fadeOut(5000);
         };
     </script>
-    <h2><%: Title %>.</h2>
+    <legend style="margin-top:45px"><h2>Módulo de Diseño</h2></legend>
+
+    
     <link rel="stylesheet" type="text/css" media="screen"
         href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -55,11 +57,13 @@ PublicKeyToken=31bf3856ad364e35"/>
     </asp:PlaceHolder>
 
     <div class="form-group">
-        <div class="col-md-offset-10 col-md-12">
+            <div class="col-md-offset-9 col-md-12">
+        <div class="btn-group">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="insertarClick" CausesValidation="false" />
             <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="modificarClick" CausesValidation="false" />
             <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="eliminarClick" CausesValidation="false" />
         </div>
+    </div>
     </div>
 
     <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup" Style="display:none">
@@ -71,14 +75,17 @@ PublicKeyToken=31bf3856ad364e35"/>
     </asp:Panel>
     <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" OnCancelScript="cancelarModalEliminar" OnOkScript="aceptarModalEliminar" TargetControlID="Eliminar" PopupControlID="panelModalEliminar"></ajaxToolkit:ModalPopupExtender>
 
+<hr style="margin:50px;">
+<div class="well">
+
 
     <div class="row">
         <div class="col-md-8">
             <div class="form-horizontal">
 
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Proyecto asociado:</asp:Label>
-                    <div class="col-md-4">
+                    <asp:Label runat="server" ItemStyle-Wrap="False" CssClass="col-md-2 control-label">Proyecto asociado:</asp:Label>
+                    <div class="col-md-5">
                         <asp:DropDownList runat="server" ID="proyectoAsociado" Style="width: 250px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
@@ -90,10 +97,14 @@ PublicKeyToken=31bf3856ad364e35"/>
         </div>
     </div>
     
-<h4>Requerimientos a Probar</h4>
-    <div class="cajaAnchoPagina">   
-        
-        <div class="row">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Requerimientos a Probar</h3>
+  </div>
+  <div class="panel-body">
+
+<div class="row">
             <div class="col-md-offset-2 col-md-6">
                 <div class="form-group">
                     <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-2 control-label">Disponibles</asp:Label>
@@ -120,10 +131,6 @@ PublicKeyToken=31bf3856ad364e35"/>
                         HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
                         AutoPostBack="true">
                     </asp:GridView>
-                    <%--
-            <asp:Button runat="server" ID="Button1" Text="Asociar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-content:center;margin-top:125px;margin-left:135px;margin-right:10px"/>
-            <asp:Button runat="server" ID="Button2" Text="Desasociar" style="border-color:#fe6c4f;color:#fe5e3e;align-content:center;margin-top:125px;margin-left:10px;margin-right:20px"  CssClass="btn btn-default" CausesValidation="false"/>
-                    --%>
                 </div>
             </div>
 
@@ -144,21 +151,23 @@ PublicKeyToken=31bf3856ad364e35"/>
         </div>
 
         <div class="col-md-offset-10 col-md-12">
-            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-default" OnClick="irAReq" CausesValidation="false" Style="margin-top: 20px" />
+            <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-primary" OnClick="irAReq" CausesValidation="false" Style="margin-top: 20px" />
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="col-md-8">
-            <div class="form-horizontal">
-
+  </div>
+</div>
+ 
+ <legend><h4>Información del Diseño</h4></legend>
 
 
-                <div class="form-group">
+        <div class ="row" >
+       <div class="form-horizontal">
+           <div class ="form-group">
+               <div class ="col-md-2">
                     <asp:Label runat="server" ID="propositoLabel" CssClass="col-md-2 control-label">Propósito:</asp:Label>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="propositoTxtbox" Style="width: 250px; height: 36px" CssClass="form-control" MaxLength="80"
+                </div>
+                <div class ="col-md-4">
+                    <asp:TextBox runat="server" ID="propositoTxtbox" Style="width: 250px; height: 36px" CssClass="form-control" MaxLength="80"
                             onkeypress="solo_letras(event)" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="propositoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
@@ -183,52 +192,13 @@ PublicKeyToken=31bf3856ad364e35"/>
                         <div id="errorNombreSistema" style="display: none">
                             <asp:Label runat="server" ID="errorNombreSistLbl" Text="Sólo se permite el ingreso de letras" ForeColor="Salmon"></asp:Label>
                         </div>
-                    </div>
-
                 </div>
 
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Nivel:</asp:Label>
-                    <div class="col-md-4">
-                        <asp:DropDownList runat="server" ID="Nivel" Style="width: 250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
-                            <asp:ListItem Value="2">Unitaria</asp:ListItem>
-                            <asp:ListItem Value="3">Integración</asp:ListItem>
-                            <asp:ListItem Value="4">Sistema</asp:ListItem>
-                            <asp:ListItem Value="5">Aceptación</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Nivel" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
-                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>--%>
-                    </div>
+                <div class="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-6 control-label">Ambiente:</asp:Label> 
                 </div>
-
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Técnica:</asp:Label>
-                    <div class="col-md-6">
-                        <asp:DropDownList runat="server" ID="Tecnica" Style="width: 250px" CssClass="form-control">
-                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
-                            <asp:ListItem Value="2">Caja Negra</asp:ListItem>
-                            <asp:ListItem Value="3">Caja Blanca</asp:ListItem>
-                            <asp:ListItem Value="4">Exploratoria</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="reqTecnica" runat="server" ControlToValidate="Tecnica" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="form-horizontal">
-
-
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Ambiente:</asp:Label>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="ambienteTxtbox" Style="width: 250px; height: 130px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+                <div class ="col-md-4">
+                    <asp:TextBox runat="server" ID="ambienteTxtbox" Style="width: 250px; height: 130px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras1(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras1(evt) {
@@ -252,20 +222,54 @@ PublicKeyToken=31bf3856ad364e35"/>
                         <div id="errorNombreSistema1" style="display: none; width: 250px;">
                             <asp:Label runat="server" ID="errorNombreSistLbl1" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
                         </div>
-                    </div>
+                </div>
+           </div>
+		</div>
+
+       <div class="form-horizontal">
+           <div class ="form-group">
+
+               <div class ="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Nivel:</asp:Label>
+                </div>
+                <div class ="col-md-4">
+
+                       <asp:DropDownList runat="server" ID="Nivel" Style="width: 250px" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
+                            <asp:ListItem Value="2">Unitaria</asp:ListItem>
+                            <asp:ListItem Value="3">Integración</asp:ListItem>
+                            <asp:ListItem Value="4">Sistema</asp:ListItem>
+                            <asp:ListItem Value="5">Aceptación</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Nivel" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
+                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="procedimientoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>--%>
+                    				
+                </div>
+
+                <div class="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-6 control-label">Técnica:</asp:Label>  
+                </div>
+                <div class ="col-md-4">
+					        <asp:DropDownList runat="server" ID="Tecnica" Style="width: 250px" CssClass="form-control">
+                            <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
+                            <asp:ListItem Value="2">Caja Negra</asp:ListItem>
+                            <asp:ListItem Value="3">Caja Blanca</asp:ListItem>
+                            <asp:ListItem Value="4">Exploratoria</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="reqTecnica" runat="server" ControlToValidate="Tecnica" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
                 </div>
 
             </div>
         </div>
 
-        <div class="col-md-8">
-            <div class="form-horizontal">
 
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Procedimiento Utilizado:</asp:Label>
-
-                    <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 284%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+<div class="form-horizontal">
+           <div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Procedimiento Utilizado:</asp:Label>
+                </div>
+                <div class ="col-md-4">
+  				<asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 231%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
 
                         <script type="text/javascript">
@@ -289,14 +293,17 @@ PublicKeyToken=31bf3856ad364e35"/>
                         </script>
                         <div id="errorNombreSistema2" style="display: none; width: 500px;">
                             <asp:Label runat="server" ID="errorNombreSistLbl2" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
-                        </div>
-                    </div>
+						                  
                 </div>
-
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
-                    <div class="col-md-6">
-                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width: 284%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+				</div>
+				</div>
+				<div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Criterios de Aceptación:</asp:Label>
+                </div>
+                <div class ="col-md-4">
+                    
+				                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width: 231%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras3(evt) {
@@ -319,52 +326,47 @@ PublicKeyToken=31bf3856ad364e35"/>
                         </script>
                         <div id="errorNombreSistema3" style="display: none; width: 500px;">
                             <asp:Label runat="server" ID="Label1" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon"></asp:Label>
-                        </div>
-                    </div>
+                        </div>	
+					
+					
                 </div>
+			</div>
+</div>
 
-            </div>
-        </div>
-    </div>
+       <div class="form-horizontal">
+           <div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Responsable:</asp:Label>
+                </div>
+                <div class ="col-md-4">
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="form-horizontal">
-
-
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Responsable:</asp:Label>
-                    <div class="col-md-6">
                         <asp:DropDownList runat="server" ID="responsable" Style="width: 250px" CssClass="form-control">
                             <asp:ListItem Selected="True" Value="1">Seleccionar</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
+                        </asp:DropDownList>				
+				
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-horizontal">
-
-
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
-                    <div class="col-md-4" runat="server">
-                <asp:TextBox runat="server" ID="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" ></asp:TextBox>
+                <div class="col-md-2">
+                    <asp:Label runat="server" CssClass="col-md-6 control-label">Fecha de Diseño:</asp:Label>  
+                </div>
+                <div class ="col-md-4">
+				<asp:TextBox runat="server" ID="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" ></asp:TextBox>
                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="txt_date" TargetControlID="txt_date" />
-                    </div>
                 </div>
+           </div>
+		</div>
 
-            </div>
-        </div>
+	</div>
 
-    </div>
     <div class="row">
-        <div id="botonCasoPrueba">
-            <asp:Button runat="server" ID="botonCP" Text="Casos de Prueba" Enabled="false" CssClass="btn btn-default" Style="margin-top: 10px; margin-left: 15px;" CausesValidation="false" OnClick="irACasoPrueba" />
+        <div id="botonCasoPrueba"  class="col-md-offset-9 col-md-12">
+            <asp:Button runat="server" ID="botonCP" Text="Ir a Casos de Prueba" Enabled="false" CssClass="btn btn-primary" Style="margin-top: 10px; margin-left: 15px;" CausesValidation="false" OnClick="irACasoPrueba" />
         </div>
     </div>
+
+    </div>
+
     <div class="form-group">
-        <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
+        <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; margin-top: 20px;" OnClick="aceptarClick" />
             <asp:Button runat="server" ID="cancelar" Text="Cancelar" Style="border-color: #fe6c4f; color: #fe5e3e; margin-top: 20px;" CssClass="btn btn-default" OnClick="cancelarClick" CausesValidation="false" />
 
