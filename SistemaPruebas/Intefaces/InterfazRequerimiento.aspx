@@ -74,7 +74,7 @@
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">Nombre:</asp:Label>
                             <div class="col-md-16">
                             <asp:TextBox runat="server" ID="NombreTxtbox" CssClass="form-control" MaxLength="75" onkeypress="return solo_letrasYNumeros1(event)" Width="230px">.</asp:TextBox>
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="Label2">*En este campo solo se permiten letras y espacios.</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" Visible="false" ID="Label2">*En este campo solo se permiten letras y espacios.</asp:Label>
                                 <script type="text/javascript">
                                     function solo_letrasYNumeros1(evt) {
                                         if ((evt.charCode < 48 || evt.charCode > 59) && (evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {

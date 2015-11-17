@@ -65,7 +65,7 @@ namespace SistemaPruebas.Controladoras
          */
         public int insertarRequerimientoBD(Controladoras.EntidadRequerimientos requerimiento)
         {   
-            String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales,id_proyecto, nombre, fechaUltimo) VALUES ('" + requerimiento.Id + "','" + requerimiento.Precondiciones + "','" + requerimiento.RequerimientosEspeciales+ "',"+requerimiento.Proyecto+ "','" + requerimiento.Nombre + "', getDate());";
+            String consulta = "INSERT INTO Requerimiento(id_requerimiento,precondiciones,Requerimientos_especiales,id_proyecto, nombre, fechaUltimo) VALUES ('" + requerimiento.Id + "','" + requerimiento.Precondiciones + "','" + requerimiento.RequerimientosEspeciales+ "',"+requerimiento.Proyecto+ ",'" + requerimiento.Nombre + "', getDate());";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -112,7 +112,7 @@ namespace SistemaPruebas.Controladoras
             }
             else if (tipo == 3)
             {
-                consulta = "SELECT id_requerimiento,precondiciones,Requerimientos_especiales, nombre, id_proyecto from Requerimiento where id_proyecto='" + Convert.ToInt32(id) + "'  ORDER BY fechaUltimo desc;";
+                consulta = "SELECT id_requerimiento,nombre, id_proyecto from Requerimiento where id_proyecto='" + Convert.ToInt32(id) + "'  ORDER BY fechaUltimo desc;";
             }
                 
 

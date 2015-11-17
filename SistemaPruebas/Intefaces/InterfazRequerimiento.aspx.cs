@@ -144,9 +144,9 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    int id = Convert.ToInt32(dr[4]);
+                    int id = Convert.ToInt32(dr[2]);
                     String nomp = controladoraRequerimiento.solicitarNombreProyecto(id);
-                    datos[0] = dr[3];
+                    datos[1] = dr[1];
                     datos[2] = nomp;
                     Requerimiento.Rows.Add(datos);
                 }
