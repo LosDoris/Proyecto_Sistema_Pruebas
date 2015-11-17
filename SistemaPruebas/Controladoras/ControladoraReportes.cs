@@ -52,8 +52,21 @@ namespace SistemaPruebas.Controladoras
             return controlCasos.consultarCasosPrueba(2, id);
         }
 
+        private string reporteProyecto(EntidadProyecto entidad, bool[] campos)
+        {
+            string retorno = "";
+            if (campos[0])
+                retorno += "El nombre del sistema es: " + "\t" + entidad.Nombre_sistema;
+            return retorno;
+        }
         public int generarReporte(string nombreP, string nombreD, string idC)
         {
+
+            return 0;
+        }
+        public int generarReporte(string nombreP, bool[] camposP)
+        {
+            reporteProyecto(consultarProyecto(nombreP), camposP);
 
             return 0;
         }
