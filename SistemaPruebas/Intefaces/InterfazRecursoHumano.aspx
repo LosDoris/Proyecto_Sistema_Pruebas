@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gestión de Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <style type="text/css">
         .modalBackground {
             background-color: black;
@@ -102,7 +102,7 @@
                         </asp:PlaceHolder>
 
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1">Cédula:</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1">Cédula*:</asp:Label>
                             <div class="col-md-10">
 
                                 <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 220px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo:</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo*:</asp:Label>
                             <div class="col-md-10">
                                 <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras."></asp:TextBox>
                                 <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label> --%>
@@ -234,7 +234,7 @@
             <div class="jumbozRH">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario*:</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" placeholder="Ingrese sólo letras y números" onkeypress="check_txt5(event)"/>
                             <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal">*Por favor ingrese un usuario valido.</asp:Label>--%>
@@ -267,7 +267,7 @@
                     </div>
 
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Contraseña</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Contraseña*:</asp:Label>
                         <div class="col-md-8">
                             <asp:TextBox runat="server" ID="TextBoxClave" CssClass="form-control" MaxLength="12" placeholder="Ingrese sólo letras y números" onkeypress="check_txt6"/>
                             <%-- <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="ClaveVal">*Por favor ingrese una contraseña valida.</asp:Label> --%>
@@ -327,6 +327,9 @@
             </div>
 
         </div>
+    </div>
+    <div class="form-group col-md-offset-10 col-md-12">
+        <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
