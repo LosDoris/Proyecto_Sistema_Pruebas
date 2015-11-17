@@ -140,7 +140,7 @@ namespace SistemaPruebas.Intefaces
         {
             //botonesInicio();
             //desactivarErrores();
-            deshabilitarCampos();
+            //deshabilitarCampos();
             //llenarDDProyecto();
             modoREQ = Convert.ToString(0);
             if (!Convert.ToBoolean(esAdminREQ))
