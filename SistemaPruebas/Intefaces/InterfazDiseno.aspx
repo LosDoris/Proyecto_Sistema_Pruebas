@@ -78,7 +78,7 @@ PublicKeyToken=31bf3856ad364e35"/>
 <hr style="margin:50px;">
 <div class="well">
 
-
+ <legend><h5>Seleccione un Proyecto</h5></legend>
     <div class="row">
         <div class="col-md-8">
             <div class="form-horizontal">
@@ -157,7 +157,7 @@ PublicKeyToken=31bf3856ad364e35"/>
   </div>
 </div>
  
- <legend><h4>Información del Diseño</h4></legend>
+ <legend style="margin-top:45px; margin-bottom: 35px"><h4>Información del Diseño</h4></legend>
 
 
         <div class ="row" >
@@ -268,8 +268,8 @@ PublicKeyToken=31bf3856ad364e35"/>
                <div class ="col-md-2">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Procedimiento Utilizado:</asp:Label>
                 </div>
-                <div class ="col-md-4">
-  				<asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 231%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+                <div class ="col-md-5">
+  				<asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 190%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
 
                         <script type="text/javascript">
@@ -303,7 +303,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                 </div>
                 <div class ="col-md-4">
                     
-				                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width: 231%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+				                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width:220%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras3(evt) {

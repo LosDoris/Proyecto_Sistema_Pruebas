@@ -15,23 +15,31 @@
 </script>
 
 
-<h2><%: Title %>Casos de Prueba</h2>
+    <legend style="margin-top:45px"><h2>Módulo de Casos de Prueba</h2></legend>
 
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqMensajeOperacion" >.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorInsertar" >*Ha habido problemas para agregar este caso de prueba al sistema. Por favor vuelva a intentarlo.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorConsultar" >*Ha habido problemas para consultar este caso de prueba. Por favor vuelva a intentarlo mas tarde.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este caso de prueba. Por favor vuelva a intentarlo.</asp:Label>
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este caso de prueba del sistema. Por favor vuelva a intentarlo.</asp:Label>
+
 <div class="form-group">
-    <div class="col-md-offset-10 col-md-12">
+    <div class="col-md-offset-9 col-md-12">
+        <div class="btn-group">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonCPInsertar" OnClick="BotonCPInsertar_Click" CausesValidation="false"/>
         <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonCPModificar" OnClick="BotonCPModificar_Click" CausesValidation="false"/>
         <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default" ID="BotonCPEliminar" OnClick="BotonCPEliminar_Click" CausesValidation="false"/>
     </div>
+    </div>
 </div>
-<div class ="row" style ="width: 100%">    
-    <div class="jumbozCP" >
-        <h4>Resumen</h4>
+
+<hr style="margin:50px;">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Resumen sobre el Diseño</h3>
+  </div>
+  <div class="panel-body">
         <div class="col-md-6">
             <div class ="form-group">
 		        <asp:Label ID="Proposito" runat="server" CssClass="control-label"
@@ -55,15 +63,16 @@
 		    <asp:Label ID="Requerimientos" runat="server" CssClass="control-label"
                 style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos"></asp:Label>
         </div>
-        <asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-default" ID="Regresar" CausesValidation="false"/>
+        <div class="col-md-offset-10 col-md-12">
+	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
+        </div>
         <div style="clear:both"></div>
-
+      </div>
     </div>
-</div>
 
-<div class ="col-md-6">
-    <div class="jumbozCP1">
-            <h4>Datos Caso Prueba</h4>
+    <div class="well">
+<div class ="col-md-6">    
+ <legend style="margin-top:45px; margin-bottom: 35px"><h4>Información de Casos de Prueba</h4></legend>
 
         <div class="col-md-8">
 		    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" style="text-align: right; width: 200px;height: 32px;" Text="ID*:"></asp:Label>                      
@@ -233,6 +242,7 @@
     </div>
     <div class="form-group col-md-offset-10 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
+    </div>
     </div>
     <div class="col-md-10">
         <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;margin-top:200px;margin-left: 200px;margin-top: 50px;"
