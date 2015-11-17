@@ -88,9 +88,9 @@ namespace SistemaPruebas.Intefaces
             {
                 //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
             }
-            llenarGridREQ();
+            llenarGridPP();
         }
-        protected void llenarGridREQ()
+        protected void llenarGridPP()
         {
 /*
             DataTable Requerimiento = crearTablaREQ();
@@ -130,6 +130,50 @@ namespace SistemaPruebas.Intefaces
             gridRequerimiento.DataSource = Requerimiento;
             gridRequerimiento.DataBind();
             */
+        }
+        /*
+         * Requiere: N/A.
+         * Modifica: Vuelve al inicio de generar reportes.
+         * Retorna: N/A.
+         */
+        protected void volverAlOriginal()
+        {
+            //botonesInicio();
+            //desactivarErrores();
+            //deshabilitarCampos();
+            //llenarDDProyecto();
+            modoREQ = Convert.ToString(0);
+            if (!Convert.ToBoolean(esAdminREQ))
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            else
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
+            }
+            //TextBoxNombreREQ.Text = ".";
+            //TextBoxPrecondicionesREQ.Text = "";
+            //TextBoxRequerimientosEspecialesREQ.Text = "";
+            //NombreTxtbox.Text = "";
+            //BotonREQAceptarModificar.Visible = false;
+            //BotonREQAceptar.Visible = true;
+            //BotonREQAceptarModificar.Enabled = false;
+            //BotonREQEliminar.Enabled = false;
+            //habilitarGrid();
+            llenarGridPP();
+            if (!Convert.ToBoolean(esAdminREQ))
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            else
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
+            }
+            llenarGridPP();
         }
             
     }
