@@ -311,6 +311,19 @@ namespace SistemaPruebas.Intefaces
             CheckBoxPropositoEP.Enabled = false;
             CheckBoxResultadoEsperadoEP.Enabled = false;
         }
+        protected bool [] datosProy()
+        {
+            bool [] proyecto= new bool [7];
+            proyecto [0]=CheckBoxNombreProyecto.Checked;
+            proyecto [1]=CheckBoxFechAsignacionProyecto.Checked;
+            proyecto [2]=CheckBoxOficinaProyecto.Checked;
+            proyecto [3]=CheckBoxResponsableProyecto.Checked;
+            proyecto [4]=CheckBoxObjetivoProyecto.Checked;
+            proyecto [5]=CheckBoxEstadoProyecto.Checked;
+            proyecto [6]=CheckBoxMiembrosProyecto.Checked;
+
+            return proyecto;
+        }
             
     }
     
