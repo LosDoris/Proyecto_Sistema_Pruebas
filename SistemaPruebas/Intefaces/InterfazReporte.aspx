@@ -52,31 +52,31 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox1" runat="server" Text="Nombre."/>
+                        <asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre."/>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox2" runat="server" Text="Fecha de asignacion."/>
+                    <asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion."/>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox3" runat="server" Text="Datos de oficina usuaria."/>
+                    <asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria."/>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox4" runat="server" Text="Responsable."/>
+                    <asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Responsable."/>
                 </div>
             </div>
         <div class="col-md3">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox5" runat="server" Text="Objetivo general." />
+                        <asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox6" runat="server" Text="Estado"/>
+                    <asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado"/>
                 </div>
                 <div class="col-md-6">
-                    <asp:CheckBox ID="CheckBox7" runat="server" Text="Miembros de equipo asociados." />
+                    <asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
                </div>
             </div> 
         </div>        
@@ -96,31 +96,31 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-horizontal">
-                    <asp:CheckBox ID="CheckBox8" runat="server" Text="Requerimientos."/>
+                    <asp:CheckBox ID="CheckBoxReqDisenno" runat="server" Text="Requerimientos."/>
                 </div>
             </div>
             <div class="col-md-3">
-                <asp:CheckBox ID="CheckBox9" runat="server" Text="Nivel y Técnica."/>
+                <asp:CheckBox ID="CheckBoxNivelDisenno" runat="server" Text="Nivel y Técnica."/>
             </div>
             <div class="col-md-3">
-                <asp:CheckBox ID="CheckBox10" runat="server" Text="Criterios de aceptación."/>
+                <asp:CheckBox ID="CheckBoxCriteriosAceptacionDisenno" runat="server" Text="Criterios de aceptación."/>
             </div>
             <div class="col-md-3">
-                <asp:CheckBox ID="CheckBox11" runat="server" Text="Fecha de asignación."/>
+                <asp:CheckBox ID="CheckBoxFechAsignacionDisenno" runat="server" Text="Fecha de asignación."/>
             </div>
         </div>
         <div class="col-md3">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox12" runat="server" Text="Propósito." />
+                        <asp:CheckBox ID="CheckBoxPropositoDisenno" runat="server" Text="Propósito." />
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox13" runat="server" Text="Procedimiento."/>
+                    <asp:CheckBox ID="CheckBoxProcedimientoDisenno" runat="server" Text="Procedimiento."/>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox14" runat="server" Text="Responsable." />
+                    <asp:CheckBox ID="CheckBoxResponsableDisenno" runat="server" Text="Responsable." />
                 </div>
             </div>        
         </div>
@@ -140,25 +140,25 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox15" runat="server" Text="ID."/>
+                        <asp:CheckBox ID="CheckBoxIDCP" runat="server" Text="ID."/>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox16" runat="server" Text="Entrada de datos."/>
+                    <asp:CheckBox ID="CheckBoxEntraDatosCP" runat="server" Text="Entrada de datos."/>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox17" runat="server" Text="Flujo central."/>
+                    <asp:CheckBox ID="CheckBoxFlujoCentralCP" runat="server" Text="Flujo central."/>
                 </div>
             </div>
         <div class="col-md3">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox19" runat="server" Text="Propósito." />
+                        <asp:CheckBox ID="CheckBoxPropositoCP" runat="server" Text="Propósito." />
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox20" runat="server" Text="Resultado esperado."/>
+                    <asp:CheckBox ID="CheckBoxResultadoEsperadoCP" runat="server" Text="Resultado esperado."/>
                 </div>
             </div>
         </div>        
@@ -179,25 +179,25 @@
                     <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox18" runat="server" Text="ID."/>
+                        <asp:CheckBox ID="CheckBoxIDEP" runat="server" Text="ID."/>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox21" runat="server" Text="Entrada de datos."/>
+                    <asp:CheckBox ID="CheckBoxEntraDatosEP" runat="server" Text="Entrada de datos."/>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox22" runat="server" Text="Flujo central."/>
+                    <asp:CheckBox ID="CheckBoxFlujoCentralEP" runat="server" Text="Flujo central."/>
                 </div>
             </div>
         <div class="col-md3">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox23" runat="server" Text="Propósito." />
+                        <asp:CheckBox ID="CheckBoxPropositoEP" runat="server" Text="Propósito." />
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox24" runat="server" Text="Resultado esperado."/>
+                    <asp:CheckBox ID="CheckBoxResultadoEsperadoEP" runat="server" Text="Resultado esperado."/>
                 </div>
             </div>
         </div> 
@@ -231,5 +231,5 @@
 </div>
 
 </div>
-</div>
+<%--</div>--%>
     </asp:content>
