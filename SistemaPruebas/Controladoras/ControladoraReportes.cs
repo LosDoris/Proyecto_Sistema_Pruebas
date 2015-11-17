@@ -35,9 +35,12 @@ namespace SistemaPruebas.Controladoras
         }
         public EntidadDisenno consultarDisenno(string nombre)
         {
-            return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));
-            //return null;
+            return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));           
         }
+        //public DataTable consultarCasosPrueba(string nombre)
+        //{
+        //    return controlCasos.
+        //}
 
     }
 }
