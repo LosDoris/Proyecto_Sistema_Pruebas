@@ -47,7 +47,7 @@
   <div class="panel-body">
     <div>
         <div class="col-md3">
-            <asp:GridView ID="GridProyecto" runat="server"></asp:GridView>
+            <asp:GridView ID="GridPP" runat="server"></asp:GridView>
             </div>
             <div class="row">
                 <div class="col-md-3">
@@ -91,7 +91,7 @@
   <div class="panel-body">
      <div>
         <div class="col-md3">
-            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+            <asp:GridView ID="GridDP" runat="server"></asp:GridView>
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -135,7 +135,7 @@
   <div class="panel-body">
     <div>
         <div class="col-md3">
-            <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+            <asp:GridView ID="GridCP" runat="server"></asp:GridView>
          </div>
             <div class="row">
                 <div class="col-md-3">
@@ -174,7 +174,7 @@
   <div class="panel-body">
     <div>
         <div class="col-md3">
-            <asp:GridView ID="GridView3" runat="server"></asp:GridView>
+            <asp:GridView ID="GridEP" runat="server"></asp:GridView>
         </div>
                     <div class="row">
                 <div class="col-md-3">

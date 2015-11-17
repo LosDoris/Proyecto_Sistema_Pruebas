@@ -77,6 +77,9 @@ namespace SistemaPruebas.Intefaces
                 //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
             }
             llenarGridPP();
+            llenarGridDP();
+            llenarGridCP();
+            llenarGridEP();
         }
         protected void llenarGridPP()
         {
@@ -114,10 +117,94 @@ namespace SistemaPruebas.Intefaces
                 datos[1] = "-";
                 dtGrid.Rows.Add(datos);
             }
-            //gridRequerimiento.DataSource = Requerimiento;
-            //gridRequerimiento.DataBind();
-            
+            GridPP.DataSource = dtGrid;
+            GridPP.DataBind();
         }
+        protected void llenarGridDP()
+        {
+            DataTable disennoPrueba = crearTablaDP();
+            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
+
+            Object[] datos = new Object[4];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    datos[3] = dr[3];
+                    disennoPrueba.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                disennoPrueba.Rows.Add(datos);
+            }
+            GridDP.DataSource = disennoPrueba;
+            GridDP.DataBind();
+        }
+        protected void llenarGridCP()
+        {
+            DataTable casosPrueba = crearTablaCP();
+            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
+
+            Object[] datos = new Object[2];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    casosPrueba.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                casosPrueba.Rows.Add(datos);
+            }
+            GridCP.DataSource = casosPrueba;
+            GridCP.DataBind();
+        }
+        protected void llenarGridEP()
+        {
+            DataTable ejecicionPrueba = crearTablaEP();
+            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
+
+            Object[] datos = new Object[3];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    ejecicionPrueba.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                ejecicionPrueba.Rows.Add(datos);
+            }
+            GridEP.DataSource = ejecicionPrueba;
+            GridEP.DataBind();
+        }
+
+
+
+
+
+
+
         /*
          * Requiere: N/A.
          * Modifica: Vuelve al inicio de generar reportes.
@@ -127,10 +214,12 @@ namespace SistemaPruebas.Intefaces
         {
             //deshabilitarCampos();
 
+            /*
             deshabilitarPP();
             deshabilitarDP();
             deshabilitarCP();
             deshabilitarEP();
+            */
             modoGE = Convert.ToString(0);
             if (!Convert.ToBoolean(esAdminGE))
             {

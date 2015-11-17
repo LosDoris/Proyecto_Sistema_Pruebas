@@ -13,13 +13,13 @@ namespace SistemaPruebas.Intefaces {
     public partial class InterfazReporte {
         
         /// <summary>
-        /// Control GridProyecto.
+        /// Control GridPP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridProyecto;
+        protected global::System.Web.UI.WebControls.GridView GridPP;
         
         /// <summary>
         /// Control CheckBoxNombreProyecto.
@@ -85,13 +85,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxMiembrosProyecto;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control GridDP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridDP;
         
         /// <summary>
         /// Control CheckBoxReqDisenno.
@@ -157,13 +157,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxResponsableDisenno;
         
         /// <summary>
-        /// Control GridView2.
+        /// Control GridCP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView GridCP;
         
         /// <summary>
         /// Control CheckBoxIDCP.
@@ -211,13 +211,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxResultadoEsperadoCP;
         
         /// <summary>
-        /// Control GridView3.
+        /// Control GridEP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView GridEP;
         
         /// <summary>
         /// Control CheckBoxIDEP.
