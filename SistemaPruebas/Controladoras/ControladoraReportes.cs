@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SistemaPruebas.Controladoras
 {
@@ -45,6 +50,12 @@ namespace SistemaPruebas.Controladoras
         public DataTable consultarCasoPrueba(string id)
         {
             return controlCasos.consultarCasosPrueba(2, id);
+        }
+
+        public int generarReporte(string nombreP, string nombreD, string idC)
+        {
+
+            return 0;
         }
 
     }
