@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gestión de Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-         <h2><%: Title %>.</h2>
+         <h2><%: Title %></h2>
     <style type="text/css">
         .modalBackground 
         {
@@ -52,6 +52,37 @@
                             <%--OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"--%>
                         </div>
                     </div>
+    <div class ="row" style ="width: 100%">    
+    <div class="jumbozCP" >
+        <h4>Resumen</h4>
+        <div class="col-md-6">
+            <div class ="form-group">
+		        <asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Nombre Sistema"></asp:Label>
+            </div>
+            <div class="form-group">
+                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Objetivo General"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="estado" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Estado"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nombre Representante"></asp:Label>
+            </div>
+            <div class ="form-group">
+                <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Lider del Proyecto"></asp:Label>
+            </div>
+        </div>
+        
+		    
+        <div style="clear:both"></div>
+
+    </div>
+</div>
     <div class="col-md-16">
     <div class="row">
         <div class="col-md-16">
@@ -102,7 +133,7 @@
 
                         <div class="form-group">
                             <div class="col-md-16">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento*:</asp:Label>
                             <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letrasYNumeros2(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorNombre">*En este campo solo se permiten letras y espacios</asp:Label>
                                 <script type="text/javascript">
@@ -130,7 +161,7 @@
                                     Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
-                                    errormessage="El campo de Nombre es obligatorio."
+                                    errormessage="El campo de ID es obligatorio."
                                     runat="Server">
                                 </asp:requiredfieldvalidator>
                             </div>
@@ -202,6 +233,9 @@
 
          
         </div>
+    </div>
+    <div class="form-group col-md-offset-10 col-md-12">
+        <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
     </div>
         <div class="form-group">
