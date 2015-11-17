@@ -86,7 +86,7 @@ namespace SistemaPruebas.Intefaces
             this.DropDownProyecto.Items.Clear();
             DropDownProyecto.Items.Add(new ListItem("Seleccionar"));
             String proyectos = controladoraEjecucionPrueba.solicitarProyectos();
-           // Response.Write(proyectos);
+            // Response.Write(proyectos);
             String[] pr = proyectos.Split(';');
 
             foreach (String p1 in pr)
@@ -113,9 +113,54 @@ namespace SistemaPruebas.Intefaces
             DropDownDiseno.Items.Add(new ListItem("Seleccionar"));
             int idProyecto = Convert.ToInt32( DropDownProyecto.SelectedItem.Value);
             String disenos = controladoraEjecucionPrueba.solicitarPropositoDiseno(idProyecto);
-            Response.Write(disenos);
+            //Response.Write(disenos);
+            String[] pr = disenos.Split(';');
+
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+                try
+                {
+                    if (Convert.ToInt32(p2[1]) > -1)
+                    {
+                        this.DropDownDiseno.Items.Add(new ListItem(p2[0], p2[1]));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
         }
 
+        protected void llenarDDCasoPrueba()
+        {
+            this.DropDownCasoDePrueba.Items.Clear();
+            DropDownCasoDePrueba.Items.Add(new ListItem("Seleccionar"));
+            int idDiseno = Convert.ToInt32(DropDownDiseno.SelectedItem.Value);
+            String casosPrueba = controladoraEjecucionPrueba.solicitarCasosdePrueba(idDiseno);
+            String[] pr = casosPrueba.Split(';');
+            foreach (String p1 in pr)
+            {
+                String[] p2 = p1.Split('_');
+                try
+                {
+                    if (Convert.ToInt32(p2[1]) > -1)
+                    {
+                        this.DropDownCasoDePrueba.Items.Add(new ListItem(p2[0], p2[1]));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+
+        }
+
+      
         protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(DropDownProyecto.SelectedItem.Text != "Seleccionar")
@@ -169,6 +214,24 @@ namespace SistemaPruebas.Intefaces
 
                 }
             }
+        }
+
+        protected void DropDownDiseno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(DropDownDiseno.SelectedItem.Text != "Seleccionar")
+            {
+                DatosEjecucion.Enabled = true;
+                llenarDDCasoPrueba();
+            }
+            else
+            {
+                DatosEjecucion.Enabled = false;
+            }
+        }
+
+        protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

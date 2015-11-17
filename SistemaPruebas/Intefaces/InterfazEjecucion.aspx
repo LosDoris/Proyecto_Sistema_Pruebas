@@ -36,7 +36,7 @@
              <asp:Label ID="LabelDiseno" runat="server" Text="Diseño:" CssClass = "col-md-2 control-label"></asp:Label>
         </div>
         <div class ="col-md-4">
-              <asp:DropDownList ID="DropDownDiseno" runat="server" CssClass ="form-control" style="width:250px" AutoPostBack ="true" >
+              <asp:DropDownList ID="DropDownDiseno" runat="server" CssClass ="form-control" style="width:250px" AutoPostBack ="true" OnSelectedIndexChanged="DropDownDiseno_SelectedIndexChanged" >
                  <asp:ListItem Text ="Seleccionar" Value =1/>
               </asp:DropDownList>
         </div>
@@ -63,7 +63,7 @@
                     <asp:Label ID="CasoDePrueba" runat="server" CssClass = "col-md-6 control-label" Width="200px">Caso de Prueba:</asp:Label>   
                 </div>
                 <div class ="col-md-4">
-                    <asp:DropDownList ID="DropDownCasoDePrueba" runat="server" CssClass ="form-control" style="width:250px">
+                    <asp:DropDownList ID="DropDownCasoDePrueba" runat="server" CssClass ="form-control" style="width:250px" >
                         <asp:ListItem Text ="Seleccionar" Value =1/>
                     </asp:DropDownList>
                 </div>

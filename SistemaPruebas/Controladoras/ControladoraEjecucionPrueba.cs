@@ -9,7 +9,8 @@ namespace SistemaPruebas.Controladoras
     {
         ControladoraBDEjecucionPrueba controladoraBDEjecucionPrueba = new ControladoraBDEjecucionPrueba();
         ControladoraProyecto controladoraProyecto = new ControladoraProyecto();
-        ControladoraDisenno  controladoraDisenno  = new ControladoraDisenno(); 
+        ControladoraDisenno  controladoraDisenno  = new ControladoraDisenno();
+        ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
 
         public String solicitarProyectos()
         {
@@ -23,6 +24,12 @@ namespace SistemaPruebas.Controladoras
             String disenos = controladoraDisenno.solicitarPropositoDiseno(idProyecto);
             return disenos;
 
+        }
+
+        public String solicitarCasosdePrueba(int idDisenno)
+        {
+            String casosDePrueba = controladoraCasosPrueba.solicitarCasosdePrueba(idDisenno)
+            return casosDePrueba;
         }
     }
 }

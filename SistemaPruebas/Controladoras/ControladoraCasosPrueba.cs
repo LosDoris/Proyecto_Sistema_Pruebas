@@ -42,5 +42,11 @@ namespace SistemaPruebas.Controladoras
             return dt;
 
         }
+
+        public String solicitarCasosdePrueba(int idDiseno)
+        {
+            String casosDePrueba = controladoraBDCasosPrueba.solicitarCasosdePrueba(idDiseno);
+            return casosDePrueba;
+        }
     }
 }

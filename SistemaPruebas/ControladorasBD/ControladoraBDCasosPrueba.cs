@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Data.SqlClient;
+
 
 namespace SistemaPruebas.Controladoras
 {
@@ -56,6 +58,16 @@ namespace SistemaPruebas.Controladoras
             dt = acceso.ejecutarConsultaTabla(consulta);
 
             return dt;
+        }
+
+        public String solicitarCasosdePrueba(int idDiseno)
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Consultar_Casos_Prueba"))
+            {
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add(new SqlParameter("@id", idDiseno));
+                return acceso.Consultar_Proced_Almacenado(comando);
+            }
         }
     }
 }
