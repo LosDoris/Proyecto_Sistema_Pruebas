@@ -2,8 +2,10 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+
+    <legend style="margin-top:45px"><h2>Generar Reportes</h2></legend>
+
     <style type="text/css">
         .modalBackground 
         {
@@ -37,9 +39,12 @@
             }, 2000);           
     };
 </script>
-      <div>
-          <asp:Label ID="Label1" runat="server" Text="Proyecto."></asp:Label>
-      </div>
+<div style="margin-top:45px; margin-bottom:0px" class="well">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Proyecto</h3>
+  </div>
+  <div class="panel-body">
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridProyecto" runat="server"></asp:GridView>
@@ -56,16 +61,21 @@
             <asp:CheckBox ID="CheckBox7" runat="server" Text="Miembros de equipo asociados." />
         </div>        
     </div>
-    <div>
-          <asp:Label ID="Label2" runat="server" Text="Diseño."></asp:Label>
-      </div>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Diseño</h3>
+  </div>
+  <div class="panel-body">
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView1" runat="server"></asp:GridView>
             </div>
         <div class="col-md3">
             <asp:CheckBox ID="CheckBox8" runat="server" Text="Requerimientos."/>
-            <asp:CheckBox ID="CheckBox9" runat="server" Text="Nivel y Técnica.."/>
+            <asp:CheckBox ID="CheckBox9" runat="server" Text="Nivel y Técnica."/>
             <asp:CheckBox ID="CheckBox10" runat="server" Text="Criterios de aceptación."/>
             <asp:CheckBox ID="CheckBox11" runat="server" Text="Fecha de asignación."/>
         </div>
@@ -75,9 +85,14 @@
             <asp:CheckBox ID="CheckBox14" runat="server" Text="Responsable." />
         </div>        
     </div>
-    <div>
-          <asp:Label ID="Label3" runat="server" Text="Casos de Prueba."></asp:Label>
-      </div>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Casos de Prueba</h3>
+  </div>
+  <div class="panel-body">
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView2" runat="server"></asp:GridView>
@@ -92,9 +107,15 @@
             <asp:CheckBox ID="CheckBox20" runat="server" Text="Resultado esperado."/>
         </div>        
     </div>
-    <div>
-          <asp:Label ID="Label4" runat="server" Text="Ejecución de Pruebas."></asp:Label>
-      </div>
+  </div>
+</div>
+
+
+<div style="margin-bottom:0px" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ejecución de Pruebas</h3>
+  </div>
+  <div class="panel-body">
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView3" runat="server"></asp:GridView>
@@ -109,4 +130,25 @@
             <asp:CheckBox ID="CheckBox27" runat="server" Text="Resultado esperado."/>
         </div>        
     </div>
+  </div>
+</div>
+
+    <div style="margin-top:5px" class="well">
+           <div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Button runat="server" Text="Generar Reporte"   CssClass="btn btn-primary"   ID="Generar"     CausesValidation ="false" /> 
+                </div>
+                <div class ="col-md-4" style="padding-top:25px">
+	     <div class="progress progress-striped active">
+             <div class="progress-bar" style="width: 65%">
+
+             </div>
+            </div>
+                </div>
+               
+           </div>
+</div>
+
+</div>
+</div>
     </asp:content>

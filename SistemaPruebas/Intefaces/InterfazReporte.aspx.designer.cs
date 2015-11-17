@@ -13,15 +13,6 @@ namespace SistemaPruebas.Intefaces {
     public partial class InterfazReporte {
         
         /// <summary>
-        /// Control Label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// Control GridProyecto.
         /// </summary>
         /// <remarks>
@@ -92,15 +83,6 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox7;
-        
-        /// <summary>
-        /// Control Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// Control GridView1.
@@ -175,15 +157,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox14;
         
         /// <summary>
-        /// Control Label3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
         /// Control GridView2.
         /// </summary>
         /// <remarks>
@@ -238,15 +211,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox20;
         
         /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// Control GridView3.
         /// </summary>
         /// <remarks>
@@ -299,5 +263,14 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox27;
+        
+        /// <summary>
+        /// Control Generar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Generar;
     }
 }
