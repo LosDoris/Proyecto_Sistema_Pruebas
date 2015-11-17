@@ -37,10 +37,15 @@ namespace SistemaPruebas.Controladoras
         {
             return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));           
         }
-        //public DataTable consultarCasosPrueba(string nombre)
-        //{
-        //    return controlCasos.
-        //}
+        public string consultarCasosPrueba(string nombre)
+        {
+            return controlCasos.solicitarCasosdePrueba(controlDis.consultarId_Disenno(nombre));
+        }
+
+        public DataTable consultarCasoPrueba(string id)
+        {
+            return controlCasos.consultarCasosPrueba(2, id);
+        }
 
     }
 }
