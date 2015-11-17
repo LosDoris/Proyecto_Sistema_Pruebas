@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gestión de Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-         <h2><%: Title %>.</h2>
+         <h2><%: Title %></h2>
     <style type="text/css">
         .modalBackground 
         {
@@ -133,7 +133,7 @@
 
                         <div class="form-group">
                             <div class="col-md-16">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento:</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="col-md-3 control-label">ID del requerimiento*:</asp:Label>
                             <asp:TextBox runat="server" ID="TextBoxNombreREQ" CssClass="form-control" MaxLength="6" onkeypress="return solo_letrasYNumeros2(event)" Width="230px">.</asp:TextBox>
                             <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorNombre">*En este campo solo se permiten letras y espacios</asp:Label>
                                 <script type="text/javascript">
@@ -161,7 +161,7 @@
                                     Display="Dynamic"
                                     validationgroup="CamposNoVacios"
                                     CssClass="text-danger" 
-                                    errormessage="El campo de Nombre es obligatorio."
+                                    errormessage="El campo de ID es obligatorio."
                                     runat="Server">
                                 </asp:requiredfieldvalidator>
                             </div>
@@ -233,6 +233,9 @@
 
          
         </div>
+    </div>
+    <div class="form-group col-md-offset-10 col-md-12">
+        <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
     </div>
         <div class="form-group">
