@@ -10,7 +10,7 @@ namespace SistemaPruebas.Intefaces
 {
     public partial class InterfazReporte : System.Web.UI.Page
     {
-        ControladoraReporte controladoraGR = new ControladoraReporte();
+        Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
         public static string modoREQ
         {
             get
@@ -66,20 +66,19 @@ namespace SistemaPruebas.Intefaces
         //Metodos:
         protected void Page_Load(object sender, EventArgs e)
         {
-            Restricciones_Campos();
+            //Restricciones_Campos();
             if (!IsPostBack)
             {
-                esAdminREQ = controladoraGR
-                    .PerfilDelLogeado().ToString();
+                //esAdminREQ = controladoraGR.PerfilDelLogeado().ToString();
                 if (Convert.ToBoolean(esAdminREQ))
                 {
                     //proyectoActual = controladoraGR.consultarIDProyMinimo().ToString();
                 }
                 else
                 {
-                    proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
+                    //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
                 }
-                volverAlOriginal();
+                //volverAlOriginal();
             }
             if (Convert.ToBoolean(esAdminREQ))
             {
@@ -87,13 +86,13 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
+                //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
             }
             llenarGridREQ();
         }
         protected void llenarGridREQ()
         {
-
+/*
             DataTable Requerimiento = crearTablaREQ();
             DataTable dt;
             if (Convert.ToBoolean(esAdminREQ))
@@ -130,8 +129,8 @@ namespace SistemaPruebas.Intefaces
             }
             gridRequerimiento.DataSource = Requerimiento;
             gridRequerimiento.DataBind();
-
+            */
         }
-
+            
     }
 }
