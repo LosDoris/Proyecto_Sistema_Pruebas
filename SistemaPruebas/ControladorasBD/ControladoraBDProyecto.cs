@@ -245,5 +245,15 @@ namespace SistemaPruebas.Controladoras
             dt = acceso_BD.ejecutarConsultaTabla("select nombre_sistema from proyecto where  id_proyecto=" + id);
             return dt.Rows[0][0].ToString();
         }
+
+        public String consultarProyectosConCaso()
+        {
+            using (SqlCommand comando = new SqlCommand("dbo.Consultar_Proyecto_Con_Caso"))
+            {
+                comando.CommandType = CommandType.StoredProcedure;
+                return acceso_BD.Consultar_Proced_Almacenado(comando);
+
+            }
+        }
     }
 }

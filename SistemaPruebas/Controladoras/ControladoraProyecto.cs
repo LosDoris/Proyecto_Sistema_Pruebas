@@ -266,5 +266,10 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
+        public String consultarProyectosConCaso()
+        {
+            return controlBD.consultarProyectosConCaso();
+        }
+
     }
 }

@@ -133,13 +133,11 @@
                <div class ="col-md-2">
                     <asp:Label ID="FechaEP" runat="server" CssClass = "col-md-6 control-label" >Fecha:</asp:Label> 
                 </div>
-                <div class ="col-md-4">
                    <asp:ImageButton ID="imgPopup" ImageUrl="~/Imagenes/calendar.png" runat="server" />
-                <div class ="col-md-1">
+                <div class ="col-md-2">
                    <asp:TextBox runat="server" ID="ControlFecha" CssClass="form-control"></asp:TextBox>
                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="ControlFecha" />
-                </div>
-                </div>               
+                </div>            
            </div>
 
            <div class ="form-group">

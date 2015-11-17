@@ -143,13 +143,9 @@ namespace SistemaPruebas.Intefaces
             String[] pr = casosPrueba.Split(';');
             foreach (String p1 in pr)
             {
-                String[] p2 = p1.Split('_');
                 try
-                {
-                    if (Convert.ToInt32(p2[1]) > -1)
-                    {
-                        this.DropDownCasoDePrueba.Items.Add(new ListItem(p2[0], p2[1]));
-                    }
+                {  
+                    this.DropDownCasoDePrueba.Items.Add(new ListItem(p1));               
                 }
                 catch (Exception e)
                 {
@@ -160,6 +156,38 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        protected void llenarDDResponsables()
+        {
+            this.DropDownResponsable.Items.Clear();
+            DropDownResponsable.Items.Add(new ListItem("Seleccionar"));
+            int idProyecto = Convert.ToInt32(DropDownProyecto.SelectedItem.Value);
+            String responsables = controladoraEjecucionPrueba.solicitarResponsables(idProyecto);
+
+            if (responsables != null)
+            {
+                String[] pr = responsables.Split(';');
+
+                foreach (String p1 in pr)
+                {
+                    try
+                    {
+                        if (p1 != pr[pr.Length - 1])
+                            this.DropDownResponsable.Items.Add(new ListItem(p1));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                }
+            }
+            else
+            {
+                this.DropDownResponsable.Items.Clear();
+                DropDownResponsable.Items.Add(new ListItem("No Disponible"));
+            }
+        }
+
+
       
         protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -167,6 +195,7 @@ namespace SistemaPruebas.Intefaces
             {
                 DropDownDiseno.Enabled = true;
                 llenarDDDisseno();
+                llenarDDResponsables();
             }
             else
             {
