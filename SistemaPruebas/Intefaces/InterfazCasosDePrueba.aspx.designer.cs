@@ -193,15 +193,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// Control errorNombreSistLbl.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorNombreSistLbl;
-        
-        /// <summary>
         /// Control EntradaDatosCP.
         /// </summary>
         /// <remarks>
@@ -220,24 +211,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.TextBox TextBoxDescripcion;
         
         /// <summary>
-        /// Control DatosCP.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DatosCP;
-        
-        /// <summary>
-        /// Control TextBoxDatos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDatos;
-        
-        /// <summary>
         /// Control TiposCP.
         /// </summary>
         /// <remarks>
@@ -254,6 +227,24 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList TipoEntrada;
+        
+        /// <summary>
+        /// Control DatosCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DatosCP;
+        
+        /// <summary>
+        /// Control TextBoxDatos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDatos;
         
         /// <summary>
         /// Control AgregarEntrada.

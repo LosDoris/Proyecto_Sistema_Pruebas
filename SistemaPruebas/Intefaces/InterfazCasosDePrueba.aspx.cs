@@ -887,10 +887,23 @@ namespace SistemaPruebas.Intefaces
         {
             try
             {
-                TextBoxDatos.Text = DECP.SelectedRow.Cells[0].Text;
-                TipoEntrada.Text = DECP.SelectedRow.Cells[1].Text;
-                TipoEntrada.SelectedValue = DECP.SelectedRow.Cells[1].Text;
-               
+                string tipo = DECP.SelectedRow.Cells[0].Text;
+                tipo = tipo.Replace("&#225;", "á");
+                string dato = DECP.SelectedRow.Cells[1].Text;
+                dato = dato.Replace("&quot;","");
+
+                TextBoxDatos.Text = dato;
+                if (tipo == "Válido")
+                {
+                    TipoEntrada.SelectedIndex = 0;
+                }
+                else if (tipo == "Inválido")
+                {
+                    TipoEntrada.SelectedIndex = 1;
+                }
+                else if (tipo == "No Aplica") {
+                    TipoEntrada.SelectedIndex = 2;
+                }
             }
             catch
             {
@@ -942,16 +955,6 @@ namespace SistemaPruebas.Intefaces
             {
                 AgregarEntrada.Enabled = true;
             }
-        }
-
-       /*
-        * Requiere: Evento de modificar el text box del id de Caso de Prueba.
-        * Modifica: Retorna el color de su borde al color estandard.
-        * Retorna: N/A. 
-        */
-        protected void TextBoxID_TextChanged(object sender, EventArgs e)
-        {
-            TextBoxID.BorderColor = System.Drawing.Color.LightGray;
         }
 
         /*

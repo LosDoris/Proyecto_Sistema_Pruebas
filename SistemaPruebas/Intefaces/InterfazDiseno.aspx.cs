@@ -33,23 +33,26 @@ namespace SistemaPruebas.Intefaces
                     cargarResponsablesMiembro();
                     deshabilitarCampos();
                 }
+
+
+                restriccionesCampos();
+                txt_date.Attributes.Add("readonly", "readonly");
+                llenarPrincipio();
             }
-            restriccionesCampos();
+            
             if (controlDiseno.loggeadoEsAdmin())
             {
-                llenarProyecto = false.ToString();
                 Modificar.Enabled = false;
                 Insertar.Enabled = false;
                 Eliminar.Enabled = false;
             }
             else
             {
-                llenarProyecto = false.ToString();
                 Modificar.Enabled = false;
                 Insertar.Enabled = true;
                 Eliminar.Enabled = false;
             }
-            txt_date.Attributes.Add("readonly", "readonly");
+            
         }
 
 
@@ -66,6 +69,20 @@ namespace SistemaPruebas.Intefaces
             set
             {
                 HttpContext.Current.Session["infDisenno"] = value;
+            }
+        }
+
+        public static List<string> infDisennoRegresar
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["infDisennoRegresar"];
+                List<string> ids = HttpContext.Current.Session["infDisennoRegresar"] != null ? (List<string>)HttpContext.Current.Session["infDisennoRegresar"] : null;
+                return ids;
+            }
+            set
+            {
+                HttpContext.Current.Session["infDisennoRegresar"] = value;
             }
         }
 
@@ -1067,12 +1084,12 @@ namespace SistemaPruebas.Intefaces
         //retorna N/A
         protected void Llenar_Datos_Conultados(int id_diseno)
         {
-                     
             buttonDisenno = "2";
             Controladoras.EntidadDisenno entidad = controlDiseno.consultarDisenno(id_diseno);
             llenarGridsReq(1);
             llenarGridsReq(2);
             this.propositoTxtbox.Text = entidad.Proposito;
+            
 
             Nivel.ClearSelection();
             ListItem selectedListItem = Nivel.Items.FindByValue(entidad.Nivel.ToString());
@@ -1099,7 +1116,19 @@ namespace SistemaPruebas.Intefaces
             {
                 selectedListItem3.Selected = true;
             }
-            deshabilitarCampos();  
+            deshabilitarCampos();
+
+
+            List<string> lista = new List<string>();
+            lista.Add(entidad.Proposito);
+            lista.Add(entidad.Nivel.ToString());
+            lista.Add(entidad.Tecnica.ToString());
+            lista.Add(entidad.Ambiente);
+            lista.Add(entidad.Procedimiento);
+            lista.Add(entidad.FechaDeDisenno);
+            lista.Add(entidad.Responsable.ToString());
+
+            infDisennoRegresar = lista;
 
         }
 
@@ -1239,7 +1268,45 @@ namespace SistemaPruebas.Intefaces
         {
             return infDisenno;
         }
-        
+        public void llenarPrincipio()
+        {
+            try {
+                this.propositoTxtbox.Text = infDisennoRegresar[0];
+
+
+                Nivel.ClearSelection();
+                ListItem selectedListItem = Nivel.Items.FindByValue(infDisennoRegresar[1]);
+                if (selectedListItem != null)
+                {
+                    selectedListItem.Selected = true;
+                };
+
+                Tecnica.ClearSelection();
+                ListItem selectedListItem2 = Tecnica.Items.FindByValue(infDisennoRegresar[2]);
+                if (selectedListItem2 != null)
+                {
+                    selectedListItem2.Selected = true;
+                };
+                this.ambienteTxtbox.Text = infDisennoRegresar[3];
+                this.procedimientoTxtbox.Text = infDisennoRegresar[4];
+                this.txt_date.Text = infDisennoRegresar[5];
+                this.criteriosTxtbox.Text = infDisennoRegresar[6];
+
+                cargarResponsablesMiembro();
+                responsable.ClearSelection();
+                ListItem selectedListItem3 = responsable.Items.FindByText(controlDiseno.solicitarNombreResponsable(Convert.ToInt32(infDisennoRegresar[6])));
+                if (selectedListItem3 != null)
+                {
+                    selectedListItem3.Selected = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
+        }
+
     }
 
 }

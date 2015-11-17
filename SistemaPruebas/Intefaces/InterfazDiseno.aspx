@@ -159,7 +159,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                     <asp:Label runat="server" ID="propositoLabel" CssClass="col-md-2 control-label">Propósito:</asp:Label>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="propositoTxtbox" Style="width: 250px; height: 36px" CssClass="form-control" MaxLength="80"
-                            onkeypress="solo_letras(event)" placeholder="Sólo letras." />
+                            onkeypress="solo_letras(event)" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="propositoTxtbox" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras(evt) {
@@ -229,7 +229,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Ambiente:</asp:Label>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="ambienteTxtbox" Style="width: 250px; height: 130px" CssClass="form-control" MaxLength="150" TextMode="multiline"
-                            onkeypress="solo_letras1(event)" placeholder="Sólo letras y espacios." />
+                            onkeypress="solo_letras1(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras1(evt) {
 
@@ -266,7 +266,7 @@ PublicKeyToken=31bf3856ad364e35"/>
 
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 284%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
-                            onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios." />
+                            onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
 
                         <script type="text/javascript">
                             function solo_letras2(evt) {
@@ -297,7 +297,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Criterios de Aceptación:</asp:Label>
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width: 284%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
-                            onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios." />
+                            onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras3(evt) {
 
@@ -349,7 +349,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Diseño:</asp:Label>
                     <div class="col-md-4" runat="server">
-                <asp:TextBox runat="server" ID="txt_date" Style="width: 250px; height: 36px" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" ></asp:TextBox>
                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="txt_date" TargetControlID="txt_date" />
                     </div>
                 </div>

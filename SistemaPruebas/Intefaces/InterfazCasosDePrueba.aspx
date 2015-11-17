@@ -67,15 +67,16 @@
 
         <div class="col-md-8">
 		    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" style="text-align: right; width: 200px;height: 32px;" Text="ID:"></asp:Label>                      
-		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20" OnTextChanged="TextBoxID_TextChanged"/>
+		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20"/>
 		    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" style="margin-left:200px" runat="server" ErrorMessage="Campo requerido" ControlToValidate="TextBoxID" ForeColor="Salmon"></asp:RequiredFieldValidator>
             <script type="text/javascript">
 			    function checkInput(e) {
-				    var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
-				    if (!ok)
-				        e.preventDefault();
-				    if(e.charCode==8)
-                        alert("estpacio")
+			        var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
+			        if (e.keyCode == 8) {
+			            //alert();
+			        }
+			        else if (!ok)
+                            e.preventDefault();    
 			    }
 		    </script>
         </div>
@@ -89,22 +90,15 @@
 		        function checkInput3(e) {
 		            var key = theEvent.keyCode || theEvent.which;
 		            
-			        var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
-			        if (!ok) {
-				        if ($('#errorNombreSistema').css('display') == 'none') {
-				            $('#errorNombreSistema').fadeIn();
-				            $('#errorNombreSistema').fadeOut(6000);
-				        }
-				        if (window.event)//IE
-				            e.returnValue = false;
-				        else//Firefox
-				            e.preventDefault();
-			        }
+		            var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
+		            if (e.keyCode == 8) {
+		                //alert();
+		            }
+		            else if (!ok)
+				        e.preventDefault();
 			    }
 		    </script>
-            <div id="errorNombreSistema" style="display:none; margin-left:170px">
-                <asp:Label runat="server" ID="errorNombreSistLbl" text="Caracter no válido." ForeColor="Salmon"></asp:Label>
-            </div>
+            
         </div>
 
         <div class="jumbozCP2">
@@ -116,10 +110,28 @@
                     <script type="text/javascript">
                         function checkInput1(e) {
                             var ok = /[A-Za-z]/.test(String.fromCharCode(e.charCode));
-                            if (!ok)
-                                e.preventDefault();
+                            if (e.keyCode == 8) {
+                                //alert();
+                            }
+                            else if (!ok)
+                                if ($('#errorNombreSistema').css('display') == 'none') {
+                                    $('#errorNombreSistema').fadeIn();
+                                    $('#errorNombreSistema').fadeOut(6000);
+                                }
+                                if (window.event)//IE
+                                    e.returnValue = false;
+                                else//Firefox
+                                    e.preventDefault();
                         }
                     </script>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Tipo:"></asp:Label>
+                        <asp:DropDownList ID="TipoEntrada" runat="server" style="width: 100px;"  CssClass="form-control"  OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
+                            <asp:ListItem Text ="Válido" Value =1/>
+                            <asp:ListItem Text ="Inválido" Value =2/>
+                            <asp:ListItem Text ="No Aplica" Value =3/>
+                        </asp:DropDownList>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="DatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Datos:"></asp:Label>
@@ -128,20 +140,23 @@
                     <script type="text/javascript">
                         function checkInput2(e) {
                             var ok = /[A-Za-z0-9]/.test(String.fromCharCode(e.charCode));
-                            if (!ok)
-                                e.preventDefault();
+                            if (e.keyCode == 8) {
+                                //alert();
+                            }
+                            else if (!ok)
+                                if ($('#errorNombreSistema').css('display') == 'none') {
+                                    $('#errorNombreSistema').fadeIn();
+                                    $('#errorNombreSistema').fadeOut(6000);
+                                }
+                        if (window.event)//IE
+                            e.returnValue = false;
+                        else//Firefox
+                            e.preventDefault();
                         }
                     </script>
                     
                 </div>
-                <div class="form-group">
-                    <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Tipo:"></asp:Label>
-                        <asp:DropDownList ID="TipoEntrada" runat="server"  CssClass="form-control"  OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
-                            <asp:ListItem Text ="Válido" Value =1/>
-                            <asp:ListItem Text ="Inválido" Value =2/>
-                            <asp:ListItem Text ="No Aplica" Value =3/>
-                        </asp:DropDownList>
-                </div>
+                
 
                 <div class="form-group">          
                         <div class="col-md-offset-5 col-md-12">
@@ -180,8 +195,18 @@
         <script type="text/javascript">
             function checkInput4(e) {
                 var ok = /[A-Za-z.áéíóú ]/.test(String.fromCharCode(e.charCode));
-                if (!ok)
-                    e.preventDefault();
+                if (e.keyCode == 8) {
+                    //alert();
+                }
+                else if (!ok)
+                    if ($('#errorNombreSistema').css('display') == 'none') {
+                        $('#errorNombreSistema').fadeIn();
+                        $('#errorNombreSistema').fadeOut(6000);
+                    }
+                    if (window.event)//IE
+                        e.returnValue = false;
+                    else//Firefox
+                        e.preventDefault();
             }
         </script>
     </div>
@@ -191,8 +216,18 @@
         <script type="text/javascript">
             function checkInput5(e) {
                 var ok = /[A-Za-z0-9.\"\(\)áéíóú +]/.test(String.fromCharCode(e.charCode));
-                if (!ok)
-                    e.preventDefault();
+                if (e.keyCode == 8) {
+                    //alert();
+                }
+                else if (!ok)
+                    if ($('#errorNombreSistema').css('display') == 'none') {
+                        $('#errorNombreSistema').fadeIn();
+                        $('#errorNombreSistema').fadeOut(6000);
+                    }
+                    if (window.event)//IE
+                        e.returnValue = false;
+                    else//Firefox
+                        e.preventDefault();
             }
         </script>
     </div>
