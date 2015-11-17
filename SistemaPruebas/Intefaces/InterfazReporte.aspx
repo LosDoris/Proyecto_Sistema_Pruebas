@@ -86,28 +86,28 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Diseño</h3>
+        <h3 class="panel-title">Diseño</h3>
   </div>
   <div class="panel-body">
-    <div>
+     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView1" runat="server"></asp:GridView>
         </div>
         <div class="row">
-                <div class="col-md-3">
-                    <div class="form-horizontal">
-                        <asp:CheckBox ID="CheckBox8" runat="server" Text="Requerimientos."/>
-                    </div>
+            <div class="col-md-3">
+                <div class="form-horizontal">
+                    <asp:CheckBox ID="CheckBox8" runat="server" Text="Requerimientos."/>
                 </div>
-                <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox9" runat="server" Text="Nivel y Técnica."/>
-                </div>
-                <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox10" runat="server" Text="Criterios de aceptación."/>
-                </div>
-                <div class="col-md-3">
-                    <asp:CheckBox ID="CheckBox11" runat="server" Text="Fecha de asignación."/>
-                </div>
+            </div>
+            <div class="col-md-3">
+                <asp:CheckBox ID="CheckBox9" runat="server" Text="Nivel y Técnica."/>
+            </div>
+            <div class="col-md-3">
+                <asp:CheckBox ID="CheckBox10" runat="server" Text="Criterios de aceptación."/>
+            </div>
+            <div class="col-md-3">
+                <asp:CheckBox ID="CheckBox11" runat="server" Text="Fecha de asignación."/>
+            </div>
         </div>
         <div class="col-md3">
             <div class="row">
@@ -116,16 +116,16 @@
                         <asp:CheckBox ID="CheckBox12" runat="server" Text="Propósito." />
                     </div>
                 </div>
-            <div class="col-md-3">
-                <asp:CheckBox ID="CheckBox13" runat="server" Text="Procedimiento."/>
-            </div>
-            <div class="col-md-3">
-                <asp:CheckBox ID="CheckBox14" runat="server" Text="Responsable." />
-            </div>
-            <div class="col-md-3">
-        </div>        
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox13" runat="server" Text="Procedimiento."/>
+                </div>
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox14" runat="server" Text="Responsable." />
+                </div>
+            </div>        
+        </div>
+      </div>
     </div>
-  </div>
 </div>
 
 <div class="panel panel-primary">
@@ -136,7 +136,7 @@
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView2" runat="server"></asp:GridView>
-            </div>
+         </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
@@ -151,8 +151,16 @@
                 </div>
             </div>
         <div class="col-md3">
-            <asp:CheckBox ID="CheckBox19" runat="server" Text="Propósito." />
-            <asp:CheckBox ID="CheckBox20" runat="server" Text="Resultado esperado."/>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-horizontal">
+                        <asp:CheckBox ID="CheckBox19" runat="server" Text="Propósito." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox20" runat="server" Text="Resultado esperado."/>
+                </div>
+            </div>
         </div>        
     </div>
   </div>
@@ -167,8 +175,33 @@
     <div>
         <div class="col-md3">
             <asp:GridView ID="GridView3" runat="server"></asp:GridView>
+        </div>
+                    <div class="row">
+                <div class="col-md-3">
+                    <div class="form-horizontal">
+                        <asp:CheckBox ID="CheckBox18" runat="server" Text="ID."/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox21" runat="server" Text="Entrada de datos."/>
+                </div>
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox22" runat="server" Text="Flujo central."/>
+                </div>
             </div>
         <div class="col-md3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-horizontal">
+                        <asp:CheckBox ID="CheckBox23" runat="server" Text="Propósito." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <asp:CheckBox ID="CheckBox24" runat="server" Text="Resultado esperado."/>
+                </div>
+            </div>
+        </div> 
+        <%--<div class="col-md3">
             <asp:CheckBox ID="CheckBox22" runat="server" Text="ID."/>
             <asp:CheckBox ID="CheckBox23" runat="server" Text="Entrada de datos."/>
             <asp:CheckBox ID="CheckBox24" runat="server" Text="Flujo central."/>
@@ -176,7 +209,7 @@
         <div class="col-md3">
             <asp:CheckBox ID="CheckBox26" runat="server" Text="Propósito." />
             <asp:CheckBox ID="CheckBox27" runat="server" Text="Resultado esperado."/>
-        </div>        
+        </div>   --%>     
     </div>
   </div>
 </div>
