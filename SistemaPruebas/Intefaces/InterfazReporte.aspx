@@ -101,6 +101,7 @@
             OnRowDataBound="DP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center"
             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
             AutoPostBack="true"></asp:GridView>
+            <asp:Label ID="disennoSeleccionado" runat="server" Text=""></asp:Label>
         </div>
         <div class="row">
             <div class="col-md-3">

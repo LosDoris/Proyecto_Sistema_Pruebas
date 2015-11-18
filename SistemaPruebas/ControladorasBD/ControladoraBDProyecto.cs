@@ -151,7 +151,14 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = new DataTable();
             dt = acceso_BD.ejecutarConsultaTabla("select id_proyecto from proyecto where nombre_sistema = '"+nombre+"' and id_proyecto >= 0");
-            return Int32.Parse(dt.Rows[0][0].ToString());
+            try
+            {
+                return Int32.Parse(dt.Rows[0][0].ToString());
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
 

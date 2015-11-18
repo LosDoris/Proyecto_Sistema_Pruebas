@@ -157,7 +157,7 @@ namespace SistemaPruebas.Intefaces
             {
                 esAdminGR = Convert.ToString(true);
                 llenarGridPP();
-                llenarGridDP("");
+                //llenarGridDP("");
                 //llenarGridCP("");
                 //llenarGridEP();
                 //esAdminGR = controladoraGR.PerfilDelLogeado().ToString();
@@ -252,7 +252,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridDP(string nombProyecto)
         {
             DataTable disennoPrueba = crearTablaDP();
-            DataTable dt = controladoraGR.consultarDisennos("Cursos");
+            DataTable dt = controladoraGR.consultarDisennos(nombProyecto);
             Object[] datos = new Object[4];
             if (dt.Rows.Count > 0)
             {
@@ -492,18 +492,16 @@ namespace SistemaPruebas.Intefaces
         protected void PP_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = GridPP.SelectedRow.RowIndex;
-            //GridPP.BackColor = System.Drawing.Color.White;
-            //proyectoActualGR = GridPP.SelectedRow.RowIndex;
-            //System.Drawing.Color.White;
-            //;
-            //GridPP.SelectedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
             String ced = GridPP.SelectedRow.Cells[0].Text;
+            if (proyectoActualGR != ced.ToString())
+            {
+                disennoSeleccionado.Text = "";
+            }
             proyectoActualGR = ced.ToString();
             PPindexViejo = index.ToString();
+            llenarGridDP(proyectoActualGR);
             proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
-            //proyectoActualGR;//= 
-            ///llenarDatosRequerimiento(ced);
-            //habilitarGrid();
+
         }
 
 
@@ -536,8 +534,10 @@ namespace SistemaPruebas.Intefaces
         {
             int index = GridDP.SelectedRow.RowIndex;
             String ced = GridDP.SelectedRow.Cells[0].Text;
-            ///llenarDatosRequerimiento(ced);
-            //habilitarGrid();
+            disennoActualGR = ced.ToString();
+            DPindexViejo = index.ToString();
+            disennoSeleccionado.Text = "El diseño seleccionado es:" + ced;
+            
         }
         protected void CP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
