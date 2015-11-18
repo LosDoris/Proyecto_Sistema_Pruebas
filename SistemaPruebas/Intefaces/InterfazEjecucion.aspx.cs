@@ -283,8 +283,8 @@ namespace SistemaPruebas.Intefaces
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                
-                DropDownList dropDownCasos = (e.Row.FindControl("ddlIdCaso") as DropDownList);
-                llenarDDCasoPrueba(ref dropDownCasos);
+               DropDownList dropDownCasos = (e.Row.FindControl("ddlIdCaso") as DropDownList);
+               llenarDDCasoPrueba(ref dropDownCasos);
 
             }
         }
@@ -359,6 +359,7 @@ namespace SistemaPruebas.Intefaces
                         for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                         {
                             DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo")           as DropDownList;
+                            RequiredFieldValidator rqv1 = gridNoConformidades.Rows[indiceFila].FindControl("ValidarTipo") as RequiredFieldValidator;
                             DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso")         as DropDownList;
                             TextBox      txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion")    as TextBox;
                             TextBox      txt2 = gridNoConformidades.Rows[indiceFila].FindControl("txtJustificacion")  as TextBox;
@@ -391,9 +392,6 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
+ 
     }
 }

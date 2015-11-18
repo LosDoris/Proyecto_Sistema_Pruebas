@@ -113,7 +113,7 @@
                                 <asp:ListItem Text="Implementación diferente a documentación"></asp:ListItem>
                                 <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="ValidarTipo" runat="server" ControlToValidate="Nivel" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
+                            <asp:RequiredFieldValidator ID="ValidarTipo" runat="server" ControlToValidate="ddlTipo" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
 
                         </ItemTemplate>
                     </asp:TemplateField>
