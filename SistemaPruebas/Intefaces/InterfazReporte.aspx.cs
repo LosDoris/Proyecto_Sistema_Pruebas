@@ -324,7 +324,103 @@ namespace SistemaPruebas.Intefaces
 
             return proyecto;
         }
-            
+        protected bool[] datosDisenno()
+        {
+            bool[] disenno = new bool[7];
+            disenno[0] = CheckBoxReqDisenno.Checked;
+            disenno[1] = CheckBoxNivelDisenno.Checked;
+            disenno[2] = CheckBoxCriteriosAceptacionDisenno.Checked;
+            disenno[3] = CheckBoxFechAsignacionDisenno.Checked;
+            disenno[4] = CheckBoxPropositoDisenno.Checked;
+            disenno[5] = CheckBoxProcedimientoDisenno.Checked;
+            disenno[6] = CheckBoxResponsableDisenno.Checked;
+
+            return disenno;
+        }
+        protected bool[] datosCasos()
+        {
+            bool[] casos = new bool[7];
+            casos[0] = CheckBoxReqDisenno.Checked;
+            casos[1] = CheckBoxNivelDisenno.Checked;
+            casos[2] = CheckBoxCriteriosAceptacionDisenno.Checked;
+            casos[3] = CheckBoxFechAsignacionDisenno.Checked;
+            casos[4] = CheckBoxPropositoDisenno.Checked;
+            casos[5] = CheckBoxProcedimientoDisenno.Checked;
+            casos[6] = CheckBoxResponsableDisenno.Checked;
+
+            return casos;
+        }
+        protected bool[] datosEjecucion()
+        {
+            bool[] ejecucion = new bool[7];
+            ejecucion[0] = CheckBoxReqDisenno.Checked;
+            ejecucion[1] = CheckBoxNivelDisenno.Checked;
+            ejecucion[2] = CheckBoxCriteriosAceptacionDisenno.Checked;
+            ejecucion[3] = CheckBoxFechAsignacionDisenno.Checked;
+            ejecucion[4] = CheckBoxPropositoDisenno.Checked;
+            ejecucion[5] = CheckBoxProcedimientoDisenno.Checked;
+            ejecucion[6] = CheckBoxResponsableDisenno.Checked;
+
+            return ejecucion;
+        }
+        protected void BotonGE_Click(object sender, EventArgs e)
+        {
+            //revisar como se llaman los metodos de la controladora.
+            bool[] ejecucion = datosEjecucion();
+            bool[] disenno = datosDisenno();
+            bool[] proyecto = datosProy();
+            bool[] casos = datosCasos();
+        }
+
+
     }
     
 }
+/* //Metodos que necesito que la controladora de reportes tenga.
+public DataTable ConsultarProyectosGridBD()
+{
+     DataTable dt = new DataTable();
+     dt = acceso_BD.ejecutarConsultaTabla("select p.id_proyecto, p.nombre_sistema, from Proyecto p ORDER BY p.id_proyecto DESC");
+     return dt;
+}
+public DataTable ConsultarProyectosGrid()//poner en proyectos y reportes
+{
+     DataTable dt = new DataTable();
+     dt = ConsultarProyectosGridBD;
+     return dt;
+}
+public DataTable nombrePersona(int id){//cont reporte y de rh. Voy a hacer este nuevo porque en el que ya hay se da una violacion de capas.
+    return nombrePersonaBD(int id);
+}
+public int nombrePersonaBD(int id)//cont bd rh
+{
+      int regresa = -1;
+      DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo FROM Recurso_Humano WHERE cedula = '" + id + "'");
+      return dt.Rows[0][0].ToString();
+}
+public DataTable ConsultarDisenosGrid(int proyecto)//cont bd rh
+{
+    return controladoraDiseno.consultarDisenoGrid(proyecto);
+}
+
+public DataTable ConsultarEjecucionesGrid(int proyecto)//cont bd rh
+{
+    return controlDiseno.consultarDisenoGrid(proyecto);// ver como lo llama ricardo o implementarlo yo (andrea)
+}
+public DataTable ConsultarCasosGrid(int proyecto)//cont bd rh
+{
+    return controladoraCasosPrueba.consultarCasosPrueba(1,""); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+*/

@@ -217,7 +217,7 @@
     <div style="margin-top:5px" class="well">
            <div class ="form-group">
                <div class ="col-md-2">
-                    <asp:Button runat="server" Text="Generar Reporte"   CssClass="btn btn-primary"   ID="Generar"     CausesValidation ="false" /> 
+                    <asp:Button runat="server" Text="Generar Reporte"   CssClass="btn btn-primary"   ID="Generar"  OnClick="BotonGE_Click" CausesValidation ="false" /> 
                 </div>
                 <div class ="col-md-4" style="padding-top:25px">
 	     <div class="progress progress-striped active">
