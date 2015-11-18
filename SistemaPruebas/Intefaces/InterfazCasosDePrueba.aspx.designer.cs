@@ -85,6 +85,33 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button BotonCPEliminar;
         
         /// <summary>
+        /// Control Proyecto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Proyecto1;
+        
+        /// <summary>
+        /// Control Proyecto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Proyecto;
+        
+        /// <summary>
+        /// Control Proposito1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Proposito1;
+        
+        /// <summary>
         /// Control Proposito.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Proposito;
+        
+        /// <summary>
+        /// Control Nivel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nivel1;
         
         /// <summary>
         /// Control Nivel.
@@ -103,6 +139,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label Nivel;
         
         /// <summary>
+        /// Control Tecnica1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Tecnica1;
+        
+        /// <summary>
         /// Control Tecnica.
         /// </summary>
         /// <remarks>
@@ -112,13 +157,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label Tecnica;
         
         /// <summary>
-        /// Control Proyecto.
+        /// Control Requerimientos1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Proyecto;
+        protected global::System.Web.UI.WebControls.Label Requerimientos1;
         
         /// <summary>
         /// Control Requerimientos.

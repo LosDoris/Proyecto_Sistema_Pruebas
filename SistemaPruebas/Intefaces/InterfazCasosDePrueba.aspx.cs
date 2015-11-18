@@ -134,45 +134,53 @@ namespace SistemaPruebas.Intefaces
             ControladoraRecursosHumanos crh = new ControladoraRecursosHumanos();
 
             List<string> la_lista = infoDisenno();
-            Proposito.Text="Propósito: "+la_lista[0];
+            Proposito.Text=la_lista[0];
             if (Convert.ToInt32(la_lista[1])==2)
             {
-                Nivel.Text="Nivel: Unitaria";
+                Nivel.Text="Unitaria";
             }
             else if (Convert.ToInt32(la_lista[1]) == 3)
             {
-                Nivel.Text="Nivel: Integración";
+                Nivel.Text="Integración";
             }
             else if (Convert.ToInt32(la_lista[1]) == 4)
             {
-                Nivel.Text="Nivel: Sistema";
+                Nivel.Text="Sistema";
             }
             else if (Convert.ToInt32(la_lista[1]) == 5)
             {
-                Nivel.Text="Nivel: Aceptación";
+                Nivel.Text="Aceptación";
             }
 
 
             if (Convert.ToInt32(la_lista[2]) == 2)
             {
-                Tecnica.Text="Técnica: Caja Negra";
+                Tecnica.Text="Caja Negra";
             }
             else if (Convert.ToInt32(la_lista[2]) == 3)
             {
-                Tecnica.Text="Técnica: Caja Blanca";
+                Tecnica.Text="Caja Blanca";
             }
             else if (Convert.ToInt32(la_lista[2]) == 4)
             {
-                Tecnica.Text = "Técnica: Exploratoria";
+                Tecnica.Text = "Exploratoria";
             }
             
-            Proyecto.Text="Proyecto: "+crh.solicitarNombreProyecto(Convert.ToInt32(la_lista[8]));
+            Proyecto.Text=crh.solicitarNombreProyecto(Convert.ToInt32(la_lista[8]));
 
             string[] esplit = la_lista[9].Split(';');
-            string la_hilera = "<br />" + "Requerimientos: ";
+            string la_hilera = "";
             for (int i = 1; i < esplit.Length ; i++)
             {
-                la_hilera += "<br />"+esplit[i];
+                if (i == (esplit.Length)-1)
+                {
+                    la_hilera += esplit[i];
+                }
+                else
+                {
+                    la_hilera += esplit[i] + ",   ";
+                }
+                
             }
             Requerimientos.Text = la_hilera;
         }

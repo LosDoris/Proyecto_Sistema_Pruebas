@@ -39,36 +39,47 @@
   <div class="panel-heading">
     <h3 class="panel-title">Resumen sobre el Diseño</h3>
   </div>
-  <div class="panel-body">
-        <div class="col-md-6">
-            <div class ="form-group">
-		        <asp:Label ID="Proposito" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Propósito"></asp:Label>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-horizontal">
+                    <asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Proyecto: "></asp:Label>
+					<asp:Label ID="Proyecto" runat="server" CssClass="control-label" Text=""></asp:Label>
+                
             </div>
-            <div class="form-group">
-                <asp:Label ID="Nivel" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nivel"></asp:Label>
+			
+			<div class="col-md-3">
+                
+                    <asp:Label ID="Proposito1" Font-Bold="true" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Propósito del Diseño: "></asp:Label>
+					<asp:Label ID="Proposito" runat="server" CssClass="control-label" Text =""></asp:Label>
+                
             </div>
-            <div class ="form-group">
-                <asp:Label ID="Tecnica" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Técnica"></asp:Label>
+
+			<div class="col-md-3">
+				<asp:Label ID="Nivel1" Font-Bold="true" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nivel: "></asp:Label>
+                <asp:Label ID="Nivel" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-            <div class ="form-group">
-                <asp:Label ID="Proyecto" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Proyecto"></asp:Label>
+
+			<div class="col-md-3">
+				<asp:Label ID="Tecnica1" Font-Bold="true" runat="server" CssClass="control-label"
+                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Técnica: "></asp:Label>
+                <asp:Label ID="Tecnica" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-        </div>
-        
+		</div>	
+		</div>	
+      
         <div class="col-md-12">
-		    <asp:Label ID="Requerimientos" runat="server" CssClass="control-label"
-                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos"></asp:Label>
+            <asp:Label ID="Requerimientos1" Font-Bold="true" runat="server" CssClass="control-label"
+                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos: "></asp:Label>
+		    <asp:Label ID="Requerimientos"  runat="server" CssClass="control-label" Text=""></asp:Label>
         </div>
         <div class="col-md-offset-10 col-md-12">
 	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
         </div>
         <div style="clear:both"></div>
-      </div>
-    </div>
+		</div>	
 
     <div class="well">
     
