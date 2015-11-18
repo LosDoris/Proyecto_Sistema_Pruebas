@@ -89,6 +89,13 @@
                     </div>
                 </div>
            </div>
+
+           <div class ="row">
+               <asp:GridView ID ="noConformidades" runat ="server"  margin-right ="auto" style="margin-top: 900px;" margin-left="auto" CssClass ="GridView" HorizontalAlign="Center" OnRowDataBound ="noConformidades_RowDataBound">
+               
+               </asp:GridView>
+
+           </div>
            <div class ="form-group">
                <div class ="col-md-2">
                     <asp:Label ID="TipoEP" runat="server" Text="Tipo:" CssClass = "col-md-2 control-label"></asp:Label>

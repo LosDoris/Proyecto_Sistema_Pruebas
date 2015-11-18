@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using System.IO;
+using System.Data;
 using System.Data.SqlClient;
 using SistemaPruebas.Controladoras;
 
@@ -58,7 +59,8 @@ namespace SistemaPruebas.Intefaces
        */
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            //columnasGridNoConformidades();
+            if (!IsPostBack)
             {
                 estadoInicial();
             }
@@ -134,10 +136,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void llenarDDCasoPrueba()
+        protected void llenarDDCasoPrueba(ref DropDownList dcp)
         {
-            this.DropDownCasoDePrueba.Items.Clear();
-            DropDownCasoDePrueba.Items.Add(new ListItem("Seleccionar"));
+            dcp.Items.Clear();
+            dcp.Items.Add(new ListItem("Seleccionar"));
             int idDiseno = Convert.ToInt32(DropDownDiseno.SelectedItem.Value);
             String casosPrueba = controladoraEjecucionPrueba.solicitarCasosdePrueba(idDiseno);
             String[] pr = casosPrueba.Split(';');
@@ -145,7 +147,7 @@ namespace SistemaPruebas.Intefaces
             {
                 try
                 {  
-                    this.DropDownCasoDePrueba.Items.Add(new ListItem(p1));               
+                    dcp.Items.Add(new ListItem(p1));               
                 }
                 catch (Exception e)
                 {
@@ -250,7 +252,7 @@ namespace SistemaPruebas.Intefaces
             if(DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
                 DatosEjecucion.Enabled = true;
-                llenarDDCasoPrueba();
+                //llenarDDCasoPrueba();
             }
             else
             {
@@ -262,5 +264,106 @@ namespace SistemaPruebas.Intefaces
         {
 
         }
+
+        protected DropDownList crearDropDownTipos()
+        {
+            String[] tipos = new String[7];
+            tipos[0] = "Funcionalidad";
+            tipos[1] = "Validación";
+            tipos[2] = "Opciones que no funcionan";
+            tipos[3] = "Error de usabilidad";
+            tipos[4] = "Excepciones";
+            tipos[5] = "No correspondencia de lo implementado con lo documentado";
+            tipos[6] = "Ortografía";
+
+            DropDownList ddTipos = new DropDownList();
+            ddTipos.Items.Add(new ListItem("Seleccionar"));
+            foreach(String tipo in tipos)
+            {
+                ddTipos.Items.Add(new ListItem(tipo));
+            }
+            return ddTipos;
+        }
+
+        protected void columnasGridNoConformidades()
+        {
+           
+            TemplateField tfield = new TemplateField();
+            tfield.HeaderText = "Tipo no conformidad";
+            noConformidades.Columns.Add(tfield);
+
+            tfield = new TemplateField();
+            tfield.HeaderText = "Id Caso de Prueba";
+            noConformidades.Columns.Add(tfield);
+
+            tfield = new TemplateField();
+            tfield.HeaderText = "Descripción";
+            noConformidades.Columns.Add(tfield);
+
+            tfield = new TemplateField();
+            tfield.HeaderText = "Justificación";
+            noConformidades.Columns.Add(tfield);
+
+            tfield = new TemplateField();
+            tfield.HeaderText = "Estado";
+            noConformidades.Columns.Add(tfield);
+            this.enlazarGrid();
+            
+        }
+
+        protected void enlazarGrid()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange
+            (
+                new DataColumn[5]
+                {
+                    new DataColumn("TipoNC",        typeof(String)),
+                    new DataColumn("IdCP",          typeof(String)),
+                    new DataColumn("Descripcion",   typeof(String)),
+                    new DataColumn("Justificacion", typeof(String)),
+                    new DataColumn("Estado",        typeof(String))
+                }
+            );
+
+            dt.Rows.Add("-", "-", "-", "-", "-");
+            noConformidades.DataSource = dt;
+            noConformidades.DataBind();
+
+        }
+
+        protected void noConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        //protected void noConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        DropDownList ddTipo = new DropDownList();
+        //        e.Row.Cells[0].Controls.Add(ddTipo);
+
+        //        DropDownList ddCaso = new DropDownList();
+        //        e.Row.Cells[1].Controls.Add(ddCaso);
+
+        //        TextBox tbDesc = new TextBox();
+        //        e.Row.Cells[2].Controls.Add(ddCaso);
+
+        //        TextBox tbJus = new TextBox();
+        //        e.Row.Cells[3].Controls.Add(tbJus);
+
+        //        DropDownList ddEst = new DropDownList();
+        //        e.Row.Cells[4].Controls.Add(ddEst);
+
+
+        //    }
+        //}
+
+        //protected Object crearFilaNoConformidad()
+        //{
+        //    Object fila = new Object[6]
+
+        //}
     }
 }
