@@ -11,42 +11,91 @@ namespace SistemaPruebas.Intefaces
     public partial class InterfazReporte : System.Web.UI.Page
     {
         Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
-        public static string modoGE
+        public static string modoGR
         {
             get
             {
-                object value = HttpContext.Current.Session["modoREQ"];
+                object value = HttpContext.Current.Session["modoGR"];
                 return value == null ? "0" : (string)value;
             }
             set
             {
-                HttpContext.Current.Session["modoREQ"] = value;
+                HttpContext.Current.Session["modoGR"] = value;
             }
         }
 
-        public static string idViejoGE
+        public static string idViejoGR
         {
             get
             {
-                object value = HttpContext.Current.Session["id_modificando"];
+                object value = HttpContext.Current.Session["idViejoGR"];
                 return value == null ? "-1" : (string)value;
             }
             set
             {
-                HttpContext.Current.Session["id_modificando"] = value;
+                HttpContext.Current.Session["idViejoGR"] = value;
             }
         }
 
-        public static string esAdminGE
+        public static string esAdminGR
         {
             get
             {
-                object value = HttpContext.Current.Session["esAdminREQ"];
+                object value = HttpContext.Current.Session["esAdminGR"];
                 return value == null ? "false" : (string)value;
             }
             set
             {
-                HttpContext.Current.Session["esAdminREQ"] = value;
+                HttpContext.Current.Session["esAdminGR"] = value;
+            }
+        }
+
+        public static string proyectoActualGR
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["proyectoActualGR"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["proyectoActualGR"] = value;
+            }
+        }
+        public static string disennoActualGR
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["disennoActualGR"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["disennoActualGR"] = value;
+            }
+        }
+        public static string CPActualGR
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["CPActualGR"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["CPActualGR"] = value;
+            }
+        }
+        public static string EPActualGR
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["EPActualGR"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["EPActualGR"] = value;
             }
         }
 
@@ -55,10 +104,15 @@ namespace SistemaPruebas.Intefaces
         protected void Page_Load(object sender, EventArgs e)
         {
             //Restricciones_Campos();
-            if (!IsPostBack)
+            if (!IsPostBack)// ES SOLO LA PRIMERA VEZ
             {
-                //esAdminGE = controladoraGR.PerfilDelLogeado().ToString();
-                if (Convert.ToBoolean(esAdminGE))
+                esAdminGR = Convert.ToString(true);
+                llenarGridPP();
+                llenarGridDP("");
+                //llenarGridCP("");
+                //llenarGridEP();
+                //esAdminGR = controladoraGR.PerfilDelLogeado().ToString();
+                if (Convert.ToBoolean(esAdminGR))
                 {
                     //proyectoActual = controladoraGR.consultarIDProyMinimo().ToString();
                 }
@@ -68,7 +122,7 @@ namespace SistemaPruebas.Intefaces
                 }
                 volverAlOriginal();
             }
-            if (Convert.ToBoolean(esAdminGE))
+            if (Convert.ToBoolean(esAdminGR))
             {
                 //proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
             }
@@ -76,26 +130,55 @@ namespace SistemaPruebas.Intefaces
             {
                 //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
             }
-            llenarGridPP();
-            llenarGridDP();
-            llenarGridCP();
-            llenarGridEP();
+            //llenarGridPP();
+            //llenarGridDP();
+            //llenarGridCP();
+            //llenarGridEP();
         }
-        protected void llenarGridPP()
+        /*
+         * Requiere: N/A.
+         * Modifica: Vuelve al inicio de generar reportes.
+         * Retorna: N/A.
+         */
+        protected void volverAlOriginal()
         {
+            //deshabilitarCampos();
 
-            DataTable dtGrid = crearTablaPP();
-            DataTable dt=new DataTable();
-            if (Convert.ToBoolean(esAdminGE))
+            /*
+            deshabilitarPP();
+            deshabilitarDP();
+            deshabilitarCP();
+            deshabilitarEP();
+            */
+            modoGR = Convert.ToString(0);
+            if (!Convert.ToBoolean(esAdminGR))
             {
-                //dt = controladoraGR.consultarRequerimiento(1, ""); // en consultas tipo 1, no se necesita el id del proyecto asociado al usuario.
-                //proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
-                //dt = controladoraGR.consultarRequerimiento(3, Convert.ToString(proyectoActual));
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
             }
             else
             {
-                //dt = controladoraGR.consultarRequerimiento(3, Convert.ToString(controladoraGR.proyectosDelLoggeado()));
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
             }
+            llenarGridPP();
+            if (!Convert.ToBoolean(esAdminGR))
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
+            }
+            else
+            {
+                //ProyectoAsociado.ClearSelection();
+                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
+            }
+            llenarGridPP();
+        }
+        protected void llenarGridPP()
+        {
+            
+            DataTable dtGrid = crearTablaPP();
+            DataTable dt = controladoraGR.consultarProyecto();
             Object[] datos = new Object[2];
 
 
@@ -103,11 +186,8 @@ namespace SistemaPruebas.Intefaces
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    datos[0] = dr[0];
-                    int id = Convert.ToInt32(dr[4]);
-                    String nomp="" ;//= controladoraGR.solicitarNombreProyecto(id);
-                    datos[0] = dr[3];
-                    datos[1] = nomp;
+                    datos[0] = dr[1];
+                    datos[1] = dr[2];
                     dtGrid.Rows.Add(datos);
                 }
             }
@@ -120,11 +200,10 @@ namespace SistemaPruebas.Intefaces
             GridPP.DataSource = dtGrid;
             GridPP.DataBind();
         }
-        protected void llenarGridDP()
+        protected void llenarGridDP(string nombProyecto)
         {
             DataTable disennoPrueba = crearTablaDP();
-            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
-
+            DataTable dt = controladoraGR.consultarDisennos("Cursos");
             Object[] datos = new Object[4];
             if (dt.Rows.Count > 0)
             {
@@ -148,10 +227,10 @@ namespace SistemaPruebas.Intefaces
             GridDP.DataSource = disennoPrueba;
             GridDP.DataBind();
         }
-        protected void llenarGridCP()
+        protected void llenarGridCP(String idDisenno)
         {
             DataTable casosPrueba = crearTablaCP();
-            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
+            DataTable dt =new DataTable();//= controladoraGR.consultarCasosPrueba(idDisenno);
 
             Object[] datos = new Object[2];
             if (dt.Rows.Count > 0)
@@ -175,7 +254,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridEP()
         {
             DataTable ejecicionPrueba = crearTablaEP();
-            DataTable dt = new DataTable();//= controladoraGR.consultarCasosPrueba(1, "");
+            DataTable dt = controladoraGR.consultarDisennos("");
 
             Object[] datos = new Object[3];
             if (dt.Rows.Count > 0)
@@ -205,45 +284,7 @@ namespace SistemaPruebas.Intefaces
 
 
 
-        /*
-         * Requiere: N/A.
-         * Modifica: Vuelve al inicio de generar reportes.
-         * Retorna: N/A.
-         */
-        protected void volverAlOriginal()
-        {
-            //deshabilitarCampos();
-
-            /*
-            deshabilitarPP();
-            deshabilitarDP();
-            deshabilitarCP();
-            deshabilitarEP();
-            */
-            modoGE = Convert.ToString(0);
-            if (!Convert.ToBoolean(esAdminGE))
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-            }
-            else
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
-            }
-            llenarGridPP();
-            if (!Convert.ToBoolean(esAdminGE))
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-            }
-            else
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
-            }
-            llenarGridPP();
-        }
+        
         protected DataTable crearTablaPP()
         {
             DataTable dt = new DataTable();
@@ -371,46 +412,138 @@ namespace SistemaPruebas.Intefaces
             bool[] proyecto = datosProy();
             bool[] casos = datosCasos();
         }
+        /*
+         * Requiere: El evento de enlazar información de un datatable con el grid
+         * Modifica: Establece el comportamiento del grid ante los diferentes eventos.
+         * Retorna: N/A.
+         */
+        protected void PP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridPP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+
+        }
+
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
+        protected void PP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridPP.PageIndex = e.NewPageIndex;
+            this.llenarGridPP();
+        }
+        protected void PP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = GridPP.SelectedRow.RowIndex;
+            String ced = GridPP.SelectedRow.Cells[0].Text;
+            ///llenarDatosRequerimiento(ced);
+            //habilitarGrid();
+        }
 
 
+
+
+        protected void DP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridDP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+
+        }
+
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
+        protected void DP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridDP.PageIndex = e.NewPageIndex;
+            this.llenarGridDP("");//PONER EL PROYECTO SELECCIONADO
+        }
+        protected void DP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = GridDP.SelectedRow.RowIndex;
+            String ced = GridDP.SelectedRow.Cells[0].Text;
+            ///llenarDatosRequerimiento(ced);
+            //habilitarGrid();
+        }
+        protected void CP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridCP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+
+        }
+
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
+        protected void CP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridCP.PageIndex = e.NewPageIndex;
+            this.llenarGridCP("");
+        }
+        protected void CP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = GridCP.SelectedRow.RowIndex;
+            String ced = GridCP.SelectedRow.Cells[0].Text;
+            ///llenarDatosRequerimiento(ced);
+            //habilitarGrid();
+        }
+        protected void EP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridEP, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+
+        }
+
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+        */
+        protected void EP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridEP.PageIndex = e.NewPageIndex;
+            this.llenarGridEP();
+        }
+        protected void EP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = GridEP.SelectedRow.RowIndex;
+            String ced = GridEP.SelectedRow.Cells[0].Text;
+            ///llenarDatosRequerimiento(ced);
+            //habilitarGrid();
+        }
     }
     
 }
-/* //Metodos que necesito que la controladora de reportes tenga.
-public DataTable ConsultarProyectosGridBD()
-{
-     DataTable dt = new DataTable();
-     dt = acceso_BD.ejecutarConsultaTabla("select p.id_proyecto, p.nombre_sistema, from Proyecto p ORDER BY p.id_proyecto DESC");
-     return dt;
-}
-public DataTable ConsultarProyectosGrid()//poner en proyectos y reportes
-{
-     DataTable dt = new DataTable();
-     dt = ConsultarProyectosGridBD;
-     return dt;
-}
-public DataTable nombrePersona(int id){//cont reporte y de rh. Voy a hacer este nuevo porque en el que ya hay se da una violacion de capas.
-    return nombrePersonaBD(int id);
-}
-public int nombrePersonaBD(int id)//cont bd rh
-{
-      int regresa = -1;
-      DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo FROM Recurso_Humano WHERE cedula = '" + id + "'");
-      return dt.Rows[0][0].ToString();
-}
-public DataTable ConsultarDisenosGrid(int proyecto)//cont bd rh
-{
-    return controladoraDiseno.consultarDisenoGrid(proyecto);
-}
-
-public DataTable ConsultarEjecucionesGrid(int proyecto)//cont bd rh
-{
-    return controlDiseno.consultarDisenoGrid(proyecto);// ver como lo llama ricardo o implementarlo yo (andrea)
-}
-public DataTable ConsultarCasosGrid(int proyecto)//cont bd rh
-{
-    return controladoraCasosPrueba.consultarCasosPrueba(1,""); 
-}
 
 
 
@@ -423,4 +556,3 @@ public DataTable ConsultarCasosGrid(int proyecto)//cont bd rh
 
 
 
-*/
