@@ -39,20 +39,46 @@
   <div class="panel-heading">
     <h3 class="panel-title">Resumen sobre el Diseño</h3>
   </div>
-        <div class="row">
+  <div class="panel-body">
+  <div class ="row" >
+    <div class="form-horizontal">
+	
+           <div class ="form-group">
+               <div class ="col-md-2">
+			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="col-md-2 control-label"  Text="Proyecto: "></asp:Label>
+                   
+                </div>
+                <div class ="col-md-3">
+						<asp:Label ID="Proyecto" runat="server" CssClass="col-md-3 control-label" Text=""></asp:Label>	
+                </div>
+            <div class ="col-md-4">
+                <asp:Label ID="Proposito1" Font-Bold="true" runat="server" CssClass="control-label" Text ="Propósito del Diseño: "></asp:Label>
+                </div>
+
+                <div class ="col-md-5">
+                <asp:Label ID="Proposito" runat="server" CssClass="control-label" Text =""></asp:Label>
+                </div>
+
+           </div>
+      </div>
+
+
+
+
+
+         <div class="row">
             <div class="col-md-3">
                 <div class="form-horizontal">
-                    <asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Proyecto: "></asp:Label>
-					<asp:Label ID="Proyecto" runat="server" CssClass="control-label" Text=""></asp:Label>
+                    
+                    
+					
                 
             </div>
 			
 			<div class="col-md-3">
                 
-                    <asp:Label ID="Proposito1" Font-Bold="true" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Propósito del Diseño: "></asp:Label>
-					<asp:Label ID="Proposito" runat="server" CssClass="control-label" Text =""></asp:Label>
+                    
+					
                 
             </div>
 
@@ -75,12 +101,13 @@
                 style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos: "></asp:Label>
 		    <asp:Label ID="Requerimientos"  runat="server" CssClass="control-label" Text=""></asp:Label>
         </div>
+
         <div class="col-md-offset-10 col-md-12">
 	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
         </div>
         <div style="clear:both"></div>
 		</div>	
-
+    </div>	
     <div class="well">
     
  <legend style="margin-top:45px; margin-bottom: 35px"><h4>Información de Casos de Prueba</h4></legend>
