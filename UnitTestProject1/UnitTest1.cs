@@ -20,7 +20,7 @@ namespace pruebReportes
         public void testProyecto()
         {
             string date = null;
-            controlRep.consultarProyecto();
+            //controlRep.consultarProyecto();
         }
     }
 }
