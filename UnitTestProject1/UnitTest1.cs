@@ -17,10 +17,12 @@ namespace pruebReportes
             Assert.AreEqual(esperado, resultado);
         }
 
+        /*
         public void testProyecto()
         {
             string date = null;
             controlRep.consultarProyecto();
         }
+        */
     }
 }

@@ -46,21 +46,14 @@
   </div>
   <div class="panel-body">
     <div>
-        <%--
-            <asp:GridView ID="RH" runat="server" margin-right="auto"
-            CellPadding="10"
-            margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged" OnPageIndexChanging="OnPageIndexChanging"
-            OnRowDataBound="OnRowDataBound" CssClass="GridView" HorizontalAlign="Center"
-            AllowPaging="true" PageSize="5"
-            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-            AutoPostBack="true">
-        </asp:GridView> 
-            --%>
+
         <div class="col-md3">
             <asp:GridView ID="GridPP" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
-            OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center"
+            OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true" 
             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-            AutoPostBack="true"></asp:GridView>
+            ></asp:GridView>
+            <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
+
             </div>
             <div class="row">
                 <div class="col-md-3">

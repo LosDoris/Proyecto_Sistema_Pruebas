@@ -22,6 +22,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.GridView GridPP;
         
         /// <summary>
+        /// Control proyectoSeleccionado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label proyectoSeleccionado;
+        
+        /// <summary>
         /// Control CheckBoxNombreProyecto.
         /// </summary>
         /// <remarks>

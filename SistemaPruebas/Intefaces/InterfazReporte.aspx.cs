@@ -98,11 +98,60 @@ namespace SistemaPruebas.Intefaces
                 HttpContext.Current.Session["EPActualGR"] = value;
             }
         }
+        public static string PPindexViejo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["PPindexViejo"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["PPindexViejo"] = value;
+            }
+        }
+        public static string DPindexViejo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["DPindexViejo"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["DPindexViejo"] = value;
+            }
+        }
+        public static string CPindexViejo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["CPindexViejo"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["CPindexViejo"] = value;
+            }
+        }
+        public static string EPindexViejo
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["EPindexViejo"];
+                return value == null ? "0" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["EPindexViejo"] = value;
+            }
+        }
 
         //Variables:
         //Metodos:
         protected void Page_Load(object sender, EventArgs e)
         {
+            //GridPP.ControlStyle.
             //Restricciones_Campos();
             if (!IsPostBack)// ES SOLO LA PRIMERA VEZ
             {
@@ -443,7 +492,16 @@ namespace SistemaPruebas.Intefaces
         protected void PP_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = GridPP.SelectedRow.RowIndex;
+            //GridPP.BackColor = System.Drawing.Color.White;
+            //proyectoActualGR = GridPP.SelectedRow.RowIndex;
+            //System.Drawing.Color.White;
+            //;
+            //GridPP.SelectedRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#2e8e9e");
             String ced = GridPP.SelectedRow.Cells[0].Text;
+            proyectoActualGR = ced.ToString();
+            PPindexViejo = index.ToString();
+            proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
+            //proyectoActualGR;//= 
             ///llenarDatosRequerimiento(ced);
             //habilitarGrid();
         }
