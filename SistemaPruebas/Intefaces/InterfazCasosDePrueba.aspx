@@ -78,7 +78,7 @@
     <div class="form-horizontal">
            <div class ="form-group">
                <div class ="col-md-2">
-                    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label"  Text="Id*:"></asp:Label> 
+                    <asp:Label ID="id_casoPrueba" runat="server" style="margin-left:15px" CssClass="col-md-2 control-label"  Text="Id*:"></asp:Label> 
                 </div>
                 <div class ="col-md-4">
 
@@ -99,15 +99,15 @@
 
            </div>
 
-           <div class ="form-group">
+           <div class ="form-group">                                     
                <div class ="col-md-2">
-		    <asp:Label ID="PropositoCP" runat="server"  CssClass="col-md-2 control-label" Text="Propósito*:"></asp:Label>                        
+		    <asp:Label ID="PropositoCP" runat="server"  style="margin-left:15px" CssClass="col-md-2 control-label" Text="Propósito*:"></asp:Label>                        
                 </div>
                 <div class ="col-md-4">
 
 		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; width:230%"
                  onkeypress="checkInput3(event)" TextMode="multiline"/>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" style="margin-left:200px; width: 210%" ErrorMessage="Campo requerido" ControlToValidate="TextBoxPropositoCP" ForeColor="Salmon"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" style="margin-left:200px; width: 230%" ErrorMessage="Campo requerido" ControlToValidate="TextBoxPropositoCP" ForeColor="Salmon"></asp:RequiredFieldValidator>
 		    <script type="text/javascript">
 		        function checkInput3(e) {
 		            var key = theEvent.keyCode || theEvent.which;
@@ -136,10 +136,16 @@
   </div>
   <div class="panel-body">
 
-             <div class="form-horizontal">
-                <div class="form-group">      
-                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px; margin-top:20px" Text ="Descripción:"></asp:Label>    
-                    <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:200px" onkeypress="checkInput1(event)" CssClass="form-control"/>
+
+<div class ="row" >
+    <div class="form-horizontal">
+           <div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" Text ="Descripción:"></asp:Label>
+                </div>
+                <div class ="col-md-offset-1 col-md-5">
+
+                <asp:TextBox runat="server" ID="TextBoxDescripcion" style="margin-left:15px; width:146%" onkeypress="checkInput1(event)" CssClass="form-control"/>
                     <script type="text/javascript">
                         function checkInput1(e) {
                             var ok = /[A-Za-z]/.test(String.fromCharCode(e.charCode));
@@ -156,11 +162,18 @@
                             else//Firefox
                                 e.preventDefault();
                         }
-                    </script>
+                    </script>			
+				
                 </div>
+
+           </div>		  		   
+</div>
+
+</div>		
+
                 <div class="form-group">
                     <asp:Label ID="TiposCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Tipo:"></asp:Label>
-                        <asp:DropDownList ID="TipoEntrada" runat="server" style="width: 100px;"  CssClass="form-control"  OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
+                        <asp:DropDownList ID="TipoEntrada" runat="server"  CssClass="form-control" style="width:60%"  OnSelectedIndexChanged="TipoEntrada_SelectedIndexChanged">
                             <asp:ListItem Text ="Válido" Value =1/>
                             <asp:ListItem Text ="Inválido" Value =2/>
                             <asp:ListItem Text ="No Aplica" Value =3/>
@@ -169,7 +182,7 @@
                 <div class="form-group">
                     <asp:Label ID="DatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px;" Text="Datos:"></asp:Label>
 
-                    <asp:TextBox runat="server" ID="TextBoxDatos" style="width:80px;"  onkeypress="checkInput2(event)" CssClass="form-control"/>
+                    <asp:TextBox runat="server" ID="TextBoxDatos" style="width:60%" onkeypress="checkInput2(event)" CssClass="form-control"/>
                     <script type="text/javascript">
                         function checkInput2(e) {
                             var ok = /[A-Za-z0-9]/.test(String.fromCharCode(e.charCode));
@@ -217,21 +230,13 @@
   </div>
 </div>
 
-</div>
-    </div>
+           <div class ="form-group">
 
-
-</div>
-    <%--  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-
-
-
-
-
-<div class="col-md-6">    
-    <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-2 control-label" style="margin-top:120px;" Text="Resultado esperado:"></asp:Label>    
-    <div class="col-md-10">
-        <asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:150px; margin-top:120px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+		        <div class="col-md-offset-1 col-md-2">
+                    <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-6 control-label" Text="Resultado esperado:"></asp:Label>
+                </div>
+                <div class ="col-md-4">
+		<asp:TextBox runat="server" ID="TextBoxResultadoCP" onkeypress="checkInput4(event)" style="width:250px;height:90px" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
         <script type="text/javascript">
             function checkInput4(e) {
                 var ok = /[A-Za-z.áéíóú ]/.test(String.fromCharCode(e.charCode));
@@ -243,16 +248,23 @@
                         $('#errorNombreSistema').fadeIn();
                         $('#errorNombreSistema').fadeOut(6000);
                     }
-                    if (window.event)//IE
-                        e.returnValue = false;
-                    else//Firefox
-                        e.preventDefault();
+                if (window.event)//IE
+                    e.returnValue = false;
+                else//Firefox
+                    e.preventDefault();
             }
         </script>
-    </div>
-    <asp:Label ID="FlujoCP" runat="server" CssClass="col-md-2 control-label" style="width:20px;margin-top:20px;" Text="Flujo Central:"></asp:Label>    
-    <div class="col-md-10">
-        <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="margin-top:20px; width:250px; height:150px; margin-left: 63px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
+                </div>
+
+           </div>	
+
+           <div class ="form-group">
+
+		        <div class="col-md-offset-1 col-md-2">
+                    <asp:Label ID="FlujoCP" runat="server" CssClass="col-md-6 control-label" style="width:20px;margin-top:20px;" Text="Flujo Central:"></asp:Label>
+                </div>
+                <div class ="col-md-4">
+        <asp:TextBox runat="server" ID="TextBoxFlujoCentral" onkeypress="checkInput5(event)" style="margin-top:20px; width:250px; height:90px;" CssClass="form-control" MaxLength="50" TextMode="multiline"/>
         <script type="text/javascript">
             function checkInput5(e) {
                 var ok = /[A-Za-z0-9.\"\(\)áéíóú +]/.test(String.fromCharCode(e.charCode));
@@ -264,32 +276,41 @@
                         $('#errorNombreSistema').fadeIn();
                         $('#errorNombreSistema').fadeOut(6000);
                     }
-                    if (window.event)//IE
-                        e.returnValue = false;
-                    else//Firefox
-                        e.preventDefault();
+                if (window.event)//IE
+                    e.returnValue = false;
+                else//Firefox
+                    e.preventDefault();
             }
         </script>
+                </div>
+
+           </div>
+
+
+
+</div>
+
+<div class ="row" >
+   <div class="form-group col-md-offset-9 col-md-12">
+        <asp:Label runat="server" id="Label1" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
-    <div class="form-group col-md-offset-10 col-md-12">
-        <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
+</div>
+
     </div>
-    </div>
-    <div class="col-md-10">
-        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;margin-top:200px;margin-left: 200px;margin-top: 50px;"
+
+    <div class="col-md-offset-9 col-md-12">
+        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;"
             Text="Aceptar" 
             causesvalidation="true"                              
             CssClass="btn btn-default" 
             ID="BotonCPAceptar" OnClick="BotonCPAceptar_Click" 
         />
-        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
+        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;" 
             CssClass="btn btn-default" ID="BotonCPCancelar"  
             OnClick="BotonCPCancelar_Click" 
             CausesValidation="false"
         />
     </div>
-</div>
-
 
 
  <div class="row">        
