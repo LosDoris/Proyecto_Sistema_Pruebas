@@ -71,48 +71,72 @@
     </div>
 
     <div class="well">
-<div class ="col-md-6">    
+    
  <legend style="margin-top:45px; margin-bottom: 35px"><h4>Información de Casos de Prueba</h4></legend>
+  
+<div class ="row" >
+    <div class="form-horizontal">
+           <div class ="form-group">
+               <div class ="col-md-2">
+                    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label"  Text="Id*:"></asp:Label> 
+                </div>
+                <div class ="col-md-4">
 
-        <div class="col-md-8">
-		    <asp:Label ID="id_casoPrueba" runat="server" CssClass="col-md-2 control-label" style="text-align: right; width: 200px;height: 32px;" Text="ID*:"></asp:Label>                      
-		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" style="width: 200px;height: 50px;" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20"/>
+		    <asp:TextBox runat="server" ID="TextBoxID" CssClass="form-control" onkeypress="checkInput(event)" AutoPostBack="true" MaxLength="20"/>
 		    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" style="margin-left:200px" runat="server" ErrorMessage="Campo requerido" ControlToValidate="TextBoxID" ForeColor="Salmon"></asp:RequiredFieldValidator>
             <script type="text/javascript">
-			    function checkInput(e) {
-			        var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
-			        if (e.keyCode == 8) {
-			            //alert();
-			        }
-			        else if (!ok)
-                            e.preventDefault();    
-			    }
-		    </script>
-        </div>
+                function checkInput(e) {
+                    var ok = /[A-Za-z0-9-_]/.test(String.fromCharCode(e.charCode));
+                    if (e.keyCode == 8) {
+                        //alert();
+                    }
+                    else if (!ok)
+                        e.preventDefault();
+                }
+		    </script>			
+				
+                </div>
 
-		<div class="col-mdP">
-		    <asp:Label ID="PropositoCP" runat="server"  CssClass="col-md-2 control-label" style="margin-top: 20px; text-align: right;  width: 200px;height: 50px;" Text="Propósito de Caso de Prueba*:"></asp:Label>                        
-		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; margin-top: 20px; width: 200px;height: 100px;"
+           </div>
+
+           <div class ="form-group">
+               <div class ="col-md-2">
+		    <asp:Label ID="PropositoCP" runat="server"  CssClass="col-md-2 control-label" Text="Propósito*:"></asp:Label>                        
+                </div>
+                <div class ="col-md-4">
+
+		    <asp:TextBox runat="server" ID="TextBoxPropositoCP" CssClass="form-control" style="vertical-align: top; width:230%"
                  onkeypress="checkInput3(event)" TextMode="multiline"/>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" style="margin-left:200px" ErrorMessage="Campo requerido" ControlToValidate="TextBoxPropositoCP" ForeColor="Salmon"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" style="margin-left:200px; width: 210%" ErrorMessage="Campo requerido" ControlToValidate="TextBoxPropositoCP" ForeColor="Salmon"></asp:RequiredFieldValidator>
 		    <script type="text/javascript">
 		        function checkInput3(e) {
 		            var key = theEvent.keyCode || theEvent.which;
-		            
+
 		            var ok = /[A-Za-z0-9.\"\(\)áéíóú ]/.test(String.fromCharCode(e.charCode));
 		            if (e.keyCode == 8) {
 		                //alert();
 		            }
 		            else if (!ok)
-				        e.preventDefault();
-			    }
-		    </script>
-            
-        </div>
+		                e.preventDefault();
+		        }
+		    </script>			
+				
+                </div>
+               </div>
 
-        <div class="jumbozCP2">
-            <div class="form-horizontal">
-            <h4>Entrada de Datos</h4>
+</div>
+    </div>
+
+        <div class="row">
+        <div class="col-md-offset-0 col-md-5">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Entrada de Datos</h3>
+  </div>
+  <div class="panel-body">
+
+             <div class="form-horizontal">
                 <div class="form-group">      
                     <asp:Label ID="EntradaDatosCP" runat="server" CssClass="col-md-2 control-label" style="width: 90px; text-align: right; margin-left: 30px; margin-top:20px" Text ="Descripción:"></asp:Label>    
                     <asp:TextBox runat="server" ID="TextBoxDescripcion" style="width:200px" onkeypress="checkInput1(event)" CssClass="form-control"/>
@@ -127,10 +151,10 @@
                                     $('#errorNombreSistema').fadeIn();
                                     $('#errorNombreSistema').fadeOut(6000);
                                 }
-                                if (window.event)//IE
-                                    e.returnValue = false;
-                                else//Firefox
-                                    e.preventDefault();
+                            if (window.event)//IE
+                                e.returnValue = false;
+                            else//Firefox
+                                e.preventDefault();
                         }
                     </script>
                 </div>
@@ -157,10 +181,10 @@
                                     $('#errorNombreSistema').fadeIn();
                                     $('#errorNombreSistema').fadeOut(6000);
                                 }
-                        if (window.event)//IE
-                            e.returnValue = false;
-                        else//Firefox
-                            e.preventDefault();
+                            if (window.event)//IE
+                                e.returnValue = false;
+                            else//Firefox
+                                e.preventDefault();
                         }
                     </script>
                     
@@ -168,7 +192,7 @@
                 
 
                 <div class="form-group">          
-                        <div class="col-md-offset-5 col-md-12">
+                        <div class="col-md-offset-6 col-md-12">
                             <asp:Button runat="server" Text="Agregar"                               
                                 CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" CausesValidation="false"/>
                             <asp:Button runat="server" Text="Eliminar"  
@@ -190,12 +214,19 @@
                 </div>
                 <div style="clear:both"></div>
             </div>
-
-
-        </div>
-
-    </div>
+  </div>
 </div>
+
+</div>
+    </div>
+
+
+</div>
+    <%--  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+
+
+
+
 
 <div class="col-md-6">    
     <asp:Label ID="ResultadoCP" runat="server" CssClass="col-md-2 control-label" style="margin-top:120px;" Text="Resultado esperado:"></asp:Label>    
