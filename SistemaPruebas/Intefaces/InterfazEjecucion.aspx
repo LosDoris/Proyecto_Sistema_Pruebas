@@ -89,6 +89,68 @@
                     </div>
                 </div>
            </div>
+           <div class ="row">
+               <asp:GridView runat ="server" ID ="gridNoConformidades" OnRowDataBound ="gridNoConformidades_RowDataBound" OnRowCommand ="gridNoConformidades_RowCommand" AutoGenerateColumns="false"
+                   CssClass ="GridView" HorizontalAlign="Center"  >
+                   <Columns>
+                       <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
+                       <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                        <ItemTemplate>
+                            <asp:CheckBox runat="server" ID="checkEliminar" ToolTip="Seleccione si quiere eliminar fila" />
+                            <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
+                        </ItemTemplate>
+                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Tipo de no conformidad">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblTipo" Visible="false" Text='<%# Eval("Tipo") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlTipo" runat="server" ClientIDMode="Static" CssClass="form-control" Width="250px"> 
+                                <asp:ListItem Text="Seleccionar" Value="1" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="Funcionalidad" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Validación" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="Opciones que no funcionan" Value="4"></asp:ListItem>
+                                <asp:ListItem Text="Errores de usabilidad" Value="5"></asp:ListItem>
+                                <asp:ListItem Text="Excepciones" Value="6"></asp:ListItem>
+                                <asp:ListItem Text="Implementación diferente a documentación"></asp:ListItem>
+                                <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="ValidarTipo" runat="server" ControlToValidate="Nivel" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
+
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Id Caso de Prueba">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblIdCaso" Visible="false" Text='<%# Eval("IdCaso") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlIdCaso" runat="server" ClientIDMode="Static" CssClass="form-control"> </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Descripción">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblDescripcion" Visible="false"></asp:Label>
+                            <asp:TextBox ID="txtDescripcion" runat="server" Text='<%# Eval("Descripcion") %>' CssClass="form-control" TextMode="multiline"    ></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Justificación">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblJustificacion" Visible="false"></asp:Label>
+                            <asp:TextBox ID="txtJustificacion" runat="server" Text='<%# Eval("Justificacion") %>' CssClass="form-control" TextMode="multiline"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Resultado">
+                        <ItemTemplate>
+				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" />
+			            </ItemTemplate>
+                    </asp:TemplateField>
+                   </Columns>
+               </asp:GridView>
+               <div class="form-group">
+                    <div class="col-md-offset-8 col-md-12">
+                        <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
+                            Text="+" causesvalidation="false" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
+                        <asp:Button runat="server" Text="-" style="margin-top: 50px;" 
+                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false"/>
+                    </div>
+              </div>
+           </div>
            <div class ="form-group">
                <div class ="col-md-2">
                     <asp:Label ID="TipoEP" runat="server" Text="Tipo:" CssClass = "col-md-2 control-label"></asp:Label>
@@ -107,30 +169,6 @@
                     </asp:DropDownList>
                 </div>
            </div>
-            <div class ="form-group">
-                <div class="col-md-2">
-                    <asp:Label ID="DescripcionEP" runat="server" CssClass="col-md-2 control-label" Text ="Descripción:"></asp:Label>  
-                </div>  
-                <div class ="col-md-9">
-                    <asp:TextBox runat="server" ID="TextBoxDescripcion" CssClass="form-control" MaxLength="300" TextMode="multiline" Style="height: 90px"/>
-                    <div id="errorTextBoxDescripcion" style="display: none; width: 500px;">
-                        <asp:Label runat="server" ID="errorNombreSistLbl2" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon" Visible ="false"></asp:Label>
-                    </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="TextBoxDescripcion" ForeColor="Salmon"></asp:RequiredFieldValidator>
-                </div>
-            </div>
-           <div class ="form-group">
-                <div class="col-md-2">
-                    <asp:Label ID="JustificacionEP" runat="server" CssClass="col-md-2 control-label" Text ="Justificación:"></asp:Label>  
-                </div>  
-                <div class ="col-md-9">
-                    <asp:TextBox runat="server" ID="TextBoxJustificacion" CssClass="form-control" MaxLength="300" TextMode="multiline" Style="height: 90px"/>
-                    <div id="errorTextBoxJustificacion" style="display: none; width: 500px;">
-                        <asp:Label runat="server" ID="Label2" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon" Visible ="false"></asp:Label>
-                    </div>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="TextBoxDescripcion" ForeColor="Salmon"></asp:RequiredFieldValidator>
-                </div>
-            </div>
             <div class ="form-group">
                 <div class="col-md-2">
                     <asp:Label ID="ResultadoEP" runat="server" CssClass="col-md-2 control-label" Text ="Resultado:"></asp:Label>  

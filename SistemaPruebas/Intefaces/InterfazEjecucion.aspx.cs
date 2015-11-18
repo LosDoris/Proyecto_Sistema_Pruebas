@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Data.SqlClient;
 using SistemaPruebas.Controladoras;
+using System.Data;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -61,8 +62,24 @@ namespace SistemaPruebas.Intefaces
             if(!IsPostBack)
             {
                 estadoInicial();
+                inicializarDTnoConformidades();
+                gridNoConformidades.DataBind();
             }
         }
+
+        public static DataTable dtNoConformidades
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["noConformidades"];
+                return value == null ? null : (DataTable)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["noConformidades"] = value;
+            }
+        }
+
 
         /*
          * Requiere: N/A
@@ -86,7 +103,6 @@ namespace SistemaPruebas.Intefaces
             this.DropDownProyecto.Items.Clear();
             DropDownProyecto.Items.Add(new ListItem("Seleccionar"));
             String proyectos = controladoraEjecucionPrueba.solicitarProyectos();
-            // Response.Write(proyectos);
             String[] pr = proyectos.Split(';');
 
             foreach (String p1 in pr)
@@ -134,10 +150,10 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void llenarDDCasoPrueba()
+        protected void llenarDDCasoPrueba(ref DropDownList dd)
         {
-            this.DropDownCasoDePrueba.Items.Clear();
-            DropDownCasoDePrueba.Items.Add(new ListItem("Seleccionar"));
+            dd.Items.Clear();
+            dd.Items.Add(new ListItem("Seleccionar"));
             int idDiseno = Convert.ToInt32(DropDownDiseno.SelectedItem.Value);
             String casosPrueba = controladoraEjecucionPrueba.solicitarCasosdePrueba(idDiseno);
             String[] pr = casosPrueba.Split(';');
@@ -145,7 +161,7 @@ namespace SistemaPruebas.Intefaces
             {
                 try
                 {  
-                    this.DropDownCasoDePrueba.Items.Add(new ListItem(p1));               
+                   dd.Items.Add(new ListItem(p1));               
                 }
                 catch (Exception e)
                 {
@@ -250,7 +266,6 @@ namespace SistemaPruebas.Intefaces
             if(DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
                 DatosEjecucion.Enabled = true;
-                llenarDDCasoPrueba();
             }
             else
             {
@@ -259,6 +274,124 @@ namespace SistemaPruebas.Intefaces
         }
 
         protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gridNoConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+               
+                DropDownList dropDownCasos = (e.Row.FindControl("ddlIdCaso") as DropDownList);
+                llenarDDCasoPrueba(ref dropDownCasos);
+
+            }
+        }
+
+        protected void inicializarDTnoConformidades()
+        {
+            try
+            {
+                dtNoConformidades = null;
+                DataTable dt = new DataTable();
+           
+                dt.Columns.AddRange(
+                
+                   new DataColumn[]
+                   {
+                        
+                        new DataColumn("Id", typeof(int)),
+                        new DataColumn("Tipo", typeof(String)),
+                        new DataColumn("IdCaso",typeof(String)),
+                        new DataColumn("Descripcion", typeof(String)),
+                        new DataColumn("Justificacion", typeof(String)),
+                        new DataColumn("Resultado", typeof(String))
+                   }
+                 );
+
+                DataRow drRow = dt.NewRow();
+            
+                drRow["Id"] = 1;
+                drRow["Tipo"]          = string.Empty;
+                drRow["IdCaso"]        = string.Empty;
+                drRow["Descripcion"]   = string.Empty;
+                drRow["Justificacion"] = string.Empty;
+                drRow["Resultado"]     = string.Empty;
+
+                dt.Rows.Add(drRow);
+                dtNoConformidades = dt;
+                gridNoConformidades.DataSource = dtNoConformidades;
+                //gridNoConformidades.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected void AgregarFIla_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                agregarFilaGridNC();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void agregarFilaGridNC()
+        {
+            try
+            {
+                int indiceFila = 0;
+                if (dtNoConformidades != null)
+                {
+                    DataTable dtCurrentTable = dtNoConformidades;
+
+                    DataRow drCurrentRow = null;
+
+                    if (dtCurrentTable.Rows.Count > 0)
+                    {
+                        for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
+                        {
+                            DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo")           as DropDownList;
+                            DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso")         as DropDownList;
+                            TextBox      txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion")    as TextBox;
+                            TextBox      txt2 = gridNoConformidades.Rows[indiceFila].FindControl("txtJustificacion")  as TextBox;
+                            Button       btn  = gridNoConformidades.Rows[indiceFila].FindControl("botonImagen") as Button;
+
+                            drCurrentRow = dtCurrentTable.NewRow();
+                           // drCurrentRow["RowNumber"] = i + 1;
+
+                            dtCurrentTable.Rows[i - 1]["Tipo"]          = ddl1.SelectedValue;
+                            dtCurrentTable.Rows[i - 1]["IdCaso"]        = ddl2.SelectedValue;
+                            dtCurrentTable.Rows[i - 1]["Descripcion"]   = txt1.Text;
+                            dtCurrentTable.Rows[i - 1]["Justificacion"] = txt2.Text;
+                            indiceFila++;
+                        }
+
+                        dtCurrentTable.Rows.Add(drCurrentRow);
+                        dtNoConformidades = dtCurrentTable;
+                        gridNoConformidades.DataSource = dtCurrentTable;
+                        gridNoConformidades.DataBind();
+                    }
+                }
+                else
+                {
+                    Response.Write("ViewState is null");
+                }
+            }
+            catch(Exception ex)
+            {
+               // Response.Write(ex);
+            }
+        }
+
+        protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
         }
