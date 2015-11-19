@@ -58,14 +58,14 @@
  <legend><h5>Información del Proyecto</h5></legend>
 
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-7">
             <div>
                 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" Font-Size="Large" Visible="False"></asp:Label>
 
             </div>
             <div class="form-horizontal">
 
-                <hr />
+               
                 <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                     <p class="text-danger">
                         <asp:Literal runat="server" ID="FailureText" />
@@ -73,7 +73,9 @@
                 </asp:PlaceHolder>
 
                 <div class="form-group">
-                    <asp:Label runat="server" ID="nombre_label" CssClass="col-md-2 control-label">Nombre del Proyecto*</asp:Label>
+                    <div class="col-md-4">
+                    <asp:Label runat="server" ID="nombre_label" CssClass=" control-label">Nombre del Proyecto*</asp:Label>
+                      </div>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
@@ -103,7 +105,9 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" columns="3" CssClass="col-md-2 control-label" >Objetivo General*</asp:Label>
+                     <div class="col-md-4">
+                    <asp:Label runat="server" columns="3" CssClass="control-label" >Objetivo General*</asp:Label>
+                         </div>
                     <div class="col-md-4">
                         <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)" placeHolder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="obj_general" ForeColor="Salmon"></asp:RequiredFieldValidator>
@@ -132,7 +136,9 @@
                 </div>
 
                 <div class="form-group">
+                    <div class="col-md-4">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
+                        </div>
                     <div class="col-md-4">
                         <asp:DropDownList runat="server" ID="estado" style="width:250px" CssClass="form-control">
                             <asp:ListItem Value="1">Pendiente</asp:ListItem>
@@ -146,8 +152,9 @@
                 </div>
 
                 <div class="form-group">
-                     
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Fecha de Asignación</asp:Label>
+                     <div class="col-md-4">
+                    <asp:Label runat="server" CssClass="col-md-4 control-label">Fecha de Asignación</asp:Label>
+                         </div>
                     <div class="col-md-4" runat="server">
                         <asp:TextBox runat="server" id="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" placeholder="De click para seleccionar fecha"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date"/>
