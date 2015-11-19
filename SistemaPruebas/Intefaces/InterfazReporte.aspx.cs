@@ -464,7 +464,7 @@ namespace SistemaPruebas.Intefaces
             bool[] casos = datosCasos();
 
             
-            string nombreReporte = "MyFirstPDF.pdf";
+            string nombreReporte = "Reporte Doroteos.pdf";
             Document doc = new Document(PageSize.LETTER);
             var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
@@ -478,9 +478,13 @@ namespace SistemaPruebas.Intefaces
             //doc.Add(logo);
 
             /*Se agregan datos de proyecto, en caso de ser seleccionado*/
-            
+
             if (proyectoActualGR != "")
-                doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR), proyecto));    
+            {
+                PdfPTable retorno = controladoraGR.reporteProyecto(proyecto);                
+                doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR),retorno, proyecto));    
+            }
+                
             //doc.Add(new Paragraph("Este es un parrafo muy lindo y tierno"));
 
             /*Se cierra documento*/

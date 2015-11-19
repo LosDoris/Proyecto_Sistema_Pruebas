@@ -52,7 +52,7 @@
                         <asp:GridView ID="GridPP" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
                             OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
-                            <Columns>
+                            <%-- %>Columns>
                                 <asp:TemplateField>
                                     <HeaderTemplate>
                                         <asp:CheckBox ID="chkAll" runat="server" Text="Todos"
@@ -63,7 +63,7 @@
                                             onclick="Check_Click(this)" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                            </Columns>
+                            </Columns --%>
                         </asp:GridView>
                         <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
 

@@ -68,7 +68,7 @@ namespace SistemaPruebas.Controladoras
             return controlCasos.consultarCasosPrueba(2, id);
         }
 
-        public PdfPTable reporteProyecto(EntidadProyecto entidad, bool[] campos)
+        public PdfPTable reporteProyecto(bool[] campos)
         {
             int i, j;
             i = j = 0;
@@ -100,11 +100,13 @@ namespace SistemaPruebas.Controladoras
             if (campos[5])            
                 retorno.AddCell("Estado");            
             if (campos[6])            
-                retorno.AddCell("Miembros del equipo");            
+                retorno.AddCell("Miembros del equipo");
 
+            return retorno;           
+        }
 
-
-            //Se añaden datos a la tabla
+        public PdfPTable reporteProyecto(EntidadProyecto entidad, PdfPTable retorno, bool[] campos)
+        {                      
             if (campos[0])
                 retorno.AddCell(entidad.Nombre_sistema);
             if (campos[1])
@@ -124,7 +126,7 @@ namespace SistemaPruebas.Controladoras
                 string estado = "";
                 switch (Int32.Parse(entidad.Estado))
                 {
-                        
+
                     case 1:
                         {
                             estado = "Pendiente";
@@ -156,9 +158,11 @@ namespace SistemaPruebas.Controladoras
 
             if (campos[6])
             { }
-              //  retorno.AddCell(entidad.Nombre_sistema);
+            //  retorno.AddCell(entidad.Nombre_sistema);
             return retorno;
         }
+
+
         public int generarReporte(string nombreP, string nombreD, string idC)
         {
 
