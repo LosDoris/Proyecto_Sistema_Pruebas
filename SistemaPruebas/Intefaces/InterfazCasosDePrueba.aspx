@@ -44,21 +44,39 @@
     <div class="form-horizontal">
 	
            <div class ="form-group">
-               <div class ="col-md-2">
-			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="col-md-2 control-label"  Text="Proyecto: "></asp:Label>
-                   
+               <div class ="col-md-offset-1 col-md-1">
+			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"  Text="Proyecto: "></asp:Label>
                 </div>
-                <div class ="col-md-3">
-						<asp:Label ID="Proyecto" runat="server" CssClass="col-md-3 control-label" Text=""></asp:Label>	
+                <div class ="col-sm-2">
+						<asp:Label ID="Proyecto" runat="server" CssClass="control-label" Text=""></asp:Label>	
                 </div>
-            <div class ="col-md-4">
-                <asp:Label ID="Proposito1" Font-Bold="true" runat="server" CssClass="control-label" Text ="Propósito del Diseño: "></asp:Label>
+            <div class ="col-md-3">
+                <asp:Label ID="Proposito1" Font-Bold="true" runat="server" CssClass="control-label" style="width:120px" Text ="Propósito del Diseño: "></asp:Label>
                 </div>
 
                 <div class ="col-md-5">
                 <asp:Label ID="Proposito" runat="server" CssClass="control-label" Text =""></asp:Label>
                 </div>
 
+                <div class ="col-md-offset-1 col-sm-1">
+				<asp:Label ID="Nivel1" Font-Bold="true" runat="server" CssClass="control-label" Text="Nivel: "></asp:Label>
+                </div>
+               <div class="col-sm-2">
+                <asp:Label ID="Nivel" runat="server" CssClass="control-label" Text=""></asp:Label>
+            </div>
+                <div class="col-sm-3">
+               <asp:Label ID="Tecnica1" Font-Bold="true" runat="server" CssClass="control-label" Text="Técnica: "></asp:Label>
+            </div>
+            <div class="col-md-5">
+                <asp:Label ID="Tecnica" runat="server" CssClass="control-label" Text=""></asp:Label>
+            </div>
+        <div class="col-md-offset-1 col-sm-2">
+            <asp:Label ID="Requerimientos1" Font-Bold="true" runat="server" CssClass="control-label" Text="Requerimientos: "></asp:Label>
+        </div>
+        <div class="col-sm-9">
+		    <asp:Label ID="Requerimientos"  runat="server" CssClass="control-label" Text=""></asp:Label>
+        </div>
+        
            </div>
       </div>
 
@@ -82,25 +100,15 @@
                 
             </div>
 
-			<div class="col-md-3">
-				<asp:Label ID="Nivel1" Font-Bold="true" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nivel: "></asp:Label>
-                <asp:Label ID="Nivel" runat="server" CssClass="control-label" Text=""></asp:Label>
-            </div>
+			
 
 			<div class="col-md-3">
-				<asp:Label ID="Tecnica1" Font-Bold="true" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Técnica: "></asp:Label>
-                <asp:Label ID="Tecnica" runat="server" CssClass="control-label" Text=""></asp:Label>
+                    
             </div>
 		</div>	
 		</div>	
       
-        <div class="col-md-12">
-            <asp:Label ID="Requerimientos1" Font-Bold="true" runat="server" CssClass="control-label"
-                style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Requerimientos: "></asp:Label>
-		    <asp:Label ID="Requerimientos"  runat="server" CssClass="control-label" Text=""></asp:Label>
-        </div>
+
 
         <div class="col-md-offset-10 col-md-12">
 	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
