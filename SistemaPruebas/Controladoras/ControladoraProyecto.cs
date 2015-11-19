@@ -130,7 +130,7 @@ namespace SistemaPruebas.Controladoras
         public int ConsultarIdProyectoPorNombre(string nombre)
         {
             int retorno = -1;
-            controlBD.ConsultarProyectoIdPorNombre(nombre);
+           retorno = controlBD.ConsultarProyectoIdPorNombre(nombre);
             return retorno;
         }
 

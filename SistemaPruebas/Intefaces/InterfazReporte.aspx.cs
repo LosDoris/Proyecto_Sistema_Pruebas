@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -460,6 +462,31 @@ namespace SistemaPruebas.Intefaces
             bool[] disenno = datosDisenno();
             bool[] proyecto = datosProy();
             bool[] casos = datosCasos();
+
+            
+            string nombreReporte = "MyFirstPDF.pdf";
+            Document doc = new Document(PageSize.LETTER);
+            var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
+            var writer = PdfWriter.GetInstance(doc, output);
+            doc.Open();                        
+
+            /** Logo del reporte**/
+            //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
+            //logo.SetAbsolutePosition(430, 770);
+            //logo.ScaleAbsoluteHeight(30);
+            //logo.ScaleAbsoluteWidth(70);
+            //doc.Add(logo);
+
+            /*Se agregan datos de proyecto, en caso de ser seleccionado*/
+            
+            if (proyectoActualGR != "")
+                doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR), proyecto));    
+            //doc.Add(new Paragraph("Este es un parrafo muy lindo y tierno"));
+
+            /*Se cierra documento*/
+            doc.Close();
+            //Response.Redirect("~/MyFirstPDF.pdf");           
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('MyFirstPDF.pdf','_newtab');", true);
         }
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid

@@ -68,7 +68,7 @@ namespace SistemaPruebas.Controladoras
             return controlCasos.consultarCasosPrueba(2, id);
         }
 
-        private PdfPTable reporteProyecto(EntidadProyecto entidad, bool[] campos)
+        public PdfPTable reporteProyecto(EntidadProyecto entidad, bool[] campos)
         {
             int i, j;
             i = j = 0;
@@ -78,9 +78,85 @@ namespace SistemaPruebas.Controladoras
                 if (campos[k])
                     count++;
             }
-            PdfPTable retorno = new PdfPTable(count);         
+            if (campos[2])
+                count += 2;
+            PdfPTable retorno = new PdfPTable(count);
+
+            //Se colocan encabezados
+            if (campos[0])
+                retorno.AddCell("Nombre del Sistema");
+            if (campos[1])
+                retorno.AddCell("Fecha de asignación");
+            if (campos[2])
+            {
+                retorno.AddCell("Oficina del representate");
+                retorno.AddCell("Teléfono del representante");
+                retorno.AddCell("Nombre del usuario representate");
+            }
+            if (campos[3])
+                retorno.AddCell("Nombre del lider del proyecto");
+            if (campos[4])
+                retorno.AddCell("Objetivo general");
+            if (campos[5])            
+                retorno.AddCell("Estado");            
+            if (campos[6])            
+                retorno.AddCell("Miembros del equipo");            
+
+
+
+            //Se añaden datos a la tabla
             if (campos[0])
                 retorno.AddCell(entidad.Nombre_sistema);
+            if (campos[1])
+                retorno.AddCell(entidad.Fecha_asignacion);
+            if (campos[2])
+            {
+                retorno.AddCell(entidad.Oficina_representante);
+                retorno.AddCell(entidad.Telefono_representante);
+                retorno.AddCell(entidad.Nombre_representante);
+            }
+            if (campos[3])
+                retorno.AddCell(entidad.LiderProyecto);
+            if (campos[4])
+                retorno.AddCell(entidad.Objetivo_general);
+            if (campos[5])
+            {
+                string estado = "";
+                switch (Int32.Parse(entidad.Estado))
+                {
+                        
+                    case 1:
+                        {
+                            estado = "Pendiente";
+                        }
+                        break;
+                    case 2:
+                        {
+                            estado = "Asignado";
+                        }
+                        break;
+                    case 3:
+                        {
+                            estado = "En ejecución";
+                        }
+                        break;
+                    case 4:
+                        {
+                            estado = "Finalizado";
+                        }
+                        break;
+                    case 5:
+                        {
+                            estado = "Cerrado";
+                        }
+                        break;
+                }
+                retorno.AddCell(estado);
+            }
+
+            if (campos[6])
+            { }
+              //  retorno.AddCell(entidad.Nombre_sistema);
             return retorno;
         }
         public int generarReporte(string nombreP, string nombreD, string idC)
@@ -107,8 +183,6 @@ namespace SistemaPruebas.Controladoras
             //    doc.Add(new Paragraph(reporteProyecto(consultarProyecto(nombreP), camposP)));
 
             ///*Se cierra documento*/
-            //doc.Close();
-
             //doc.Close();
             ////Response.Redirect("~/MyFirstPDF.pdf");           
             //Page.ClientScript.RegisterStartupScript(
