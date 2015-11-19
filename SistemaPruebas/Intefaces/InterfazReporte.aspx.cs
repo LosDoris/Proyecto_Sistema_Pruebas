@@ -468,7 +468,27 @@ namespace SistemaPruebas.Intefaces
             Document doc = new Document(PageSize.LETTER);
             var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
-            doc.Open();                        
+            doc.Open();
+
+            Rectangle page = doc.PageSize;
+            PdfPTable head = new PdfPTable(1);
+            head.TotalWidth = page.Width;
+            Phrase phrase = new Phrase("Reporte generado el: "+ DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT",new Font(Font.COURIER, 8));
+            PdfPCell c = new PdfPCell(phrase);
+            c.Border = Rectangle.NO_BORDER;
+            c.VerticalAlignment = Element.ALIGN_TOP;
+            c.HorizontalAlignment = Element.ALIGN_CENTER;
+            head.AddCell(c);
+            head.WriteSelectedRows(
+                // first/last row; -1 writes all rows
+              0, -1,
+                // left offset
+              0,
+                // ** bottom** yPos of the table
+              page.Height - doc.TopMargin + head.TotalHeight + 20,
+              writer.DirectContent
+            );
+            doc.AddCreationDate();
 
             /** Logo del reporte**/
             //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
