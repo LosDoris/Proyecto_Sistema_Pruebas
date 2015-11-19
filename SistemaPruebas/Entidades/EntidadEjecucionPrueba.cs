@@ -8,7 +8,7 @@ namespace SistemaPruebas.Controladoras
     public class EntidadEjecucionPrueba
     {
         /* 
-         * Variables correspondientes a la entidad cliente
+         * Variables correspondientes a la entidad EjecucionPrueba
          */
         private int id_ejecucion;
         private String fecha;
@@ -18,7 +18,7 @@ namespace SistemaPruebas.Controladoras
         private int id_disenno;
 
         /*
-         * Requiere: Recibir un objeto con los datos de todos atributos de un Caso de Pruebas
+         * Requiere: Recibir un objeto con los datos de todos atributos de una EjecucionPrueba
          * Modifica: Encapsula los datos recibidos
          * Retorna: N/A
         */

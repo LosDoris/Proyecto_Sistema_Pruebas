@@ -271,6 +271,7 @@
     <Compile Include="Entidades\EntidadCasosPrueba.cs" />
     <Compile Include="Entidades\EntidadDisenno.cs" />
     <Compile Include="Entidades\EntidadEjecucionPrueba.cs" />
+    <Compile Include="Entidades\EntidadNoConformidad.cs" />
     <Compile Include="Entidades\EntidadProyecto.cs" />
     <Compile Include="Entidades\EntidadRecursosHumanos.cs" />
     <Compile Include="Entidades\EntidadRequerimientos.cs" />
