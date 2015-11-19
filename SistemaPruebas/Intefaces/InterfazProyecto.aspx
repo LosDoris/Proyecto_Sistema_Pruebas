@@ -4,7 +4,7 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %></h2>
+    <legend style="margin-top:45px"><h2>Módulo de Gestión de Proyectos</h2></legend>
     <style type="text/css">
         .modalBackground 
         {
@@ -40,17 +40,25 @@
     };
 </script>
       
+
     <div class="form-group">
-        <div class="col-md-offset-10 col-md-12" style="margin-top:15px">
+            <div class="col-md-offset-9 col-md-12">
+        <div class="btn-group">
             <asp:Button runat="server" ID="Insertar" Text="Insertar" CssClass="btn btn-default" OnClick="Insertar_button" CausesValidation="false" />
             <asp:Button runat="server" ID="Modificar" Text="Modificar" CssClass="btn btn-default" OnClick="Modificar_Click"  CausesValidation="false"/>
-
             <asp:Button runat="server" ID="Eliminar" Text="Eliminar" CssClass="btn btn-default" OnClick="Eliminar_Click" CausesValidation="false"/>
         </div>
     </div>
+    </div>
+
+
+<hr style="margin:50px;">
+<div class="well">
+
+ <legend><h5>Información del Proyecto</h5></legend>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div>
                 <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" Font-Size="Large" Visible="False"></asp:Label>
 
@@ -71,7 +79,7 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras(evt) {
-                                
+
                                 if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
                                     if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
                                         //alert();
@@ -79,11 +87,11 @@
                                             $('#errorNombreSistema').fadeIn();
                                             $('#errorNombreSistema').fadeOut(6000);
                                         }
-                                            if (window.event)//IE
-                                                evt.returnValue = false;
-                                            else//Firefox
-                                                evt.preventDefault();
-                                        
+                                        if (window.event)//IE
+                                            evt.returnValue = false;
+                                        else//Firefox
+                                            evt.preventDefault();
+
                                     }
                                 }
                             }
@@ -101,20 +109,18 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="obj_general" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letrasYNumeros(evt) {
-                                if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122))
-                                {
-                                    if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83))
-                                    {
+                                if ((evt.charCode < 65 || evt.charCode > 90) && (evt.charCode < 97 || evt.charCode > 122)) {
+                                    if ((evt.keyCode != 32) && (evt.charCode != 32) && (evt.charCode != 46) && (evt.charCode != 44) && (evt.keyCode != 13) && (evt.keyCode != 37) && (evt.keyCode != 39) && (evt.keyCode != 8) && (evt.keyCode != 83)) {
                                         if ($('#errorObjSistema').css('display') == 'none') {
                                             //alert(evt.charCode);
                                             $('#errorObjSistema').fadeIn();
                                             $('#errorObjSistema').fadeOut(6000);
                                         }
-                                            if (window.event)//IE
-                                                evt.returnValue = false;
-                                            else//Firefox
-                                                evt.preventDefault();
-                                        
+                                        if (window.event)//IE
+                                            evt.returnValue = false;
+                                        else//Firefox
+                                            evt.preventDefault();
+
                                     }
                                 }
                             }
@@ -153,14 +159,19 @@
         </div>
 
 
-        <h4>Datos de la oficina usuaria</h4>
-        <div class="col-md-4">
+        
+        <div class="col-md-5">
 
             <div class="form-horizontal">
 
-            
-                <div class="cajaColumna2">
-                <div class="form-group">
+<div class="panel panel-primary">
+
+      <div class="panel-heading">
+    <h3 class="panel-title">Información de la oficina usuaria</h3>
+  </div>
+
+  <div class="panel-body">
+                    <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-4 control-label">Nombre de la oficina</asp:Label>
                     <div class="col-md-6">
                         <asp:TextBox runat="server" ID="of_rep" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras2(event)" MaxLength="17" placeholder="Sólo recibe letras y espacios"/>
@@ -197,7 +208,7 @@
                         <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
                         <script type="text/javascript">
-                            function check_txt(textBox, e, length) {                              
+                            function check_txt(textBox, e, length) {
                                 if (!checkSpecialKeys(e)) {
                                     if ($('#errorTel1').css('display') == 'none') {
                                         $('#errorTel1').fadeIn();
@@ -206,7 +217,7 @@
                                     if (window.event)//IE
                                         e.returnValue = false;
                                     else//Firefox
-                                        e.preventDefault();                                    
+                                        e.preventDefault();
                                 }
                                 else
                                     $('#errorTel1').fadeOut();
@@ -216,7 +227,7 @@
                                     return false;
                                 else
                                     return true;
-                            }                                   
+                            }
                         </script>
                         <div id="errorTel1" Style="display:none">
                             <asp:label runat="server" ID="errorTel1Txt" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
@@ -226,8 +237,7 @@
                         <asp:RegularExpressionValidator Display = "Dynamic"  ControlToValidate = "tel_rep2" ID="RegularExpressionValidator1" ValidationExpression = "^(\d{8})|()$" runat="server" ErrorMessage="Debe digitar 8 números." ForeColor="Salmon"></asp:RegularExpressionValidator>
                         <script type="text/javascript">
                             function check_txt2(textBox, e, length) {
-                                if (document.getElementById('<%=tel_rep.ClientID%>').value.length != 8)
-                                {
+                                if (document.getElementById('<%=tel_rep.ClientID%>').value.length != 8) {
                                     if ($('#errorTel2').css('display') == 'none') {
                                         //document.getElementById("errorTel2Lbl").innerHTML = "Primero complete el campo de télefono 1";
                                         document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Primero complete el campo de télefono 1";
@@ -239,26 +249,24 @@
                                     else//Firefox
                                         e.preventDefault();
                                 }
-                                else
-                                {                                    
+                                else {
                                     if ((e.charCode < 48 || e.charCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
-                                        if((e.keyCode != 37) && (e.keyCode != 39) && (e.keyCode != 8) && (e.keyCode != 83) && (e.keyCode != 46) && (e.keyCode != 13))
-                                        {                                        
+                                        if ((e.keyCode != 37) && (e.keyCode != 39) && (e.keyCode != 8) && (e.keyCode != 83) && (e.keyCode != 46) && (e.keyCode != 13)) {
                                             //alert(e.charCode);
                                             if ($('#errorTel2').css('display') == 'none') {
                                                 document.getElementById('<%=errorTel2Lbl.ClientID%>').innerHTML = "Este campo sólo recibe números";
                                                 $('#errorTel2').fadeIn();
                                                 $('#errorTel2').fadeOut(5000);
                                             }
-                                        if (window.event)//IE
-                                            e.returnValue = false;
-                                        else//Firefox
-                                            e.preventDefault();
-                                    }
-                                       
+                                            if (window.event)//IE
+                                                e.returnValue = false;
+                                            else//Firefox
+                                                e.preventDefault();
+                                        }
+
                                     }
                                 }
-                            }                            
+                            }
                         </script>
                         <div id="errorTel2" Style="display:none">
                             <asp:label runat="server" ID="errorTel2Lbl" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
@@ -291,7 +299,10 @@
                         </div>
                     </div>
                 </div>
-                    </div>
+  </div>
+</div>
+            
+
                 <div class="form-group">
                      <asp:Label runat="server" id="LiderLbl" Text="Nombre del lider del proyecto" CssClass="col-md-4 control-label"></asp:label>
                         <div class="col-md-6">
@@ -306,6 +317,10 @@
     <div class="form-group col-md-offset-10 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
+
+</div>
+
+
     <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648" CausesValidation="true"/>
