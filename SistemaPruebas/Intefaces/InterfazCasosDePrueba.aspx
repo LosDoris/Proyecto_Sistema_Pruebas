@@ -78,44 +78,17 @@
         </div>
         
            </div>
+
+                <div class="col-md-offset-10 col-md-12">
+	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
+        </div>
       </div>
 
 
-
-
-
-         <div class="row">
-            <div class="col-md-3">
-                <div class="form-horizontal">
-                    
-                    
-					
-                
-            </div>
-			
-			<div class="col-md-3">
-                
-                    
-					
-                
-            </div>
-
-			
-
-			<div class="col-md-3">
-                    
-            </div>
-		</div>	
-		</div>	
-      
-
-
-        <div class="col-md-offset-10 col-md-12">
-	<asp:Button runat="server" Text="Regresar a Diseño" OnClick="regresarADiseno" CssClass="btn btn-primary" ID="Regresar" CausesValidation="false"/>
-        </div>
         <div style="clear:both"></div>
 		</div>	
     </div>	
+    </div>
     <div class="well">
     
  <legend style="margin-top:45px; margin-bottom: 35px"><h4>Información de Casos de Prueba</h4></legend>
