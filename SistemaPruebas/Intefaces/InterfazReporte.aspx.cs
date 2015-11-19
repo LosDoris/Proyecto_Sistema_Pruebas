@@ -486,7 +486,7 @@ namespace SistemaPruebas.Intefaces
             /*Se cierra documento*/
             doc.Close();
             //Response.Redirect("~/MyFirstPDF.pdf");           
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('MyFirstPDF.pdf','_newtab');", true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('"+nombreReporte+"','_newtab');", true);
         }
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid
