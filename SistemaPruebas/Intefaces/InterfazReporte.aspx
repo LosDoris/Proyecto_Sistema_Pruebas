@@ -53,23 +53,21 @@
                             OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
-                        <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
+                        
 
-                    </div>
-                    <div class="col-md-3">
-                        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
+                        <asp:GridView ID="GridMod" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
                             OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
-                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        
 
-                    </div>
-                    <div class="col-md-3">
-                        <asp:GridView ID="GridView2" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
+                        <asp:GridView ID="GridReq" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
                             OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
-                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="proyectoSeleccionado" runat="server" Text="."></asp:Label>
+                        <asp:Label ID="modSeleccionado" runat="server" Text="."></asp:Label>
+                        <asp:Label ID="reqSeleccionado" runat="server" Text="."></asp:Label>
 
                     </div>
                     <div class="row">
@@ -107,14 +105,14 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-horizontal">
-                                    &nbsp;<asp:CheckBox ID="CheckBox1" runat="server" Text="Cantidad éxitos." />
+                                    &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" Text="Tipos no conformidades." />
+                                &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
                             </div>
                             <div class="col-md-6">
-                                &nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text= "Cantidad no conformidades."/>
+                                &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text= "Cantidad no conformidades."/>
                             </div>
                         </div>
                     </div>
