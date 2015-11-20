@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace SistemaPruebas.Controladoras
 {
@@ -36,6 +37,33 @@ namespace SistemaPruebas.Controladoras
         public String solicitarResponsables(int idProyecto)
         {
             return controladoraRecursosHumanos.solicitarNombreRecursoPorProyecto(idProyecto);
+        }
+
+        public int insertarEjecucion(object[] datos)
+        {
+            EntidadEjecucionPrueba objEjecucion = new EntidadEjecucionPrueba(datos);
+            int ret = controladoraBDEjecucionPrueba.ingresarEjecucionPrueba(objEjecucion);
+            return ret;
+        }
+
+        public int modificarEjecucion(Object[] datos)
+        {
+            EntidadEjecucionPrueba objEjecucion = new EntidadEjecucionPrueba(datos);
+            int ret = controladoraBDEjecucionPrueba.modificarEjecucionPrueba(objEjecucion);
+            return ret;
+        }
+
+        public int eliminarCasosPrueba(String id)
+        {
+            int ret = controladoraBDEjecucionPrueba.eliminarEjecucionPrueba(id);
+            return ret;
+        }
+
+        public DataTable consultarEjecucion(int tipo, String id)
+        {
+            DataTable dt = controladoraBDEjecucionPrueba.consultarEjecucionPrueba(tipo, id);
+            return dt;
+
         }
     }
 }
