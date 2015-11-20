@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Gestión de Requerimientos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRequerimiento.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRequerimiento" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-         <h2><%: Title %></h2>
+    <legend style="margin-top:45px"><h2>Módulo de Gestión de Requerimientos</h2></legend>
     <style type="text/css">
         .modalBackground 
         {
@@ -43,7 +43,8 @@
     <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorModificar" >*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
         <asp:Label runat="server" AssociatedControlID="TextBoxNombreREQ" CssClass="text-danger" ID="EtiqErrorEliminar" >*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
                     <div class="form-group">
-                        <div class="col-md-offset-5 col-md-12">
+            <div class="col-md-offset-9 col-md-12">
+        <div class="btn-group">
                             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonREQInsertar" OnClick="BotonREQInsertar_Click"  />
 
                             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonREQModificar" OnClick="BotonREQModificar_Click" />
@@ -51,38 +52,69 @@
                             <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonREQEliminar" OnClick="BotonREQEliminar_Click" />
                             <%--OnClientClick="return confirm('¿Está seguro que desea eliminar esta cuenta?')"--%>
                         </div>
+                </div>
                     </div>
-    <div class ="row" style ="width: 100%">    
-    <div class="jumbozCP" >
-        <h4>Resumen</h4>
-        <div class="col-md-6">
-            <div class ="form-group">
-		        <asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Nombre Sistema"></asp:Label>
+
+<hr style="margin:50px;">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Resumen del Proyecto</h3>
+  </div>
+  <div class="panel-body">
+
+
+  <div class ="row" >
+    <div class="form-horizontal">
+	
+           <div class ="form-group">
+               <div class ="col-md-3" style="margin-left:20px">
+			<asp:Label ID="nombre_sistema1" Font-Bold="true" runat="server" CssClass="control-label"  Text ="Nombre del Sistema:"></asp:Label>
+                </div>
+                <div class ="col-sm-2">
+						<asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"  Text =""></asp:Label>	
+                </div>
+            <div class ="col-md-2">
+                <asp:Label ID="objetivo_general1" Font-Bold="true" runat="server" CssClass="control-label" Text="Objetivo General:"></asp:Label>
+                </div>
+
+                <div class ="col-md-4">
+                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label" Text=""></asp:Label>
+                </div>
+
+                <div class ="col-sm-1" style="margin-left:20px">
+				<asp:Label ID="estado1" Font-Bold="true" runat="server" CssClass="control-label" Text="Estado:"></asp:Label>
+                </div>
+               <div class="col-sm-2">
+                <asp:Label ID="estado" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-            <div class="form-group">
-                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Objetivo General"></asp:Label>
+                <div class="col-xs-3">
+               <asp:Label ID="nombre_rep1" Font-Bold="true" runat="server" CssClass="control-label" Text="Nombre Representante:"></asp:Label>
             </div>
-            <div class ="form-group">
-                <asp:Label ID="estado" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Estado"></asp:Label>
+            <div class="col-md-1">
+                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-            <div class ="form-group">
-                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nombre Representante"></asp:Label>
-            </div>
-            <div class ="form-group">
-                <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Lider del Proyecto"></asp:Label>
-            </div>
+        <div class="col-md-3">
+            <asp:Label ID="LiderProyecto1" Font-Bold="true" runat="server" CssClass="control-label" Text="Lider del Proyecto:"></asp:Label>
+        </div>
+        <div class="col-sm-2">
+		    <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label" Text=""></asp:Label>
         </div>
         
-		    
-        <div style="clear:both"></div>
+           </div>
 
-    </div>
-</div>
+
+      </div>
+
+
+        <div style="clear:both"></div>
+		</div>	
+
+  </div>
+</div>  
+<div class="well">
+
+ <legend><h5>Información del Requerimiento</h5></legend>
     <div class="col-md-16">
     <div class="row">
         <div class="col-md-16">
@@ -234,12 +266,15 @@
          
         </div>
     </div>
-    <div class="form-group col-md-offset-10 col-md-12">
+        <div class="row">
+    <div class="form-group col-md-offset-9 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
+        </div>
     </div>
     </div>
+    </div> 
         <div class="form-group">
-            <div class="col-md-offset-5 col-md-12">
+            <div class="col-md-offset-9 col-md-12">
                 <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648" 
                     Text="Aceptar" 
                     causesvalidation="true" 

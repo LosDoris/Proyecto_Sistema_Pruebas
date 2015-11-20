@@ -109,30 +109,30 @@ namespace SistemaPruebas.Intefaces
             ControladoraProyecto contP = new ControladoraProyecto();
             EntidadProyecto ent = contP.ConsultarProyecto(Convert.ToInt32(proyectoActual));
 
-            nombre_sistema.Text = "Nombre del Sistema: " + ent.Nombre_sistema;
-            nombre_rep.Text = "Nombre del Representante: " + ent.Nombre_representante;
-            objetivo_general.Text = "Objetivo General: " + ent.Objetivo_general;
-            LiderProyecto.Text = "Líder del Proyecto: " + ent.LiderProyecto;
+            nombre_sistema.Text = ent.Nombre_sistema;
+            nombre_rep.Text = ent.Nombre_representante;
+            objetivo_general.Text = ent.Objetivo_general;
+            LiderProyecto.Text =  ent.LiderProyecto;
             string el_estado = ent.Estado;
             if (el_estado == "1") 
             {
-                estado.Text = "Estado: Pendiente";
+                estado.Text = "Pendiente";
             }
             else if (el_estado == "2")
             {
-                estado.Text = "Estado: Asignado";
+                estado.Text = "Asignado";
             }
             else if (el_estado == "3")
             {
-                estado.Text = "Estado: En Ejecución";
+                estado.Text = "En Ejecución";
             }
             else if (el_estado == "4")
             {
-                estado.Text = "Estado: Finalizado";
+                estado.Text = "Finalizado";
             }
             else if (el_estado == "5")
             {
-                estado.Text = "Estado: Cerrado";
+                estado.Text = "Cerrado";
             }
         }
 

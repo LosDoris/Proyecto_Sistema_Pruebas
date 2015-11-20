@@ -15,10 +15,10 @@ namespace SistemaPruebas.Controladoras
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
 
-        public int insertarEjecucion(Object[] datosEjecucion, List < Object [] > datosNoConformidades )
+        public string insertarEjecucion(Object[] datosEjecucion, List < Object [] > datosNoConformidades )
         {
             EntidadEjecucionPrueba ejecucionPrueba = new EntidadEjecucionPrueba(datosEjecucion);
-            int ret = controladoraBDEjecucionPrueba.insertarBDEjecucion(ejecucionPrueba);
+            string ret = controladoraBDEjecucionPrueba.insertarBDEjecucion(ejecucionPrueba);
             return ret;
         }
 
