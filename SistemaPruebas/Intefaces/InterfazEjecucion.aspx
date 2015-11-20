@@ -90,8 +90,8 @@
                 </div>
            </div>
            <div class ="row">
-               <asp:GridView runat ="server" ID ="gridNoConformidades" OnRowDataBound ="gridNoConformidades_RowDataBound" OnRowCommand ="gridNoConformidades_RowCommand" AutoGenerateColumns="false"
-                   CssClass ="GridView" HorizontalAlign="Center"  >
+               <asp:GridView runat ="server" ID ="gridNoConformidades" OnRowDataBound ="gridNoConformidades_RowDataBound"  AutoGenerateColumns="false"
+                   CssClass ="GridView" HorizontalAlign="Center" OnRowCommand="gridNoConformidades_RowCommand"  >
                    <Columns>
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                        <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
@@ -138,6 +138,16 @@
                     <asp:TemplateField HeaderText="Resultado">
                         <ItemTemplate>
 				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" />
+                            <asp:Panel runat="server" ID="panelSubirImagen" CssClass="modalPopup"> 
+                                <asp:Image ID="imagenSubida" runat="server" style="max-height:400px" />
+                                <asp:FileUpload id="Uploader" runat="server" />
+                                <br/> <br/>
+                                <div aria-pressed="true">
+                                    <asp:button runat="server" ID="subirImagen" Text="Subir" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" OnClick="subirImagen_Click" CommandArgument="0"/>
+                                    <asp:button runat="server" ID="mostrarImagen" Text="Cerrar" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px"     CausesValidation="false"        CommandArgument="0" />           
+                                </div>
+                            </asp:Panel>
+                            <ajaxToolkit:ModalPopupExtender ID="modalSubir" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelSubirImagen" TargetControlID="botonImagen"></ajaxToolkit:ModalPopupExtender>
 			            </ItemTemplate>
                     </asp:TemplateField>
                    </Columns>
@@ -212,6 +222,7 @@
         AutoPostBack="true">
     </asp:GridView>
 </div>
+
 <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
     <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
     <br/> <br/>
