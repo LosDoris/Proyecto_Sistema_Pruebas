@@ -76,8 +76,8 @@
                     <div class="col-md-4">
                     <asp:Label runat="server" ID="nombre_label" CssClass=" control-label">Nombre del Proyecto*</asp:Label>
                       </div>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged" placeholder="Sólo letras."/>
+                    <div class="col-md-1">
+                        <asp:TextBox runat="server" ID="nombre_proyecto" style="width:250px;height:36px;" CssClass="form-control" onkeypress="solo_letras(event)" OnTextChanged="nombre_proyecto_TextChanged" placeholder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo requerido" ControlToValidate="nombre_proyecto" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letras(evt) {
@@ -108,8 +108,8 @@
                      <div class="col-md-4">
                     <asp:Label runat="server" columns="3" CssClass="control-label" >Objetivo General*</asp:Label>
                          </div>
-                    <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="obj_general" style="width:250px;height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)" placeHolder="Sólo letras."/>
+                    <div class="col-md-2">
+                        <asp:TextBox runat="server" ID="obj_general" style="width:250px; height:90px" CssClass="form-control" TextMode="multiline" onkeypress="solo_letrasYNumeros(event)" placeHolder="Sólo letras."/>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo requerido" ControlToValidate="obj_general" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         <script type="text/javascript">
                             function solo_letrasYNumeros(evt) {
@@ -139,7 +139,7 @@
                     <div class="col-md-4">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Estado</asp:Label>
                         </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <asp:DropDownList runat="server" ID="estado" style="width:250px" CssClass="form-control">
                             <asp:ListItem Value="1">Pendiente</asp:ListItem>
                             <asp:ListItem Value="2">Asignado</asp:ListItem>
@@ -153,15 +153,25 @@
 
                 <div class="form-group">
                      <div class="col-md-4">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Fecha de Asignación</asp:Label>
+                    <asp:Label runat="server" CssClass="control-label">Fecha de Asignación</asp:Label>
                          </div>
-                    <div class="col-md-4" runat="server">
+                    <div class="col-md-2" runat="server">
                         <asp:TextBox runat="server" id="txt_date" Style="width: 250px; height: 36px" CssClass="form-control" placeholder="De click para seleccionar fecha"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_date" PopupButtonID="txt_date"/>
                     </div>
                     
                          
                 </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                     <asp:Label runat="server" id="LiderLbl" Text="Lider del proyecto" CssClass="control-label"></asp:label>
+                                        </div>
+                        <div class="col-md-2">
+                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                         
+                            </div>
+                 </div>
+
             </div>
         </div>
 
@@ -171,7 +181,7 @@
 
             <div class="form-horizontal">
 
-<div class="panel panel-primary">
+<div class="panel panel-primary" style="margin-right:20px">
 
       <div class="panel-heading">
     <h3 class="panel-title">Información de la oficina usuaria</h3>
@@ -206,11 +216,11 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-4 control-label">Teléfonos</asp:Label>
 
+                    <div class="col-md-4">
+                        <asp:label runat="server" style="margin-left:15px" id="tel1Label" text="Teléfono 1:"></asp:label>
+                    </div>
                     <div class="col-md-6">
-                        <asp:label runat="server" id="tel1Label" text="Teléfono 1:"></asp:label>
-
                         <asp:TextBox runat="server" ID="tel_rep" style="width:250px;height:36px;margin-bottom:10px" CssClass="form-control" onkeyDown="check_txt(this,event,8)" placeholder="Formato: 00000000"/>
                         <asp:RegularExpressionValidator Display ="Dynamic" ControlToValidate="tel_rep" ID="RegularExpressionValidator3" ValidationExpression = "^(\d{8})|()$" runat="server" 
                             foreColor="Salmon" ErrorMessage="Debe digitar 8 números."></asp:RegularExpressionValidator>
@@ -239,7 +249,11 @@
                         <div id="errorTel1" Style="display:none">
                             <asp:label runat="server" ID="errorTel1Txt" visible="true" Enabled="true" Text="Este campo sólo recibe números" ForeColor="Salmon" ></asp:label>
                         </div>
-                        <asp:label runat="server" id="tel2Label" text="Teléfono 2:" style="margin-top:20px"></asp:label>
+                        </div>
+                    <div class="col-md-4">
+                        <asp:label runat="server" id="tel2Label" text="Teléfono 2:" style="margin-top:20px; margin-left:15px"></asp:label>
+                        </div>
+                    <div class="col-md-6">
                         <asp:TextBox runat="server" ID="tel_rep2" style="width:250px;height:36px" CssClass="form-control" onkeypress="check_txt2(this,event,8)" MaxLength="8" CausesValidation="True" placeholder="Complete primero el Tél. 1"/>
                         <asp:RegularExpressionValidator Display = "Dynamic"  ControlToValidate = "tel_rep2" ID="RegularExpressionValidator1" ValidationExpression = "^(\d{8})|()$" runat="server" ErrorMessage="Debe digitar 8 números." ForeColor="Salmon"></asp:RegularExpressionValidator>
                         <script type="text/javascript">
@@ -309,27 +323,19 @@
   </div>
 </div>
             
-
-                <div class="form-group">
-                     <asp:Label runat="server" id="LiderLbl" Text="Nombre del lider del proyecto" CssClass="col-md-4 control-label"></asp:label>
-                        <div class="col-md-6">
-                     <asp:DropDownList ID="LiderProyecto" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>                         
-                            </div>
-                 </div>
-
             </div>
         </div>
-    </div>
-    
-    <div class="form-group col-md-offset-10 col-md-12">
+
+            <div class="form-group col-md-offset-9 col-md-3">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
-
+    </div>
+    
 </div>
 
 
     <div class="form-group">
-        <div id="Botones_aceptar_cancelar" class="col-md-offset-10 col-md-12">
+        <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-12">
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648" CausesValidation="true"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelar_Click" CausesValidation="False" />           
             <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
