@@ -4,10 +4,11 @@
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
-     <hr style="margin:50px;">
+    
     <div class="form-horizontal">
+
+<hr style="margin-top:70px;">
         
-         <div class="col-md-7">
        <div class="well">     
     <legend><h3>Cambiar Contraseña</h3></legend>
   <asp:PlaceHolder runat="server" ID="PlaceHolder1" Visible="false">
@@ -40,7 +41,7 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Confirmar contraseña</asp:Label>
+            <asp:Label runat="server" style="text-align:left" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Confirmar contraseña</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
@@ -55,6 +56,7 @@
             </div>
         </div>
   </div>
-</div>
-    </div>
+            </div>
+
+
 </asp:Content>

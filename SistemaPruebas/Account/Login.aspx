@@ -11,7 +11,7 @@
             }, 1000);
         };
 </script>
-    <hr />
+<hr style="margin-top:70px;">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <section id="loginForm">
