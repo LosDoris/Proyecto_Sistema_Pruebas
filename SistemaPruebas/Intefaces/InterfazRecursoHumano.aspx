@@ -96,8 +96,8 @@
  <legend><h5>Información del Recurso Humano</h5></legend>
     
     <div class="row">
-        <div class="col-md-8">
-            <div class="col-md-8">
+       
+            <div class="col-md-5" style="margin-left:15px">
                 <div class="form-horizontal">
               
 <div class="panel panel-primary">
@@ -249,9 +249,9 @@
                                     
                 </div>
             </div>
-        </div>
+       
         
-        <div class="col-md-5">
+        <div class=" col-md-offset-1 col-md-5">
 
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -259,7 +259,7 @@
                         <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Nombre de usuario*:</asp:Label>
                             </div>
                         <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" placeholder="Ingrese sólo letras y números" onkeypress="check_txt5(event)"/>
+                            <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" Style="width: 270px" MaxLength="30" placeholder="Ingrese sólo letras y números" onkeypress="check_txt5(event)"/>
                             <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal">*Por favor ingrese un usuario valido.</asp:Label>--%>
                             <asp:RequiredFieldValidator ID="Requiredfieldvalidator3"
                                 ControlToValidate="TextBoxUsuario"
@@ -330,16 +330,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Rol</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Rol</asp:Label>
                         <div class="col-md-8">
                             <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
                             </asp:DropDownList>
                         </div>
                     </div>
-
-
-
-                </div>
 
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
@@ -350,15 +346,17 @@
             </div>
 
         </div>
+            </div>
     </div>
+     <div class="row">
     <div class="form-group col-md-offset-9 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
-
+         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-10 col-md-12">
+        <div class="col-md-offset-9 col-md-12">
             <asp:Button runat="server" Style="border-color: #4bb648; color: #4bb648"
                 Text="Aceptar"
                 CausesValidation="True"
