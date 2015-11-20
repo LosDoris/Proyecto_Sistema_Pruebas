@@ -10,12 +10,12 @@ namespace SistemaPruebas.Controladoras
         /* 
          * Variables correspondientes a la entidad EjecucionPrueba
          */
-        private int id_ejecucion;
         private String fecha;
         private String responsable;
         private String incidencias;
         private String estado;
         private int id_disenno;
+        private String fechaConsulta;
 
         /*
          * Requiere: Recibir un objeto con los datos de todos atributos de una EjecucionPrueba
@@ -24,28 +24,12 @@ namespace SistemaPruebas.Controladoras
         */
         public EntidadEjecucionPrueba(Object[] datos)
         {
-            this.id_ejecucion = Convert.ToInt32(datos[0]);
-            this.fecha = datos[1].ToString();
-            this.responsable = datos[2].ToString();
-            this.incidencias = datos[3].ToString();
-            this.estado = datos[4].ToString();
-        }
-
-        /*
-        * Implementación de los metodos get() y set() de este atributo
-        * get();
-        * Requiere: el atributo id_ejecucion
-        * Modifica: N/A
-        * Retorna: el valor del atributo id_ejecucion en un int
-        * set();
-        * Requiere: el atributo id_ejecucion
-        * Modifica: el valor del atributo id_ejecucion
-        * Retorna: N/A
-        */
-        public int Id_ejecucion
-        {
-            get { return id_ejecucion; }
-            set { id_ejecucion = value; }
+            this.fecha = datos[0].ToString();
+            this.responsable = datos[1].ToString();
+            this.incidencias = datos[2].ToString();
+            this.estado = datos[3].ToString();
+            this.id_disenno = Convert.ToInt32(datos[4]);
+            this.fechaConsulta = datos[5].ToString();
         }
 
         /*
@@ -131,6 +115,23 @@ namespace SistemaPruebas.Controladoras
         {
             get { return id_disenno; }
             set { id_disenno = value; }
+        }
+
+        /*
+         * Implementación de los metodos get() y set() de este atributo
+         * get();
+         * Requiere: el atributo de fecha consultado
+         * Modifica: N/A
+         * Retorna: el valor del atributo fecha consultado en un string
+         * set();
+         * Requiere: el atributo fecha consultado
+         * Modifica: el valor del atributo fecha consultado
+         * Retorna: N/A
+         */
+        public string FechaConsulta
+        {
+            get { return fechaConsulta; }
+            set { fechaConsulta = value; }
         }
     }
 }
