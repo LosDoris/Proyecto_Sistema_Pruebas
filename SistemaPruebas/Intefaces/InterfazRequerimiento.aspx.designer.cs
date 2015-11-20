@@ -85,6 +85,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button BotonREQEliminar;
         
         /// <summary>
+        /// Control nombre_sistema1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombre_sistema1;
+        
+        /// <summary>
         /// Control nombre_sistema.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label nombre_sistema;
+        
+        /// <summary>
+        /// Control objetivo_general1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label objetivo_general1;
         
         /// <summary>
         /// Control objetivo_general.
@@ -103,6 +121,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label objetivo_general;
         
         /// <summary>
+        /// Control estado1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label estado1;
+        
+        /// <summary>
         /// Control estado.
         /// </summary>
         /// <remarks>
@@ -112,6 +139,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label estado;
         
         /// <summary>
+        /// Control nombre_rep1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombre_rep1;
+        
+        /// <summary>
         /// Control nombre_rep.
         /// </summary>
         /// <remarks>
@@ -119,6 +155,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label nombre_rep;
+        
+        /// <summary>
+        /// Control LiderProyecto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LiderProyecto1;
         
         /// <summary>
         /// Control LiderProyecto.
