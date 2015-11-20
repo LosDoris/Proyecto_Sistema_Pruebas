@@ -14,9 +14,9 @@ namespace SistemaPruebas.Controladoras
         public string insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
         {
             String consulta =
-                "INSERT INTO Ejecucion(fecha, responsable, incidencias, estado, id_disenno, fechaUltimo) values(" +
-                ejecucion.Fecha + "','" + ejecucion.Responsable + "','" + ejecucion.Incidencias + "','" +
-                ejecucion.Estado + "'," + ejecucion.Id_disenno + ", getDate()" + ");";
+                "INSERT INTO Ejecucion(fecha, responsable, incidencias, id_disenno, fechaUltimo) values('" +
+                ejecucion.Fecha + "','" + ejecucion.Responsable + "','" + ejecucion.Incidencias + "'," +
+                ejecucion.Id_disenno + ", getDate()" + ");";
             int ret = acceso.Insertar(consulta);
             DataTable dt=acceso.ejecutarConsultaTabla("select fecha from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
 
@@ -41,7 +41,6 @@ namespace SistemaPruebas.Controladoras
             String consulta = "UPDATE ejecucion SET fecha = '" + ejecucion.Fecha +
                                 "', responsable = '" + ejecucion.Responsable +
                                 "', incidencias = '" + ejecucion.Incidencias +
-                                "', estado = '" + ejecucion.Estado +
                                 "', id_disenno = '" + ejecucion.Id_disenno +
                                 "', fechaUltimo=getDate()" +
                                 " WHERE fecha = '" + ejecucion.FechaConsulta + "';";
@@ -61,11 +60,11 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT fecha, responsable, estado FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='" + id + "')";
+                consulta = "SELECT fecha, responsable, '"+id+"' AS Diseño"+" FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='"+id+"')";
             }
             else if (tipo == 2)
             {
-                consulta = "SELECT fecha, responsable, incidencias, estado, id_disenno FROM Ejecucion WHERE id_ejecucion = '" + id + "';";
+                consulta = "SELECT fecha, responsable, incidencias, id_disenno FROM Ejecucion WHERE fecha = '" + id + "';";
 
             }
             dt = acceso.ejecutarConsultaTabla(consulta);

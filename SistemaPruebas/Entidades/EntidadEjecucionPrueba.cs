@@ -13,7 +13,6 @@ namespace SistemaPruebas.Controladoras
         private String fecha;
         private String responsable;
         private String incidencias;
-        private String estado;
         private int id_disenno;
         private String fechaConsulta;
 
@@ -27,9 +26,8 @@ namespace SistemaPruebas.Controladoras
             this.fecha = datos[0].ToString();
             this.responsable = datos[1].ToString();
             this.incidencias = datos[2].ToString();
-            this.estado = datos[3].ToString();
-            this.id_disenno = Convert.ToInt32(datos[4]);
-            this.fechaConsulta = datos[5].ToString();
+            this.id_disenno = Convert.ToInt32(datos[3]);
+            this.fechaConsulta = datos[4].ToString();
         }
 
         /*
@@ -83,22 +81,6 @@ namespace SistemaPruebas.Controladoras
             set { incidencias = value; }
         }
 
-        /* 
-         * Implementación de los metodos get() y set() de este atributo
-         * get();
-         * Requiere: el atributo estado
-         * Modifica: N/A
-         * Retorna: el valor del atributo estado en un string
-         * set();
-         * Requiere: el atributo estado
-         * Modifica: el valor del atributo estado
-         * Retorna: N/A
-         */
-        public String Estado
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
 
         /*
          * Implementación de los metodos get() y set() de este atributo

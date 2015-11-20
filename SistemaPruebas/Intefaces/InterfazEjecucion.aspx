@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazEjecucion.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazEjecucion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazEjecucion.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazEjecucion" EnableEventValidation="false"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
@@ -49,14 +49,6 @@
     <div class ="row" >
        <div class="form-horizontal">
             <div class ="form-group">
-               <div class ="col-md-2">
-                    <asp:Label ID="EstadoEP" runat="server" Text="Estado:" CssClass = "col-md-2 control-label"></asp:Label>
-                </div>
-                <div class ="col-md-4">
-                    <asp:DropDownList ID="DropDownEstado" runat="server" CssClass ="form-control" style="width:250px">
-                        <asp:ListItem Text ="Seleccionar" Value =1/>
-                    </asp:DropDownList>
-                </div>
                 <div class="col-md-2">
                     <asp:Label ID="ResponsableEP" runat="server" CssClass = "col-md-1 control-label" >Responsable:</asp:Label>  
                 </div>
@@ -137,7 +129,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Resultado">
                         <ItemTemplate>
-				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" />
+				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" CausesValidation="false" />
                             <asp:Panel runat="server" ID="panelSubirImagen" CssClass="modalPopup"> 
                                 <asp:Image ID="imagenSubida" runat="server" style="max-height:400px" />
                                 <asp:FileUpload id="Uploader" runat="server" />
@@ -183,19 +175,21 @@
                     margin-left="auto" AutoGenerateColumns ="true" 		
                     CssClass ="GridView" HorizontalAlign="Center"   		
                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
-                    AutoPostBack ="true" AllowPaging="true" PageSize="3"		
+                    AutoPostBack ="true" AllowPaging="true" PageSize="3"
+                    OnRowDataBound="OnGridEjecucionRowDataBound" 
+                    OnPageIndexChanging="OnGridEjecucionPageIndexChanging"	
+                    OnSelectedIndexChanged="GridEjecucion_SelectedIndexChanged"
              >		
                 </asp:GridView>			
         </div>	
-    </div>
-     
+    </div>  
 </asp:Panel>
 </div>
 
 <div class="form-group">
     <div class="col-md-offset-8 col-md-12">
         <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;margin-top:200px;margin-left: 200px;margin-top: 50px;"
-            Text="Aceptar" causesvalidation="true" CssClass="btn btn-default"  ID="BotonEPAceptar"/>
+            Text="Aceptar" causesvalidation="true" CssClass="btn btn-default"  ID="BotonEPAceptar" OnClick="BotonEPAceptar_Click"/>
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
             CssClass="btn btn-default" ID="BotonEPCancelar" CausesValidation="false"/>
     </div>

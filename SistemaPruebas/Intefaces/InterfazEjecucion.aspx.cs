@@ -15,22 +15,24 @@ namespace SistemaPruebas.Intefaces
     public partial class InterfazEjecucion : System.Web.UI.Page
     {
 
+
+        //variables de sesion
         ControladoraEjecucionPrueba controladoraEjecucionPrueba = new ControladoraEjecucionPrueba();
         /*
          * Requiere: N/A
-         * Modifica: Declara variable global de modo (tipo de operación en ejecución)
+         * Modifica: Declara variable global de modoEP (tipo de operación en ejecución)
          * Retorna: entero.
          */
-        public static int modo
+        public static int modoEP
         {
             get
             {
-                object value = HttpContext.Current.Session["modo"];
+                object value = HttpContext.Current.Session["modoEP"];
                 return value == null ? 0 : (int)value;
             }
             set
             {
-                HttpContext.Current.Session["modo"] = value;
+                HttpContext.Current.Session["modoEP"] = value;
             }
         }
 
@@ -70,23 +72,6 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
-        /*
-        * Requiere: N/A
-        * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
-        * Retorna: N/A.
-        */
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                estadoInicial();
-                inicializarDTnoConformidades();
-                gridNoConformidades.DataBind();
-                
-            }
-        }
-
         public static DataTable dtNoConformidades
         {
             get
@@ -101,6 +86,27 @@ namespace SistemaPruebas.Intefaces
         }
 
 
+        //Page load
+        /*
+        * Requiere: N/A
+        * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
+        * Retorna: N/A.
+        */
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                estadoInicial();
+                inicializarDTnoConformidades();
+                gridNoConformidades.DataBind();
+                gridEjecucion.Enabled = true;
+                
+            }
+        }
+
+        
+
+        //inicializaciones
         /*
          * Requiere: N/A
          * Modifica: Establece el valor por defecto de la variable "modo" a 0.
@@ -108,15 +114,18 @@ namespace SistemaPruebas.Intefaces
          */
         protected void inicializarModo()
         {
-            modo = 0;
+            modoEP = 0;
         }
 
         protected void estadoInicial()
         {
             DatosEjecucion.Enabled = false;
             llenarDDProyectoAdmin();
+            inicializarModo();
         }
 
+
+        //dropdowns
         protected void llenarDDProyectoAdmin()
         {
 
@@ -237,9 +246,31 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        protected void BotonEPInsertar_Click(object sender, EventArgs e)
+        protected void DropDownDiseno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
+            {
+                DatosEjecucion.Enabled = true;
+                llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
+            }
+            else
+            {
+                DatosEjecucion.Enabled = false;
+
+            }
+
+        }
+
+        protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        //botones insertar, modificar, eliminar
+        protected void BotonEPInsertar_Click(object sender, EventArgs e)
+        {
+            modoEP = 2;
         }
 
         //protected void Subir_Click(object sender, EventArgs e)
@@ -279,26 +310,9 @@ namespace SistemaPruebas.Intefaces
         //    }
         //}
 
-        protected void DropDownDiseno_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
-            {
-                DatosEjecucion.Enabled = true;
-                llenarGridDisennos(DropDownDiseno.SelectedItem.Text.ToString());
-            }
-            else
-            {
-                DatosEjecucion.Enabled = false;
-                
-            }
-            
-        }
+        
 
-        protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //grid no conformidades
         protected void gridNoConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -310,6 +324,7 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        //no conformidades
         protected void inicializarDTnoConformidades()
         {
             try
@@ -517,22 +532,69 @@ namespace SistemaPruebas.Intefaces
             //}
         }
 
+        protected void recuperarNoConformidades()
+        {
+            foreach (GridViewRow row in gridNoConformidades.Rows)
+            {
+                Object[] noConformidad = new Object[6];
+
+                DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
+                DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
+                TextBox txt1 = row.FindControl("txtDescripcion") as TextBox;
+                TextBox txt2 = row.FindControl("txtJustificacion") as TextBox;
+                System.Web.UI.WebControls.Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
+
+                noConformidad[0] = ddl1.SelectedItem.Text;
+                noConformidad[1] = ddl2.SelectedItem.Text;
+                noConformidad[2] = txt1.Text;
+                noConformidad[3] = txt2.Text;
+                noConformidad[4] = ddl2.SelectedItem.Text;
+            }
+        }
+
+
+        //grid ejecucion
         protected void OnGridEjecucionPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gridEjecucion.PageIndex = e.NewPageIndex;
+            this.llenarGridEjecucion(DropDownDiseno.SelectedValue.ToString());
+            gridEjecucion.DataBind();
         }
 
         protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridEjecucion, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
         }
 
         protected void GridEjecucion_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                //SELECT fecha, responsable, incidencias, id_disenno FROM Ejecucion WHERE fecha = '" + id + "';";
+                string fecha = gridEjecucion.SelectedRow.Cells[0].Text;
+                DataTable dt =controladoraEjecucionPrueba.consultarEjecucion(2,fecha);
 
+                this.ControlFecha.Text = dt.Rows[0].ItemArray[0].ToString();
+                this.DropDownResponsable.Text = dt.Rows[0].ItemArray[1].ToString();
+                this.TextBoxIncidencias.Text = dt.Rows[0].ItemArray[2].ToString();
+                this.DropDownDiseno.Text = dt.Rows[0].ItemArray[3].ToString();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
-        protected void llenarGridDisennos(string id_diseno)
+        protected void llenarGridEjecucion(string id_diseno)
         {
             DataTable ejecuciones = crearTablaGridEjecuciones();
             DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, id_diseno);
@@ -564,29 +626,79 @@ namespace SistemaPruebas.Intefaces
             DataTable dt = new DataTable();
             dt.Columns.Add("Fecha", typeof(String));
             dt.Columns.Add("Responsable", typeof(String));
-            dt.Columns.Add("Estado", typeof(String));
+            dt.Columns.Add("Propósito Diseño", typeof(String));
             return dt;
         }
 
-        protected void recuperarNoConformidades()
-        {
-            foreach(GridViewRow row in gridNoConformidades.Rows)
-            {
-                Object[] noConformidad = new Object[6];
+        
 
-                DropDownList ddl1 = row.FindControl("ddlTipo")           as DropDownList;
-                DropDownList ddl2 = row.FindControl("ddlIdCaso")         as DropDownList;
-                TextBox      txt1 = row.FindControl("txtDescripcion")    as TextBox;
-                TextBox      txt2 = row.FindControl("txtJustificacion")  as TextBox;
-                System.Web.UI.WebControls.Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-                DropDownList ddl3 = row.FindControl("ddlEstado")         as DropDownList;
+        //aceptarsh
+        protected void BotonEPAceptar_Click(object sender, EventArgs e) {
+        //private int id_disenno;
+        //private String fechaConsulta;
 
-                noConformidad[0] = ddl1.SelectedItem.Text;
-                noConformidad[1] = ddl2.SelectedItem.Text;
-                noConformidad[2] = txt1.Text;
-                noConformidad[3] = txt2.Text;
-                noConformidad[4] = ddl2.SelectedItem.Text;
-            }
+
+
+            Object[] datosNuevos = new Object[7];
+            datosNuevos[0] = this.ControlFecha.Text;
+            datosNuevos[1] = this.DropDownResponsable.SelectedValue.ToString();
+            datosNuevos[2] = this.TextBoxIncidencias.Text;
+            datosNuevos[3] = this.DropDownDiseno.SelectedValue.ToString();
+            
+
+            int operacion = -1;
+
+
+                datosNuevos[4] = 0;
+                controladoraEjecucionPrueba.insertarEjecucion(datosNuevos);
+                
+
+            //else if (modo == 2)
+            //{
+            //    datosNuevos[6] = idMod;
+            //    operacion = controladoraCasosPrueba.modificarCasosPrueba(datosNuevos);
+            //}
+            //if (operacion == 1)
+            //{
+            //    switch (modo)
+            //    {
+            //        case 1:
+            //            {
+            //                EtiqMensajeOperacion.Text = "El caso de prueba ha sido insertado con éxito";
+            //                desmarcarBoton(ref BotonCPInsertar);
+            //                break;
+            //            }
+            //        case 2:
+            //            {
+            //                EtiqMensajeOperacion.Text = "El caso de prueba ha sido modificado con éxito";
+            //                desmarcarBoton(ref BotonCPModificar);
+            //                break;
+            //            }
+            //    }
+            //    EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            //    llenarGrid();
+            //    estadoPostOperacion();
+            //}
+            //else
+            //{
+            //    switch (operacion)
+            //    {
+            //        case 2627:
+            //            {
+            //                EtiqMensajeOperacion.Text = "Insertó un id de caso de prueba ya existente, debe modificarlo.";
+            //                TextBoxID.BorderColor = System.Drawing.Color.Red;
+            //                break;
+            //            }
+            //        default:
+            //            {
+            //                EtiqMensajeOperacion.Text = "Ocurrió un problema en la operación.";
+            //                break;
+            //            }
+            //    }
+            //    EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
+            //}
+            //EtiqMensajeOperacion.Visible = true;
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
 
