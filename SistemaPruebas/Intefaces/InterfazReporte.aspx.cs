@@ -251,7 +251,7 @@ namespace SistemaPruebas.Intefaces
             GridPP.DataSource = dtGrid;
             GridPP.DataBind();
         }
-        protected void llenarGridDP(string nombProyecto)
+  /*      protected void llenarGridDP(string nombProyecto)
         {
             DataTable disennoPrueba = crearTablaDP();
             DataTable dt = controladoraGR.consultarDisennos(nombProyecto);
@@ -328,7 +328,7 @@ namespace SistemaPruebas.Intefaces
             GridEP.DataSource = ejecicionPrueba;
             GridEP.DataBind();
         }
-
+        */
 
 
 
@@ -343,6 +343,7 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Líder.", typeof(String));
             return dt;
         }
+        /*
         protected DataTable crearTablaDP()
         {
             DataTable dt = new DataTable();
@@ -366,7 +367,7 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Responsable.", typeof(String));
             dt.Columns.Add("Fecha.", typeof(String));
             return dt;
-        }
+        }*/
         protected void deshabilitarPP()
         {
             CheckBoxEstadoProyecto.Enabled = false;
@@ -376,7 +377,7 @@ namespace SistemaPruebas.Intefaces
             CheckBoxObjetivoProyecto.Enabled = false;
             CheckBoxOficinaProyecto.Enabled = false;
             CheckBoxResponsableProyecto.Enabled = false;
-        }
+        }/*
         protected void deshabilitarDP()
         {
             CheckBoxCriteriosAceptacionDisenno.Enabled = false;
@@ -402,7 +403,7 @@ namespace SistemaPruebas.Intefaces
             CheckBoxIDEP.Enabled = false;
             CheckBoxPropositoEP.Enabled = false;
             CheckBoxResultadoEsperadoEP.Enabled = false;
-        }
+        }*/
         protected bool [] datosProy()
         {
             bool [] proyecto= new bool [7];
@@ -416,6 +417,7 @@ namespace SistemaPruebas.Intefaces
 
             return proyecto;
         }
+        /*
         protected bool[] datosDisenno()
         {
             bool[] disenno = new bool[7];
@@ -455,13 +457,17 @@ namespace SistemaPruebas.Intefaces
 
             return ejecucion;
         }
+         */
         protected void BotonGE_Click(object sender, EventArgs e)
         {
             //revisar como se llaman los metodos de la controladora.
+            /*
             bool[] ejecucion = datosEjecucion();
             bool[] disenno = datosDisenno();
-            bool[] proyecto = datosProy();
             bool[] casos = datosCasos();
+             * */
+            bool[] proyecto = datosProy();
+            
 
             
             string nombreReporte = "Reporte Doroteos.pdf";
@@ -546,17 +552,19 @@ namespace SistemaPruebas.Intefaces
             String ced = GridPP.SelectedRow.Cells[0].Text;
             if (proyectoActualGR != ced.ToString())
             {
-                disennoSeleccionado.Text = "";
+            //    disennoSeleccionado.Text = "";
             }
             proyectoActualGR = ced.ToString();
             PPindexViejo = index.ToString();
-            llenarGridDP(proyectoActualGR);
+            //
+            
+            //llenarGridDP(proyectoActualGR);
             proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
 
         }
 
 
-
+/*
 
         protected void DP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
@@ -575,7 +583,7 @@ namespace SistemaPruebas.Intefaces
          * Requiere: Evento de pasar de página en el grid.
          * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
          * Retorna: N/A. 
-        */
+        
         protected void DP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridDP.PageIndex = e.NewPageIndex;
@@ -607,7 +615,7 @@ namespace SistemaPruebas.Intefaces
          * Requiere: Evento de pasar de página en el grid.
          * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
          * Retorna: N/A. 
-        */
+        
         protected void CP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridCP.PageIndex = e.NewPageIndex;
@@ -637,7 +645,7 @@ namespace SistemaPruebas.Intefaces
          * Requiere: Evento de pasar de página en el grid.
          * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
          * Retorna: N/A. 
-        */
+        
         protected void EP_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridEP.PageIndex = e.NewPageIndex;
@@ -649,7 +657,7 @@ namespace SistemaPruebas.Intefaces
             String ced = GridEP.SelectedRow.Cells[0].Text;
             ///llenarDatosRequerimiento(ced);
             //habilitarGrid();
-        }
+        }*/
     }
     
 }
