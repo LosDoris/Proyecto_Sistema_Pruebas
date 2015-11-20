@@ -55,14 +55,14 @@
                         </asp:GridView>
                         
 
-                        <asp:GridView ID="GridMod" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
-                            OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
+                        <asp:GridView ID="GridMod" runat="server" OnSelectedIndexChanged="Mod_SelectedIndexChanged" OnPageIndexChanging="Mod_OnPageIndexChanging"
+                            OnRowDataBound="Mod_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
                         
 
-                        <asp:GridView ID="GridReq" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
-                            OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
+                        <asp:GridView ID="GridReq" runat="server" OnSelectedIndexChanged="Req_SelectedIndexChanged" OnPageIndexChanging="Req_OnPageIndexChanging"
+                            OnRowDataBound="Req_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
                         <asp:Label ID="proyectoSeleccionado" runat="server" Text="."></asp:Label>

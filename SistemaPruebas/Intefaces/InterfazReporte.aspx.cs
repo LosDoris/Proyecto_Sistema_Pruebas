@@ -198,11 +198,11 @@ namespace SistemaPruebas.Intefaces
 
 
 
-        protected void llenarGridReq(String nomProyecto, String monModulo)
+        protected void llenarGridReq(String nomProyecto, String nomModulo)
         {
             
             DataTable dtGrid = crearTablaReq();
-            DataTable dt = controladoraGR.consultarProyecto();
+            DataTable dt = controladoraGR.consultarRequerimiento(nomProyecto,nomModulo) ;
             //Object[] datos = new Object[2];
             Object[] datos = new Object[1];
 
@@ -211,7 +211,7 @@ namespace SistemaPruebas.Intefaces
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    datos[0] = dr[1];
+                    datos[0] = dr[0];
                    // datos[1] = dr[2];
                     dtGrid.Rows.Add(datos);
                 }
@@ -356,7 +356,7 @@ namespace SistemaPruebas.Intefaces
             //    disennoSeleccionado.Text = "";
                 }
                 proyectoActualGR = ced.ToString();
-                PPindexViejo = index.ToString();
+                //PPindexViejo = index.ToString();
                 reqActualGR = "";
                 modActualGR = "";
                 llenarGridMod(ced);
@@ -399,7 +399,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void Mod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = GridMod.SelectedRow.RowIndex;
+          /*  int index = GridMod.SelectedRow.RowIndex;
             String ced = GridMod.SelectedRow.Cells[0].Text;
             if (modActualGR != ced.ToString())
             {
@@ -410,7 +410,24 @@ namespace SistemaPruebas.Intefaces
             //
 
             //llenarGridDP(proyectoActualGR);
-            modSeleccionado.Text = "El módulo seleccionado es:" + ced;
+            modSeleccionado.Text = "El módulo seleccionado es:" + ced;*/
+            //int index = GridMod.SelectedRow.RowIndex;
+            String ced = GridMod.SelectedRow.Cells[0].Text;
+            if (ced != "-")
+            {
+                if (modActualGR != ced.ToString())
+                {
+                    //    disennoSeleccionado.Text = "";
+                }
+                modActualGR = ced.ToString();
+                //PPindexViejo = index.ToString();
+                reqActualGR = "";
+                //modActualGR = "";
+                //llenarGridMod(ced);
+                llenarGridReq(proyectoActualGR, modActualGR);
+                //llenarGridDP(proyectoActualGR);
+                modSeleccionado.Text = "El módulo seleccionado es:" + ced;
+            }
         }
 
 
