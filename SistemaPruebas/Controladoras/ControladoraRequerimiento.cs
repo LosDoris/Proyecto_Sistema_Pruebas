@@ -202,10 +202,10 @@ namespace SistemaPruebas.Controladoras
             
         }
 
-        public int consultarReqPorNombre(string nombre, string id_proyecto)
+        public DataTable consultarReqPorNombre(string nombre, string id_proyecto)
         {
-            controladoraBDRequerimiento.consultarRequerimientoBD(nombre, id_proyecto);
-            return 0;
+           return controladoraBDRequerimiento.consultarRequerimientoBD(nombre, id_proyecto);
+          
         }
 
 
