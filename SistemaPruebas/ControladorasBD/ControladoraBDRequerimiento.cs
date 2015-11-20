@@ -122,6 +122,22 @@ namespace SistemaPruebas.Controladoras
 
         }
 
+        public DataTable consultarRequerimientoBD(String id)
+        {
+            DataTable dt = null;
+            String consulta = "";           
+            consulta = "SELECT nombre Requerimiento where id_proyecto ='" + id + "';"; 
+            foreach(DataRow dr in dt.Rows)
+            {
+                string[] array = dr[0].ToString().Split('-');
+                dr[0] = array[0];
+            }
+            dt = acceso.ejecutarConsultaTabla(consulta);
+
+            return dt;
+
+        }
+
         /*
          * Requiere: ID del diseño y del proyecto.
          * Modifica: N/A.
