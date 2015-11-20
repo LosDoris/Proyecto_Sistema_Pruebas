@@ -97,7 +97,7 @@
     
     <div class="row">
         <div class="col-md-8">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="form-horizontal">
               
 <div class="panel panel-primary">
@@ -112,10 +112,12 @@
                         </asp:PlaceHolder>
 
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1">Cédula*:</asp:Label>
+                            <div class="col-md-4">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label" ID="Etiqueta1">Cédula*:</asp:Label>
+                                 </div>
                             <div class="col-md-4">
 
-                                <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 220px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
+                                <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 250px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
                                 <%-- %><asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal">*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>--%>
                                 <asp:RequiredFieldValidator ID="ValidaCampos"
                                     ControlToValidate="TextBoxCedulaRH"
@@ -146,7 +148,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="control-label">Nombre completo*:</asp:Label>
+                            <div class="col-md-4">
+                            <asp:Label runat="server" style="text-align:left" AssociatedControlID="TextBoxNombreRH" CssClass="control-label">Nombre completo*:</asp:Label>
+                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras."></asp:TextBox>
                                 <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label> --%>
@@ -178,7 +182,9 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-md-4">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Teléfono 1:</asp:Label>
+                                </div>
                             <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxTel1" Style="width: 250px" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="check_txt3(event)" placeholder="Formato: 00000000" />
                                 <script type="text/javascript">
@@ -202,7 +208,9 @@
                         </div>
 
                         <div class="form-group">
+                            <div class="col-md-4">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Teléfono 2:</asp:Label>
+                                </div>
                             <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxTel2" Style="width: 250px" CssClass="form-control" MaxLength="8" onkeypress="check_txt4(event)" placeholder="Formato: 00000000" />
                                 <script type="text/javascript">
@@ -226,8 +234,10 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
                             <div class="col-md-4">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
+                                </div>
+                            <div class="col-md-4" style="margin-bottom:0px">
                                 <asp:TextBox runat="server" ID="TextBoxEmail" Style="width: 250px" CssClass="form-control" MaxLength="30" placeholder="Formato: xxx@yyy.com" />
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*Error en el formato del email" ControlToValidate="TextBoxEmail" 
                                     CssClass="text-danger" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
@@ -240,14 +250,15 @@
                 </div>
             </div>
         </div>
+        
+        <div class="col-md-5">
 
-        <div class="col-md-4">
-       <h4>Datos del Perfil</h4>
-            <div class="jumbozRH">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Nombre de usuario*:</asp:Label>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Nombre de usuario*:</asp:Label>
+                            </div>
+                        <div class="col-md-4">
                             <asp:TextBox runat="server" ID="TextBoxUsuario" CssClass="form-control" MaxLength="30" placeholder="Ingrese sólo letras y números" onkeypress="check_txt5(event)"/>
                             <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="UserVal">*Por favor ingrese un usuario valido.</asp:Label>--%>
                             <asp:RequiredFieldValidator ID="Requiredfieldvalidator3"
@@ -319,7 +330,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Rol</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Rol</asp:Label>
                         <div class="col-md-8">
                             <asp:DropDownList ID="RolComboBox" runat="server" OnSelectedIndexChanged="RolComboBox_SelectedIndexChanged" CssClass="form-control">
                             </asp:DropDownList>
@@ -329,7 +340,7 @@
 
 
                 </div>
-            </div>
+
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-4 control-label">Proyecto Asociado</asp:Label>
                 <div class="col-md-8">
@@ -340,7 +351,7 @@
 
         </div>
     </div>
-    <div class="form-group col-md-offset-10 col-md-12">
+    <div class="form-group col-md-offset-9 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
 
