@@ -660,7 +660,7 @@ namespace SistemaPruebas.Intefaces
 
             if (gridProyecto.Enabled && e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#a6f3e0';;this.style.color='white'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
@@ -685,7 +685,7 @@ namespace SistemaPruebas.Intefaces
             foreach (GridViewRow row in gridProyecto.Rows)
             {
                 row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProyecto, "Select$" + row.RowIndex);
-                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#a6f3e0';;this.style.color='white'";
+                row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='white'";
                 row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
 
                 row.Attributes["style"] = "cursor:pointer";

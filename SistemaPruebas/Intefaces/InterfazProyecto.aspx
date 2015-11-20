@@ -353,9 +353,9 @@
 
     <div id="tablaProyectos" class="row">
 
-        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" HeaderStyle-ForeColor="#ffffff" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
+        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="90%"   HeaderStyle-ForeColor="#ffffff" CellPadding="10"  HorizontalAlign="Center" 
             AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="7px" 
-            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
+            AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" AutoPostBack ="true" CssClass="control-label" CausesValidation="false" CaptionAlign="Right" CellSpacing="5">
             <Columns>
                 <asp:BoundField DataField="Id Proyecto" ItemStyle-Width="185px" HeaderText=" Id Proyecto"  />
                 <asp:TemplateField ItemStyle-Width="200px" HeaderText=" Nombre del sistema">
