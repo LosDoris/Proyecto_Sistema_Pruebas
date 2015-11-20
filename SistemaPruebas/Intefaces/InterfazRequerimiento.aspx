@@ -62,31 +62,54 @@
     <h3 class="panel-title">Resumen del Proyecto</h3>
   </div>
   <div class="panel-body">
-        <div class="col-md-6">
-            <div class ="form-group">
-		        <asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px"  Text ="Nombre Sistema"></asp:Label>
+
+
+  <div class ="row" >
+    <div class="form-horizontal">
+	
+           <div class ="form-group">
+               <div class ="col-md-3" style="margin-left:20px">
+			<asp:Label ID="nombre_sistema1" Font-Bold="true" runat="server" CssClass="control-label"  Text ="Nombre del Sistema:"></asp:Label>
+                </div>
+                <div class ="col-sm-2">
+						<asp:Label ID="nombre_sistema" runat="server" CssClass="control-label"  Text =""></asp:Label>	
+                </div>
+            <div class ="col-md-2">
+                <asp:Label ID="objetivo_general1" Font-Bold="true" runat="server" CssClass="control-label" Text="Objetivo General:"></asp:Label>
+                </div>
+
+                <div class ="col-md-4">
+                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label" Text=""></asp:Label>
+                </div>
+
+                <div class ="col-sm-1" style="margin-left:20px">
+				<asp:Label ID="estado1" Font-Bold="true" runat="server" CssClass="control-label" Text="Estado:"></asp:Label>
+                </div>
+               <div class="col-sm-2">
+                <asp:Label ID="estado" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-            <div class="form-group">
-                <asp:Label ID="objetivo_general" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Objetivo General"></asp:Label>
+                <div class="col-xs-3">
+               <asp:Label ID="nombre_rep1" Font-Bold="true" runat="server" CssClass="control-label" Text="Nombre Representante:"></asp:Label>
             </div>
-            <div class ="form-group">
-                <asp:Label ID="estado" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Estado"></asp:Label>
+            <div class="col-md-1">
+                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label" Text=""></asp:Label>
             </div>
-            <div class ="form-group">
-                <asp:Label ID="nombre_rep" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px; margin-right: 360px" Text="Nombre Representante"></asp:Label>
-            </div>
-            <div class ="form-group">
-                <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label"
-                    style="text-align: right; width: 1100px;height: 32px; margin-left: 50px;" Text="Lider del Proyecto"></asp:Label>
-            </div>
+        <div class="col-md-3">
+            <asp:Label ID="LiderProyecto1" Font-Bold="true" runat="server" CssClass="control-label" Text="Lider del Proyecto:"></asp:Label>
+        </div>
+        <div class="col-sm-2">
+		    <asp:Label ID="LiderProyecto" runat="server" CssClass="control-label" Text=""></asp:Label>
         </div>
         
-		    
+           </div>
+
+
+      </div>
+
+
         <div style="clear:both"></div>
+		</div>	
+
   </div>
 </div>  
 <div class="well">

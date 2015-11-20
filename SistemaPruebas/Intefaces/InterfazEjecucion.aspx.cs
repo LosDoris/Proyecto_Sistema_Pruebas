@@ -575,13 +575,20 @@ namespace SistemaPruebas.Intefaces
         {
             foreach(GridViewRow row in gridNoConformidades.Rows)
             {
-                Object[] noConformidad = new Object[5];
+                Object[] noConformidad = new Object[6];
 
                 DropDownList ddl1 = row.FindControl("ddlTipo")           as DropDownList;
                 DropDownList ddl2 = row.FindControl("ddlIdCaso")         as DropDownList;
-                TextBox txt1      = row.FindControl("txtDescripcion")    as TextBox;
-                TextBox txt2      = row.FindControl("txtJustificacion") as TextBox;
-                //noConformidad[0] = 
+                TextBox      txt1 = row.FindControl("txtDescripcion")    as TextBox;
+                TextBox      txt2 = row.FindControl("txtJustificacion")  as TextBox;
+                System.Web.UI.WebControls.Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                DropDownList ddl3 = row.FindControl("ddlEstado")         as DropDownList;
+
+                noConformidad[0] = ddl1.SelectedItem.Text;
+                noConformidad[1] = ddl2.SelectedItem.Text;
+                noConformidad[2] = txt1.Text;
+                noConformidad[3] = txt2.Text;
+                noConformidad[4] = ddl2.SelectedItem.Text;
             }
         }
 
