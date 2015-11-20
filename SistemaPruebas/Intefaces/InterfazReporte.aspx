@@ -75,27 +75,42 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
+                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
                         </div>
                         <div class="col-md-3">
-                            <asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
+                            &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
                         </div>
                         <div class="col-md-3">
-                            <asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Responsable." />
+                            &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Responsable." />
                         </div>
                     </div>
                     <div class="col-md3">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-horizontal">
-                                    <asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
+                                    &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
+                                &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
+                            </div>
+                            <div class="col-md-4">
+                                &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-horizontal">
+                                    &nbsp;<asp:CheckBox ID="CheckBox1" runat="server" Text="Cantidad éxitos." />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" Text="Tipos no conformidades." />
                             </div>
                             <div class="col-md-6">
-                                <asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
+                                &nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text= "Cantidad no conformidades."/>
                             </div>
                         </div>
                     </div>
