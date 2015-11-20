@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Gestión de Recursos Humanos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazRecursoHumano.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazRecursoHumano" Async="true" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
+    <legend style="margin-top:45px"><h2>Gestión de Recursos Humanos</h2></legend>
+
     <style type="text/css">
         .modalBackground {
             background-color: black;
@@ -78,23 +79,32 @@
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorLlaves">*La cédula ingresada ya pertenece a un usuario de la aplicación. Por favor ingrese otra identificación.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorModificar">*Ha habido problemas para modificar este recurso humano. Por favor vuelva a intentarlo.</asp:Label>
     <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EtiqErrorEliminar">*Ha habido problemas para eliminar este recurso humano del sistema. Por favor vuelva a intentarlo.</asp:Label>
+
     <div class="form-group">
-        <div class="col-md-offset-10 col-md-12">
+            <div class="col-md-offset-9 col-md-12">
+        <div class="btn-group">
             <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default" ID="BotonRHInsertar" OnClick="BotonRHInsertar_Click" CausesValidation="False" />
-
             <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonRHModificar" OnClick="BotonRHModificar_Click" CausesValidation="False" />
-
-            <asp:Button runat="server" Text="   Eliminar" CssClass="btn btn-default" ID="BotonRHEliminar" OnClick="BotonRHEliminar_Click" CausesValidation="False" />
+            <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default" ID="BotonRHEliminar" OnClick="BotonRHEliminar_Click" CausesValidation="False" />
         </div>
     </div>
+    </div>
 
+    <hr style="margin:50px;">
+<div class="well">
+
+ <legend><h5>Información del Recurso Humano</h5></legend>
+    
     <div class="row">
         <div class="col-md-8">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="form-horizontal">
-
-                <h4>Datos Personales</h4>
-                    <div class="cajaAnchoPagina">                    
+              
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Datos Personales</h3>
+  </div>
+  <div class="panel-body">
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                             <p class="text-danger">
                                 <asp:Literal runat="server" ID="FailureText" />
@@ -103,7 +113,7 @@
 
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label" ID="Etiqueta1">Cédula*:</asp:Label>
-                            <div class="col-md-10">
+                            <div class="col-md-4">
 
                                 <asp:TextBox runat="server" ID="TextBoxCedulaRH" Style="width: 220px" CssClass="form-control" MaxLength="10" onkeypress="check_txt(event)" placeholder="Formato: 000000000">.</asp:TextBox>
                                 <%-- %><asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="CedVal">*Por favor ingrese solo el numero de la cedula, sin guiones u otros simbolos.</asp:Label>--%>
@@ -136,8 +146,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="col-md-2 control-label">Nombre completo*:</asp:Label>
-                            <div class="col-md-10">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxNombreRH" CssClass="control-label">Nombre completo*:</asp:Label>
+                            <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxNombreRH" Style="width: 250px" CssClass="form-control" MaxLength="49" onkeypress="check_txt1(event)" placeholder="Ingrese sólo letras."></asp:TextBox>
                                 <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="NombVal">*En este campo solo se permiten letras y espacios</asp:Label> --%>
                                 <asp:RequiredFieldValidator ID="Requiredfieldvalidator1"
@@ -168,8 +178,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 1:</asp:Label>
-                            <div class="col-md-10">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Teléfono 1:</asp:Label>
+                            <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxTel1" Style="width: 250px" CssClass="form-control" Columns="8" MaxLength="8" onkeypress="check_txt3(event)" placeholder="Formato: 00000000" />
                                 <script type="text/javascript">
                                     function check_txt3(e) {
@@ -192,8 +202,8 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Teléfono 2:</asp:Label>
-                            <div class="col-md-10">
+                            <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="control-label">Teléfono 2:</asp:Label>
+                            <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxTel2" Style="width: 250px" CssClass="form-control" MaxLength="8" onkeypress="check_txt4(event)" placeholder="Formato: 00000000" />
                                 <script type="text/javascript">
                                     function check_txt4(e) {
@@ -217,14 +227,16 @@
 
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="col-md-2 control-label">Email:</asp:Label>
-                            <div class="col-md-10">
+                            <div class="col-md-4">
                                 <asp:TextBox runat="server" ID="TextBoxEmail" Style="width: 250px" CssClass="form-control" MaxLength="30" placeholder="Formato: xxx@yyy.com" />
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*Error en el formato del email" ControlToValidate="TextBoxEmail" 
                                     CssClass="text-danger" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                 <%--<asp:Label runat="server" AssociatedControlID="TextBoxCedulaRH" CssClass="text-danger" ID="EmailVal">*Por favor ingrese un email valido valido.</asp:Label> --%>
                             </div>
                         </div>
-                    </div>
+ </div>
+ </div>
+                                    
                 </div>
             </div>
         </div>
@@ -331,6 +343,9 @@
     <div class="form-group col-md-offset-10 col-md-12">
         <asp:Label runat="server" id="CamposObligarotios" Text="Campos Obligatorios*" style="color: #C0C0C0;" CssClass="control-label"></asp:label>
     </div>
+
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" Style="border-color: #4bb648; color: #4bb648"
