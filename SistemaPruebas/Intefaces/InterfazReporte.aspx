@@ -48,27 +48,39 @@
             <div class="panel-body">
                 <div>
 
-                    <div class="col-md3">
+                    <%--<div class="col-md3">--%>
+                                        <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-horizontal">
                         <asp:GridView ID="GridPP" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
                             OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
                         
+                        </div>
+                        </div>
+                        <div class="col-md-4">
 
                         <asp:GridView ID="GridMod" runat="server" OnSelectedIndexChanged="Mod_SelectedIndexChanged" OnPageIndexChanging="Mod_OnPageIndexChanging"
                             OnRowDataBound="Mod_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
                         
+                            </div>
+                        <div class="col-md-4">
 
                         <asp:GridView ID="GridReq" runat="server" OnSelectedIndexChanged="Req_SelectedIndexChanged" OnPageIndexChanging="Req_OnPageIndexChanging"
                             OnRowDataBound="Req_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
                             AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                         </asp:GridView>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="col-md-3">
                         <asp:Label ID="proyectoSeleccionado" runat="server" Text="."></asp:Label>
                         <asp:Label ID="modSeleccionado" runat="server" Text="."></asp:Label>
                         <asp:Label ID="reqSeleccionado" runat="server" Text="."></asp:Label>
-
+                    </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
