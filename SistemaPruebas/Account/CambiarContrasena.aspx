@@ -1,14 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CambiarContrasena.aspx.cs" Inherits="SistemaPruebas.Account.CambiarContrasena" %>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %></h2>
+
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
-
+     <hr style="margin:50px;">
     <div class="form-horizontal">
-        <h3>Cambiar Contraseña</h3>
-        <hr />
-        <asp:PlaceHolder runat="server" ID="PlaceHolder1" Visible="false">
+        
+         <div class="col-md-7">
+       <div class="well">     
+    <legend><h3>Cambiar Contraseña</h3></legend>
+  <asp:PlaceHolder runat="server" ID="PlaceHolder1" Visible="false">
             <p class="text-danger">
                 <asp:Literal runat="server" ID="FailureText" />
             </p>
@@ -48,9 +50,11 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" OnClick="cambiarContrasena" Text="Cambiar Contrasena" CssClass="btn btn-default" />
+            <div class="col-md-6">
+                <asp:Button runat="server" OnClick="cambiarContrasena" Text="Cambiar Contrasena" CssClass="btn btn-primary" />
             </div>
         </div>
+  </div>
+</div>
     </div>
 </asp:Content>
