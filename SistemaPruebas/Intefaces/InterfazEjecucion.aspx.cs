@@ -64,6 +64,7 @@ namespace SistemaPruebas.Intefaces
                 estadoInicial();
                 inicializarDTnoConformidades();
                 gridNoConformidades.DataBind();
+                
             }
         }
 
@@ -266,11 +267,14 @@ namespace SistemaPruebas.Intefaces
             if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
                 DatosEjecucion.Enabled = true;
+                llenarGridDisennos(DropDownDiseno.SelectedItem.Text.ToString());
             }
             else
             {
                 DatosEjecucion.Enabled = false;
+                
             }
+            
         }
 
         protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
@@ -491,6 +495,60 @@ namespace SistemaPruebas.Intefaces
 
             //    // Add code here to add the item to the shopping cart.
             //}
+        }
+
+        protected void OnGridEjecucionPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void GridEjecucion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void llenarGridDisennos(string id_diseno)
+        {
+            DataTable ejecuciones = crearTablaGridEjecuciones();
+            DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, id_diseno);
+
+            Object[] datos = new Object[4];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    datos[3] = dr[3];
+                    ejecuciones.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                ejecuciones.Rows.Add(datos);
+            }
+            gridEjecucion.DataSource = ejecuciones;
+            gridEjecucion.DataBind();
+        }
+
+        protected DataTable crearTablaGridEjecuciones()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id Diseño", typeof(String));
+            dt.Columns.Add("Responsable", typeof(String));
+            dt.Columns.Add("Fecha", typeof(String));
+            dt.Columns.Add("Estado", typeof(String));
+            return dt;
         }
     }
 }

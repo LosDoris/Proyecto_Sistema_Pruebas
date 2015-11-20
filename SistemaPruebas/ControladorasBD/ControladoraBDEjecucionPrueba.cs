@@ -23,7 +23,7 @@ namespace SistemaPruebas.Controladoras
 
         public int insertarNoConformidad(EntidadNoConformidad noConformidad)
         {
-            
+            return 0;
         }
 
         public int modificarEjecucionPrueba(EntidadEjecucionPrueba ejecucion)
@@ -52,7 +52,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT id_ejecucion, responsable,fecha, estado FROM Ejecucion ORDER BY fechaUltimo DESC;";
+                consulta = "SELECT id_ejecucion, responsable,fecha, estado FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='"+id+"')";
             }
             else if (tipo == 2)
             {

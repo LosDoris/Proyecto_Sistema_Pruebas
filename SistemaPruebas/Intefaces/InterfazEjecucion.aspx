@@ -199,7 +199,20 @@
 
            
        </div>
+        <div class="form-group">          		
+                <asp:GridView ID="gridEjecucion" runat ="server" margin-right ="auto" 		
+                    CellPadding="10" 		
+                    margin-left="auto" AutoGenerateColumns ="true" 		
+                    CssClass ="GridView" HorizontalAlign="Center"   		
+                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
+                    AutoPostBack ="true" AllowPaging="true" PageSize="3"		
+                OnPageIndexChanging="OnGridEjecucionPageIndexChanging" 		
+                OnRowDataBound ="OnGridEjecucionRowDataBound"		
+                OnSelectedIndexChanged="GridEjecucion_SelectedIndexChanged">		
+                </asp:GridView>			
+        </div>	
     </div>
+     
 </asp:Panel>
 </div>
 
