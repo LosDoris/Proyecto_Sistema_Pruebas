@@ -13,15 +13,6 @@ namespace SistemaPruebas {
     public partial class SiteMaster {
         
         /// <summary>
-        /// Control A1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A1;
-        
-        /// <summary>
         /// Control A2.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace SistemaPruebas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl A2;
         
         /// <summary>
-        /// Control A3.
+        /// Control A1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A1;
         
         /// <summary>
         /// Control Li1.
@@ -49,13 +40,13 @@ namespace SistemaPruebas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
         
         /// <summary>
-        /// Control A4.
+        /// Control A3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A3;
         
         /// <summary>
         /// Control A5.
@@ -65,6 +56,15 @@ namespace SistemaPruebas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl A5;
+        
+        /// <summary>
+        /// Control A4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl A4;
         
         /// <summary>
         /// Control nombre.

@@ -53,6 +53,25 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
+         * Requiere: N/A
+         * Modifica: Variable global que guarda las no conformidades
+         * Retorna: Lista de objetos.
+         */
+        public static List <Object []> listaNC
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["listaNC"];
+                return value == null ? null : (List<Object[]>) value;
+            }
+            set
+            {
+                HttpContext.Current.Session["listaNC"] = value;
+            }
+        }
+
+
+        /*
         * Requiere: N/A
         * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
         * Retorna: N/A.
@@ -64,6 +83,7 @@ namespace SistemaPruebas.Intefaces
                 estadoInicial();
                 inicializarDTnoConformidades();
                 gridNoConformidades.DataBind();
+                
             }
         }
 
@@ -203,8 +223,6 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
-
         protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DropDownProyecto.SelectedItem.Text != "Seleccionar")
@@ -266,11 +284,14 @@ namespace SistemaPruebas.Intefaces
             if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
                 DatosEjecucion.Enabled = true;
+                llenarGridDisennos(DropDownDiseno.SelectedItem.Text.ToString());
             }
             else
             {
                 DatosEjecucion.Enabled = false;
+                
             }
+            
         }
 
         protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
@@ -306,18 +327,20 @@ namespace SistemaPruebas.Intefaces
                         new DataColumn("IdCaso",typeof(String)),
                         new DataColumn("Descripcion", typeof(String)),
                         new DataColumn("Justificacion", typeof(String)),
-                        new DataColumn("Resultado", typeof(String))
+                        new DataColumn("Resultado", typeof(String)),
+                        new DataColumn("Estado", typeof(String))
                    }
                  );
 
                 DataRow drRow = dt.NewRow();
 
                 drRow["Id"] = 1;
-                drRow["Tipo"] = string.Empty;
-                drRow["IdCaso"] = string.Empty;
-                drRow["Descripcion"] = string.Empty;
-                drRow["Justificacion"] = string.Empty;
-                drRow["Resultado"] = string.Empty;
+                drRow["Tipo"]          = String.Empty;
+                drRow["IdCaso"]        = String.Empty;
+                drRow["Descripcion"]   = String.Empty;
+                drRow["Justificacion"] = String.Empty;
+                drRow["Resultado"]     = String.Empty;
+                drRow["Estado"]        = string.Empty;
 
                 dt.Rows.Add(drRow);
                 dtNoConformidades = dt;
@@ -358,12 +381,12 @@ namespace SistemaPruebas.Intefaces
                     {
                         for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                         {
-                            DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo") as DropDownList;
-                            DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso") as DropDownList;
-                            TextBox txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion") as TextBox;
-                            TextBox txt2 = gridNoConformidades.Rows[indiceFila].FindControl("txtJustificacion") as TextBox;
+                            DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo")          as DropDownList;
+                            DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso")        as DropDownList;
+                            TextBox      txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion")   as TextBox;
+                            TextBox      txt2 = gridNoConformidades.Rows[indiceFila].FindControl("txtJustificacion") as TextBox;
                             System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[indiceFila].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-
+                            DropDownList ddl3 = gridNoConformidades.Rows[indiceFila].FindControl("ddlEstado")        as DropDownList;
                             drCurrentRow = dtCurrentTable.NewRow();
                             // drCurrentRow["RowNumber"] = i + 1;
 
@@ -372,6 +395,7 @@ namespace SistemaPruebas.Intefaces
                             dtCurrentTable.Rows[i - 1]["Descripcion"] = txt1.Text;
                             dtCurrentTable.Rows[i - 1]["Justificacion"] = txt2.Text;
                             dtCurrentTable.Rows[i - 1]["Resultado"] = imagenRes.ImageUrl.ToString();
+                            dtCurrentTable.Rows[i - 1]["Estado"] = ddl3.SelectedValue;
                             indiceFila++;
                         }
 
@@ -394,7 +418,7 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-        private void conservarEstado()
+        protected void conservarEstado()
         {
             try
             {
@@ -406,18 +430,19 @@ namespace SistemaPruebas.Intefaces
                     {
                         for (int i = 0; i < dtCurrentTable.Rows.Count; i++)
                         {
-                            DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo") as DropDownList;
-                            DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso") as DropDownList;
-                            TextBox txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion") as TextBox;
+                            DropDownList ddl1 = gridNoConformidades.Rows[indiceFila].FindControl("ddlTipo")     as DropDownList;
+                            DropDownList ddl2 = gridNoConformidades.Rows[indiceFila].FindControl("ddlIdCaso")   as DropDownList;
+                            TextBox txt1 = gridNoConformidades.Rows[indiceFila].FindControl("txtDescripcion")   as TextBox;
                             TextBox txt2 = gridNoConformidades.Rows[indiceFila].FindControl("txtJustificacion") as TextBox;
                             System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[indiceFila].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-
+                            DropDownList ddl3 = gridNoConformidades.Rows[indiceFila].FindControl("ddlEstado")   as DropDownList;
 
                             ddl1.SelectedValue = dtCurrentTable.Rows[i]["Tipo"].ToString();
                             ddl2.SelectedValue = dtCurrentTable.Rows[i]["IdCaso"].ToString();
                             txt1.Text = dtCurrentTable.Rows[i]["Descripcion"].ToString();
                             txt2.Text = dtCurrentTable.Rows[i]["Justificacion"].ToString();
                             imagenRes.ImageUrl = dtCurrentTable.Rows[i]["Resultado"].ToString();
+                            ddl3.SelectedValue = dtCurrentTable.Rows[i]["Estado"].ToString();
                             indiceFila++;
                         }
                     }
@@ -472,7 +497,6 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
         protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
@@ -492,5 +516,75 @@ namespace SistemaPruebas.Intefaces
             //    // Add code here to add the item to the shopping cart.
             //}
         }
+
+        protected void OnGridEjecucionPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void GridEjecucion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void llenarGridDisennos(string id_diseno)
+        {
+            DataTable ejecuciones = crearTablaGridEjecuciones();
+            DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, id_diseno);
+
+            Object[] datos = new Object[4];
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    datos[1] = dr[1];
+                    datos[2] = dr[2];
+                    datos[3] = dr[3];
+                    ejecuciones.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                datos[1] = "-";
+                datos[2] = "-";
+                datos[3] = "-";
+                ejecuciones.Rows.Add(datos);
+            }
+            gridEjecucion.DataSource = ejecuciones;
+            gridEjecucion.DataBind();
+        }
+
+        protected DataTable crearTablaGridEjecuciones()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id Diseño", typeof(String));
+            dt.Columns.Add("Responsable", typeof(String));
+            dt.Columns.Add("Fecha", typeof(String));
+            dt.Columns.Add("Estado", typeof(String));
+            return dt;
+        }
+
+        protected void recuperarNoConformidades()
+        {
+            foreach(GridViewRow row in gridNoConformidades.Rows)
+            {
+                Object[] noConformidad = new Object[5];
+
+                DropDownList ddl1 = row.FindControl("ddlTipo")           as DropDownList;
+                DropDownList ddl2 = row.FindControl("ddlIdCaso")         as DropDownList;
+                TextBox txt1      = row.FindControl("txtDescripcion")    as TextBox;
+                TextBox txt2      = row.FindControl("txtJustificacion") as TextBox;
+                //noConformidad[0] = 
+            }
+        }
+
+
     }
 }

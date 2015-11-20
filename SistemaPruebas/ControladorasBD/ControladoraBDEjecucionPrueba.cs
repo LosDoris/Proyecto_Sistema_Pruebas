@@ -11,31 +11,40 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
-        public int insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
+        public string insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
         {
             String consulta =
-                "INSERT INTO Ejecucion(id_ejecucion, fecha, responsable, incidencias, estado, id_disenno, fechaUltimo) values(" +
-                ejecucion.Id_ejecucion + ",'" + ejecucion.Fecha + "','" + ejecucion.Responsable + "','" + ejecucion.Incidencias + "','" +
+                "INSERT INTO Ejecucion(fecha, responsable, incidencias, estado, id_disenno, fechaUltimo) values(" +
+                ejecucion.Fecha + "','" + ejecucion.Responsable + "','" + ejecucion.Incidencias + "','" +
                 ejecucion.Estado + "'," + ejecucion.Id_disenno + ", getDate()" + ");";
             int ret = acceso.Insertar(consulta);
-            return acceso.Insertar("select id_disenno from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
+            DataTable dt=acceso.ejecutarConsultaTabla("select fecha from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
+
+            string fecha_regresa = "";
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    fecha_regresa = dr[0].ToString();
+                }
+            }
+            return fecha_regresa;
         }
 
         public int insertarNoConformidad(EntidadNoConformidad noConformidad)
         {
-            
+            return 0;
         }
 
         public int modificarEjecucionPrueba(EntidadEjecucionPrueba ejecucion)
         {
-            String consulta = "UPDATE ejecucion SET id_ejecucion ='" + ejecucion.Id_ejecucion +
-                                "', fecha = '" + ejecucion.Fecha +
+            String consulta = "UPDATE ejecucion SET fecha = '" + ejecucion.Fecha +
                                 "', responsable = '" + ejecucion.Responsable +
                                 "', incidencias = '" + ejecucion.Incidencias +
                                 "', estado = '" + ejecucion.Estado +
                                 "', id_disenno = '" + ejecucion.Id_disenno +
                                 "', fechaUltimo=getDate()" +
-                                " WHERE id_caso_prueba = '" + ejecucion.Id_ejecucion + "';";
+                                " WHERE fecha = '" + ejecucion.FechaConsulta + "';";
             int ret = acceso.Insertar(consulta);
             return ret;
 
@@ -52,11 +61,11 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT id_ejecucion, responsable,fecha, estado FROM Ejecucion ORDER BY fechaUltimo DESC;";
+                consulta = "SELECT fecha, responsable, estado FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='" + id + "')";
             }
             else if (tipo == 2)
             {
-                consulta = "SELECT id_caso_prueba, fecha, responsable, incidencias, estado, id_disenno FROM Ejecucion WHERE id_ejecucion = '" + id + "';";
+                consulta = "SELECT fecha, responsable, incidencias, estado, id_disenno FROM Ejecucion WHERE id_ejecucion = '" + id + "';";
 
             }
             dt = acceso.ejecutarConsultaTabla(consulta);

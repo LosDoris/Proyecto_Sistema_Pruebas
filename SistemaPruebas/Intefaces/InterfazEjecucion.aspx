@@ -94,7 +94,7 @@
                    CssClass ="GridView" HorizontalAlign="Center" OnRowCommand="gridNoConformidades_RowCommand"  >
                    <Columns>
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
-                       <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                        <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
                             <asp:CheckBox runat="server" ID="checkEliminar" ToolTip="Seleccione si quiere eliminar fila" />
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
@@ -150,6 +150,18 @@
                             <ajaxToolkit:ModalPopupExtender ID="modalSubir" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelSubirImagen" TargetControlID="botonImagen"></ajaxToolkit:ModalPopupExtender>
 			            </ItemTemplate>
                     </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblEstado" Visible="false" Text='<%# Eval("Estado") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlEstado" runat="server" ClientIDMode="Static" CssClass="form-control">
+                                <asp:ListItem Text="Seleccionar" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Satisfactorio" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Fallido" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="Pendiente" Value="4"></asp:ListItem>
+                                <asp:ListItem Text="Cancelado" Value="5"></asp:ListItem>
+                            </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                    </Columns>
                </asp:GridView>
                <div class="form-group">
@@ -199,7 +211,18 @@
 
            
        </div>
+        <div class="form-group">          		
+                <asp:GridView ID="gridEjecucion" runat ="server" margin-right ="auto" 		
+                    CellPadding="10" 		
+                    margin-left="auto" AutoGenerateColumns ="true" 		
+                    CssClass ="GridView" HorizontalAlign="Center"   		
+                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
+                    AutoPostBack ="true" AllowPaging="true" PageSize="3"		
+             >		
+                </asp:GridView>			
+        </div>	
     </div>
+     
 </asp:Panel>
 </div>
 
