@@ -158,7 +158,9 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Nombre del Proyecto.", typeof(String));
-            dt.Columns.Add("Líder.", typeof(String));
+            dt.Columns.Add("        Líder.      ", typeof(String));
+            //Nombre del Proyecto.
+           //"        Líder.      "
             return dt;
         }
 
@@ -192,7 +194,9 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaMod()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Módulo.", typeof(String));
+            dt.Columns.Add("       Módulo.      ", typeof(String));
+            //"        Líder.      "
+            //"       Módulo.      "
             return dt;
         }
 
@@ -353,16 +357,13 @@ namespace SistemaPruebas.Intefaces
             if(ced!="-"){
                 if (proyectoActualGR != ced.ToString())
                 {
-            //    disennoSeleccionado.Text = "";
+                    proyectoActualGR = ced.ToString();
+                    reqActualGR = "";
+                    modActualGR = "";
+                    llenarGridMod(ced);
+                    llenarGridReq("","");
+                    proyectoSeleccionado.Text = " El proyecto seleccionado es:  " + ced;
                 }
-                proyectoActualGR = ced.ToString();
-                //PPindexViejo = index.ToString();
-                reqActualGR = "";
-                modActualGR = "";
-                llenarGridMod(ced);
-                llenarGridReq("","");
-                //llenarGridDP(proyectoActualGR);
-                proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
             }
         }
         /*
@@ -399,34 +400,16 @@ namespace SistemaPruebas.Intefaces
 
         protected void Mod_SelectedIndexChanged(object sender, EventArgs e)
         {
-          /*  int index = GridMod.SelectedRow.RowIndex;
-            String ced = GridMod.SelectedRow.Cells[0].Text;
-            if (modActualGR != ced.ToString())
-            {
-                //    disennoSeleccionado.Text = "";
-            }
-            modActualGR = ced.ToString();
-            //PPindexViejo = index.ToString();
-            //
-
-            //llenarGridDP(proyectoActualGR);
-            modSeleccionado.Text = "El módulo seleccionado es:" + ced;*/
-            //int index = GridMod.SelectedRow.RowIndex;
             String ced = GridMod.SelectedRow.Cells[0].Text;
             if (ced != "-")
             {
                 if (modActualGR != ced.ToString())
                 {
-                    //    disennoSeleccionado.Text = "";
+                    modActualGR = ced.ToString();
+                    reqActualGR = "";
+                    llenarGridReq(proyectoActualGR, modActualGR);
+                    modSeleccionado.Text = " El módulo seleccionado es:  " + ced;
                 }
-                modActualGR = ced.ToString();
-                //PPindexViejo = index.ToString();
-                reqActualGR = "";
-                //modActualGR = "";
-                //llenarGridMod(ced);
-                llenarGridReq(proyectoActualGR, modActualGR);
-                //llenarGridDP(proyectoActualGR);
-                modSeleccionado.Text = "El módulo seleccionado es:" + ced;
             }
         }
 
@@ -469,16 +452,15 @@ namespace SistemaPruebas.Intefaces
         {
             int index = GridReq.SelectedRow.RowIndex;
             String ced = GridReq.SelectedRow.Cells[0].Text;
-            if (reqActualGR != ced.ToString())
+            if (ced != "-")
             {
-                //    disennoSeleccionado.Text = "";
+                
+                if (reqActualGR != ced.ToString())
+                {
+                    reqActualGR = ced.ToString();
+                    reqSeleccionado.Text = "El requerimiento seleccionado es:  " + ced;
+                }
             }
-            reqActualGR = ced.ToString();
-            //PPindexViejo = index.ToString();
-            //
-
-            //llenarGridDP(proyectoActualGR);
-            reqSeleccionado.Text = "El requerimiento seleccionado es:" + ced;
         }
     }
     
