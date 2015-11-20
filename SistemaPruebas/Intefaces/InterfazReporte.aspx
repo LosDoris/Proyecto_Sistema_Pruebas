@@ -71,6 +71,9 @@
                     </div>
                 </div>
                 <div class="col-md10">
+                    <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+                    </div>
+                <div class="col-md10">
                     <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="col-md10">
