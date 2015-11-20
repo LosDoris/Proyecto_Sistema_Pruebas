@@ -69,7 +69,7 @@ namespace SistemaPruebas.Intefaces
             get
             {
                 object value = HttpContext.Current.Session["modActualGR"];
-                return value == null ? "0" : (string)value;
+                return value == null ? "" : (string)value;
             }
             set
             {
@@ -81,7 +81,7 @@ namespace SistemaPruebas.Intefaces
             get
             {
                 object value = HttpContext.Current.Session["reqActualGR"];
-                return value == null ? "0" : (string)value;
+                return value == null ? "" : (string)value;
             }
             set
             {
@@ -108,28 +108,11 @@ namespace SistemaPruebas.Intefaces
             //Restricciones_Campos();
             if (!IsPostBack)// ES SOLO LA PRIMERA VEZ
             {
-              /*  esAdminGR = Convert.ToString(true);
-                llenarGridPP();
-
-                esAdminGR = controladoraGR.PerfilDelLogeado().ToString();
-                if (Convert.ToBoolean(esAdminGR))
-                {
-                    //proyectoActual = controladoraGR.consultarIDProyMinimo().ToString();
-                }
-                else
-                {
-                    proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
-                }*/
                 volverAlOriginal();
+                llenarGridPP();
+                llenarGridMod("");
+                llenarGridReq("","");
             }
-        /*    if (Convert.ToBoolean(esAdminGR))
-            {
-                //proyectoActual = this.ProyectoAsociado.SelectedValue.ToString();
-            }
-            else
-            {
-                //proyectoActual = ((controladoraGR.proyectosDelLoggeado()).ToString()).ToString();
-            }*/
         }
         /*
          * Requiere: N/A.
@@ -140,28 +123,10 @@ namespace SistemaPruebas.Intefaces
         {
 
             modoGR = Convert.ToString(0);
-            /*if (!Convert.ToBoolean(esAdminGR))
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-            }
-            else
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
-            }*/
+
             llenarGridPP();
-            if (!Convert.ToBoolean(esAdminGR))
-           /* {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((controladoraRequerimiento.proyectosDelLoggeado()).ToString()).Selected = true;
-            }
-            else
-            {
-                //ProyectoAsociado.ClearSelection();
-                //ProyectoAsociado.Items.FindByValue((proyectoActual).ToString()).Selected = true;
-            }*/
-            llenarGridPP();
+
+           // llenarGridPP();
         }
         protected void llenarGridPP()
         {
@@ -203,7 +168,7 @@ namespace SistemaPruebas.Intefaces
         {
             
             DataTable dtGrid = crearTablaMod();
-            DataTable dt = controladoraGR.consultarProyecto();
+            DataTable dt = controladoraGR.consultarModulos(nomProyecto);
             Object[] datos = new Object[1];
 
 
@@ -233,7 +198,7 @@ namespace SistemaPruebas.Intefaces
 
 
 
-        protected void llenarGridReq(String nomModulo)
+        protected void llenarGridReq(String nomProyecto, String monModulo)
         {
             
             DataTable dtGrid = crearTablaReq();
@@ -385,17 +350,20 @@ namespace SistemaPruebas.Intefaces
         {
             int index = GridPP.SelectedRow.RowIndex;
             String ced = GridPP.SelectedRow.Cells[0].Text;
-            if (proyectoActualGR != ced.ToString())
-            {
+            if(ced!="-"){
+                if (proyectoActualGR != ced.ToString())
+                {
             //    disennoSeleccionado.Text = "";
+                }
+                proyectoActualGR = ced.ToString();
+                PPindexViejo = index.ToString();
+                reqActualGR = "";
+                modActualGR = "";
+                llenarGridMod(ced);
+                llenarGridReq("","");
+                //llenarGridDP(proyectoActualGR);
+                proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
             }
-            proyectoActualGR = ced.ToString();
-            PPindexViejo = index.ToString();
-            //
-            
-            //llenarGridDP(proyectoActualGR);
-            proyectoSeleccionado.Text = "El proyecto seleccionado es:" + ced;
-
         }
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid

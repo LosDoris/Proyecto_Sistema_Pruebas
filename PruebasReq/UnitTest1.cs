@@ -16,7 +16,7 @@ namespace PruebasReq
         {
             ControladoraRequerimiento controlReq = new ControladoraRequerimiento();
             string id_req = "19";
-            int i = controlReq.consultarModulos(id_req);
+           // int i = controlReq.consultarModulos(id_req);
         }
     }
 }
