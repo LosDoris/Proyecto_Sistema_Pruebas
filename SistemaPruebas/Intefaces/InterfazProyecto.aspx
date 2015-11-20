@@ -353,7 +353,7 @@
 
     <div id="tablaProyectos" class="row">
 
-        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
+        <asp:GridView ID="gridProyecto" runat="server" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" HeaderStyle-ForeColor="#ffffff" CellPadding="10" margin-right ="auto" HorizontalAlign="Center" 
             AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged" BorderColor="#cdcdcd" border-radius="7px" 
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" AllowSorting="true" PageSize="5"   OnRowDataBound ="OnRowDataBound" CssClass ="GridView"  AutoPostBack ="true" CausesValidation="false">
             <Columns>
