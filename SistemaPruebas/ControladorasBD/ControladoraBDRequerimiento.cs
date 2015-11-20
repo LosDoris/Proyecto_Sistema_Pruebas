@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Collections;
 
 namespace SistemaPruebas.Controladoras
 {
@@ -126,16 +127,35 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = null;
             String consulta = "";           
-            consulta = "SELECT nombre Requerimiento where id_proyecto =" + id + ";"; 
+            consulta = "SELECT nombre from Requerimiento where id_proyecto =" + id + " order by nombre;"; 
             
             dt = acceso.ejecutarConsultaTabla(consulta);
+            string[] modulos = new string[dt.Rows.Count];
+            int i = 0;
             foreach (DataRow dr in dt.Rows)
             {
                 string[] array = dr[0].ToString().Split('-');
                 dr[0] = array[0];
             }
-            return dt;
 
+            Hashtable hTable = new Hashtable();
+            ArrayList duplicateList = new ArrayList();
+
+            
+            foreach (DataRow drow in dt.Rows)
+            {
+                if (hTable.Contains(drow[0]))
+                    duplicateList.Add(drow);
+                else
+                    hTable.Add(drow[0], string.Empty);
+            }
+
+ 
+            foreach (DataRow dRow in duplicateList)
+                dt.Rows.Remove(dRow);
+
+           
+            return dt;
         }
 
         /*

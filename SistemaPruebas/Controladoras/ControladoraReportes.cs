@@ -23,6 +23,7 @@ namespace SistemaPruebas.Controladoras
         ControladoraCasosPrueba controlCasos;
         ControladoraEjecucionPrueba controlEjec;
         ControladoraRecursosHumanos controlRH;
+        ControladoraRequerimiento controlReq;
 
         public ControladoraReportes()
         {
@@ -31,6 +32,7 @@ namespace SistemaPruebas.Controladoras
             controlCasos = new ControladoraCasosPrueba();
             controlEjec = new ControladoraEjecucionPrueba();
             controlRH = new ControladoraRecursosHumanos();
+            controlReq = new ControladoraRequerimiento();
         }
 
         public string PerfilDelLogeado()
@@ -66,6 +68,11 @@ namespace SistemaPruebas.Controladoras
         public DataTable consultarCasoPrueba(string id)
         {
             return controlCasos.consultarCasosPrueba(2, id);
+        }
+
+        public DataTable consultarModulos(string nombre)
+        {
+            return controlReq.consultarModulos(controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
 
         public PdfPTable reporteProyecto(bool[] campos)
