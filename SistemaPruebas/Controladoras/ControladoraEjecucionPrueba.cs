@@ -14,6 +14,25 @@ namespace SistemaPruebas.Controladoras
         ControladoraCasosPrueba controladoraCasosPrueba = new ControladoraCasosPrueba();
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
+
+        public int insertarEjecucion(Object[] datosEjecucion, List < Object [] > datosNoConformidades )
+        {
+            EntidadEjecucionPrueba ejecucionPrueba = new EntidadEjecucionPrueba(datosEjecucion);
+            int ret = controladoraBDEjecucionPrueba.insertarBDEjecucion(ejecucionPrueba);
+            return ret;
+        }
+
+        public int insertarNoConformidades(List <Object []> datosNoConformidades, int idEjecucion)
+        {
+            List<EntidadNoConformidad> listaNoConformidades = null;
+            foreach (Object[] dato in datosNoConformidades)
+            {
+                EntidadNoConformidad noConformidad = new EntidadNoConformidad(dato);
+                listaNoConformidades.Add(noConformidad);
+            }
+            return 0;
+        }
+
         public String solicitarProyectos()
         {
             String proyectos = controladoraProyecto.consultarProyectosConCaso();
@@ -37,13 +56,6 @@ namespace SistemaPruebas.Controladoras
         public String solicitarResponsables(int idProyecto)
         {
             return controladoraRecursosHumanos.solicitarNombreRecursoPorProyecto(idProyecto);
-        }
-
-        public int insertarEjecucion(object[] datos)
-        {
-            EntidadEjecucionPrueba objEjecucion = new EntidadEjecucionPrueba(datos);
-            int ret = controladoraBDEjecucionPrueba.ingresarEjecucionPrueba(objEjecucion);
-            return ret;
         }
 
         public int modificarEjecucion(Object[] datos)
