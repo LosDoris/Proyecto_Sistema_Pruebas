@@ -126,14 +126,14 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = null;
             String consulta = "";           
-            consulta = "SELECT nombre Requerimiento where id_proyecto ='" + id + "';"; 
-            foreach(DataRow dr in dt.Rows)
+            consulta = "SELECT nombre Requerimiento where id_proyecto =" + id + ";"; 
+            
+            dt = acceso.ejecutarConsultaTabla(consulta);
+            foreach (DataRow dr in dt.Rows)
             {
                 string[] array = dr[0].ToString().Split('-');
                 dr[0] = array[0];
             }
-            dt = acceso.ejecutarConsultaTabla(consulta);
-
             return dt;
 
         }
