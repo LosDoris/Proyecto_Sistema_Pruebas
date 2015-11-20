@@ -173,41 +173,7 @@
                     </div>
               </div>
            </div>
-           <div class ="form-group">
-               <div class ="col-md-2">
-                    <asp:Label ID="TipoEP" runat="server" Text="Tipo:" CssClass = "col-md-2 control-label"></asp:Label>
-                </div>
-                <div class ="col-md-4">
-                    <asp:DropDownList ID="DropDownTipoEP" runat="server" CssClass ="form-control" style="width:250px">
-                        <asp:ListItem Text ="Seleccionar" Value =1/>
-                    </asp:DropDownList>
-                </div>
-                <div class="col-md-2">
-                    <asp:Label ID="CasoDePrueba" runat="server" CssClass = "col-md-6 control-label" Width="200px">Caso de Prueba:</asp:Label>   
-                </div>
-                <div class ="col-md-4">
-                    <asp:DropDownList ID="DropDownCasoDePrueba" runat="server" CssClass ="form-control" style="width:250px" >
-                        <asp:ListItem Text ="Seleccionar" Value =1/>
-                    </asp:DropDownList>
-                </div>
-           </div>
-            <div class ="form-group">
-                <div class="col-md-2">
-                    <asp:Label ID="ResultadoEP" runat="server" CssClass="col-md-2 control-label" Text ="Resultado:"></asp:Label>  
-                </div>  
-                <div class="col-md-3">
-                    <%--<asp:Image ID="ImagenResultado" runat="server" ImageUrl="~/Intefaces/ejemplo.jpg" style="max-height:100px;max-width:100px;border-color:#2e8e9e"/>--%>
-                    <asp:FileUpload id="FileUploadControl" runat="server" />
-                    </div>
-            </div>
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-12">
-
-<asp:Button runat="server" Text="Subir Imagen"   CssClass="btn btn-primary"   ID="Subir"     CausesValidation ="false" OnClick="Subir_Click"/>
-<asp:Button runat="server" Text="Mostrar Imagen" CssClass="btn btn-default" ID="Mostrar"   CausesValidation ="false"/>
-    </div>
-</div>
 
            
        </div>
@@ -266,13 +232,5 @@
 </asp:Panel>
 <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonEPEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal"></ajaxToolkit:ModalPopupExtender>
 
-<asp:Panel runat="server" ID="PanelImagen" CssClass="modalPopup"> 
-    <asp:Image ID="ImagenResultado" runat="server" style="max-height:400px" />
-    <br/> <br/>
-    <div aria-pressed="true">
-        <asp:button runat="server" ID="CerrarPanel" Text="Cerrar" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />
-    </div>
-</asp:Panel>
-<ajaxToolkit:ModalPopupExtender ID="ModalImagen" runat="server" BackgroundCssClass="modalBackground" PopupControlID="PanelImagen" TargetControlID="Mostrar" ></ajaxToolkit:ModalPopupExtender>
 
 </asp:Content>

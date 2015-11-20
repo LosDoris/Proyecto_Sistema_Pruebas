@@ -158,6 +158,21 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+
+
+
+        public DataTable consultarRequerimientoBD(string nombre, String id)
+        {
+            DataTable dt = null;
+            String consulta = "";
+            consulta = "SELECT nombre from Requerimiento where id_proyecto =" + id + " and nombre like '"+nombre+"-%' order by nombre;";
+
+            dt = acceso.ejecutarConsultaTabla(consulta);            
+           
+            
+            return dt;
+        }
+
         /*
          * Requiere: ID del diseño y del proyecto.
          * Modifica: N/A.

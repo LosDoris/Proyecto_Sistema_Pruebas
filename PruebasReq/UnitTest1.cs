@@ -16,7 +16,11 @@ namespace PruebasReq
         {
             ControladoraRequerimiento controlReq = new ControladoraRequerimiento();
             string id_req = "19";
+<<<<<<< HEAD
            // int i = controlReq.consultarModulos(id_req);
+=======
+            int i = controlReq.consultarReqPorNombre("Curso", "19");
+>>>>>>> origin/master
         }
     }
 }

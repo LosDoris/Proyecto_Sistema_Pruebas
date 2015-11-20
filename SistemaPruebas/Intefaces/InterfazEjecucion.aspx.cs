@@ -242,42 +242,42 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected void Subir_Click(object sender, EventArgs e)
-        {
-            string strCon = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
-            if (FileUploadControl.HasFile)
-            {
-                try
-                {
-                    int length = FileUploadControl.PostedFile.ContentLength;
-                    byte[] imgbyte = new byte[length];
-                    HttpPostedFile img = FileUploadControl.PostedFile;
-                    img.InputStream.Read(imgbyte, 0, length);
-                    string base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
-                    ImagenResultado.ImageUrl = "data:image/png;base64," + base64String;
-                    ImagenResultado.Visible = true;
-                    String filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
-                    using (SqlConnection con = new SqlConnection(strCon))
-                    {
-                        using (SqlCommand cmd = new SqlCommand())
-                        {
-                            cmd.CommandText = "insert into Image_Sample(imagename,imgdata) values(@Name,@Data)";
-                            cmd.Parameters.AddWithValue("@Name", filename);
-                            cmd.Parameters.AddWithValue("@Data", imgbyte);
-                            cmd.Connection = con;
-                            con.Open();
-                            int a = cmd.ExecuteNonQuery();
-                            Response.Write("lkjlkjlk" + a);
-                            con.Close();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
+        //protected void Subir_Click(object sender, EventArgs e)
+        //{
+        //    string strCon = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
+        //    if (FileUploadControl.HasFile)
+        //    {
+        //        try
+        //        {
+        //            int length = FileUploadControl.PostedFile.ContentLength;
+        //            byte[] imgbyte = new byte[length];
+        //            HttpPostedFile img = FileUploadControl.PostedFile;
+        //            img.InputStream.Read(imgbyte, 0, length);
+        //            string base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
+        //            ImagenResultado.ImageUrl = "data:image/png;base64," + base64String;
+        //            ImagenResultado.Visible = true;
+        //            String filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
+        //            using (SqlConnection con = new SqlConnection(strCon))
+        //            {
+        //                using (SqlCommand cmd = new SqlCommand())
+        //                {
+        //                    cmd.CommandText = "insert into Image_Sample(imagename,imgdata) values(@Name,@Data)";
+        //                    cmd.Parameters.AddWithValue("@Name", filename);
+        //                    cmd.Parameters.AddWithValue("@Data", imgbyte);
+        //                    cmd.Connection = con;
+        //                    con.Open();
+        //                    int a = cmd.ExecuteNonQuery();
+        //                    Response.Write("lkjlkjlk" + a);
+        //                    con.Close();
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         protected void DropDownDiseno_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -537,7 +537,7 @@ namespace SistemaPruebas.Intefaces
             DataTable ejecuciones = crearTablaGridEjecuciones();
             DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, id_diseno);
 
-            Object[] datos = new Object[4];
+            Object[] datos = new Object[3];
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
@@ -545,7 +545,6 @@ namespace SistemaPruebas.Intefaces
                     datos[0] = dr[0];
                     datos[1] = dr[1];
                     datos[2] = dr[2];
-                    datos[3] = dr[3];
                     ejecuciones.Rows.Add(datos);
                 }
             }
@@ -554,7 +553,6 @@ namespace SistemaPruebas.Intefaces
                 datos[0] = "-";
                 datos[1] = "-";
                 datos[2] = "-";
-                datos[3] = "-";
                 ejecuciones.Rows.Add(datos);
             }
             gridEjecucion.DataSource = ejecuciones;
@@ -564,9 +562,8 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaGridEjecuciones()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Id Diseño", typeof(String));
-            dt.Columns.Add("Responsable", typeof(String));
             dt.Columns.Add("Fecha", typeof(String));
+            dt.Columns.Add("Responsable", typeof(String));
             dt.Columns.Add("Estado", typeof(String));
             return dt;
         }
