@@ -75,6 +75,11 @@ namespace SistemaPruebas.Controladoras
             return controlReq.consultarModulos(controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
 
+        public DataTable consultarRequerimiento(string nombre, string modulo)
+        {
+            return controlReq.consultarReqPorNombre (modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
+        }
+
         public PdfPTable reporteProyecto(bool[] campos)
         {
             int i, j;
