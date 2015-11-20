@@ -196,6 +196,12 @@ namespace SistemaPruebas.Controladoras
             return controladoraBDRequerimiento.asociarRequerimientoEnDisenoBD(id_req, id_diseno);//resultado de la insersion
         }
 
+        public int consulReq(string id_req)
+        {
+            controladoraBDRequerimiento.consultarRequerimientoBD(id_req);
+            return 0;
+        }
+
 
     }
 }
