@@ -18,21 +18,40 @@ namespace SistemaPruebas.Controladoras
                 ejecucion.Fecha + "','" + ejecucion.Responsable + "','" + ejecucion.Incidencias + "'," +
                 ejecucion.Id_disenno + ", getDate()" + ");";
             int ret = acceso.Insertar(consulta);
-            DataTable dt=acceso.ejecutarConsultaTabla("select fecha from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
 
-            string fecha_regresa = "";
-            if (dt.Rows.Count > 0)
+            String fecha_regresa = "";
+            if(ret != 2627)
             {
-                foreach (DataRow dr in dt.Rows)
+                DataTable dt=acceso.ejecutarConsultaTabla("select fecha from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
+                if (dt.Rows.Count > 0)
                 {
-                    fecha_regresa = dr[0].ToString();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        fecha_regresa = dr[0].ToString();
+                    }
                 }
+            }
+            else
+            {
+                fecha_regresa = "-";
             }
             return fecha_regresa;
         }
 
-        public int insertarNoConformidad(EntidadNoConformidad noConformidad)
+       
+        public int insertarBDnoConformidad(EntidadNoConformidad noConformidad)
         {
+            String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, fecha) VALUES ('" + noConformidad.Tipo + "','"
+                                                                                                                             + noConformidad.Caso + "','"
+                                                                                                                             + noConformidad.Descripcion +"','"
+                                                                                                                             + noConformidad.Justificacion + "', @img, '"
+                                                                                                                             + noConformidad.Id_ejecucion + "');";
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = consulta;
+                cmd.Parameters.Add("@img", SqlDbType.Image, noConformidad.Imagen.Length).Value = noConformidad.Imagen;
+                acceso.Insertar_Proced_Almacenado(cmd);
+            }
             return 0;
         }
 
@@ -69,6 +88,14 @@ namespace SistemaPruebas.Controladoras
             }
             dt = acceso.ejecutarConsultaTabla(consulta);
 
+            return dt;
+        }
+
+        public DataTable consultarBDNoConformidad(String fecha)
+        {
+            DataTable dt = null;
+            String consulta = "SELECT tipo, idCaso, descripcion, justificacion, imagen, id_noConformidad FROM noConformidad WHERE fecha = '" + fecha + "';";
+            dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
         }
 

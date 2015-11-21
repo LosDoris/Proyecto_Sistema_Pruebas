@@ -375,6 +375,7 @@ namespace SistemaPruebas.Intefaces
             dtDatosEntrada.Clear();
             DECP.DataSource = dtDatosEntrada;
             DECP.DataBind();
+            
         }
 
        /*
@@ -755,14 +756,16 @@ namespace SistemaPruebas.Intefaces
          */
         protected void BotonCPAceptar_Click(object sender, EventArgs e)
         {
+            ControladoraDisenno cd = new ControladoraDisenno();
             Object[] datosNuevos = new Object[7];
             datosNuevos[0] = this.TextBoxID.Text;
             datosNuevos[1] = this.TextBoxPropositoCP.Text;
             datosNuevos[2] = datosEntrada();
             datosNuevos[3] = this.TextBoxResultadoCP.Text;
             datosNuevos[4] = this.TextBoxFlujoCentral.Text;
-            datosNuevos[5] = 1; //recordar modificar cuando se tenga el id del diseño
-
+            String prop = cd.infoDisenno()[0].ToString();
+            datosNuevos[5] = cd.consultarId_Disenno(prop); //recordar modificar cuando se tenga el id del diseño
+           
             int operacion = -1;
             if(modo == 1)
             {

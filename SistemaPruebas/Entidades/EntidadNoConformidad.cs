@@ -15,10 +15,12 @@ namespace SistemaPruebas.Controladoras
           */
         private int id_noConformidad;
         private String tipo;
+        private String caso;
         private String descripcion;
         private String justificacion;
         private byte[] imagen;
-        private int id_ejecucion;
+        private String estado;
+        private String id_ejecucion;
 
         /*
          * Requiere: Recibir un objeto con los datos de todos atributos de una No Conformidad
@@ -27,8 +29,8 @@ namespace SistemaPruebas.Controladoras
         */
         public EntidadNoConformidad(Object[] datos)
         {
-            this.id_noConformidad = Convert.ToInt32(datos[0]);
-            this.tipo = datos[1].ToString();
+            this.tipo = datos[0].ToString();
+            this.caso = datos[1].ToString();
             this.descripcion = datos[2].ToString();
             this.justificacion = datos[3].ToString();
             BinaryFormatter bf = new BinaryFormatter();
@@ -37,7 +39,8 @@ namespace SistemaPruebas.Controladoras
                 bf.Serialize(ms, datos[4]);
                 this.imagen = ms.ToArray();
             }
-            this.id_ejecucion = Convert.ToInt32(datos[5]);
+            this.estado = datos[5].ToString();
+            this.id_ejecucion = datos[6].ToString();
         }
 
         /*
@@ -74,6 +77,13 @@ namespace SistemaPruebas.Controladoras
             set { tipo = value; }
         }
 
+
+        public String Caso
+        {
+            get { return caso; }
+            set { caso = value; }
+        }
+
         /*
         * Implementación de los metodos get() y set() de este atributo
         * get();
@@ -90,6 +100,7 @@ namespace SistemaPruebas.Controladoras
             get { return descripcion; }
             set { descripcion = value; }
         }
+
 
         /*
          * Implementación de los metodos get() y set() de este atributo
@@ -136,10 +147,16 @@ namespace SistemaPruebas.Controladoras
          * Modifica: el valor del atributo id_ejecucion
          * Retorna: N/A
          */
-        public int Id_ejecucion
+        public String Id_ejecucion
         {
             get { return id_ejecucion; }
             set { id_ejecucion = value; }
+        }
+
+        public String Estado
+        {
+            get { return estado; }
+            set { estado = value; }
         }
     }
 }

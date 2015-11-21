@@ -15,20 +15,21 @@ namespace SistemaPruebas.Controladoras
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
 
-        public string insertarEjecucion(Object[] datosEjecucion)
+        public string insertarEjecucion(Object[] datosEjecucion, List<Object[]> datosNoConformidades)
         {
             EntidadEjecucionPrueba ejecucionPrueba = new EntidadEjecucionPrueba(datosEjecucion);
             string ret = controladoraBDEjecucionPrueba.insertarBDEjecucion(ejecucionPrueba);
+            insertarNoConformidades(datosNoConformidades, ret);
             return ret;
         }
 
-        public int insertarNoConformidades(List <Object []> datosNoConformidades, int idEjecucion)
+        public int insertarNoConformidades(List <Object []> datosNoConformidades, String idEjecucion)
         {
-            List<EntidadNoConformidad> listaNoConformidades = null;
             foreach (Object[] dato in datosNoConformidades)
             {
+                dato[6] = idEjecucion;
                 EntidadNoConformidad noConformidad = new EntidadNoConformidad(dato);
-                listaNoConformidades.Add(noConformidad);
+                controladoraBDEjecucionPrueba.insertarBDnoConformidad(noConformidad);
             }
             return 0;
         }
@@ -76,6 +77,12 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controladoraBDEjecucionPrueba.consultarEjecucionPrueba(tipo, id);
             return dt;
 
+        }
+
+        public DataTable consultarNoConformidades(String fecha)
+        {
+            DataTable dt = controladoraBDEjecucionPrueba.consultarBDNoConformidad(fecha);
+            return dt;
         }
     }
 }

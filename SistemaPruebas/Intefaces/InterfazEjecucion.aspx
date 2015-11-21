@@ -6,15 +6,15 @@
 
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqMensajeOperacion" Visible ="false" ></asp:Label>
 
-<div class="form-group">
+<asp:Panel ID= "BotonesPrincipales" runat="server" CssClass="form-group">
     <div class="col-md-offset-9 col-md-12">
         <div class="btn-group">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default"  ID="BotonEPInsertar"    CausesValidation="false" OnClick="BotonEPInsertar_Click"/>
-        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonEPModificar"   CausesValidation ="false"/>
+        <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonEPModificar"   CausesValidation ="false" OnClick="BotonEPModificar_Click"/>
         <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default"  ID="BotonEPEliminar"    CausesValidation="false"/>
     </div>
     </div>
-</div>
+</asp:Panel>
 <hr style="margin:50px;">
 
   <div class="panel panel-primary">
@@ -106,7 +106,6 @@
                                 <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="ValidarTipo" runat="server" ControlToValidate="ddlTipo" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
-
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Id Caso de Prueba">
@@ -175,10 +174,10 @@
                     margin-left="auto" AutoGenerateColumns ="true" 		
                     CssClass ="GridView" HorizontalAlign="Center"   		
                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
-                    AutoPostBack ="true" AllowPaging="true" PageSize="3"
-                    OnRowDataBound="OnGridEjecucionRowDataBound" 
+                    AutoPostBack ="true" AllowPaging="true" PageSize="5"
+                    OnRowDataBound= "OnGridEjecucionRowDataBound"
                     OnPageIndexChanging="OnGridEjecucionPageIndexChanging"	
-                    OnSelectedIndexChanged="GridEjecucion_SelectedIndexChanged"
+                    OnSelectedIndexChanged= "GridEjecucion_SelectedIndexChanged"
              >		
                 </asp:GridView>			
         </div>	

@@ -9,6 +9,7 @@ using System.IO;
 using System.Data.SqlClient;
 using SistemaPruebas.Controladoras;
 using System.Data;
+using System.Net;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -97,14 +98,18 @@ namespace SistemaPruebas.Intefaces
             if (!IsPostBack)
             {
                 estadoInicial();
+                inicializarListaNC();
                 inicializarDTnoConformidades();
-                gridNoConformidades.DataBind();
+                //gridNoConformidades.DataBind();
                 gridEjecucion.Enabled = true;
                 
             }
         }
 
-        
+        protected void inicializarListaNC()
+        {
+            listaNC = new List< Object[] >();
+        }
 
         //inicializaciones
         /*
@@ -204,7 +209,7 @@ namespace SistemaPruebas.Intefaces
         protected void llenarDDResponsables()
         {
             this.DropDownResponsable.Items.Clear();
-            DropDownResponsable.Items.Add(new ListItem("Seleccionar"));
+            DropDownResponsable.Items.Add(new ListItem("Seleccionar","1"));
             int idProyecto = Convert.ToInt32(DropDownProyecto.SelectedItem.Value);
             String responsables = controladoraEjecucionPrueba.solicitarResponsables(idProyecto);
 
@@ -250,11 +255,12 @@ namespace SistemaPruebas.Intefaces
         {
             if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
-                DatosEjecucion.Enabled = true;
+                BotonesPrincipales.Enabled = true;
                 llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
             }
             else
             {
+                BotonesPrincipales.Enabled = false;
                 DatosEjecucion.Enabled = false;
 
             }
@@ -270,7 +276,60 @@ namespace SistemaPruebas.Intefaces
         //botones insertar, modificar, eliminar
         protected void BotonEPInsertar_Click(object sender, EventArgs e)
         {
-            modoEP = 2;
+            modoEP = 1;
+            estadoInsertar();
+        }
+
+        protected void estadoInsertar()
+        {
+            marcarBoton(ref BotonEPInsertar);
+            limpiarCampos();
+            habilitarCampos();
+            BotonEPAceptar.Enabled = true;
+            BotonEPCancelar.Enabled = true;
+            BotonEPModificar.Enabled = false;
+            BotonEPEliminar.Enabled = false;
+            //deshabilitarGrid(ref gridEjecucion);
+        }
+
+        protected void limpiarCampos()
+        { 
+            
+            DropDownResponsable.SelectedValue = "1";
+            FechaEP.Text = "";
+            TextBoxIncidencias.Text = "";
+            inicializarDTnoConformidades();
+               
+        }
+
+        protected void habilitarCampos()
+        {
+            DatosEjecucion.Enabled = true;
+            //habilitarGrid(ref gridEjecucion);
+        }
+
+        /*
+         * Requiere: Botón.
+         * Modifica: Se encarga de marcar el botón pasado por parámetro.
+         * Retorna: N/A
+         */
+        protected void marcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.ColorTranslator.FromHtml("#18c0a8");
+            b.BackColor = System.Drawing.ColorTranslator.FromHtml("#18c0a8");
+            b.ForeColor = System.Drawing.Color.White;
+        }
+
+        /*
+         * Requiere: Botón.
+         * Modifica: Se encarga de desmarcar el botón pasado por parámetro.
+         * Retorna: N/A
+         */
+        protected void desmarcarBoton(ref Button b)
+        {
+            b.BorderColor = System.Drawing.Color.LightGray;
+            b.BackColor = System.Drawing.Color.White;
+            b.ForeColor = System.Drawing.Color.Black;
         }
 
         //protected void Subir_Click(object sender, EventArgs e)
@@ -310,7 +369,7 @@ namespace SistemaPruebas.Intefaces
         //    }
         //}
 
-        
+
 
         //grid no conformidades
         protected void gridNoConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -320,7 +379,6 @@ namespace SistemaPruebas.Intefaces
 
                 DropDownList dropDownCasos = (e.Row.FindControl("ddlIdCaso") as DropDownList);
                 llenarDDCasoPrueba(ref dropDownCasos);
-
             }
         }
 
@@ -360,7 +418,7 @@ namespace SistemaPruebas.Intefaces
                 dt.Rows.Add(drRow);
                 dtNoConformidades = dt;
                 gridNoConformidades.DataSource = dtNoConformidades;
-                //gridNoConformidades.DataBind();
+                gridNoConformidades.DataBind();
 
             }
             catch (Exception ex)
@@ -489,7 +547,10 @@ namespace SistemaPruebas.Intefaces
                     string base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
                     imagenRes.ImageUrl = "data:image/png;base64," + base64String;
                     imagenRes.Visible = true;
-                    //String filename = Path.GetFileName(FileUploadControl.PostedFile.FileName);
+                    String base64 = imagenRes.ImageUrl.Replace("data:image/png;base64,", "");
+                    String filename = Path.GetFileName(fu.PostedFile.FileName);
+                    //byte[] bytes = Convert.FromBase64String(base64String);
+                    //Response.Write(imagenRes.ImageUrl);
                     //using (SqlConnection con = new SqlConnection(strCon))
                     //{
                     //    using (SqlCommand cmd = new SqlCommand())
@@ -536,20 +597,28 @@ namespace SistemaPruebas.Intefaces
         {
             foreach (GridViewRow row in gridNoConformidades.Rows)
             {
-                Object[] noConformidad = new Object[6];
+                Object[] noConformidad = new Object[7];
 
                 DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
                 DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
                 TextBox txt1 = row.FindControl("txtDescripcion") as TextBox;
                 TextBox txt2 = row.FindControl("txtJustificacion") as TextBox;
-                System.Web.UI.WebControls.Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                System.Web.UI.WebControls.
+                Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.
+                                                                     Image;
                 DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
+                Label lbl = row.FindControl("tamBytes") as Label;
+
+                String base64 = imagenRes.ImageUrl.Replace("data:image/png;base64,", "");
+                byte[] imgbyte = Convert.FromBase64String(base64); 
 
                 noConformidad[0] = ddl1.SelectedItem.Text;
                 noConformidad[1] = ddl2.SelectedItem.Text;
                 noConformidad[2] = txt1.Text;
                 noConformidad[3] = txt2.Text;
-                noConformidad[4] = ddl2.SelectedItem.Text;
+                noConformidad[4] = imgbyte;
+                noConformidad[5] = ddl3.SelectedItem.Text;
+                listaNC.Add(noConformidad);
             }
         }
 
@@ -563,10 +632,10 @@ namespace SistemaPruebas.Intefaces
         }
 
         protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
-        {
+        { 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#18c0a8';;this.style.color='white'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridEjecucion, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
@@ -577,21 +646,76 @@ namespace SistemaPruebas.Intefaces
         {
             try
             {
+
                 //SELECT fecha, responsable, incidencias, id_disenno FROM Ejecucion WHERE fecha = '" + id + "';";
                 string fecha = gridEjecucion.SelectedRow.Cells[0].Text;
-                DataTable dt =controladoraEjecucionPrueba.consultarEjecucion(2,fecha);
-
-                this.ControlFecha.Text = dt.Rows[0].ItemArray[0].ToString();
-                this.DropDownResponsable.Text = dt.Rows[0].ItemArray[1].ToString();
-                this.TextBoxIncidencias.Text = dt.Rows[0].ItemArray[2].ToString();
-                this.DropDownDiseno.Text = dt.Rows[0].ItemArray[3].ToString();
-
-
+                llenarDatosEjecucionPrueba(fecha);
+     
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        protected void llenarDatosEjecucionPrueba(String fecha)
+        {
+            DataTable dtEjecucion = controladoraEjecucionPrueba.consultarEjecucion(2, fecha);
+            this.ControlFecha.Text = dtEjecucion.Rows[0].ItemArray[0].ToString();
+            this.DropDownResponsable.Text = dtEjecucion.Rows[0].ItemArray[1].ToString();
+            this.TextBoxIncidencias.Text = dtEjecucion.Rows[0].ItemArray[2].ToString();
+            this.DropDownDiseno.Text = dtEjecucion.Rows[0].ItemArray[3].ToString();
+            llenarGridNCConsulta(fecha);
+
+        }
+
+        protected void llenarGridNCConsulta(String fecha)
+        {
+            DataTable dtNC = controladoraEjecucionPrueba.consultarNoConformidades(fecha);
+            dtNoConformidades.Columns.AddRange(
+
+                  new DataColumn[]
+                  {
+
+                        new DataColumn("Id", typeof(int)),
+                        new DataColumn("Tipo", typeof(String)),
+                        new DataColumn("IdCaso",typeof(String)),
+                        new DataColumn("Descripcion", typeof(String)),
+                        new DataColumn("Justificacion", typeof(String)),
+                        new DataColumn("Resultado", typeof(String)),
+                        new DataColumn("Estado", typeof(String))
+                  }
+                );
+
+            if (dtNC.Rows.Count > 0)
+            {
+                int numRow = dtNC.Rows.Count;
+                for(int i = 0; i < numRow ; i++)
+                {
+                    DataRow drCurrentRow = dtNoConformidades.NewRow();
+                    dtNoConformidades.Rows.Add(drCurrentRow);
+                    gridNoConformidades.DataSource = dtNoConformidades;
+                    gridNoConformidades.DataBind();
+
+                    DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
+                    DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
+                    TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
+                    TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
+                    System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                    DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+
+                    ddl1.Items.FindByText(dtNC.Rows[i].ItemArray[0].ToString()).Selected = true;
+                    ddl2.Items.FindByText(dtNC.Rows[i].ItemArray[1].ToString()).Selected = true;
+                    txt1.Text = dtNC.Rows[i].ItemArray[2].ToString();
+                    txt2.Text = dtNC.Rows[i].ItemArray[3].ToString();
+                    byte[] imgbyte = (byte[]) dtNC.Rows[i].ItemArray[4];
+                    String base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
+                    imagenRes.ImageUrl = "data:image/png;base64," + base64String;
+
+                }
+            }
+           // dtNoConformidades = dtNC;
+            
         }
 
         protected void llenarGridEjecucion(string id_diseno)
@@ -633,24 +757,35 @@ namespace SistemaPruebas.Intefaces
         
 
         //aceptarsh
-        protected void BotonEPAceptar_Click(object sender, EventArgs e) {
+        protected void BotonEPAceptar_Click(object sender, EventArgs e)
+        {
         //private int id_disenno;
         //private String fechaConsulta;
 
-
-
-            Object[] datosNuevos = new Object[7];
+            Object[] datosNuevos = new Object[5];
             datosNuevos[0] = this.ControlFecha.Text;
             datosNuevos[1] = this.DropDownResponsable.SelectedValue.ToString();
             datosNuevos[2] = this.TextBoxIncidencias.Text;
-            datosNuevos[3] = this.DropDownDiseno.SelectedValue.ToString();
-            
+            datosNuevos[3] = this.DropDownDiseno.SelectedItem.Value.ToString();
+            recuperarNoConformidades();
 
             int operacion = -1;
 
+            if(modoEP == 1)
+            {
+                datosNuevos[4] = "";
+                String res = controladoraEjecucionPrueba.insertarEjecucion(datosNuevos, listaNC);
+                if (res != "-") operacion = 1;
 
-                datosNuevos[4] = 0;
-                controladoraEjecucionPrueba.insertarEjecucion(datosNuevos);
+            }
+            else if (modoEP == 2)
+            {
+
+            }
+
+
+            //    datosNuevos[4] = 0;
+            //    controladoraEjecucionPrueba.insertarEjecucion(datosNuevos);
                 
 
             //else if (modo == 2)
@@ -701,6 +836,9 @@ namespace SistemaPruebas.Intefaces
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
-
+        protected void BotonEPModificar_Click(object sender, EventArgs e)
+        {
+            modoEP = 2;
+        }
     }
 }
