@@ -185,12 +185,14 @@ namespace SistemaPruebas.Controladoras
             return 0;
         }
 
-        public object[] medicionProyecto(string idReq)
+        public object[] medicionRequerimiento(string idReq)
         {
-            object []retorno = null;
+            object []retorno = new object[5];
 
             int exitosCant = 0;
-            List<string> idCasosExitosos = new List<string>(); 
+            int sinEnvaluarCant = 0;
+            List<string> idCasosExitosos = new List<string>();
+            List<string> idCasosSinEvaluar = new List<string>();
             Dictionary<string, int> noConformidad = new Dictionary<string, int>();
 
             string[] casosPrueba = controlCasos.consultarCasoPorRequerimiento(idReq);
@@ -202,11 +204,30 @@ namespace SistemaPruebas.Controladoras
                     exitosCant++;
                     idCasosExitosos.Add(casito);
                 }
-                else//Se supone caso de no conformidad
+                else if (true)//Se supone caso de no conformidad
                 {
-
+                    string key = "";
+                    if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
+                    {
+                        noConformidad[key]++;
+                    }
+                    else//Se agrega nueva no conformidad
+                    {
+                        noConformidad.Add(key, 1);
+                    }
+                }
+                else//casos de prueba que no han sido evaluados aún
+                {
+                    sinEnvaluarCant++;
+                    idCasosSinEvaluar.Add(casito);
                 }
             }
+
+            retorno[0] = exitosCant;
+            retorno[1] = idCasosExitosos;
+            retorno[2] = noConformidad;
+            retorno[3] = sinEnvaluarCant;
+            retorno[4] = idCasosSinEvaluar;
 
             return retorno;
         }
