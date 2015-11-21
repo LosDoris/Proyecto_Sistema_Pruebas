@@ -69,5 +69,12 @@ namespace SistemaPruebas.Controladoras
                 return acceso.Consultar_Proced_Almacenado(comando);
             }
         }
+
+        public DataTable consultarCasoPorRequerimiento(string id)
+        {
+            DataTable retorno = acceso.ejecutarConsultaTabla("select id_caso_prueba from caso_prueba where id_caso_prueba like '" + id + "-%';");
+            return retorno;
+        }
+       
     }
 }

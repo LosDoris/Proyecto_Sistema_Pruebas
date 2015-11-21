@@ -48,5 +48,19 @@ namespace SistemaPruebas.Controladoras
             String casosDePrueba = controladoraBDCasosPrueba.solicitarCasosdePrueba(idDiseno);
             return casosDePrueba;
         }
+
+        public string[] consultarCasoPorRequerimiento(string idReq)
+        {
+            string[] retorno = null;
+            DataTable dt = controladoraBDCasosPrueba.consultarCasoPorRequerimiento(idReq);
+            int i = 0;
+            retorno = new string[dt.Rows.Count];
+            foreach (DataRow dr in dt.Rows)
+            {
+                retorno[i] = dr[0].ToString();
+                i++;
+            }
+            return retorno;
+        }
     }
 }

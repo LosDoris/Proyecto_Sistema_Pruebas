@@ -19,7 +19,7 @@ namespace PruebasReq
 
            // int i = controlReq.consultarModulos(id_req);
 
-            int i = controlReq.consultarReqPorNombre("Curso", "19");
+            //int i = controlReq.consultarReqPorNombre("Curso", "19");
 
             //int i = controlReq.consultarReqPorNombre("Curso", "19");
 

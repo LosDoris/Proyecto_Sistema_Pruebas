@@ -184,30 +184,31 @@ namespace SistemaPruebas.Controladoras
 
             return 0;
         }
-        public string generarReporte(string nombreP, bool[] camposP)
+
+        public object[] medicionProyecto(string idReq)
         {
-            //Document doc = new Document(PageSize.LETTER);
-            //var output = new System.IO.FileStream(Server.MapPath("MyFirstPDF.pdf"), System.IO.FileMode.Create);
-            //var writer = PdfWriter.GetInstance(doc, output);
-            //doc.Open();
+            object []retorno = null;
 
-            ///** Logo del reporte**/
-            ////var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
-            ////logo.SetAbsolutePosition(430, 770);
-            ////logo.ScaleAbsoluteHeight(30);
-            ////logo.ScaleAbsoluteWidth(70);
-            ////doc.Add(logo);
+            int exitosCant = 0;
+            List<string> idCasosExitosos = new List<string>(); 
+            Dictionary<string, int> noConformidad = new Dictionary<string, int>();
 
-            ///*Se agregan datos de proyecto, en caso de ser seleccionado*/
-            //if (nombreP != "")           
-            //    doc.Add(new Paragraph(reporteProyecto(consultarProyecto(nombreP), camposP)));
+            string[] casosPrueba = controlCasos.consultarCasoPorRequerimiento(idReq);
 
-            ///*Se cierra documento*/
-            //doc.Close();
-            ////Response.Redirect("~/MyFirstPDF.pdf");           
-            //Page.ClientScript.RegisterStartupScript(
-            //   this.GetType(), "OpenWindow", "window.open('MyFirstPDF.pdf','_newtab');", true);
-            return "";
+            foreach (string casito in casosPrueba)
+            {
+                if (true)//Aún no se ha terminado, hay que realizar una consulta en ejecución.//Se supone caso exitoso
+                {
+                    exitosCant++;
+                    idCasosExitosos.Add(casito);
+                }
+                else//Se supone caso de no conformidad
+                {
+
+                }
+            }
+
+            return retorno;
         }
     }
 }
