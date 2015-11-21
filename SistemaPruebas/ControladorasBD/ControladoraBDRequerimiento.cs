@@ -173,6 +173,17 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+        public DataTable consultarReqUnico(string nombre, string id)
+        {
+            DataTable dt = null;
+            string consulta = "";
+            consulta = "select * from Requerimiento wherer id_proyecto =" + id + " and nombre = '" + nombre + "';";
+
+            dt = acceso.ejecutarConsultaTabla(consulta);
+
+            return dt;
+        }
+
         /*
          * Requiere: ID del diseño y del proyecto.
          * Modifica: N/A.
@@ -221,11 +232,13 @@ namespace SistemaPruebas.Controladoras
         public int asociarRequerimientoEnDisenoBD(int id_req, int id_diseno)
         {
 
-            String consulta = "insert Prueba_Disenno_Req (id_disenno, id_proyecto, id_requerimiento)values ("+id_diseno+ ",(select id_proyecto from Disenno_Prueba where id_disenno=" + id_diseno + " ),'"+id_req+"');";
+            String consulta = "insert Prueba_Disenno_Req (id_disenno, id_proyecto, id_requerimiento)values (" + id_diseno + ",(select id_proyecto from Disenno_Prueba where id_disenno=" + id_diseno + " ),'" + id_req + "');";
             int ret = acceso.Insertar(consulta);
             return ret;
 
-        }
+        }      
+
+
         /*select id_requerimiento from Requerimiento
 where id_requerimiento not in (select id_requerimiento
 								from Prueba_Disenno_Req

@@ -208,6 +208,27 @@ namespace SistemaPruebas.Controladoras
           
         }
 
+        public EntidadRequerimientos consultarReqUnico(string nombre, string id)
+        {
+            DataTable dt = controladoraBDRequerimiento.consultarReqUnico(nombre, id);
+            if (dt.Rows.Count == 1)
+            {
+                Object[] datos = new Object[6];
+                EntidadRequerimientos retorno;
+
+                datos[0] = dt.Rows[0][0].ToString();
+                datos[1] = dt.Rows[0][1].ToString();
+                datos[2] = dt.Rows[0][2].ToString();
+                datos[3] = dt.Rows[0][3].ToString();
+                datos[4] = dt.Rows[0][4].ToString();
+                datos[5] = dt.Rows[0][5].ToString();
+               
+                retorno = new EntidadRequerimientos(datos);
+                return retorno;
+            }
+            else return null;
+        }
+
 
     }
 }

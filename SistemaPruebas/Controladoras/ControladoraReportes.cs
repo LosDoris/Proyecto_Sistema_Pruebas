@@ -6,7 +6,6 @@ using System.Data;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI;
@@ -75,9 +74,14 @@ namespace SistemaPruebas.Controladoras
             return controlReq.consultarModulos(controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
 
-        public DataTable consultarRequerimiento(string nombre, string modulo)
+        public DataTable consultarRequerimientos(string nombre, string modulo)
         {
             return controlReq.consultarReqPorNombre (modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
+        }
+
+        public EntidadRequerimientos consultarRequerimiento(string nombre, string idProyeto)
+        {
+            return controlReq.consultarReqUnico(nombre, idProyeto);
         }
 
         public PdfPTable reporteProyecto(bool[] campos)

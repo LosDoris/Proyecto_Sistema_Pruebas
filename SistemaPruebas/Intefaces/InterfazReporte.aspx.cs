@@ -206,7 +206,7 @@ namespace SistemaPruebas.Intefaces
         {
             
             DataTable dtGrid = crearTablaReq();
-            DataTable dt = controladoraGR.consultarRequerimiento(nomProyecto,nomModulo) ;
+            DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto,nomModulo) ;
             //Object[] datos = new Object[2];
             Object[] datos = new Object[1];
 
