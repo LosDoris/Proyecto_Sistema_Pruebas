@@ -238,10 +238,13 @@
                                     CellPadding="10" 
                                     margin-left="auto" AutoGenerateColumns ="true" 
                                     CssClass ="GridView" HorizontalAlign="Center"   
-                                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 
+                                    HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#CDCDCD" border-radius="15px"  RowStyle-BackColor="White" PagerStyle-BackColor="White"
                                     AutoPostBack ="true" OnSelectedIndexChanged="DECP_SelectedIndexChanged"
                                     AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound">                            
                         </asp:GridView>
+
+  
+
                     </div>
                 </div>
                 <div style="clear:both"></div>
@@ -334,18 +337,17 @@
 
  <div class="row">        
     <asp:GridView ID="CP" runat ="server" margin-right ="auto"
-            style="margin-top: 900px;"
+            
             CellPadding="10" 
             margin-left="auto"
             CssClass ="GridView" HorizontalAlign="Center" 
             OnRowDataBound="OnCPRowDataBound" 
             AllowPaging="true"   PageSize="5" 
             OnPageIndexChanging="OnCPPageIndexChanging"
-            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
-            AutoPostBack ="true" OnSelectedIndexChanged="CP_SelectedIndexChanged" >      
+            HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px" 
+            AutoPostBack ="true" OnSelectedIndexChanged="CP_SelectedIndexChanged" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="90%" >      
     </asp:GridView>
 </div> 
-
 
 
 <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 

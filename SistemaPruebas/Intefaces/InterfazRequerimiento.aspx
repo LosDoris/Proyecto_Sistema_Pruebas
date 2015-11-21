@@ -296,12 +296,13 @@
             <asp:GridView ID="gridRequerimiento" runat ="server" margin-right ="auto" 
                 CellPadding="10" 
 
-                margin-left="auto" OnSelectedIndexChanged="gridRequerimiento_SelectedIndexChanged"
+                margin-left="auto" OnSelectedIndexChanged="gridRequerimiento_SelectedIndexChanged" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="90%"
                 OnRowDataBound ="OnRowDataBound" CssClass ="GridView" HorizontalAlign="Center" 
                 AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" 
-                HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" 
+                HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px" 
                 AutoPostBack ="true" >
             </asp:GridView>
+    
         </div>  
         <asp:Panel runat="server" ID="panelModal1" CssClass="modalPopup" Style="display:none"> 
             <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este requerimiento?</asp:label>

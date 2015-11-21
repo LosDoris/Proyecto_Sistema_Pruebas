@@ -391,9 +391,10 @@
             margin-left="auto" OnSelectedIndexChanged="RH_SelectedIndexChanged"
             OnRowDataBound="OnRowDataBound" CssClass="GridView" HorizontalAlign="Center"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5"
-            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-            AutoPostBack="true">
+            HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
+            AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="90%">
         </asp:GridView>
+
     </div>
     <div>
         <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup" Style="display:none">

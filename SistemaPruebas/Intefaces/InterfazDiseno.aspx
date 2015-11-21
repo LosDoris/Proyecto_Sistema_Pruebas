@@ -128,8 +128,8 @@ PublicKeyToken=31bf3856ad364e35"/>
                         OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc"
                         OnRowDataBound="OnRowDataBoundNoAsoc" CssClass="GridView" HorizontalAlign="Left"
                         AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingNoAsoc" PageSize="5"
-                        HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-                        AutoPostBack="true">
+                        HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
+                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="55%">
                     </asp:GridView>
                 </div>
             </div>
@@ -142,14 +142,15 @@ PublicKeyToken=31bf3856ad364e35"/>
                         margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedAsoc"
                         OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Right"
                         AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingAsoc" PageSize="5"
-                        HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-                        AutoPostBack="true">
+                        HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
+                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="55%">
                     </asp:GridView>
 
                 </div>
             </div>
         </div>
 
+   
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-primary" OnClick="irAReq" CausesValidation="false" Style="margin-top: 20px" />
         </div>
@@ -269,7 +270,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Procedimiento Utilizado:</asp:Label>
                 </div>
                 <div class ="col-md-5">
-  				<asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 190%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+  				<asp:TextBox runat="server" ID="procedimientoTxtbox" Style="width: 180%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras2(event)" placeholder="Sólo letras y espacios."/>
 
                         <script type="text/javascript">
@@ -303,7 +304,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                 </div>
                 <div class ="col-md-4">
                     
-				                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width:220%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
+				                        <asp:TextBox runat="server" ID="criteriosTxtbox" Style="width:230%; height: 90px" CssClass="form-control" MaxLength="150" TextMode="multiline"
                             onkeypress="solo_letras3(event)" placeholder="Sólo letras y espacios."/>
                         <script type="text/javascript">
                             function solo_letras3(evt) {
@@ -380,11 +381,10 @@ PublicKeyToken=31bf3856ad364e35"/>
             margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChanged"
             OnRowDataBound="OnRowDataBound" CssClass="GridView" HorizontalAlign="Center"
             AllowPaging="true" OnPageIndexChanging="OnPageIndexChanging" PageSize="5"
-            HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-            AutoPostBack="true">
+            HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
+            AutoPostBack="true"  RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="90%">
         </asp:GridView>
     </div>
-
 
     <asp:Panel runat="server" ID="panelModalCancelar" CssClass="modalPopup" Style="display: none">
         <asp:Label runat="server" ID="Label2" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea cancelar este diseño?</asp:Label>
