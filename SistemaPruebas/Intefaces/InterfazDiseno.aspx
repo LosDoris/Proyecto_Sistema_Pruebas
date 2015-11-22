@@ -6,17 +6,24 @@
     <style type="text/css">
         .modalBackground {
             background-color: black;
-            filter: alpha(opacity=90);
-            opacity: 0.8;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
         }
 
         .modalPopup {
-            background-color: #ffffff;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
-            padding-top: 10px;
-            padding-left: 10px;            
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  outline: 0;
+  padding: 45px;
+
+   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width:460px;           
         }
 
 
@@ -67,9 +74,9 @@ PublicKeyToken=31bf3856ad364e35"/>
     </div>
 
     <asp:Panel runat="server" ID="panelModalEliminar" CssClass="modalPopup" Style="display:none">
-        <asp:Label runat="server" ID="textModal" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea eliminar este diseño?</asp:Label>
+         <legend style="margin-top:15px"><h5>¿Desea eliminar este diseño?</h5></legend>
         <div aria-pressed="true">
-            <asp:Button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
+            <asp:Button runat="server" ID="aceptarModalEliminar" Text="Eliminar" OnClick="aceptarModal_ClickEliminar" CssClass="btn btn-primary" Style="align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" CausesValidation="false" />
             <asp:Button runat="server" ID="cancelarModalEliminar" Text="Cancelar" OnClick="cancelarModal_ClickEliminar" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px" CausesValidation="false" />
         </div>
     </asp:Panel>
@@ -386,13 +393,13 @@ PublicKeyToken=31bf3856ad364e35"/>
         </asp:GridView>
     </div>
 
+\
+
     <asp:Panel runat="server" ID="panelModalCancelar" CssClass="modalPopup" Style="display: none">
-        <asp:Label runat="server" ID="Label2" Style="padding-top: 20px; padding-left: 11px; padding-right: 11px">¿Desea cancelar este diseño?</asp:Label>
-        <br />
-        <br />
+                 <legend style="margin-top:15px"><h5>¿Desea cancelar este diseño?</h5></legend>
         <div aria-pressed="true" style="padding-left:30px">
-            <asp:Button runat="server" ID="aceptarModalCancelar" Text="Si" CssClass="btn btn-default" Style="border-color: #4bb648; color: #4bb648; align-self: center; margin-left: 16px; margin-right: 11px; margin-bottom: 20px" OnClick="aceptarModal_ClickCancelar" CausesValidation="false" />
-            <asp:Button runat="server" ID="cancelarModalCancelar" Text="No" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px" OnClick="cancelarModal_ClickCancelar" CausesValidation="false" />
+            <asp:Button runat="server" ID="aceptarModalCancelar" Text="Si" CssClass="btn btn-primary" Style="align-self: center; margin-left: 8px; margin-right: 11px; margin-bottom: 20px; width:85px" OnClick="aceptarModal_ClickCancelar" CausesValidation="false" />
+            <asp:Button runat="server" ID="cancelarModalCancelar" Text="No" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px;  width:85px" OnClick="cancelarModal_ClickCancelar" CausesValidation="false" />
         </div>
     </asp:Panel>
     <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModalCancelar" TargetControlID="cancelar" OnCancelScript="cancelarModalCancelar" OnOkScript="aceptarModalCancelar"></ajaxToolkit:ModalPopupExtender>

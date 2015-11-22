@@ -76,15 +76,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Panel panelModalEliminar;
         
         /// <summary>
-        /// textModal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label textModal;
-        
-        /// <summary>
         /// aceptarModalEliminar control.
         /// </summary>
         /// <remarks>
@@ -353,15 +344,6 @@ namespace SistemaPruebas.Intefaces {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelModalCancelar;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// aceptarModalCancelar control.
