@@ -26,6 +26,10 @@
     width:460px;           
         }
 
+                .errorDiv {
+            display: none;
+        }
+
 
     </style>
     <script type="text/javascript">
@@ -396,7 +400,7 @@ PublicKeyToken=31bf3856ad364e35"/>
 \
 
     <asp:Panel runat="server" ID="panelModalCancelar" CssClass="modalPopup" Style="display: none">
-                 <legend style="margin-top:15px"><h5>¿Desea cancelar este diseño?</h5></legend>
+                 <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
         <div aria-pressed="true" style="padding-left:30px">
             <asp:Button runat="server" ID="aceptarModalCancelar" Text="Si" CssClass="btn btn-primary" Style="align-self: center; margin-left: 8px; margin-right: 11px; margin-bottom: 20px; width:85px" OnClick="aceptarModal_ClickCancelar" CausesValidation="false" />
             <asp:Button runat="server" ID="cancelarModalCancelar" Text="No" CssClass="btn btn-default" Style="border-color: #fe6c4f; color: #fe5e3e; align-self: center; margin-left: 11px; margin-right: 6px; margin-bottom: 20px;  width:85px" OnClick="cancelarModal_ClickCancelar" CausesValidation="false" />
@@ -405,4 +409,3 @@ PublicKeyToken=31bf3856ad364e35"/>
     <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModalCancelar" TargetControlID="cancelar" OnCancelScript="cancelarModalCancelar" OnOkScript="aceptarModalCancelar"></ajaxToolkit:ModalPopupExtender>
 
 </asp:Content>
-

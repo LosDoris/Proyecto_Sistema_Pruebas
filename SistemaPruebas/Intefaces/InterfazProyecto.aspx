@@ -6,20 +6,30 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <legend style="margin-top:45px"><h2>Módulo de Gestión de Proyectos</h2></legend>
     <style type="text/css">
-        .modalBackground 
-        {
+        .modalBackground {
             background-color: black;
-            filter: alpha(opacity=90);
-            opacity:0.8;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
         }
-        .modalPopup 
-        {
-            background-color: #ffffff;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
-            padding-top: 10px;
-            padding-left: 10px;         
+
+        .modalPopup {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  outline: 0;
+  padding: 45px;
+
+   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width:460px;           
+        }
+
+                .errorDiv {
+            display: none;
         }
     </style>
 
@@ -339,11 +349,11 @@
             <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648" CausesValidation="true"/>
             <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelar_Click" CausesValidation="False" />           
             <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
-        <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
-        <br/> <br/>
+                             <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
+
         <div aria-pressed="true">
-            <asp:button runat="server" ID="cancelarButtonSiModal" Text="Si" OnClick="cancelar_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false"/>
-            <asp:button runat="server" ID="cancelarButtonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false"/>           
+            <asp:button runat="server" ID="cancelarButtonSiModal" Text="Si" OnClick="cancelar_Click" CssClass="btn btn-primary" style="margin-left:8px;margin-right:11px;margin-bottom:20px; width:85px" CausesValidation="false"/>
+            <asp:button runat="server" ID="cancelarButtonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px" CausesValidation="false"/>           
        </div>
     </asp:Panel>
     <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="cancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal">
@@ -370,10 +380,9 @@
     </div>
     
     <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
-        <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este proyecto?</asp:label>
-        <br/> <br/>
+        <legend style="margin-top:15px"><h5>¿Desea eliminar este proyecto?</h5></legend>
         <div aria-pressed="true" style="padding-left:30px">
-            <asp:button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
+            <asp:button runat="server" ID="aceptarModal" Text="Eliminar" OnClick="aceptarModal_Click" CssClass="btn btn-primary" style="align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px"/>
             <asp:button runat="server" ID="cancelarModal" Text="Cancelar" OnClick="cancelarModal_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px"/>           
        </div>
     </asp:Panel>

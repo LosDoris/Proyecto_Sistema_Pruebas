@@ -14,6 +14,33 @@
     };
 </script>
 
+        <style type="text/css">
+        .modalBackground {
+            background-color: black;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+
+        .modalPopup {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  outline: 0;
+  padding: 45px;
+
+   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width:460px;           
+        }
+
+                .errorDiv {
+            display: none;
+        }
+    </style>
 
     <legend style="margin-top:45px"><h2>Módulo de Casos de Prueba</h2></legend>
 
@@ -351,23 +378,23 @@
 
 
 <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
-    <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
-    <br/> <br/>
-    <div aria-pressed="true">
-        <asp:button runat="server" ID="cancelarBotonSiModal" Text="Si" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" OnClick="cancelarModal_Click"/>
-        <asp:button runat="server" ID="cancelarBotonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />           
+                             <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
+
+    <div aria-pressed="true" style="padding-left:30px">
+        <asp:button runat="server" ID="cancelarBotonSiModal" Text="Si" CssClass="btn btn-primary" style="margin-left:8px;margin-right:20px;margin-bottom:11px; width:85px" CausesValidation="false" OnClick="cancelarModal_Click"/>
+        <asp:button runat="server" ID="cancelarBotonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px" CausesValidation="false" />           
     </div>
 </asp:Panel>
 <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="BotonCPCancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal"></ajaxToolkit:ModalPopupExtender>
 
 <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 
-    <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este caso de prueba?</asp:label>
-    <br/> <br/>
-    <div aria-pressed="true">
-        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModalEliminar_Click" CausesValidation="false"/>
+    <legend style="margin-top:15px"><h5>¿Desea eliminar este caso de prueba?</h5></legend>
+    <div aria-pressed="true" style="padding-left:30px">
+        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-primary" style="align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="aceptarModalEliminar_Click" CausesValidation="false"/>
         <asp:button runat="server" ID="cancelarModal" Text="Cancelar"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" OnClick="cancelarModal_Click" CausesValidation="false"/>           
     </div>
 </asp:Panel>
 
 <ajaxToolkit:ModalPopupExtender ID="ModalEliminar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal" TargetControlID="BotonCPEliminar" OnCancelScript="cancelarModal" OnOkScript="aceptarModal"></ajaxToolkit:ModalPopupExtender>
 </asp:Content>
+

@@ -301,15 +301,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Panel cancelarPanelModal;
         
         /// <summary>
-        /// cancelarLabelModal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label cancelarLabelModal;
-        
-        /// <summary>
         /// cancelarButtonSiModal control.
         /// </summary>
         /// <remarks>
@@ -353,15 +344,6 @@ namespace SistemaPruebas.Intefaces {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelModal;
-        
-        /// <summary>
-        /// textModal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label textModal;
         
         /// <summary>
         /// aceptarModal control.
