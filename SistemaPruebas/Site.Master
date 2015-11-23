@@ -28,9 +28,18 @@
         };
             
     </script>
+
+    <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+
+});
+</script>
+
 </head>
 <body>
     <form runat="server">
+
         
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -76,7 +85,10 @@
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                        <li id="nombre" runat="server"><a id="Nombres" runat="server"></a></li>                             
+                        <li id="nombre" runat="server"><a id="Nombres" name="pop" runat="server"  href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" title="Información" data-content="" onclick="yourControlToBeClicked_Click"></a></li>  
+
+                        
+                                                   
                         <li>
 
                             <button id="LOGOUT" runat="server" class="btn btn-default"

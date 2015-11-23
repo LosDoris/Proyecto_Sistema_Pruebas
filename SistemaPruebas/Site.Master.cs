@@ -12,6 +12,19 @@ namespace SistemaPruebas
 {
     public partial class SiteMaster : MasterPage
     {
+        public static string info
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["info"];
+                return value == null ? "" : (string)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["info"] = value;
+            }
+        }
+
         Controladoras.ControladoraRecursosHumanos controladoraRH = new Controladoras.ControladoraRecursosHumanos();
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
@@ -69,6 +82,7 @@ namespace SistemaPruebas
         }
 
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.DataBind();  
@@ -107,6 +121,13 @@ namespace SistemaPruebas
                 nombre.Visible = true;
                 Nombres.Visible = true;
                 Nombres.InnerText = Account.Login.id_logeado;
+                info = @"Nombre: " + controladoraRH.solicitarNombreRecurso(controladoraRH.idDelLoggeado()) + "      Cédula: " + controladoraRH.idDelLoggeado().ToString() + "       Perfil: " + controladoraRH.perfilDelLoggeado();
+                if (controladoraRH.loggeadoEsAdmin() == false)
+                {
+                    info += "       Proyecto Asociado: " + controladoraRH.solicitarNombreProyecto(controladoraRH.proyectosDelLoggeado());
+                }
+
+                Nombres.Attributes["data-content"] = info ;
                 LOGOUT.Visible = true;
             }
         }
@@ -122,6 +143,14 @@ namespace SistemaPruebas
                 nombre.Visible = true;
                 Nombres.Visible = true;
                 Nombres.InnerText = Account.Login.id_logeado;
+                info = @"Nombre: " + controladoraRH.solicitarNombreRecurso(controladoraRH.idDelLoggeado()) + "      Cédula: " + controladoraRH.idDelLoggeado().ToString() + "       Perfil: " + controladoraRH.perfilDelLoggeado();
+                if (controladoraRH.loggeadoEsAdmin() == false)
+                {
+                    info += "       Proyecto Asociado: " + controladoraRH.solicitarNombreProyecto(controladoraRH.proyectosDelLoggeado());
+                }
+
+                Nombres.Attributes["data-content"] = info;
+
                 Li1.Visible = true;
             }
             catch (NullReferenceException e)
@@ -155,6 +184,11 @@ namespace SistemaPruebas
             makeInVisible();           
             Response.Redirect("~/Default");
             
+        }
+
+        protected void yourControlToBeClicked_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

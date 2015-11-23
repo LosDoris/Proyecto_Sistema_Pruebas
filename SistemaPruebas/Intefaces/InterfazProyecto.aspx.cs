@@ -537,7 +537,7 @@ namespace SistemaPruebas.Intefaces
         //retorna N/A
         protected void Eliminar_Click(object sender, EventArgs e)
         {
-            textModal.Text = "¿Desea Eliminar este proyecto?";
+            //textModal.Text = "¿Desea Eliminar este proyecto?";
             deshabilitarGrid();
             marcarBoton(ref Eliminar);
             button = "3";
