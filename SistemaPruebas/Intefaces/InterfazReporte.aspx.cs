@@ -111,7 +111,7 @@ namespace SistemaPruebas.Intefaces
                 volverAlOriginal();
                 llenarGridPP();
                 llenarGridMod("");
-                llenarGridReq("","");
+                llenarGridReq("", "");
             }
         }
         /*
@@ -126,11 +126,11 @@ namespace SistemaPruebas.Intefaces
 
             llenarGridPP();
 
-           // llenarGridPP();
+            // llenarGridPP();
         }
         protected void llenarGridPP()
         {
-            
+
             DataTable dtGrid = crearTablaPP();
             DataTable dt = controladoraGR.consultarProyecto();
             Object[] datos = new Object[2];
@@ -160,7 +160,7 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("Nombre del Proyecto.", typeof(String));
             dt.Columns.Add("        Líder.      ", typeof(String));
             //Nombre del Proyecto.
-           //"        Líder.      "
+            //"        Líder.      "
             return dt;
         }
 
@@ -168,7 +168,7 @@ namespace SistemaPruebas.Intefaces
 
         protected void llenarGridMod(String nomProyecto)
         {
-            
+
             DataTable dtGrid = crearTablaMod();
             DataTable dt = controladoraGR.consultarModulos(nomProyecto);
             Object[] datos = new Object[1];
@@ -204,9 +204,9 @@ namespace SistemaPruebas.Intefaces
 
         protected void llenarGridReq(String nomProyecto, String nomModulo)
         {
-            
+
             DataTable dtGrid = crearTablaReq();
-            DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto,nomModulo) ;
+            DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto, nomModulo);
             //Object[] datos = new Object[2];
             Object[] datos = new Object[1];
 
@@ -216,14 +216,14 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                   // datos[1] = dr[2];
+                    // datos[1] = dr[2];
                     dtGrid.Rows.Add(datos);
                 }
             }
             else
             {
                 datos[0] = "-";
-               // datos[1] = "-";
+                // datos[1] = "-";
                 dtGrid.Rows.Add(datos);
             }
             GridReq.DataSource = dtGrid;
@@ -247,21 +247,21 @@ namespace SistemaPruebas.Intefaces
             CheckBoxOficinaProyecto.Enabled = false;
             CheckBoxResponsableProyecto.Enabled = false;
 
-            
+
         }
-        protected bool [] datosProy()
+        protected bool[] datosProy()
         {
-            bool [] proyecto= new bool [10];
-            proyecto [0]=CheckBoxNombreProyecto.Checked;
-            proyecto [1]=CheckBoxFechAsignacionProyecto.Checked;
-            proyecto [2]=CheckBoxOficinaProyecto.Checked;
-            proyecto [3]=CheckBoxResponsableProyecto.Checked;
-            proyecto [4]=CheckBoxObjetivoProyecto.Checked;
-            proyecto [5]=CheckBoxEstadoProyecto.Checked;
-            proyecto [6]=CheckBoxMiembrosProyecto.Checked;
-            proyecto [7] = CheckBoxExitos.Checked;
-            proyecto [8] = CheckBoxTipoNoConf.Checked;
-            proyecto [9] = CheckBoxCantNoConf.Checked;
+            bool[] proyecto = new bool[10];
+            proyecto[0] = CheckBoxNombreProyecto.Checked;
+            proyecto[1] = CheckBoxFechAsignacionProyecto.Checked;
+            proyecto[2] = CheckBoxOficinaProyecto.Checked;
+            proyecto[3] = CheckBoxResponsableProyecto.Checked;
+            proyecto[4] = CheckBoxObjetivoProyecto.Checked;
+            proyecto[5] = CheckBoxEstadoProyecto.Checked;
+            proyecto[6] = CheckBoxMiembrosProyecto.Checked;
+            proyecto[7] = CheckBoxExitos.Checked;
+            proyecto[8] = CheckBoxTipoNoConf.Checked;
+            proyecto[9] = CheckBoxCantNoConf.Checked;
 
             return proyecto;
         }
@@ -271,57 +271,70 @@ namespace SistemaPruebas.Intefaces
             //revisar como se llaman los metodos de la controladora.
 
             bool[] proyecto = datosProy();
-            
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxResponsableProyecto, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };        
 
-            
-            string nombreReporte = "Reporte Doroteos.pdf";
-            Document doc = new Document(PageSize.LETTER);
-            var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
-            var writer = PdfWriter.GetInstance(doc, output);
-            doc.Open();
 
-            Rectangle page = doc.PageSize;
-            PdfPTable head = new PdfPTable(1);
-            head.TotalWidth = page.Width;
-            Phrase phrase = new Phrase("Reporte generado el: "+ DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT",new Font(Font.COURIER, 8));
-            PdfPCell c = new PdfPCell(phrase);
-            c.Border = Rectangle.NO_BORDER;
-            c.VerticalAlignment = Element.ALIGN_TOP;
-            c.HorizontalAlignment = Element.ALIGN_CENTER;
-            head.AddCell(c);
-            head.WriteSelectedRows(
-                // first/last row; -1 writes all rows
-              0, -1,
-                // left offset
-              0,
-                // ** bottom** yPos of the table
-              page.Height - doc.TopMargin + head.TotalHeight + 20,
-              writer.DirectContent
-            );
-            doc.AddCreationDate();
+            //string nombreReporte = "Reporte Doroteos.pdf";
+            //Document doc = new Document(PageSize.LETTER);
+            //var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
+            //var writer = PdfWriter.GetInstance(doc, output);
+            //doc.Open();
 
-            /** Logo del reporte**/
-            //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
-            //logo.SetAbsolutePosition(430, 770);
-            //logo.ScaleAbsoluteHeight(30);
-            //logo.ScaleAbsoluteWidth(70);
-            //doc.Add(logo);
+            //Rectangle page = doc.PageSize;
+            //PdfPTable head = new PdfPTable(1);
+            //head.TotalWidth = page.Width;
+            //Phrase phrase = new Phrase("Reporte generado el: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT", new Font(Font.COURIER, 8));
+            //PdfPCell c = new PdfPCell(phrase);
+            //c.Border = Rectangle.NO_BORDER;
+            //c.VerticalAlignment = Element.ALIGN_TOP;
+            //c.HorizontalAlignment = Element.ALIGN_CENTER;
+            //head.AddCell(c);
+            //head.WriteSelectedRows(
+            //    // first/last row; -1 writes all rows
+            //  0, -1,
+            //    // left offset
+            //  0,
+            //    // ** bottom** yPos of the table
+            //  page.Height - doc.TopMargin + head.TotalHeight + 20,
+            //  writer.DirectContent
+            //);
+            //doc.AddCreationDate();
 
-            /*Se agregan datos de proyecto, en caso de ser seleccionado*/
+            ///** Logo del reporte**/
+            ////var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
+            ////logo.SetAbsolutePosition(430, 770);
+            ////logo.ScaleAbsoluteHeight(30);
+            ////logo.ScaleAbsoluteWidth(70);
+            ////doc.Add(logo);
+
+            ///*Se agregan datos de proyecto, en caso de ser seleccionado*/
 
             if (proyectoActualGR != "")
             {
-                PdfPTable retorno = controladoraGR.reporteProyecto(proyecto);                
-                doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR),retorno, proyecto));    
-            }
-                
-            //doc.Add(new Paragraph("Este es un parrafo muy lindo y tierno"));
 
-            /*Se cierra documento*/
-            doc.Close();
-            //Response.Redirect("~/MyFirstPDF.pdf");           
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('"+nombreReporte+"','_newtab');", true);
+                //PdfPTable retorno = controladoraGR.reporteProyecto(proyecto);
+                //doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR), retorno, proyecto));
+
+                DataTable dt = headerPreGrid(checks);
+                object[] proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
+                ProyectoPreGrid(proyectoDatos, dt, checks);
+
+
+
+
+            }
+
+          
+
+            ///*Se cierra documento*/
+            //doc.Close();
+            
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
         }
+
+
+
+
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid
          * Modifica: Establece el comportamiento del grid ante los diferentes eventos.
@@ -354,14 +367,15 @@ namespace SistemaPruebas.Intefaces
         {
             int index = GridPP.SelectedRow.RowIndex;
             String ced = GridPP.SelectedRow.Cells[0].Text;
-            if(ced!="-"){
+            if (ced != "-")
+            {
                 if (proyectoActualGR != ced.ToString())
                 {
                     proyectoActualGR = ced.ToString();
                     reqActualGR = "";
                     modActualGR = "";
                     llenarGridMod(ced);
-                    llenarGridReq("","");
+                    llenarGridReq("", "");
                     proyectoSeleccionado.Text = " El proyecto seleccionado es:  " + ced;
                 }
             }
@@ -454,7 +468,7 @@ namespace SistemaPruebas.Intefaces
             String ced = GridReq.SelectedRow.Cells[0].Text;
             if (ced != "-")
             {
-                
+
                 if (reqActualGR != ced.ToString())
                 {
                     reqActualGR = ced.ToString();
@@ -462,6 +476,77 @@ namespace SistemaPruebas.Intefaces
                 }
             }
         }
+
+        protected void CheckBoxNombreProyecto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBoxNombreProyecto.Checked)
+            {
+                BoundField test = new BoundField();
+                test.DataField = sender.ToString();
+                test.HeaderText = sender.ToString();
+                preGrid.Columns.Add(test);
+                
+
+            }
+        }
+
+        protected DataTable headerPreGrid(CheckBox[] checks)
+        {
+             DataTable dt = new DataTable();
+             foreach (CheckBox check in checks)
+             {
+                 if (check.Checked)
+                 {
+                     if (check.ID != "CheckBoxOficinaProyecto")
+                         dt.Columns.Add(check.Text, typeof(String));
+                     else
+                     {
+                         dt.Columns.Add("Oficina del representate", typeof(String));
+                         dt.Columns.Add("Teléfono del representante", typeof(String));
+                         dt.Columns.Add("Nombre del usuario representate", typeof(String));
+                     }
+                 }
+                    
+             }
+           
+            return dt;
+        }
+
+        protected DataTable ProyectoPreGrid(object[] objeto, DataTable dt, CheckBox[] checks)
+        {
+
+            int count = 0;
+            foreach(CheckBox check in checks)
+            {
+                if (check.Checked)
+                    count++;
+            }
+
+
+            
+            object[] datos = new object[count];
+            DataRow row = dt.NewRow();
+            int i = 0;
+            int j = 0;
+            foreach (CheckBox check in checks)
+            {
+                if (check.Checked)
+                {
+                    datos[i] = objeto[j].ToString();
+                    row[i] = datos[i].ToString();
+                    datos[i] = row[i];
+                    i++;
+                }
+                j++;
+            }
+
+
+            dt.Rows.Add(datos);          
+            preGrid.DataSource = dt;
+            preGrid.DataBind();
+            return dt;
+
+        }
     }
-    
+
 }

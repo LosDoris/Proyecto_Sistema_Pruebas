@@ -57,7 +57,7 @@ namespace SistemaPruebas.Controladoras
         }
         public EntidadDisenno consultarDisenno(string nombre)
         {
-            return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));           
+            return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));
         }
         public string consultarCasosPrueba(string nombre)
         {
@@ -76,7 +76,7 @@ namespace SistemaPruebas.Controladoras
 
         public DataTable consultarRequerimientos(string nombre, string modulo)
         {
-            return controlReq.consultarReqPorNombre (modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
+            return controlReq.consultarReqPorNombre(modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
 
         public EntidadRequerimientos consultarRequerimiento(string nombre, string idProyeto)
@@ -84,110 +84,104 @@ namespace SistemaPruebas.Controladoras
             return controlReq.consultarReqUnico(nombre, idProyeto);
         }
 
-        public PdfPTable reporteProyecto(bool[] campos)
+        //public PdfPTable reporteProyecto(bool[] campos)
+        //{
+        //    int i, j;
+        //    i = j = 0;
+        //    int count = 0;
+        //    for (int k = 0; k < campos.Length; k++)
+        //    {
+        //        if (campos[k])
+        //            count++;
+        //    }
+        //    if (campos[2])
+        //        count += 2;
+        //    PdfPTable retorno = new PdfPTable(count);
+
+        //    //Se colocan encabezados
+        //    if (campos[0])
+        //        retorno.AddCell("Nombre del Sistema");
+        //    if (campos[1])
+        //        retorno.AddCell("Fecha de asignación");
+        //    if (campos[2])
+        //    {
+        //        retorno.AddCell("Oficina del representate");
+        //        retorno.AddCell("Teléfono del representante");
+        //        retorno.AddCell("Nombre del usuario representate");
+        //    }
+        //    if (campos[3])
+        //        retorno.AddCell("Nombre del lider del proyecto");
+        //    if (campos[4])
+        //        retorno.AddCell("Objetivo general");
+        //    if (campos[5])
+        //        retorno.AddCell("Estado");
+        //    if (campos[6])
+        //        retorno.AddCell("Miembros del equipo");
+
+        //    return retorno;
+        //}
+
+        public object[] reporteProyecto(EntidadProyecto entidad)
         {
-            int i, j;
-            i = j = 0;
-            int count = 0;
-            for (int k = 0; k < campos.Length; k++)
+
+            
+
+            object[] retorno = new object[9];
+
+            retorno[0] = entidad.Nombre_sistema;
+
+            retorno[2] = entidad.Fecha_asignacion;
+
+            retorno[4] = entidad.Oficina_representante;
+            retorno[5] = entidad.Telefono_representante;
+            retorno[6] = entidad.Nombre_representante;
+
+            retorno[7] = entidad.LiderProyecto;
+
+            retorno[1] = entidad.Objetivo_general;
+
+            string estado = "";
+            switch (Int32.Parse(entidad.Estado))
             {
-                if (campos[k])
-                    count++;
+
+                case 1:
+                    {
+                        estado = "Pendiente";
+                    }
+                    break;
+                case 2:
+                    {
+                        estado = "Asignado";
+                    }
+                    break;
+                case 3:
+                    {
+                        estado = "En ejecución";
+                    }
+                    break;
+                case 4:
+                    {
+                        estado = "Finalizado";
+                    }
+                    break;
+                case 5:
+                    {
+                        estado = "Cerrado";
+                    }
+                    break;
             }
-            if (campos[2])
-                count += 2;
-            PdfPTable retorno = new PdfPTable(count);
+            retorno[3] = estado;
 
-            //Se colocan encabezados
-            if (campos[0])
-                retorno.AddCell("Nombre del Sistema");
-            if (campos[1])
-                retorno.AddCell("Fecha de asignación");
-            if (campos[2])
-            {
-                retorno.AddCell("Oficina del representate");
-                retorno.AddCell("Teléfono del representante");
-                retorno.AddCell("Nombre del usuario representate");
-            }
-            if (campos[3])
-                retorno.AddCell("Nombre del lider del proyecto");
-            if (campos[4])
-                retorno.AddCell("Objetivo general");
-            if (campos[5])            
-                retorno.AddCell("Estado");            
-            if (campos[6])            
-                retorno.AddCell("Miembros del equipo");
-
-            return retorno;           
-        }
-
-        public PdfPTable reporteProyecto(EntidadProyecto entidad, PdfPTable retorno, bool[] campos)
-        {                      
-            if (campos[0])
-                retorno.AddCell(entidad.Nombre_sistema);
-            if (campos[1])
-                retorno.AddCell(entidad.Fecha_asignacion);
-            if (campos[2])
-            {
-                retorno.AddCell(entidad.Oficina_representante);
-                retorno.AddCell(entidad.Telefono_representante);
-                retorno.AddCell(entidad.Nombre_representante);
-            }
-            if (campos[3])
-                retorno.AddCell(entidad.LiderProyecto);
-            if (campos[4])
-                retorno.AddCell(entidad.Objetivo_general);
-            if (campos[5])
-            {
-                string estado = "";
-                switch (Int32.Parse(entidad.Estado))
-                {
-
-                    case 1:
-                        {
-                            estado = "Pendiente";
-                        }
-                        break;
-                    case 2:
-                        {
-                            estado = "Asignado";
-                        }
-                        break;
-                    case 3:
-                        {
-                            estado = "En ejecución";
-                        }
-                        break;
-                    case 4:
-                        {
-                            estado = "Finalizado";
-                        }
-                        break;
-                    case 5:
-                        {
-                            estado = "Cerrado";
-                        }
-                        break;
-                }
-                retorno.AddCell(estado);
-            }
-
-            if (campos[6])
-            { }
-            //  retorno.AddCell(entidad.Nombre_sistema);
+            //retorno[8] = controlRH.consultarMiembros(entidad.Id_proyecto);
+      
             return retorno;
         }
 
-
-        public int generarReporte(string nombreP, string nombreD, string idC)
-        {
-
-            return 0;
-        }
+     
 
         public object[] medicionRequerimiento(string idReq)
         {
-            object []retorno = new object[5];
+            object[] retorno = new object[6];
 
             int exitosCant = 0;
             int sinEnvaluarCant = 0;
@@ -223,11 +217,12 @@ namespace SistemaPruebas.Controladoras
                 }
             }
 
-            retorno[0] = exitosCant;
-            retorno[1] = idCasosExitosos;
-            retorno[2] = noConformidad;
-            retorno[3] = sinEnvaluarCant;
-            retorno[4] = idCasosSinEvaluar;
+            retorno[0] = idReq;
+            retorno[1] = exitosCant;
+            retorno[2] = idCasosExitosos;
+            retorno[3] = noConformidad;
+            retorno[4] = sinEnvaluarCant;
+            retorno[5] = idCasosSinEvaluar;
 
             return retorno;
         }

@@ -47,7 +47,7 @@
             </div>
             <div class="panel-body">
                 <div>
-                    <div class="row">  
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-horizontal">
                                 <asp:GridView ID="GridPP" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
@@ -72,21 +72,21 @@
                 </div>
                 <div class="col-md10">
                     <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
-                    </div>
+                </div>
                 <div class="col-md10">
                     <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
-                    </div>
-                    <div class="col-md10">
+                </div>
+                <div class="col-md10">
                     <asp:Label ID="modSeleccionado" runat="server" Text=""></asp:Label>
-                    </div>
-                    <div class="col-md10">
+                </div>
+                <div class="col-md10">
                     <asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-horizontal">
-                        &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre de sistema."/>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -96,50 +96,54 @@
                     &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
                 </div>
                 <div class="col-md-2">
-                    &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Responsable." />
+                    &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Lider." />
                 </div>
             </div>
             <div class="col-md3">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-horizontal">
-                             &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
-                         </div>
-                    </div>
-                    <div class="col-md-3">
-                         &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
-                    </div>
-                    <div class="col-md-4">
-                         &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
-                    </div>
-               </div>
-          </div>
-          <div class="col-md3">
-               <div class="row">
-                   <div class="col-md-3">
-                        <div class="form-horizontal">
-                             &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
+                            &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
                         </div>
                     </div>
                     <div class="col-md-3">
-                         &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
                     </div>
-                    <div class="col-md-6">
-                         &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text= "Cantidad no conformidades."/>
+                    <div class="col-md-4">
+                        &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
                     </div>
                 </div>
-             </div>
-          </div>
-       </div>
+            </div>
+            <div class="col-md3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-horizontal">
+                            &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
+                    </div>
+                    <div class="col-md-6">
+                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Cantidad no conformidades." />
+                    </div>
+                </div>
+            </div>
+        </div>        
+            <div class="col-md-4">
+                <asp:GridView ID="preGrid" runat="server" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
+                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
+                </asp:GridView>
+            </div>       
     </div>
     <div style="margin-top: 5px" class="well">
-       <div class="form-group">
+        <div class="form-group">
             <div class="col-md-2">
                 <asp:Button runat="server" Text="Generar Reporte" CssClass="btn btn-primary" ID="Generar" OnClick="BotonGE_Click" CausesValidation="false" />
             </div>
             <div class="col-md-4" style="padding-top: 25px">
                 <div class="progress progress-striped active">
-                     <div class="progress-bar" style="width: 65%">
+                    <div class="progress-bar" style="width: 65%">
                     </div>
                 </div>
             </div>
