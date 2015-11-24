@@ -11,6 +11,8 @@ using System.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Text.RegularExpressions;
+using SistemaPruebas.Controladoras;
 
 
 namespace SistemaPruebas.Controladoras

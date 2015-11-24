@@ -115,6 +115,7 @@ namespace SistemaPruebas.Intefaces
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
                 llenarGridGR(dt);
+                llenarDDArchivo();
             }
         }
         /*
@@ -196,7 +197,27 @@ namespace SistemaPruebas.Intefaces
             GridMod.DataSource = dtGrid;
             GridMod.DataBind();
         }
+        /*
+         * Requiere: N/A.
+         * Modifica: Llena el dropdownlist del tipo de Archivo.
+         * Retorna: N/A.
+         */
+        protected void llenarDDArchivo()
+        {
+            this.DDLTipoArchivo.Items.Clear();
 
+            try
+            {
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Tipo de Archivo", Convert.ToString( 0)));
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Excel", Convert.ToString(1)));
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("PDF", Convert.ToString(2)));
+            }
+            catch (Exception e)
+            {
+            }
+
+            }
+        
         protected DataTable crearTablaMod()
         {
             DataTable dt = new DataTable();
