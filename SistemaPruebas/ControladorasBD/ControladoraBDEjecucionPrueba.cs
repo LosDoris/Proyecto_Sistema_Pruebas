@@ -41,11 +41,12 @@ namespace SistemaPruebas.Controladoras
        
         public int insertarBDnoConformidad(EntidadNoConformidad noConformidad)
         {
-            String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, fecha) VALUES ('" + noConformidad.Tipo + "','"
+            String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo + "','"
                                                                                                                              + noConformidad.Caso + "','"
                                                                                                                              + noConformidad.Descripcion +"','"
                                                                                                                              + noConformidad.Justificacion + "', @img, '"
-                                                                                                                             + noConformidad.Id_ejecucion + "');";
+                                                                                                                             + noConformidad.Estado + "','"
+                                                                                                                             + noConformidad.Id_ejecucion+ "');";
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.CommandText = consulta;
@@ -97,6 +98,13 @@ namespace SistemaPruebas.Controladoras
             String consulta = "SELECT tipo, idCaso, descripcion, justificacion, imagen, id_noConformidad FROM noConformidad WHERE fecha = '" + fecha + "';";
             dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
+        }
+
+        public String retornarEstado(String casoPrueba)
+        {
+            DataTable retorno = acceso.ejecutarConsultaTabla("if ((select estado from noConformidad where fecha= (select max(fecha) from noConformidad))='Fallido')" +
+                                                        "select estado from noConformidad where fecha= (select max(fecha) from noConformidad) else select tipo from noConformidad");
+            return retorno.Rows[0].ItemArray[0].ToString();
         }
 
     }

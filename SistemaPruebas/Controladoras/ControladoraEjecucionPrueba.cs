@@ -84,5 +84,10 @@ namespace SistemaPruebas.Controladoras
             DataTable dt = controladoraBDEjecucionPrueba.consultarBDNoConformidad(fecha);
             return dt;
         }
+
+        public string retornarEstado(String idCasoPrueba)
+        {
+            return controladoraBDEjecucionPrueba.retornarEstado(idCasoPrueba);
+        }
     }
 }
