@@ -296,7 +296,13 @@ namespace SistemaPruebas.Controladoras
         public DataTable dtReporte(bool [] campos, String proy, String mod, String req)
         {
             EntidadProyecto entidad = consultarProyecto(proy);
-            Object [] datos= new Object[12];
+            int k = 0;
+            for (int j = 0; j < 12; ++j) {
+                if (campos[j] == true) {
+                    k = k + 1;
+                }
+            }
+            Object [] datos= new Object[k];
             /*
             bool[] proyecto = new bool[12];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
@@ -315,144 +321,119 @@ namespace SistemaPruebas.Controladoras
             proyecto[10] = CheckBoxTipoNoConf.Checked;
             proyecto[11] = CheckBoxCantNoConf.Checked;
         */
+            int i = 0;
             DataTable dt = crearDT(campos);
             if (campos[0])
             {
-                datos[0] = entidad.Nombre_sistema;
+                datos[i] = entidad.Nombre_sistema;
+                i = i + 1;
             }
             else
             {
-                datos[0] = "-";
+                //datos[0] = "-";
             }
             if (campos[1])
             {
-                datos[1] = mod;
+                datos[i] = mod;
+                i = i + 1;
             }
-            else
-            {
-                datos[1] = "-";
-            }
+            
             if (campos[2])
             {
-                datos[2] = req;
+                datos[i] = req;
+                i = i + 1;
             }
-            else
-            {
-                datos[2] = "-";
-            }
+            
             if (campos[3])
             {
-                datos[3] = entidad.Fecha_asignacion;
+                datos[i] = entidad.Fecha_asignacion;
+                i = i + 1;
             }
-            else
-            {
-                datos[3] = "-";
-            }
+            
             if (campos[4])
             {
-                datos[4] = entidad.Oficina_representante+ "\n"+ entidad.Nombre_representante;
+                datos[i] = entidad.Oficina_representante+ "\n"+ entidad.Nombre_representante;
+                i = i + 1;
 
             }
-            else
-            {
-                datos[4] = "-";
-            }
+            
             if (campos[5])
             {
-                datos[5] = entidad.LiderProyecto;
+                datos[i] = entidad.LiderProyecto;
+                i = i + 1;
             }
-            else
-            {
-                datos[5] = "-";
-            }
-
             
             if (campos[6])
             {
-                datos[6] = entidad.Objetivo_general;
+                datos[i] = entidad.Objetivo_general;
+                i = i + 1;
             }
-            else
-            {
-                datos[6] = "-";
-            }
+            
             if (campos[7])
             {
                 string estado = "";
-                switch (Int32.Parse(entidad.Estado))
+                if (entidad.Estado != "")
                 {
+                    switch (Convert.ToInt32(entidad.Estado))
+                    {
 
-                    case 1:
-                        {
-                            estado = "Pendiente";
-                        }
-                        break;
-                    case 2:
-                        {
-                            estado = "Asignado";
-                        }
-                        break;
-                    case 3:
-                        {
-                            estado = "En ejecución";
-                        }
-                        break;
-                    case 4:
-                        {
-                            estado = "Finalizado";
-                        }
-                        break;
-                    case 5:
-                        {
-                            estado = "Cerrado";
-                        }
-                        break;
+                        case 1:
+                            {
+                                estado = "Pendiente";
+                            }
+                            break;
+                        case 2:
+                            {
+                                estado = "Asignado";
+                            }
+                            break;
+                        case 3:
+                            {
+                                estado = "En ejecución";
+                            }
+                            break;
+                        case 4:
+                            {
+                                estado = "Finalizado";
+                            }
+                            break;
+                        case 5:
+                            {
+                                estado = "Cerrado";
+                            }
+                            break;
+                    }
                 }
-                datos[7] = estado;
-                 //= entidad.Nombre_sistema;
-            }
-            else
-            {
-                
-                datos[7] = "-";
-            }
-            /*proyecto[7] = CheckBoxEstadoProyecto.Checked;
-            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
 
-            proyecto[9] = CheckBoxExitos.Checked;
-            proyecto[10] = CheckBoxTipoNoConf.Checked;
-            proyecto[11] = CheckBoxCantNoConf.Checked;*/
-            if (campos[8])
-            {
-                datos[8] = entidad.Nombre_sistema;
+                datos[i] = estado;
+                i = i + 1;
+                //= entidad.Nombre_sistema;
             }
-            else
+            
+            if (campos[8])//miembros
             {
-                datos[8] = "-";
+                datos[i] = "-";// entidad.Nombre_sistema;
+                i = i + 1;
             }
-            if (campos[9])
+            
+            if (campos[9])//exitos
             {
-                datos[9] = entidad.Nombre_sistema;
+                datos[i] = "-";//entidad.Nombre_sistema;
+                i = i + 1;
             }
-            else
+            
+            if (campos[10])//tipo
             {
-                datos[9] = "-";
+                datos[i] = "-";//entidad.Nombre_sistema;
+                i = i + 1;
             }
-            if (campos[10])
+            
+            if (campos[11])//cant no conf
             {
-                datos[10] = entidad.Nombre_sistema;
+                datos[i] = "-";//entidad.Nombre_sistema;
+                i = i + 1;
             }
-            else
-            {
-                datos[10] = "-";
-            }
-            if (campos[11])
-            {
-                datos[11] = entidad.Nombre_sistema;
-            }
-            else
-            {
-                datos[11] = "-";
-            }
+            
             dt.Rows.Add(datos);
 
             return dt;
