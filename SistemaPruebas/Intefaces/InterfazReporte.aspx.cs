@@ -112,6 +112,9 @@ namespace SistemaPruebas.Intefaces
                 llenarGridPP();
                 llenarGridMod("");
                 llenarGridReq("", "");
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
+                llenarGridGR(dt);
             }
         }
         /*
@@ -123,8 +126,11 @@ namespace SistemaPruebas.Intefaces
         {
 
             modoGR = Convert.ToString(0);
-
+            CheckBoxNombReq.Checked = true;
+            CheckBoxNombModulo.Checked = true;
+            CheckBoxNombreProyecto.Checked = true;
             llenarGridPP();
+            //barraProgreso.Visible = false;
 
             // llenarGridPP();
         }
@@ -230,6 +236,34 @@ namespace SistemaPruebas.Intefaces
             GridReq.DataBind();
         }
 
+        protected void llenarGridGR(DataTable dt)
+        {
+
+            //DataTable dtGrid = crearTablaReq();
+            //DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto, nomModulo);
+            //Object[] datos = new Object[2];
+            Object[] datos = new Object[1];
+
+
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    datos[0] = dr[0];
+                    // datos[1] = dr[2];
+                    dt.Rows.Add(datos);
+                }
+            }
+            else
+            {
+                datos[0] = "-";
+                // datos[1] = "-";
+                dt.Rows.Add(datos);
+            }
+            GridGR.DataSource = dt;
+            GridGR.DataBind();
+        }
+
         protected DataTable crearTablaReq()
         {
             DataTable dt = new DataTable();
@@ -246,22 +280,27 @@ namespace SistemaPruebas.Intefaces
             CheckBoxObjetivoProyecto.Enabled = false;
             CheckBoxOficinaProyecto.Enabled = false;
             CheckBoxResponsableProyecto.Enabled = false;
-
-
+            CheckBoxCantNoConf.Enabled = false;
+            CheckBoxExitos.Enabled = false;
+            CheckBoxNombModulo.Enabled = false;
+            CheckBoxTipoNoConf.Enabled = false;
+            CheckBoxNombReq.Enabled = false;
         }
         protected bool[] datosProy()
         {
             bool[] proyecto = new bool[10];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
-            proyecto[1] = CheckBoxFechAsignacionProyecto.Checked;
-            proyecto[2] = CheckBoxOficinaProyecto.Checked;
-            proyecto[3] = CheckBoxResponsableProyecto.Checked;
-            proyecto[4] = CheckBoxObjetivoProyecto.Checked;
-            proyecto[5] = CheckBoxEstadoProyecto.Checked;
-            proyecto[6] = CheckBoxMiembrosProyecto.Checked;
-            proyecto[7] = CheckBoxExitos.Checked;
-            proyecto[8] = CheckBoxTipoNoConf.Checked;
-            proyecto[9] = CheckBoxCantNoConf.Checked;
+            proyecto[1]= CheckBoxNombModulo.Checked;
+            proyecto[2]= CheckBoxNombReq.Checked;
+            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
+            proyecto[4] = CheckBoxOficinaProyecto.Checked;
+            proyecto[5] = CheckBoxResponsableProyecto.Checked;
+            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
+            proyecto[7] = CheckBoxEstadoProyecto.Checked;
+            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
+            proyecto[9] = CheckBoxExitos.Checked;
+            proyecto[10] = CheckBoxTipoNoConf.Checked;
+            proyecto[11] = CheckBoxCantNoConf.Checked;
 
             return proyecto;
         }
@@ -457,6 +496,45 @@ namespace SistemaPruebas.Intefaces
             GridReq.PageIndex = e.NewPageIndex;
             //this.llenarGridMod();
         }
+
+
+        /*
+        * Requiere: El evento de enlazar información de un datatable con el grid
+        * Modifica: Establece el comportamiento del grid ante los diferentes eventos.
+        * Retorna: N/A.
+        */
+        protected void Reporte_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridGR, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["style"] = "cursor:pointer";
+            }
+        }
+
+        /*
+         * Requiere: Evento de pasar de página en el grid.
+         * Modifica: Pasa de página y llena el grid con las n tuplas que siguen, siendo n el tamaño de la página.
+         * Retorna: N/A. 
+         */
+        protected void Reporte_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridGR.PageIndex = e.NewPageIndex;
+            //this.llenarGridMod();
+        }
+
+
+
+
+        protected void Reporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = GridGR.SelectedRow.RowIndex;
+            String ced = GridGR.SelectedRow.Cells[0].Text;
+        }
+
 
 
 
