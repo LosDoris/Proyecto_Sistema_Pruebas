@@ -372,6 +372,13 @@ namespace SistemaPruebas.Intefaces
             };
         }
 
+        protected void no_cancelar_Click(object sender, EventArgs e)
+        {
+            Habilitar_Campos();
+            cancelar.Enabled = true;
+            aceptar.Enabled = true;
+
+        }
 
         protected void cancelar_Click(object sender, EventArgs e)
         {

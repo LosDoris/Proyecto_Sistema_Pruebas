@@ -355,7 +355,7 @@
 
         <div aria-pressed="true">
             <asp:button runat="server" ID="cancelarButtonSiModal" Text="Si" OnClick="cancelar_Click" CssClass="btn btn-primary" style="margin-left:8px;margin-right:11px;margin-bottom:20px; width:85px" CausesValidation="false"/>
-            <asp:button runat="server" ID="cancelarButtonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px" CausesValidation="false"/>           
+            <asp:button runat="server" ID="cancelarButtonNoModal" Text="No" OnClick="no_cancelar_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px" CausesValidation="false"/>           
        </div>
     </asp:Panel>
     <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="cancelar" OnCancelScript="cancelarButtonNoModal" OnOkScript="cancelarButtonSiModal">

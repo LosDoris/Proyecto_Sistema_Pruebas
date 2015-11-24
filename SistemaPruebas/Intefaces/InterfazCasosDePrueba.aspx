@@ -198,15 +198,16 @@
                             if (e.keyCode == 8) {
                                 //alert();
                             }
-                            else if (!ok)
+                            else if (!ok) {
                                 if ($('#errorNombreSistema').css('display') == 'none') {
                                     $('#errorNombreSistema').fadeIn();
                                     $('#errorNombreSistema').fadeOut(6000);
                                 }
-                            if (window.event)//IE
-                                e.returnValue = false;
-                            else//Firefox
-                                e.preventDefault();
+                                if (window.event)//IE
+                                    e.returnValue = false;
+                                else//Firefox
+                                    e.preventDefault();
+                            }
                         }
                     </script>			
 				
@@ -235,15 +236,17 @@
                             if (e.keyCode == 8) {
                                 //alert();
                             }
-                            else if (!ok)
+                            else if (!ok) {
                                 if ($('#errorNombreSistema').css('display') == 'none') {
                                     $('#errorNombreSistema').fadeIn();
                                     $('#errorNombreSistema').fadeOut(6000);
                                 }
-                            if (window.event)//IE
-                                e.returnValue = false;
-                            else//Firefox
-                                e.preventDefault();
+
+                                if (window.event)//IE
+                                    e.returnValue = false;
+                                else//Firefox
+                                    e.preventDefault();
+                            }
                         }
                     </script>
                     
@@ -253,9 +256,9 @@
                 <div class="form-group">          
                         <div class="col-md-offset-6 col-md-12">
                             <asp:Button runat="server" Text="Agregar"                               
-                                CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" CausesValidation="false"/>
+                                CssClass="btn btn-default" ID="AgregarEntrada" OnClick="AgregarEntrada_Click" CausesValidation="false" style="border-color:#4bb648;color:#4bb648;" />
                             <asp:Button runat="server" Text="Eliminar"  
-                                CssClass="btn btn-default" ID="EliminarEntrada" OnClick="EliminarEntrada_Click" CausesValidation="false"/>
+                                CssClass="btn btn-default" ID="EliminarEntrada" OnClick="EliminarEntrada_Click" CausesValidation="false" style="border-color:#fe6c4f;color:#fe5e3e;"/>
                         </div>
                 </div>
 
@@ -267,7 +270,7 @@
                                     CssClass ="GridView" HorizontalAlign="Center"   
                                     HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#CDCDCD" border-radius="15px"  RowStyle-BackColor="White" PagerStyle-BackColor="White"
                                     AutoPostBack ="true" OnSelectedIndexChanged="DECP_SelectedIndexChanged"
-                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound">                            
+                                    AllowPaging="true" PageSize="3" OnPageIndexChanging="OnDECPPageIndexChanging" OnRowDataBound ="OnDECPRowDataBound" Width="155%">                            
                         </asp:GridView>
 
   
@@ -292,15 +295,17 @@
                 if (e.keyCode == 8) {
                     //alert();
                 }
-                else if (!ok)
+                else if (!ok) {
                     if ($('#errorNombreSistema').css('display') == 'none') {
                         $('#errorNombreSistema').fadeIn();
                         $('#errorNombreSistema').fadeOut(6000);
                     }
-                if (window.event)//IE
-                    e.returnValue = false;
-                else//Firefox
-                    e.preventDefault();
+                    if (window.event)//IE
+                        e.returnValue = false;
+                    else//Firefox
+                        e.preventDefault();
+                }
+
             }
         </script>
                 </div>
@@ -320,15 +325,17 @@
                 if (e.keyCode == 8) {
                     //alert();
                 }
-                else if (!ok)
+                else if (!ok) {
                     if ($('#errorNombreSistema').css('display') == 'none') {
                         $('#errorNombreSistema').fadeIn();
                         $('#errorNombreSistema').fadeOut(6000);
                     }
-                if (window.event)//IE
-                    e.returnValue = false;
-                else//Firefox
-                    e.preventDefault();
+                    if (window.event)//IE
+                        e.returnValue = false;
+                    else//Firefox
+                        e.preventDefault();
+                }
+
             }
         </script>
                 </div>

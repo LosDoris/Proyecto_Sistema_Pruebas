@@ -356,6 +356,7 @@ namespace SistemaPruebas.Intefaces
             TextBoxDescripcion.Enabled = true;
             TipoEntrada.Enabled = true;
             AgregarEntrada.Enabled = true;
+            EliminarEntrada.Enabled = true;
             habilitarGrid(ref DECP);
         }
 
@@ -964,10 +965,13 @@ namespace SistemaPruebas.Intefaces
             if(TipoEntrada.SelectedItem.Text == "No Aplica")
             {
                 AgregarEntrada.Enabled = false;
+
             }
             else
             {
                 AgregarEntrada.Enabled = true;
+                EliminarEntrada.Enabled = true;
+
             }
         }
 

@@ -394,8 +394,6 @@ PublicKeyToken=31bf3856ad364e35"/>
         </asp:GridView>
     </div>
 
-\
-
     <asp:Panel runat="server" ID="panelModalCancelar" CssClass="modalPopup" Style="display: none">
                  <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
         <div aria-pressed="true" style="padding-left:30px">
