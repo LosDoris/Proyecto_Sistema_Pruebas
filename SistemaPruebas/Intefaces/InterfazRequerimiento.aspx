@@ -327,7 +327,7 @@
             <asp:label runat ="server" ID="textModal2" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
             <br/> <br/>
             <div aria-pressed="true">
-                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-primary" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:8px;margin-right:11px;margin-bottom:20px;  width:85px"/>
+                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-primary" style="align-self:center;margin-left:8px;margin-right:11px;margin-bottom:20px;  width:85px"/>
                 <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="siModalCancelar_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px;  width:85px"/>           
             </div>
         </asp:Panel>

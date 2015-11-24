@@ -364,6 +364,27 @@ namespace SistemaPruebas.Controladoras
             return regresa;
         }
 
+        public string solicitarNombreRecursosPorProyecto(int id_proyecto)
+        {
+
+            string regresa = null;
+            DataTable DR = acceso.ejecutarConsultaTabla("SELECT nombre_completo, rol FROM Recurso_Humano WHERE id_proyecto = " + id_proyecto);
+            try
+            {
+                foreach (DataRow row in DR.Rows)
+                {
+                    regresa += row["nombre_completo"].ToString() + " ("+ row["Rol"].ToString() + "); ";
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                regresa = null;
+            }
+
+
+            return regresa;
+        }
+
         public int solicitarCedulaRecurso(string nombre)
         {
 

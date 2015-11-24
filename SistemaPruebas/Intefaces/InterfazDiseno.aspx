@@ -131,7 +131,7 @@ PublicKeyToken=31bf3856ad364e35"/>
         </div>        
            
         <div class="row">
-            <div class="col-md-offset-2 col-md-6">
+            <div class="col-xs-7">
                 <div class="form-horizontal">
 
                     <asp:GridView ID="gridNoAsociados" runat="server"
@@ -145,8 +145,7 @@ PublicKeyToken=31bf3856ad364e35"/>
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <div class="form-horizontal">
+            <div class="col-xs-5">
 
                     <asp:GridView ID="gridAsociados" runat="server" margin-right="auto"
                         CellPadding="10" padding-right="20px"
@@ -156,8 +155,6 @@ PublicKeyToken=31bf3856ad364e35"/>
                         HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
                         AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="55%">
                     </asp:GridView>
-
-                </div>
             </div>
         </div>
 

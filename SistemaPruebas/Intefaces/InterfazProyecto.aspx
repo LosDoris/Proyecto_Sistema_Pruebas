@@ -49,7 +49,19 @@
             }, 2000);           
     };
 </script>
-      
+  
+            <div>
+                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" Font-Size="Large" Visible="False"></asp:Label>
+
+            </div>    
+
+    
+               
+                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                    <p class="text-danger">
+                        <asp:Literal runat="server" ID="FailureText" />
+                    </p>
+                </asp:PlaceHolder>
 
     <div class="form-group">
             <div class="col-md-offset-9 col-md-12">
@@ -69,18 +81,8 @@
 
     <div class="row">
         <div class="col-md-7">
-            <div>
-                <asp:Label runat="server" CssClass="text-danger" ID="EtiqErrorLlaves" Font-Size="Large" Visible="False"></asp:Label>
 
-            </div>
             <div class="form-horizontal">
-
-               
-                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                    <p class="text-danger">
-                        <asp:Literal runat="server" ID="FailureText" />
-                    </p>
-                </asp:PlaceHolder>
 
                 <div class="form-group">
                     <div class="col-md-4">
@@ -346,8 +348,8 @@
 
     <div class="form-group">
         <div id="Botones_aceptar_cancelar" class="col-md-offset-9 col-md-12">
-            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648" CausesValidation="true"/>
-            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e" CssClass="btn btn-default" OnClick="cancelar_Click" CausesValidation="False" />           
+            <asp:Button runat="server" ID="aceptar" Text="Aceptar" CssClass="btn btn-default" OnClick="aceptar_Click" style="border-color:#4bb648;color:#4bb648; align-self:center;margin-left:8px;margin-right:6px;margin-bottom:20px;" CausesValidation="true"/>
+            <asp:Button runat="server" ID="cancelar" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e; align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px;" CssClass="btn btn-default" OnClick="cancelar_Click" CausesValidation="False" />           
             <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
                              <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
 
