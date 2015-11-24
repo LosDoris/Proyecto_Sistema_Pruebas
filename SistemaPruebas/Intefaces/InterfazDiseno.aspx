@@ -95,9 +95,9 @@ PublicKeyToken=31bf3856ad364e35"/>
             <div class="form-horizontal">
 
                 <div class="form-group">
-                    <asp:Label runat="server" ItemStyle-Wrap="False" CssClass="col-md-2 control-label">Proyecto asociado:</asp:Label>
+                    <asp:Label runat="server" ItemStyle-Wrap="False" CssClass="col-md-4 control-label">Proyecto asociado:</asp:Label>
                     <div class="col-md-5">
-                        <asp:DropDownList runat="server" ID="proyectoAsociado" Style="width: 250px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList runat="server" ID="proyectoAsociado" Style="width: 250px; margin-bottom:20px" CssClass="form-control" OnSelectedIndexChanged="proyectoAsociado_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem Value="1">Seleccionar</asp:ListItem>
                         </asp:DropDownList>
                         <asp:Label runat="server" ID="labelSeleccioneProyecto" class="text-danger" Visible="false">Seleccione primero un Proyecto</asp:Label>
@@ -116,48 +116,48 @@ PublicKeyToken=31bf3856ad364e35"/>
   <div class="panel-body">
 
 <div class="row">
-            <div class="col-md-offset-2 col-md-6">
+            <div class="col-md-offset-1 col-md-7">
                 <div class="form-group">
-                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-2 control-label">Disponibles</asp:Label>
+                    <asp:Label runat="server" CssClass="control-label">Requerimientos Disponibles</asp:Label>
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <asp:Label runat="server" ForeColor="#cdcdcd" CssClass="col-md-10 control-label">En Diseño</asp:Label>
+                    <asp:Label runat="server" CssClass="control-label">Requerimientos en Diseño</asp:Label>
                 </div>
             </div>
 
         </div>        
            
-        <div class="row">
-            <div class="col-xs-7">
-                <div class="form-horizontal">
-
+<div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
                     <asp:GridView ID="gridNoAsociados" runat="server"
                         CellPadding="10" padding-left="20px" margin-left="20px"
                         OnSelectedIndexChanged="OnSelectedIndexChangedNoAsoc"
                         OnRowDataBound="OnRowDataBoundNoAsoc" CssClass="GridView" HorizontalAlign="Left"
                         AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingNoAsoc" PageSize="5"
                         HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
-                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="55%">
-                    </asp:GridView>
+                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="100%">
+                    </asp:GridView>                    
                 </div>
             </div>
 
-            <div class="col-xs-5">
-
+            <div class="col-md-offset-2 col-md-5">
+                <div class="form-group">
                     <asp:GridView ID="gridAsociados" runat="server" margin-right="auto"
                         CellPadding="10" padding-right="20px"
                         margin-left="auto" OnSelectedIndexChanged="OnSelectedIndexChangedAsoc"
-                        OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Right"
+                        OnRowDataBound="OnRowDataBoundAsoc" CssClass="GridView" HorizontalAlign="Left"
                         AllowPaging="true" OnPageIndexChanging="OnPageIndexChangingAsoc" PageSize="5"
                         HeaderStyle-BackColor="#48cfae" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px"
-                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="55%">
-                    </asp:GridView>
+                        AutoPostBack="true" RowStyle-BackColor="White" PagerStyle-BackColor="White" Width="100%">
+                    </asp:GridView>                    
+                </div>
             </div>
-        </div>
 
+        </div>     
    
         <div class="col-md-offset-10 col-md-12">
             <asp:Button runat="server" ID="iraRequerimientoBtn" Text="Ir a Requerimiento" CssClass="btn btn-primary" OnClick="irAReq" CausesValidation="false" Style="margin-top: 20px" />

@@ -565,8 +565,8 @@ namespace SistemaPruebas.Intefaces
             DataTable req = new DataTable();
             DataTable dt = new DataTable();
 
-            req.Columns.Add("Id de Requerimiento");
-            req.Columns.Add("Nombre del Requerimiento");
+            req.Columns.Add("Id");
+            req.Columns.Add("Nombre");
 
             int proyecto = controlDiseno.solicitarProyecto_Id(proyectoAsociado.SelectedItem.Text);
             int diseno = -1;
@@ -652,8 +652,8 @@ namespace SistemaPruebas.Intefaces
         protected DataTable crearTablaREQ(/*int tipo*/)
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("ID Requerimiento", typeof(String));
-            dt.Columns.Add("Nombre del Requerimiento", typeof(String));
+            dt.Columns.Add("ID", typeof(String));
+            dt.Columns.Add("Nombre", typeof(String));
             return dt;
         }
 
