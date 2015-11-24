@@ -290,15 +290,17 @@ namespace SistemaPruebas.Intefaces
         {
             bool[] proyecto = new bool[10];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
-            proyecto[1] = CheckBoxFechAsignacionProyecto.Checked;
-            proyecto[2] = CheckBoxOficinaProyecto.Checked;
-            proyecto[3] = CheckBoxResponsableProyecto.Checked;
-            proyecto[4] = CheckBoxObjetivoProyecto.Checked;
-            proyecto[5] = CheckBoxEstadoProyecto.Checked;
-            proyecto[6] = CheckBoxMiembrosProyecto.Checked;
-            proyecto[7] = CheckBoxExitos.Checked;
-            proyecto[8] = CheckBoxTipoNoConf.Checked;
-            proyecto[9] = CheckBoxCantNoConf.Checked;
+            proyecto[1]= CheckBoxNombModulo.Checked;
+            proyecto[2]= CheckBoxNombReq.Checked;
+            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
+            proyecto[4] = CheckBoxOficinaProyecto.Checked;
+            proyecto[5] = CheckBoxResponsableProyecto.Checked;
+            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
+            proyecto[7] = CheckBoxEstadoProyecto.Checked;
+            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
+            proyecto[9] = CheckBoxExitos.Checked;
+            proyecto[10] = CheckBoxTipoNoConf.Checked;
+            proyecto[11] = CheckBoxCantNoConf.Checked;
 
             return proyecto;
         }
