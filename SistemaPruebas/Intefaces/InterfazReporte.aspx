@@ -141,12 +141,13 @@
                     </div>
                 </div>
             </div>
-        </div>        
-            <div class="col-md-4">
+            <div class="row">
                 <asp:GridView ID="preGrid" runat="server" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
                 </asp:GridView>
-            </div>       
+            </div>
+        </div>        
+                   
     </div>
     <div style="margin-top: 5px" class="well">
         <div class="form-group">
@@ -163,7 +164,7 @@
     </div>
     <div class="row">
          <div class="col-md-10">
-              <div class="form-horizontal">
+              <div class="Row">
                    <asp:GridView ID="GridGR" runat="server" OnSelectedIndexChanged="Reporte_SelectedIndexChanged" OnPageIndexChanging="Reporte_OnPageIndexChanging"
                         OnRowDataBound="Reporte_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
                         AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">

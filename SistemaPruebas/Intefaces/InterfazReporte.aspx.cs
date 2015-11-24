@@ -114,7 +114,7 @@ namespace SistemaPruebas.Intefaces
                 llenarGridReq("", "");
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
-                llenarGridGR(dt);
+                //llenarGridGR(dt);
                 llenarDDArchivo();
             }
         }
@@ -360,8 +360,8 @@ namespace SistemaPruebas.Intefaces
             //revisar como se llaman los metodos de la controladora.
 
             bool[] proyecto = datosProy();
-            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxResponsableProyecto, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf }; 
-                   
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+
 
 
             //string nombreReporte = "Reporte Doroteos.pdf";
@@ -384,7 +384,7 @@ namespace SistemaPruebas.Intefaces
             //  0, -1,
             //    // left offset
             //  0,
-            //    // ** bottom** yPos of the table
+            //    / bottom** yPos of the table
             //  page.Height - doc.TopMargin + head.TotalHeight + 20,
             //  writer.DirectContent
             //);
@@ -397,30 +397,69 @@ namespace SistemaPruebas.Intefaces
             ////logo.ScaleAbsoluteWidth(70);
             ////doc.Add(logo);
 
-            ///*Se agregan datos de proyecto, en caso de ser seleccionado*/
+            //Se agregan datos de proyecto, en caso de ser seleccionado*/
 
-         /*   if (proyectoActualGR != "")
+
+            if (proyectoActualGR != "")
             {
-
-                //PdfPTable retorno = controladoraGR.reporteProyecto(proyecto);
-                //doc.Add(controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR), retorno, proyecto));
-
                 DataTable dt = headerPreGrid(checks);
-                object[] proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
-                ProyectoPreGrid(proyectoDatos, dt, checks);
+                List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
+                if (GridMod.SelectedIndex != -1)//Un módulo
+                {
+                    proyectoDatos.Add(modActualGR);
+                    if (GridReq.SelectedIndex != -1)//Un solo requerimiento
+                    {
+                        proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqActualGR);
+                        ProyectoPreGrid(proyectoDatos, dt, checks);
+                    }
+
+                    else//Todos los requerimientos de un módulo
+                    {
+                        if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                        {
+                           
+                            foreach (GridViewRow id in GridReq.Rows)
+                            {
+                                List<Object> comodin = new List<object>(proyectoDatos);
+                                comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
+                                ProyectoPreGrid(comodin, dt, checks);
+                                //comodin.Clear();
+                            }
+                        }
+                        else
+                            ProyectoPreGrid(proyectoDatos, dt, checks);
+                    }
+                }
+
+                else//Todos los módulos de un proyecto
+                {
+                    foreach (GridViewRow dr in GridMod.Rows)                    
+                    {
+                        List<Object> comodin = new List<object>(proyectoDatos);
+                        comodin.Add(dr.Cells[0].Text);
+                        if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                        {
+                            foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                            {
+                                List<Object> comodinReq = new List<object>(comodin);
+                                comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
+                                ProyectoPreGrid(comodinReq, dt, checks);
+                            }
+                        }
+                        else
+                            ProyectoPreGrid(comodin, dt, checks);
+                    }
+                }
+
+               // DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
+                //llenarGridGR(dtr);
 
 
+                ///*Se cierra documento*/
+                //doc.Close();
 
-
-            }*/
-            DataTable dtr = controladoraGR.dtReporte(proyecto,proyectoActualGR, modActualGR,reqActualGR);
-            llenarGridGR(dtr);
-          
-
-            ///*Se cierra documento*/
-            //doc.Close();
-            
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
+            }
         }
 
 
@@ -642,19 +681,13 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
-        protected DataTable ProyectoPreGrid(object[] objeto, DataTable dt, CheckBox[] checks)
+        protected DataTable ProyectoPreGrid(List<Object> objeto, DataTable dt, CheckBox[] checks)
         {
+           
+            object[] datos = new object[dt.Columns.Count];
 
-            int count = 0;
-            foreach(CheckBox check in checks)
-            {
-                if (check.Checked)
-                    count++;
-            }
+           
 
-
-            
-            object[] datos = new object[count];
             DataRow row = dt.NewRow();
             int i = 0;
             int j = 0;
@@ -662,11 +695,29 @@ namespace SistemaPruebas.Intefaces
             {
                 if (check.Checked)
                 {
+                    if (check.ID != "CheckBoxOficinaProyecto")
+                    {
                     datos[i] = objeto[j].ToString();
                     row[i] = datos[i].ToString();
                     datos[i] = row[i];
                     i++;
+                    }
+                    else
+                    {
+                        datos[i] = objeto[j].ToString();
+                        row[i] = datos[i].ToString();
+                        datos[i] = row[i];
+                        datos[i+1] = objeto[j+1].ToString();
+                        row[i+1] = datos[i+1].ToString();
+                        datos[i+1] = row[i+1];
+                        datos[i+2] = objeto[j+2].ToString();
+                        row[i+2] = datos[i+2].ToString();
+                        datos[i+2] = row[i+2];                    
+                        i += 3;                       
+                    }
                 }
+                 if (check.ID == "CheckBoxOficinaProyecto")
+                     j+=2;
                 j++;
             }
 

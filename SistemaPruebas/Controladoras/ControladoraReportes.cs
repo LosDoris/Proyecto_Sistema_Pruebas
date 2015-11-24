@@ -98,62 +98,18 @@ namespace SistemaPruebas.Controladoras
             return controlReq.consultarReqUnico(nombre, idProyeto);
         }
 
-        //public PdfPTable reporteProyecto(bool[] campos)
-        //{
-        //    int i, j;
-        //    i = j = 0;
-        //    int count = 0;
-        //    for (int k = 0; k < campos.Length; k++)
-        //    {
-        //        if (campos[k])
-        //            count++;
-        //    }
-        //    if (campos[2])
-        //        count += 2;
-        //    PdfPTable retorno = new PdfPTable(count);
+       
 
-        //    //Se colocan encabezados
-        //    if (campos[0])
-        //        retorno.AddCell("Nombre del Sistema");
-        //    if (campos[1])
-        //        retorno.AddCell("Fecha de asignación");
-        //    if (campos[2])
-        //    {
-        //        retorno.AddCell("Oficina del representate");
-        //        retorno.AddCell("Teléfono del representante");
-        //        retorno.AddCell("Nombre del usuario representate");
-        //    }
-        //    if (campos[3])
-        //        retorno.AddCell("Nombre del lider del proyecto");
-        //    if (campos[4])
-        //        retorno.AddCell("Objetivo general");
-        //    if (campos[5])
-        //        retorno.AddCell("Estado");
-        //    if (campos[6])
-        //        retorno.AddCell("Miembros del equipo");
-
-        //    return retorno;
-        //}
-
-        public object[] reporteProyecto(EntidadProyecto entidad)
+        public List<object> reporteProyecto(EntidadProyecto entidad)
         {
 
             
 
-            object[] retorno = new object[9];
+            List<Object> retorno = new List<object>();
 
-            retorno[0] = entidad.Nombre_sistema;
-
-            retorno[2] = entidad.Fecha_asignacion;
-
-            retorno[4] = entidad.Oficina_representante;
-            retorno[5] = entidad.Telefono_representante;
-            retorno[6] = entidad.Nombre_representante;
-
-            retorno[7] = entidad.LiderProyecto;
-
-            retorno[1] = entidad.Objetivo_general;
-
+            retorno.Add( entidad.Nombre_sistema);
+            retorno.Add(entidad.Objetivo_general);
+            retorno.Add(entidad.Fecha_asignacion);           
             string estado = "";
             switch (Int32.Parse(entidad.Estado))
             {
@@ -184,18 +140,21 @@ namespace SistemaPruebas.Controladoras
                     }
                     break;
             }
-            retorno[3] = estado;
-
-            //retorno[8] = controlRH.consultarMiembros(entidad.Id_proyecto);
+            retorno.Add(estado);
+            retorno.Add(entidad.Oficina_representante);
+            retorno.Add(entidad.Telefono_representante);
+            retorno.Add(entidad.Nombre_representante);
+            retorno.Add(entidad.LiderProyecto);
+            //retorno.Add(controlRH.consultarMiembros(entidad.Id_proyecto));
       
             return retorno;
         }
 
      
 
-        public object[] medicionRequerimiento(string idReq)
+        public List<Object> medicionRequerimiento(List<Object> retorno, string idReq)
         {
-            object[] retorno = new object[6];
+           
 
             int exitosCant = 0;
             int sinEnvaluarCant = 0;
@@ -231,12 +190,12 @@ namespace SistemaPruebas.Controladoras
                 }
             }
 
-            retorno[0] = idReq;
-            retorno[1] = exitosCant;
-            retorno[2] = idCasosExitosos;
-            retorno[3] = noConformidad;
-            retorno[4] = sinEnvaluarCant;
-            retorno[5] = idCasosSinEvaluar;
+            retorno.Add(idReq);
+            retorno.Add(exitosCant);
+            retorno.Add(idCasosExitosos);
+            retorno.Add(noConformidad);
+            retorno.Add(sinEnvaluarCant);
+            retorno.Add(idCasosSinEvaluar);
 
             return retorno;
         }
