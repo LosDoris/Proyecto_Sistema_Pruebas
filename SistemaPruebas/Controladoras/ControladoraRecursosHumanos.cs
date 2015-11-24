@@ -287,6 +287,11 @@ namespace SistemaPruebas.Controladoras
         {
             return controladoraBDRecursosHumanos.solicitarNombreRecursosPorProyecto(id);
         }
+        public DataTable consultarMiembrosProyecto(String nombProy)
+        {
+            return controladoraBDRecursosHumanos.consultarMiembrosProyecto(nombProy);
+                //acceso.ejecutarConsultaTabla("Select nombre_completo from Recurso_Humano R join Proyecto P  on R.id_proyecto =P.id_proyecto where P.nombre_sistema = " + nombProy);
+        }
 
     }
 }

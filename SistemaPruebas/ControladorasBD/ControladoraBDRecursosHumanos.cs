@@ -430,5 +430,9 @@ namespace SistemaPruebas.Controladoras
         {           
             return acceso.Insertar("Update Recurso_Humano set id_proyecto = " + id_proyecto + "where cedula=" + cedula); 
         }
+        public DataTable consultarMiembrosProyecto(String nombProy)
+        {
+            return acceso.ejecutarConsultaTabla("Select nombre_completo from Recurso_Humano R join Proyecto P  on R.id_proyecto =P.id_proyecto where P.nombre_sistema = '" + nombProy +"';");
+        }
     }
 }

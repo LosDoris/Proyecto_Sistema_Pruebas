@@ -47,6 +47,18 @@ namespace SistemaPruebas.Controladoras
         {
             return controlProy.ConsultarProyectoIdNombre();
         }
+        public String consultarMiembrosProyecto(String nombProy)
+        {
+            controlRH.consultarMiembrosProyecto(nombProy);
+            String miembros="";
+            foreach (DataRow dr in dt.Rows)
+            {
+                miembros = miembros+ dr[0] + "\n";
+               // dtGrid.Rows.Add(datos);
+            }
+            return miembros;
+
+        }
         public EntidadProyecto consultarProyecto(string nombre)
         {
             return controlProy.ConsultarProyecto(controlProy.ConsultarIdProyectoPorNombre(nombre));
@@ -412,7 +424,8 @@ namespace SistemaPruebas.Controladoras
             
             if (campos[8])//miembros
             {
-                datos[i] = "-";// entidad.Nombre_sistema;
+                String miembros = consultarMiembrosProyecto(proy);
+                datos[i] = miembros;// entidad.Nombre_sistema;
                 i = i + 1;
             }
             
