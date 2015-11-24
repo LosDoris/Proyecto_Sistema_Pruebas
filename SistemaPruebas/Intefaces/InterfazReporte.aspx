@@ -155,7 +155,7 @@
             </div>
             <div class="col-md-4" style="padding-top: 25px">
                 <div class="progress progress-striped active">
-                    <div class="progress-bar" style="width: 65%">
+                    <div class="progress-bar" style="width: 65%" ID="barraProgreso" visible="false">
                     </div>
                 </div>
             </div>

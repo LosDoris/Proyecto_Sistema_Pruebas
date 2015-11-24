@@ -130,6 +130,7 @@ namespace SistemaPruebas.Intefaces
             CheckBoxNombModulo.Checked = true;
             CheckBoxNombreProyecto.Checked = true;
             llenarGridPP();
+            //barraProgreso.Visible = false;
 
             // llenarGridPP();
         }
