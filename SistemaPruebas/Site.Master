@@ -11,6 +11,8 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type = "text/javascript"> src = "http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" </script>
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -35,6 +37,21 @@ $(document).ready(function(){
 
 });
 </script>
+
+  <style>
+  #feedback { font-size: inherit; }
+
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; background: #20bcae; border-color: #20bcae}
+  #selectable li { margin: 0px; font-size: inherit; height: inherit; background: #20bcae; border-color: #20bcae}
+  </style>
+  <script>
+      $(function () {
+          $("#selectable").selectable();
+      });
+  </script>
+
 
 </head>
 <body>
@@ -74,8 +91,9 @@ $(document).ready(function(){
                     <a class="navbar-brand" runat="server" href="~/">Inicio</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li id ="A2" runat="server"><a runat="server" href="~/Intefaces/InterfazRecursoHumano">Recursos Humanos</a></li>
+                    <ul class="nav navbar-nav" id="selectable"
+>
+                        <li id ="A2" runat="server" class="ui-widget-content"><a runat="server" href="~/Intefaces/InterfazRecursoHumano" >Recursos Humanos</a></li>       
                         <li id ="A1" runat="server"><a  runat="server" href="~/Intefaces/InterfazProyecto">Proyecto</a></li>   
                         <li id ="Li1" runat="server"><a  runat="server" href="~/Intefaces/InterfazRequerimiento">Requerimiento</a></li>                                              
                         <li id ="A3" runat="server"><a  runat="server" href="~/Intefaces/InterfazDiseno">Diseño</a></li> 

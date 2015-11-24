@@ -43,6 +43,27 @@ video {
   vertical-align: baseline;
 }
 
+
+.botonInvisible {
+float:left;
+
+width: auto;
+text-align: center;
+padding: 0 10px;
+
+line-height: 1.5em;
+height: auto;
+  background-color: transparent;
+  color: #666666;
+}
+
+
+.botonInvisible-active, .botonInvisible:hover{
+  color: #ffffff;
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0);
+}
+
         .modalBackground {
             background-color: black;
             opacity: 0.5;
