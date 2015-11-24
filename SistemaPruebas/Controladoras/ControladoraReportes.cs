@@ -453,7 +453,7 @@ namespace SistemaPruebas.Controladoras
             {
                 datos[11] = "-";
             }
-            
+            dt.Rows.Add(datos);
 
             return dt;
         }
