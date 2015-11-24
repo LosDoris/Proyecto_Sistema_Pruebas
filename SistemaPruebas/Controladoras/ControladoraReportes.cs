@@ -352,7 +352,7 @@ namespace SistemaPruebas.Controladoras
             
             if (campos[4])
             {
-                datos[i] = entidad.Oficina_representante+ "\n"+ entidad.Nombre_representante;
+                datos[i] = entidad.Oficina_representante+ "\n"+ entidad.Nombre_representante + "\n" + entidad.Telefono_representante;
                 i = i + 1;
 
             }
