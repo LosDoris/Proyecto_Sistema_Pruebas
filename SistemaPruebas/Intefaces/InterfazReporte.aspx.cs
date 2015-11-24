@@ -360,7 +360,7 @@ namespace SistemaPruebas.Intefaces
             //revisar como se llaman los metodos de la controladora.
 
             bool[] proyecto = datosProy();
-            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
 
 
 
@@ -439,11 +439,18 @@ namespace SistemaPruebas.Intefaces
                         comodin.Add(dr.Cells[0].Text);
                         if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
                         {
-                            foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                            if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text) = null)
                             {
-                                List<Object> comodinReq = new List<object>(comodin);
-                                comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
-                                ProyectoPreGrid(comodinReq, dt, checks);
+ 
+                            }
+                            else
+                            {
+                                foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                {
+                                    List<Object> comodinReq = new List<object>(comodin);
+                                    comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
+                                    ProyectoPreGrid(comodinReq, dt, checks);
+                                }
                             }
                         }
                         else

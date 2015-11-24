@@ -145,7 +145,7 @@ namespace SistemaPruebas.Controladoras
             retorno.Add(entidad.Telefono_representante);
             retorno.Add(entidad.Nombre_representante);
             retorno.Add(entidad.LiderProyecto);
-            //retorno.Add(controlRH.consultarMiembros(entidad.Id_proyecto));
+            retorno.Add(controlRH.solicitarNombreRecursosPorProyecto(Int32.Parse(entidad.Id_proyecto)));
       
             return retorno;
         }
@@ -166,12 +166,12 @@ namespace SistemaPruebas.Controladoras
 
             foreach (string casito in casosPrueba)
             {
-                if (true)//Aún no se ha terminado, hay que realizar una consulta en ejecución.//Se supone caso exitoso
+                if (controlEjec.retornarEstado(casito) == "Satisfactorio")//Aún no se ha terminado, hay que realizar una consulta en ejecución.//Se supone caso exitoso
                 {
                     exitosCant++;
                     idCasosExitosos.Add(casito);
                 }
-                else if (true)//Se supone caso de no conformidad
+                else if (controlEjec.retornarEstado(casito) == "Fallido")//Se supone caso de no conformidad
                 {
                     string key = "";
                     if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
