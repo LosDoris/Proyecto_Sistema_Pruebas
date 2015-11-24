@@ -53,7 +53,7 @@ namespace SistemaPruebas.Controladoras
             String miembros="";
             foreach (DataRow dr in dt.Rows)
             {
-                miembros = miembros+ dr[0] + "\n";
+                miembros = miembros+ "\n "+dr[0] + ",\n ";
                // dtGrid.Rows.Add(datos);
             }
             return miembros;
