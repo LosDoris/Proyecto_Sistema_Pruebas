@@ -49,7 +49,7 @@ namespace SistemaPruebas.Controladoras
         }
         public String consultarMiembrosProyecto(String nombProy)
         {
-            controlRH.consultarMiembrosProyecto(nombProy);
+            DataTable dt=controlRH.consultarMiembrosProyecto(nombProy);
             String miembros="";
             foreach (DataRow dr in dt.Rows)
             {
