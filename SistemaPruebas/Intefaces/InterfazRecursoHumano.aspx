@@ -78,6 +78,7 @@
             $('#errorGen').fadeOut(5000);
         };
 </script>
+
     <div id="errorGen" style="display:none" >
     <asp:Label runat="server" ID="EtiqErrorGen"></asp:Label>
         </div>
