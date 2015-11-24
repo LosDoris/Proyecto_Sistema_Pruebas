@@ -13,8 +13,8 @@ namespace SistemaPruebas.Acceso
     {
 
 
-        String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
-        //String conexion = "Data Source=LENOVO-PC\\SQLEXPRESS; Initial Catalog=inge1g2; Integrated Security=SSPI";
+        //String conexion = "Data Source=eccibdisw; Initial Catalog=g2inge; Integrated Security=SSPI";
+        String conexion = "Data Source=LENOVO-PC\\SQLEXPRESS; Initial Catalog=inge1g2; Integrated Security=SSPI";
         //string conexion = "Data Source=(localdb)\\SQLOne; Initial Catalog=Sistema_Pruebas; Integrated Security=SSPI";
         //String conexion = "Data Source=RICARDO;Initial Catalog=PruebaInge;Integrated Security=True";
         
@@ -219,7 +219,7 @@ namespace SistemaPruebas.Acceso
                 catch (SqlException ex)
                 {
                     string mensajeError = ex.ToString();
-                    throw new Exception("Error al consultar. " + ex.Message);
+                    //throw new Exception("Error al consultar. " + ex.Message);
                 }
 
                 try

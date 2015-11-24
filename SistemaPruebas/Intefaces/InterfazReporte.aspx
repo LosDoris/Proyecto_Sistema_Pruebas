@@ -84,29 +84,41 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-horizontal">
-                        &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre de sistema."/>
+                        &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre sistema."/>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
+                <div class="col-md-4">
+                    &nbsp;<asp:CheckBox ID="CheckBoxNombModulo" runat="server" Text="Nombre módulo."/>
                 </div>
-                <div class="col-md-3">
-                    &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
-                </div>
-                <div class="col-md-2">
-                    &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Lider." />
+                <div class="col-md-4">
+                    &nbsp;<asp:CheckBox ID="CheckBoxNombReq" runat="server" Text="Nombre requerimiento."/>
                 </div>
             </div>
             <div class="col-md3">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                        <div class="form-horizontal">
+                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
+                    </div>
+                    <div class="col-md-4">
+                        &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Lider." />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md3">
+                <div class="row">
+                    <div class="col-md-4">
                         <div class="form-horizontal">
                             &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
                     </div>
                     <div class="col-md-4">
@@ -116,15 +128,15 @@
             </div>
             <div class="col-md3">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-horizontal">
                             &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Cantidad no conformidades." />
                     </div>
                 </div>
@@ -149,7 +161,25 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+         <div class="col-md-4">
+              <div class="form-horizontal">
+                   <asp:GridView ID="GridGR" runat="server" OnSelectedIndexChanged="Reporte_SelectedIndexChanged" OnPageIndexChanging="Reporte_OnPageIndexChanging"
+                        OnRowDataBound="Reporte_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
+                        AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
+                   </asp:GridView>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+        <asp:DropDownList ID="DDLTipoArchivo" runat="server"></asp:DropDownList>
+    </div>
+    <div class="col-md2">
+          <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonGE_Click" CausesValidation="false" />
+          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
+    </div>
+    </div>
 
     <%--</div>--%>
 </asp:Content>
