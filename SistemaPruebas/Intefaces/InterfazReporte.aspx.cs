@@ -247,12 +247,12 @@ namespace SistemaPruebas.Intefaces
 
             if (dt.Rows.Count > 0)
             {
-                foreach (DataRow dr in dt.Rows)
+               /* foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
                     // datos[1] = dr[2];
                     dt.Rows.Add(datos);
-                }
+                }*/
             }
             else
             {
@@ -286,9 +286,38 @@ namespace SistemaPruebas.Intefaces
             CheckBoxTipoNoConf.Enabled = false;
             CheckBoxNombReq.Enabled = false;
         }
+
+
         protected bool[] datosProy()
-        {
-            bool[] proyecto = new bool[10];
+        {/*
+                    &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre sistema."/>
+
+                    &nbsp;<asp:CheckBox ID="CheckBoxNombModulo" runat="server" Text="Nombre módulo."/>
+
+                    &nbsp;<asp:CheckBox ID="CheckBoxNombReq" runat="server" Text="Nombre requerimiento."/>
+
+                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Líder." />
+
+                            &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
+
+                            &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
+
+                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Cantidad no conformidades." />
+
+            
+            
+            */
+            bool[] proyecto = new bool[12];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
             proyecto[1]= CheckBoxNombModulo.Checked;
             proyecto[2]= CheckBoxNombReq.Checked;
@@ -310,7 +339,8 @@ namespace SistemaPruebas.Intefaces
             //revisar como se llaman los metodos de la controladora.
 
             bool[] proyecto = datosProy();
-            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxResponsableProyecto, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };        
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxResponsableProyecto, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf }; 
+                   
 
 
             //string nombreReporte = "Reporte Doroteos.pdf";
@@ -348,7 +378,7 @@ namespace SistemaPruebas.Intefaces
 
             ///*Se agregan datos de proyecto, en caso de ser seleccionado*/
 
-            if (proyectoActualGR != "")
+         /*   if (proyectoActualGR != "")
             {
 
                 //PdfPTable retorno = controladoraGR.reporteProyecto(proyecto);
@@ -361,8 +391,9 @@ namespace SistemaPruebas.Intefaces
 
 
 
-            }
-
+            }*/
+            DataTable dtr = controladoraGR.dtReporte(proyecto,proyectoActualGR, modActualGR,reqActualGR);
+            llenarGridGR(dtr);
           
 
             ///*Se cierra documento*/

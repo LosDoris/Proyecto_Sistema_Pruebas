@@ -226,5 +226,236 @@ namespace SistemaPruebas.Controladoras
 
             return retorno;
         }
+        /*
+            bool[] proyecto = new bool[12];
+            proyecto[0] = CheckBoxNombreProyecto.Checked;
+            proyecto[1]= CheckBoxNombModulo.Checked;
+            proyecto[2]= CheckBoxNombReq.Checked;
+            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
+            proyecto[4] = CheckBoxOficinaProyecto.Checked;
+            proyecto[5] = CheckBoxResponsableProyecto.Checked;
+            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
+            proyecto[7] = CheckBoxEstadoProyecto.Checked;
+            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
+            proyecto[9] = CheckBoxExitos.Checked;
+            proyecto[10] = CheckBoxTipoNoConf.Checked;
+            proyecto[11] = CheckBoxCantNoConf.Checked;
+        */
+        public DataTable crearDT(bool [] campos) {
+            DataTable dt = new DataTable();
+            if (campos[0])
+            {
+                dt.Columns.Add("Nombre del Proyecto.", typeof(String));
+            }
+            if (campos[1])
+            {
+                dt.Columns.Add("Nombre del Módulo.", typeof(String));
+            }
+            if (campos[2])
+            {
+                dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
+            }
+            if (campos[3])
+            {
+                dt.Columns.Add("Fecha de asignación.", typeof(String));
+            }
+            if (campos[4])
+            {
+                dt.Columns.Add("Oficina usuaria.", typeof(String));
+            }
+            if (campos[5])
+            {
+                dt.Columns.Add("Líder.", typeof(String));
+            }
+            if (campos[6])
+            {
+                dt.Columns.Add("Objetivo.", typeof(String));
+            }
+            if (campos[7])
+            {
+                dt.Columns.Add("Estado del Proyecto.", typeof(String));
+            }
+            if (campos[8])
+            {
+                dt.Columns.Add("Miembros del equipo.", typeof(String));
+            }
+            if (campos[9])
+            {
+                dt.Columns.Add("Cantidad de éxitos.", typeof(String));
+            }
+            if (campos[10])
+            {
+                dt.Columns.Add("Tipos de no conformidad.", typeof(String));
+            }
+            if (campos[11])
+            {
+                dt.Columns.Add("Cantidad de no conformidades.", typeof(String));
+            }
+            return dt;
+        }
+        public DataTable dtReporte(bool [] campos, String proy, String mod, String req)
+        {
+            EntidadProyecto entidad = consultarProyecto(proy);
+            Object [] datos= new Object[12];
+            /*
+            bool[] proyecto = new bool[12];
+            proyecto[0] = CheckBoxNombreProyecto.Checked;
+            proyecto[1]= CheckBoxNombModulo.Checked;
+            proyecto[2]= CheckBoxNombReq.Checked
+
+            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
+            proyecto[4] = CheckBoxOficinaProyecto.Checked;
+            proyecto[5] = CheckBoxResponsableProyecto.Checked;//lider
+
+            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
+            proyecto[7] = CheckBoxEstadoProyecto.Checked;
+            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
+
+            proyecto[9] = CheckBoxExitos.Checked;
+            proyecto[10] = CheckBoxTipoNoConf.Checked;
+            proyecto[11] = CheckBoxCantNoConf.Checked;
+        */
+            DataTable dt = crearDT(campos);
+            if (campos[0])
+            {
+                datos[0] = entidad.Nombre_sistema;
+            }
+            else
+            {
+                datos[0] = "-";
+            }
+            if (campos[1])
+            {
+                datos[1] = mod;
+            }
+            else
+            {
+                datos[1] = "-";
+            }
+            if (campos[2])
+            {
+                datos[2] = req;
+            }
+            else
+            {
+                datos[2] = "-";
+            }
+            if (campos[3])
+            {
+                datos[3] = entidad.Fecha_asignacion;
+            }
+            else
+            {
+                datos[3] = "-";
+            }
+            if (campos[4])
+            {
+                datos[4] = entidad.Oficina_representante+ "\n"+ entidad.Nombre_representante;
+
+            }
+            else
+            {
+                datos[4] = "-";
+            }
+            if (campos[5])
+            {
+                datos[5] = entidad.LiderProyecto;
+            }
+            else
+            {
+                datos[5] = "-";
+            }
+
+            
+            if (campos[6])
+            {
+                datos[6] = entidad.Objetivo_general;
+            }
+            else
+            {
+                datos[6] = "-";
+            }
+            if (campos[7])
+            {
+                string estado = "";
+                switch (Int32.Parse(entidad.Estado))
+                {
+
+                    case 1:
+                        {
+                            estado = "Pendiente";
+                        }
+                        break;
+                    case 2:
+                        {
+                            estado = "Asignado";
+                        }
+                        break;
+                    case 3:
+                        {
+                            estado = "En ejecución";
+                        }
+                        break;
+                    case 4:
+                        {
+                            estado = "Finalizado";
+                        }
+                        break;
+                    case 5:
+                        {
+                            estado = "Cerrado";
+                        }
+                        break;
+                }
+                datos[7] = estado;
+                 //= entidad.Nombre_sistema;
+            }
+            else
+            {
+                
+                datos[7] = "-";
+            }
+            /*proyecto[7] = CheckBoxEstadoProyecto.Checked;
+            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
+
+            proyecto[9] = CheckBoxExitos.Checked;
+            proyecto[10] = CheckBoxTipoNoConf.Checked;
+            proyecto[11] = CheckBoxCantNoConf.Checked;*/
+            if (campos[8])
+            {
+                datos[8] = entidad.Nombre_sistema;
+            }
+            else
+            {
+                datos[8] = "-";
+            }
+            if (campos[9])
+            {
+                datos[9] = entidad.Nombre_sistema;
+            }
+            else
+            {
+                datos[9] = "-";
+            }
+            if (campos[10])
+            {
+                datos[10] = entidad.Nombre_sistema;
+            }
+            else
+            {
+                datos[10] = "-";
+            }
+            if (campos[11])
+            {
+                datos[11] = entidad.Nombre_sistema;
+            }
+            else
+            {
+                datos[11] = "-";
+            }
+            
+
+            return dt;
+        }
     }
 }
