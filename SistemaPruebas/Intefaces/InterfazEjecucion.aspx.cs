@@ -73,6 +73,20 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+        public static List<int> filasEliminar
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["filasEliminar"];
+                return value == null ? null : (List<int >)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["filasEliminar"] = value;
+            }
+        }
+
         public static DataTable dtNoConformidades
         {
             get
@@ -669,24 +683,29 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        protected void limpiarNC()
+        {
+            dtNoConformidades = new DataTable();
+            dtNoConformidades.Columns.AddRange
+            (
+                new DataColumn[]
+                {
+                    new DataColumn("Id", typeof(int)),
+                    new DataColumn("Tipo", typeof(String)),
+                    new DataColumn("IdCaso",typeof(String)),
+                    new DataColumn("Descripcion", typeof(String)),
+                    new DataColumn("Justificacion", typeof(String)),
+                    new DataColumn("Resultado", typeof(String)),
+                    new DataColumn("Estado", typeof(String))
+                }
+            );
+
+        }
+
         protected void llenarGridNCConsulta(String fecha)
         {
             DataTable dtNC = controladoraEjecucionPrueba.consultarNoConformidades(fecha);
-            dtNoConformidades = new DataTable();
-            dtNoConformidades.Columns.AddRange(
-
-                  new DataColumn[]
-                  {
-
-                        new DataColumn("Id", typeof(int)),
-                        new DataColumn("Tipo", typeof(String)),
-                        new DataColumn("IdCaso",typeof(String)),
-                        new DataColumn("Descripcion", typeof(String)),
-                        new DataColumn("Justificacion", typeof(String)),
-                        new DataColumn("Resultado", typeof(String)),
-                        new DataColumn("Estado", typeof(String))
-                  }
-                );
+            limpiarNC();
 
             if (dtNC.Rows.Count > 0)
             {
@@ -697,29 +716,47 @@ namespace SistemaPruebas.Intefaces
                     dtNoConformidades.Rows.Add(drCurrentRow);
                     gridNoConformidades.DataSource = dtNoConformidades;
                     gridNoConformidades.DataBind();
-
-                    DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
-                    DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
-                    TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
-                    TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
-                    System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-                    DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
-
-                    ddl1.ClearSelection();
-                    ddl1.Items.FindByText(dtNC.Rows[i].ItemArray[0].ToString()).Selected = true;
-                    ddl2.ClearSelection();
-                    ddl2.Items.FindByText(dtNC.Rows[i].ItemArray[1].ToString()).Selected = true;
-                    txt1.Text = dtNC.Rows[i].ItemArray[2].ToString();
-                    txt2.Text = dtNC.Rows[i].ItemArray[3].ToString();
-                    byte[] imgbyte = (byte[])dtNC.Rows[i].ItemArray[4];
-                    String base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
-                    String B64 = base64String.Substring(36);
-                    imagenRes.ImageUrl = "data:image/png;base64," + B64;
-
+                   // ddl3.Items.FindByText(dtNC.Rows[i].ItemArray[5].ToString()).Selected = true;
                 }
+                leerNC(dtNC);
+                
             }
             // dtNoConformidades = dtNC;
 
+        }
+
+        protected void leerNC(DataTable dtNC)
+        {
+            for( int i = 0; i < gridNoConformidades.Rows.Count; i++ )
+            {
+                DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
+                DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
+                TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
+                TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
+                System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+
+                dtNoConformidades.Rows[i]["Tipo"] = ddl1.SelectedValue;
+                dtNoConformidades.Rows[i]["IdCaso"] = ddl2.SelectedValue;
+                dtNoConformidades.Rows[i]["Descripcion"] = txt1.Text;
+                dtNoConformidades.Rows[i]["Justificacion"] = txt2.Text;
+                dtNoConformidades.Rows[i]["Resultado"] = imagenRes.ImageUrl.ToString();
+                dtNoConformidades.Rows[i]["Estado"] = ddl3.SelectedValue;
+
+                ddl1.ClearSelection();
+                ddl1.Items.FindByText(dtNC.Rows[i].ItemArray[0].ToString()).Selected = true;
+                ddl2.ClearSelection();
+                ddl2.Items.FindByText(dtNC.Rows[i].ItemArray[1].ToString()).Selected = true;
+                txt1.Text = dtNC.Rows[i].ItemArray[2].ToString();
+                txt2.Text = dtNC.Rows[i].ItemArray[3].ToString();
+                byte[] imgbyte = (byte[])dtNC.Rows[i].ItemArray[4];
+                String base64String = Convert.ToBase64String(imgbyte, 0, imgbyte.Length);
+                String B64 = base64String.Substring(36);
+                imagenRes.ImageUrl = "data:image/png;base64," + B64;
+                ddl3.ClearSelection();
+                ddl3.Items.FindByText(dtNC.Rows[i].ItemArray[5].ToString()).Selected = true;
+                //ddl3.ClearSelection
+            }
         }
 
         protected void llenarGridEjecucion(string id_diseno)
@@ -843,6 +880,50 @@ namespace SistemaPruebas.Intefaces
         protected void BotonEPModificar_Click(object sender, EventArgs e)
         {
             modoEP = 2;
+        }
+
+        protected void checkEliminar_CheckedChanged(object sender, EventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            int index = gvRow.RowIndex;
+            CheckBox chckbx = (CheckBox)(sender as Control);
+            
+            if(filasEliminar == null)
+            {
+                filasEliminar = new List<int>();
+            }
+            if (chckbx.Checked)
+            {
+                filasEliminar.Add(index);
+            }
+            else
+            {
+                filasEliminar.Remove(index);
+            }
+            
+           
+        }
+
+        protected void EliminarFila_Click(object sender, EventArgs e)
+        {
+            foreach( int indice in filasEliminar)
+            {
+                dtNoConformidades.Rows[indice].Delete();
+                for (int i = 0; i < filasEliminar.Count; i++)
+                {
+                   if( filasEliminar[i] > indice)
+                    {
+                        filasEliminar[i]--;
+                    }
+                }
+                gridNoConformidades.DataSource = dtNoConformidades;
+                gridNoConformidades.DataBind();
+            }
+
+            if ( modoEP == 2) // en este caso como ya estaban insertadas en base, hay que eliminar las tuplas
+            {
+
+            }
         }
     }
 }

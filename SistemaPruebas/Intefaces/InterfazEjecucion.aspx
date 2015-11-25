@@ -88,7 +88,7 @@
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-                            <asp:CheckBox runat="server" ID="checkEliminar" ToolTip="Seleccione si quiere eliminar fila" />
+                            <asp:CheckBox runat="server" ID="checkEliminar" ToolTip="Seleccione si quiere eliminar fila" OnCheckedChanged="checkEliminar_CheckedChanged" AutoPostBack="true" />
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
                         </ItemTemplate>
                      </asp:TemplateField>
@@ -160,7 +160,7 @@
                         <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
                             Text="+" causesvalidation="false" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
                         <asp:Button runat="server" Text="-" style="margin-top: 50px;" 
-                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false"/>
+                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false" OnClick="EliminarFila_Click"/>
                     </div>
               </div>
            </div>

@@ -95,7 +95,7 @@ namespace SistemaPruebas.Controladoras
         public DataTable consultarBDNoConformidad(String fecha)
         {
             DataTable dt = null;
-            String consulta = "SELECT tipo, idCaso, descripcion, justificacion, imagen, id_noConformidad FROM noConformidad WHERE fecha = '" + fecha + "';";
+            String consulta = "SELECT tipo, idCaso, descripcion, justificacion, imagen, estado, id_noConformidad FROM noConformidad WHERE fecha = '" + fecha + "';";
             dt = acceso.ejecutarConsultaTabla(consulta);
             return dt;
         }
