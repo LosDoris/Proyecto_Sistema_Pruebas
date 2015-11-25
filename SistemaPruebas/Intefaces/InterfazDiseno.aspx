@@ -38,6 +38,13 @@
             $('#errorGen').fadeOut(5000);
         };
     </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("[id$=A3]").addClass("active");
+    });
+</script>
+
     <legend style="margin-top:45px"><h2>Módulo de Diseño</h2></legend>
 
     

@@ -42,6 +42,8 @@
         }
     </style>
 
+
+
     <legend style="margin-top:45px"><h2>Módulo de Casos de Prueba</h2></legend>
 
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqMensajeOperacion" >.</asp:Label>

@@ -73,6 +73,12 @@
     </div>
     </div>
 
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("[id$=A1]").addClass("active");
+    });
+</script>
+
 
 <hr style="margin:50px;">
 <div class="well">

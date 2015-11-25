@@ -40,6 +40,13 @@
             }, 2000);
         };
     </script>
+
+        <script type="text/javascript">
+    $(document).ready(function () {
+        $("[id$=A4]").addClass("active");
+    });
+</script>
+
     <div style="margin-top: 45px; margin-bottom: 0px" class="well">
         <div class="panel panel-primary">
             <div class="panel-heading">

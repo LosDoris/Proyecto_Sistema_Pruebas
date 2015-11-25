@@ -79,6 +79,12 @@
         };
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[id$=A2]").addClass("active");
+    });
+</script>
+
     <div id="errorGen" style="display:none" >
     <asp:Label runat="server" ID="EtiqErrorGen"></asp:Label>
         </div>
