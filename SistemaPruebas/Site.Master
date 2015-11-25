@@ -98,7 +98,7 @@ $(document).ready(function(){
                         <li>
 
                             <button id="LOGOUT" runat="server" class="btn btn-default"
-                                onserverclick="LogOut" causesvalidation="false">Salir</button>
+                                onserverclick="LogOut" causesvalidation="false" style="font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Salir</button>
                         </li>
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>

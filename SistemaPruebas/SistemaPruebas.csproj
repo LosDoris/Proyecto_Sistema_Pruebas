@@ -165,9 +165,14 @@
     <Content Include="Borrador\HtmlPage1.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Imagenes\calendar.png" />
+    <Content Include="Imagenes\cd-icon-location.svg" />
+    <Content Include="Imagenes\cd-icon-movie.svg" />
+    <Content Include="Imagenes\cd-icon-picture.svg" />
     <Content Include="Imagenes\ejemplo.jpg" />
     <Content Include="Intefaces\InterfazCasosDePrueba.aspx" />
     <Content Include="Intefaces\InterfazDiseno.aspx" />
@@ -176,6 +181,8 @@
     <Content Include="Intefaces\InterfazProyecto.aspx" />
     <Content Include="Intefaces\InterfazRecursoHumano.aspx" />
     <Content Include="Intefaces\InterfazRequerimiento.aspx" />
+    <Content Include="js\main.js" />
+    <Content Include="js\modernizr.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
