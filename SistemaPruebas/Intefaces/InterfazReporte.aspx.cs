@@ -439,9 +439,9 @@ namespace SistemaPruebas.Intefaces
                         comodin.Add(dr.Cells[0].Text);
                         if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
                         {
-                            if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text) = null)
+                            if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
                             {
- 
+                                
                             }
                             else
                             {
