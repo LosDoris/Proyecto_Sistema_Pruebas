@@ -12,6 +12,15 @@ namespace SistemaPruebas
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (Account.Login.loggeado == 1)
+            {
+                Timeline.Visible = true;
+            }
+            else
+            {
+                Timeline.Visible = false;
+            }
         }
+
     }
 }

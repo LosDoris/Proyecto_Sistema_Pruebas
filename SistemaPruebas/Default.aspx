@@ -14,12 +14,12 @@
 
 <hr style="margin:50px;">
 
-    <div class="jumbotron" style="margin-top:60px">
+    <div class="jumbotron" style="margin-top:60px; font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
         <h1>Bienvenido</h1>
         <p class="lead">Sistema de Pruebas. Página de inicio</p>
         
     </div>
-
+ <asp:Panel ID= "Timeline" runat="server">
 <section id="cd-timeline" class="cd-container">
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
@@ -27,10 +27,9 @@
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 1</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 14</span>
+				<h2>Gestión de Recursos Humanos</h2>
+				<p>Este módulo administra la información personal referente a los Miembros de Equipo y Administradores.</p>
+				<a href="Intefaces/InterfazRecursoHumano" class="cd-read-more">Ir a Recursos Humanos</a>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -40,64 +39,77 @@
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 2</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 18</span>
+				<h2>Gestión de un proyecto</h2>
+				<p>Este módulo permite la gestión de Proyectos a ser probados, entre sus funcionalidades fundamentales están: Ingresar, Modificar y Eliminar un Proyecto. </p>
+				<a href="Intefaces/InterfazProyecto" class="cd-read-more">Ir a Proyecto</a>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-location">
+				<img src="Imagenes/cd-icon-picture.svg" alt="Picture">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Módulo de Requerimientos</h2>
+				<p>Este módulo provee la capacidad de agregar diversos Requerimientos a un Proyecto específico, entre sus funcionalidades fundamentales están: Ingresar, Modificar y Eliminar un Requerimiento.</p>
+				<a href="Intefaces/InterfazRequerimiento" class="cd-read-more">Ir a Requerimientos</a>
+
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
-				<img src="Imagenes/cd-icon-picture.svg" alt="Picture">
+				<img src="Imagenes/cd-icon-location.svg" alt="Location">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 3</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 24</span>
+				<h2>Módulo de Diseño</h2>
+				<p>Este módulo facilita la administración de Diseños para un proyecto específico con ciertos Requerimientos seleccionados por el Usuario, entre sus funcionalidades fundamentales están: Ingresar, Modificar y Eliminar un Diseño.</p>
+				<a href="Intefaces/InterfazDiseno" class="cd-read-more">Ir a Diseño</a>
+
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			
+                <div class="cd-timeline-img cd-movie">
+				<img src="Imagenes/cd-icon-location.svg" alt="Location">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Módulo de Casos de Prueba</h2>
+				<p>Este módulo brinda acceso a la administración de Casos de Prueba para un Diseño en particular, entre sus funcionalidades fundamentales están: Ingresar, Modificar y Eliminar un Caso de Prueba</p>
+
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-location">
-				<img src="Imagenes/cd-icon-location.svg" alt="Location">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Title of section 4</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Feb 14</span>
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block">
-			<div class="cd-timeline-img cd-location">
-				<img src="Imagenes/cd-icon-location.svg" alt="Location">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Title of section 5</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Feb 18</span>
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block">
-			<div class="cd-timeline-img cd-movie">
 				<img src="Imagenes/cd-icon-movie.svg" alt="Movie">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
-				<h2>Final Section</h2>
-				<p>This is the content of the last section</p>
-				<span class="cd-date">Feb 26</span>
+				<h2>Módulo de Ejecución de Pruebas</h2>
+				<p>Este módulo provee la capacidad de administrar las Ejecuciones de Prueba para un diseño específico y sus Casos de Prueba Asociados, entre sus funcionalidades fundamentales están: Ingresar, Modificar y Eliminar una Ejecución.</p>
+                <a href="Intefaces/InterfazEjecucion" class="cd-read-more">Ir a Ejecución</a>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-picture">
+				<img src="Imagenes/cd-icon-movie.svg" alt="Movie">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Generar Reportes</h2>
+				<p>Este módulo facilita la obtención de Reportes acerca de un Proyecto determinado, incluyendo diversos elementos y atributos del mismo, los cuales son seleccionados por el usuario de acuerdo a sus necesidades.</p>
+                <a href="Intefaces/InterfazReporte" class="cd-read-more">Ir a Reportes</a>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
 	</section> <!-- cd-timeline -->
+     </asp:Panel>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/main.js"></script> <!-- Resource jQuery -->
 
