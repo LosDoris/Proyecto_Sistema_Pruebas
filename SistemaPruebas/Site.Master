@@ -91,14 +91,14 @@ $(document).ready(function(){
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                        <li id="nombre" runat="server"><a id="Nombres" name="pop" runat="server"  href="#" data-trigger="focus" data-toggle="popover" data-placement="bottom" title="Información" data-content="" onclick="yourControlToBeClicked_Click"></a></li>  
+                        <li id="nombre" runat="server"><a id="Nombres" name="pop" runat="server"  href="#0" data-trigger="focus" data-toggle="popover" data-placement="bottom" title="Información" data-content="" onclick="yourControlToBeClicked_Click"></a></li>  
 
                         
                                                    
                         <li>
 
                             <button id="LOGOUT" runat="server" class="btn btn-default"
-                                onserverclick="LogOut" causesvalidation="false">Salir</button>
+                                onserverclick="LogOut" causesvalidation="false" style="font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;">Salir</button>
                         </li>
                         <li id ="LOGIN" runat="server"><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                     </ul>
