@@ -2,6 +2,12 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("[id$=A5]").addClass("active");
+        });
+</script>
+
 <legend style="margin-top:45px"><h2><%: Title %>Módulo Ejecución de Prueba</h2></legend>
 
 <asp:Label runat="server" CssClass="text-danger" ID="EtiqMensajeOperacion" Visible ="false" ></asp:Label>

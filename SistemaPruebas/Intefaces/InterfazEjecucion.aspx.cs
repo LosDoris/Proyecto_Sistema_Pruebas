@@ -906,9 +906,10 @@ namespace SistemaPruebas.Intefaces
 
         protected void EliminarFila_Click(object sender, EventArgs e)
         {
-            foreach( int indice in filasEliminar)
+            foreach( int indice in temp)
             {
                 dtNoConformidades.Rows[indice].Delete();
+                filasEliminar.Remove(indice);
                 for (int i = 0; i < filasEliminar.Count; i++)
                 {
                    if( filasEliminar[i] > indice)
