@@ -102,9 +102,34 @@ namespace SistemaPruebas.Controladoras
 
         public String retornarEstado(String casoPrueba)
         {
-            DataTable retorno = acceso.ejecutarConsultaTabla("if ((select estado from noConformidad where fecha= (select max(fecha) from noConformidad))='Fallido')" +
-                                                        "select estado from noConformidad where fecha= (select max(fecha) from noConformidad) else select tipo from noConformidad");
-            return retorno.Rows[0].ItemArray[0].ToString();
+            DataTable retorno = acceso.ejecutarConsultaTabla("if ((select count(g.estado) from (select estado from noConformidad where fecha= (select max(fecha) from noConformidad)"+
+                                                            " and idCaso='"+ casoPrueba+"') g) =1)(select estado from noConformidad where fecha= (select max(fecha) from noConformidad) "+
+                                                            " and idCaso='"+casoPrueba+"') else select tipo, estado from noConformidad where fecha= (select max(fecha) from noConformidad)"+
+                                                            " and idCaso='"+casoPrueba+"'");
+            string hilera = "";
+            if (retorno.Rows.Count == 1)
+            {
+                return retorno.Rows[0].ItemArray[0].ToString();
+            }
+            else if (retorno.Rows.Count > 1)
+            {
+                for (int i = 0; i < retorno.Rows.Count; i++)
+                {
+                    hilera += retorno.Rows[i].ItemArray[0].ToString()+",";
+                    if (i == retorno.Rows.Count - 1)
+                    {
+                        hilera += retorno.Rows[i].ItemArray[1].ToString();
+                    }
+                    else
+                    {
+                        hilera += retorno.Rows[i].ItemArray[1].ToString() + ";";
+                    }
+                    
+                }
+                //controladoraEjecucionPrueba.retornarEstado("Curso-RQ1-1");
+                //controladoraEjecucionPrueba.retornarEstado("REQ-1520");
+            }
+            return hilera;
         }
 
     }
