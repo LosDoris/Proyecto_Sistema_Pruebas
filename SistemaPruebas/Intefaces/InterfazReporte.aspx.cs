@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using OfficeOpenXml;
+using OfficeOpenXml.Drawing;
+using OfficeOpenXml.Style;
 
 namespace SistemaPruebas.Intefaces
 {
@@ -135,6 +138,95 @@ namespace SistemaPruebas.Intefaces
 
             // llenarGridPP();
         }
+
+        private void ExportToWord()
+        {
+            DataTable dt = GridGR.DataSource as DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                string filename = "DownloadReport.docx";
+                System.IO.StringWriter tw = new System.IO.StringWriter();
+                System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+                DataGrid dgGrid = new DataGrid();
+                dgGrid.DataSource = dt;
+                dgGrid.DataBind();
+
+                //Get the HTML for the control.
+                dgGrid.RenderControl(hw);
+                //Write the HTML back to the browser.
+                Response.ContentType = "application/msword";
+                //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                //Response.AddHeader("content-disposition", "attachment;  filename=Reporte.docx");
+                this.EnableViewState = false;
+                Response.Write(tw.ToString());
+                Response.End();
+            }
+        }
+
+
+
+
+        // Genera el reporte en Excel.
+        protected void generarReporteExcel(object sender, EventArgs e)
+        {
+
+            ExcelPackage package = new ExcelPackage();
+            package.Workbook.Worksheets.Add("Proyectos");
+            ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
+            worksheet.Cells.Style.Font.Size = 12;
+            worksheet.Cells.Style.Font.Name = "Calibri";
+
+            // Poner un titulo.
+            worksheet.Cells[1, 1].Value = "Reporte de proyectos " + DateTime.Today.ToString("(dd/MM/yyyy).");
+            worksheet.Row(1).Style.Font.Bold = true;
+            worksheet.Row(1).Style.Font.Size = 14;
+
+            // Rellenar los datos.
+            int c = 1;
+            int r = 2;
+            // Poner el header.
+            foreach (TableCell cell in GridGR.HeaderRow.Cells)
+            {
+                worksheet.Cells[r, c++].Value = cell.Text;
+            }
+            // Dar formato al header.
+            worksheet.Row(r).Style.Font.Bold = true;
+            worksheet.Row(r).Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            worksheet.Row(r).Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black);
+            r++;
+            // Poner el resto de los datos.
+            foreach (TableRow row in GridGR.Rows)
+            {
+                c = 1;
+                foreach (TableCell cell in row.Cells)
+                {
+                    worksheet.Cells[r, c++].Value = HttpUtility.HtmlDecode(cell.Text);
+                }
+                // Coloreamos las filas.
+                if (0 == r % 2)
+                {
+                    worksheet.Row(r).Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Row(r).Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                }
+                r++;
+            }
+
+            // Ajustamos el ancho de las columnas.
+            worksheet.DefaultColWidth = 10;
+            worksheet.Cells.AutoFitColumns();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.BinaryWrite(package.GetAsByteArray());
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment;  filename=Reporte.xlsx");
+            Response.Flush();
+            Response.End();
+        }
+
+
+
         protected void llenarGridPP()
         {
 
