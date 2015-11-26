@@ -173,7 +173,17 @@
     <Content Include="Imagenes\cd-icon-location.svg" />
     <Content Include="Imagenes\cd-icon-movie.svg" />
     <Content Include="Imagenes\cd-icon-picture.svg" />
+    <Content Include="Imagenes\document326.svg" />
+    <Content Include="Imagenes\downarrow92.svg" />
+    <Content Include="Imagenes\download168.svg" />
+    <Content Include="Imagenes\ebook7.svg" />
     <Content Include="Imagenes\ejemplo.jpg" />
+    <Content Include="Imagenes\eye106.svg" />
+    <Content Include="Imagenes\inspiration.svg" />
+    <Content Include="Imagenes\Persona-icon.png" />
+    <Content Include="Imagenes\team2.svg" />
+    <Content Include="Imagenes\tool749.svg" />
+    <Content Include="Imagenes\verification5.svg" />
     <Content Include="Intefaces\InterfazCasosDePrueba.aspx" />
     <Content Include="Intefaces\InterfazDiseno.aspx" />
     <Content Include="Intefaces\InterfazEjecucion.aspx" />
