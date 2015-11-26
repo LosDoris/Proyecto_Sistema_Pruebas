@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazEjecucion.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazEjecucion" EnableEventValidation="false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InterfazEjecucion.aspx.cs" Inherits="SistemaPruebas.Intefaces.InterfazEjecucion" EnableEventValidation="false" MaintainScrollPositionOnPostback="true" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
@@ -94,8 +94,9 @@
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-                            <asp:CheckBox runat="server" ID="checkEliminar" ToolTip="Seleccione si quiere eliminar fila" OnCheckedChanged="checkEliminar_CheckedChanged" AutoPostBack="true" />
+                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" ></asp:Button>
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
+                            <asp:Label runat="server" ID="lblIDNC" Text="0" Visible="false"></asp:Label>
                         </ItemTemplate>
                      </asp:TemplateField>
                      <asp:TemplateField HeaderText="Tipo de no conformidad">
@@ -166,7 +167,7 @@
                         <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
                             Text="+" causesvalidation="false" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
                         <asp:Button runat="server" Text="-" style="margin-top: 50px;" 
-                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false" OnClick="EliminarFila_Click"/>
+                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false"/>
                     </div>
               </div>
            </div>

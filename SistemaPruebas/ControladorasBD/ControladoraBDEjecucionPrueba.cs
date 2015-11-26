@@ -11,7 +11,7 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
-        public string insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
+        public String insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
         {
             String consulta =
                 "INSERT INTO Ejecucion(fecha, responsable, incidencias, id_disenno, fechaUltimo) values('" +
@@ -41,12 +41,12 @@ namespace SistemaPruebas.Controladoras
        
         public int insertarBDnoConformidad(EntidadNoConformidad noConformidad)
         {
-            String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo + "','"
-                                                                                                                             + noConformidad.Caso + "','"
-                                                                                                                             + noConformidad.Descripcion +"','"
-                                                                                                                             + noConformidad.Justificacion + "', @img, '"
-                                                                                                                             + noConformidad.Estado + "','"
-                                                                                                                             + noConformidad.Id_ejecucion+ "');";
+            String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo               + "','"
+                                                                                                                                     + noConformidad.Caso               + "','"
+                                                                                                                                     + noConformidad.Descripcion        + "','"
+                                                                                                                                     + noConformidad.Justificacion      + "', @img, '"
+                                                                                                                                     + noConformidad.Estado             + "','"
+                                                                                                                                     + noConformidad.Id_ejecucion       + "');";
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.CommandText = consulta;
@@ -56,7 +56,7 @@ namespace SistemaPruebas.Controladoras
             return 0;
         }
 
-        public int modificarEjecucionPrueba(EntidadEjecucionPrueba ejecucion)
+        public String modificarEjecucionPrueba(EntidadEjecucionPrueba ejecucion)
         {
             String consulta = "UPDATE ejecucion SET fecha = '" + ejecucion.Fecha +
                                 "', responsable = '" + ejecucion.Responsable +
@@ -65,8 +65,45 @@ namespace SistemaPruebas.Controladoras
                                 "', fechaUltimo=getDate()" +
                                 " WHERE fecha = '" + ejecucion.FechaConsulta + "';";
             int ret = acceso.Insertar(consulta);
-            return ret;
 
+            String fecha_regresa = "";
+            if (ret != 2627)
+            {
+                DataTable dt = acceso.ejecutarConsultaTabla("select fecha from Ejecucion where fechaUltimo = (select max(e.fechaUltimo) from Ejecucion e)");
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        fecha_regresa = dr[0].ToString();
+                    }
+                }
+            }
+            else
+            {
+                fecha_regresa = "-";
+            }
+            return fecha_regresa;
+        }
+
+        public int modificarBDNoConformidad(EntidadNoConformidad noConformidad)
+        {
+            String consulta = "UPDATE noConformidad SET" + "tipo          = '" + noConformidad.Tipo + "', " +
+                                                           "idCaso        = '" + noConformidad.Caso + "', " +
+                                                           "descripcion   = '" + noConformidad.Descripcion + "', " +
+                                                           "jutificacion  = '" + noConformidad.Justificacion + "', " +
+                                                           "imagen = @img ," +
+                                                           "estado        = '" + noConformidad.Estado + "', " +
+                                                           "fechaUltimo = getDate()" +
+                                                           "WHERE fecha   = '" + noConformidad.Id_ejecucion + "'  " +
+                                                           "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
+
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = consulta;
+                cmd.Parameters.Add("@img", SqlDbType.Image, noConformidad.Imagen.Length).Value = noConformidad.Imagen;
+                acceso.Insertar_Proced_Almacenado(cmd);
+            }
+            return 0;
         }
 
         public int eliminarEjecucionPrueba(String id)
@@ -107,6 +144,7 @@ namespace SistemaPruebas.Controladoras
                                                             " and idCaso='"+casoPrueba+"') else select tipo, estado from noConformidad where fecha= (select max(fecha) from noConformidad)"+
                                                             " and idCaso='"+casoPrueba+"'");
             string hilera = "";
+
             if (retorno.Rows.Count == 1)
             {
                 return retorno.Rows[0].ItemArray[0].ToString();

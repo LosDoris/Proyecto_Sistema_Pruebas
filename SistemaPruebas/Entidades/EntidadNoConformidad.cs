@@ -41,6 +41,8 @@ namespace SistemaPruebas.Controladoras
             }
             this.estado = datos[5].ToString();
             this.id_ejecucion = datos[6].ToString();
+            this.id_noConformidad = Convert.ToInt32(datos[7]);
+
         }
 
         /*

@@ -306,6 +306,19 @@ namespace SistemaPruebas.Intefaces
             //deshabilitarGrid(ref gridEjecucion);
         }
 
+        protected void estadoModificar()
+        {
+            marcarBoton(ref BotonEPModificar);
+            limpiarCampos();
+            habilitarCampos();
+            BotonEPAceptar.Enabled = true;
+            BotonEPCancelar.Enabled = true;
+            BotonEPInsertar.Enabled = false;
+            BotonEPModificar.Enabled = true;
+            BotonEPEliminar.Enabled = false;
+            //deshabilitarGrid(ref gridEjecucion);
+        }
+
         protected void limpiarCampos()
         {
 
@@ -611,7 +624,7 @@ namespace SistemaPruebas.Intefaces
         {
             foreach (GridViewRow row in gridNoConformidades.Rows)
             {
-                Object[] noConformidad = new Object[7];
+                Object[] noConformidad = new Object[8];
 
                 DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
                 DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
@@ -621,7 +634,7 @@ namespace SistemaPruebas.Intefaces
                 Image imagenRes = row.FindControl("imagenSubida") as System.Web.UI.WebControls.
                                                                      Image;
                 DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
-                Label lbl = row.FindControl("tamBytes") as Label;
+                Label lbl = row.FindControl("lblIDNC") as Label;
 
                 String base64 = imagenRes.ImageUrl.Replace("data:image/png;base64,", "");
                 byte[] imgbyte = Convert.FromBase64String(base64);
@@ -632,6 +645,7 @@ namespace SistemaPruebas.Intefaces
                 noConformidad[3] = txt2.Text;
                 noConformidad[4] = imgbyte;
                 noConformidad[5] = ddl3.SelectedItem.Text;
+                noConformidad[7] = lbl.Text;
                 listaNC.Add(noConformidad);
             }
         }
@@ -735,6 +749,7 @@ namespace SistemaPruebas.Intefaces
                 TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
                 System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
                 DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+                Label lbl = gridNoConformidades.Rows[i].FindControl("lblIDNC") as Label;
 
                 dtNoConformidades.Rows[i]["Tipo"] = ddl1.SelectedValue;
                 dtNoConformidades.Rows[i]["IdCaso"] = ddl2.SelectedValue;
@@ -755,7 +770,8 @@ namespace SistemaPruebas.Intefaces
                 imagenRes.ImageUrl = "data:image/png;base64," + B64;
                 ddl3.ClearSelection();
                 ddl3.Items.FindByText(dtNC.Rows[i].ItemArray[5].ToString()).Selected = true;
-                //ddl3.ClearSelection
+                lbl.Text = dtNC.Rows[i].ItemArray[6].ToString();
+                
             }
         }
 
@@ -812,119 +828,105 @@ namespace SistemaPruebas.Intefaces
 
             int operacion = -1;
 
+            String res = "";
             if (modoEP == 1)
             {
                 datosNuevos[4] = "";
-                String res = controladoraEjecucionPrueba.insertarEjecucion(datosNuevos, listaNC);
-                if (res != "-") operacion = 1;
-
+                 res = controladoraEjecucionPrueba.insertarEjecucion(datosNuevos, listaNC);
+               
             }
             else if (modoEP == 2)
             {
-
+                datosNuevos[4] = idMod;
+                res = controladoraEjecucionPrueba.modificarEjecucion(datosNuevos, listaNC);
             }
+            if (res != "-") operacion = 1;
 
-
-            //    datosNuevos[4] = 0;
-            //    controladoraEjecucionPrueba.insertarEjecucion(datosNuevos);
-
-
-            //else if (modo == 2)
-            //{
-            //    datosNuevos[6] = idMod;
-            //    operacion = controladoraCasosPrueba.modificarCasosPrueba(datosNuevos);
-            //}
-            //if (operacion == 1)
-            //{
-            //    switch (modo)
-            //    {
-            //        case 1:
-            //            {
-            //                EtiqMensajeOperacion.Text = "El caso de prueba ha sido insertado con éxito";
-            //                desmarcarBoton(ref BotonCPInsertar);
-            //                break;
-            //            }
-            //        case 2:
-            //            {
-            //                EtiqMensajeOperacion.Text = "El caso de prueba ha sido modificado con éxito";
-            //                desmarcarBoton(ref BotonCPModificar);
-            //                break;
-            //            }
-            //    }
-            //    EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            //    llenarGrid();
-            //    estadoPostOperacion();
-            //}
-            //else
-            //{
-            //    switch (operacion)
-            //    {
-            //        case 2627:
-            //            {
-            //                EtiqMensajeOperacion.Text = "Insertó un id de caso de prueba ya existente, debe modificarlo.";
-            //                TextBoxID.BorderColor = System.Drawing.Color.Red;
-            //                break;
-            //            }
-            //        default:
-            //            {
-            //                EtiqMensajeOperacion.Text = "Ocurrió un problema en la operación.";
-            //                break;
-            //            }
-            //    }
-            //    EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
-            //}
-            //EtiqMensajeOperacion.Visible = true;
+            if (operacion == 1)
+            {
+                switch (modoEP)
+                {
+                    case 1:
+                        {
+                            EtiqMensajeOperacion.Text = "La ejecución de prueba ha sido insertada con éxito";
+                            desmarcarBoton(ref BotonEPInsertar);
+                            break;
+                        }
+                    case 2:
+                        {
+                            EtiqMensajeOperacion.Text = "La ejecución de prueba ha sido modificada con éxito";
+                            desmarcarBoton(ref BotonEPModificar);
+                            break;
+                        }
+                }
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
+               // estadoPostOperacion();
+            }
+            else
+            {
+                switch (operacion)
+                {
+                    case 2627:
+                        {
+                            EtiqMensajeOperacion.Text = "Ya se hizo una ejecución asociada al diseño elegido en esta fecha.";
+                            //TextBoxID.BorderColor = System.Drawing.Color.Red;
+                            break;
+                        }
+                    default:
+                        {
+                            EtiqMensajeOperacion.Text = "Ocurrió un problema en la operación.";
+                            break;
+                        }
+                }
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
+            }
+            EtiqMensajeOperacion.Visible = true;
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
         protected void BotonEPModificar_Click(object sender, EventArgs e)
         {
             modoEP = 2;
+            idMod = ControlFecha.Text;
+            estadoModificar();
+
         }
 
-        protected void checkEliminar_CheckedChanged(object sender, EventArgs e)
+       
+        protected void btnEliminarFila_Click(object sender, EventArgs e)
         {
             GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
             int index = gvRow.RowIndex;
-            CheckBox chckbx = (CheckBox)(sender as Control);
-            
-            if(filasEliminar == null)
-            {
-                filasEliminar = new List<int>();
-            }
-            if (chckbx.Checked)
-            {
-                filasEliminar.Add(index);
-            }
-            else
-            {
-                filasEliminar.Remove(index);
-            }
-            
-           
-        }
 
-        protected void EliminarFila_Click(object sender, EventArgs e)
-        {
-            foreach( int indice in temp)
+            dtNoConformidades.Rows[index].Delete();
+            for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
             {
-                dtNoConformidades.Rows[indice].Delete();
-                filasEliminar.Remove(indice);
-                for (int i = 0; i < filasEliminar.Count; i++)
+                DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
+                DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
+                TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
+                TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
+                System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+                int pos = i;
+                if( pos != index )
                 {
-                   if( filasEliminar[i] > indice)
+                    if(pos > index)
                     {
-                        filasEliminar[i]--;
+                        pos--;
                     }
+                        dtNoConformidades.Rows[pos]["Tipo"] = ddl1.SelectedValue;
+                        dtNoConformidades.Rows[pos]["IdCaso"] = ddl2.SelectedValue;
+                        dtNoConformidades.Rows[pos]["Descripcion"] = txt1.Text;
+                        dtNoConformidades.Rows[pos]["Justificacion"] = txt2.Text;
+                        dtNoConformidades.Rows[pos]["Resultado"] = imagenRes.ImageUrl.ToString();
+                        dtNoConformidades.Rows[pos]["Estado"] = ddl3.SelectedValue;
                 }
-                gridNoConformidades.DataSource = dtNoConformidades;
-                gridNoConformidades.DataBind();
+               
             }
-
-            if ( modoEP == 2) // en este caso como ya estaban insertadas en base, hay que eliminar las tuplas
-            {
-
-            }
+            gridNoConformidades.DataSource = dtNoConformidades;
+            gridNoConformidades.DataBind();
+            conservarEstado();
         }
     }
 }

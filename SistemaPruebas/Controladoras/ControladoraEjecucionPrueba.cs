@@ -15,7 +15,7 @@ namespace SistemaPruebas.Controladoras
         ControladoraRecursosHumanos controladoraRecursosHumanos = new ControladoraRecursosHumanos();
 
 
-        public string insertarEjecucion(Object[] datosEjecucion, List<Object[]> datosNoConformidades)
+        public String insertarEjecucion(Object[] datosEjecucion, List<Object[]> datosNoConformidades)
         {
             EntidadEjecucionPrueba ejecucionPrueba = new EntidadEjecucionPrueba(datosEjecucion);
             string ret = controladoraBDEjecucionPrueba.insertarBDEjecucion(ejecucionPrueba);
@@ -59,11 +59,23 @@ namespace SistemaPruebas.Controladoras
             return controladoraRecursosHumanos.solicitarNombreRecursoPorProyecto(idProyecto);
         }
 
-        public int modificarEjecucion(Object[] datos)
+        public String modificarEjecucion(Object[] datos, List<Object[]> datosNoConformidades)
         {
             EntidadEjecucionPrueba objEjecucion = new EntidadEjecucionPrueba(datos);
-            int ret = controladoraBDEjecucionPrueba.modificarEjecucionPrueba(objEjecucion);
+            String ret = controladoraBDEjecucionPrueba.modificarEjecucionPrueba(objEjecucion);
+            modificarNoConformidades(datosNoConformidades, ret);
             return ret;
+        }
+
+        public int modificarNoConformidades(List<Object[]> datosNoConformidades, String idEjecucion)
+        {
+            foreach (Object[] dato in datosNoConformidades)
+            {
+                dato[6] = idEjecucion;
+                EntidadNoConformidad noConformidad = new EntidadNoConformidad(dato);
+                controladoraBDEjecucionPrueba.modificarBDNoConformidad(noConformidad);
+            }
+            return 0;
         }
 
         public int eliminarCasosPrueba(String id)
