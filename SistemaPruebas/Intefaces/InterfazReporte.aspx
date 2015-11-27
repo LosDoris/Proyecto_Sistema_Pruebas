@@ -46,7 +46,7 @@
         $("[id$=A4]").addClass("active");
     });
 </script>
-
+    <asp:Label ID="EtiqErrorGR" runat="server" Text=" "></asp:Label>
     <div style="margin-top: 45px; margin-bottom: 0px" class="well">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -184,7 +184,7 @@
         <asp:DropDownList ID="DDLTipoArchivo" runat="server"></asp:DropDownList>
     </div>
     <div class="col-md2">
-          <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonGE_Click" CausesValidation="false" />
+          <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
           <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
     </div>
     </div>

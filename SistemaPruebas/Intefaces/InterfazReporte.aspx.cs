@@ -7,9 +7,14 @@ using System.Web.UI.WebControls;
 using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.IO;
+//using System.IO.StringWriter;
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
+
+using System.Configuration;
+
 
 namespace SistemaPruebas.Intefaces
 {
@@ -138,7 +143,24 @@ namespace SistemaPruebas.Intefaces
 
             // llenarGridPP();
         }
+        /*
+        dgExport.DataSource = ds;
+dgExport.DataBind();
+System.Web.HttpContext.Current.Response.Clear();
+System.Web.HttpContext.Current.Response.Buffer = true;
+System.Web.HttpContext.Current.Response.Charset = "";
+System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=report.aspx" );
 
+            dgExport.DataMember = dsResults.Tables[0].TableName;
+dgExport.DataBind();
+System.Web.HttpContext.Current.Response.Clear();
+System.Web.HttpContext.Current.Response.Buffer = true;
+//add line below
+System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.UTF8 ;
+//
+System.Web.HttpContext.Current.Response.Charset = "";
+System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=report.xls");
+        */
         private void ExportToWord()
         {
             DataTable dt = GridGR.DataSource as DataTable;
@@ -151,13 +173,10 @@ namespace SistemaPruebas.Intefaces
                 dgGrid.DataSource = dt;
                 dgGrid.DataBind();
 
-                //Get the HTML for the control.
                 dgGrid.RenderControl(hw);
-                //Write the HTML back to the browser.
                 Response.ContentType = "application/msword";
-                //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
-                //Response.AddHeader("content-disposition", "attachment;  filename=Reporte.docx");
+
                 this.EnableViewState = false;
                 Response.Write(tw.ToString());
                 Response.End();
@@ -302,7 +321,8 @@ namespace SistemaPruebas.Intefaces
             {
                 this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Tipo de Archivo", Convert.ToString( 0)));
                 this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Excel", Convert.ToString(1)));
-                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("PDF", Convert.ToString(2)));
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Word", Convert.ToString(2)));
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("PDF", Convert.ToString(3)));
             }
             catch (Exception e)
             {
@@ -490,10 +510,11 @@ namespace SistemaPruebas.Intefaces
             ////doc.Add(logo);
 
             //Se agregan datos de proyecto, en caso de ser seleccionado*/
-
+            /*
 
             if (proyectoActualGR != "")
             {
+                modoGR = Convert.ToString(1);
                 DataTable dt = headerPreGrid(checks);
                 List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
                 if (GridMod.SelectedIndex != -1)//Un módulo
@@ -549,16 +570,18 @@ namespace SistemaPruebas.Intefaces
                             ProyectoPreGrid(comodin, dt, checks);
                     }
                 }
+                
+                
 
-               // DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
-                //llenarGridGR(dtr);
 
+            ///*Se cierra documento
+            //doc.Close();
 
-                ///*Se cierra documento*/
-                //doc.Close();
-
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
-            }
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
+        }*/
+            DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
+            llenarGridGR(dtr);
+            modoGR = Convert.ToString(1);
         }
 
 
@@ -827,6 +850,65 @@ namespace SistemaPruebas.Intefaces
             return dt;
 
         }
+
+        protected void BotonDescGR_Click(object sender, EventArgs e)
+        {
+            if (modoGR == Convert.ToString(1))
+            {
+                if (DDLTipoArchivo.SelectedItem.Text == "Tipo de Archivo")
+                {
+
+                }
+                else if (DDLTipoArchivo.SelectedItem.Text == "Excel")
+                {
+                    generarReporteExcel(sender, e);
+
+                }
+                else if (DDLTipoArchivo.SelectedItem.Text == "Word")
+                {
+                    //ExportGridToword();
+                    ExportToWord();
+
+                }
+                else if (DDLTipoArchivo.SelectedItem.Text == "PDF")
+                {
+
+
+                }
+            }
+            else
+            {
+                EtiqErrorGR.Text = "*Antes de descargar el reporte, debe hacer la vista previa. ";
+                EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorGR.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+            }
+        }
     }
 
 }
+
+
+
+
+/*
+private void ExportGridToword()  
+{  
+Response.Clear();  
+Response.Buffer = true;  
+Response.ClearContent();  
+Response.ClearHeaders();  
+Response.Charset = "";  
+string FileName = "Vithal" + DateTime.Now +".doc";  
+StringWriter strwritter = new StringWriter();  
+HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);        
+Response.Cache.SetCacheability(HttpCacheability.NoCache);  
+Response.ContentType ="application/msword";  
+Response.AddHeader("Content-Disposition","attachment;filename=" + FileName);  
+GridGR.GridLines = GridLines.Both;  
+GridGR.HeaderStyle.Font.Bold = true;  
+GridGR.RenderControl(htmltextwrtter);  
+Response.Write(strwritter.ToString());  
+Response.End();      
+
+}  */

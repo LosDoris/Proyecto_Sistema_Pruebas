@@ -111,34 +111,37 @@ namespace SistemaPruebas.Controladoras
             retorno.Add(entidad.Objetivo_general);
             retorno.Add(entidad.Fecha_asignacion);
             string estado = "";
-            switch (Int32.Parse(entidad.Estado))
+            if (entidad.Estado != "")
             {
+                switch (Int32.Parse(entidad.Estado))
+                {
 
-                case 1:
-                    {
-                        estado = "Pendiente";
-                    }
-                    break;
-                case 2:
-                    {
-                        estado = "Asignado";
-                    }
-                    break;
-                case 3:
-                    {
-                        estado = "En ejecución";
-                    }
-                    break;
-                case 4:
-                    {
-                        estado = "Finalizado";
-                    }
-                    break;
-                case 5:
-                    {
-                        estado = "Cerrado";
-                    }
-                    break;
+                    case 1:
+                        {
+                            estado = "Pendiente";
+                        }
+                        break;
+                    case 2:
+                        {
+                            estado = "Asignado";
+                        }
+                        break;
+                    case 3:
+                        {
+                            estado = "En ejecución";
+                        }
+                        break;
+                    case 4:
+                        {
+                            estado = "Finalizado";
+                        }
+                        break;
+                    case 5:
+                        {
+                            estado = "Cerrado";
+                        }
+                        break;
+                }
             }
             retorno.Add(estado);
             retorno.Add(entidad.Oficina_representante);
@@ -254,21 +257,7 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
-        /*
-            bool[] proyecto = new bool[12];
-            proyecto[0] = CheckBoxNombreProyecto.Checked;
-            proyecto[1]= CheckBoxNombModulo.Checked;
-            proyecto[2]= CheckBoxNombReq.Checked;
-            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
-            proyecto[4] = CheckBoxOficinaProyecto.Checked;
-            proyecto[5] = CheckBoxResponsableProyecto.Checked;
-            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
-            proyecto[7] = CheckBoxEstadoProyecto.Checked;
-            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
-            proyecto[9] = CheckBoxExitos.Checked;
-            proyecto[10] = CheckBoxTipoNoConf.Checked;
-            proyecto[11] = CheckBoxCantNoConf.Checked;
-        */
+
         public DataTable crearDT(bool[] campos)
         {
             DataTable dt = new DataTable();
@@ -334,24 +323,7 @@ namespace SistemaPruebas.Controladoras
                 }
             }
             Object[] datos = new Object[k];
-            /*
-            bool[] proyecto = new bool[12];
-            proyecto[0] = CheckBoxNombreProyecto.Checked;
-            proyecto[1]= CheckBoxNombModulo.Checked;
-            proyecto[2]= CheckBoxNombReq.Checked
 
-            proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
-            proyecto[4] = CheckBoxOficinaProyecto.Checked;
-            proyecto[5] = CheckBoxResponsableProyecto.Checked;//lider
-
-            proyecto[6] = CheckBoxObjetivoProyecto.Checked;
-            proyecto[7] = CheckBoxEstadoProyecto.Checked;
-            proyecto[8] = CheckBoxMiembrosProyecto.Checked;
-
-            proyecto[9] = CheckBoxExitos.Checked;
-            proyecto[10] = CheckBoxTipoNoConf.Checked;
-            proyecto[11] = CheckBoxCantNoConf.Checked;
-        */
             int i = 0;
             DataTable dt = crearDT(campos);
             if (campos[0])
