@@ -557,7 +557,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             ////doc.Add(logo);
 
             //Se agregan datos de proyecto, en caso de ser seleccionado*/
-            /*
+            
 
             if (proyectoActualGR != "")
             {
@@ -625,11 +625,11 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             //doc.Close();
 
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
-        }*/
-            DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
-            dtGR = dtr;
-            llenarGridGR(dtr);
-            modoGR = Convert.ToString(1);
+        }
+            //DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
+            //dtGR = dtr;
+            //llenarGridGR(dtr);
+            //modoGR = Convert.ToString(1);
         }
 
 
