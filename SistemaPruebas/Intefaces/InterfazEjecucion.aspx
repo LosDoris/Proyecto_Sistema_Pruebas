@@ -132,7 +132,7 @@
                                 <asp:ListItem Text="Implementación diferente a documentación"></asp:ListItem>
                                 <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvTipo" Enabled="false"
+                            <asp:RequiredFieldValidator ID="rfvTipo" ValidationGroup="grupo" 
                                 runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlTipo" InitialValue="1" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -140,7 +140,7 @@
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblIdCaso" Visible="false" Text='<%# Eval("IdCaso") %>'></asp:Label>
                             <asp:DropDownList ID="ddlIdCaso" runat="server" ClientIDMode="Static" CssClass="form-control"> </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvCasoPrueba" Enabled="false"
+                            <asp:RequiredFieldValidator ID="rfvCasoPrueba" ValidationGroup="grupo" 
                                 runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlIdCaso" InitialValue="Seleccionar" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -169,7 +169,7 @@
                         <div id="errorNombreSistema1" style="display:none">
                                 <asp:Label runat="server" ID="errorNombreSistLbl" text="Solo letras." ForeColor="Salmon"></asp:Label>
                         </div>
-                        <asp:RequiredFieldValidator ID="rfvDescripcion" Enabled="false"
+                        <asp:RequiredFieldValidator ID="rfvDescripcion" ValidationGroup="grupo" 
                             runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtDescripcion" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -225,7 +225,7 @@
                                 <asp:ListItem Text="Pendiente" Value="4"></asp:ListItem>
                                 <asp:ListItem Text="Cancelado" Value="5"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvEstado" Enabled="false"
+                            <asp:RequiredFieldValidator ID="rfvEstado" ValidationGroup="grupo" 
                                 runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlEstado" InitialValue="1" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -233,8 +233,8 @@
                </asp:GridView>
                <div class="form-group">
                     <div class="col-md-offset-8 col-md-12">
-                        <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
-                            Text="+" causesvalidation="true" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
+                        <asp:Button  runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
+                            Text="+" causesvalidation="true" CssClass="btn btn-default"  ID="AgregarFIla" ValidationGroup="grupo" OnClick="AgregarFIla_Click"/>
                     </div>
               </div>
            </div>
