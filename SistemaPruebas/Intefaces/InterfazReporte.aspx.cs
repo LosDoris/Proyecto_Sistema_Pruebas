@@ -7,13 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
-//using System.IO.StringWriter;
+//using System.IO;
+
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
 
-using System.Configuration;
+//using System.Configuration;
 
 
 namespace SistemaPruebas.Intefaces
@@ -21,6 +21,7 @@ namespace SistemaPruebas.Intefaces
     public partial class InterfazReporte : System.Web.UI.Page
     {
         Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
+        DataTable dtGR = new DataTable();
         public static string modoGR
         {
             get
@@ -161,25 +162,61 @@ System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.U
 System.Web.HttpContext.Current.Response.Charset = "";
 System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=report.xls");
         */
-        private void ExportToWord()
+        /*      private void ExportToWord()
+              {
+                  DataTable dt = GridGR.DataSource as DataTable;
+                  if (dt.Rows.Count > 0)
+                  {
+                      string filename = "DownloadReport.docx";
+                      System.IO.StringWriter tw = new System.IO.StringWriter();
+                      System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+                      DataGrid dgGrid = new DataGrid();
+                      dgGrid.DataSource = dt;
+                      dgGrid.DataBind();
+
+                      dgGrid.RenderControl(hw);
+                      Response.ContentType = "application/msword";
+                      Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+
+                      this.EnableViewState = false;
+                      Response.Write(tw.ToString());
+                      Response.End();
+                  }
+              }*/
+
+        private void ExportToWord(DataTable dtGR)
         {
-            DataTable dt = GridGR.DataSource as DataTable;
-            if (dt.Rows.Count > 0)
+            //System.Data.DataTable dt = GridGR.DataSource as System.Data.DataTable;
+            DataTable dt = dtGR;
+            if (dt != null)
             {
-                string filename = "DownloadReport.docx";
-                System.IO.StringWriter tw = new System.IO.StringWriter();
-                System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
-                DataGrid dgGrid = new DataGrid();
-                dgGrid.DataSource = dt;
-                dgGrid.DataBind();
+                if (dt.Rows.Count > 0)
+                {
+                    string filename = "DownloadReport.docx";
+                    System.IO.StringWriter tw = new System.IO.StringWriter();
+                    System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+                    DataGrid dgGrid = new DataGrid();
+                    dgGrid.DataSource = dt;
+                    dgGrid.DataBind();
 
-                dgGrid.RenderControl(hw);
-                Response.ContentType = "application/msword";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
-
-                this.EnableViewState = false;
-                Response.Write(tw.ToString());
-                Response.End();
+                    //Get the HTML for the control.
+                    dgGrid.RenderControl(hw);
+                    //Write the HTML back to the browser.
+                    Response.ContentType = "application/msword";
+                    //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                    //Response.AddHeader("content-disposition", "attachment;  filename=Reporte.docx");
+                    this.EnableViewState = false;
+                    Response.Write(tw.ToString());
+                    Response.End();
+                }
+            }
+            else
+            {
+                EtiqErrorGR.Text = "*Si era null. ";
+                EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                EtiqErrorGR.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
         }
 
@@ -422,34 +459,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
 
         protected bool[] datosProy()
-        {/*
-                    &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre sistema."/>
-
-                    &nbsp;<asp:CheckBox ID="CheckBoxNombModulo" runat="server" Text="Nombre módulo."/>
-
-                    &nbsp;<asp:CheckBox ID="CheckBoxNombReq" runat="server" Text="Nombre requerimiento."/>
-
-                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Líder." />
-
-                            &nbsp;<asp:CheckBox ID="CheckBoxObjetivoProyecto" runat="server" Text="Objetivo general." />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxEstadoProyecto" runat="server" Text="Estado" />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
-
-                            &nbsp;<asp:CheckBox ID="CheckBoxExitos" runat="server" Text="Cantidad éxitos." />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
-
-                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Cantidad no conformidades." />
-
-            
-            
-            */
+        {
             bool[] proyecto = new bool[12];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
             proyecto[1]= CheckBoxNombModulo.Checked;
@@ -580,6 +590,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
         }*/
             DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
+            dtGR = dtr;
             llenarGridGR(dtr);
             modoGR = Convert.ToString(1);
         }
@@ -861,13 +872,26 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Excel")
                 {
-                    generarReporteExcel(sender, e);
+
+                        generarReporteExcel(sender, e);
+                    
 
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
-                    //ExportGridToword();
-                    ExportToWord();
+                    //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
+                    if (dtGR != null)
+                    {
+                        ExportToWord(dtGR);
+                    }
+                    else
+                    {
+                        EtiqErrorGR.Text = "*Es null !! ";
+                        EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                        EtiqErrorGR.Visible = true;
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                    }
+
 
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "PDF")
