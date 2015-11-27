@@ -103,22 +103,22 @@
                     <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
                 </div>
 		   
-               <div class ="col-md-3">
+               <div class ="col-md-4">
 			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"  Text="Proyecto seleccionado: "></asp:Label>
                 </div>
-                <div class ="col-sm-9">
+                <div class ="col-sm-8">
 						<asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
                 </div>
 						
-               <div class ="col-md-3">
+               <div class ="col-md-4">
 			<asp:Label ID="Label2" Font-Bold="true" runat="server" CssClass="control-label"  Text="Módulo seleccionado: "></asp:Label>
                 </div>
-                <div class ="col-sm-9">
+                <div class ="col-sm-8">
 					<asp:Label ID="modSeleccionado" runat="server" Text=""></asp:Label>
                 </div>						
 						
 				 <div class ="col-md-4">
-			<asp:Label ID="Label3" Font-Bold="true" runat="server" CssClass="control-label"  Text="Requerimiento(s) seleccionado(s): "></asp:Label>
+			<asp:Label ID="Label3" Font-Bold="true" runat="server" CssClass="control-label"  Text="Requerimiento seleccionado: "></asp:Label>
                 </div>
                 <div class ="col-sm-8">
 					<asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>

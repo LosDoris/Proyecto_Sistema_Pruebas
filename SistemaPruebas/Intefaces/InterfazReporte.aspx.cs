@@ -611,10 +611,11 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridPP, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
+
             }
 
         }
@@ -642,7 +643,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     modActualGR = "";
                     llenarGridMod(ced);
                     llenarGridReq("", "");
-                    proyectoSeleccionado.Text = " El proyecto seleccionado es:  " + ced;
+                    proyectoSeleccionado.Text = ced;
                 }
             }
         }
@@ -656,10 +657,13 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridMod, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
+
+
+
             }
         }
 
@@ -688,7 +692,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     modActualGR = ced.ToString();
                     reqActualGR = "";
                     llenarGridReq(proyectoActualGR, modActualGR);
-                    modSeleccionado.Text = " El módulo seleccionado es:  " + ced;
+                    modSeleccionado.Text =  ced;
                 }
             }
         }
@@ -706,10 +710,11 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridReq, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
+
             }
         }
 
@@ -735,10 +740,11 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#2e8e9e';;this.style.color='white'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridGR, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
+
             }
         }
 
@@ -777,7 +783,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 if (reqActualGR != ced.ToString())
                 {
                     reqActualGR = ced.ToString();
-                    reqSeleccionado.Text = "El requerimiento seleccionado es:  " + ced;
+                    reqSeleccionado.Text = ced;
                 }
             }
         }
