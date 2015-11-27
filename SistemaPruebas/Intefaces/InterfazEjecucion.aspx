@@ -69,23 +69,43 @@
                <div class ="col-md-2">
                     <asp:Label ID="FechaEP" runat="server" CssClass = "col-md-6 control-label" >Fecha:</asp:Label> 
                 </div>
-                   <asp:ImageButton ID="imgPopup" ImageUrl="~/Imagenes/calendar.png" runat="server" />
+                   <asp:ImageButton ID="imgPopup" ImageUrl="~/Imagenes/calendar.png" runat="server" CausesValidation="false"/>
                 <div class ="col-md-2">
                    <asp:TextBox runat="server" ID="ControlFecha" CssClass="form-control"></asp:TextBox>
+                   <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                       runat="server" ErrorMessage="Campo requerido" ControlToValidate="ControlFecha" ForeColor="Salmon"></asp:RequiredFieldValidator>
                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="ControlFecha" />
                 </div>            
            </div>
 
            <div class ="form-group">
                 <div class="col-md-2">
-                    <asp:Label ID="Incidencias" runat="server" CssClass="col-md-2 control-label" Text ="Incidencias:"></asp:Label>  
+                    <asp:Label ID="Incidencias" runat="server" CssClass="col-md-2 control-label" Text ="Incidencias:"></asp:Label> 
                 </div>  
                 <div class ="col-md-9">
-                    <asp:TextBox runat="server" ID="TextBoxIncidencias" CssClass="form-control" MaxLength="300" TextMode="multiline" Style="height: 90px"/>
-                    <div id="errorTextBoxIncidencias" style="display: none; width: 500px;">
-                        <asp:Label runat="server" ID="Label3" Text="Sólo se permite el ingreso de letras y espacios" ForeColor="Salmon" Visible ="false"></asp:Label>
+                    <asp:TextBox runat="server" ID="TextBoxIncidencias" CssClass="form-control" MaxLength="300" TextMode="multiline" onkeypress="checkInput1(event)" Style="height: 90px"/>
+                    <script type="text/javascript">
+                        function checkInput1(e) {
+                            var ok = /[A-Za-z0-9.,:; ]/.test(String.fromCharCode(e.charCode));
+                            if (e.keyCode == 8) {
+                                //alert();
+                            }
+                            else if (!ok) {
+                                if ($('#errorNombreSistema').css('display') == 'none') {
+                                    $('#errorNombreSistema').fadeIn();
+                                    $('#errorNombreSistema').fadeOut(6000);
+                                }
+                                if (window.event)//IE
+                                    e.returnValue = false;
+                                else//Firefox
+                                    e.preventDefault();
+                            }
+                        }
+                    </script>
+                    <div id="errorNombreSistema" style="display:none">
+                            <asp:Label runat="server" ID="errorNombreSistLbl0" text="Sólo se permite el ingreso de letras, espacios y números." ForeColor="Salmon"></asp:Label>
+                    </div>   
                     </div>
-                </div>
            </div>
            <div class ="row">
                <asp:GridView runat ="server" ID ="gridNoConformidades" OnRowDataBound ="gridNoConformidades_RowDataBound"  AutoGenerateColumns="false"
@@ -94,7 +114,7 @@
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" ></asp:Button>
+                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" CausesValidation="false" ></asp:Button>
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
                             <asp:Label runat="server" ID="lblIDNC" Text="0" Visible="false"></asp:Label>
                         </ItemTemplate>
@@ -112,24 +132,72 @@
                                 <asp:ListItem Text="Implementación diferente a documentación"></asp:ListItem>
                                 <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvTipo" Enabled="false"
+                                runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlTipo" InitialValue="1" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Id Caso de Prueba">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblIdCaso" Visible="false" Text='<%# Eval("IdCaso") %>'></asp:Label>
                             <asp:DropDownList ID="ddlIdCaso" runat="server" ClientIDMode="Static" CssClass="form-control"> </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvCasoPrueba" Enabled="false"
+                                runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlIdCaso" InitialValue="Seleccionar" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
                      <asp:TemplateField HeaderText="Descripción">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblDescripcion" Visible="false"></asp:Label>
-                            <asp:TextBox ID="txtDescripcion" runat="server" Text='<%# Eval("Descripcion") %>' CssClass="form-control" TextMode="multiline"    ></asp:TextBox>
+                            <asp:TextBox ID="txtDescripcion" runat="server" Text='<%# Eval("Descripcion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput2(event)"  ></asp:TextBox>
+                            <script type="text/javascript">
+                                function checkInput2(e) {
+                                    var ok = /[A-Za-z0-9.,:; ]/.test(String.fromCharCode(e.charCode));
+                                    if (e.keyCode == 8) {
+                                        //alert();
+                                    }
+                                    else if (!ok) {
+                                        if ($('#errorNombreSistema1').css('display') == 'none') {
+                                            $('#errorNombreSistema1').fadeIn();
+                                            $('#errorNombreSistema1').fadeOut(6000);
+                                        }
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }
+                                }
+                        </script>
+                        <div id="errorNombreSistema1" style="display:none">
+                                <asp:Label runat="server" ID="errorNombreSistLbl" text="Solo letras." ForeColor="Salmon"></asp:Label>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvDescripcion" Enabled="false"
+                            runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtDescripcion" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
                      <asp:TemplateField HeaderText="Justificación">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblJustificacion" Visible="false"></asp:Label>
-                            <asp:TextBox ID="txtJustificacion" runat="server" Text='<%# Eval("Justificacion") %>' CssClass="form-control" TextMode="multiline"></asp:TextBox>
+                            <asp:TextBox ID="txtJustificacion" runat="server"  Text='<%# Eval("Justificacion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput3(event)"></asp:TextBox>
+                            <script type="text/javascript">
+                                function checkInput3(e) {
+                                    var ok = /[A-Za-z0-9.,:; ]/.test(String.fromCharCode(e.charCode));
+                                    if (e.keyCode == 8) {
+                                        //alert();
+                                    }
+                                    else if (!ok) {
+                                        if ($('#errorNombreSistema2').css('display') == 'none') {
+                                            $('#errorNombreSistema2').fadeIn();
+                                            $('#errorNombreSistema2').fadeOut(6000);
+                                        }
+                                        if (window.event)//IE
+                                            e.returnValue = false;
+                                        else//Firefox
+                                            e.preventDefault();
+                                    }
+                                }
+                            </script>
+                            <div id="errorNombreSistema2" style="display:none">
+                                <asp:Label runat="server" ID="errorNombreSistLbl2" text="Solo letras." ForeColor="Salmon"></asp:Label>
+                        </div> 
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Resultado">
@@ -157,6 +225,8 @@
                                 <asp:ListItem Text="Pendiente" Value="4"></asp:ListItem>
                                 <asp:ListItem Text="Cancelado" Value="5"></asp:ListItem>
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvEstado" Enabled="false"
+                                runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlEstado" InitialValue="1" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
                     </asp:TemplateField>
                    </Columns>
@@ -164,7 +234,7 @@
                <div class="form-group">
                     <div class="col-md-offset-8 col-md-12">
                         <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
-                            Text="+" causesvalidation="false" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
+                            Text="+" causesvalidation="true" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
                     </div>
               </div>
            </div>
@@ -178,7 +248,7 @@
                     margin-left="auto" AutoGenerateColumns ="true" 		
                     CssClass ="GridView" HorizontalAlign="Center"   		
                     HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
-                    AutoPostBack ="true" AllowPaging="true" PageSize="5"
+                    AutoPostBack ="true" AllowPaging="true" PageSize="3"
                     OnRowDataBound= "OnGridEjecucionRowDataBound"
                     OnPageIndexChanging="OnGridEjecucionPageIndexChanging"	
                     OnSelectedIndexChanged= "GridEjecucion_SelectedIndexChanged"
@@ -223,7 +293,7 @@
     <asp:label runat ="server" ID="textModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea eliminar este caso de prueba?</asp:label>
     <br/> <br/>
     <div aria-pressed="true">
-        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" CausesValidation="false"/>
+        <asp:button runat="server" ID="aceptarModal" Text="Eliminar"  CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;align-self:center;margin-left:16px;margin-right:11px;margin-bottom:20px" OnClick="eliminarAceptarModal" CausesValidation="false"/>
         <asp:button runat="server" ID="cancelarModal" Text="Cancelar"  CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px" CausesValidation="false"/>           
     </div>
 </asp:Panel>

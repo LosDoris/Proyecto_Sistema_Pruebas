@@ -27,9 +27,14 @@ namespace SistemaPruebas.Controladoras
         {
             foreach (Object[] dato in datosNoConformidades)
             {
-                dato[6] = idEjecucion;
-                EntidadNoConformidad noConformidad = new EntidadNoConformidad(dato);
-                controladoraBDEjecucionPrueba.insertarBDnoConformidad(noConformidad);
+                if (dato[0] != "Seleccionar" && dato[1] != "Seleccionar" && dato[2]!="" && dato[3]!=""
+                    && dato[5] != "Seleccionar" && dato[6] != null && dato[7] != "0")
+                {
+                    dato[6] = idEjecucion;
+                    EntidadNoConformidad noConformidad = new EntidadNoConformidad(dato);
+                    controladoraBDEjecucionPrueba.insertarBDnoConformidad(noConformidad);
+                }
+                
             }
             return 0;
         }
@@ -78,7 +83,7 @@ namespace SistemaPruebas.Controladoras
             return 0;
         }
 
-        public int eliminarCasosPrueba(String id)
+        public int eliminarEjecucionPrueba(String id)
         {
             int ret = controladoraBDEjecucionPrueba.eliminarEjecucionPrueba(id);
             return ret;

@@ -125,7 +125,7 @@ namespace SistemaPruebas.Intefaces
             listaNC = new List<Object[]>();
         }
 
-        //inicializaciones
+        //inicializaciones y estados
         /*
          * Requiere: N/A
          * Modifica: Establece el valor por defecto de la variable "modo" a 0.
@@ -141,6 +141,25 @@ namespace SistemaPruebas.Intefaces
             DatosEjecucion.Enabled = false;
             llenarDDProyectoAdmin();
             inicializarModo();
+        }
+
+        /*
+         * Requiere: N/A
+         * Modifica: Establece el estado de la pantalla inmediatamente después de efectuar una operación de inserción, modificación o eliminación.
+         * Retorna: N/A
+         */
+        protected void estadoPostOperacion()
+        {
+            modoEP = 0;
+            //deshabilitarCampos();
+            //habilitarGrid(ref CP);
+            habilitarCampos();
+            BotonEPInsertar.Enabled = true;
+            BotonEPModificar.Enabled = true;
+            BotonEPEliminar.Enabled = true;
+            BotonEPCancelar.Enabled = false;
+            BotonEPAceptar.Enabled = false;
+            llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
         }
 
 
@@ -388,14 +407,39 @@ namespace SistemaPruebas.Intefaces
 
         protected void AgregarFIla_Click(object sender, EventArgs e)
         {
-            try
+            validarNoConformidades();
+            foreach (GridViewRow row in gridNoConformidades.Rows)
             {
-                agregarFilaGridNC();
+                if (row.RowIndex == gridNoConformidades.Rows.Count-1)
+                {
+                    Object[] noConformidad = new Object[8];
+
+                    DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
+                    DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
+                    TextBox txt1 = row.FindControl("txtDescripcion") as TextBox;
+                    DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
+
+                    noConformidad[0] = ddl1.SelectedItem.Text;
+                    noConformidad[1] = ddl2.SelectedItem.Text;
+                    noConformidad[2] = txt1.Text;
+                    noConformidad[5] = ddl3.SelectedItem.Text;
+
+
+                    if (!(noConformidad[0].Equals("Seleccionar") || noConformidad[1].Equals("Seleccionar") ||
+                        noConformidad[2].Equals("") || noConformidad[5].Equals("Seleccionar")))
+                    {
+                        try
+                        {
+                            agregarFilaGridNC();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            
         }
 
         protected void agregarFilaGridNC()
@@ -782,10 +826,7 @@ namespace SistemaPruebas.Intefaces
 
         //aceptarsh
         protected void BotonEPAceptar_Click(object sender, EventArgs e)
-        {
-            //private int id_disenno;
-            //private String fechaConsulta;
-
+        {       
             Object[] datosNuevos = new Object[5];
             datosNuevos[0] = this.ControlFecha.Text;
             datosNuevos[1] = this.DropDownResponsable.SelectedValue.ToString();
@@ -806,10 +847,6 @@ namespace SistemaPruebas.Intefaces
             {
                 datosNuevos[4] = idMod;
                 res = controladoraEjecucionPrueba.modificarEjecucion(datosNuevos, listaNC);
-            }
-            else if (modoEP == 3)
-            {
-
             }
             if (res != "-") operacion = 1;
 
@@ -869,10 +906,10 @@ namespace SistemaPruebas.Intefaces
             estadoModificar();
 
         }
+
         protected void BotonEPEliminar_Click(object sender, EventArgs e)
         {
-            modoEP = 3;
-            estadoEliminar();
+            
 
         }
 
@@ -899,16 +936,102 @@ namespace SistemaPruebas.Intefaces
             BotonEPModificar.Enabled = true;
             BotonEPEliminar.Enabled = false;
             //deshabilitarGrid(ref gridEjecucion);
+            llenarDatosEjecucionPrueba(gridEjecucion.SelectedRow.Cells[0].Text);
+
         }
 
-        protected void estadoEliminar()
+
+        protected void eliminarAceptarModal(object sender, EventArgs e)
         {
+            desmarcarBoton(ref BotonEPEliminar);
+            int eliminacion = controladoraEjecucionPrueba.eliminarEjecucionPrueba(ControlFecha.Text.ToString());
 
+            if (eliminacion == 1)
+            {
+                EtiqMensajeOperacion.Text = "El caso de prueba se ha eliminado correctamente";
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                EtiqMensajeOperacion.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                estadoPostOperacion();
+                
+            }
+            else
+            {
+                EtiqMensajeOperacion.Text = "El caso de prueba no pudo ser eliminado, ocurrió un error";
+                EtiqMensajeOperacion.ForeColor = System.Drawing.Color.Salmon;
+                EtiqMensajeOperacion.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+
+            }
         }
 
-        
+        //validaciones
+        protected void validarNoConformidades()
+        {
+            foreach (GridViewRow row in gridNoConformidades.Rows)
+            {
+                Object[] noConformidad = new Object[8];
 
-       
-        
+                DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
+                DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
+                TextBox txt1 = row.FindControl("txtDescripcion") as TextBox;
+                DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
+
+                RequiredFieldValidator rfvCasoPrueba = row.FindControl("rfvCasoPrueba") as RequiredFieldValidator;
+                RequiredFieldValidator rfvTipo = row.FindControl("rfvTipo") as RequiredFieldValidator;
+                RequiredFieldValidator rfvDescripcion = row.FindControl("rfvDescripcion") as RequiredFieldValidator;
+                RequiredFieldValidator rfvEstado = row.FindControl("rfvEstado") as RequiredFieldValidator;
+
+
+                noConformidad[0] = ddl1.SelectedItem.Text;
+                noConformidad[1] = ddl2.SelectedItem.Text;
+                noConformidad[2] = txt1.Text;
+                noConformidad[5] = ddl3.SelectedItem.Text;
+
+                if (!noConformidad[0].Equals("Seleccionar") || !noConformidad[1].Equals("Seleccionar") ||
+                    !noConformidad[2].Equals("") || !noConformidad[5].Equals("Seleccionar"))
+                {
+                    rfvCasoPrueba.Enabled = true;
+                    rfvTipo.Enabled = true;
+                    rfvDescripcion.Enabled = true;
+                    rfvEstado.Enabled = true;
+                }
+                
+            }
+        }
+
+        protected void desValidarNoConformidades()
+        {
+            foreach (GridViewRow row in gridNoConformidades.Rows)
+            {
+                Object[] noConformidad = new Object[8];
+
+                DropDownList ddl1 = row.FindControl("ddlTipo") as DropDownList;
+                DropDownList ddl2 = row.FindControl("ddlIdCaso") as DropDownList;
+                TextBox txt1 = row.FindControl("txtDescripcion") as TextBox;
+                DropDownList ddl3 = row.FindControl("ddlEstado") as DropDownList;
+
+                RequiredFieldValidator rfvCasoPrueba = row.FindControl("rfvCasoPrueba") as RequiredFieldValidator;
+                RequiredFieldValidator rfvTipo = row.FindControl("rfvTipo") as RequiredFieldValidator;
+                RequiredFieldValidator rfvDescripcion = row.FindControl("rfvDescripcion") as RequiredFieldValidator;
+                RequiredFieldValidator rfvEstado = row.FindControl("rfvEstado") as RequiredFieldValidator;
+
+
+                noConformidad[0] = ddl1.SelectedItem.Text;
+                noConformidad[1] = ddl2.SelectedItem.Text;
+                noConformidad[2] = txt1.Text;
+                noConformidad[5] = ddl3.SelectedItem.Text;
+
+                if (noConformidad[0].Equals("Seleccionar") && noConformidad[1].Equals("Seleccionar") &&
+                    noConformidad[2].Equals("") && noConformidad[0].Equals("Seleccionar"))
+                {
+                    rfvCasoPrueba.Enabled = false;
+                    rfvTipo.Enabled = false;
+                    rfvDescripcion.Enabled = false;
+                    rfvEstado.Enabled = false;
+                }
+            }
+        }
+
     }
 }

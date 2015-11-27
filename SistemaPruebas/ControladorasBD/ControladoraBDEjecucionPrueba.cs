@@ -108,7 +108,7 @@ namespace SistemaPruebas.Controladoras
 
         public int eliminarEjecucionPrueba(String id)
         {
-            return acceso.Insertar("DELETE FROM ejecucion WHERE id_ejecucion = '" + id + "';");
+            return acceso.Insertar("DELETE FROM ejecucion WHERE fecha = '" + id + "';");
         }
 
         public DataTable consultarEjecucionPrueba(int tipo, String id)
