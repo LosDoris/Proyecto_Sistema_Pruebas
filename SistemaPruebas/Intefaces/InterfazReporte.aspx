@@ -48,11 +48,10 @@
 </script>
     <asp:Label ID="EtiqErrorGR" runat="server" Text=" "></asp:Label>
     <div style="margin-top: 45px; margin-bottom: 0px" class="well">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Proyecto</h3>
-            </div>
-            <div class="panel-body">
+
+
+         <legend><h5>Selección del origen</h5></legend>
+
                 <div>
                     <div class="row">
                         <div class="col-md-4">
@@ -77,6 +76,12 @@
                         </div>
                     </div>
                 </div>
+
+<hr style="margin:15px;">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
                 <div class="col-md10">
                     <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
                 </div>
@@ -89,8 +94,8 @@
                 <div class="col-md10">
                     <asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>
                 </div>
-            </div>
-            <div class="row">
+
+          <div class="row">
                 <div class="col-md-4">
                     <div class="form-horizontal">
                         &nbsp;<asp:CheckBox ID="CheckBoxNombreProyecto" runat="server" Text="Nombre sistema."/>
@@ -103,6 +108,16 @@
                     &nbsp;<asp:CheckBox ID="CheckBoxNombReq" runat="server" Text="Nombre requerimiento."/>
                 </div>
             </div>
+
+  </div>
+</div>
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Información sobre Proyecto</h3>
+            </div>
+            <div class="panel-body">
             <div class="col-md3">
                 <div class="row">
                     <div class="col-md-4">
@@ -118,6 +133,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md3">
                 <div class="row">
                     <div class="col-md-4">
@@ -132,6 +148,11 @@
                         &nbsp;<asp:CheckBox ID="CheckBoxMiembrosProyecto" runat="server" Text="Miembros de equipo asociados." />
                     </div>
                 </div>
+
+            </div>
+            </div>
+
+
             </div>
             <div class="col-md3">
                 <div class="row">
