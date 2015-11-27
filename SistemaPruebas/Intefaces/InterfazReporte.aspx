@@ -47,7 +47,7 @@
     });
 </script>
     <asp:Label ID="EtiqErrorGR" runat="server" Text=" "></asp:Label>
-    <div style="margin-top: 45px; margin-bottom: 0px" class="well">
+    <div style="margin-top: 45px; margin-bottom: 20px" class="well">
 
 
          <legend><h5>Selección del origen</h5></legend>
@@ -77,9 +77,12 @@
                     </div>
                 </div>
 
-<hr style="margin:15px;">
 
-<div class="panel panel-default">
+
+<div class="panel panel-primary" style="margin-top:20px">
+  <div class="panel-heading">
+    <h3 class="panel-title">Información General</h3>
+  </div>
   <div class="panel-body">
 
                 <div class="col-md10">
@@ -111,7 +114,6 @@
 
   </div>
 </div>
-
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -154,6 +156,13 @@
 
 
             </div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Información sobre Requerimientos </h3>
+  </div>
+  <div class="panel-body">
+
             <div class="col-md3">
                 <div class="row">
                     <div class="col-md-4">
@@ -169,27 +178,42 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <asp:GridView ID="preGrid" runat="server" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
-                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
-                </asp:GridView>
-            </div>
-        </div>        
-                   
-    </div>
-    <div style="margin-top: 5px" class="well">
-        <div class="form-group">
-            <div class="col-md-2">
+
+  </div>
+</div>
+<div class="row">
+
+            <div class="col-md-offset-10 col-md-12">
                 <asp:Button runat="server" Text="Generar Reporte" CssClass="btn btn-primary" ID="Generar" OnClick="BotonGE_Click" CausesValidation="false" />
             </div>
-            <div class="col-md-4" style="padding-top: 25px">
-                <div class="progress progress-striped active">
-                    <div class="progress-bar" style="width: 65%" ID="barraProgreso" visible="false">
-                    </div>
-                </div>
+</div>
+
+        </div>        
+ 
+ <legend style="margin-top: 10px"><h5>Previsualización del Reporte</h5></legend>
+                      
+            <div class="row">
+                <asp:GridView ID="preGrid" runat="server" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
+                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" AutoGenerateColumns="False">
+                </asp:GridView>
             </div>
-        </div>
+
+   
+   <div class="panel panel-default"  style="margin-top: 20px">
+  <div class="panel-body">
+    <div class="row">
+    <div class="col-md-2">
+        <asp:DropDownList ID="DDLTipoArchivo" runat="server"></asp:DropDownList>
     </div>
+    <div class="col-md2">
+          <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
+          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
+    </div>
+    </div>
+  </div>
+</div> 
+    
+
     <div class="row">
          <div class="col-md-10">
               <div class="Row">
@@ -200,15 +224,7 @@
               </div>
         </div>
     </div>
-    <div class="row">
-    <div class="col-md-2">
-        <asp:DropDownList ID="DDLTipoArchivo" runat="server"></asp:DropDownList>
-    </div>
-    <div class="col-md2">
-          <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
-          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
-    </div>
-    </div>
+
     <asp:Panel runat="server" ID="panelModal2" CssClass="modalPopup" Style="display:none"> 
             <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
             <div aria-pressed="true">

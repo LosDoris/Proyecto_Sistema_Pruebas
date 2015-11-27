@@ -18,7 +18,11 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.846;
+    color: #666666;
+    background-color: #e6e9ee;
 }
 article,
 aside,
@@ -1269,7 +1273,7 @@ body {
   font-size: 19px;
   line-height: 1.846;
   color: #666666;
-  background-color: #E9F0F5;
+  background-color: #e6e9ee;
 }
 input,
 button,

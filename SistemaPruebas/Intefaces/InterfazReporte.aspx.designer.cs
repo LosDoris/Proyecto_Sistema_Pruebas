@@ -193,15 +193,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxCantNoConf;
         
         /// <summary>
-        /// Control preGrid.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView preGrid;
-        
-        /// <summary>
         /// Control Generar.
         /// </summary>
         /// <remarks>
@@ -211,13 +202,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button Generar;
         
         /// <summary>
-        /// Control GridGR.
+        /// Control preGrid.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridGR;
+        protected global::System.Web.UI.WebControls.GridView preGrid;
         
         /// <summary>
         /// Control DDLTipoArchivo.
@@ -245,6 +236,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// Control GridGR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridGR;
         
         /// <summary>
         /// Control panelModal2.
