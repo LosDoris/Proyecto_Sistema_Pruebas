@@ -11,17 +11,28 @@
     <style type="text/css">
         .modalBackground {
             background-color: black;
-            filter: alpha(opacity=90);
-            opacity: 0.8;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
         }
 
         .modalPopup {
-            background-color: #ffffff;
-            border-width: 3px;
-            border-style: solid;
-            border-color: black;
-            padding-top: 10px;
-            padding-left: 10px;
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  outline: 0;
+  padding: 45px;
+
+   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width:460px;           
+        }
+
+                .errorDiv {
+            display: none;
         }
     </style>
 
@@ -58,20 +69,20 @@
                             <div class="form-horizontal">
                                 <asp:GridView ID="GridPP" runat="server" OnSelectedIndexChanged="PP_SelectedIndexChanged" OnPageIndexChanging="PP_OnPageIndexChanging"
                                     OnRowDataBound="PP_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
-                                    AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
+                                    AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" PagerStyle-BackColor="White" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px">
                                 </asp:GridView>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <asp:GridView ID="GridMod" runat="server" OnSelectedIndexChanged="Mod_SelectedIndexChanged" OnPageIndexChanging="Mod_OnPageIndexChanging"
                                 OnRowDataBound="Mod_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
-                                AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
+                                AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" PagerStyle-BackColor="White" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px">
                             </asp:GridView>
                         </div>
                         <div class="col-md-4">
                             <asp:GridView ID="GridReq" runat="server" OnSelectedIndexChanged="Req_SelectedIndexChanged" OnPageIndexChanging="Req_OnPageIndexChanging"
                                 OnRowDataBound="Req_OnRowDataBound" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="true"
-                                AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px">
+                                AllowPaging="true" PageSize="5" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White" PagerStyle-BackColor="White" HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd" border-radius="15px">
                             </asp:GridView>
                         </div>
                     </div>
@@ -85,19 +96,37 @@
   </div>
   <div class="panel-body">
 
-                <div class="col-md10">
+
+           <div class ="form-group" style="margin-bottom:20px">
+		   
+		        <div class="col-md10">
                     <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
                 </div>
-                <div class="col-md10">
-                    <asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
+		   
+               <div class ="col-md-3">
+			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"  Text="Proyecto seleccionado: "></asp:Label>
                 </div>
-                <div class="col-md10">
-                    <asp:Label ID="modSeleccionado" runat="server" Text=""></asp:Label>
+                <div class ="col-sm-9">
+						<asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
                 </div>
-                <div class="col-md10">
-                    <asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>
+						
+               <div class ="col-md-3">
+			<asp:Label ID="Label2" Font-Bold="true" runat="server" CssClass="control-label"  Text="Módulo seleccionado: "></asp:Label>
                 </div>
-
+                <div class ="col-sm-9">
+					<asp:Label ID="modSeleccionado" runat="server" Text=""></asp:Label>
+                </div>						
+						
+				 <div class ="col-md-4">
+			<asp:Label ID="Label3" Font-Bold="true" runat="server" CssClass="control-label"  Text="Requerimiento(s) seleccionado(s): "></asp:Label>
+                </div>
+                <div class ="col-sm-8">
+					<asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>
+                </div>		
+</div>		
+      <br />
+      <br />
+      <br />
           <div class="row">
                 <div class="col-md-4">
                     <div class="form-horizontal">
@@ -190,29 +219,39 @@
 
         </div>        
  
- <legend style="margin-top: 10px"><h5>Previsualización del Reporte</h5></legend>
-                      
-            <div class="row">
-                <asp:GridView ID="preGrid" runat="server" CellPadding="10" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" AllowRowSelect="false"
-                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px" AutoGenerateColumns="False">
-                </asp:GridView>
-            </div>
+
 
    
-   <div class="panel panel-default"  style="margin-top: 20px">
+   <div class="panel panel-default"  style="margin-top: 20px; margin-bottom:0px; padding-bottom:0">
   <div class="panel-body">
+
+       <legend style="margin-top: 10px"><h5>Previsualización del Reporte</h5></legend>
+           <div style="overflow-x:scroll; padding:17px; margin-bottom: 20px">           
+            <div class="row">
+                <asp:GridView ID="preGrid" runat="server" CellPadding="20" margin-left="auto" CssClass="GridView" HorizontalAlign="Center" RowStyle-BackColor="White" AllowRowSelect="false"
+                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" RowStyle-HorizontalAlign="Center" RowStyle-VerticalAlign="Top" BorderColor="#cdcdcd" border-radius="15px" AutoGenerateColumns="true" >
+                </asp:GridView>
+            </div>
+</div>
     <div class="row">
-    <div class="col-md-2">
-        <asp:DropDownList ID="DDLTipoArchivo" runat="server"></asp:DropDownList>
-    </div>
-    <div class="col-md2">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                    <asp:Label runat="server" CssClass="control-label">Tipo de Archivo</asp:Label>
+                        </div>
+                    <div class="col-md-3">
+					 <asp:DropDownList ID="DDLTipoArchivo" runat="server" style="width:250px" CssClass="form-control"></asp:DropDownList>
+                    </div>
+    <div class="col-md-4">
           <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
-          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
-    </div>
-    </div>
+          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="Button2" style="border-color:#fe6c4f;color:#fe5e3e" OnClick="BotonGE_Click" CausesValidation="false" />
+    </div>					
+           </div>
+
   </div>
-</div> 
-    
+
+</div>    
+
+       </div> 
 
     <div class="row">
          <div class="col-md-10">
@@ -228,10 +267,13 @@
     <asp:Panel runat="server" ID="panelModal2" CssClass="modalPopup" Style="display:none"> 
             <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
             <div aria-pressed="true">
-                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-primary" style="align-self:center;margin-left:8px;margin-right:11px;margin-bottom:20px;  width:85px"/>
-                <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="siModalCancelar_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px;  width:85px"/>           
+                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-primary" 
+				style="align-self: center;margin-left:8px;margin-right:11px;margin-bottom:20px;  width:85px"/>
+                <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="siModalCancelar_Click" CssClass="btn btn-default" 
+				style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px;  width:85px"/>           
             </div>
         </asp:Panel>
+
         <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal2" TargetControlID="Button2" OnCancelScript="noModalCancelar" OnOkScript="siModalCancelar" BehaviorID="ModalCancelar">
         </ajaxToolkit:ModalPopupExtender>
     <%--</div>--%>

@@ -58,6 +58,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// Control Proyecto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Proyecto1;
+        
+        /// <summary>
         /// Control proyectoSeleccionado.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label proyectoSeleccionado;
         
         /// <summary>
+        /// Control Label2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// Control modSeleccionado.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label modSeleccionado;
+        
+        /// <summary>
+        /// Control Label3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// Control reqSeleccionado.
