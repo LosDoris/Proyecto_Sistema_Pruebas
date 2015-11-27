@@ -192,23 +192,51 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             {
                 if (dt.Rows.Count > 0)
                 {
-                    string filename = "DownloadReport.docx";
-                    System.IO.StringWriter tw = new System.IO.StringWriter();
-                    System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
-                    DataGrid dgGrid = new DataGrid();
-                    dgGrid.DataSource = dt;
-                    dgGrid.DataBind();
+                    /*   string filename = "DownloadReport.docx";
+                       System.IO.StringWriter tw = new System.IO.StringWriter();
+                       System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+                       DataGrid dgGrid = new DataGrid();
+                       dgGrid.DataSource = dt;
+                       dgGrid.DataBind();
 
-                    //Get the HTML for the control.
-                    dgGrid.RenderControl(hw);
-                    //Write the HTML back to the browser.
-                    Response.ContentType = "application/msword";
-                    //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
-                    //Response.AddHeader("content-disposition", "attachment;  filename=Reporte.docx");
-                    this.EnableViewState = false;
-                    Response.Write(tw.ToString());
-                    Response.End();
+                       //Get the HTML for the control.
+                       dgGrid.RenderControl(hw);
+                       //Write the HTML back to the browser.
+                       Response.ContentType = "application/msword";
+                       //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                       Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                       //Response.AddHeader("content-disposition", "attachment;  filename=Reporte.docx");
+                       this.EnableViewState = false;
+
+                       Response.Clear();
+                       Response.Write(tw.ToString());
+                       //WordPackage package = new ExcelPackage();
+                       //Response.Buffer = true;
+                       //Response.BinaryWrite(package.GetAsByteArray());
+                       Response.Flush();
+                       Response.End();*/
+                    string filename = "Connectivity.doc";
+                    if (filename != "")
+                    {
+                        string path = Server.MapPath("~/Downloads/" + filename);
+                        System.IO.FileInfo file = new System.IO.FileInfo(path);
+                        if (file.Exists)
+                        {
+                            Response.Clear();
+                            Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+                            Response.AddHeader("Content-Length", file.Length.ToString());
+                            Response.ContentType = "application/octet-stream";
+                            Response.WriteFile(file.FullName);
+                            Response.End();
+                        }
+                        else
+                        {
+                            EtiqErrorGR.Text = "*Archivo no existe. ";
+                            EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                            EtiqErrorGR.Visible = true;
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                        }
+                    }
                 }
             }
             else
