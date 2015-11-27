@@ -7,11 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 //using System.IO;
 
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
+using System.IO;
 
 //using System.Configuration;
 
@@ -859,7 +861,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             dt.Rows.Add(datos);          
             preGrid.DataSource = dt;
             preGrid.DataBind();
-            int ii = preGrid.Columns.Count;
+            
             return dt;
 
         }
@@ -933,6 +935,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         protected void exportarToPdf()
         {
             string nombreReporte = "Reporte Doroteos.pdf";
+            
+
             Document doc = new Document(PageSize.LETTER);
             var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
@@ -959,6 +963,19 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             doc.Add(head);
             doc.AddCreationDate();
 
+            Font boldFont = new Font(Font.TIMES_ROMAN, 24, Font.BOLD);
+            Font boldFontHeader = new Font(Font.TIMES_ROMAN, 14, Font.BOLD);
+            Font normalCell = new Font(Font.TIMES_ROMAN, 12, Font.NORMAL);
+
+            doc.Add(new Paragraph("Reporte de proyectos", boldFont));
+            doc.Add(new Paragraph(" ", boldFont));
+            doc.Add(new Paragraph(" ", boldFont));
+
+            BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 12, Font.NORMAL);
+
+            //pdfStamper.AcroFields.SetFieldProperty("PYN", "textfont", fieldFontRoman, null);
+
             /** Logo del reporte**/
             //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
             //logo.SetAbsolutePosition(430, 770);
@@ -968,16 +985,23 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             /*Se agregan datos de proyecto, en caso de ser seleccionado*/
 
-            PdfPTable table = new PdfPTable(preGrid.Columns.Count);
+            PdfPTable table = new PdfPTable(preGrid.Rows[0].Cells.Count);
 
-            foreach (GridViewRow row in preGrid.Rows)
+            for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
             {
-                for (int i = 0; i < preGrid.Columns.Count; i++)
-                {
-                   table.AddCell(row.Cells[i].Text);
-                }
-                
+                Phrase p = new Phrase(preGrid.HeaderRow.Cells[i].Text, ff);
+                table.AddCell(p);
             }
+
+                foreach (GridViewRow row in preGrid.Rows)
+                {
+                    for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
+                    {
+                        Phrase p = new Phrase(row.Cells[i].Text, normalCell);
+                        table.AddCell(p);                       
+                    }
+
+                }
            
             doc.Add(table);
 
