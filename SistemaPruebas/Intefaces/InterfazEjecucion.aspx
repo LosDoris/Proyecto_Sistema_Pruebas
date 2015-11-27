@@ -17,7 +17,7 @@
         <div class="btn-group">
         <asp:Button runat="server" Text="Insertar" CssClass="btn btn-default"  ID="BotonEPInsertar"    CausesValidation="false" OnClick="BotonEPInsertar_Click"/>
         <asp:Button runat="server" Text="Modificar" CssClass="btn btn-default" ID="BotonEPModificar"   CausesValidation ="false" OnClick="BotonEPModificar_Click"/>
-        <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default"  ID="BotonEPEliminar"    CausesValidation="false"/>
+        <asp:Button runat="server" Text="Eliminar" CssClass="btn btn-default"  ID="BotonEPEliminar"    CausesValidation="false" OnClick="BotonEPEliminar_Click"/>
     </div>
     </div>
 </asp:Panel>
@@ -112,7 +112,6 @@
                                 <asp:ListItem Text="Implementación diferente a documentación"></asp:ListItem>
                                 <asp:ListItem Text="Ortografía" Value="7"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="ValidarTipo" runat="server" ControlToValidate="ddlTipo" InitialValue="1" ErrorMessage="Campo Requerido" ForeColor="Salmon"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Id Caso de Prueba">
@@ -166,8 +165,6 @@
                     <div class="col-md-offset-8 col-md-12">
                         <asp:Button runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
                             Text="+" causesvalidation="false" CssClass="btn btn-default"  ID="AgregarFIla" OnClick="AgregarFIla_Click"/>
-                        <asp:Button runat="server" Text="-" style="margin-top: 50px;" 
-                            CssClass="btn btn-default" ID="EliminarFila" CausesValidation="false"/>
                     </div>
               </div>
            </div>
