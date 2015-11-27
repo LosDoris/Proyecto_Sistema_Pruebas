@@ -7,11 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 //using System.IO;
 
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
+using System.IO;
 
 //using System.Configuration;
 
@@ -523,40 +525,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
 
 
-            //string nombreReporte = "Reporte Doroteos.pdf";
-            //Document doc = new Document(PageSize.LETTER);
-            //var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
-            //var writer = PdfWriter.GetInstance(doc, output);
-            //doc.Open();
-
-            //Rectangle page = doc.PageSize;
-            //PdfPTable head = new PdfPTable(1);
-            //head.TotalWidth = page.Width;
-            //Phrase phrase = new Phrase("Reporte generado el: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT", new Font(Font.COURIER, 8));
-            //PdfPCell c = new PdfPCell(phrase);
-            //c.Border = Rectangle.NO_BORDER;
-            //c.VerticalAlignment = Element.ALIGN_TOP;
-            //c.HorizontalAlignment = Element.ALIGN_CENTER;
-            //head.AddCell(c);
-            //head.WriteSelectedRows(
-            //    // first/last row; -1 writes all rows
-            //  0, -1,
-            //    // left offset
-            //  0,
-            //    / bottom** yPos of the table
-            //  page.Height - doc.TopMargin + head.TotalHeight + 20,
-            //  writer.DirectContent
-            //);
-            //doc.AddCreationDate();
-
-            ///** Logo del reporte**/
-            ////var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
-            ////logo.SetAbsolutePosition(430, 770);
-            ////logo.ScaleAbsoluteHeight(30);
-            ////logo.ScaleAbsoluteWidth(70);
-            ////doc.Add(logo);
-
-            //Se agregan datos de proyecto, en caso de ser seleccionado*/
+            
             
 
             if (proyectoActualGR != "")
@@ -621,10 +590,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 
 
 
-            ///*Se cierra documento
-            //doc.Close();
-
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
+            
         }
             //DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
             //dtGR = dtr;
@@ -895,6 +861,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             dt.Rows.Add(datos);          
             preGrid.DataSource = dt;
             preGrid.DataBind();
+            
             return dt;
 
         }
@@ -934,7 +901,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 else if (DDLTipoArchivo.SelectedItem.Text == "PDF")
                 {
 
-
+                    exportarToPdf();
                 }
             }
             else
@@ -964,9 +931,91 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         {
             
         }
+
+        protected void exportarToPdf()
+        {
+            string nombreReporte = "Reporte Doroteos.pdf";
+            
+
+            Document doc = new Document(PageSize.LETTER);
+            var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
+            var writer = PdfWriter.GetInstance(doc, output);
+            doc.Open();
+
+            Rectangle page = doc.PageSize;
+            PdfPTable head = new PdfPTable(1);
+            head.TotalWidth = page.Width;
+            Phrase phrase = new Phrase("Reporte generado el: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT", new Font(Font.COURIER, 8));
+            PdfPCell c = new PdfPCell(phrase);
+            c.Border = Rectangle.NO_BORDER;
+            c.VerticalAlignment = Element.ALIGN_TOP;
+            c.HorizontalAlignment = Element.ALIGN_CENTER;
+            head.AddCell(c);
+            //head.WriteSelectedRows(
+            //     first/last row; -1 writes all rows
+            //  0, -1,
+            //     left offset
+            //  0,
+            //    / bottom** yPos of the table
+            //  page.Height - doc.TopMargin + head.TotalHeight + 20,
+            //  writer.DirectContent
+            //);
+            doc.Add(head);
+            doc.AddCreationDate();
+
+            Font boldFont = new Font(Font.TIMES_ROMAN, 24, Font.BOLD);
+            Font boldFontHeader = new Font(Font.TIMES_ROMAN, 14, Font.BOLD);
+            Font normalCell = new Font(Font.TIMES_ROMAN, 12, Font.NORMAL);
+
+            doc.Add(new Paragraph("Reporte de proyectos", boldFont));
+            doc.Add(new Paragraph(" ", boldFont));
+            doc.Add(new Paragraph(" ", boldFont));
+
+            BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 12, Font.NORMAL);
+
+            //pdfStamper.AcroFields.SetFieldProperty("PYN", "textfont", fieldFontRoman, null);
+
+            /** Logo del reporte**/
+            //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
+            //logo.SetAbsolutePosition(430, 770);
+            //logo.ScaleAbsoluteHeight(30);
+            //logo.ScaleAbsoluteWidth(70);
+            //doc.Add(logo);
+
+            /*Se agregan datos de proyecto, en caso de ser seleccionado*/
+
+            PdfPTable table = new PdfPTable(preGrid.Rows[0].Cells.Count);
+
+            for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
+            {
+                Phrase p = new Phrase(preGrid.HeaderRow.Cells[i].Text, ff);
+                table.AddCell(p);
+            }
+
+                foreach (GridViewRow row in preGrid.Rows)
+                {
+                    for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
+                    {
+                        Phrase p = new Phrase(row.Cells[i].Text, normalCell);
+                        table.AddCell(p);                       
+                    }
+
+                }
+           
+            doc.Add(table);
+
+            //Se cierra documento
+            doc.Close();
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
+        }
     }
 
 }
+
+
+
 
 
 
