@@ -140,6 +140,13 @@ namespace SistemaPruebas.Intefaces
             CheckBoxNombModulo.Checked = true;
             CheckBoxNombreProyecto.Checked = true;
             llenarGridPP();
+            proyectoActualGR = "";
+            modActualGR = "";
+            reqActualGR = "";
+            proyectoSeleccionado.Text = "";
+            modSeleccionado.Text = "";
+            reqSeleccionado.Text = "";
+            
             //barraProgreso.Visible = false;
 
             // llenarGridPP();
@@ -336,6 +343,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             }
             GridPP.DataSource = dtGrid;
             GridPP.DataBind();
+            llenarGridMod("");
+            llenarGridReq("","");
         }
         protected DataTable crearTablaPP()
         {
@@ -935,6 +944,25 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 EtiqErrorGR.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
+        }
+
+        /*
+ * Requiere: Que el usuario de clic en el cancelar cuando le aparece el modal.
+ * Modifica: Vuelve al estado en el que estaba antes de que el usuario haya intentado eliminar, modificar o insertar.
+ * Retorna: N/A.      
+*/
+        protected void cancelarModal_Click(object sender, EventArgs e)
+        {
+            volverAlOriginal();
+        }
+        /*
+         * Requiere: N/A. 
+         * Modifica: N/A. 
+         * Retorna: N/A.      
+        */
+        protected void siModalCancelar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 

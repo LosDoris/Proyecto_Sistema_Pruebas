@@ -188,6 +188,14 @@
           <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-primary" ID="Button2" OnClick="BotonGE_Click" CausesValidation="false" />
     </div>
     </div>
-
+    <asp:Panel runat="server" ID="panelModal2" CssClass="modalPopup" Style="display:none"> 
+            <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
+            <div aria-pressed="true">
+                <asp:button runat="server" ID="siModalCancelar" Text="Si" OnClick="cancelarModal_Click" CssClass="btn btn-primary" style="align-self:center;margin-left:8px;margin-right:11px;margin-bottom:20px;  width:85px"/>
+                <asp:button runat="server" ID="noModalCancelar" Text="No" OnClick="siModalCancelar_Click" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px;  width:85px"/>           
+            </div>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelModal2" TargetControlID="Button2" OnCancelScript="noModalCancelar" OnOkScript="siModalCancelar" BehaviorID="ModalCancelar">
+        </ajaxToolkit:ModalPopupExtender>
     <%--</div>--%>
 </asp:Content>
