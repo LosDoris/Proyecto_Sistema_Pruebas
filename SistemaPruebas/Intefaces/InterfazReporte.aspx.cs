@@ -15,6 +15,14 @@ using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
 using System.IO;
 
+
+//using Spire.Doc;
+//using Spire.Doc.Fields;
+//using System.Drawing;
+//using Spire.Doc.Documents;
+//using Microsoft.Office.Interop;
+//using Microsoft.Office.Interop.Word;
+
 //using System.Configuration;
 
 
@@ -148,7 +156,7 @@ namespace SistemaPruebas.Intefaces
             proyectoSeleccionado.Text = "";
             modSeleccionado.Text = "";
             reqSeleccionado.Text = "";
-            
+
             //barraProgreso.Visible = false;
 
             // llenarGridPP();
@@ -258,8 +266,107 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         }
 
 
+       /* public void crearDocTabla(System.Data.DataTable dt)
+        {
+            //Create Table
+            int filas = dt.Rows.Count;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
+            int columnas = dt.Columns.Count;
+            Spire.Doc.Document doc = new Spire.Doc.Document();
+            Spire.Doc.Section s = doc.AddSection();
+            Spire.Doc.Table table = s.AddTable(true);
 
+            //Create Header and Data
+            String[] Header = new String[columnas];
+            int count = 0;
+            // foreach (System.Data.DataColumn dc in dt.Columns)
+             //{
+               //  Header[count]= Convert.ToString(dc[count]);
+             //}
+            String[][] data = new String[filas][];
+            for (int x = 0; x < data.Length; x++)
+            {
+                data[x] = new String[columnas];
+            }
+            int cont1 = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                int cont2 = 0;
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    if (cont1 == 0)
+                    {
+                        Header[cont2] = Convert.ToString(dr[cont2]);
+                        cont2 = cont2 + 1;
+                    }
+                    else if (cont1 != 0)
+                    {
+                        data[cont1][cont2] = Convert.ToString(dr[cont2]);
+                        cont2 = cont2 + 1;
+                    }
+                }
+                cont1 = cont1 + 1;
+            }
+            //Add Cells
+            table.ResetCells(filas + 1, columnas);
 
+            //Header Row
+            Spire.Doc.TableRow FRow = table.Rows[0];
+            FRow.IsHeader = true;
+
+            //Row Height
+            FRow.Height = 3;
+
+            //Header Format
+            FRow.RowFormat.BackColor = System.Drawing.Color.AliceBlue;
+
+            for (int i = 0; i < Header.Length; i++)
+            {
+                //Cell Alignment
+                Spire.Doc.Documents.Paragraph p = FRow.Cells[i].AddParagraph();
+                FRow.Cells[i].CellFormat.VerticalAlignment = VerticalAlignment.Middle;
+                p.Format.HorizontalAlignment = HorizontalAlignment.Center;
+
+                //Data Format
+                TextRange TR = p.AppendText(Header[i]);
+                TR.CharacterFormat.FontName = "Calibri";
+                TR.CharacterFormat.FontSize = 14;
+                TR.CharacterFormat.TextColor = System.Drawing.Color.Teal;
+                TR.CharacterFormat.Bold = true;
+            }
+
+            //Data Row
+            Spire.Doc.TableRow DataRow = table.Rows[0];
+            for (int r = 0; r < data.Length; r++)
+            {
+                DataRow = table.Rows[r];
+
+                //Row Height
+                DataRow.Height = 20;
+
+                //C Represents Column.
+                for (int c = 0; c < data[r].Length; c++)
+                {
+
+                    //Cell Alignment  
+                    DataRow.Cells[c].CellFormat.VerticalAlignment = VerticalAlignment.Middle;
+
+                    //Fill Data in Rows
+                    Spire.Doc.Documents.Paragraph p2 = DataRow.Cells[c].AddParagraph();
+                    TextRange TR2 = p2.AppendText(data[r][c]);
+
+                    //Format Cells  
+                    p2.Format.HorizontalAlignment = HorizontalAlignment.Center;
+                    TR2.CharacterFormat.FontName = "Calibri";
+                    TR2.CharacterFormat.FontSize = 12;
+                    TR2.CharacterFormat.TextColor = System.Drawing.Color.Brown;
+                }
+            }
+
+            //Save and Launch
+            doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+            System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+        }
+        */
         // Genera el reporte en Excel.
         protected void generarReporteExcel(object sender, EventArgs e)
         {
@@ -279,7 +386,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             int c = 1;
             int r = 2;
             // Poner el header.
-            foreach (TableCell cell in GridGR.HeaderRow.Cells)
+            foreach (System.Web.UI.WebControls.TableCell cell in GridGR.HeaderRow.Cells)
             {
                 worksheet.Cells[r, c++].Value = cell.Text;
             }
@@ -289,10 +396,10 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             worksheet.Row(r).Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black);
             r++;
             // Poner el resto de los datos.
-            foreach (TableRow row in GridGR.Rows)
+            foreach (System.Web.UI.WebControls.TableRow row in GridGR.Rows)
             {
                 c = 1;
-                foreach (TableCell cell in row.Cells)
+                foreach (System.Web.UI.WebControls.TableCell cell in row.Cells)
                 {
                     worksheet.Cells[r, c++].Value = HttpUtility.HtmlDecode(cell.Text);
                 }
@@ -346,7 +453,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             GridPP.DataSource = dtGrid;
             GridPP.DataBind();
             llenarGridMod("");
-            llenarGridReq("","");
+            llenarGridReq("", "");
         }
         protected DataTable crearTablaPP()
         {
@@ -395,7 +502,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             try
             {
-                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Tipo de Archivo", Convert.ToString( 0)));
+                this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Tipo de Archivo", Convert.ToString(0)));
                 this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Excel", Convert.ToString(1)));
                 this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("Word", Convert.ToString(2)));
                 this.DDLTipoArchivo.Items.Add(new System.Web.UI.WebControls.ListItem("PDF", Convert.ToString(3)));
@@ -404,8 +511,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             {
             }
 
-            }
-        
+        }
+
         protected DataTable crearTablaMod()
         {
             DataTable dt = new DataTable();
@@ -456,12 +563,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             if (dt.Rows.Count > 0)
             {
-               /* foreach (DataRow dr in dt.Rows)
-                {
-                    datos[0] = dr[0];
-                    // datos[1] = dr[2];
-                    dt.Rows.Add(datos);
-                }*/
+                /* foreach (DataRow dr in dt.Rows)
+                 {
+                     datos[0] = dr[0];
+                     // datos[1] = dr[2];
+                     dt.Rows.Add(datos);
+                 }*/
             }
             else
             {
@@ -501,8 +608,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         {
             bool[] proyecto = new bool[12];
             proyecto[0] = CheckBoxNombreProyecto.Checked;
-            proyecto[1]= CheckBoxNombModulo.Checked;
-            proyecto[2]= CheckBoxNombReq.Checked;
+            proyecto[1] = CheckBoxNombModulo.Checked;
+            proyecto[2] = CheckBoxNombReq.Checked;
             proyecto[3] = CheckBoxFechAsignacionProyecto.Checked;
             proyecto[4] = CheckBoxOficinaProyecto.Checked;
             proyecto[5] = CheckBoxResponsableProyecto.Checked;
@@ -525,8 +632,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
 
 
-            
-            
+
+
 
             if (proyectoActualGR != "")
             {
@@ -546,7 +653,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     {
                         if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
                         {
-                           
+
                             foreach (GridViewRow id in GridReq.Rows)
                             {
                                 List<Object> comodin = new List<object>(proyectoDatos);
@@ -562,7 +669,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
                 else//Todos los módulos de un proyecto
                 {
-                    foreach (GridViewRow dr in GridMod.Rows)                    
+                    foreach (GridViewRow dr in GridMod.Rows)
                     {
                         List<Object> comodin = new List<object>(proyectoDatos);
                         comodin.Add(dr.Cells[0].Text);
@@ -570,7 +677,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                         {
                             if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
                             {
-                                
+
                             }
                             else
                             {
@@ -586,12 +693,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                             ProyectoPreGrid(comodin, dt, checks);
                     }
                 }
-                
-                
 
 
-            
-        }
+
+
+
+            }
             //DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
             //dtGR = dtr;
             //llenarGridGR(dtr);
@@ -692,7 +799,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     modActualGR = ced.ToString();
                     reqActualGR = "";
                     llenarGridReq(proyectoActualGR, modActualGR);
-                    modSeleccionado.Text =  ced;
+                    modSeleccionado.Text = ced;
                 }
             }
         }
@@ -796,39 +903,39 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 test.DataField = sender.ToString();
                 test.HeaderText = sender.ToString();
                 preGrid.Columns.Add(test);
-                
+
 
             }
         }
 
         protected DataTable headerPreGrid(CheckBox[] checks)
         {
-             DataTable dt = new DataTable();
-             foreach (CheckBox check in checks)
-             {
-                 if (check.Checked)
-                 {
-                     if (check.ID != "CheckBoxOficinaProyecto")
-                         dt.Columns.Add(check.Text, typeof(String));
-                     else
-                     {
-                         dt.Columns.Add("Oficina del representate", typeof(String));
-                         dt.Columns.Add("Teléfono del representante", typeof(String));
-                         dt.Columns.Add("Nombre del usuario representate", typeof(String));
-                     }
-                 }
-                    
-             }
-           
+            DataTable dt = new DataTable();
+            foreach (CheckBox check in checks)
+            {
+                if (check.Checked)
+                {
+                    if (check.ID != "CheckBoxOficinaProyecto")
+                        dt.Columns.Add(check.Text, typeof(String));
+                    else
+                    {
+                        dt.Columns.Add("Oficina del representate", typeof(String));
+                        dt.Columns.Add("Teléfono del representante", typeof(String));
+                        dt.Columns.Add("Nombre del usuario representate", typeof(String));
+                    }
+                }
+
+            }
+
             return dt;
         }
 
         protected DataTable ProyectoPreGrid(List<Object> objeto, DataTable dt, CheckBox[] checks)
         {
-           
+
             object[] datos = new object[dt.Columns.Count];
 
-           
+
 
             DataRow row = dt.NewRow();
             int i = 0;
@@ -839,35 +946,35 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 {
                     if (check.ID != "CheckBoxOficinaProyecto")
                     {
-                    datos[i] = objeto[j].ToString();
-                    row[i] = datos[i].ToString();
-                    datos[i] = row[i];
-                    i++;
+                        datos[i] = objeto[j].ToString();
+                        row[i] = datos[i].ToString();
+                        datos[i] = row[i];
+                        i++;
                     }
                     else
                     {
                         datos[i] = objeto[j].ToString();
                         row[i] = datos[i].ToString();
                         datos[i] = row[i];
-                        datos[i+1] = objeto[j+1].ToString();
-                        row[i+1] = datos[i+1].ToString();
-                        datos[i+1] = row[i+1];
-                        datos[i+2] = objeto[j+2].ToString();
-                        row[i+2] = datos[i+2].ToString();
-                        datos[i+2] = row[i+2];                    
-                        i += 3;                       
+                        datos[i + 1] = objeto[j + 1].ToString();
+                        row[i + 1] = datos[i + 1].ToString();
+                        datos[i + 1] = row[i + 1];
+                        datos[i + 2] = objeto[j + 2].ToString();
+                        row[i + 2] = datos[i + 2].ToString();
+                        datos[i + 2] = row[i + 2];
+                        i += 3;
                     }
                 }
-                 if (check.ID == "CheckBoxOficinaProyecto")
-                     j+=2;
+                if (check.ID == "CheckBoxOficinaProyecto")
+                    j += 2;
                 j++;
             }
 
 
-            dt.Rows.Add(datos);          
+            dt.Rows.Add(datos);
             preGrid.DataSource = dt;
             preGrid.DataBind();
-            
+            dtGR = dt;
             return dt;
 
         }
@@ -883,8 +990,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 else if (DDLTipoArchivo.SelectedItem.Text == "Excel")
                 {
 
-                        generarReporteExcel(sender, e);
-                    
+                    generarReporteExcel(sender, e);
+
 
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
@@ -892,7 +999,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
                     if (dtGR != null)
                     {
-                        ExportToWord(dtGR);
+                        //ExportToWord(dtGR);
+                        //crearDocTabla(dtGR);
                     }
                     else
                     {
@@ -935,25 +1043,25 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         */
         protected void siModalCancelar_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void exportarToPdf()
         {
             string nombreReporte = "Reporte Doroteos.pdf";
-            
 
-            Document doc = new Document(PageSize.LETTER);
+
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER);
             var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
             doc.Open();
 
-            Rectangle page = doc.PageSize;
+            iTextSharp.text.Rectangle page = doc.PageSize;
             PdfPTable head = new PdfPTable(1);
             head.TotalWidth = page.Width;
-            Phrase phrase = new Phrase("Reporte generado el: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT", new Font(Font.COURIER, 8));
+            Phrase phrase = new Phrase("Reporte generado el: " + DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT", new iTextSharp.text.Font(iTextSharp.text.Font.COURIER, 8));
             PdfPCell c = new PdfPCell(phrase);
-            c.Border = Rectangle.NO_BORDER;
+            c.Border = iTextSharp.text.Rectangle.NO_BORDER;
             c.VerticalAlignment = Element.ALIGN_TOP;
             c.HorizontalAlignment = Element.ALIGN_CENTER;
             head.AddCell(c);
@@ -969,16 +1077,16 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             doc.Add(head);
             doc.AddCreationDate();
 
-            Font boldFont = new Font(Font.TIMES_ROMAN, 24, Font.BOLD);
-            Font boldFontHeader = new Font(Font.TIMES_ROMAN, 14, Font.BOLD);
-            Font normalCell = new Font(Font.TIMES_ROMAN, 12, Font.NORMAL);
+            iTextSharp.text.Font boldFont = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 24, iTextSharp.text.Font.BOLD);
+            iTextSharp.text.Font boldFontHeader = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 14, iTextSharp.text.Font.BOLD);
+            iTextSharp.text.Font normalCell = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 12, iTextSharp.text.Font.NORMAL);
 
-            doc.Add(new Paragraph("Reporte de proyectos", boldFont));
-            doc.Add(new Paragraph(" ", boldFont));
-            doc.Add(new Paragraph(" ", boldFont));
+            doc.Add(new iTextSharp.text.Paragraph("Reporte de proyectos", boldFont));
+            doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
+            doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
 
-            BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
-            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 12, Font.NORMAL);
+            BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 12, iTextSharp.text.Font.NORMAL);
 
             //pdfStamper.AcroFields.SetFieldProperty("PYN", "textfont", fieldFontRoman, null);
 
@@ -999,16 +1107,16 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 table.AddCell(p);
             }
 
-                foreach (GridViewRow row in preGrid.Rows)
+            foreach (GridViewRow row in preGrid.Rows)
+            {
+                for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
                 {
-                    for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
-                    {
-                        Phrase p = new Phrase(row.Cells[i].Text, normalCell);
-                        table.AddCell(p);                       
-                    }
-
+                    Phrase p = new Phrase(row.Cells[i].Text, normalCell);
+                    table.AddCell(p);
                 }
-           
+
+            }
+
             doc.Add(table);
 
             //Se cierra documento
