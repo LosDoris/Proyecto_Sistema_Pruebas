@@ -16,10 +16,10 @@ using OfficeOpenXml.Style;
 using System.IO;
 
 
-//using Spire.Doc;
-//using Spire.Doc.Fields;
-//using System.Drawing;
-//using Spire.Doc.Documents;
+using Spire.Doc;
+using Spire.Doc.Fields;
+using System.Drawing;
+using Spire.Doc.Documents;
 //using Microsoft.Office.Interop;
 //using Microsoft.Office.Interop.Word;
 
