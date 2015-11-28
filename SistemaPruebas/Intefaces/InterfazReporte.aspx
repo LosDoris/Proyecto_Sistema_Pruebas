@@ -104,21 +104,21 @@
                 </div>
 		   
                <div class ="col-md-4">
-			<asp:Label ID="Proyecto1" Font-Bold="true" runat="server" CssClass="control-label"  Text="Proyecto seleccionado: "></asp:Label>
+			<asp:Label ID="proyectoSeleccionadoLabel" Font-Bold="true" runat="server" CssClass="control-label"  Text="Proyecto seleccionado: "></asp:Label>
                 </div>
                 <div class ="col-sm-8">
 						<asp:Label ID="proyectoSeleccionado" runat="server" Text=""></asp:Label>
                 </div>
 						
                <div class ="col-md-4">
-			<asp:Label ID="Label2" Font-Bold="true" runat="server" CssClass="control-label"  Text="Módulo seleccionado: "></asp:Label>
+			<asp:Label ID="moduloSeleccionadoLabel" Font-Bold="true" runat="server" CssClass="control-label"  Text="Módulo seleccionado: "></asp:Label>
                 </div>
                 <div class ="col-sm-8">
 					<asp:Label ID="modSeleccionado" runat="server" Text=""></asp:Label>
                 </div>						
 						
 				 <div class ="col-md-4">
-			<asp:Label ID="Label3" Font-Bold="true" runat="server" CssClass="control-label"  Text="Requerimiento seleccionado: "></asp:Label>
+			<asp:Label ID="reqSeleccionadoLabel" Font-Bold="true" runat="server" CssClass="control-label"  Text="Requerimiento seleccionado: "></asp:Label>
                 </div>
                 <div class ="col-sm-8">
 					<asp:Label ID="reqSeleccionado" runat="server" Text=""></asp:Label>
@@ -200,16 +200,27 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Tipos no conformidades." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Cantidad de pendientes"  />
                     </div>
                     <div class="col-md-4">
-                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Cantidad no conformidades." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Tipos no conformidades." />
                     </div>
                 </div>
             </div>
 
   </div>
 </div>
+        <div class="row">
+
+            <div class="col-md-offset-7">
+                 <div class="col-md-6">
+                        &nbsp;<asp:CheckBox ID="selTodos" runat="server" text="Seleccionar todos" OnCheckedChanged="selTodos_CheckedChanged" AutoPostBack="True" />
+                    </div>
+                    <div class="col-md-6">
+                        &nbsp;<asp:CheckBox ID="deselTodos" runat="server" text="Deseleccionar todos" OnCheckedChanged="deselTodos_CheckedChanged" AutoPostBack="True" />
+                    </div>                                               
+            </div>
+        </div>
 <div class="row">
 
             <div class="col-md-offset-10 col-md-12">
@@ -243,7 +254,7 @@
                     </div>
     <div class="col-md-4">
           <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
-          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="Button2" style="border-color:#fe6c4f;color:#fe5e3e" OnClick="BotonGE_Click" CausesValidation="false" />
+          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="Button2" style="border-color:#fe6c4f;color:#fe5e3e" OnClick="Button2_Click" CausesValidation="false" />
     </div>					
            </div>
 

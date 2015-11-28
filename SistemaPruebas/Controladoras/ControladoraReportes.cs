@@ -166,6 +166,7 @@ namespace SistemaPruebas.Controladoras
             Dictionary<string, int> noConformidad = new Dictionary<string, int>();
 
             string[] casosPrueba = controlCasos.consultarCasoPorRequerimiento(idReq);
+            retorno.Add(idReq);
             try
             {
                 if (casosPrueba[0] != "")
@@ -183,7 +184,7 @@ namespace SistemaPruebas.Controladoras
                                     exitosCant++;
                                     idCasosExitosos.Add(casito);
                                 }
-                                else if (estadito.Split(',')[1] == "Fallido")//Se supone caso de no conformidad
+                                else if (estado.Length > 1 && estadito.Split(',')[1] == "Fallido")//Se supone caso de no conformidad
                                 {
                                     string key = estadito.Split(',')[0];
                                     if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
@@ -195,22 +196,31 @@ namespace SistemaPruebas.Controladoras
                                         noConformidad.Add(key, 1);
                                     }
                                 }
+                                else if (estadito.Split(',')[0] == "Pendiente")//casos de prueba que no han sido evaluados aún
+                                {
+                                    sinEnvaluarCant++;
+                                    idCasosSinEvaluar.Add(casito);
+                                }
 
                             }
-                        }
-                        else//casos de prueba que no han sido evaluados aún
-                        {
-                            sinEnvaluarCant++;
-                            idCasosSinEvaluar.Add(casito);
-                        }
-
+                        }                        
                     }
-                    retorno.Add(idReq);
-                    string CasosEx = "Cantidad de casos exitosos: " + exitosCant.ToString() + "\nCasos que son exitosos:";
-                    foreach (string rr in idCasosExitosos)
-                        CasosEx += "\n\t" + rr;
+                   
+                    string CasosEx = "";
+                    if (exitosCant > 0)
+                    {
+                        CasosEx = "Cantidad de casos exitosos: " + exitosCant.ToString() + "\nCasos que son exitosos:";
+                        foreach (string rr in idCasosExitosos)
+                            CasosEx += "\n\t" + rr+", ";
+                       
+                    }
+                        
+                    else
+                        CasosEx = "No hay casos de prueba exitosos.";
                     retorno.Add(CasosEx);
 
+                    string noConf = "";
+                    
                     double[] fallidosInt = new double[noConformidad.Count];
                     double[] fallidosPorc = new double[noConformidad.Count];
                     string[] fallidosString = new string[noConformidad.Count];
@@ -226,26 +236,35 @@ namespace SistemaPruebas.Controladoras
                         i++;
                     }
 
-                    i = 0;
-                    foreach (double d in fallidosInt)
+                    if (total > 0)
                     {
-                        fallidosPorc[i] = (d / total) * 100;
-                        i++;
-                    }
+                        i = 0;
+                        foreach (double d in fallidosInt)
+                        {
+                            fallidosPorc[i] = (d / total) * 100;
+                            i++;
+                        }
 
-                    string noConf = "Tipos de no conformidad:\n";
-                    for (int j = 0; j < fallidosInt.Length; j++)
-                    {
-                        noConf += "\t" + fallidosString[j] + ": " + fallidosInt[j] + " - " + fallidosPorc[j] + "%.\n";
+                        noConf = "Tipos de no conformidad:\n";
+                        for (int j = 0; j < fallidosInt.Length; j++)
+                        {
+                            noConf += "\t" + fallidosString[j] + ": " + fallidosInt[j] + " - " + fallidosPorc[j] + "%, \n";
+                        }                      
                     }
-
+                    else
+                        noConf = "No hay casos de prueba con no conformidades.";
                     retorno.Add(noConf);
-                    string sinEv = "Casos de prueba sin evaluar:";
-                    foreach (string sin in idCasosSinEvaluar)
+                    string sinEv = "";
+                    if (sinEnvaluarCant > 0)
                     {
-                        sinEv += "\n\t" + sin;
+                        sinEv = "Casos de prueba pendientes:";
+                        foreach (string sin in idCasosSinEvaluar)
+                        {
+                            sinEv += "\n\t" + sin+",";
+                        }                        
                     }
-                    sinEv += "\n Para un total de: " + sinEnvaluarCant;
+                    else
+                        sinEv = "No hay casos de prueba pendientes.";
                     retorno.Add(sinEv);
                 }
                 else

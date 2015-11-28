@@ -136,7 +136,15 @@ namespace SistemaPruebas.Intefaces
                 dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
                 //llenarGridGR(dt);
                 llenarDDArchivo();
+                proyectoSeleccionadoLabel.Visible = false;
+                moduloSeleccionadoLabel.Visible = false;
+                reqSeleccionadoLabel.Visible = false;
+
+                proyectoSeleccionado.Visible = false;
+                modSeleccionado.Visible = false;
+                reqSeleccionado.Visible = false;
             }
+
         }
         /*
          * Requiere: N/A.
@@ -146,7 +154,10 @@ namespace SistemaPruebas.Intefaces
         protected void volverAlOriginal()
         {
 
+
             modoGR = Convert.ToString(0);
+
+            deselTodos_CheckedChanged(null, null);
             CheckBoxNombReq.Checked = true;
             CheckBoxNombModulo.Checked = true;
             CheckBoxNombreProyecto.Checked = true;
@@ -157,6 +168,17 @@ namespace SistemaPruebas.Intefaces
             proyectoSeleccionado.Text = "";
             modSeleccionado.Text = "";
             reqSeleccionado.Text = "";
+
+            proyectoSeleccionadoLabel.Visible = false;
+            moduloSeleccionadoLabel.Visible = false;
+            reqSeleccionadoLabel.Visible = false;
+
+            proyectoSeleccionado.Visible = false;
+            modSeleccionado.Visible = false;
+            reqSeleccionado.Visible = false;
+
+            limpiarPreGrid();
+        
 
             //barraProgreso.Visible = false;
 
@@ -270,7 +292,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         public void crearDocTabla(System.Data.DataTable dt)
         {
             //Create Table
-            int filas = dt.Rows.Count+1;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
+            int filas = dt.Rows.Count + 1;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
             int columnas = dt.Columns.Count;
             Spire.Doc.Document doc = new Spire.Doc.Document();
             Spire.Doc.Section s = doc.AddSection();
@@ -280,9 +302,9 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             String[] Header = new String[columnas];
             int count = 0;
             // foreach (System.Data.DataColumn dc in dt.Columns)
-             //{
-               //  Header[count]= Convert.ToString(dc[count]);
-             //}
+            //{
+            //  Header[count]= Convert.ToString(dc[count]);
+            //}
             String[][] data = new String[filas][];
             for (int x = 0; x < data.Length; x++)
             {
@@ -308,7 +330,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 cont1 = cont1 + 1;
             }
             //Add Cells
-            table.ResetCells(filas , columnas);///////////////////ver porque sale como si fueran 0
+            table.ResetCells(filas, columnas);///////////////////ver porque sale como si fueran 0
 
             //Header Row
             Spire.Doc.TableRow FRow = table.Rows[0];
@@ -367,7 +389,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
             System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
         }
-        
+
         // Genera el reporte en Excel.
         protected void generarReporteExcel(object sender, EventArgs e)
         {
@@ -387,7 +409,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             int c = 1;
             int r = 2;
             // Poner el header.
-            
+
             foreach (System.Web.UI.WebControls.TableCell cell in preGrid.HeaderRow.Cells)
             {
                 worksheet.Cells[r, c++].Value = cell.Text;
@@ -431,7 +453,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
         protected void llenarGridPP()
         {
-
+            GridPP.SelectedIndex = -1;
             DataTable dtGrid = crearTablaPP();
             DataTable dt = controladoraGR.consultarProyecto();
             Object[] datos = new Object[2];
@@ -471,7 +493,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
         protected void llenarGridMod(String nomProyecto)
         {
-
+            GridMod.SelectedIndex = -1;
             DataTable dtGrid = crearTablaMod();
             DataTable dt = controladoraGR.consultarModulos(nomProyecto);
             Object[] datos = new Object[1];
@@ -528,7 +550,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
         protected void llenarGridReq(String nomProyecto, String nomModulo)
         {
-
+            GridReq.SelectedIndex = -1;
             DataTable dtGrid = crearTablaReq();
             DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto, nomModulo);
             //Object[] datos = new Object[2];
@@ -644,10 +666,10 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
                 if (GridMod.SelectedIndex != -1)//Un módulo
                 {
-                    proyectoDatos.Add(modActualGR);
+                    proyectoDatos.Add(modSeleccionado.Text);
                     if (GridReq.SelectedIndex != -1)//Un solo requerimiento
                     {
-                        proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqActualGR);
+                        proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
                         dtGR1 = ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
 
@@ -671,28 +693,39 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
                 else//Todos los módulos de un proyecto
                 {
+
                     foreach (GridViewRow dr in GridMod.Rows)
                     {
                         List<Object> comodin = new List<object>(proyectoDatos);
-                        comodin.Add(dr.Cells[0].Text);
-                        if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                        if (dr.Cells[0].Text != "-" || dr.Cells[0].Text != "")
                         {
-                            if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
+                          
+                            comodin.Add(dr.Cells[0].Text);
+                            if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
                             {
-
-                            }
-                            else
-                            {
-                                foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
                                 {
-                                    List<Object> comodinReq = new List<object>(comodin);
-                                    comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
-                                    dtGR1 = ProyectoPreGrid(comodinReq, dt, checks);
+                                    foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                    {
+                                        List<Object> comodinReq = new List<object>(comodin);
+                                        comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
+                                        dtGR1 = ProyectoPreGrid(comodinReq, dt, checks);
+                                    }
+                                }
+                                else
+                                {
+                                    dtGR1 = ProyectoPreGrid(comodin, dt, checks);
                                 }
                             }
+                            else
+                                dtGR1 = ProyectoPreGrid(comodin, dt, checks);
                         }
                         else
-                            dtGR1=ProyectoPreGrid(comodin, dt, checks);
+                        {
+                            comodin.Add("N/A");
+                            dtGR1 = ProyectoPreGrid(comodin, dt, checks);
+                        }
+
                     }
                 }
 
@@ -753,8 +786,19 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     llenarGridMod(ced);
                     llenarGridReq("", "");
                     proyectoSeleccionado.Text = ced;
+                    proyectoSeleccionado.Visible = true;
+                    proyectoSeleccionadoLabel.Visible = true;
+                    moduloSeleccionadoLabel.Visible = false;
+                    modSeleccionado.Visible = false;
+                    modSeleccionado.Text = "";
+                    reqSeleccionadoLabel.Visible = false;
+                    reqSeleccionado.Visible = false;
+                    modSeleccionado.Text = "";
+                    modActualGR = "";
+                    reqActualGR = "";
                 }
             }
+
         }
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid
@@ -802,8 +846,13 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     reqActualGR = "";
                     llenarGridReq(proyectoActualGR, modActualGR);
                     modSeleccionado.Text = ced;
+                    moduloSeleccionadoLabel.Visible = true;
+                    modSeleccionado.Visible = true;
                 }
             }
+            reqSeleccionadoLabel.Visible = false;
+            reqSeleccionado.Visible = false;            
+            reqActualGR = "";
         }
 
 
@@ -888,11 +937,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             String ced = GridReq.SelectedRow.Cells[0].Text;
             if (ced != "-")
             {
-
                 if (reqActualGR != ced.ToString())
                 {
                     reqActualGR = ced.ToString();
                     reqSeleccionado.Text = ced;
+                    reqSeleccionadoLabel.Visible = true;
+                    reqSeleccionado.Visible = true;
                 }
             }
         }
@@ -934,11 +984,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
         protected DataTable ProyectoPreGrid(List<Object> objeto, DataTable dt, CheckBox[] checks)
         {
-
             object[] datos = new object[dt.Columns.Count];
-
-
-
             DataRow row = dt.NewRow();
             int i = 0;
             int j = 0;
@@ -948,7 +994,10 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 {
                     if (check.ID != "CheckBoxOficinaProyecto")
                     {
-                        datos[i] = objeto[j].ToString();
+                        if (j < objeto.Count)
+                            datos[i] = objeto[j].ToString();
+                        else
+                            datos[i] = "N/A";
                         row[i] = datos[i].ToString();
                         datos[i] = row[i];
                         i++;
@@ -971,14 +1020,11 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     j += 2;
                 j++;
             }
-
-
             dt.Rows.Add(datos);
             preGrid.DataSource = dt;
             preGrid.DataBind();
             dtGR = dt;
             return dt;
-
         }
 
         protected void BotonDescGR_Click(object sender, EventArgs e)
@@ -1003,7 +1049,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     {
 
                         //ExportToWord(dtGR);
-                        crearDocTabla(dtGR1 );
+                        crearDocTabla(dtGR1);
                     }
                     else
                     {
@@ -1028,6 +1074,9 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 EtiqErrorGR.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
+
+            volverAlOriginal();
+        
         }
 
         /*
@@ -1055,6 +1104,9 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
 
             iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.LETTER);
+            if (preGrid.Rows[0].Cells.Count > 4)
+                doc.SetPageSize(iTextSharp.text.PageSize.LETTER.Rotate()); 
+
             var output = new System.IO.FileStream(Server.MapPath(nombreReporte), System.IO.FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
             doc.Open();
@@ -1127,6 +1179,49 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            volverAlOriginal();
+        }
+
+
+
+        
+
+
+        protected void limpiarPreGrid()
+        {
+            preGrid.DataSource = null;
+            preGrid.DataBind();
+            preGrid.Columns.Clear();
+        }
+
+        protected void selTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            deselTodos.Checked = false;
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+            foreach (CheckBox check in checks)
+            {
+                check.Checked = true;
+            }
+           
+        }
+
+        protected void deselTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            selTodos.Checked = false;
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+            foreach (CheckBox check in checks)
+            {
+                check.Checked = false;
+            }
+
+        }
+
+       
+
+
     }
 
 }

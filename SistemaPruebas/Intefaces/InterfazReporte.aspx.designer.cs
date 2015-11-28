@@ -58,13 +58,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control Proyecto1.
+        /// Control proyectoSeleccionadoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Proyecto1;
+        protected global::System.Web.UI.WebControls.Label proyectoSeleccionadoLabel;
         
         /// <summary>
         /// Control proyectoSeleccionado.
@@ -76,13 +76,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label proyectoSeleccionado;
         
         /// <summary>
-        /// Control Label2.
+        /// Control moduloSeleccionadoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label moduloSeleccionadoLabel;
         
         /// <summary>
         /// Control modSeleccionado.
@@ -94,13 +94,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Label modSeleccionado;
         
         /// <summary>
-        /// Control Label3.
+        /// Control reqSeleccionadoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label reqSeleccionadoLabel;
         
         /// <summary>
         /// Control reqSeleccionado.
@@ -218,6 +218,24 @@ namespace SistemaPruebas.Intefaces {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxCantNoConf;
+        
+        /// <summary>
+        /// Control selTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox selTodos;
+        
+        /// <summary>
+        /// Control deselTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox deselTodos;
         
         /// <summary>
         /// Control Generar.
