@@ -32,6 +32,7 @@ namespace SistemaPruebas.Intefaces
     {
         Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
         DataTable dtGR = new DataTable();
+        DataTable dtGR1 = new DataTable();
         public static string modoGR
         {
             get
@@ -269,7 +270,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         public void crearDocTabla(System.Data.DataTable dt)
         {
             //Create Table
-            int filas = dt.Rows.Count;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
+            int filas = dt.Rows.Count+1;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
             int columnas = dt.Columns.Count;
             Spire.Doc.Document doc = new Spire.Doc.Document();
             Spire.Doc.Section s = doc.AddSection();
@@ -307,7 +308,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 cont1 = cont1 + 1;
             }
             //Add Cells
-            table.ResetCells(filas + 1, columnas);
+            table.ResetCells(filas , columnas);///////////////////ver porque sale como si fueran 0
 
             //Header Row
             Spire.Doc.TableRow FRow = table.Rows[0];
@@ -647,7 +648,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     if (GridReq.SelectedIndex != -1)//Un solo requerimiento
                     {
                         proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqActualGR);
-                        ProyectoPreGrid(proyectoDatos, dt, checks);
+                        dtGR1 = ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
 
                     else//Todos los requerimientos de un módulo
@@ -659,12 +660,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                             {
                                 List<Object> comodin = new List<object>(proyectoDatos);
                                 comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
-                                ProyectoPreGrid(comodin, dt, checks);
+                                dtGR1 = ProyectoPreGrid(comodin, dt, checks);
                                 //comodin.Clear();
                             }
                         }
                         else
-                            ProyectoPreGrid(proyectoDatos, dt, checks);
+                            dtGR1 = ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
                 }
 
@@ -686,12 +687,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                                 {
                                     List<Object> comodinReq = new List<object>(comodin);
                                     comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
-                                    ProyectoPreGrid(comodinReq, dt, checks);
+                                    dtGR1 = ProyectoPreGrid(comodinReq, dt, checks);
                                 }
                             }
                         }
                         else
-                            ProyectoPreGrid(comodin, dt, checks);
+                            dtGR1=ProyectoPreGrid(comodin, dt, checks);
                     }
                 }
 
@@ -1000,8 +1001,9 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                     //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
                     if (dtGR != null)
                     {
+
                         //ExportToWord(dtGR);
-                        //crearDocTabla(dtGR);
+                        crearDocTabla(dtGR1 );
                     }
                     else
                     {
