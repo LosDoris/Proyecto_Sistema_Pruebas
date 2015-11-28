@@ -166,88 +166,96 @@ namespace SistemaPruebas.Controladoras
             Dictionary<string, int> noConformidad = new Dictionary<string, int>();
 
             string[] casosPrueba = controlCasos.consultarCasoPorRequerimiento(idReq);
-            if (casosPrueba[0] != "")
+            try
             {
-                foreach (string casito in casosPrueba)
+                if (casosPrueba[0] != "")
                 {
-                    string[] estado = controlEjec.retornarEstado(casito).Split(';');
-                    if (estado[0] != "")
+                    foreach (string casito in casosPrueba)
                     {
-                        foreach (string estadito in estado)
+                        string[] estado = controlEjec.retornarEstado(casito).Split(';');
+                        if (estado[0] != "")
                         {
-
-                            if (estadito.Split(',')[0] == "Satisfactorio")//Aún no se ha terminado, hay que realizar una consulta en ejecución.//Se supone caso exitoso
+                            foreach (string estadito in estado)
                             {
-                                exitosCant++;
-                                idCasosExitosos.Add(casito);
-                            }
-                            else if (estadito.Split(',')[1] == "Fallido")//Se supone caso de no conformidad
-                            {
-                                string key = estadito.Split(',')[0];
-                                if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
-                                {
-                                    noConformidad[key]++;
-                                }
-                                else//Se agrega nueva no conformidad
-                                {
-                                    noConformidad.Add(key, 1);
-                                }
-                            }
 
+                                if (estadito.Split(',')[0] == "Satisfactorio")//Aún no se ha terminado, hay que realizar una consulta en ejecución.//Se supone caso exitoso
+                                {
+                                    exitosCant++;
+                                    idCasosExitosos.Add(casito);
+                                }
+                                else if (estadito.Split(',')[1] == "Fallido")//Se supone caso de no conformidad
+                                {
+                                    string key = estadito.Split(',')[0];
+                                    if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
+                                    {
+                                        noConformidad[key]++;
+                                    }
+                                    else//Se agrega nueva no conformidad
+                                    {
+                                        noConformidad.Add(key, 1);
+                                    }
+                                }
+
+                            }
                         }
+                        else//casos de prueba que no han sido evaluados aún
+                        {
+                            sinEnvaluarCant++;
+                            idCasosSinEvaluar.Add(casito);
+                        }
+
                     }
-                    else//casos de prueba que no han sido evaluados aún
+                    retorno.Add(idReq);
+                    string CasosEx = "Cantidad de casos exitosos: " + exitosCant.ToString() + "\nCasos que son exitosos:";
+                    foreach (string rr in idCasosExitosos)
+                        CasosEx += "\n\t" + rr;
+                    retorno.Add(CasosEx);
+
+                    double[] fallidosInt = new double[noConformidad.Count];
+                    double[] fallidosPorc = new double[noConformidad.Count];
+                    string[] fallidosString = new string[noConformidad.Count];
+                    double total = 0;
+
+                    int i = 0;
+                    foreach (KeyValuePair<string, int> entry in noConformidad)
                     {
-                        sinEnvaluarCant++;
-                        idCasosSinEvaluar.Add(casito);
+
+                        fallidosInt[i] = entry.Value;
+                        total += entry.Value;
+                        fallidosString[i] = entry.Key;
+                        i++;
                     }
 
+                    i = 0;
+                    foreach (double d in fallidosInt)
+                    {
+                        fallidosPorc[i] = (d / total) * 100;
+                        i++;
+                    }
+
+                    string noConf = "Tipos de no conformidad:\n";
+                    for (int j = 0; j < fallidosInt.Length; j++)
+                    {
+                        noConf += "\t" + fallidosString[j] + ": " + fallidosInt[j] + " - " + fallidosPorc[j] + "%.\n";
+                    }
+
+                    retorno.Add(noConf);
+                    string sinEv = "Casos de prueba sin evaluar:";
+                    foreach (string sin in idCasosSinEvaluar)
+                    {
+                        sinEv += "\n\t" + sin;
+                    }
+                    sinEv += "\n Para un total de: " + sinEnvaluarCant;
+                    retorno.Add(sinEv);
                 }
-                retorno.Add(idReq);
-                string CasosEx = "Cantidad de casos exitosos: " + exitosCant.ToString() + "\nCasos que son exitosos:";
-                foreach (string rr in idCasosExitosos)
-                    CasosEx += "\n\t" + rr;
-                retorno.Add(CasosEx);
-
-                double[] fallidosInt = new double[noConformidad.Count];
-                double[] fallidosPorc = new double[noConformidad.Count];
-                string[] fallidosString = new string[noConformidad.Count];
-                double total = 0;
-
-                int i = 0;
-                foreach (KeyValuePair<string, int> entry in noConformidad)
+                else
                 {
-
-                    fallidosInt[i] = entry.Value;
-                    total += entry.Value;
-                    fallidosString[i] = entry.Key;
-                    i++;
+                    retorno.Add("");
+                    retorno.Add("");
+                    retorno.Add("");
                 }
-
-                i = 0;
-                foreach (double d in fallidosInt)
-                {
-                    fallidosPorc[i] = (d / total) * 100;
-                    i++;
-                }
-
-                string noConf = "Tipos de no conformidad:\n";
-                for (int j = 0; j < fallidosInt.Length; j++)
-                {
-                    noConf += "\t" + fallidosString[j] + ": " + fallidosInt[j] + " - " + fallidosPorc[j] + "%.\n";
-                }
-
-                retorno.Add(noConf);
-                string sinEv = "Casos de prueba sin evaluar:";
-                foreach (string sin in idCasosSinEvaluar)
-                {
-                    sinEv += "\n\t" + sin;
-                }
-                sinEv += "\n Para un total de: " + sinEnvaluarCant;
-                retorno.Add(sinEv);
             }
-            else
-            {
+            catch {
                 retorno.Add("");
                 retorno.Add("");
                 retorno.Add("");

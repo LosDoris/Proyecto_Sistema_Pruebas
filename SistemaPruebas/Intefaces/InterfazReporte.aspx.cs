@@ -266,7 +266,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
         }
 
 
-       /* public void crearDocTabla(System.Data.DataTable dt)
+        public void crearDocTabla(System.Data.DataTable dt)
         {
             //Create Table
             int filas = dt.Rows.Count;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
@@ -366,7 +366,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
             System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
         }
-        */
+        
         // Genera el reporte en Excel.
         protected void generarReporteExcel(object sender, EventArgs e)
         {
@@ -386,7 +386,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             int c = 1;
             int r = 2;
             // Poner el header.
-            foreach (System.Web.UI.WebControls.TableCell cell in GridGR.HeaderRow.Cells)
+            
+            foreach (System.Web.UI.WebControls.TableCell cell in preGrid.HeaderRow.Cells)
             {
                 worksheet.Cells[r, c++].Value = cell.Text;
             }
@@ -396,7 +397,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             worksheet.Row(r).Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black);
             r++;
             // Poner el resto de los datos.
-            foreach (System.Web.UI.WebControls.TableRow row in GridGR.Rows)
+            foreach (System.Web.UI.WebControls.TableRow row in preGrid.Rows)
             {
                 c = 1;
                 foreach (System.Web.UI.WebControls.TableCell cell in row.Cells)
