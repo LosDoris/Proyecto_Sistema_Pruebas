@@ -254,7 +254,7 @@
                     </div>
     <div class="col-md-4">
           <asp:Button runat="server" Text="Descargar" CssClass="btn btn-primary" ID="Button1" OnClick="BotonDescGR_Click" CausesValidation="false" />
-          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="Button2" style="border-color:#fe6c4f;color:#fe5e3e" OnClick="Button2_Click" CausesValidation="false" />
+          <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="Button2" style="border-color:#fe6c4f;color:#fe5e3e" CausesValidation="false" />
     </div>					
            </div>
 
