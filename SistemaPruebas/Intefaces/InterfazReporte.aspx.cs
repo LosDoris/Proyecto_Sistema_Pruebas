@@ -287,13 +287,12 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
         }
-
-
-        public void crearDocTabla(System.Data.DataTable dt)
+        public void gridToDoc()
         {
             //Create Table
-            int filas = dt.Rows.Count + 1;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
-            int columnas = dt.Columns.Count;
+            int filas = preGrid.Rows.Count + 1 + 1;//dt.Rows.Count;// > 0;//System.Web.UI.WebControls.DataGridColumn row in preGrid.Rows)
+            int columnas = preGrid.HeaderRow.Cells.Count;
+           // Prueba.Text = "Filas= " + filas + " Columnas= " + columnas;
             Spire.Doc.Document doc = new Spire.Doc.Document();
             Spire.Doc.Section s = doc.AddSection();
             Spire.Doc.Table table = s.AddTable(true);
@@ -301,36 +300,39 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             //Create Header and Data
             String[] Header = new String[columnas];
             int count = 0;
-            // foreach (System.Data.DataColumn dc in dt.Columns)
-            //{
-            //  Header[count]= Convert.ToString(dc[count]);
-            //}
+            foreach (System.Web.UI.WebControls.TableCell cell in preGrid.HeaderRow.Cells)
+            {
+                Header[count] = cell.Text;
+                count = count + 1;
+            }
+            //Prueba1.Text = "Header[0]=" + Header[0];
+            //Prueba2.Text = "Header[1]=" + Header[1];
             String[][] data = new String[filas][];
             for (int x = 0; x < data.Length; x++)
             {
                 data[x] = new String[columnas];
             }
             int cont1 = 0;
-            foreach (DataRow dr in dt.Rows)
+            foreach (System.Web.UI.WebControls.TableRow row in preGrid.Rows)
             {
                 int cont2 = 0;
-                foreach (DataColumn dc in dt.Columns)
+                foreach (System.Web.UI.WebControls.TableCell cell in row.Cells)
                 {
-                    if (cont1 == 0)
-                    {
-                        Header[cont2] = Convert.ToString(dr[cont2]);
-                        cont2 = cont2 + 1;
-                    }
-                    else if (cont1 != 0)
-                    {
-                        data[cont1][cont2] = Convert.ToString(dr[cont2]);
-                        cont2 = cont2 + 1;
-                    }
+                    //if (cont1 == 0)
+                    // {
+                    //  Header[cont2] = Convert.ToString(dr[cont2]);
+                    //  cont2 = cont2 + 1;
+                    // }
+                    // else if (cont1 != 0)
+                    // {
+                    data[cont1][cont2] = Convert.ToString(cell.Text);
+                    cont2 = cont2 + 1;
+                    // }
                 }
                 cont1 = cont1 + 1;
             }
             //Add Cells
-            table.ResetCells(filas, columnas);///////////////////ver porque sale como si fueran 0
+            table.ResetCells(filas, columnas);
 
             //Header Row
             Spire.Doc.TableRow FRow = table.Rows[0];
@@ -386,9 +388,119 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             }
 
             //Save and Launch
-            doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
-            System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+            //doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+            //System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+            doc.SaveToFile("C:\\Users\\andre_000\\Downloads\\WordTable.docx");
+            System.Diagnostics.Process.Start("C:\\Users\\andre_000\\Downloads\\WordTable.docx");
+            //C: \Users\andre_000\Downloads
+
         }
+
+        /*   public void crearDocTabla(System.Data.DataTable dt)
+           {
+               //Create Table
+               int filas = dt.Rows.Count + 1;// > 0;//System.Web.UI.WebControls.DataGridColumn row in GridPP.Rows)
+               int columnas = dt.Columns.Count;
+               Label1.Text="Filas: "+Convert.ToString(filas)+" Columnas: " + Convert.ToString(columnas);
+               Spire.Doc.Document doc = new Spire.Doc.Document();
+               Spire.Doc.Section s = doc.AddSection();
+               Spire.Doc.Table table = s.AddTable(true);
+
+               //Create Header and Data
+               String[] Header = new String[columnas];
+               int count = 0;
+               // foreach (System.Data.DataColumn dc in dt.Columns)
+               //{
+               //  Header[count]= Convert.ToString(dc[count]);
+               //}
+               String[][] data = new String[filas][];
+               for (int x = 0; x < data.Length; x++)
+               {
+                   data[x] = new String[columnas];
+               }
+               int cont1 = 0;
+               foreach (DataRow dr in dt.Rows)
+               {
+                   int cont2 = 0;
+                   foreach (DataColumn dc in dt.Columns)
+                   {
+                       if (cont1 == 0)
+                       {
+                           Header[cont2] = Convert.ToString(dr[cont2]);
+                           cont2 = cont2 + 1;
+                       }
+                       else if (cont1 != 0)
+                       {
+                           data[cont1][cont2] = Convert.ToString(dr[cont2]);
+                           cont2 = cont2 + 1;
+                       }
+                   }
+                   cont1 = cont1 + 1;
+               }
+               //Add Cells
+                  table.ResetCells(filas, columnas);///////////////////ver porque sale como si fueran 0
+
+                  //Header Row
+                  Spire.Doc.TableRow FRow = table.Rows[0];
+                  FRow.IsHeader = true;
+
+                  //Row Height
+                  FRow.Height = 3;
+
+                  //Header Format
+                  FRow.RowFormat.BackColor = System.Drawing.Color.AliceBlue;
+
+                  for (int i = 0; i < Header.Length; i++)
+                  {
+                      //Cell Alignment
+                      Spire.Doc.Documents.Paragraph p = FRow.Cells[i].AddParagraph();
+                      FRow.Cells[i].CellFormat.VerticalAlignment = VerticalAlignment.Middle;
+                      p.Format.HorizontalAlignment = HorizontalAlignment.Center;
+
+                      //Data Format
+                      TextRange TR = p.AppendText(Header[i]);
+                      TR.CharacterFormat.FontName = "Calibri";
+                      TR.CharacterFormat.FontSize = 14;
+                      TR.CharacterFormat.TextColor = System.Drawing.Color.Teal;
+                      TR.CharacterFormat.Bold = true;
+                  }
+
+                  //Data Row
+                  Spire.Doc.TableRow DataRow = table.Rows[0];
+                  for (int r = 0; r < data.Length; r++)
+                  {
+                      DataRow = table.Rows[r];
+
+                      //Row Height
+                      DataRow.Height = 20;
+
+                      //C Represents Column.
+                      for (int c = 0; c < data[r].Length; c++)
+                      {
+
+                          //Cell Alignment  
+                          DataRow.Cells[c].CellFormat.VerticalAlignment = VerticalAlignment.Middle;
+
+                          //Fill Data in Rows
+                          Spire.Doc.Documents.Paragraph p2 = DataRow.Cells[c].AddParagraph();
+                          TextRange TR2 = p2.AppendText(data[r][c]);
+
+                          //Format Cells  
+                          p2.Format.HorizontalAlignment = HorizontalAlignment.Center;
+                          TR2.CharacterFormat.FontName = "Calibri";
+                          TR2.CharacterFormat.FontSize = 12;
+                          TR2.CharacterFormat.TextColor = System.Drawing.Color.Brown;
+                      }
+                  }
+
+               //Save and Launch
+               //doc.SaveToFile("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+               //System.Diagnostics.Process.Start("C:\\Users\\b32896\\Downloads\\WordTable.docx");
+               doc.SaveToFile("C:\\Users\\andre_000\\Downloads\\WordTable.docx");
+               System.Diagnostics.Process.Start("C:\\Users\\andre_000\\Downloads\\WordTable.docx");
+
+
+           }*/
 
         // Genera el reporte en Excel.
         protected void generarReporteExcel(object sender, EventArgs e)
@@ -1039,25 +1151,28 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 {
 
                     generarReporteExcel(sender, e);
+                    volverAlOriginal();
 
 
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
+                    gridToDoc();
                     //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
-                    if (dtGR != null)
-                    {
+                    /*  if (dtGR1 != null)
+                      {
 
-                        //ExportToWord(dtGR);
-                        crearDocTabla(dtGR1);
-                    }
-                    else
-                    {
-                        EtiqErrorGR.Text = "*Es null !! ";
-                        EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
-                        EtiqErrorGR.Visible = true;
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
-                    }
+                          //ExportToWord(dtGR);
+                          //crearDocTabla(dtGR1);
+                          //volverAlOriginal();
+                      }
+                      else
+                      {
+                          EtiqErrorGR.Text = "*Es null !! ";
+                          EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                          EtiqErrorGR.Visible = true;
+                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                      }*/
 
 
                 }
@@ -1065,6 +1180,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 {
 
                     exportarToPdf();
+                    volverAlOriginal();
                 }
             }
             else
@@ -1075,7 +1191,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
 
-            volverAlOriginal();
+            
         
         }
 
