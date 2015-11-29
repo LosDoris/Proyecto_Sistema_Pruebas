@@ -1158,6 +1158,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
                     gridToDoc();
+                    volverAlOriginal();
                     //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
                     /*  if (dtGR1 != null)
                       {
