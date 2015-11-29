@@ -19,11 +19,11 @@
         <p class="lead">Sistema de Pruebas. Página de inicio</p>
         
     </div>
- <asp:Panel ID= "Timeline" runat="server">
+ <asp:Panel ID= "Timeline" runat="server" Visible="false">
 <section id="cd-timeline" class="cd-container">
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
-				<img src="Imagenes\team2.svg" alt="Picture">
+				<img src="Imagenes\team-blanco.svg" alt="Picture">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -35,7 +35,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-movie">
-				<img src="Imagenes/document326.svg" alt="Movie">
+				<img src="Imagenes/proyecto.svg" alt="Movie">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -47,7 +47,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-location">
-				<img src="Imagenes/inspiration.svg" alt="Picture">
+				<img src="Imagenes/requerimientos.svg" alt="Picture">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -60,7 +60,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
-				<img src="Imagenes/tool749.svg" alt="Location">
+				<img src="Imagenes/diseno.svg" alt="Location">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -74,7 +74,7 @@
 		<div class="cd-timeline-block">
 			
                 <div class="cd-timeline-img cd-movie">
-				<img src="Imagenes/eye106.svg" alt="Location">
+				<img src="Imagenes/CasosPrueba.svg" alt="Location">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -86,7 +86,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-location">
-				<img src="Imagenes/verification5.svg" alt="Movie">
+				<img src="Imagenes/ejecucion.svg" alt="Movie">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -98,7 +98,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
-				<img src="Imagenes/download168.svg" alt="Movie">
+				<img src="Imagenes/reportes.svg" alt="Movie">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
