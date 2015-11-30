@@ -752,10 +752,11 @@ namespace SistemaPruebas.Intefaces
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#18c0a8';;this.style.color='white'";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
+                e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
+                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridEjecucion, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
+
             }
         }
 

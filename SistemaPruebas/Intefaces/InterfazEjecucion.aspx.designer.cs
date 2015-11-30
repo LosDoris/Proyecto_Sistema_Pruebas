@@ -211,15 +211,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button AgregarFIla;
         
         /// <summary>
-        /// Control gridEjecucion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridEjecucion;
-        
-        /// <summary>
         /// Control BotonEPAceptar.
         /// </summary>
         /// <remarks>
@@ -238,13 +229,13 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Button BotonEPCancelar;
         
         /// <summary>
-        /// Control GridEP.
+        /// Control gridEjecucion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridEP;
+        protected global::System.Web.UI.WebControls.GridView gridEjecucion;
         
         /// <summary>
         /// Control cancelarPanelModal.

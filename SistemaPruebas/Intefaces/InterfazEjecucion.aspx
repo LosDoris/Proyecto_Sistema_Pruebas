@@ -71,7 +71,7 @@
                 </div>
                    <asp:ImageButton ID="imgPopup" ImageUrl="~/Imagenes/calendar.png" runat="server" CausesValidation="false"/>
                 <div class ="col-md-2">
-                   <asp:TextBox runat="server" ID="ControlFecha" CssClass="form-control"></asp:TextBox>
+                   <asp:TextBox runat="server" ID="ControlFecha" CssClass="form-control" ></asp:TextBox>
                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
                        runat="server" ErrorMessage="Campo requerido" ControlToValidate="ControlFecha" ForeColor="Salmon"></asp:RequiredFieldValidator>
                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgPopup" TargetControlID="ControlFecha" />
@@ -107,14 +107,18 @@
                     </div>   
                     </div>
            </div>
+
+
+      <br />
+
            <div class ="row">
                <asp:GridView runat ="server" ID ="gridNoConformidades" OnRowDataBound ="gridNoConformidades_RowDataBound"  AutoGenerateColumns="false"
-                   CssClass ="GridView" HorizontalAlign="Center" OnRowCommand="gridNoConformidades_RowCommand"  >
+                   CssClass ="GridView" HorizontalAlign="Center" OnRowCommand="gridNoConformidades_RowCommand" HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White"  HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd"  HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" RowStyle-HorizontalAlign="Center" RowStyle-VerticalAlign="Top" EditRowStyle-Height="40px">
                    <Columns>
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" CausesValidation="false" ></asp:Button>
+                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" CausesValidation="false" CssClass="btn btn-default" ></asp:Button>
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
                             <asp:Label runat="server" ID="lblIDNC" Text="0" Visible="false"></asp:Label>
                         </ItemTemplate>
@@ -122,7 +126,7 @@
                      <asp:TemplateField HeaderText="Tipo de no conformidad">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblTipo" Visible="false" Text='<%# Eval("Tipo") %>'></asp:Label>
-                            <asp:DropDownList ID="ddlTipo" runat="server" ClientIDMode="Static" CssClass="form-control" Width="250px"> 
+                            <asp:DropDownList ID="ddlTipo" runat="server" ClientIDMode="Static" CssClass="form-control" Style="width: 210px"> 
                                 <asp:ListItem Text="Seleccionar" Value="1" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="Funcionalidad" Value="2"></asp:ListItem>
                                 <asp:ListItem Text="Validación" Value="3"></asp:ListItem>
@@ -139,7 +143,7 @@
                     <asp:TemplateField HeaderText="Id Caso de Prueba">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblIdCaso" Visible="false" Text='<%# Eval("IdCaso") %>'></asp:Label>
-                            <asp:DropDownList ID="ddlIdCaso" runat="server" ClientIDMode="Static" CssClass="form-control"> </asp:DropDownList>
+                            <asp:DropDownList ID="ddlIdCaso" runat="server" ClientIDMode="Static" CssClass="form-control" Style="width: 165px"> </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvCasoPrueba" ValidationGroup="grupo" 
                                 runat="server" ErrorMessage="Campo requerido" ControlToValidate="ddlIdCaso" InitialValue="Seleccionar" ForeColor="Salmon"></asp:RequiredFieldValidator>
                         </ItemTemplate>
@@ -147,7 +151,7 @@
                      <asp:TemplateField HeaderText="Descripción">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblDescripcion" Visible="false"></asp:Label>
-                            <asp:TextBox ID="txtDescripcion" runat="server" Text='<%# Eval("Descripcion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput2(event)"  ></asp:TextBox>
+                            <asp:TextBox ID="txtDescripcion" runat="server" Style="height: 37px; width: 220px; margin-bottom:0px" Text='<%# Eval("Descripcion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput2(event)"  ></asp:TextBox>
                             <script type="text/javascript">
                                 function checkInput2(e) {
                                     var ok = /[A-Za-z0-9.,:; ]/.test(String.fromCharCode(e.charCode));
@@ -176,7 +180,7 @@
                      <asp:TemplateField HeaderText="Justificación">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblJustificacion" Visible="false"></asp:Label>
-                            <asp:TextBox ID="txtJustificacion" runat="server"  Text='<%# Eval("Justificacion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput3(event)"></asp:TextBox>
+                            <asp:TextBox ID="txtJustificacion" runat="server" Style="height: 37px; width: 200px"  Text='<%# Eval("Justificacion") %>' CssClass="form-control" TextMode="multiline" onkeypress="checkInput3(event)"></asp:TextBox>
                             <script type="text/javascript">
                                 function checkInput3(e) {
                                     var ok = /[A-Za-z0-9.,:; ]/.test(String.fromCharCode(e.charCode));
@@ -200,9 +204,9 @@
                         </div> 
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Resultado">
+                    <asp:TemplateField HeaderText="Resultado"  ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" CausesValidation="false" />
+				            <asp:Button ID="botonImagen" runat="server" Text="Imagen" CausesValidation="false" CssClass="btn btn-primary" Style="width: 90px;"/>
                             <asp:Panel runat="server" ID="panelSubirImagen" CssClass="modalPopup"> 
                                 <asp:Image ID="imagenSubida" runat="server" style="max-height:400px" />
                                 <asp:FileUpload id="Uploader" runat="server" />
@@ -218,7 +222,7 @@
                      <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblEstado" Visible="false" Text='<%# Eval("Estado") %>'></asp:Label>
-                            <asp:DropDownList ID="ddlEstado" runat="server" ClientIDMode="Static" CssClass="form-control">
+                            <asp:DropDownList ID="ddlEstado" runat="server" ClientIDMode="Static" CssClass="form-control" Style="width: 110px">
                                 <asp:ListItem Text="Seleccionar" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="Satisfactorio" Value="2"></asp:ListItem>
                                 <asp:ListItem Text="Fallido" Value="3"></asp:ListItem>
@@ -242,42 +246,36 @@
 
            
        </div>
-        <div class="form-group">          		
-                <asp:GridView ID="gridEjecucion" runat ="server" margin-right ="auto" 		
-                    CellPadding="10" 		
-                    margin-left="auto" AutoGenerateColumns ="true" 		
-                    CssClass ="GridView" HorizontalAlign="Center"   		
-                    HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#CDCDCD" border-radius="15px" 		
-                    AutoPostBack ="true" AllowPaging="true" PageSize="3"
-                    OnRowDataBound= "OnGridEjecucionRowDataBound"
-                    OnPageIndexChanging="OnGridEjecucionPageIndexChanging"	
-                    OnSelectedIndexChanged= "GridEjecucion_SelectedIndexChanged"
-             >		
-                </asp:GridView>			
-        </div>	
+
     </div>  
 </asp:Panel>
 </div>
 
 <div class="form-group">
-    <div class="col-md-offset-8 col-md-12">
-        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;margin-top:200px;margin-left: 200px;margin-top: 50px;"
+    <div class="col-md-offset-9 col-md-12" style="margin-bottom:20px; margin-top: 20px;">
+        <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;"
             Text="Aceptar" causesvalidation="true" CssClass="btn btn-default"  ID="BotonEPAceptar" OnClick="BotonEPAceptar_Click"/>
-        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;margin-top: 50px;" 
+        <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;" 
             CssClass="btn btn-default" ID="BotonEPCancelar" CausesValidation="false"/>
     </div>
 </div>
    
-<div class="row">
-    <asp:GridView ID="GridEP" runat="server" margin-right="auto"
-        CellPadding="10"
-        margin-left="auto"
-        CssClass="GridView" HorizontalAlign="Center"
-        AllowPaging="true"  PageSize="5"
-        HeaderStyle-BackColor="#eeeeee" HeaderStyle-ForeColor="#333333" BorderColor="#cdcdcd" border-radius="15px"
-        AutoPostBack="true">
-    </asp:GridView>
-</div>
+
+    <div class="row">  
+            <div class="form-group">          		
+                <asp:GridView ID="gridEjecucion" runat ="server" margin-right ="auto" 		
+                    CellPadding="10" 		
+                    margin-left="auto" AutoGenerateColumns ="true" 		
+                    CssClass ="GridView" HorizontalAlign="Center"   
+                    HeaderStyle-BackColor="#48cfae" RowStyle-BackColor="White"  HeaderStyle-ForeColor="#ffffff" BorderColor="#cdcdcd"  HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" 		
+                    border-radius="15px"  PagerStyle-BackColor="White" Width="90%" 		
+                    AutoPostBack ="true" AllowPaging="true" PageSize="3"
+                    OnRowDataBound= "OnGridEjecucionRowDataBound"
+                    OnPageIndexChanging="OnGridEjecucionPageIndexChanging"	
+                    OnSelectedIndexChanged= "GridEjecucion_SelectedIndexChanged">		
+                </asp:GridView>			
+        </div>	
+        </div>
 
 <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
     <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
