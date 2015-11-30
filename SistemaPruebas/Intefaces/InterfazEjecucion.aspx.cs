@@ -100,6 +100,19 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static String disennoSeleccionado
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["disennoSeleccionado"];
+                return value == null ? "" : (String)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["disennoSeleccionado"] = value;
+            }
+        }
+
 
         //Page load
         /*
@@ -116,8 +129,9 @@ namespace SistemaPruebas.Intefaces
                 inicializarDTnoConformidades();
                 //gridNoConformidades.DataBind();
                 gridEjecucion.Enabled = true;
-
             }
+            EtiqMensajeOperacion.Visible = false;
+            gridEjecucion.Enabled = true;
         }
 
         protected void inicializarListaNC()
@@ -138,9 +152,19 @@ namespace SistemaPruebas.Intefaces
 
         protected void estadoInicial()
         {
-            DatosEjecucion.Enabled = false;
+            //DatosEjecucion.Enabled = false;
+            ResponsableEP.Enabled =false;
+            DropDownResponsable.Enabled=false;
+            FechaEP.Enabled=false;
+            Incidencias.Enabled = false;
             llenarDDProyectoAdmin();
             inicializarModo();
+            BotonEPInsertar.Enabled = false;
+            BotonEPModificar.Enabled = false;
+            BotonEPEliminar.Enabled = false;
+            gridEjecucion.Enabled = true;
+
+            EtiqMensajeOperacion.Visible = false;
         }
 
         /*
@@ -155,11 +179,11 @@ namespace SistemaPruebas.Intefaces
             //habilitarGrid(ref CP);
             habilitarCampos();
             BotonEPInsertar.Enabled = true;
-            BotonEPModificar.Enabled = true;
-            BotonEPEliminar.Enabled = true;
+            BotonEPModificar.Enabled = false;
+            BotonEPEliminar.Enabled = false;
             BotonEPCancelar.Enabled = false;
             BotonEPAceptar.Enabled = false;
-            llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
+            llenarGridEjecucion();
         }
 
 
@@ -280,7 +304,17 @@ namespace SistemaPruebas.Intefaces
             }
             else
             {
-                DropDownDiseno.Enabled = false;
+                DropDownDiseno.Text = "Seleccionar";
+                DropDownDiseno.SelectedItem.Text = "Seleccionar";
+                BotonesPrincipales.Enabled = false;
+                //DatosEjecucion.Enabled = false;
+                ResponsableEP.Enabled = false;
+                DropDownResponsable.Enabled = false;
+                FechaEP.Enabled = false;
+                Incidencias.Enabled = false;
+                BotonEPInsertar.Enabled = false;
+                BotonEPModificar.Enabled = false;
+                BotonEPEliminar.Enabled = false;
             }
         }
 
@@ -289,12 +323,26 @@ namespace SistemaPruebas.Intefaces
             if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
             {
                 BotonesPrincipales.Enabled = true;
-                llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
+                disennoSeleccionado = DropDownDiseno.SelectedItem.Text.ToString();
+                gridEjecucion.Enabled = true;
+                llenarGridEjecucion();
+                gridEjecucion.Enabled = true;
+
+                BotonEPInsertar.Enabled = true;
+                BotonEPModificar.Enabled = false;
+                BotonEPEliminar.Enabled = false;
             }
             else
             {
                 BotonesPrincipales.Enabled = false;
-                DatosEjecucion.Enabled = false;
+                //DatosEjecucion.Enabled = false;
+                ResponsableEP.Enabled = false;
+                DropDownResponsable.Enabled = false;
+                FechaEP.Enabled = false;
+                Incidencias.Enabled = false;
+                BotonEPInsertar.Enabled = false;
+                BotonEPModificar.Enabled = false;
+                BotonEPEliminar.Enabled = false;
 
             }
 
@@ -320,6 +368,11 @@ namespace SistemaPruebas.Intefaces
         protected void habilitarCampos()
         {
             DatosEjecucion.Enabled = true;
+            ResponsableEP.Enabled = true;
+            DropDownResponsable.Enabled = true;
+            FechaEP.Enabled = true;
+            Incidencias.Enabled = true;
+            gridEjecucion.Enabled = true;
             //habilitarGrid(ref gridEjecucion);
         }
 
@@ -744,8 +797,8 @@ namespace SistemaPruebas.Intefaces
         protected void OnGridEjecucionPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridEjecucion.PageIndex = e.NewPageIndex;
-            this.llenarGridEjecucion(DropDownDiseno.SelectedValue.ToString());
-            gridEjecucion.DataBind();
+            this.llenarGridEjecucion();
+            //gridEjecucion.DataBind();
         }
 
         protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -768,6 +821,8 @@ namespace SistemaPruebas.Intefaces
                 //SELECT fecha, responsable, incidencias, id_disenno FROM Ejecucion WHERE fecha = '" + id + "';";
                 string fecha = gridEjecucion.SelectedRow.Cells[0].Text;
                 llenarDatosEjecucionPrueba(fecha);
+                BotonEPModificar.Enabled = true;
+                BotonEPEliminar.Enabled = true;
 
             }
             catch (Exception ex)
@@ -787,10 +842,10 @@ namespace SistemaPruebas.Intefaces
 
         }
 
-        protected void llenarGridEjecucion(string id_diseno)
+        protected void llenarGridEjecucion()
         {
             DataTable ejecuciones = crearTablaGridEjecuciones();
-            DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, id_diseno);
+            DataTable dt = controladoraEjecucionPrueba.consultarEjecucion(1, disennoSeleccionado);
 
             Object[] datos = new Object[3];
             if (dt.Rows.Count > 0)
@@ -860,6 +915,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             EtiqMensajeOperacion.Text = "La ejecución de prueba ha sido insertada con éxito";
                             desmarcarBoton(ref BotonEPInsertar);
+                            estadoInicial();
                             break;
                         }
                     case 2:
@@ -870,8 +926,8 @@ namespace SistemaPruebas.Intefaces
                         }
                 }
                 EtiqMensajeOperacion.ForeColor = System.Drawing.Color.DarkSeaGreen;
-                llenarGridEjecucion(DropDownDiseno.SelectedItem.Text.ToString());
-               // estadoPostOperacion();
+                llenarGridEjecucion();
+               estadoPostOperacion();
             }
             else
             {
@@ -966,5 +1022,44 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        protected void cancelarBotonSiModal_Click(object sender, EventArgs e)
+        {
+            if (modoEP == 1)
+            {
+                estadoInicial();
+                desmarcarBoton(ref BotonEPInsertar);
+                limpiarCampos();
+                limpiarNC();
+
+            }
+            else if (modoEP == 2)
+            {
+                llenarDatosEjecucionPrueba(DropDownDiseno.SelectedItem.Text.ToString());
+                estadoPostOperacion();
+                desmarcarBoton(ref BotonEPModificar);
+            }
+            
+        }
+
+        /*
+        * Requiere: GridView.
+        * Modifica: Se encarga de deshabilitar las funciones del Grid pasado por parámetro.
+        * Retorna: N/A
+        */
+        protected void deshabilitarGrid(ref GridView grid)
+        {
+            grid.Enabled = false;
+            foreach (GridViewRow row in grid.Rows)
+            {
+                row.Attributes.Remove("onclick");
+                row.Attributes.Remove("onmouseover");
+                row.Attributes.Remove("style");
+                row.Attributes.Remove("onmouseout");
+            }
+        }
+
+        
     }
+
+
 }
