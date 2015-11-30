@@ -552,7 +552,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             foreach (System.Web.UI.WebControls.TableCell cell in preGrid.HeaderRow.Cells)
             {
-                worksheet.Cells[r, c++].Value = cell.Text;
+                worksheet.Cells[r, c++].Value = HttpUtility.HtmlDecode(cell.Text);
             }
             // Dar formato al header.
             worksheet.Row(r).Style.Font.Bold = true;
@@ -564,7 +564,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             {
                 c = 1;
                 foreach (System.Web.UI.WebControls.TableCell cell in row.Cells)
-                {
+                {                  
                     worksheet.Cells[r, c++].Value = HttpUtility.HtmlDecode(cell.Text);
                 }
                 // Coloreamos las filas.
