@@ -48,9 +48,10 @@
             var seconds = 5;
             setTimeout(function () {
 
+                $('#' + '<%=EtiqErrorGR.ClientID %>').fadeOut('5000');
             }, 2000);
         };
-    </script>
+</script>
 
         <script type="text/javascript">
     $(document).ready(function () {
