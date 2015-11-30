@@ -1275,7 +1275,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
             {
-                Phrase p = new Phrase(preGrid.HeaderRow.Cells[i].Text, ff);
+                Phrase p = new Phrase(HttpUtility.HtmlDecode(preGrid.HeaderRow.Cells[i].Text), ff);
+                //Phrase p = new Phrase(quitarTildes(preGrid.HeaderRow.Cells[i].Text), ff);
                 table.AddCell(p);
             }
 
@@ -1283,7 +1284,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             {
                 for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
                 {
-                    Phrase p = new Phrase(row.Cells[i].Text, normalCell);
+                    Phrase p = new Phrase(quitarTildes(row.Cells[i].Text), normalCell);
                     table.AddCell(p);
                 }
 
@@ -1334,6 +1335,23 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 check.Checked = false;
             }
 
+        }
+
+        protected string quitarTildes(string texto)
+        {
+            texto.Replace('á', 'a');
+            texto.Replace('é', 'e');
+            texto.Replace('í', 'i');
+            texto.Replace('ó', 'o');
+            texto.Replace('ú', 'u');
+            texto.Replace('ñ', 'n');
+            texto.Replace('Á', 'A');
+            texto.Replace('É', 'E');
+            texto.Replace('Í', 'I');
+            texto.Replace('Ó', 'O');
+            texto.Replace('Ú', 'U');
+            texto.Replace('Ñ', 'Ñ');
+            return texto;
         }
 
        
