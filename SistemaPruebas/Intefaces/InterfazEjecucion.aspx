@@ -118,7 +118,7 @@
                        <%--<asp:BoundField DataField="RowNumber" HeaderText="Row Number" Visible="false" />--%>
                         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                         <ItemTemplate>
-                            <asp:Button ID ="btnEliminarFila" runat="server" Text ="-" OnClick="btnEliminarFila_Click" CausesValidation="false" CssClass="btn btn-default" ></asp:Button>
+                            <asp:Button ID ="btnEliminarFila" runat="server" text="X" OnClick="btnEliminarFila_Click" CausesValidation="false" CssClass="btn btn-default" style="border-color:#fe6c4f;background-color:#fe5e3e;font-weight:bold; color:white" ></asp:Button>
                             <asp:Label runat="server" ID="lblId" Text='<%# Bind("Id") %>' Visible="false"></asp:Label>
                             <asp:Label runat="server" ID="lblIDNC" Text="0" Visible="false"></asp:Label>
                         </ItemTemplate>
@@ -210,10 +210,10 @@
                             <asp:Panel runat="server" ID="panelSubirImagen" CssClass="modalPopup"> 
                                 <asp:Image ID="imagenSubida" runat="server" style="max-height:400px" />
                                 <asp:FileUpload id="Uploader" runat="server" />
-                                <br/> <br/>
-                                <div aria-pressed="true">
-                                    <asp:button runat="server" ID="subirImagen" Text="Subir" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" OnClick="subirImagen_Click" CommandArgument="0"/>
-                                    <asp:button runat="server" ID="mostrarImagen" Text="Cerrar" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px"     CausesValidation="false"        CommandArgument="0" />           
+                                <br/>
+                                <div aria-pressed="true" >
+                                    <asp:button runat="server" ID="subirImagen" Text="Subir" CssClass="btn btn-primary" style="margin-left:0px;margin-right:20px;margin-bottom:20px; width:85px" CausesValidation="false" OnClick="subirImagen_Click" CommandArgument="0"/>
+                                    <asp:button runat="server" ID="mostrarImagen" Text="Cerrar" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px"     CausesValidation="false"        CommandArgument="0" />           
                                 </div>
                             </asp:Panel>
                             <ajaxToolkit:ModalPopupExtender ID="modalSubir" runat="server" BackgroundCssClass="modalBackground" PopupControlID="panelSubirImagen" TargetControlID="botonImagen"></ajaxToolkit:ModalPopupExtender>
@@ -236,9 +236,9 @@
                    </Columns>
                </asp:GridView>
                <div class="form-group">
-                    <div class="col-md-offset-8 col-md-12">
-                        <asp:Button  runat="server" style="margin-top:200px;margin-left: 200px;margin-top: 50px;"
-                            Text="+" causesvalidation="true" CssClass="btn btn-default"  ID="AgregarFIla" ValidationGroup="grupo" OnClick="AgregarFIla_Click"/>
+                    <div class="col-md-12" style="margin-left:55px">
+                        <asp:Button  runat="server" 
+                            Text="+" causesvalidation="true" CssClass="btn btn-default" style="border-color:#4bb648; background-color:#4bb648; font-weight:bold; color:white; font-size:15px;" ID="AgregarFIla" ValidationGroup="grupo" OnClick="AgregarFIla_Click"/>
                     </div>
               </div>
            </div>
@@ -278,13 +278,13 @@
         </div>
 
 <asp:Panel runat="server" ID="cancelarPanelModal" CssClass="modalPopup"> 
-    <asp:label runat ="server" ID="cancelarLabelModal" style="padding-top:20px;padding-left:11px;padding-right:11px">¿Desea cancelar la operación?</asp:label>
-    <br/> <br/>
+    <legend style="margin-top:15px"><h5>¿Desea cancelar la operación?</h5></legend>
     <div aria-pressed="true">
-        <asp:button runat="server" ID="cancelarBotonSiModal" Text="Si" CssClass="btn btn-default" style="border-color:#4bb648;color:#4bb648;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false"/>
-        <asp:button runat="server" ID="cancelarBotonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:20px;margin-right:20px;margin-bottom:20px" CausesValidation="false" />           
+        <asp:button runat="server" ID="cancelarBotonSiModal" Text="Si" CssClass="btn btn-primary" style="margin-left:8px;margin-right:20px;margin-bottom:20px; width:85px" CausesValidation="false"/>
+        <asp:button runat="server" ID="cancelarBotonNoModal" Text="No" CssClass="btn btn-default" style="border-color:#fe6c4f;color:#fe5e3e;align-self:center;margin-left:11px;margin-right:6px;margin-bottom:20px; width:85px" CausesValidation="false" />           
     </div>
-</asp:Panel>
+</asp:Panel>	
+
 <ajaxToolkit:ModalPopupExtender ID="ModalCancelar" runat="server" BackgroundCssClass="modalBackground" PopupControlID="cancelarPanelModal" TargetControlID="BotonEPCancelar" ></ajaxToolkit:ModalPopupExtender>
 
 <asp:Panel runat="server" ID="panelModal" CssClass="modalPopup"> 

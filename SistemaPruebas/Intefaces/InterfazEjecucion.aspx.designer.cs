@@ -247,15 +247,6 @@ namespace SistemaPruebas.Intefaces {
         protected global::System.Web.UI.WebControls.Panel cancelarPanelModal;
         
         /// <summary>
-        /// Control cancelarLabelModal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label cancelarLabelModal;
-        
-        /// <summary>
         /// Control cancelarBotonSiModal.
         /// </summary>
         /// <remarks>

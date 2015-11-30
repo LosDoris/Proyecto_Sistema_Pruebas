@@ -225,7 +225,9 @@
     <Content Include="Imagenes\diseno.svg" />
     <Content Include="Imagenes\ejecucion.svg" />
     <Content Include="Imagenes\ejemplo.jpg" />
+    <Content Include="Imagenes\poner.png" />
     <Content Include="Imagenes\proyecto.svg" />
+    <Content Include="Imagenes\quitar.png" />
     <Content Include="Imagenes\reportes.svg" />
     <Content Include="Imagenes\requerimientos.svg" />
     <Content Include="Imagenes\team-blanco.svg" />
