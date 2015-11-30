@@ -287,6 +287,7 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
         }
+        /*
         public void gridToDoc()
         {
             //Create Table
@@ -395,7 +396,34 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             //C: \Users\andre_000\Downloads
 
         }
+        */
 
+        private void ExportGridToword()
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "ReporteDoroteos.doc";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/msword";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            preGrid.GridLines = GridLines.Both;
+            preGrid.HeaderStyle.Font.Bold = true;
+            preGrid.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            // Confirms that an HtmlForm control is rendered for the
+            //specified ASP.NET server control at run time.
+        }
         /*   public void crearDocTabla(System.Data.DataTable dt)
            {
                //Create Table
@@ -1157,7 +1185,8 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
-                    gridToDoc();
+                    //gridToDoc();
+                    ExportGridToword();
                     volverAlOriginal();
                     //System.Data.DataTable dtGR = GridGR.DataSource as System.Data.DataTable;
                     /*  if (dtGR1 != null)
