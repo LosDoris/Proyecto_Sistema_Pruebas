@@ -1280,14 +1280,15 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
 
             iTextSharp.text.Font boldFont = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 24, iTextSharp.text.Font.BOLD);
             iTextSharp.text.Font boldFontHeader = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 14, iTextSharp.text.Font.BOLD);
-            iTextSharp.text.Font normalCell = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 12, iTextSharp.text.Font.NORMAL);
+            
 
             doc.Add(new iTextSharp.text.Paragraph("Reporte de proyectos", boldFont));
             doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
             doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
 
             BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 12, iTextSharp.text.Font.NORMAL);
+            iTextSharp.text.Font normalCell = new iTextSharp.text.Font(fieldFontRoman, 11, iTextSharp.text.Font.NORMAL);
+            iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 13, iTextSharp.text.Font.BOLD);
 
             //pdfStamper.AcroFields.SetFieldProperty("PYN", "textfont", fieldFontRoman, null);
 
@@ -1305,15 +1306,25 @@ System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attach
             for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
             {
                 Phrase p = new Phrase(HttpUtility.HtmlDecode(preGrid.HeaderRow.Cells[i].Text), ff);
+                PdfPCell cell = new PdfPCell(p);
+                float level = 0.90F;
+                GrayColor gray = new GrayColor(level);
+                cell.BackgroundColor = gray;
+                
+                cell.MinimumHeight = 10.0F;
+                cell.PaddingBottom = 20.0F;
+                cell.PaddingTop = 20.0F;
+                bool tiene = cell.HasMinimumHeight();
                 //Phrase p = new Phrase(quitarTildes(preGrid.HeaderRow.Cells[i].Text), ff);
-                table.AddCell(p);
+                table.AddCell(cell);
             }
 
             foreach (GridViewRow row in preGrid.Rows)
             {
                 for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
                 {
-                    Phrase p = new Phrase(quitarTildes(row.Cells[i].Text), normalCell);
+                    Phrase p = new Phrase(HttpUtility.HtmlDecode(row.Cells[i].Text), normalCell);
+                    //Phrase p = new Phrase(quitarTildes(row.Cells[i].Text), normalCell);
                     table.AddCell(p);
                 }
 

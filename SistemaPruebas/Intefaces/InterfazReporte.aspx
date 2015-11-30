@@ -153,14 +153,14 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-horizontal">
-                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignacion." />
+                            &nbsp;<asp:CheckBox ID="CheckBoxFechAsignacionProyecto" runat="server" Text="Fecha de asignación." />
                         </div>
                     </div>
                     <div class="col-md-4">
                         &nbsp;<asp:CheckBox ID="CheckBoxOficinaProyecto" runat="server" Text="Datos de oficina usuaria." />
                     </div>
                     <div class="col-md-4">
-                        &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Lider." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxResponsableProyecto" runat="server" Text="Líder." />
                     </div>
                 </div>
             </div>
@@ -200,10 +200,10 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Cantidad de pendientes"  />
+                        &nbsp;<asp:CheckBox ID="CheckBoxTipoNoConf" runat="server" Text="Cantidad pendientes"  />
                     </div>
                     <div class="col-md-4">
-                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Tipos no conformidades." />
+                        &nbsp;<asp:CheckBox ID="CheckBoxCantNoConf" runat="server" Text="Tipos de no conformidades." />
                     </div>
                 </div>
             </div>
