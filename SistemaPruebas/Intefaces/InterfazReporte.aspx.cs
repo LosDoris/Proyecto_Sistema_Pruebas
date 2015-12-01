@@ -16,10 +16,10 @@ using OfficeOpenXml.Style;
 using System.IO;
 
 
-using Spire.Doc;
-using Spire.Doc.Fields;
-using System.Drawing;
-using Spire.Doc.Documents;
+//using Spire.Doc;
+//using Spire.Doc.Fields;
+//using System.Drawing;
+//using Spire.Doc.Documents;
 //using Microsoft.Office.Interop;
 //using Microsoft.Office.Interop.Word;
 
@@ -32,8 +32,8 @@ namespace SistemaPruebas.Intefaces
     {
         //Variables:
         Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
-        DataTable dtGR = new DataTable();
-        DataTable dtGR1 = new DataTable();
+        //DataTable dtGR = new DataTable();
+        //DataTable dtGR1 = new DataTable();
         public static string modoGR
         {
             get
@@ -489,7 +489,7 @@ namespace SistemaPruebas.Intefaces
                     if (GridReq.SelectedIndex != -1)//Un solo requerimiento
                     {
                         proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
-                        dtGR1 = ProyectoPreGrid(proyectoDatos, dt, checks);
+                        ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
 
                     else//Todos los requerimientos de un módulo
@@ -501,12 +501,12 @@ namespace SistemaPruebas.Intefaces
                             {
                                 List<Object> comodin = new List<object>(proyectoDatos);
                                 comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
-                                dtGR1 = ProyectoPreGrid(comodin, dt, checks);
+                                ProyectoPreGrid(comodin, dt, checks);
                                 //comodin.Clear();
                             }
                         }
                         else
-                            dtGR1 = ProyectoPreGrid(proyectoDatos, dt, checks);
+                            ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
                 }
 
@@ -528,21 +528,21 @@ namespace SistemaPruebas.Intefaces
                                     {
                                         List<Object> comodinReq = new List<object>(comodin);
                                         comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
-                                        dtGR1 = ProyectoPreGrid(comodinReq, dt, checks);
+                                        ProyectoPreGrid(comodinReq, dt, checks);
                                     }
                                 }
                                 else
                                 {
-                                    dtGR1 = ProyectoPreGrid(comodin, dt, checks);
+                                    ProyectoPreGrid(comodin, dt, checks);
                                 }
                             }
                             else
-                                dtGR1 = ProyectoPreGrid(comodin, dt, checks);
+                                ProyectoPreGrid(comodin, dt, checks);
                         }
                         else
                         {
                             comodin.Add("N/A");
-                            dtGR1 = ProyectoPreGrid(comodin, dt, checks);
+                            ProyectoPreGrid(comodin, dt, checks);
                         }
 
                     }
@@ -842,7 +842,7 @@ namespace SistemaPruebas.Intefaces
             dt.Rows.Add(datos);
             preGrid.DataSource = dt;
             preGrid.DataBind();
-            dtGR = dt;
+            //dtGR = dt;
             return dt;
         }
 
@@ -927,15 +927,6 @@ namespace SistemaPruebas.Intefaces
             c.VerticalAlignment = Element.ALIGN_TOP;
             c.HorizontalAlignment = Element.ALIGN_CENTER;
             head.AddCell(c);
-            //head.WriteSelectedRows(
-            //     first/last row; -1 writes all rows
-            //  0, -1,
-            //     left offset
-            //  0,
-            //    / bottom** yPos of the table
-            //  page.Height - doc.TopMargin + head.TotalHeight + 20,
-            //  writer.DirectContent
-            //);
             doc.Add(head);
             doc.AddCreationDate();
 
@@ -950,15 +941,6 @@ namespace SistemaPruebas.Intefaces
             BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             iTextSharp.text.Font normalCell = new iTextSharp.text.Font(fieldFontRoman, 11, iTextSharp.text.Font.NORMAL);
             iTextSharp.text.Font ff = new iTextSharp.text.Font(fieldFontRoman, 13, iTextSharp.text.Font.BOLD);
-
-            //pdfStamper.AcroFields.SetFieldProperty("PYN", "textfont", fieldFontRoman, null);
-
-            /** Logo del reporte**/
-            //var logo = iTextSharp.text.Image.GetInstance(System.Web.Hosting.HostingEnvironment.MapPath("~/Images/orderedList5.png"));
-            //logo.SetAbsolutePosition(430, 770);
-            //logo.ScaleAbsoluteHeight(30);
-            //logo.ScaleAbsoluteWidth(70);
-            //doc.Add(logo);
 
             /*Se agregan datos de proyecto, en caso de ser seleccionado*/
 
@@ -1062,25 +1044,3 @@ namespace SistemaPruebas.Intefaces
 
 
 
-
-/*
-private void ExportGridToword()  
-{  
-Response.Clear();  
-Response.Buffer = true;  
-Response.ClearContent();  
-Response.ClearHeaders();  
-Response.Charset = "";  
-string FileName = "Vithal" + DateTime.Now +".doc";  
-StringWriter strwritter = new StringWriter();  
-HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);        
-Response.Cache.SetCacheability(HttpCacheability.NoCache);  
-Response.ContentType ="application/msword";  
-Response.AddHeader("Content-Disposition","attachment;filename=" + FileName);  
-GridGR.GridLines = GridLines.Both;  
-GridGR.HeaderStyle.Font.Bold = true;  
-GridGR.RenderControl(htmltextwrtter);  
-Response.Write(strwritter.ToString());  
-Response.End();      
-
-}  */
