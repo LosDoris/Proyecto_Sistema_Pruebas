@@ -92,16 +92,7 @@ namespace SistemaPruebas.Controladoras
         {
             return controlProy.ConsultarProyecto(controlProy.ConsultarIdProyectoPorNombre(nombre));
         }
-        /*
-        public DataTable consultarDisennos(string nombre)
-        {
-            return controlDis.consultarDisenoGrid(controlProy.ConsultarIdProyectoPorNombre(nombre));
-        }
-        public EntidadDisenno consultarDisenno(string nombre)
-        {
-            return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));
-        }
-         * */
+
         /*
          * Requiere: String nombre del requerimiento
          * Modifica: N/A.
@@ -111,12 +102,7 @@ namespace SistemaPruebas.Controladoras
         {
             return controlCasos.solicitarCasosdePrueba(controlDis.consultarId_Disenno(nombre));
         }
-        /*
-        public DataTable consultarCasoPrueba(string id)
-        {
-            return controlCasos.consultarCasosPrueba(2, id);
-        }
-        */
+
 
         /*
          * Requiere: String nombreProyecto
@@ -136,12 +122,7 @@ namespace SistemaPruebas.Controladoras
         {
             return controlReq.consultarReqPorNombre(modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
-        /*
-        public EntidadRequerimientos consultarRequerimiento(string nombre, string idProyeto)
-        {
-            return controlReq.consultarReqUnico(nombre, idProyeto);
-        }
-        */
+
 
         /*
          * Requiere: String nombreProyecto y nombre del modulo
@@ -327,193 +308,5 @@ namespace SistemaPruebas.Controladoras
             return retorno;
 
         }
-        /*
-        public DataTable crearDT(bool[] campos)
-        {
-            DataTable dt = new DataTable();
-            if (campos[0])
-            {
-                dt.Columns.Add("Nombre del Proyecto.", typeof(String));
-            }
-            if (campos[1])
-            {
-                dt.Columns.Add("Nombre del Módulo.", typeof(String));
-            }
-            if (campos[2])
-            {
-                dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
-            }
-            if (campos[3])
-            {
-                dt.Columns.Add("Fecha de asignación.", typeof(String));
-            }
-            if (campos[4])
-            {
-                dt.Columns.Add("Oficina usuaria.", typeof(String));
-            }
-            if (campos[5])
-            {
-                dt.Columns.Add("Líder.", typeof(String));
-            }
-            if (campos[6])
-            {
-                dt.Columns.Add("Objetivo.", typeof(String));
-            }
-            if (campos[7])
-            {
-                dt.Columns.Add("Estado del Proyecto.", typeof(String));
-            }
-            if (campos[8])
-            {
-                dt.Columns.Add("Miembros del equipo.", typeof(String));
-            }
-            if (campos[9])
-            {
-                dt.Columns.Add("Cantidad de éxitos.", typeof(String));
-            }
-            if (campos[10])
-            {
-                dt.Columns.Add("Tipos de no conformidad.", typeof(String));
-            }
-            if (campos[11])
-            {
-                dt.Columns.Add("Cantidad de no conformidades.", typeof(String));
-            }
-            return dt;
-        }
-
-
-        /*
-        public DataTable dtReporte(bool[] campos, String proy, String mod, String req)
-        {
-            EntidadProyecto entidad = consultarProyecto(proy);
-            int k = 0;
-            for (int j = 0; j < 12; ++j)
-            {
-                if (campos[j] == true)
-                {
-                    k = k + 1;
-                }
-            }
-            Object[] datos = new Object[k];
-
-            int i = 0;
-            DataTable dt = crearDT(campos);
-            if (campos[0])
-            {
-                datos[i] = entidad.Nombre_sistema;
-                i = i + 1;
-            }
-            else
-            {
-                //datos[0] = "-";
-            }
-            if (campos[1])
-            {
-                datos[i] = mod;
-                i = i + 1;
-            }
-
-            if (campos[2])
-            {
-                datos[i] = req;
-                i = i + 1;
-            }
-
-            if (campos[3])
-            {
-                datos[i] = entidad.Fecha_asignacion;
-                i = i + 1;
-            }
-
-            if (campos[4])
-            {
-                datos[i] = entidad.Oficina_representante + "\n" + entidad.Nombre_representante + "\n" + entidad.Telefono_representante;
-                i = i + 1;
-
-            }
-
-            if (campos[5])
-            {
-                datos[i] = entidad.LiderProyecto;
-                i = i + 1;
-            }
-
-            if (campos[6])
-            {
-                datos[i] = entidad.Objetivo_general;
-                i = i + 1;
-            }
-
-            if (campos[7])
-            {
-                string estado = "";
-                if (entidad.Estado != "")
-                {
-                    switch (Convert.ToInt32(entidad.Estado))
-                    {
-
-                        case 1:
-                            {
-                                estado = "Pendiente";
-                            }
-                            break;
-                        case 2:
-                            {
-                                estado = "Asignado";
-                            }
-                            break;
-                        case 3:
-                            {
-                                estado = "En ejecución";
-                            }
-                            break;
-                        case 4:
-                            {
-                                estado = "Finalizado";
-                            }
-                            break;
-                        case 5:
-                            {
-                                estado = "Cerrado";
-                            }
-                            break;
-                    }
-                }
-
-                datos[i] = estado;
-                i = i + 1;
-                //= entidad.Nombre_sistema;
-            }
-
-            if (campos[8])//miembros
-            {
-                String miembros = consultarMiembrosProyecto(proy);
-                datos[i] = miembros;// entidad.Nombre_sistema;
-                i = i + 1;
-            }
-
-            if (campos[9])//exitos
-            {
-                datos[i] = "-";//entidad.Nombre_sistema;
-                i = i + 1;
-            }
-
-            if (campos[10])//tipo
-            {
-                datos[i] = "-";//entidad.Nombre_sistema;
-                i = i + 1;
-            }
-
-            if (campos[11])//cant no conf
-            {
-                datos[i] = "-";//entidad.Nombre_sistema;
-                i = i + 1;
-            }
-
-            dt.Rows.Add(datos);
-
-            return dt;
-        }*/
     }
 }
