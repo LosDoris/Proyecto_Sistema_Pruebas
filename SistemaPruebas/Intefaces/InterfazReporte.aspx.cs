@@ -134,6 +134,7 @@ namespace SistemaPruebas.Intefaces
                 modSeleccionado.Visible = false;
                 reqSeleccionado.Visible = false;
             }
+            EtiqErrorGR.Text = "";
 
         }
         /*
@@ -143,8 +144,11 @@ namespace SistemaPruebas.Intefaces
          */
         protected void volverAlOriginal()
         {
+            EtiqErrorGR.Text = "";
             modoGR = Convert.ToString(0);
+            Generar.Text = "Generar Reporte";
             deselTodos_CheckedChanged(null, null);
+            enabledChecks();
             CheckBoxNombReq.Checked = true;
             CheckBoxNombModulo.Checked = true;
             CheckBoxNombreProyecto.Checked = true;
@@ -427,58 +431,67 @@ namespace SistemaPruebas.Intefaces
             //revisar como se llaman los metodos de la controladora.
             bool[] proyecto = datosProy();
             CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
-
-            if (proyectoActualGR != "")
+            if (Generar.Text == "Generar Reporte")
             {
-                modoGR = Convert.ToString(1);
-                DataTable dt = headerPreGrid(checks);
-                List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
-                if (GridMod.SelectedIndex != -1)//Un módulo
-                {
-                    proyectoDatos.Add(modSeleccionado.Text);
-                    if (GridReq.SelectedIndex != -1)//Un solo requerimiento
-                    {
-                        proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
-                        ProyectoPreGrid(proyectoDatos, dt, checks);
-                    }
-                    else//Todos los requerimientos de un módulo
-                    {
-                        if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
-                        {
 
-                            foreach (GridViewRow id in GridReq.Rows)
-                            {
-                                List<Object> comodin = new List<object>(proyectoDatos);
-                                comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
-                                ProyectoPreGrid(comodin, dt, checks);
-                                //comodin.Clear();
-                            }
-                        }
-                        else
+                if (proyectoActualGR != "")
+                {
+                    unenabledChecks();
+                    Generar.Text = "Agregar a Reporte";
+                    modoGR = Convert.ToString(1);
+                    DataTable dt = headerPreGrid(checks);
+                    List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
+                    if (GridMod.SelectedIndex != -1)//Un módulo
+                    {
+                        proyectoDatos.Add(modSeleccionado.Text);
+                        if (GridReq.SelectedIndex != -1)//Un solo requerimiento
                         {
+                            proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
                             ProyectoPreGrid(proyectoDatos, dt, checks);
                         }
-                    }
-                }
-                else//Todos los módulos de un proyecto
-                {
-
-                    foreach (GridViewRow dr in GridMod.Rows)
-                    {
-                        List<Object> comodin = new List<object>(proyectoDatos);
-                        if (dr.Cells[0].Text != "-" || dr.Cells[0].Text != "")
+                        else//Todos los requerimientos de un módulo
                         {
-                          
-                            comodin.Add(dr.Cells[0].Text);
                             if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
                             {
-                                if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
+
+                                foreach (GridViewRow id in GridReq.Rows)
                                 {
-                                    foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                    List<Object> comodin = new List<object>(proyectoDatos);
+                                    comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
+                                    ProyectoPreGrid(comodin, dt, checks);
+                                    //comodin.Clear();
+                                }
+                            }
+                            else
+                            {
+                                ProyectoPreGrid(proyectoDatos, dt, checks);
+                            }
+                        }
+                    }
+                    else//Todos los módulos de un proyecto
+                    {
+
+                        foreach (GridViewRow dr in GridMod.Rows)
+                        {
+                            List<Object> comodin = new List<object>(proyectoDatos);
+                            if (dr.Cells[0].Text != "-" || dr.Cells[0].Text != "")
+                            {
+
+                                comodin.Add(dr.Cells[0].Text);
+                                if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                                {
+                                    if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
                                     {
-                                        List<Object> comodinReq = new List<object>(comodin);
-                                        comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
-                                        ProyectoPreGrid(comodinReq, dt, checks);
+                                        foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                        {
+                                            List<Object> comodinReq = new List<object>(comodin);
+                                            comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
+                                            ProyectoPreGrid(comodinReq, dt, checks);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ProyectoPreGrid(comodin, dt, checks);
                                     }
                                 }
                                 else
@@ -486,18 +499,107 @@ namespace SistemaPruebas.Intefaces
                                     ProyectoPreGrid(comodin, dt, checks);
                                 }
                             }
-                            else {
+                            else
+                            {
+                                comodin.Add("N/A");
                                 ProyectoPreGrid(comodin, dt, checks);
                             }
-                        }
-                        else
-                        {
-                            comodin.Add("N/A");
-                            ProyectoPreGrid(comodin, dt, checks);
-                        }
 
-                    }
+                        }
+                    }                    
                 }
+                else //NO proyecto marcado
+                {
+                    EtiqErrorGR.Text = "*Primero debe primero eligir algún proyecto.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                    EtiqErrorGR.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                }
+            }
+            else //Segunda o más líneas
+            {
+                DataTable dt = fromGridToDT();
+                if (proyectoActualGR != "")
+                {
+                    //Generar.Text = "Agregar a Reporte";
+                    //modoGR = Convert.ToString(1);
+                    //DataTable dt = headerPreGrid(checks);
+                    List<Object> proyectoDatos = controladoraGR.reporteProyecto(controladoraGR.consultarProyecto(proyectoActualGR));
+                    if (GridMod.SelectedIndex != -1)//Un módulo
+                    {
+                        proyectoDatos.Add(modSeleccionado.Text);
+                        if (GridReq.SelectedIndex != -1)//Un solo requerimiento
+                        {
+                            proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
+                            ProyectoPreGrid(proyectoDatos, dt, checks);
+                        }
+                        else//Todos los requerimientos de un módulo
+                        {
+                            if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                            {
+
+                                foreach (GridViewRow id in GridReq.Rows)
+                                {
+                                    List<Object> comodin = new List<object>(proyectoDatos);
+                                    comodin = controladoraGR.medicionRequerimiento(comodin, id.Cells[0].Text);
+                                    ProyectoPreGrid(comodin, dt, checks);
+                                    //comodin.Clear();
+                                }
+                            }
+                            else
+                            {
+                                ProyectoPreGrid(proyectoDatos, dt, checks);
+                            }
+                        }
+                    }
+                    else//Todos los módulos de un proyecto
+                    {
+
+                        foreach (GridViewRow dr in GridMod.Rows)
+                        {
+                            List<Object> comodin = new List<object>(proyectoDatos);
+                            if (dr.Cells[0].Text != "-" || dr.Cells[0].Text != "")
+                            {
+
+                                comodin.Add(dr.Cells[0].Text);
+                                if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
+                                {
+                                    if (controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows.Count > 0)
+                                    {
+                                        foreach (DataRow id in controladoraGR.consultarRequerimientos(proyectoActualGR, dr.Cells[0].Text).Rows)
+                                        {
+                                            List<Object> comodinReq = new List<object>(comodin);
+                                            comodinReq = controladoraGR.medicionRequerimiento(comodinReq, id[0].ToString());
+                                            ProyectoPreGrid(comodinReq, dt, checks);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ProyectoPreGrid(comodin, dt, checks);
+                                    }
+                                }
+                                else
+                                {
+                                    ProyectoPreGrid(comodin, dt, checks);
+                                }
+                            }
+                            else
+                            {
+                                comodin.Add("N/A");
+                                ProyectoPreGrid(comodin, dt, checks);
+                            }
+
+                        }
+                    }                    
+                }
+                else //NO proyecto marcado
+                {
+                    EtiqErrorGR.Text = "*Primero debe primero eligir algún proyecto.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                    EtiqErrorGR.Visible = true;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
+                }
+                
             }
         }
 
@@ -546,12 +648,12 @@ namespace SistemaPruebas.Intefaces
                     proyectoSeleccionado.Text = ced;
                     proyectoSeleccionado.Visible = true;
                     proyectoSeleccionadoLabel.Visible = true;
-                    moduloSeleccionadoLabel.Visible = false;
-                    modSeleccionado.Visible = false;
-                    modSeleccionado.Text = "";
-                    reqSeleccionadoLabel.Visible = false;
-                    reqSeleccionado.Visible = false;
-                    modSeleccionado.Text = "";
+                    moduloSeleccionadoLabel.Visible = true;
+                    modSeleccionado.Visible = true;
+                    modSeleccionado.Text = "Todos";
+                    reqSeleccionadoLabel.Visible = true;
+                    reqSeleccionado.Visible = true;
+                    reqSeleccionado.Text = "Todos";
                     modActualGR = "";
                     reqActualGR = "";
                 }
@@ -602,9 +704,9 @@ namespace SistemaPruebas.Intefaces
                     modSeleccionado.Visible = true;
                 }
             }
-            reqSeleccionadoLabel.Visible = false;
-            reqSeleccionado.Visible = false;            
-            reqActualGR = "";
+            reqSeleccionadoLabel.Visible = true;
+            reqSeleccionado.Visible = true;
+            reqSeleccionado.Text = "Todos";
         }
 
 
@@ -771,24 +873,33 @@ namespace SistemaPruebas.Intefaces
             {
                 if (DDLTipoArchivo.SelectedItem.Text == "Tipo de Archivo")
                 {
-
+                    EtiqErrorGR.Text = "*Señale el tipo de archivo en que se exportará el reporte.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.Salmon;
+                  
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Excel")
                 {
-
+                    EtiqErrorGR.Text = "*Achivo exportado a Excel.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     generarReporteExcel(sender, e);
                     volverAlOriginal();
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
+                    EtiqErrorGR.Text = "*Archivo exportado a Word.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     exportarWord();
                     volverAlOriginal();
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "PDF")
                 {
+                    EtiqErrorGR.Text = "*Archivo exportado a PDF.";
+                    EtiqErrorGR.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     exportarToPdf();
                     volverAlOriginal();
                 }
+                EtiqErrorGR.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
             else
             {
@@ -846,7 +957,7 @@ namespace SistemaPruebas.Intefaces
             iTextSharp.text.Font boldFontHeader = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 14, iTextSharp.text.Font.BOLD);
             doc.Add(new iTextSharp.text.Paragraph("Reporte de proyectos", boldFont));
             doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
-            doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
+          
 
             BaseFont fieldFontRoman = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             iTextSharp.text.Font normalCell = new iTextSharp.text.Font(fieldFontRoman, 11, iTextSharp.text.Font.NORMAL);
@@ -860,13 +971,12 @@ namespace SistemaPruebas.Intefaces
             {
                 Phrase p = new Phrase(HttpUtility.HtmlDecode(preGrid.HeaderRow.Cells[i].Text), ff);
                 PdfPCell cell = new PdfPCell(p);
-                float level = 0.90F;
+                float level = 0.80F;
                 GrayColor gray = new GrayColor(level);
                 cell.BackgroundColor = gray;
                 
                 cell.MinimumHeight = 10.0F;
-                cell.PaddingBottom = 20.0F;
-                cell.PaddingTop = 20.0F;
+               
                 bool tiene = cell.HasMinimumHeight();
                 //Phrase p = new Phrase(quitarTildes(preGrid.HeaderRow.Cells[i].Text), ff);
                 table.AddCell(cell);
@@ -876,9 +986,13 @@ namespace SistemaPruebas.Intefaces
             {
                 for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
                 {
+                    
                     Phrase p = new Phrase(HttpUtility.HtmlDecode(row.Cells[i].Text), normalCell);
                     //Phrase p = new Phrase(quitarTildes(row.Cells[i].Text), normalCell);
-                    table.AddCell(p);
+                    PdfPCell cell = new PdfPCell(p);
+                    cell.PaddingBottom = 7.0F;
+                    cell.PaddingTop = 7.0F;
+                    table.AddCell(cell);
                 }
 
             }
@@ -924,22 +1038,46 @@ namespace SistemaPruebas.Intefaces
             }
 
         }
+       
 
-        protected string quitarTildes(string texto)
+        protected DataTable fromGridToDT()
         {
-            texto.Replace('á', 'a');
-            texto.Replace('é', 'e');
-            texto.Replace('í', 'i');
-            texto.Replace('ó', 'o');
-            texto.Replace('ú', 'u');
-            texto.Replace('ñ', 'n');
-            texto.Replace('Á', 'A');
-            texto.Replace('É', 'E');
-            texto.Replace('Í', 'I');
-            texto.Replace('Ó', 'O');
-            texto.Replace('Ú', 'U');
-            texto.Replace('Ñ', 'Ñ');
-            return texto;
+            DataTable dt = new DataTable();
+
+            for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
+            {
+                dt.Columns.Add(HttpUtility.HtmlDecode(preGrid.HeaderRow.Cells[i].Text));                
+            }
+
+
+            foreach (GridViewRow row in preGrid.Rows)
+            {
+                DataRow dr = dt.NewRow();
+                for (int i = 0; i < preGrid.Rows[0].Cells.Count; i++)
+                {
+                    dr[i] = HttpUtility.HtmlDecode(row.Cells[i].Text);
+                }
+                dt.Rows.Add(dr);
+            }
+
+            return dt;
+        }
+
+        protected void unenabledChecks()
+        {
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+            foreach (CheckBox check in checks)
+                check.Enabled = false;
+            selTodos.Enabled = false;
+            deselTodos.Enabled = false;
+        }
+        protected void enabledChecks()
+        {
+            CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
+            foreach (CheckBox check in checks)
+                check.Enabled = true;
+            selTodos.Enabled = true;
+            deselTodos.Enabled = true;
         }
 
     }
