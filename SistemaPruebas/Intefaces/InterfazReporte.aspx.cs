@@ -973,9 +973,7 @@ namespace SistemaPruebas.Intefaces
                 PdfPCell cell = new PdfPCell(p);
                 float level = 0.80F;
                 GrayColor gray = new GrayColor(level);
-                cell.BackgroundColor = gray;
-                
-                cell.MinimumHeight = 10.0F;
+                cell.BackgroundColor = gray;                               
                
                 bool tiene = cell.HasMinimumHeight();
                 //Phrase p = new Phrase(quitarTildes(preGrid.HeaderRow.Cells[i].Text), ff);
