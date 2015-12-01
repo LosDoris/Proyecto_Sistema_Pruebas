@@ -254,7 +254,7 @@
 <div class="form-group">
     <div class="col-md-offset-9 col-md-12" style="margin-bottom:20px; margin-top: 20px;">
         <asp:Button runat="server" style="border-color:#4bb648;color:#4bb648;"
-            Text="Aceptar" causesvalidation="true" CssClass="btn btn-default"  ID="BotonEPAceptar" OnClick="BotonEPAceptar_Click"/>
+            Text="Aceptar" causesvalidation="true" CssClass="btn btn-default" ValidationGroup="grupo" ID="BotonEPAceptar" OnClick="BotonEPAceptar_Click"/>
         <asp:Button runat="server" Text="Cancelar" style="border-color:#fe6c4f;color:#fe5e3e;" 
             CssClass="btn btn-default" ID="BotonEPCancelar" CausesValidation="false"/>
     </div>
