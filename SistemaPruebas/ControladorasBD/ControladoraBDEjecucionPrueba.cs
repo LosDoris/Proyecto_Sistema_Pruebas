@@ -89,6 +89,13 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
                                                         "' and  fecha = '" + noConformidad.Id_ejecucion +"')is null) select 0 else select 1");
+            DataTable dt1 = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
+                                                        "' and  fecha = '" + noConformidad.Id_ejecucion + "'"+
+                                                        " and tipo='"+noConformidad.Tipo+"' "+
+                                                        " and idCaso='"+noConformidad.Caso+"' "+
+                                                        " and descripcion='"+noConformidad.Descripcion+"' "+
+                                                        " and estado="+noConformidad.Estado+"'"+
+                                                        ")is null) select 0 else select 1");
             String consulta="";
             if (dt.Rows.Count > 0)
             {

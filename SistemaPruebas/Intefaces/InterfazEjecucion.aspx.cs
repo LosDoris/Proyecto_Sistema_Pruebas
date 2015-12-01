@@ -646,11 +646,8 @@ namespace SistemaPruebas.Intefaces
 
         protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (gridNoConformidades.Rows.Count > 1)
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow gvRow = gridNoConformidades.Rows[index];
-            }
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow gvRow = gridNoConformidades.Rows[index];
             
 
             //if (e.CommandName == "pasarFila")
@@ -736,7 +733,7 @@ namespace SistemaPruebas.Intefaces
                 conservarEstado();
                 cantidadConformidades -= 1;
             }
-            if (modoEP == 2 && cantidadConformidades>0)
+            if (cantidadConformidades > 0)
             {
                 GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
                 int index = gvRow.RowIndex;
@@ -782,8 +779,9 @@ namespace SistemaPruebas.Intefaces
             
         }
 
-        protected void limpiarNC()
+        protected void limpiarNC(String fecha)
         {
+
             dtNoConformidades = new DataTable();
             dtNoConformidades.Columns.AddRange
             (
@@ -799,12 +797,34 @@ namespace SistemaPruebas.Intefaces
                 }
             );
 
+            if (controladoraEjecucionPrueba.cantidadNoConformidades(fecha) == 0 || fecha=="")
+            {
+                DataRow drRow = dtNoConformidades.NewRow();
+
+                drRow["Id"] = 1;
+                drRow["Tipo"] = String.Empty;
+                drRow["IdCaso"] = String.Empty;
+                drRow["Descripcion"] = String.Empty;
+                drRow["Justificacion"] = String.Empty;
+                drRow["Resultado"] = String.Empty;
+                drRow["Estado"] = string.Empty;
+
+                dtNoConformidades.Rows.Add(drRow);
+                dtNoConformidades = dtNoConformidades;
+                gridNoConformidades.DataSource = dtNoConformidades;
+                gridNoConformidades.DataBind();
+            }
+            
+
+            gridNoConformidades.DataSource = dtNoConformidades;
+            gridNoConformidades.DataBind();
+
         }
 
         protected void llenarGridNCConsulta(String fecha)
         {
             DataTable dtNC = controladoraEjecucionPrueba.consultarNoConformidades(fecha);
-            limpiarNC();
+            limpiarNC(fecha);
 
             if (dtNC.Rows.Count > 0)
             {
@@ -820,13 +840,12 @@ namespace SistemaPruebas.Intefaces
                 leerNC(dtNC);
 
             }
-            // dtNoConformidades = dtNC;
 
         }
 
         protected void leerNC(DataTable dtNC)
         {
-            for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
+            for (int i = 0; i < dtNoConformidades.Rows.Count; i++)
             {
                 DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
                 DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
@@ -892,6 +911,8 @@ namespace SistemaPruebas.Intefaces
                 BotonEPModificar.Enabled = true;
                 BotonEPEliminar.Enabled = true;
 
+                cantidadConformidades = controladoraEjecucionPrueba.cantidadNoConformidades(fecha);
+
             }
             catch (Exception ex)
             {
@@ -909,7 +930,6 @@ namespace SistemaPruebas.Intefaces
             llenarGridNCConsulta(fecha);
 
             //ver cantidad de noconformidades
-            cantidadConformidades=controladoraEjecucionPrueba.cantidadNoConformidades(dtEjecucion.Rows[0].ItemArray[0].ToString());
         }
 
         protected void llenarGridEjecucion()
@@ -992,7 +1012,6 @@ namespace SistemaPruebas.Intefaces
                         {
                             EtiqMensajeOperacion.Text = "La ejecución de prueba ha sido modificada con éxito";
                             desmarcarBoton(ref BotonEPModificar);
-                            cantidadConformidades = 0;
                             break;
                         }
                 }
@@ -1100,7 +1119,7 @@ namespace SistemaPruebas.Intefaces
                 estadoInicial();
                 desmarcarBoton(ref BotonEPInsertar);
                 limpiarCampos();
-                limpiarNC();
+                limpiarNC("");
 
             }
             else if (modoEP == 2)
@@ -1108,7 +1127,6 @@ namespace SistemaPruebas.Intefaces
                 llenarDatosEjecucionPrueba(DropDownDiseno.SelectedItem.Text.ToString());
                 estadoPostOperacion();
                 desmarcarBoton(ref BotonEPModificar);
-                cantidadConformidades = 0;
             }
             
         }
