@@ -89,36 +89,31 @@ namespace SistemaPruebas.Controladoras
         {
             DataTable dt = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
                                                         "' and  fecha = '" + noConformidad.Id_ejecucion +"')is null) select 0 else select 1");
-            DataTable dt1 = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
-                                                        "' and  fecha = '" + noConformidad.Id_ejecucion + "'"+
-                                                        " and tipo='"+noConformidad.Tipo+"' "+
-                                                        " and idCaso='"+noConformidad.Caso+"' "+
-                                                        " and descripcion='"+noConformidad.Descripcion+"' "+
-                                                        " and estado="+noConformidad.Estado+"'"+
-                                                        ")is null) select 0 else select 1");
             String consulta="";
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (Convert.ToInt32(dr[0])==0){
-                        consulta="INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('"+ noConformidad.Tipo + "','"
-                                                                                                                                    +noConformidad.Caso + "','"
-                                                                                                                                    +noConformidad.Descripcion + "','"
-                                                                                                                                    +noConformidad.Justificacion + "', @img, '"
-                                                                                                                                    +noConformidad.Estado  + "','"
+                    if (Convert.ToInt32(dr[0]) == 0)
+                    {
+                        consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo + "','"
+                                                                                                                                    + noConformidad.Caso + "','"
+                                                                                                                                    + noConformidad.Descripcion + "','"
+                                                                                                                                    + noConformidad.Justificacion + "', @img, '"
+                                                                                                                                    + noConformidad.Estado + "','"
                                                                                                                                     + noConformidad.Id_ejecucion + "');";
                     }
                     else if (Convert.ToInt32(dr[0]) == 1)
                     {
                         consulta = "UPDATE noConformidad SET " + "tipo = '" + noConformidad.Tipo + "', " +
-                                                           "idCaso = '" + noConformidad.Caso + "', " +
-                                                           "descripcion = '" + noConformidad.Descripcion + "', " +
-                                                           "justificacion = '" + noConformidad.Justificacion + "', " +
-                                                           "estado = '" + noConformidad.Estado + "' " +
-                                                           "WHERE fecha = '" + noConformidad.Id_ejecucion + "'  " +
-                                                           "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
+                                                            "idCaso = '" + noConformidad.Caso + "', " +
+                                                            "descripcion = '" + noConformidad.Descripcion + "', " +
+                                                            "justificacion = '" + noConformidad.Justificacion + "', " +
+                                                            "estado = '" + noConformidad.Estado + "' " +
+                                                            "WHERE fecha = '" + noConformidad.Id_ejecucion + "'  " +
+                                                            "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
                     }
+                    
                 }
             }
 
