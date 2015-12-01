@@ -7,18 +7,6 @@
     	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="popover"]').popover();
-
-        });
-</script>
-
-    <script type="text/javascript">
-document.getElementById("svg1").addEventListener("load", function() {
-    var doc = this.getSVGDocument();
-});
-</script>
     <legend style="margin-top:45px"><h2>Equipo desarrollador</h2></legend>
 
 <br />
@@ -31,11 +19,27 @@ document.getElementById("svg1").addEventListener("load", function() {
 
 			<div class="row">
                   <p style="text-align:center">
-                <a href="#"><img src="Imagenes/tigre.png" /></a> 
 
-                 <img src="Imagenes/panda.png" style="margin-left:65px; margin-right:65px"/>
-                 <img src="Imagenes/leon.png" />
+           <asp:ImageButton id="ImageRicardo" runat="server"
+           AlternateText="ImageButton 1"
+           ImageAlign="middle"
+           ImageUrl="Imagenes/tigre.png"
+           OnClick="ricardoClick" AutoPostback ="false"/>
 
+            <asp:ImageButton id="imageDaniel" runat="server"
+           AlternateText="ImageButton 1"
+           ImageAlign="middle"
+           ImageUrl="Imagenes/panda.png" style="margin-left:65px; margin-right:65px"
+           OnClick="danielClick" AutoPostback ="false"/>
+                 
+            <asp:ImageButton id="imageCaro" runat="server"
+           AlternateText="ImageButton 1"
+           ImageAlign="middle"
+           ImageUrl="Imagenes/leon.png"
+           OnClick="carolinaClick"AutoPostback ="false"/>
+
+
+ <asp:Panel ID= "PanelRicardo" runat="server" Visible="false">
 <div class="col-md-4">
 <div class="panel panel-default" style="margin-left=20px">
   <div class="panel-body">
@@ -44,8 +48,11 @@ document.getElementById("svg1").addEventListener("load", function() {
   </div>
 </div>
     </div>
-                      <div class="col-md-4">
-<div class="panel panel-default">
+     </asp:Panel>
+
+ <asp:Panel ID= "PanelDaniel" runat="server" Visible="false" >
+                      <div class=" col-md-offset-4 col-md-4">
+<div class="panel panel-default" >
   <div class="panel-body">
    <legend style="margin-top:15px"><h5>Daniel</h5></legend>
        <p> Nacido en el reino encantado de las mariquitas, fue adoptado por una familia originaria de la bruma sagrada, quienes, exiliados en las praderas de las flores construyeron su casa y por poco su hogar. Semi institucionalizado desde corta edad (por decisión propia) y temeroso de las ovejas con piel de lobo, su infancia y adolescencia trascendió entre bolillos, máscaras, pinceles, buses y huelgas. 
@@ -53,7 +60,10 @@ Después de un medianamente largo viaje para identificarse como una mariquita -a
   </div>
 </div>
                           </div>
-<div class="col-md-4">
+     </asp:Panel>
+
+ <asp:Panel ID= "PanelCarolina" runat="server" Visible="false">
+<div class="col-md-offset-8 col-md-4">
 
     <div class="panel panel-default">
   <div class="panel-body">
@@ -63,21 +73,27 @@ Después de un medianamente largo viaje para identificarse como una mariquita -a
 </div>
 
     </div>
+     </asp:Panel>
                       </p>
 
 
                     <p style="text-align:center">
-                <asp:Image id="Image1" runat="server"
-                AlternateText="Image text"
-                ImageAlign="middle"
-                ImageUrl="Imagenes/perro.png"/>
-                
-                <asp:Image id="Image2" runat="server"
-           AlternateText="Image text"
-           ImageAlign="middle"
-           ImageUrl="Imagenes/lobo.png"/>
 
-                        <div class="col-md-4">
+           <asp:ImageButton id="ImageButton1" runat="server"
+           AlternateText="ImageButton 1"
+           ImageAlign="middle"
+           ImageUrl="Imagenes/perro.png"
+           OnClick="helenaClick" AutoPostback ="false"/>
+
+           <asp:ImageButton id="ImageButton2" runat="server"
+           AlternateText="ImageButton 1"
+           ImageAlign="middle" style="margin-left:65px"
+           ImageUrl="Imagenes/lobo.png"
+           OnClick="andreaClick" AutoPostback ="false"/>
+
+
+ <asp:Panel ID= "PanelHelena" runat="server" Visible="false">
+                        <div class="col-md-offset-2 col-md-4">
 <div class="panel panel-default" style="margin-left=20px">
   <div class="panel-body">
   <legend style="margin-top:15px"><h5>Helena</h5></legend>
@@ -85,6 +101,18 @@ Después de un medianamente largo viaje para identificarse como una mariquita -a
   </div>
 </div>
     </div>
+</asp:Panel>
+
+ <asp:Panel ID= "PanelAndrea" runat="server" Visible="false">
+    <div class="col-md-offset-6 col-md-4">
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <legend style="margin-top:15px"><h5>Andrea</h5></legend>
+      <p>Por las mañanas una persona bastante “normal ” y por las noches una heroína que lucha contra el crimen. Hija de una mortal con el dios griego Hypnos, de ahí a que siempre esté cansada. Tiene la bendicion de la diosa Adefalgia por lo que puede transformar cosas en comida, cuando no está siendo observada. Por fuera está hecha de chocolate sólido color piel pero por dentro tiene un corazon de miel. </p>
+  </div>
+</div>
+</div>
+     </asp:Panel>
        </p>
 			</div>
 
