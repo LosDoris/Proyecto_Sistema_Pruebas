@@ -786,7 +786,6 @@ namespace SistemaPruebas.Intefaces
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "PDF")
                 {
-
                     exportarToPdf();
                     volverAlOriginal();
                 }
@@ -843,11 +842,8 @@ namespace SistemaPruebas.Intefaces
             head.AddCell(c);
             doc.Add(head);
             doc.AddCreationDate();
-
             iTextSharp.text.Font boldFont = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 24, iTextSharp.text.Font.BOLD);
             iTextSharp.text.Font boldFontHeader = new iTextSharp.text.Font(iTextSharp.text.Font.TIMES_ROMAN, 14, iTextSharp.text.Font.BOLD);
-            
-
             doc.Add(new iTextSharp.text.Paragraph("Reporte de proyectos", boldFont));
             doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
             doc.Add(new iTextSharp.text.Paragraph(" ", boldFont));
