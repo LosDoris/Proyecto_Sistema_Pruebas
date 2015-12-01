@@ -139,6 +139,8 @@ namespace SistemaPruebas
                 A1.Visible = true;
                 A2.Visible = true;
                 A3.Visible = true;
+                A4.Visible = true;
+                A5.Visible = true;
 //                nombre.InnerText = Account.Login.id_logeado;
                 nombre.Visible = true;
                 Nombres.Visible = true;
@@ -167,6 +169,8 @@ namespace SistemaPruebas
                 A2.Visible = false;
                 A3.Visible = false;
                 Li1.Visible = false;
+                A4.Visible = false;
+                A5.Visible = false;
                 nombre.Visible = false;
             }
             catch (NullReferenceException e)
