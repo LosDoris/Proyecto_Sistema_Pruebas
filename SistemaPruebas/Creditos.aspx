@@ -36,7 +36,7 @@
            AlternateText="ImageButton 1"
            ImageAlign="middle"
            ImageUrl="Imagenes/leon.png"
-           OnClick="carolinaClick"AutoPostback ="false"/>
+           OnClick="carolinaClick" AutoPostback ="false"/>
 
 
  <asp:Panel ID= "PanelRicardo" runat="server" Visible="false">

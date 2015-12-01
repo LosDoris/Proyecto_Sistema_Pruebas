@@ -11,9 +11,14 @@ namespace SistemaPruebas
 {
     public partial class Creditos : System.Web.UI.Page
     {
+        public static int a = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (a != 0)
+            {
 
+            }
+            a = 0;
         }
 
         protected void ricardoClick(object sender, ImageClickEventArgs e)
@@ -23,6 +28,7 @@ namespace SistemaPruebas
             PanelCarolina.Visible = false;
             PanelDaniel.Visible = false;
             PanelHelena.Visible = false;
+
         }
 
         protected void danielClick(object sender, ImageClickEventArgs e)
@@ -33,6 +39,7 @@ namespace SistemaPruebas
             PanelAndrea.Visible = false;
             PanelCarolina.Visible = false;
             PanelHelena.Visible = false;
+            a = 1;
         }
 
         protected void carolinaClick(object sender, ImageClickEventArgs e)
@@ -42,6 +49,7 @@ namespace SistemaPruebas
             PanelAndrea.Visible = false;
             PanelDaniel.Visible = false;
             PanelHelena.Visible = false;
+            a = 1;
         }
 
         protected void helenaClick(object sender, ImageClickEventArgs e)
@@ -51,6 +59,7 @@ namespace SistemaPruebas
             PanelAndrea.Visible = false;
             PanelCarolina.Visible = false;
             PanelDaniel.Visible = false;
+            a = 1;
         }
 
         protected void andreaClick(object sender, ImageClickEventArgs e)
@@ -60,6 +69,7 @@ namespace SistemaPruebas
             PanelCarolina.Visible = false;
             PanelDaniel.Visible = false;
             PanelHelena.Visible = false;
+            a = 1;
         }
     }
 }
