@@ -212,9 +212,9 @@ namespace SistemaPruebas.Controladoras
                                     exitosCant++;
                                     idCasosExitosos.Add(casito);
                                 }
-                                else if (estado.Length > 1 && estadito.Split(',')[1] == "Fallido")//Se supone caso de no conformidad
+                                else if (estadito.Split(',')[0] == "Fallido" && estadito.Length > 1)//Se supone caso de no conformidad
                                 {
-                                    string key = estadito.Split(',')[0];
+                                    string key = estadito.Split(',')[1];
                                     if (noConformidad.ContainsKey(key))//Se suma una nueva no conformidad
                                     {
                                         noConformidad[key]++;

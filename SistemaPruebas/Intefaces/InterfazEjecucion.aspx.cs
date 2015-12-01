@@ -733,50 +733,6 @@ namespace SistemaPruebas.Intefaces
                 conservarEstado();
                 cantidadConformidades -= 1;
             }
-            if (cantidadConformidades > 0)
-            {
-                GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
-                int index = gvRow.RowIndex;
-
-                dtNoConformidades.Rows[index].Delete();
-                for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
-                {
-                    DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
-                    DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
-                    TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
-                    TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
-                    System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-                    DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
-                    Label lbl = gridNoConformidades.Rows[i].FindControl("lblIDNC") as Label;
-
-                    int pos = i;
-                    if (pos != index)
-                    {
-                        if (pos > index)
-                        {
-                            pos--;
-                        }
-                        dtNoConformidades.Rows[pos]["Tipo"] = ddl1.SelectedValue;
-                        dtNoConformidades.Rows[pos]["IdCaso"] = ddl2.SelectedValue;
-                        dtNoConformidades.Rows[pos]["Descripcion"] = txt1.Text;
-                        dtNoConformidades.Rows[pos]["Justificacion"] = txt2.Text;
-                        dtNoConformidades.Rows[pos]["Resultado"] = imagenRes.ImageUrl.ToString();
-                        dtNoConformidades.Rows[pos]["Estado"] = ddl3.SelectedValue;
-                    }
-                    else
-                    {
-                        controladoraEjecucionPrueba.eliminarBDNoConformidad(lbl.Text);
-                    }
-                    
-
-                }
-                gridNoConformidades.DataSource = dtNoConformidades;
-                gridNoConformidades.DataBind();
-                conservarEstado();
-                cantidadConformidades -= 1;
-                
-            }
-            
         }
 
         protected void limpiarNC(String fecha)

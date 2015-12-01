@@ -94,26 +94,15 @@ namespace SistemaPruebas.Controladoras
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (Convert.ToInt32(dr[0]) == 0)
-                    {
-                        consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo + "','"
-                                                                                                                                    + noConformidad.Caso + "','"
-                                                                                                                                    + noConformidad.Descripcion + "','"
-                                                                                                                                    + noConformidad.Justificacion + "', @img, '"
-                                                                                                                                    + noConformidad.Estado + "','"
-                                                                                                                                    + noConformidad.Id_ejecucion + "');";
-                    }
-                    else if (Convert.ToInt32(dr[0]) == 1)
-                    {
-                        consulta = "UPDATE noConformidad SET " + "tipo = '" + noConformidad.Tipo + "', " +
-                                                            "idCaso = '" + noConformidad.Caso + "', " +
-                                                            "descripcion = '" + noConformidad.Descripcion + "', " +
-                                                            "justificacion = '" + noConformidad.Justificacion + "', " +
-                                                            "estado = '" + noConformidad.Estado + "' " +
-                                                            "WHERE fecha = '" + noConformidad.Id_ejecucion + "'  " +
-                                                            "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
-                    }
-                    
+
+                    consulta = "UPDATE noConformidad SET " + "tipo = '" + noConformidad.Tipo + "', " +
+                                                        "idCaso = '" + noConformidad.Caso + "', " +
+                                                        "descripcion = '" + noConformidad.Descripcion + "', " +
+                                                        "justificacion = '" + noConformidad.Justificacion + "', " +
+                                                        "estado = '" + noConformidad.Estado + "' " +
+                                                        "WHERE fecha = '" + noConformidad.Id_ejecucion + "'  " +
+                                                        "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
+
                 }
             }
 
@@ -161,20 +150,12 @@ namespace SistemaPruebas.Controladoras
 
         public String retornarEstado(String casoPrueba)
         {
-            DataTable retorno = acceso.ejecutarConsultaTabla("if ((select count(g.estado) from (select estado from noConformidad where fecha= (select max(fecha) from noConformidad)"+
-                                                            " and idCaso='"+ casoPrueba+"') g) =1)(select estado from noConformidad where fecha= (select max(fecha) from noConformidad) "+
-                                                            " and idCaso='"+casoPrueba+"') else select tipo, estado from noConformidad where fecha= (select max(fecha) from noConformidad)"+
-                                                            " and idCaso='"+casoPrueba+"'");
+            DataTable retorno = acceso.ejecutarConsultaTabla("select estado, tipo from noConformidad where fecha= (select max(fecha) from noConformidad where idCaso='"+casoPrueba +"') and  idCaso= '" + casoPrueba + "'");
             string hilera = "";
 
-            if (retorno.Rows.Count == 1)
-            {
-                return retorno.Rows[0].ItemArray[0].ToString();
-            }
-            else if (retorno.Rows.Count > 1)
-            {
-                for (int i = 0; i < retorno.Rows.Count; i++)
-                {
+           
+             for (int i = 0; i < retorno.Rows.Count; i++)
+                 {
                     hilera += retorno.Rows[i].ItemArray[0].ToString()+",";
                     if (i == retorno.Rows.Count - 1)
                     {
@@ -188,7 +169,7 @@ namespace SistemaPruebas.Controladoras
                 }
                 //controladoraEjecucionPrueba.retornarEstado("Curso-RQ1-1");
                 //controladoraEjecucionPrueba.retornarEstado("REQ-1520");
-            }
+            
             return hilera;
         }
 
