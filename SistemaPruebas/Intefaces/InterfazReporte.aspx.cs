@@ -8,22 +8,12 @@ using System.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-//using System.IO;
 
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
 using System.IO;
 
-
-//using Spire.Doc;
-//using Spire.Doc.Fields;
-//using System.Drawing;
-//using Spire.Doc.Documents;
-//using Microsoft.Office.Interop;
-//using Microsoft.Office.Interop.Word;
-
-//using System.Configuration;
 
 
 namespace SistemaPruebas.Intefaces
@@ -32,8 +22,7 @@ namespace SistemaPruebas.Intefaces
     {
         //Variables:
         Controladoras.ControladoraReportes controladoraGR = new Controladoras.ControladoraReportes();
-        //DataTable dtGR = new DataTable();
-        //DataTable dtGR1 = new DataTable();
+
         public static string modoGR
         {
             get
@@ -128,8 +117,6 @@ namespace SistemaPruebas.Intefaces
          */
         protected void Page_Load(object sender, EventArgs e)
         {
-            //GridPP.ControlStyle.
-            //Restricciones_Campos();
             if (!IsPostBack)// ES SOLO LA PRIMERA VEZ
             {
                 volverAlOriginal();
@@ -138,7 +125,6 @@ namespace SistemaPruebas.Intefaces
                 llenarGridReq("", "");
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Nombre del Requerimiento.", typeof(String));
-                //llenarGridGR(dt);
                 llenarDDArchivo();
                 proyectoSeleccionadoLabel.Visible = false;
                 moduloSeleccionadoLabel.Visible = false;
@@ -157,10 +143,7 @@ namespace SistemaPruebas.Intefaces
          */
         protected void volverAlOriginal()
         {
-
-
             modoGR = Convert.ToString(0);
-
             deselTodos_CheckedChanged(null, null);
             CheckBoxNombReq.Checked = true;
             CheckBoxNombModulo.Checked = true;
@@ -172,21 +155,13 @@ namespace SistemaPruebas.Intefaces
             proyectoSeleccionado.Text = "";
             modSeleccionado.Text = "";
             reqSeleccionado.Text = "";
-
             proyectoSeleccionadoLabel.Visible = false;
             moduloSeleccionadoLabel.Visible = false;
             reqSeleccionadoLabel.Visible = false;
-
             proyectoSeleccionado.Visible = false;
             modSeleccionado.Visible = false;
             reqSeleccionado.Visible = false;
-
             limpiarPreGrid();
-        
-
-            //barraProgreso.Visible = false;
-
-            // llenarGridPP();
         }
 
         private void exportarWord()
@@ -207,7 +182,6 @@ namespace SistemaPruebas.Intefaces
             preGrid.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
-
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -219,23 +193,19 @@ namespace SistemaPruebas.Intefaces
         // Genera el reporte en Excel.
         protected void generarReporteExcel(object sender, EventArgs e)
         {
-
             ExcelPackage package = new ExcelPackage();
             package.Workbook.Worksheets.Add("Proyectos");
             ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
             worksheet.Cells.Style.Font.Size = 12;
             worksheet.Cells.Style.Font.Name = "Calibri";
-
             // Poner un titulo.
-            worksheet.Cells[1, 1].Value = "Reporte de proyectos " + DateTime.Today.ToString("(dd/MM/yyyy).");
+            worksheet.Cells[1, 1].Value = "Reporte de proyecto los doroteos " + DateTime.Today.ToString("(dd/MM/yyyy).");
             worksheet.Row(1).Style.Font.Bold = true;
             worksheet.Row(1).Style.Font.Size = 14;
-
             // Rellenar los datos.
             int c = 1;
             int r = 2;
             // Poner el header.
-
             foreach (System.Web.UI.WebControls.TableCell cell in preGrid.HeaderRow.Cells)
             {
                 worksheet.Cells[r, c++].Value = HttpUtility.HtmlDecode(cell.Text);
@@ -261,11 +231,9 @@ namespace SistemaPruebas.Intefaces
                 }
                 r++;
             }
-
             // Ajustamos el ancho de las columnas.
             worksheet.DefaultColWidth = 10;
             worksheet.Cells.AutoFitColumns();
-
             Response.Clear();
             Response.Buffer = true;
             Response.BinaryWrite(package.GetAsByteArray());
@@ -310,8 +278,6 @@ namespace SistemaPruebas.Intefaces
             DataTable dt = new DataTable();
             dt.Columns.Add("Nombre del Proyecto.", typeof(String));
             dt.Columns.Add("        Líder.      ", typeof(String));
-            //Nombre del Proyecto.
-            //"        Líder.      "
             return dt;
         }
 
@@ -365,11 +331,8 @@ namespace SistemaPruebas.Intefaces
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("       Módulo.      ", typeof(String));
-            //"        Líder.      "
-            //"       Módulo.      "
             return dt;
         }
-
 
 
         protected void llenarGridReq(String nomProyecto, String nomModulo)
@@ -377,7 +340,6 @@ namespace SistemaPruebas.Intefaces
             GridReq.SelectedIndex = -1;
             DataTable dtGrid = crearTablaReq();
             DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto, nomModulo);
-            //Object[] datos = new Object[2];
             Object[] datos = new Object[1];
 
 
@@ -386,14 +348,12 @@ namespace SistemaPruebas.Intefaces
                 foreach (DataRow dr in dt.Rows)
                 {
                     datos[0] = dr[0];
-                    // datos[1] = dr[2];
                     dtGrid.Rows.Add(datos);
                 }
             }
             else
             {
                 datos[0] = "-";
-                // datos[1] = "-";
                 dtGrid.Rows.Add(datos);
             }
             GridReq.DataSource = dtGrid;
@@ -403,25 +363,16 @@ namespace SistemaPruebas.Intefaces
         protected void llenarGridGR(DataTable dt)
         {
 
-            //DataTable dtGrid = crearTablaReq();
-            //DataTable dt = controladoraGR.consultarRequerimientos(nomProyecto, nomModulo);
-            //Object[] datos = new Object[2];
             Object[] datos = new Object[1];
 
 
             if (dt.Rows.Count > 0)
             {
-                /* foreach (DataRow dr in dt.Rows)
-                 {
-                     datos[0] = dr[0];
-                     // datos[1] = dr[2];
-                     dt.Rows.Add(datos);
-                 }*/
+
             }
             else
             {
                 datos[0] = "-";
-                // datos[1] = "-";
                 dt.Rows.Add(datos);
             }
             GridGR.DataSource = dt;
@@ -474,7 +425,6 @@ namespace SistemaPruebas.Intefaces
         protected void BotonGE_Click(object sender, EventArgs e)
         {
             //revisar como se llaman los metodos de la controladora.
-
             bool[] proyecto = datosProy();
             CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
 
@@ -491,7 +441,6 @@ namespace SistemaPruebas.Intefaces
                         proyectoDatos = controladoraGR.medicionRequerimiento(proyectoDatos, reqSeleccionado.Text);
                         ProyectoPreGrid(proyectoDatos, dt, checks);
                     }
-
                     else//Todos los requerimientos de un módulo
                     {
                         if (checks[7].Checked || checks[8].Checked || checks[9].Checked || checks[10].Checked)
@@ -506,10 +455,11 @@ namespace SistemaPruebas.Intefaces
                             }
                         }
                         else
+                        {
                             ProyectoPreGrid(proyectoDatos, dt, checks);
+                        }
                     }
                 }
-
                 else//Todos los módulos de un proyecto
                 {
 
@@ -536,8 +486,9 @@ namespace SistemaPruebas.Intefaces
                                     ProyectoPreGrid(comodin, dt, checks);
                                 }
                             }
-                            else
+                            else {
                                 ProyectoPreGrid(comodin, dt, checks);
+                            }
                         }
                         else
                         {
@@ -547,16 +498,7 @@ namespace SistemaPruebas.Intefaces
 
                     }
                 }
-
-
-
-
-
             }
-            //DataTable dtr = controladoraGR.dtReporte(proyecto, proyectoActualGR, modActualGR, reqActualGR);
-            //dtGR = dtr;
-            //llenarGridGR(dtr);
-            //modoGR = Convert.ToString(1);
         }
 
 
@@ -569,16 +511,13 @@ namespace SistemaPruebas.Intefaces
          */
         protected void PP_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridPP, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
-
             }
-
         }
 
         /*
@@ -617,7 +556,6 @@ namespace SistemaPruebas.Intefaces
                     reqActualGR = "";
                 }
             }
-
         }
         /*
          * Requiere: El evento de enlazar información de un datatable con el grid
@@ -626,16 +564,12 @@ namespace SistemaPruebas.Intefaces
          */
         protected void Mod_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridMod, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
-
-
-
             }
         }
 
@@ -647,7 +581,6 @@ namespace SistemaPruebas.Intefaces
         protected void Mod_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridMod.PageIndex = e.NewPageIndex;
-            //this.llenarGridMod();
         }
 
 
@@ -691,7 +624,6 @@ namespace SistemaPruebas.Intefaces
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#84878e'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridReq, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
-
             }
         }
 
@@ -703,7 +635,6 @@ namespace SistemaPruebas.Intefaces
         protected void Req_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridReq.PageIndex = e.NewPageIndex;
-            //this.llenarGridMod();
         }
 
 
@@ -714,14 +645,12 @@ namespace SistemaPruebas.Intefaces
         */
         protected void Reporte_OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.background='#D3F3EB';;this.style.color='black'";
                 e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';this.style.background='white';this.style.color='#154b67'";
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GridGR, "Select$" + e.Row.RowIndex);
                 e.Row.Attributes["style"] = "cursor:pointer";
-
             }
         }
 
@@ -733,7 +662,6 @@ namespace SistemaPruebas.Intefaces
         protected void Reporte_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridGR.PageIndex = e.NewPageIndex;
-            //this.llenarGridMod();
         }
 
 
@@ -744,11 +672,6 @@ namespace SistemaPruebas.Intefaces
             int index = GridGR.SelectedRow.RowIndex;
             String ced = GridGR.SelectedRow.Cells[0].Text;
         }
-
-
-
-
-
 
         protected void Req_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -774,8 +697,6 @@ namespace SistemaPruebas.Intefaces
                 test.DataField = sender.ToString();
                 test.HeaderText = sender.ToString();
                 preGrid.Columns.Add(test);
-
-
             }
         }
 
@@ -797,7 +718,6 @@ namespace SistemaPruebas.Intefaces
                 }
 
             }
-
             return dt;
         }
 
@@ -842,7 +762,6 @@ namespace SistemaPruebas.Intefaces
             dt.Rows.Add(datos);
             preGrid.DataSource = dt;
             preGrid.DataBind();
-            //dtGR = dt;
             return dt;
         }
 
@@ -859,8 +778,6 @@ namespace SistemaPruebas.Intefaces
 
                     generarReporteExcel(sender, e);
                     volverAlOriginal();
-
-
                 }
                 else if (DDLTipoArchivo.SelectedItem.Text == "Word")
                 {
@@ -881,9 +798,6 @@ namespace SistemaPruebas.Intefaces
                 EtiqErrorGR.Visible = true;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "HideLabel();", true);
             }
-
-            
-        
         }
 
         /*
@@ -1031,9 +945,6 @@ namespace SistemaPruebas.Intefaces
             texto.Replace('Ñ', 'Ñ');
             return texto;
         }
-
-       
-
 
     }
 
