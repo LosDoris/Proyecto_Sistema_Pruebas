@@ -13,7 +13,7 @@
 
         <div class="jumbotron" font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
         <h1>¿Quiénes somos?</h1>
-        <p class="lead">Los Doroteos es un grupo de cinco estudiantes de computación quienes, en su tercer año de universidad (algunos un poquitín más), han iniciado en el proceso para aprender los secretos ocultos detrás del &lt;div class=””&gt;.Frecuentemente sin respuestas claras y con excesos de preguntas se han esforzado por entregar los mejores productos posibles. Obsesiv@s, detallistas y legos del JavaScript...</p>
+        <p class="lead">Los Doroteos es un grupo de cinco estudiantes de computación quienes, en su tercer año de universidad (algunos un poquitín más), han iniciado en el proceso para aprender los secretos ocultos detrás del &lt;div class=""&gt;.Frecuentemente sin respuestas claras y con excesos de preguntas se han esforzado por entregar los mejores productos posibles. Obsesiv@s, detallistas y legos del JavaScript...</p>
         
     </div>
 
