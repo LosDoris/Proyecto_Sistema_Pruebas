@@ -118,7 +118,8 @@ $(document).ready(function(){
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&nbsp;</p>
+                <p style="text-align:center"><a href="Creditos.aspx">Equipo desarrollador</a> </p>
+                
             </footer>
         </div>
     </form> 

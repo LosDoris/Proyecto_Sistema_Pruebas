@@ -219,18 +219,24 @@
     <Content Include="Content\reset.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Creditos.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Imagenes\calendar.png" />
     <Content Include="Imagenes\CasosPrueba.svg" />
     <Content Include="Imagenes\diseno.svg" />
     <Content Include="Imagenes\ejecucion.svg" />
     <Content Include="Imagenes\ejemplo.jpg" />
+    <Content Include="Imagenes\leon.png" />
+    <Content Include="Imagenes\lobo.png" />
+    <Content Include="Imagenes\panda.png" />
+    <Content Include="Imagenes\perro.png" />
     <Content Include="Imagenes\poner.png" />
     <Content Include="Imagenes\proyecto.svg" />
     <Content Include="Imagenes\quitar.png" />
     <Content Include="Imagenes\reportes.svg" />
     <Content Include="Imagenes\requerimientos.svg" />
     <Content Include="Imagenes\team-blanco.svg" />
+    <Content Include="Imagenes\tigre.png" />
     <Content Include="Intefaces\InterfazCasosDePrueba.aspx" />
     <Content Include="Intefaces\InterfazDiseno.aspx" />
     <Content Include="Intefaces\InterfazEjecucion.aspx" />
@@ -324,6 +330,13 @@
     <Compile Include="Controladoras\ControladoraDisenno.cs" />
     <Compile Include="Controladoras\ControladoraEjecucionPrueba.cs" />
     <Compile Include="Controladoras\ControladoraRequerimiento.cs" />
+    <Compile Include="Creditos.aspx.cs">
+      <DependentUpon>Creditos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Creditos.aspx.designer.cs">
+      <DependentUpon>Creditos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
