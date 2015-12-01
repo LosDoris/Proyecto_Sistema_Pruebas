@@ -25,7 +25,11 @@ namespace SistemaPruebas.Controladoras
         ControladoraEjecucionPrueba controlEjec;
         ControladoraRecursosHumanos controlRH;
         ControladoraRequerimiento controlReq;
-
+        /*
+         * Requiere: N/A
+         * Modifica: Inicializa las controladoras.
+         * Retorna: N/A.
+         */
         public ControladoraReportes()
         {
             controlProy = new ControladoraProyecto();
@@ -35,20 +39,39 @@ namespace SistemaPruebas.Controladoras
             controlRH = new ControladoraRecursosHumanos();
             controlReq = new ControladoraRequerimiento();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: N/A.
+         * Retorna: El tipo de perfil del loggeado.
+         */
         public string PerfilDelLogeado()
         {
             return controlRH.perfilDelLoggeado();
         }
+        /*
+         * Requiere: N/A
+         * Modifica: N/A.
+         * Retorna: El id de los proyectos del loggeado.
+         */
         public int proyectosDelLoggeado()
         {
             return controlRH.proyectosDelLoggeado();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: N/A.
+         * Retorna: Un DataTable con los proyectos del loggeado.
+         */
         public DataTable consultarProyecto()
         {
             return controlProy.ConsultarProyectoIdNombre();
         }
+
+        /*
+         * Requiere: String del nombre del proyecto
+         * Modifica: N/A.
+         * Retorna: Un String con los miembros del proyecto seleccionado.
+         */
         public String consultarMiembrosProyecto(String nombProy)
         {
             DataTable dt = controlRH.consultarMiembrosProyecto(nombProy);
@@ -59,12 +82,17 @@ namespace SistemaPruebas.Controladoras
                 // dtGrid.Rows.Add(datos);
             }
             return miembros;
-
         }
+        /*
+         * Requiere: String nombreProyecto
+         * Modifica: N/A.
+         * Retorna: Entidad proyecto.
+         */
         public EntidadProyecto consultarProyecto(string nombre)
         {
             return controlProy.ConsultarProyecto(controlProy.ConsultarIdProyectoPorNombre(nombre));
         }
+        /*
         public DataTable consultarDisennos(string nombre)
         {
             return controlDis.consultarDisenoGrid(controlProy.ConsultarIdProyectoPorNombre(nombre));
@@ -73,37 +101,55 @@ namespace SistemaPruebas.Controladoras
         {
             return controlDis.consultarDisenno(controlDis.consultarId_Disenno(nombre));
         }
+         * */
+        /*
+         * Requiere: String nombre del requerimiento
+         * Modifica: N/A.
+         * Retorna: String de casos de prueba.
+         */
         public string consultarCasosPrueba(string nombre)
         {
             return controlCasos.solicitarCasosdePrueba(controlDis.consultarId_Disenno(nombre));
         }
-
+        /*
         public DataTable consultarCasoPrueba(string id)
         {
             return controlCasos.consultarCasosPrueba(2, id);
         }
+        */
 
+        /*
+         * Requiere: String nombreProyecto
+         * Modifica: N/A.
+         * Retorna: DataTable con los modulos asociados a ese proyecto.
+         */
         public DataTable consultarModulos(string nombre)
         {
             return controlReq.consultarModulos(controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
-
+        /*
+         * Requiere: String nombreProyecto y nombre del modulo
+         * Modifica: N/A.
+         * Retorna: DataTable con los requerimientos asociados a ese modulo.
+         */
         public DataTable consultarRequerimientos(string nombre, string modulo)
         {
             return controlReq.consultarReqPorNombre(modulo, controlProy.ConsultarIdProyectoPorNombre(nombre).ToString());
         }
-
+        /*
         public EntidadRequerimientos consultarRequerimiento(string nombre, string idProyeto)
         {
             return controlReq.consultarReqUnico(nombre, idProyeto);
         }
+        */
 
-
-
+        /*
+         * Requiere: String nombreProyecto y nombre del modulo
+         * Modifica: N/A.
+         * Retorna: List<object> con los datos del proyecto solicitado.
+         */
         public List<object> reporteProyecto(EntidadProyecto entidad)
         {
-
-
 
             List<Object> retorno = new List<object>();
 
@@ -154,17 +200,18 @@ namespace SistemaPruebas.Controladoras
         }
 
 
-
+        /*
+         * Requiere: String nombreProyecto y nombre del modulo
+         * Modifica: N/A.
+         * Retorna: List<object> con los datos de las mediciones del requerimiento solicitado.
+         */
         public List<Object> medicionRequerimiento(List<Object> retorno, string idReq)
         {
-
-
             int exitosCant = 0;
             int sinEnvaluarCant = 0;
             List<string> idCasosExitosos = new List<string>();
             List<string> idCasosSinEvaluar = new List<string>();
             Dictionary<string, int> noConformidad = new Dictionary<string, int>();
-
             string[] casosPrueba = controlCasos.consultarCasoPorRequerimiento(idReq);
             retorno.Add(idReq);
             try
@@ -201,18 +248,16 @@ namespace SistemaPruebas.Controladoras
                                     sinEnvaluarCant++;
                                     idCasosSinEvaluar.Add(casito);
                                 }
-
                             }
                         }                        
                     }
-                   
                     string CasosEx = "";
                     if (exitosCant > 0)
                     {
                         CasosEx = "Cantidad de casos exitosos: " + exitosCant.ToString() + "\nCasos que son exitosos:";
-                        foreach (string rr in idCasosExitosos)
+                        foreach (string rr in idCasosExitosos){
                             CasosEx += "\n\t" + rr+", ";
-                       
+                        }
                     }
                         
                     else
@@ -279,12 +324,10 @@ namespace SistemaPruebas.Controladoras
                 retorno.Add("");
                 retorno.Add("");
             }
-
-            
             return retorno;
 
         }
-
+        /*
         public DataTable crearDT(bool[] campos)
         {
             DataTable dt = new DataTable();
@@ -338,6 +381,9 @@ namespace SistemaPruebas.Controladoras
             }
             return dt;
         }
+
+
+        /*
         public DataTable dtReporte(bool[] campos, String proy, String mod, String req)
         {
             EntidadProyecto entidad = consultarProyecto(proy);
@@ -468,6 +514,6 @@ namespace SistemaPruebas.Controladoras
             dt.Rows.Add(datos);
 
             return dt;
-        }
+        }*/
     }
 }
