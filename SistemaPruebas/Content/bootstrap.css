@@ -6391,7 +6391,8 @@ button.close {
 .popover-title {
   margin: 0;
   padding: 8px 14px;
-  font-size: 17px;
+  font-size: 28px;
+  font-weight: bold;
   background-color: #D3F3EB;
   border-bottom: 1px solid #48cfae;
   border-radius: 2px 2px 0 0;

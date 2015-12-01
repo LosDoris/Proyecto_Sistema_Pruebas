@@ -113,6 +113,19 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        public static int cantidadConformidades
+        {
+            get
+            {
+                object value = HttpContext.Current.Session["cantidadConformidades"];
+                return value == null ? 0 : (int)value;
+            }
+            set
+            {
+                HttpContext.Current.Session["cantidadConformidades"] = value;
+            }
+        }
+
 
         //Page load
         /*
@@ -165,6 +178,7 @@ namespace SistemaPruebas.Intefaces
             gridEjecucion.Enabled = true;
 
             EtiqMensajeOperacion.Visible = false;
+            cantidadConformidades = 0;
         }
 
         /*
@@ -540,6 +554,7 @@ namespace SistemaPruebas.Intefaces
                 }
 
                 conservarEstado();
+                cantidadConformidades += 1;
             }
             catch (Exception ex)
             {
@@ -631,9 +646,12 @@ namespace SistemaPruebas.Intefaces
 
         protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow gvRow = gridNoConformidades.Rows[index];
+            if (gridNoConformidades.Rows.Count > 1)
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow gvRow = gridNoConformidades.Rows[index];
+            }
+            
 
             //if (e.CommandName == "pasarFila")
             //{
@@ -681,37 +699,87 @@ namespace SistemaPruebas.Intefaces
 
         protected void btnEliminarFila_Click(object sender, EventArgs e)
         {
-            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
-            int index = gvRow.RowIndex;
-
-            dtNoConformidades.Rows[index].Delete();
-            for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
+            if ( modoEP!=2 && cantidadConformidades>0)
             {
-                DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
-                DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
-                TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
-                TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
-                System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
-                DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
-                int pos = i;
-                if (pos != index)
-                {
-                    if (pos > index)
-                    {
-                        pos--;
-                    }
-                    dtNoConformidades.Rows[pos]["Tipo"] = ddl1.SelectedValue;
-                    dtNoConformidades.Rows[pos]["IdCaso"] = ddl2.SelectedValue;
-                    dtNoConformidades.Rows[pos]["Descripcion"] = txt1.Text;
-                    dtNoConformidades.Rows[pos]["Justificacion"] = txt2.Text;
-                    dtNoConformidades.Rows[pos]["Resultado"] = imagenRes.ImageUrl.ToString();
-                    dtNoConformidades.Rows[pos]["Estado"] = ddl3.SelectedValue;
-                }
+                GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+                int index = gvRow.RowIndex;
 
+                dtNoConformidades.Rows[index].Delete();
+                for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
+                {
+                    DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
+                    DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
+                    TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
+                    TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
+                    System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                    DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+                    Label lbl = gridNoConformidades.Rows[i].FindControl("lblIDNC") as Label;
+
+                    int pos = i;
+                    if (pos != index)
+                    {
+                        if (pos > index)
+                        {
+                            pos--;
+                        }
+                        dtNoConformidades.Rows[pos]["Tipo"] = ddl1.SelectedValue;
+                        dtNoConformidades.Rows[pos]["IdCaso"] = ddl2.SelectedValue;
+                        dtNoConformidades.Rows[pos]["Descripcion"] = txt1.Text;
+                        dtNoConformidades.Rows[pos]["Justificacion"] = txt2.Text;
+                        dtNoConformidades.Rows[pos]["Resultado"] = imagenRes.ImageUrl.ToString();
+                        dtNoConformidades.Rows[pos]["Estado"] = ddl3.SelectedValue;
+                    }
+
+                }
+                gridNoConformidades.DataSource = dtNoConformidades;
+                gridNoConformidades.DataBind();
+                conservarEstado();
+                cantidadConformidades -= 1;
             }
-            gridNoConformidades.DataSource = dtNoConformidades;
-            gridNoConformidades.DataBind();
-            conservarEstado();
+            if (modoEP == 2 && cantidadConformidades>0)
+            {
+                GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+                int index = gvRow.RowIndex;
+
+                dtNoConformidades.Rows[index].Delete();
+                for (int i = 0; i < gridNoConformidades.Rows.Count; i++)
+                {
+                    DropDownList ddl1 = gridNoConformidades.Rows[i].FindControl("ddlTipo") as DropDownList;
+                    DropDownList ddl2 = gridNoConformidades.Rows[i].FindControl("ddlIdCaso") as DropDownList;
+                    TextBox txt1 = gridNoConformidades.Rows[i].FindControl("txtDescripcion") as TextBox;
+                    TextBox txt2 = gridNoConformidades.Rows[i].FindControl("txtJustificacion") as TextBox;
+                    System.Web.UI.WebControls.Image imagenRes = gridNoConformidades.Rows[i].FindControl("imagenSubida") as System.Web.UI.WebControls.Image;
+                    DropDownList ddl3 = gridNoConformidades.Rows[i].FindControl("ddlEstado") as DropDownList;
+                    Label lbl = gridNoConformidades.Rows[i].FindControl("lblIDNC") as Label;
+
+                    int pos = i;
+                    if (pos != index)
+                    {
+                        if (pos > index)
+                        {
+                            pos--;
+                        }
+                        dtNoConformidades.Rows[pos]["Tipo"] = ddl1.SelectedValue;
+                        dtNoConformidades.Rows[pos]["IdCaso"] = ddl2.SelectedValue;
+                        dtNoConformidades.Rows[pos]["Descripcion"] = txt1.Text;
+                        dtNoConformidades.Rows[pos]["Justificacion"] = txt2.Text;
+                        dtNoConformidades.Rows[pos]["Resultado"] = imagenRes.ImageUrl.ToString();
+                        dtNoConformidades.Rows[pos]["Estado"] = ddl3.SelectedValue;
+                    }
+                    else
+                    {
+                        controladoraEjecucionPrueba.eliminarBDNoConformidad(lbl.Text);
+                    }
+                    
+
+                }
+                gridNoConformidades.DataSource = dtNoConformidades;
+                gridNoConformidades.DataBind();
+                conservarEstado();
+                cantidadConformidades -= 1;
+                
+            }
+            
         }
 
         protected void limpiarNC()
@@ -840,6 +908,8 @@ namespace SistemaPruebas.Intefaces
             this.DropDownDiseno.Text = dtEjecucion.Rows[0].ItemArray[3].ToString();
             llenarGridNCConsulta(fecha);
 
+            //ver cantidad de noconformidades
+            cantidadConformidades=controladoraEjecucionPrueba.cantidadNoConformidades(dtEjecucion.Rows[0].ItemArray[0].ToString());
         }
 
         protected void llenarGridEjecucion()
@@ -922,6 +992,7 @@ namespace SistemaPruebas.Intefaces
                         {
                             EtiqMensajeOperacion.Text = "La ejecución de prueba ha sido modificada con éxito";
                             desmarcarBoton(ref BotonEPModificar);
+                            cantidadConformidades = 0;
                             break;
                         }
                 }
@@ -1037,6 +1108,7 @@ namespace SistemaPruebas.Intefaces
                 llenarDatosEjecucionPrueba(DropDownDiseno.SelectedItem.Text.ToString());
                 estadoPostOperacion();
                 desmarcarBoton(ref BotonEPModificar);
+                cantidadConformidades = 0;
             }
             
         }

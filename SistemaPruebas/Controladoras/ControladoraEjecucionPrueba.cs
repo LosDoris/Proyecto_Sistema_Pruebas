@@ -106,5 +106,15 @@ namespace SistemaPruebas.Controladoras
         {
             return controladoraBDEjecucionPrueba.retornarEstado(idCasoPrueba);
         }
+
+        public int eliminarBDNoConformidad(string id_noConformidad)
+        {
+            return controladoraBDEjecucionPrueba.eliminarBDNoConformidad(id_noConformidad);
+        }
+
+        public int cantidadNoConformidades(string id_ejecucion)
+        {
+            return controladoraBDEjecucionPrueba.cantidadNoConformidades(id_ejecucion);
+        }
     }
 }

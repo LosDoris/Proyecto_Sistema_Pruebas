@@ -87,15 +87,35 @@ namespace SistemaPruebas.Controladoras
 
         public int modificarBDNoConformidad(EntidadNoConformidad noConformidad)
         {
-            String consulta = "UPDATE noConformidad SET" + "tipo          = '" + noConformidad.Tipo + "', " +
-                                                           "idCaso        = '" + noConformidad.Caso + "', " +
-                                                           "descripcion   = '" + noConformidad.Descripcion + "', " +
-                                                           "jutificacion  = '" + noConformidad.Justificacion + "', " +
-                                                           "imagen = @img ," +
-                                                           "estado        = '" + noConformidad.Estado + "', " +
-                                                           "fechaUltimo = getDate()" +
-                                                           "WHERE fecha   = '" + noConformidad.Id_ejecucion + "'  " +
+            DataTable dt = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
+                                                        "' and  fecha = '" + noConformidad.Id_ejecucion +"')is null) select 0 else select 1");
+            String consulta="";
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (Convert.ToInt32(dr[0])==0){
+                        consulta="INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('"+ noConformidad.Tipo + "','"
+                                                                                                                                    +noConformidad.Caso + "','"
+                                                                                                                                    +noConformidad.Descripcion + "','"
+                                                                                                                                    +noConformidad.Justificacion + "', @img, '"
+                                                                                                                                    +noConformidad.Estado  + "','"
+                                                                                                                                    + noConformidad.Id_ejecucion + "');";
+                    }
+                    else if (Convert.ToInt32(dr[0]) == 1)
+                    {
+                        consulta = "UPDATE noConformidad SET " + "tipo = '" + noConformidad.Tipo + "', " +
+                                                           "idCaso = '" + noConformidad.Caso + "', " +
+                                                           "descripcion = '" + noConformidad.Descripcion + "', " +
+                                                           "justificacion = '" + noConformidad.Justificacion + "', " +
+                                                           "estado = '" + noConformidad.Estado + "' " +
+                                                           "WHERE fecha = '" + noConformidad.Id_ejecucion + "'  " +
                                                            "AND id_noConformidad = '" + noConformidad.Id_noConformidad + "';";
+                    }
+                }
+            }
+
+            
 
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -117,7 +137,7 @@ namespace SistemaPruebas.Controladoras
             String consulta = "";
             if (tipo == 1)//consulta para llenar grid, no ocupa la cedula pues los consulta a todos
             {
-                consulta = "SELECT fecha, responsable, '"+id+"' AS Diseño"+" FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='"+id+"')";
+                consulta = "SELECT fecha, responsable, '" + id + "' AS Diseño" + " FROM Ejecucion WHERE id_disenno=(select id_disenno from Disenno_Prueba where proposito='" + id + "') order by fechaUltimo desc";
             }
             else if (tipo == 2)
             {
@@ -168,6 +188,24 @@ namespace SistemaPruebas.Controladoras
                 //controladoraEjecucionPrueba.retornarEstado("REQ-1520");
             }
             return hilera;
+        }
+
+        public int eliminarBDNoConformidad(string id_noConformidad)
+        {
+            return acceso.Insertar("DELETE FROM noConformidad WHERE id_noConformidad = '" + id_noConformidad + "';");
+        }
+
+        public int cantidadNoConformidades(string id_ejecucion)
+        {
+            DataTable dt = acceso.ejecutarConsultaTabla("select count(*) from noConformidad where fecha='" + id_ejecucion + "'");
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    return Convert.ToInt32(dr[0]);
+                }
+            }
+            return 0;
         }
 
     }
