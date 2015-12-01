@@ -167,7 +167,11 @@ namespace SistemaPruebas.Intefaces
             reqSeleccionado.Visible = false;
             limpiarPreGrid();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Exporta el grid de vista previa a un documento de word (.doc).
+         * Retorna: N/A.
+         */
         private void exportarWord()
         {
             Response.Clear();
@@ -187,14 +191,22 @@ namespace SistemaPruebas.Intefaces
             Response.Write(strwritter.ToString());
             Response.End();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: N/A.
+         * Retorna: N/A.
+         */
         public override void VerifyRenderingInServerForm(Control control)
         {
             // Confirms that an HtmlForm control is rendered for the
             //specified ASP.NET server control at run time.
         }
 
-        // Genera el reporte en Excel.
+        /*
+         * Requiere: N/A
+         * Modifica: Exporta el grid de vista previa a un documento de excel.
+         * Retorna: N/A.
+         */
         protected void generarReporteExcel(object sender, EventArgs e)
         {
             ExcelPackage package = new ExcelPackage();
@@ -248,7 +260,11 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-
+        /*
+         * Requiere: N/A
+         * Modifica: Llena el grid de proyecto.
+         * Retorna: N/A.
+         */
         protected void llenarGridPP()
         {
             GridPP.SelectedIndex = -1;
@@ -277,6 +293,11 @@ namespace SistemaPruebas.Intefaces
             llenarGridMod("");
             llenarGridReq("", "");
         }
+        /*
+         * Requiere: N/A.
+         * Modifica: Crea el DataTable de proyecto.
+         * Retorna: N/A.
+         */
         protected DataTable crearTablaPP()
         {
             DataTable dt = new DataTable();
@@ -284,7 +305,11 @@ namespace SistemaPruebas.Intefaces
             dt.Columns.Add("        Líder.      ", typeof(String));
             return dt;
         }
-
+        /*
+         * Requiere: String nombreProyecto.
+         * Modifica: Llena el grid de modulos.
+         * Retorna: N/A.
+         */
         protected void llenarGridMod(String nomProyecto)
         {
             GridMod.SelectedIndex = -1;
@@ -330,7 +355,11 @@ namespace SistemaPruebas.Intefaces
             }
 
         }
-
+        /*
+         * Requiere: N/A.
+         * Modifica: N/A.
+         * Retorna: Crea la tabla de modulos.
+         */
         protected DataTable crearTablaMod()
         {
             DataTable dt = new DataTable();
@@ -338,7 +367,11 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
-
+        /*
+         * Requiere: String nombreProyecto y String nombreModulo.
+         * Modifica: Llena el grid de requerimiento.
+         * Retorna: N/A.
+         */
         protected void llenarGridReq(String nomProyecto, String nomModulo)
         {
             GridReq.SelectedIndex = -1;
@@ -363,7 +396,11 @@ namespace SistemaPruebas.Intefaces
             GridReq.DataSource = dtGrid;
             GridReq.DataBind();
         }
-
+        /*
+         * Requiere: DataTable.
+         * Modifica: Llena el grid de reporte.
+         * Retorna: N/A.
+         */
         protected void llenarGridGR(DataTable dt)
         {
 
@@ -382,7 +419,11 @@ namespace SistemaPruebas.Intefaces
             GridGR.DataSource = dt;
             GridGR.DataBind();
         }
-
+        /*
+         * Requiere: N/A.
+         * Modifica: Crea el DataTable de requerimiento.
+         * Retorna: N/A.
+         */
         protected DataTable crearTablaReq()
         {
             DataTable dt = new DataTable();
@@ -390,6 +431,11 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
+        /*
+         * Requiere: N/A.
+         * Modifica: Deshabilta las checkbox.
+         * Retorna: N/A.
+         */
         protected void deshabilitarPP()
         {
             CheckBoxEstadoProyecto.Enabled = false;
@@ -406,7 +452,11 @@ namespace SistemaPruebas.Intefaces
             CheckBoxNombReq.Enabled = false;
         }
 
-
+        /*
+         * Requiere: N/A.
+         * Modifica: N/A.
+         * Retorna: Un array de booleanos que indican que checkbox marco el usuario.
+         */
         protected bool[] datosProy()
         {
             bool[] proyecto = new bool[12];
@@ -425,7 +475,11 @@ namespace SistemaPruebas.Intefaces
 
             return proyecto;
         }
-
+        /*
+         * Requiere: Cuando se presiona el boton generar reporte.
+         * Modifica: Se llaman los metodos de la controladora que devuelven los datos necesarions para generar un reporte, despues se despliegan en el grid de vista previa.
+         * Retorna: N/A.
+         */
         protected void BotonGE_Click(object sender, EventArgs e)
         {
             //revisar como se llaman los metodos de la controladora.
@@ -632,6 +686,11 @@ namespace SistemaPruebas.Intefaces
             GridPP.PageIndex = e.NewPageIndex;
             this.llenarGridPP();
         }
+        /*
+         * Requiere: Cuando se cambia el proyecto seleccionado en el grid de proyecto.
+         * Modifica: Se cambia la etiqueta que indica de cual proyecto se va a generar el reporte.
+         * Retorna: N/A.
+         */
         protected void PP_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = GridPP.SelectedRow.RowIndex;
@@ -688,7 +747,11 @@ namespace SistemaPruebas.Intefaces
 
 
 
-
+        /*
+         * Requiere: Cuando se cambia el estado del checkbox nombre del re.
+         * Modifica: Se cambia la etiqueta que indica de cual modulo se va a generar el reporte.
+         * Retorna: N/A.
+         */
         protected void Mod_SelectedIndexChanged(object sender, EventArgs e)
         {
             String ced = GridMod.SelectedRow.Cells[0].Text;
@@ -768,13 +831,21 @@ namespace SistemaPruebas.Intefaces
 
 
 
-
+        /*
+         * Requiere: N/A
+         * Modifica: N/A.
+         * Retorna: N/A.
+         */
         protected void Reporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = GridGR.SelectedRow.RowIndex;
             String ced = GridGR.SelectedRow.Cells[0].Text;
         }
-
+        /*
+         * Requiere: Cuando se selecciona un elemento del grid de requerimiento.
+         * Modifica: Se cambia la etiqueta que indica de cual requerimiento se va a generar el reporte.
+         * Retorna: N/A.
+         */
         protected void Req_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = GridReq.SelectedRow.RowIndex;
@@ -790,7 +861,11 @@ namespace SistemaPruebas.Intefaces
                 }
             }
         }
-
+        /*
+         * Requiere: Cuando se cambia el estado del checkbox nombre proyecto.
+         * Modifica: Se le añaden las columnas al pregrid.
+         * Retorna: N/A.
+         */
         protected void CheckBoxNombreProyecto_CheckedChanged(object sender, EventArgs e)
         {
             if (CheckBoxNombreProyecto.Checked)
@@ -801,7 +876,11 @@ namespace SistemaPruebas.Intefaces
                 preGrid.Columns.Add(test);
             }
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Llena el Header del grid de vista previa.
+         * Retorna: DataTable con el Header que va a aparecer en el grid de vista previa.
+         */
         protected DataTable headerPreGrid(CheckBox[] checks)
         {
             DataTable dt = new DataTable();
@@ -822,7 +901,11 @@ namespace SistemaPruebas.Intefaces
             }
             return dt;
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Llena el grid de vista previa.
+         * Retorna: DataTable con la informacion solicitada por el grid de vista previa.
+         */
         protected DataTable ProyectoPreGrid(List<Object> objeto, DataTable dt, CheckBox[] checks)
         {
             object[] datos = new object[dt.Columns.Count];
@@ -866,7 +949,11 @@ namespace SistemaPruebas.Intefaces
             preGrid.DataBind();
             return dt;
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Cuando pasa el evento de presionar el boton cancelar.
+         * Retorna: N/A.
+         */
         protected void BotonDescGR_Click(object sender, EventArgs e)
         {
             if (modoGR == Convert.ToString(1))
@@ -911,16 +998,16 @@ namespace SistemaPruebas.Intefaces
         }
 
         /*
- * Requiere: Que el usuario de clic en el cancelar cuando le aparece el modal.
- * Modifica: Vuelve al estado en el que estaba antes de que el usuario haya intentado eliminar, modificar o insertar.
- * Retorna: N/A.      
-*/
+        * Requiere: Que el usuario de clic en el cancelar cuando le aparece el modal.
+        * Modifica: Vuelve al estado en el que estaba antes de que el usuario haya intentado eliminar, modificar o insertar.
+        * Retorna: N/A.      
+        */
         protected void cancelarModal_Click(object sender, EventArgs e)
         {
             volverAlOriginal();
         }
         /*
-         * Requiere: N/A. 
+         * Requiere: Que suceda el eveto de dar click en el boton cancelar y luego cuando aparezca el modal de confirmacion presiona que no. 
          * Modifica: N/A. 
          * Retorna: N/A.      
         */
@@ -928,7 +1015,11 @@ namespace SistemaPruebas.Intefaces
         {
 
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Exporta el grid de vista previa a un PDF y abre una nueva pestaña en el browser que la previsualiza. Si el usuario lo desea puede descargar el documento desde ahi.
+         * Retorna: N/A.
+         */
         protected void exportarToPdf()
         {
             string nombreReporte = "Reporte Doroteos.pdf";
@@ -1002,19 +1093,31 @@ namespace SistemaPruebas.Intefaces
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", "window.open('" + nombreReporte + "','_newtab');", true);
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Click en el boton cancelar de la interfaz.
+         * Retorna: N/A.
+         */
         protected void Button2_Click(object sender, EventArgs e)
         {
             volverAlOriginal();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Limpia el grid de vista previa.
+         * Retorna: N/A.
+         */
         protected void limpiarPreGrid()
         {
             preGrid.DataSource = null;
             preGrid.DataBind();
             preGrid.Columns.Clear();
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Selecciona todos los checkbox.
+         * Retorna: N/A.
+         */
         protected void selTodos_CheckedChanged(object sender, EventArgs e)
         {
             deselTodos.Checked = false;
@@ -1025,7 +1128,11 @@ namespace SistemaPruebas.Intefaces
             }
            
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Deselecciona todos los checkbox.
+         * Retorna: N/A.
+         */
         protected void deselTodos_CheckedChanged(object sender, EventArgs e)
         {
             selTodos.Checked = false;
@@ -1036,8 +1143,12 @@ namespace SistemaPruebas.Intefaces
             }
 
         }
-       
 
+        /*
+         * Requiere: N/A
+         * Modifica: Transforma el grid de previsualizacion en un DataTable.
+         * Retorna: N/A.
+         */
         protected DataTable fromGridToDT()
         {
             DataTable dt = new DataTable();
@@ -1060,7 +1171,11 @@ namespace SistemaPruebas.Intefaces
 
             return dt;
         }
-
+        /*
+         * Requiere: N/A
+         * Modifica: Deshabilita los checkbox.
+         * Retorna: N/A.
+         */
         protected void unenabledChecks()
         {
             CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
@@ -1069,6 +1184,11 @@ namespace SistemaPruebas.Intefaces
             selTodos.Enabled = false;
             deselTodos.Enabled = false;
         }
+        /*
+         * Requiere: N/A
+         * Modifica: Vuelve a habilitar los checkbox.
+         * Retorna: N/A.
+         */
         protected void enabledChecks()
         {
             CheckBox[] checks = { CheckBoxNombreProyecto, CheckBoxObjetivoProyecto, CheckBoxFechAsignacionProyecto, CheckBoxEstadoProyecto, CheckBoxOficinaProyecto, CheckBoxResponsableProyecto, CheckBoxMiembrosProyecto, CheckBoxNombModulo, CheckBoxNombReq, CheckBoxExitos, CheckBoxCantNoConf, CheckBoxTipoNoConf };
