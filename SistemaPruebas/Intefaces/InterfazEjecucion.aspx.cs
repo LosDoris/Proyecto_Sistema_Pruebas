@@ -141,10 +141,11 @@ namespace SistemaPruebas.Intefaces
                 inicializarListaNC();
                 inicializarDTnoConformidades();
                 //gridNoConformidades.DataBind();
-                gridEjecucion.Enabled = true;
+                gridEjecucion.DataBind();
             }
             EtiqMensajeOperacion.Visible = false;
             gridEjecucion.Enabled = true;
+            gridEjecucion.DataBind();
         }
 
         protected void inicializarListaNC()
@@ -841,7 +842,7 @@ namespace SistemaPruebas.Intefaces
         {
             gridEjecucion.PageIndex = e.NewPageIndex;
             this.llenarGridEjecucion();
-            //gridEjecucion.DataBind();
+            gridEjecucion.DataBind();
         }
 
         protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
