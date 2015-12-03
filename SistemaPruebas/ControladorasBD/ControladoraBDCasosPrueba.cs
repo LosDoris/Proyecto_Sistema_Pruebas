@@ -12,6 +12,12 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
+
+       /*
+        * Requiere: entidad Caso de Prueba
+        * Modifica: inserta en la base de datos el Caso de Prueba en base a la información ingresada. Regresa 1 si la inserción fue exitosa y 0 si no.
+        * Retorna: entero
+        */
         public int ingresarCasosPrueba(EntidadCasosPrueba casoPrueba)
         {
             String consulta =
@@ -23,6 +29,11 @@ namespace SistemaPruebas.Controladoras
             return ret;
         }
 
+        /*
+        * Requiere: entidad Caso de Prueba
+        * Modifica: modifica en la base de datos el Caso de Prueba en base a la información ingresada. Regresa 1 si la modificación respectiva fue exitosa y 0 si no.
+        * Retorna: entero
+        */
         public int modificarCasosPrueba(EntidadCasosPrueba casoPrueba)
         {
             String consulta = "UPDATE Caso_Prueba SET id_caso_prueba ='" + casoPrueba.Id_caso_prueba +
@@ -36,12 +47,21 @@ namespace SistemaPruebas.Controladoras
             return ret;
 
         }
-
+        /*
+        * Requiere: identificador del Caso de Prueba
+        * Modifica: eliminia en la base de datos el Caso de Prueba en base al identificador recibido. Regresa 1 si la inserción fue exitosa y 0 si no.
+        * Retorna: entero
+        */
         public int eliminarCasosPrueba(String id)
         {
             return acceso.Insertar("DELETE FROM Caso_Prueba WHERE id_caso_prueba = '" + id + "';");
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: regresa en forma de un Data Table toda la información consultada respectiva, con los datos de todos los Casos de Prueba en la base de datos.
+         * Retorna: DataTable
+         */
         public DataTable consultarCasosPrueba(int tipo, String id)
         {
             DataTable dt = null;
@@ -60,6 +80,11 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+       /*
+        * Requiere: id de diseño de pruebas.
+        * Modifica: Solicita los casos de preuba asociados a idDiseno.
+        * Retorna: hilera.
+        */
         public String solicitarCasosdePrueba(int idDiseno)
         {
             using (SqlCommand comando = new SqlCommand("dbo.Consultar_Casos_Prueba"))
@@ -70,7 +95,7 @@ namespace SistemaPruebas.Controladoras
             }
         }
 
-        public DataTable consultarCasoPorRequerimiento(string id)
+        public DataTable consultarCasoPorRequerimiento(String id)
         {
             DataTable retorno = acceso.ejecutarConsultaTabla("select id_caso_prueba from caso_prueba where id_caso_prueba like '" + id + "-%';");
             return retorno;

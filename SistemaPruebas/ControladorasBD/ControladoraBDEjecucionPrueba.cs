@@ -11,6 +11,12 @@ namespace SistemaPruebas.Controladoras
     {
         Acceso.Acceso acceso = new Acceso.Acceso();
 
+
+        /*
+        * Requiere: Entidad de ejecución de pruebas recibida desde la controladora de ejecución de pruebas.
+        * Modifica: Realiza la consulta con los datos recibidos para insertar una nueva ejecución de pruebas.
+        * Retorna: Hilera.
+        */
         public String insertarBDEjecucion(EntidadEjecucionPrueba ejecucion)
         {
             String consulta =
@@ -38,7 +44,12 @@ namespace SistemaPruebas.Controladoras
             return fecha_regresa;
         }
 
-       
+
+       /*
+        * Requiere: Entidad de no conformidad recibida desde la controladora de ejecución de pruebas.
+        * Modifica: Realiza la consulta con los datos recibidos para insertar una nueva no conformidad.
+        * Retorna: entero.
+        */
         public int insertarBDnoConformidad(EntidadNoConformidad noConformidad)
         {
             String consulta = "INSERT INTO noConformidad (tipo, idCaso, descripcion, justificacion,imagen, estado, fecha) VALUES ('" + noConformidad.Tipo               + "','"
@@ -56,6 +67,12 @@ namespace SistemaPruebas.Controladoras
             return 0;
         }
 
+
+       /*
+        * Requiere: Entidad de ejecución de pruebas recibida desde la controladora de ejecución de pruebas.
+        * Modifica: Realiza la consulta con los datos recibidos para modificar la ejecución de pruebas.
+        * Retorna: Hilera.
+        */
         public String modificarEjecucionPrueba(EntidadEjecucionPrueba ejecucion)
         {
             String consulta = "UPDATE ejecucion SET fecha = '" + ejecucion.Fecha +
@@ -85,6 +102,12 @@ namespace SistemaPruebas.Controladoras
             return fecha_regresa;
         }
 
+
+       /*
+        * Requiere: Entidad de no conformidad recibida desde la controladora de ejecución de pruebas.
+        * Modifica: Realiza la consulta con los datos recibidos para modificar la no conformidad.
+        * Retorna: entero.
+        */
         public int modificarBDNoConformidad(EntidadNoConformidad noConformidad)
         {
             DataTable dt = acceso.ejecutarConsultaTabla("if ((select id_noConformidad from noConformidad where id_noConformidad = '" + noConformidad.Id_noConformidad +
@@ -117,11 +140,22 @@ namespace SistemaPruebas.Controladoras
             return 0;
         }
 
+
+        /*
+        * Requiere: id de Ejecución de preuba
+        * Modifica: Realiza la consulta con el id recibido para eliminar a la ejecución de prueba asociada.
+        * Retorna: entero.
+        */
         public int eliminarEjecucionPrueba(String id)
         {
             return acceso.Insertar("DELETE FROM ejecucion WHERE fecha = '" + id + "';");
         }
 
+        /*
+        * Requiere: tipo de consulta e id de ejecución de prueba.
+        * Modifica: Realiza la consulta con el id recibido para retornar sus datos dependiendo del tipo de consulta ( todas las tuplas o solo una).
+        * Retorna: DataTable.
+        */
         public DataTable consultarEjecucionPrueba(int tipo, String id)
         {
             DataTable dt = null;
@@ -140,6 +174,12 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+
+       /*
+        * Requiere: fecha de no conformidad
+        * Modifica: Realiza la consulta con la fecha recibida para retornar los datos asociados.
+        * Retorna: DataTable.
+        */
         public DataTable consultarBDNoConformidad(String fecha)
         {
             DataTable dt = null;
@@ -148,36 +188,48 @@ namespace SistemaPruebas.Controladoras
             return dt;
         }
 
+       /*
+        * Requiere: id de caso de prueba
+        * Modifica: Realiza la consulta para retornar el estado asociado a casoPrueba.
+        * Retorna: hilera.
+        */
         public String retornarEstado(String casoPrueba)
         {
             DataTable retorno = acceso.ejecutarConsultaTabla("select estado, tipo from noConformidad where fecha= (select max(fecha) from noConformidad where idCaso='"+casoPrueba +"') and  idCaso= '" + casoPrueba + "'");
-            string hilera = "";
-
+            String hilera = "";
            
-             for (int i = 0; i < retorno.Rows.Count; i++)
-                 {
-                    hilera += retorno.Rows[i].ItemArray[0].ToString()+",";
-                    if (i == retorno.Rows.Count - 1)
-                    {
-                        hilera += retorno.Rows[i].ItemArray[1].ToString();
-                    }
-                    else
-                    {
-                        hilera += retorno.Rows[i].ItemArray[1].ToString() + ";";
-                    }
-                    
+            for (int i = 0; i < retorno.Rows.Count; i++)
+            {
+                hilera += retorno.Rows[i].ItemArray[0].ToString()+",";
+                if (i == retorno.Rows.Count - 1)
+                {
+                    hilera += retorno.Rows[i].ItemArray[1].ToString();
                 }
-                //controladoraEjecucionPrueba.retornarEstado("Curso-RQ1-1");
-                //controladoraEjecucionPrueba.retornarEstado("REQ-1520");
-            
+                else
+                {
+                    hilera += retorno.Rows[i].ItemArray[1].ToString() + ";";
+                }                   
+            }           
             return hilera;
         }
 
+
+        /*
+        * Requiere: id de la no conformidad.
+        * Modifica: Realiza la consulta con id_noConformidad para eliminar la tupla asociada.
+        * Retorna: entero.
+        */
         public int eliminarBDNoConformidad(string id_noConformidad)
         {
             return acceso.Insertar("DELETE FROM noConformidad WHERE id_noConformidad = '" + id_noConformidad + "';");
         }
 
+
+        /*
+        * Requiere: id de la ejecución de prueba.
+        * Modifica: Realiza la consulta con id_ejecución para retornar la cantidad de no conformidades asociada.
+        * Retorna: entero.
+        */
         public int cantidadNoConformidades(string id_ejecucion)
         {
             DataTable dt = acceso.ejecutarConsultaTabla("select count(*) from noConformidad where fecha='" + id_ejecucion + "'");

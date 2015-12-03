@@ -17,8 +17,11 @@ namespace SistemaPruebas.Intefaces
     {
 
 
-        //variables de sesion
         ControladoraEjecucionPrueba controladoraEjecucionPrueba = new ControladoraEjecucionPrueba();
+        /*
+            Variable de sesion
+        */
+
         /*
          * Requiere: N/A
          * Modifica: Declara variable global de modoEP (tipo de operación en ejecución)
@@ -73,20 +76,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
-
-        public static List<int> filasEliminar
-        {
-            get
-            {
-                object value = HttpContext.Current.Session["filasEliminar"];
-                return value == null ? null : (List<int >)value;
-            }
-            set
-            {
-                HttpContext.Current.Session["filasEliminar"] = value;
-            }
-        }
-
+        /*
+        * Requiere: N/A
+        * Modifica: DataTable global usado para llenar el grid de No Conformidades al cargarse la página
+        * Retorna: DataTable.
+        */
         public static DataTable dtNoConformidades
         {
             get
@@ -100,6 +94,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Variable global indica en cual diseño se estan haciendo operaciones sobre sus ejecuciones de prueba 
+         * Retorna: Hilera.
+         */
         public static String disennoSeleccionado
         {
             get
@@ -113,6 +112,12 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+       /*
+        * Requiere: N/A
+        * Modifica: Variable global indica la cantidad de no conformidades actualmente en el grid de No Conformidades 
+        * Retorna: entero.
+        */
         public static int cantidadConformidades
         {
             get
@@ -127,7 +132,10 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        //Page load
+        /* 
+            Page load
+        */
+
         /*
         * Requiere: N/A
         * Modifica: Maneja los eventos a ocurrir cada vez que se carga la página
@@ -140,7 +148,6 @@ namespace SistemaPruebas.Intefaces
                 estadoInicial();
                 inicializarListaNC();
                 inicializarDTnoConformidades();
-                //gridNoConformidades.DataBind();
                 gridEjecucion.DataBind();
             }
             EtiqMensajeOperacion.Visible = false;
@@ -148,22 +155,36 @@ namespace SistemaPruebas.Intefaces
             gridEjecucion.DataBind();
         }
 
+
+        /* 
+            Inicializaciones y estados       
+        */
+
+
+        /*
+        * Requiere: N/A
+        * Modifica: Inicializa la lista de no conformidades.
+        * Retorna: N/A
+        */
         protected void inicializarListaNC()
         {
             listaNC = new List<Object[]>();
         }
-
-        //inicializaciones y estados
-        /*
-         * Requiere: N/A
-         * Modifica: Establece el valor por defecto de la variable "modo" a 0.
-         * Retorna: N/A
-         */
+       /*
+        * Requiere: N/A
+        * Modifica: Establece el valor por defecto de la variable "modo" a 0.
+        * Retorna: N/A
+        */
         protected void inicializarModo()
         {
             modoEP = 0;
         }
 
+        /*
+        * Requiere: N/A
+        * Modifica: Establece estado inicial de la página, indicando cuales controles van a estar habilitados la primera vez que se carga la página
+        * Retorna: N/A
+        */
         protected void estadoInicial()
         {
             //DatosEjecucion.Enabled = false;
@@ -182,6 +203,44 @@ namespace SistemaPruebas.Intefaces
             cantidadConformidades = 0;
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Insertar".
+        * Retorna: N/A
+        */
+        protected void estadoInsertar()
+        {
+            marcarBoton(ref BotonEPInsertar);
+            limpiarCampos();
+            habilitarCampos();
+            BotonEPAceptar.Enabled = true;
+            BotonEPCancelar.Enabled = true;
+            BotonEPModificar.Enabled = false;
+            BotonEPEliminar.Enabled = false;
+            //deshabilitarGrid(ref gridEjecucion);
+        }
+
+
+       /*
+        * Requiere: N/A
+        * Modifica: Establece el estado de la pantalla inmediatamente después de presionar el botón "Modificar".
+        * Retorna: N/A
+        */
+        protected void estadoModificar()
+        {
+            marcarBoton(ref BotonEPModificar);
+            limpiarCampos();
+            habilitarCampos();
+            BotonEPAceptar.Enabled = true;
+            BotonEPCancelar.Enabled = true;
+            BotonEPInsertar.Enabled = false;
+            BotonEPModificar.Enabled = true;
+            BotonEPEliminar.Enabled = false;
+            //deshabilitarGrid(ref gridEjecucion);
+            llenarDatosEjecucionPrueba(gridEjecucion.SelectedRow.Cells[0].Text);
+
+        }
+
         /*
          * Requiere: N/A
          * Modifica: Establece el estado de la pantalla inmediatamente después de efectuar una operación de inserción, modificación o eliminación.
@@ -190,8 +249,6 @@ namespace SistemaPruebas.Intefaces
         protected void estadoPostOperacion()
         {
             modoEP = 0;
-            //deshabilitarCampos();
-            //habilitarGrid(ref CP);
             habilitarCampos();
             BotonEPInsertar.Enabled = true;
             BotonEPModificar.Enabled = false;
@@ -202,7 +259,15 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        //dropdowns
+        /*
+            Llenado de DrodDownLists
+        */
+
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el dropdownlist de proyectos solicitando la información a la controladora de Ejecución para que esta se la solicite a la de Proyectos
+        * Retorna: N/A
+        */
         protected void llenarDDProyectoAdmin()
         {
 
@@ -229,6 +294,12 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el dropdownlist de diseños asociados al proyecto seleccionado solicitando la información a la controladora de Ejecución para que esta se la solicite a la de Diseño.
+        * Retorna: N/A
+        */
         protected void llenarDDDisseno()
         {
             this.DropDownDiseno.Items.Clear();
@@ -256,6 +327,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el dropdownlist de casos de pruebas asociados al diseño seleccionado solicitando la información a la controladora de Ejecución para que esta se la solicite a la de Casos de Prueba.
+        * Retorna: N/A
+        */
         protected void llenarDDCasoPrueba(ref DropDownList dd)
         {
             dd.Items.Clear();
@@ -278,6 +354,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: N/A
+         * Modifica: Se encarga de llenar el dropdownlist de miembros asociados al proyecto seleccionado solicitando la información a la controladora de Ejecución para que esta se la solicite a la de Proyectos.
+         * Retorna: N/A
+         */
         protected void llenarDDResponsables()
         {
             this.DropDownResponsable.Items.Clear();
@@ -309,6 +390,16 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+      /* 
+         Eventos DropDownLists
+      */
+
+      /*
+      * Requiere: Evento de cambiar de opción en el DropDown de Proyecto.
+      * Modifica: Provoca el llenado del DropDown de Diseño.
+      * Retorna: N/A. 
+      */
         protected void DropDownProyecto_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DropDownProyecto.SelectedItem.Text != "Seleccionar")
@@ -333,6 +424,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+      /*
+      * Requiere: Evento de cambiar de opción en el DropDown de Diseño.
+      * Modifica: Provoca el llenado del grid de ejecuciones de prueba, así como habilitar la interfaz para la inserción de una nueva ejecución de pruebas, asociada al diseño seleeccionado.
+      * Retorna: N/A. 
+      */
         protected void DropDownDiseno_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DropDownDiseno.SelectedItem.Text != "Seleccionar")
@@ -363,16 +459,28 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+         * Requiere: Evento de cambiar de opción en el DropDown de Casos de Prueba.
+         * Modifica: N/A.
+         * Retorna: N/A. 
+         */
         protected void DropDownCasoDePrueba_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
 
-        //botones
+        /*
+            Control de campos y botones
+        */
+
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de borrar toda la información de los controles seleccionados
+        * Retorna: N/A
+        */
         protected void limpiarCampos()
         {
-
             DropDownResponsable.SelectedValue = "1";
             FechaEP.Text = "";
             TextBoxIncidencias.Text = "";
@@ -380,6 +488,11 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+        /*
+        * Requiere: N/A
+        * Modifica: Habilita los controles de la pantalla: Textbox, DropDownList y Grid.
+        * Retorna: N/A
+        */
         protected void habilitarCampos()
         {
             DatosEjecucion.Enabled = true;
@@ -388,7 +501,6 @@ namespace SistemaPruebas.Intefaces
             FechaEP.Enabled = true;
             Incidencias.Enabled = true;
             gridEjecucion.Enabled = true;
-            //habilitarGrid(ref gridEjecucion);
         }
 
         /*
@@ -416,8 +528,15 @@ namespace SistemaPruebas.Intefaces
         }
 
 
+        /*
+            Eventos Grid no conformidades        
+        */
 
-        //grid no conformidades
+       /*
+       * Requiere: El evento de enlazar información de un datatable con el Grid.
+       * Modifica: Establece el comportamiento del Grid ante los diferentes eventos, en este caso llama al método de llenado de los dropdowlists de casos de prueba
+       * Retorna: N/A.
+       */
         protected void gridNoConformidades_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -429,7 +548,11 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        //no conformidades
+        /*
+        * Requiere: N/A
+        * Modifica: Establece las columnas que poseerá el datatable de "No Conformidades".
+        * Retorna: N/A
+        */
         protected void inicializarDTnoConformidades()
         {
             try
@@ -474,6 +597,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: Evento de dar click al boton de agregar fila
+        * Modifica: Se encarga de agregar una fila nueva con todos los controles repectivos al grid de no conformidades para que se pueda agregar una nueva no conformidad
+        * Retorna: N/A
+        */
         protected void AgregarFIla_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow row in gridNoConformidades.Rows)
@@ -510,6 +638,11 @@ namespace SistemaPruebas.Intefaces
             
         }
 
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de agregar una fila nueva con todos los controles repectivos al grid de no conformidades para que se pueda agregar una nueva no conformidad
+        * Retorna: N/A
+        */
         protected void agregarFilaGridNC()
         {
             try
@@ -563,6 +696,12 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de conservar los datos en los controles de cada fila del grid de no conformidades al darse una inserción o eliminación de alguna fila.
+        * Retorna: N/A
+        */
         protected void conservarEstado()
         {
             try
@@ -599,6 +738,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: Evento de dar click al boton de subir imagen
+        * Modifica: Se encarga de subir una imagen seleccionada por el usuario y colocarla en el control de imagen de asp.net ubicado en el panel de cada fila del grid de no conformidades.
+        * Retorna: N/A
+        */
         protected void subirImagen_Click(object sender, EventArgs e)
         {
             GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent.Parent;
@@ -621,21 +765,6 @@ namespace SistemaPruebas.Intefaces
                     imagenRes.Visible = true;
                     String base64 = imagenRes.ImageUrl.Replace("data:image/png;base64,", "");
                     String filename = Path.GetFileName(fu.PostedFile.FileName);
-                    //byte[] bytes = Convert.FromBase64String(base64String);
-                    //Response.Write(imagenRes.ImageUrl);
-                    //using (SqlConnection con = new SqlConnection(strCon))
-                    //{
-                    //    using (SqlCommand cmd = new SqlCommand())
-                    //    {
-                    //        cmd.CommandText = "insert into Image_Sample(imagename,imgdata) values(@Name,@Data)";
-                    //        cmd.Parameters.AddWithValue("@Name", filename);
-                    //        cmd.Parameters.AddWithValue("@Data", imgbyte);
-                    //        cmd.Connection = con;
-                    //        con.Open();
-                    //        int a = cmd.ExecuteNonQuery();
-                    //        Response.Write("lkjlkjlk" + a);
-                    //        con.Close();
-                    //    }
 
                 }
                 catch (Exception ex)
@@ -645,26 +774,23 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: Evento de comando de fila en el grid de no conformidades
+        * Modifica: Se encarga de recuperar el número de fila en el grid sobre la cual hubo una operación en alguno de sus controles (Textbox o DropDownList).
+        * Retorna: N/A
+        */
         protected void gridNoConformidades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow gvRow = gridNoConformidades.Rows[index];
             
-
-            //if (e.CommandName == "pasarFila")
-            //{
-            //    // Retrieve the row index stored in the 
-            //    // CommandArgument property.
-            //    int index = Convert.ToInt32(e.CommandArgument);
-
-            //    // Retrieve the row that contains the button 
-            //    // from the Rows collection.
-            //    GridViewRow row = gridNoConformidades.Rows[index];
-
-            //    // Add code here to add the item to the shopping cart.
-            //}
         }
 
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de recuperar toda la información presente en cada fila del grid de no conformidades para una operación de inserción o modificación.
+        * Retorna: N/A
+        */
         protected void recuperarNoConformidades()
         {
             foreach (GridViewRow row in gridNoConformidades.Rows)
@@ -695,6 +821,12 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+
+        /*
+        * Requiere: Evento de darle click al botón de eliminar en alguna de las filas del grid de no conformidades.
+        * Modifica: Se encarga de eliminar la fila a la cual pertenece el botón que generó el evento.
+        * Retorna: N/A
+        */
         protected void btnEliminarFila_Click(object sender, EventArgs e)
         {
             if ( modoEP!=2 && cantidadConformidades>0)
@@ -736,6 +868,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+        * Requiere: N/A.
+        * Modifica: Se encarga de limpiar toda la información presente en el DataTable de no conformidades.
+        * Retorna: N/A
+        */
         protected void limpiarNC(String fecha)
         {
 
@@ -778,6 +915,12 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+        /*
+        * Requiere: N/A.
+        * Modifica: Se encarga llenar el grid de no conformidades dependiendo de la ejecución seleccionada mediante la fecha de esta.
+        * Retorna: N/A
+        */
         protected void llenarGridNCConsulta(String fecha)
         {
             DataTable dtNC = controladoraEjecucionPrueba.consultarNoConformidades(fecha);
@@ -800,6 +943,12 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+       /*
+        * Requiere: N/A.
+        * Modifica: Se encarga de llenar el grid de no conformidades (fila por fila, control por control) con las no conformidades asociadas a la ejecución de pruebas seleccionada desde base de datos.
+        * Retorna: N/A
+        */
         protected void leerNC(DataTable dtNC)
         {
             for (int i = 0; i < dtNoConformidades.Rows.Count; i++)
@@ -837,7 +986,11 @@ namespace SistemaPruebas.Intefaces
         }
 
 
-        //grid ejecucion
+       /*
+        * Requiere: Evento de pasar de página en el Grid.
+        * Modifica: Pasa de página y llena el Grid con las n tuplas que siguen, siendo n el tamaño de la página.
+        * Retorna: N/A. 
+        */
         protected void OnGridEjecucionPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridEjecucion.PageIndex = e.NewPageIndex;
@@ -845,6 +998,12 @@ namespace SistemaPruebas.Intefaces
             gridEjecucion.DataBind();
         }
 
+
+        /*
+        * Requiere: El evento de enlazar información de un datatable con el Grid de "Ejecuciones de Prueba".
+        * Modifica: Establece el comportamiento del Grid ante los diferentes eventos.
+        * Retorna: N/A.
+        */
         protected void OnGridEjecucionRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -857,6 +1016,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: Evento de seleccionar un Caso de Prueba.
+        * Modifica: Se encarga de controlar qué fila está seleccionada en el Grid de Ejecución de Prueba para realizar el llenado de campos correspondiente.
+        * Retorna: N/A
+        */
         protected void GridEjecucion_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -877,6 +1041,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar los datos en los Textbox, correspondientes a la ejecución de prueba consultado desde el Grid.
+        * Retorna: N/A
+        */
         protected void llenarDatosEjecucionPrueba(String fecha)
         {
             DataTable dtEjecucion = controladoraEjecucionPrueba.consultarEjecucion(2, fecha);
@@ -889,6 +1058,12 @@ namespace SistemaPruebas.Intefaces
             //ver cantidad de noconformidades
         }
 
+
+        /*
+        * Requiere: N/A
+        * Modifica: Se encarga de llenar el Grid de ejecución de pruebas pidiendo la lista de ejecuciones disponibles a la Controladora de Ejecución de Prueba.
+        * Retorna: N/A
+        */
         protected void llenarGridEjecucion()
         {
             DataTable ejecuciones = crearTablaGridEjecuciones();
@@ -916,6 +1091,12 @@ namespace SistemaPruebas.Intefaces
             gridEjecucion.DataBind();
         }
 
+
+       /*
+        * Requiere: N/A
+        * Modifica: Se encarga de inicializar las columnas del datatable del cual se llenará el Grid de Ejecuciones de Prueba.
+        * Retorna: DataTable.
+        */
         protected DataTable crearTablaGridEjecuciones()
         {
             DataTable dt = new DataTable();
@@ -925,9 +1106,11 @@ namespace SistemaPruebas.Intefaces
             return dt;
         }
 
-
-
-        //aceptarsh
+        /*
+        * Requiere: Evento de dar click al botón "Aceptar".
+        * Modifica: Se encarga de efectuar la inserción o modificación llamando a la Controladora de Ejecución de Prueba, usando los datos ingresados en los campos y confirmando al usuario el resultado de la operación.
+        * Retorna: N/A
+        */
         protected void BotonEPAceptar_Click(object sender, EventArgs e)
         {       
             Object[] datosNuevos = new Object[5];
@@ -998,12 +1181,23 @@ namespace SistemaPruebas.Intefaces
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
         }
 
+
+       /*
+        * Requiere: Evento de dar click al botón "Insertar".
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una inserción.
+        * Retorna: N/A
+        */
         protected void BotonEPInsertar_Click(object sender, EventArgs e)
         {
             modoEP = 1;
             estadoInsertar();
         }
 
+       /*
+        * Requiere: Evento de dar click al botón "Modificar".
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una modificación.
+        * Retorna: N/A
+        */
         protected void BotonEPModificar_Click(object sender, EventArgs e)
         {
             modoEP = 2;
@@ -1012,39 +1206,24 @@ namespace SistemaPruebas.Intefaces
 
         }
 
+
+       /*
+        * Requiere: Evento de dar click al botón "Eliminar".
+        * Modifica: Se encarga de preparar los controles de la aplicación para efectuar una eliminación.
+        * Retorna: N/A
+        */
         protected void BotonEPEliminar_Click(object sender, EventArgs e)
         {
             
 
         }
 
-        protected void estadoInsertar()
-        {
-            marcarBoton(ref BotonEPInsertar);
-            limpiarCampos();
-            habilitarCampos();
-            BotonEPAceptar.Enabled = true;
-            BotonEPCancelar.Enabled = true;
-            BotonEPModificar.Enabled = false;
-            BotonEPEliminar.Enabled = false;
-            //deshabilitarGrid(ref gridEjecucion);
-        }
 
-        protected void estadoModificar()
-        {
-            marcarBoton(ref BotonEPModificar);
-            limpiarCampos();
-            habilitarCampos();
-            BotonEPAceptar.Enabled = true;
-            BotonEPCancelar.Enabled = true;
-            BotonEPInsertar.Enabled = false;
-            BotonEPModificar.Enabled = true;
-            BotonEPEliminar.Enabled = false;
-            //deshabilitarGrid(ref gridEjecucion);
-            llenarDatosEjecucionPrueba(gridEjecucion.SelectedRow.Cells[0].Text);
-
-        }
-
+        /*
+         * Requiere: Evento de dar click al botón "Acepar" en el modal.
+         * Modifica: Se encarga de efectuar la eliminación de la ejecución de prueba elegido y confirmar al usuario si esta fue exitosa o no.
+         * Retorna: N/A
+         */
         protected void eliminarAceptarModal(object sender, EventArgs e)
         {
             desmarcarBoton(ref BotonEPEliminar);
@@ -1069,6 +1248,11 @@ namespace SistemaPruebas.Intefaces
             }
         }
 
+        /*
+         * Requiere: Evento de dar click al botón "Si" en en el modal de cancelar.
+         * Modifica: Se de cancelar la operación en ejecución, retornando la pantalla a como estaba antes de elegir la operación.
+         * Retorna: N/A
+         */
         protected void cancelarBotonSiModal_Click(object sender, EventArgs e)
         {
             if (modoEP == 1)
@@ -1088,7 +1272,7 @@ namespace SistemaPruebas.Intefaces
             
         }
 
-        /*
+       /*
         * Requiere: GridView.
         * Modifica: Se encarga de deshabilitar las funciones del Grid pasado por parámetro.
         * Retorna: N/A
